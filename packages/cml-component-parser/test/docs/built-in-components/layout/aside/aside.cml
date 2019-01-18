@@ -1,0 +1,44 @@
+<template>
+<view class="c-aside" style="{{mergeAsideStyle}}">
+  <slot></slot>
+</view>
+</template>
+<script>
+class CAside {
+
+  props = {
+    asideStyle:{
+      type:String,
+      default:'',
+    },
+  }
+  data = {
+    defaultStyle:'width:200px;',
+  }
+  computed = {
+    mergeAsideStyle(){
+      return this.defaultStyle + this.asideStyle;
+    }
+  }
+
+}
+
+export default new CAside()
+</script>
+<style scoped>
+.c-aside{
+    display: flex;
+    background-color: #d3dce6;
+    color: #333;
+    line-height: 60px;
+    flex-shrink:0;
+}
+
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "component": true
+    }
+}
+</script>

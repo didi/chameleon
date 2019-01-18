@@ -1,0 +1,91 @@
+<template>
+<view class="wrap">
+
+</view>
+</template>
+<script>
+import cml from 'chameleon-api'
+class CTodoitem   {
+  props = {
+    
+  }
+  data = {
+    
+  }
+
+  computed = {
+    
+  }
+
+  watch  = {
+  }
+
+  methods = {
+    
+  }
+}
+
+export default new CTodoitem();
+</script>
+<style scoped>
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100px;
+  width: 600px;
+  border-bottom: 1px solid #ccc;
+}
+.checkbox-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 80px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+.completed-show {
+  width: 470px;
+  font-size: 32px;
+  color: #999;
+  height: 100px;
+  line-height: 100px;
+  text-decoration: line-through;
+}
+.text-show {
+  width: 470px;
+  font-size: 32px;
+  color: #666;
+  height: 100px;
+  line-height: 100px;
+}
+.top-btn {
+  font-size: 28px;
+  width: 120px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #fff;
+  background: #61c7fc;
+}
+.delete-btn {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "wx": {
+    "component": true
+  }
+}
+</script>

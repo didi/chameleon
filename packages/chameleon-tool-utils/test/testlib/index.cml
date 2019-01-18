@@ -1,0 +1,324 @@
+<template>
+  <page title="TodoMVC">
+    <view class="page-container">
+      <scroller>
+        <view class="scroller-wrap">
+          <text class="title">{{title}}</text>
+          <view class="main">
+            <view class="input-wrap">
+              <input class="input-area"
+                          placeholder="What needs to be done?"
+                          input-style="{{inputStyle}}"
+                          type="text"
+                          value="{{value}}"
+                          c-bind:inputevent="inputHandle"
+                          c-bind:blurevent="addHandle" />
+              <view class="add-btn" c-bind:tap="addHandle">
+                <view class="black-arrow" style="{{btnStyle}}"></view>
+                <view class="white-arrow"></view>
+              </view>
+            </view>
+            <view class="list-wrap">
+              <c-todoitem c-for="{{showTodos}}"
+                        c-key="{{todoLength + index}}"
+                        completed="{{item.completed}}"
+                        index="{{item.index}}"
+                        text="{{item.text}}"
+                        c-bind:changestatus="changeStatus"
+                        c-bind:delete="delete"
+                        c-bind:top="top"></c-todoitem>
+            </view>
+            <view class="option-wrap">
+              <text class="count">{{countText}}</text>
+              <view class="filter">
+                <text class="{{filter === 0 ? 'filter-active' : 'filter-default'}}"
+                      c-bind:tap="changeFilter0">All</text>
+                <text class="{{filter === 1 ? 'filter-active' : 'filter-default'}}"
+                      c-bind:tap="changeFilter1">Active</text>
+                <text class="{{filter === 2 ? 'filter-active' : 'filter-default'}}"
+                      c-bind:tap="changeFilter2">Completed</text>
+              </view>
+              <text class="clear-completed" c-bind:tap="clear">Clear completed</text>
+            </view>
+          </view>
+        </view>
+      </scroller>
+    </view>
+  </page>
+</template>
+
+<script>
+
+import store from "../../store";
+const {mapGetters, mapMutations, mapActions, mapState} = store;
+
+import  getterTypes from '../../store/getter-types.js';
+import  mutationTypes from '../../store/mutation-types.js';
+import  actionTypes from '../../store/action-types.js';
+// import cml from 'chameleon-api';
+
+class Index  {
+  data = {
+    title: 'todos',
+    chameleon: require("../../assets/images/chameleon.png"),
+    checked: false,
+    value: '',
+    filter: 0 // 0:all,1:active,2:completed
+  }
+  computed ={
+    ...mapGetters({
+      todos: getterTypes.INDEX_DESC_TODOS
+    }),
+    inputStyle() {
+      return this.$cmlStyle('border-width: 0;height:100px;line-height:100px;font-size:32px;color:#333;padding-left: 80px;');
+    },
+    btnStyle() {
+      if (!this.value) {
+        return this.$cmlStyle({
+          background: '#999999'
+        })
+      } else {
+        return this.$cmlStyle({
+          background: '#333333'
+        })
+      }
+    },
+    countText() {
+      let count = 0;
+      this.todos.forEach(item => {
+        if (!item.completed) {
+          count ++;
+        }
+      })
+      return `${count} items left`;
+    },
+    showTodos() {
+      if (this.filter === 0) {
+        let t = this.todos.map((item, index) => {
+          item.index = index;
+          return item;
+        });
+        return t;
+      }
+      if (this.filter === 1) {
+        let t = [];
+        this.todos.forEach((item, index) => {
+          if (!item.completed) {
+            item.index = index;
+            t.push(item);
+          }
+        })
+        return t;
+      }
+      if (this.filter === 2) {
+        let t = [];
+        this.todos.forEach((item, index) => {
+          if (item.completed) {
+            item.index = index;
+            t.push(item);
+          }
+        })
+        return t;
+      }
+    },
+    todoLength() {
+      return this.showTodos.length + '';
+    }
+  }
+  watch = {
+
+  }
+  methods = {
+    ...mapActions([
+      actionTypes.INDEX_ADD_TODOS,
+      actionTypes.INDEX_CHANGE_TODOS_STATUS,
+      actionTypes.INDEX_DELETE_TODOS,
+      actionTypes.INDEX_TOP_TODOS,
+      actionTypes.INDEX_CHANGE_TODOS_CLEAR_COMPLETED
+    ]),
+    changeStatus(e) {
+      let { index, status } = e.detail;
+      this[actionTypes.INDEX_CHANGE_TODOS_STATUS]({
+        index,
+        status
+      })
+    },
+    inputHandle(e) {
+      this.value = e.detail.value;
+    },
+    addHandle() {
+      if (!this.value) {
+        return;
+      }
+      this[actionTypes.INDEX_ADD_TODOS](this.value);
+      this.value = '';
+    },
+    delete(e) {
+      this[actionTypes.INDEX_DELETE_TODOS](e.detail.index)
+    },
+    top(e) {
+      this[actionTypes.INDEX_TOP_TODOS](e.detail.index)
+    },
+    clear() {
+      this[actionTypes.INDEX_CHANGE_TODOS_CLEAR_COMPLETED]();
+    },
+    changeFilter0() {
+      this.filter = 0;
+    },
+    changeFilter1() {
+      this.filter = 1;
+    },
+    changeFilter2() {
+      this.filter = 2;
+    }
+  }
+  beforeCreate(res) {
+  }
+  created(res) {
+  }
+  beforeMount(res) {
+  }
+  mounted(res) {
+  }
+  beforeDestroy(res) {
+  }
+  destroyed(res) {
+  }
+
+}
+
+export default new Index();
+
+</script>
+<style scoped>
+
+.page-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.title {
+  align-self: center;
+  color: #61c7fc;
+  font-size: 72px;
+  margin-top: 160px;
+  margin-bottom: 20px;
+}
+.scroller-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main {
+  width: 600px;
+}
+.input-wrap {
+  position: relative;
+  height: 102px;
+  border-bottom: 1px solid #ccc;
+}
+.input-area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 600px;
+  height: 100px;
+  font-size: 32px;
+}
+.add-btn {
+  position: absolute;
+  left: 10px;
+  top: 42px;
+  width: 40px;
+  height: 22px;
+  overflow: hidden;
+}
+.add-btn::after{
+  content: "";
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  top: -10px;
+}
+.black-arrow {
+  position: absolute;
+  left: -20px;
+  top: -80px;
+  width: 80px;
+  height: 80px;
+  background: #333;
+  transform: rotate(45deg);
+  transition-property: background;
+  transition-duration: .2s;
+  transition-delay: 0s;
+  transition-timing-function: ease-in-out;
+}
+.white-arrow {
+  position: absolute;
+  left: -15px;
+  top: -74px;
+  width: 70px;
+  height: 70px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+.option-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100px;
+}
+.count {
+  font-size: 24px;
+  color: #999;
+}
+.filter {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.filter-default {
+  font-size: 24px;
+  color: #999;
+  margin: 0 10px;
+}
+.filter-active {
+  font-size: 24px;
+  color: #999;
+  border: 1px solid #999;
+  border-radius: 8px;
+  padding: 0 5px;
+}
+.clear-completed {
+  font-size: 24px;
+  color: #999;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "c-checkbox": "/components/c-checkbox/c-checkbox"
+    }
+  },
+  "weex": {
+    "attrweex": "2"
+  },
+  "web": {
+    "attrweb": "2"
+  },
+  "wx": {
+    "attrwx": "2"
+  },
+  "alipay": {
+    "attralipay": "2"
+  },
+  "baidu": {
+    "attrbaidu": "2"
+  }
+}
+</script>

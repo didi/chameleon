@@ -1,0 +1,86 @@
+type Scheme = {
+    a: string,
+    b: bool,
+    c: number
+} 
+interface EntryInterface {
+  retValueUndefind():Undefined;
+  retValueNumber():Number;
+  retValueString():String;
+  retValueBoolean():Boolean;
+  retValueObject():Object;
+  retValueArray():Array;
+  retValueRegExp():RegExp;
+  retValueDate():Date;
+  retValuePromise():Promise;
+  retValueAsync():Promise;
+  retValueFunction():Function;
+
+  argsUndefined(arg:Undefined):Undefined;
+  argsNumber(arg:Number):Undefined;
+  argsString(arg:String):Undefined;
+  argsBoolean(arg:Boolean):Undefined;
+  argsObject(arg:Object):Undefined;
+  argsArray(arg:Array):Undefined;
+  argsRegexp(arg:RegExp):Undefined;
+  argsDate(arg:Date):Undefined;
+  argsPromsie(arg:Promise):Undefined;
+  argsAsync(arg:Promise):Undefined;
+  argsNullable(arg:?Number):Undefined;
+  argsMixins(arg1:Number,arg2:?Object,arg3:String):Undefined;
+
+}
+
+
+class Method implements EntryInterface {
+  retValueUndefind(){
+    return undefined;
+  };
+  retValueNumber(){
+    return 8;
+  };
+  retValueString(){
+    return 'this is string'
+  };
+  retValueBoolean(){
+    return true;
+  };
+  retValueObject(){
+    return {};
+  };
+  retValueArray(){
+    return [1,2,3];
+  };
+  retValueRegExp(){
+    return /reg/g;
+  };
+  retValueDate(){
+    return new Date();
+  };
+  retValuePromise(){
+    return new Promise(() => {});
+  };
+  async retValueAsync(){
+  };
+  retValueFunction(){
+    return function(){}
+  };
+
+  argsUndefined(arg){};
+  argsNumber(arg){};
+  argsString(arg){};
+  argsBoolean(arg){};
+  argsObject(arg){};
+  argsArray(arg){};
+  argsRegexp(arg){};
+  argsDate(arg){};
+  argsPromsie(arg){};
+  argsAsync(arg){};
+  argsNullable(arg){};
+
+  argsMixins(arg1,arg2,arg3){};
+
+  
+}
+
+export default new Method();

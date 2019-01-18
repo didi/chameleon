@@ -1,0 +1,91 @@
+<template>
+<view class="flex-item" style="{{ colStyle }}">
+  <slot></slot>
+</view>
+</template>
+<script>
+  class CCol   {
+    props = {
+      width: {
+        type: Number,
+        default: 0
+      },
+      height: {
+        type: Number,
+        default: 0
+      },
+      backgroundColor: {
+        type: String,
+        default: ''
+      },
+      margin: {
+        type: Number,
+        default: 0
+      }
+    }
+    data = {
+    }
+
+    computed = {
+      colStyle () {
+        let style = '';
+        if (this.height) {
+          style = `height:${this.height}px;`;
+        }
+        if (this.width) {
+          style += `width:${this.width}px;`;
+        }
+        if (this.backgroundColor) {
+          style += `background-color:${this.backgroundColor};`;
+        }
+        if (this.margin) {
+          let mr = this.margin/2;
+          style += `margin-right:${mr}px;margin-left:${mr}px;`;
+        }
+        return style;
+      }
+    }
+
+    watch  = {
+    }
+
+    methods = {
+    }
+
+    beforeCreate() {
+    }
+
+    created() {
+    }
+
+    beforeMount() {
+    }
+
+    mounted() {
+      // let parent = this.$parent;
+      // while (parent && parent.$options._componentTag !== 'c-row') {
+      //   parent = parent.$parent;
+      // }
+      // this.gutter = parent ? parent.gutter : 0;
+      // this.grow = parent? parent.grow : false;
+      // this.styleHeight = this.height? height: parent? parent.height: 0
+    }
+
+    beforeDestroy() {
+    }
+
+    destroyed() {
+    }
+}
+
+export default new CCol();
+</script>
+<style scoped>
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "component": true
+    }
+}
+</script>

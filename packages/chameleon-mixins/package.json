@@ -1,0 +1,25 @@
+{
+  "name": "chameleon-mixins",
+  "version": "0.0.28",
+  "description": "chameleon-mixins",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec",
+    "eslint:fix": "eslint web-mixins.js weex-mixins.js wx-mixins.js common.js --fix",
+    "eslint": "eslint web-mixins.js weex-mixins.js wx-mixins.js common.js "
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chameleon-css-loader": "^0.0.28",
+    "coveralls": "^2.11.9",
+    "eslint": "^5.9.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify-es": "^1.0.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  },
+  "mail": "ChameleonCore@didiglobal.com",
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+}

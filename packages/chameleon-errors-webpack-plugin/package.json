@@ -1,0 +1,37 @@
+{
+  "version": "0.0.28",
+  "name": "chameleon-errors-webpack-plugin",
+  "main": "index.js",
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "description": "fork from friendly-errors-webpack-plugin",
+  "mail": "ChameleonCore@didiglobal.com",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "error-stack-parser": "^2.0.0",
+    "string-width": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.3.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "eslint": "^3.16.1",
+    "eslint-loader": "^1.6.1",
+    "expect": "^1.20.2",
+    "jest": "^18.1.0",
+    "memory-fs": "^0.4.1",
+    "webpack": "^2.2.1"
+  },
+  "files": [
+    "src",
+    "index.js"
+  ],
+  "keywords": [
+    "friendly",
+    "errors",
+    "webpack",
+    "plugin"
+  ]
+}

@@ -1,0 +1,127 @@
+<template>
+  <input
+      value="{{value}}"
+      type="{{type}}"
+      placeholder="{{placeholder}}"
+      disabled="{{disabled}}"
+      maxlength="{{maxlength}}"
+
+      c-bind:input="inputEvent"
+      c-bind:blur="blurEvent"
+      c-bind:focus="focusEvent"
+      c-bind:confirm="confirmEvent"
+
+      ref="weexinput"
+      return-key-type="{{returnKeyType}}"
+      style="{{weexStyle}}"
+  />
+</template>
+<script>
+/*
+event: inputevent blurevent focusevent cconfirmevent
+*/
+ class Input implements InputInterface {
+    props = {
+      //input的内容
+      value: {
+        type: String,
+        default: ''
+      },
+      //input的类型
+      type: {
+        type: String,
+        default: 'text'  //枚举值 text number password
+      },
+      //input的placerholder
+      placeholder: {
+        type: String,
+        default: ''
+      },
+      //是否禁用input输入
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      //控制input是否聚焦
+      focus: {
+        type: Boolean,
+        default: false
+      },
+      //最大长度
+      maxlength: {
+        type: Number,
+        default: 140
+      },
+      //右下角返回键类型
+      returnKeyType: { //枚举值 done search next go
+        type: String,
+        default: 'done'
+      },
+      placerHolderColor: {
+        type: String,
+        default: '#bebebe'
+      },
+      inputStyle: {
+        type: String,
+        default: ''
+      }
+    }
+    data = {
+      defaultStyle: "font-size: 33px; height: 80px; line-height: 80px; padding-left:20px; padding-right:20px; color: #000; border-width:1px; border-style:solid; border-color:#999;border-radius: 8px; text-align: left; background-color: #fff;"
+    }
+    computed ={
+      weexStyle() {
+        let style = this.defaultStyle + this.inputStyle;
+        if(style[style.length-1] !== ';') {
+          style +=';'
+        }
+        style += `placeholder-color: ${this.placerHolderColor};`
+        return style
+      }
+    }
+    watch = {
+      focus: function(newVal, oldVal) {
+        this.changeFocus(newVal);
+      }
+    }
+    methods = {
+      changeFocus(focus) {
+        if(focus) {
+          this.$refs['weexinput'].focus();
+        } else {
+          this.$refs['weexinput'].blur();
+        }       
+      },
+
+      inputEvent(e) {
+        this.$cmlEmit('inputevent',{
+          value: e.detail.value || ''
+        })
+      },
+      blurEvent(e) {
+        this.$cmlEmit('blurevent');
+      },
+      focusEvent(e) {
+        this.$cmlEmit('focusevent');
+      },
+      confirmEvent(e) {
+        this.$cmlEmit('confirmevent')
+      }
+    }
+    mounted() {
+      this.changeFocus(this.focus);
+    }  
+  }
+  export default new Input();
+</script>
+
+<style scoped>
+</style>
+
+<script cml-type="json">
+{
+  "weex": {
+    "component": true
+  }
+}
+</script>

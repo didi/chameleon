@@ -1,0 +1,66 @@
+<template>
+  <view class="app-root">
+    <router-view></router-view>
+  </view>
+</template>
+<script>
+  import store from '../store/index.js';
+  import cml from 'chameleon-api';
+  import _interface from './app.interface';
+  export default {
+    data: {
+
+    },
+    computed: {
+    },
+    watch: {
+    },
+    methods: {
+
+    },
+    beforeCreate: function(res) {
+
+    },
+    created: function(res) {
+      _interface.appEntry();
+    },
+    beforeMount: function(res) {
+    },
+    mounted: function(res) {
+    },
+    beforeDestroy: function(res) {
+    },
+    destroyed: function(res) {
+    }
+  }
+</script>
+<style scoped>
+/* reset */
+/*只作用于 web body下的first-child 节点*/
+.app-root {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+
+</style>
+
+<script cml-type="json">
+{
+  "weex": {
+    "usingComponents": {
+    }
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>

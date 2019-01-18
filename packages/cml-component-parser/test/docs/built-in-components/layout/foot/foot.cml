@@ -1,0 +1,42 @@
+<template>
+<view class="c-foot" style="{{mergeFootStyle}}">
+  <slot></slot>
+</view>
+</template>
+<script>
+class CFoot {
+
+  props = {
+    footStyle:{
+      type:String,
+      default:'',
+    },
+  }
+  data = {
+    defaultStyle:'height:80px;',
+  }
+  computed = {
+    mergeFootStyle(){
+      return this.defaultStyle + this.footStyle;
+    }
+  }
+}
+export default new CFoot()
+</script>
+<style scoped>
+.c-foot{
+    display: flex;
+    background-color: #b3c0d1;
+    color: #333;
+    line-height: 60px;
+    flex-shrink:0;
+}
+
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "component": true
+    }
+}
+</script>

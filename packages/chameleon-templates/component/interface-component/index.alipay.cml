@@ -1,0 +1,75 @@
+<template>
+  <view>
+    <text>alipay端自定义组件</text>
+    <text>props:{{name}}</text>
+  </view>
+</template>
+
+<script>
+
+class Replace implements ReplaceInterface {
+  props = {
+    name: {
+      type: String,
+      default: '默认值'
+    }
+  }
+
+  data = {
+  }
+
+  computed = {
+  }
+
+  watch = {
+  }
+
+  methods = {
+    
+  }
+
+  beforeCreate() {
+  }
+
+  created() {
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+    this.$cmlEmit('onshow',{
+      value: this.name
+    })
+  }
+
+  beforeDestroy() {
+  }
+  
+  destroyed() {
+  }
+}
+
+export default new Replace();
+</script>
+
+<style >
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "alipay": {
+    "window": {
+      "defaultTitle": "component",
+      "pullRefresh": false,
+      "allowsBounceVertical": "YES",
+      "titleBarColor": "#ffffff"
+    }
+  }
+}
+</script>

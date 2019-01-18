@@ -1,0 +1,36 @@
+{
+  "name": "interface-loader",
+  "version": "0.0.28",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec",
+    "cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- -R spec --recursive",
+    "eslint:fix": "eslint --ext .js  src --fix",
+    "eslint": "eslint ./src"
+  },
+  "dependencies": {
+    "@babel/parser": "7.1.0",
+    "babel-generator": "6.26.1",
+    "babel-traverse": "6.26.0",
+    "chameleon-tool-utils": "^0.0.28",
+    "loader-utils": "1.1.0",
+    "runtime-check": "^0.0.28"
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-flow": "^6.23.0",
+    "chai": "^4.2.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^5.9.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify-es": "^1.0.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "through2": "^3.0.0"
+  },
+  "mail": "ChameleonCore@didiglobal.com",
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+}

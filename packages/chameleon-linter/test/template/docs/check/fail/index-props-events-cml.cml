@@ -1,0 +1,50 @@
+<template lang="cml">
+  <show-scroller bottom-offset="{{true}}" top-offset="{{false}}" c-bind:scrolltobottom="onTrue" c-bind:scrolltotop="onFlase"></show-scroller>
+</template>
+
+<script>
+  class App {
+    data = {
+    }
+    created(res) {
+
+    }
+    computed = {
+
+    }
+
+    methods =  {
+      onTrue() {
+        return true;
+      },
+      onFlase() {
+        return true;
+      }
+    }
+  }
+  export default new App();
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "show-scroller": "../../components/scroller/scroller"
+    }
+  },
+  "weex": {
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>

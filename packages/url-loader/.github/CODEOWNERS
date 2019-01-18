@@ -1,0 +1,6 @@
+# These are the default owners for everything in
+# webpack-contrib
+@webpack-contrib/org-maintainers
+
+# Add repository specific users / groups
+# below here for libs that are not maintained by the org.

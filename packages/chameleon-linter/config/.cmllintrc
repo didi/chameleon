@@ -1,0 +1,14 @@
+{
+  // 核心文件检查
+  'core-files-check': true,
+
+  // cml文件校验
+  'cml-files-check': true,
+
+  // 接口文件校验
+  'interface-files-check': true,
+
+  'cpx-support': true,
+  
+  'platforms': ['weex', 'wx', 'web', 'baidu', 'alipay']
+}

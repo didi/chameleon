@@ -1,0 +1,171 @@
+<template>
+<view class="wrap border-bottom-1px">
+  <view class="checkbox-wrap">
+    <c-checkbox width="{{40}}" checked="{{completed}}" c-bind:checkclick="checkclick"></c-checkbox>
+  </view>
+  <text class="{{completed ? 'completed-show' : 'text-show'}}" c-bind:tap="checkclick">{{text}}</text>
+  <view class="delete-btn" c-bind:tap="delete">
+    <image src="{{closeImg}}" style="width:30cpx;height:30cpx;" />
+  </view>
+</view>
+</template>
+<script>
+import cml from 'chameleon-api'
+class CTodoitem   {
+  props = {
+    index: {
+      type: Number
+    },
+    completed: {
+      type: Boolean
+    },
+    text: {
+      type: String
+    }
+  }
+  data = {
+    startX: 0,
+    moveDis: 0,
+    minLeft: -240,
+    currenLeft: 0,
+    moved: false,
+    closeImg: require('../../assets/images/close.png')
+  }
+
+  computed = {
+    innerStyle() {
+      if (this.moveDis) {
+        return this.$cmlStyle({
+          left: `${this.moveDis}cpx`
+        })
+      } else {
+        return this.$cmlStyle({
+          left: `${this.currenLeft}cpx`
+        })
+      }
+    }
+  }
+
+  watch  = {
+  }
+
+  methods = {
+    checkclick() {
+      if (this.moved) {
+        return;
+      }
+      this.$cmlEmit('changestatus', {
+        index: this.index,
+        status: !this.completed
+      })
+    },
+    delete() {
+      this.$cmlEmit('delete', {
+        index: this.index
+      })
+    },
+    top() {
+      this.$cmlEmit('top', {
+        index: this.index
+      });
+    },
+    touchstart(e) {
+      this.moved = false;
+      this.startX = e.changedTouches[0].pageX;
+    },
+    touchmove(e) {
+      let moveDis = this.currenLeft + e.changedTouches[0].pageX - this.startX;
+      if (moveDis <= 0 && moveDis >= this.minLeft) {
+        this.moveDis = moveDis;
+      }
+      if (this.moveDis) {
+        this.moved = true;
+      } else {
+        this.moved = false;
+      }
+    }, 
+    touchend(e) {
+      if (this.currenLeft) {
+        if (this.moveDis && this.moveDis >= this.minLeft / 2) {
+          this.currenLeft = 0;
+        }
+      } else {
+        if (this.moveDis <= this.minLeft / 2) {
+          this.currenLeft = this.minLeft;
+        }
+      }
+      this.moveDis = 0;
+    }
+  }
+}
+
+export default new CTodoitem();
+</script>
+<style scoped>
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100cpx;
+  width: 640cpx;
+}
+.checkbox-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 80cpx;
+  height: 100cpx;
+  justify-content: center;
+  align-items: center;
+}
+.completed-show {
+  width: 510cpx;
+  font-size: 32cpx;
+  color: #999;
+  height: 100cpx;
+  line-height: 100cpx;
+  text-decoration: line-through;
+}
+.text-show {
+  width: 510cpx;
+  font-size: 32cpx;
+  color: #666;
+  height: 100cpx;
+  line-height: 100cpx;
+}
+.top-btn {
+  font-size: 28cpx;
+  width: 120cpx;
+  height: 100cpx;
+  line-height: 100cpx;
+  text-align: center;
+  color: #fff;
+  background: #61c7fc;
+}
+.delete-btn {
+  margin-right: 10cpx;
+  width: 40cpx;
+  height: 40cpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "c-checkbox": "/components/c-checkbox/c-checkbox"
+    }
+  },
+  "wx": {
+    "component": true
+  },
+  "alipay": {
+    "component": true
+  },
+  "baidu": {
+    "component": true
+  }
+}
+</script>

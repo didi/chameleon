@@ -1,0 +1,95 @@
+<template>
+  <scroller
+    ref="c-scroller"
+    style="{{afterStyle}}"
+    class="{{afterClass}}"
+    show-scrollbar="false"
+    scroll-direction="{{scrollDirection}}"
+    loadmoreoffset="{{bottomOffset}}"
+    offset-accuracy="10"
+    c-bind:loadmore="onBottom"
+    c-bind:scroll="onScroll"
+  >
+    <slot>
+
+    </slot>
+  </scroller>
+</template>
+<script>
+
+ class Scroller implements ScrollerInterface {
+    props = {
+      cstyle: {
+        type: String,
+        default: ''
+      },
+      bottomOffset: {
+        // 距底部/右边多远时（单位px），触发 scrolltolower 事件
+        type: Number,
+        default: 0
+      },
+      scrollDirection: {
+        // 可选为 horizontal 或者 vertical，默认值为 vertical 。定义滚动的方向。
+        type: String,
+        default: 'vertical'
+      }
+    }
+    data = {
+    }
+    computed ={
+      afterStyle() {
+        // let styl = this.scrollDirection === 'horizontal'
+        //         ? `${this.cstyle};flex-direction:row;`
+        //         : `${this.cstyle};flex-direction:column;`
+
+        return this.$cmlStyle('flex:1;' + this.cstyle)
+      },
+      afterClass() {
+        return this.scrollDirection === 'horizontal'
+                ? 'flex-row'
+                : 'flex-column'
+      }
+    }
+    watch = {
+    }
+    methods = {
+      onScroll(e) {
+        let detail = e.detail;
+        detail.deltaX = detail.deltaX || 0;
+        detail.deltaY = detail.deltaY || 0;
+        this.$cmlEmit('customscroll', detail)
+      },
+      onBottom(e) {
+        this.$refs['c-scroller'].resetLoadmore()
+
+        this.$cmlEmit('scrolltobottom', e.detail)
+      }
+    }
+
+  }
+
+  export default new Scroller();
+
+
+
+
+
+</script>
+
+<style scoped>
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  }
+}
+</script>

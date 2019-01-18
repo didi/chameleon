@@ -1,0 +1,313 @@
+<template>
+  <page title="TodoMVC">
+    <scroller height="{{-1}}">
+      <view class="scroller-wrap">
+        <text class="title">{{title}}</text>
+        <view class="main">
+          <view class="input-wrap border-bottom-1px">
+            <input class="input-area"
+                        placeholder="What needs to be done?"
+                        c-style="{{inputStyle}}"
+                        type="text"
+                        value="{{value}}"
+                        c-bind:input="inputHandle"
+                        c-bind:blur="addHandle" />
+            <view class="add-btn" c-bind:tap="addHandle">
+              <view class="black-arrow" style="{{btnStyle}}"></view>
+              <view class="white-arrow"></view>
+            </view>
+          </view>
+          <view class="list-wrap">
+            <c-todoitem 
+                      class="border-bottom-1px"
+                      c-for="{{showTodos}}"
+                      c-key="{{todoLength + index}}"
+                      completed="{{item.completed}}"
+                      index="{{item.index}}"
+                      text="{{item.text}}"
+                      c-bind:changestatus="changeStatus"
+                      c-bind:delete="delete"
+                      c-bind:top="top"></c-todoitem>
+          </view>
+          <text class="count">{{countText}}</text>
+          <view class="option-wrap">
+            <view class="filter">
+              <text class="{{filter === 0 ? 'filter-active' : 'filter-default'}}"
+                    c-bind:tap="changeFilter0">All</text>
+              <text class="{{filter === 1 ? 'filter-active' : 'filter-default'}}"
+                    c-bind:tap="changeFilter1">Active</text>
+              <text class="{{filter === 2 ? 'filter-active' : 'filter-default'}}"
+                    c-bind:tap="changeFilter2">Completed</text>
+            </view>
+            <text class="clear-completed" c-bind:tap="clear">Clear completed</text>
+          </view>
+        </view>
+      </view>
+    </scroller>
+  </page>
+</template>
+
+<script>
+
+import store from "../../store";
+const {mapGetters, mapMutations, mapActions, mapState} = store;
+
+import  getterTypes from '../../store/getter-types.js';
+import  mutationTypes from '../../store/mutation-types.js';
+import  actionTypes from '../../store/action-types.js';
+import cml from 'chameleon-api';
+class Index  {
+  data = {
+    title: 'todos',
+    winHeight: 0,
+    chameleon: require("../../assets/images/chameleon.png"),
+    checked: false,
+    value: '',
+    filter: 0 // 0:all,1:active,2:completed
+  }
+  computed ={
+    ...mapGetters({
+      todos: getterTypes.INDEX_DESC_TODOS
+    }),
+    inputStyle() {
+      return 'border-width: 0;height:100cpx;font-size:32cpx;color:#333;padding-left: 80cpx;';
+    },
+    btnStyle() {
+      if (!this.value) {
+        return 'background: #999999;'
+      } else {
+        return 'background: #333333;'
+      }
+    },
+   
+    countText() {
+      let count = 0;
+      this.todos.forEach(item => {
+        if (!item.completed) {
+          count ++;
+        }
+      })
+      return `${count} items left`;
+    },
+    showTodos() {
+      if (this.filter === 0) {
+        let t = this.todos.map((item, index) => {
+          item.index = index;
+          return item;
+        });
+        return t;
+      }
+      if (this.filter === 1) {
+        let t = [];
+        this.todos.forEach((item, index) => {
+          if (!item.completed) {
+            item.index = index;
+            t.push(item);
+          }
+        })
+        return t;
+      }
+      if (this.filter === 2) {
+        let t = [];
+        this.todos.forEach((item, index) => {
+          if (item.completed) {
+            item.index = index;
+            t.push(item);
+          }
+        })
+        return t;
+      }
+    },
+    todoLength() {
+      return this.showTodos.length + '';
+    }
+  }
+  methods = {
+    ...mapActions([
+      actionTypes.INDEX_ADD_TODOS,
+      actionTypes.INDEX_CHANGE_TODOS_STATUS,
+      actionTypes.INDEX_DELETE_TODOS,
+      actionTypes.INDEX_TOP_TODOS,
+      actionTypes.INDEX_CHANGE_TODOS_CLEAR_COMPLETED
+    ]),
+    changeStatus(e) {
+      let { index, status } = e.detail;
+      this[actionTypes.INDEX_CHANGE_TODOS_STATUS]({
+        index,
+        status
+      })
+    },
+    inputHandle(e) {
+      this.value = e.detail.value;
+    },
+    addHandle(e) {
+      if (!this.value) {
+        return;
+      }
+      this[actionTypes.INDEX_ADD_TODOS](this.value);
+      this.value = '';
+    },
+    delete(e) {
+      this[actionTypes.INDEX_DELETE_TODOS](e.detail.index)
+    },
+    top(e) {
+      this[actionTypes.INDEX_TOP_TODOS](e.detail.index)
+    },
+    clear() {
+      this[actionTypes.INDEX_CHANGE_TODOS_CLEAR_COMPLETED]();
+    },
+    changeFilter0() {
+      this.filter = 0;
+    },
+    changeFilter1() {
+      this.filter = 1;
+    },
+    changeFilter2() {
+      this.filter = 2;
+    }
+  }
+  mounted() {
+    cml.getSystemInfo().then((info)=>{
+      this.winHeight = Number(info.viewportHeight)
+    })
+  }
+
+}
+
+export default new Index();
+
+</script>
+<style>
+.title {
+  align-self: center;
+  color: #61c7fc;
+  font-size: 72cpx;
+  margin-top: 160cpx;
+  margin-bottom: 20cpx;
+}
+.scroller-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main {
+  width: 640cpx;
+}
+.input-wrap {
+  position: relative;
+  height: 102cpx;
+  border-color: #ccc;
+}
+.input-area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 600cpx;
+  height: 100cpx;
+  font-size: 32cpx;
+}
+.add-btn {
+  position: absolute;
+  left: 10cpx;
+  top: 42cpx;
+  width: 40cpx;
+  height: 22cpx;
+  overflow: hidden;
+}
+.add-btn::after{
+  content: "";
+  position: absolute;
+  left: -10cpx;
+  right: -10cpx;
+  bottom: -10cpx;
+  top: -10cpx;
+}
+.black-arrow {
+  position: absolute;
+  left: -20cpx;
+  top: -80cpx;
+  width: 80cpx;
+  height: 80cpx;
+  background: #333;
+  transform: rotate(45deg);
+  transition-property: background;
+  transition-duration: .2s;
+  transition-delay: 0s;
+  transition-timing-function: ease-in-out;
+}
+.white-arrow {
+  position: absolute;
+  left: -15cpx;
+  top: -74cpx;
+  width: 70cpx;
+  height: 70cpx;
+  background: #fff;
+  transform: rotate(45deg);
+}
+.option-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50cpx;
+  margin-top: 10cpx;
+}
+.count {
+  font-size: 24cpx;
+  color: #999;
+  margin-top: 20cpx;
+  padding-left: 10cpx;
+}
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.filter-default {
+  font-size: 24cpx;
+  color: #999;
+  margin: 0 10cpx;
+}
+.filter-active {
+  font-size: 24cpx;
+  color: #999;
+  border: 1px solid #999;
+  border-radius: 8cpx;
+  padding: 0 5cpx;
+}
+.clear-completed {
+  font-size: 24cpx;
+  color: #999;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "c-checkbox": "/components/c-checkbox/c-checkbox",
+      "c-todoitem": "/components/c-todoitem/c-todoitem"
+    }
+  },
+  "wx": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2"
+  },
+  "alipay": {
+    "defaultTitle": "index",
+    "pullRefresh": false,
+    "allowsBounceVertical": "YES",
+    "titleBarColor": "#ffffff"
+  },
+  "baidu": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "index",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+  }
+}
+</script>

@@ -1,0 +1,22 @@
+<template>
+  <view>
+    <router-view></router-view>
+  <view>
+</template>
+
+<script>
+class App {
+  created(res) {
+  }
+}
+
+export default new App();
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{}
+</script>

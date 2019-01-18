@@ -1,0 +1,93 @@
+<template>
+  <scroll-view
+    scroll-x="{{ scrollDirection === 'horizontal' }}"
+    scroll-y="{{ scrollDirection === 'vertical' }}"
+    lower-threshold="{{bottomOffset}}"
+    scroll-with-animation="true"
+    enable-back-to-top="true"
+    c-bind:scrolltolower="onBottom"
+    c-bind:scroll="onScroll"
+    class="cml-scroller"
+    style="{{cmtStyle}}"
+  >
+      <slot>
+
+      </slot>
+  </scroll-view>
+</template>
+<script>
+ class Scroller implements ScrollerInterface {
+    props = {
+      cstyle: {
+        type: String,
+        default: ''
+      },
+      bottomOffset: {
+        // 距底部/右边多远时（单位px），触发 scrolltolower 事件
+        type: Number,
+        default: 0
+      },
+      scrollDirection: {
+        // 可选为 horizontal 或者 vertical，默认值为 vertical 。定义滚动的方向。
+        type: String,
+        default: 'vertical'
+      }
+    }
+    data = {
+      style: ''
+    }
+    computed = {
+      cmtStyle () {
+        return this.$cmlStyle(this.style + ';' + this.cstyle)
+      }
+    }
+    watch = {
+    }
+    methods = {
+      onScroll(e) {
+        let detail = e.detail;
+        detail.deltaX = detail.deltaX || 0;
+        detail.deltaY = detail.deltaY || 0;
+        this.$cmlEmit('customscroll', detail)
+      },
+      onBottom(e) {
+        this.$cmlEmit('scrolltobottom', e.detail)
+      }
+    }
+    mounted () {
+      let query = wx.createSelectorQuery().in(this);
+      query.select('.cml-scroller').boundingClientRect((rect) => {
+        if (rect) {
+          let windowHeight = wx.getSystemInfoSync().windowHeight
+          let height = windowHeight - rect.top
+          this.style = `height:${height*2}px;`
+        }
+      }).exec()
+    }
+  }
+
+  export default new Scroller();
+
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    },
+    "component": true
+  }
+}
+</script>

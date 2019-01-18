@@ -1,0 +1,81 @@
+<style scoped>
+/* reset */
+/*只作用于 web body下的first-child 节点*/
+.app-root {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  .a {
+    ssss: key;
+  }
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 3) {
+    .border-1px:after {
+        width: 300%;
+        height: 300%;
+        border-radius: 6px;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-top-1px:before {
+        width: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-right-1px:after {
+        height: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-bottom-1px:after {
+        width: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-left-1px:before {
+        height: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+}
+
+@media (min-device-pixel-ratio: 3) {
+    .border-1px:after {
+        width: 300%;
+        height: 300%;
+        border-radius: 6px;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-top-1px:before {
+        width: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-right-1px:after {
+        height: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-bottom-1px:after {
+        width: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+    .border-left-1px:before {
+        height: 300%;
+        -webkit-transform: scale(.333) translateZ(0);
+        transform: scale(.333) translateZ(0);
+    }
+}
+
+.border-none:before, .border-none:after {
+    display: none;
+}
+
+</style>

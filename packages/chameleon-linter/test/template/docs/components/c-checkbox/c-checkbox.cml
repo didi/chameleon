@@ -1,0 +1,163 @@
+<template>
+<view class="cml-checkbox">
+  <view class="cml-checkbox-wrap" c-bind:tap="changeCheck">
+    <view class="cml-checkbox-check" style="{{ checkStyle }}">
+      <view class="{{ checkClass }}">
+        <image class="inner-icon" src="{{ checkImg }}" />
+      </view>
+    </view>
+    <text class="cml-checkbox-label" >{{ label }}</text>
+  </view>
+</view>
+</template>
+<script>
+class Checkbox   {
+  props = {
+    checked: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    position: {
+      type: String,
+      default: 'left'
+    },
+    groupIndex: {
+      type: Number,
+      default: -1
+    }
+  }
+  data = {
+    checkedImg: require('./images/selected.png'),
+    uncheckImg: require('./images/unselected.png'),
+    innerChecked:false
+  }
+
+  computed = {
+    checkStyle () {
+      let style = '';
+      if (this.disabled) {
+        style += 'opacity:0.5;'
+      }
+      if (this.position == 'right') {
+        style += 'position:absolute;right:0;margin-right:45px;'
+      } else {
+        style += 'margin-right:13px;'
+      }
+      return style;
+    },
+    checkImg () {
+      return this.innerChecked? this.checkedImg: this.uncheckImg;
+    },
+    checkClass () {
+      if (this.disabled) {
+        return  'cml-checkbox-disabled'
+      }
+      return this.innerChecked? 'cml-checkbox-checked': 'cml-checkbox-uncheck';
+    },
+  }
+
+  watch  = {
+    checked(newChecked) {
+      this.innerChecked = newChecked;
+    }
+  }
+
+  methods = {
+    changeCheck () {
+      if (this.disabled) return;
+      this.innerChecked = !this.innerChecked
+      let value = {
+        value: this.innerChecked
+      }
+      if (this.groupIndex !== -1) {
+        value.index = this.groupIndex
+      }
+
+      this.$cmlEmit('changeevent', value);
+    }
+  }
+
+  beforeCreate() {
+  }
+
+  created() {
+    let { checked } = this
+    this.innerChecked = checked
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+  }
+
+  beforeDestroy() {
+  }
+
+  destroyed() {
+  }
+}
+
+export default new Checkbox();
+</script>
+<style scoped>
+.cml-checkbox {
+  margin: 10px;
+}
+.cml-checkbox-wrap {
+  padding:11px 0;
+  word-break: break-word;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1.5;
+  position: relative;
+}
+.cml-checkbox-checked {
+  width:32px;
+  height:32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cml-checkbox-uncheck {
+  width:32px;
+  height:32px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cml-checkbox-label {
+  color:#666;
+  font-weight: 400;
+  font-size: 32px;
+}
+.inner-icon {
+  width:32px;
+  height:32px;
+}
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "usingComponents": {
+        }
+    },
+    "wx": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2",
+        "component": true
+
+    }
+}
+</script>

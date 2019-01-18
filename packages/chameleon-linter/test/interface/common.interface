@@ -1,0 +1,51 @@
+<script cml-type="interface">
+interface CommonInterface {
+  initShare(_queryData: Object): void;
+  back() :void;
+}
+
+</script>
+
+<script cml-type="web">
+import ban_wxShare from 'ban_wxshare';
+import ua from 'didi-ua';
+class Method implements CommonInterface {
+  initShare(_queryData){
+		if (_queryData.fr == 'webapp') {
+			ban_wxShare.wxshare();
+		}
+  }
+
+  back() {
+    if (ua.browser.name.isDidi()) {
+      cml.close();
+    } else {
+      window.history.go(-1);
+    }
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="weex">
+
+class Method implements CommonInterface {
+  initShare(){}
+  back() {
+    cml.close();
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+
+class Method implements CommonInterface {
+  initShare(){}
+  back() {}
+}
+
+export default new Method();
+</script>

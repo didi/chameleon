@@ -1,0 +1,156 @@
+unit_tests: &unit_tests
+  steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+    - run:
+        name: NPM Rebuild
+        command: npm install
+    - run:
+        name: Run unit tests.
+        command: npm run ci:test
+canary_tests: &canary_tests
+  steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+    - run:
+        name: NPM Rebuild
+        command: npm install
+    - run:
+        name: Install Webpack Canary
+        command: npm i --no-save webpack@next
+    - run:
+        name: Run unit tests.
+        command: if [[ $(compver --name webpack --gte next --lt latest) < 1 ]] ; then printf "Next is older than Latest - Skipping Canary Suite"; else npm run ci:test ; fi
+
+version: 2
+jobs:
+  dependency_cache:
+    docker:
+      - image: webpackcontrib/circleci-node-base:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+
+  node8-latest:
+    docker:
+      - image: webpackcontrib/circleci-node8:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: NPM Rebuild
+          command: npm install
+      - run:
+          name: Run unit tests.
+          command: npm run ci:coverage
+      - run:
+          name: Submit coverage data to codecov.
+          command: bash <(curl -s https://codecov.io/bash)
+          when: on_success
+  node6-latest:
+    docker:
+      - image: webpackcontrib/circleci-node6:latest
+    <<: *unit_tests
+  node10-latest:
+    docker:
+      - image: webpackcontrib/circleci-node10:latest
+    <<: *unit_tests
+  node8-canary:
+    docker:
+      - image: webpackcontrib/circleci-node8:latest
+    <<: *canary_tests
+  analysis:
+    docker:
+      - image: webpackcontrib/circleci-node-base:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: NPM Rebuild
+          command: npm install
+      - run:
+          name: Run linting.
+          command: npm run lint
+      - run:
+          name: Run NSP Security Check.
+          command: npm run security
+      - run:
+          name: Validate Commit Messages
+          command: npm run ci:lint:commits
+  publish:
+    docker:
+      - image: webpackcontrib/circleci-node-base:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: NPM Rebuild
+          command: npm install
+      # - run:
+      #     name: Validate Commit Messages
+      #     command: npm run release:validate
+      - run:
+          name: Publish to NPM
+          command: printf "noop running conventional-github-releaser"
+
+version: 2.0
+workflows:
+  version: 2
+  validate-publish:
+    jobs:
+      - dependency_cache
+      - node6-latest:
+          requires:
+            - dependency_cache
+          filters:
+            tags:
+              only: /.*/
+      - analysis:
+          requires:
+            - dependency_cache
+          filters:
+            tags:
+              only: /.*/
+      - node8-latest:
+          requires:
+            - analysis
+            - node6-latest
+          filters:
+            tags:
+              only: /.*/
+      - node10-latest:
+          requires:
+            - analysis
+            - node6-latest
+          filters:
+            tags:
+              only: /.*/
+      - node8-canary:
+          requires:
+            - analysis
+            - node6-latest
+          filters:
+            tags:
+              only: /.*/
+      - publish:
+          requires:
+            - node8-latest
+            - node8-canary
+            - node10-latest
+          filters:
+            branches:
+              only:
+                - master

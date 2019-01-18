@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "querystring": "^0.2.0"
+  },
+  "description": "基于webpack-hot-middleware2.22.2版本进行修改，删除热加载功能支持liveload",
+  "author": "Chameleon-Team",
+  "mail": "ChameleonCore@didiglobal.com",
+  "license": "Apache",
+  "main": "middleware.js",
+  "name": "webpack-liveload-middleware",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec",
+    "cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- -R spec --recursive",
+    "eslint:fix": "eslint client.js helpers.js middleware.js --fix",
+    "eslint": "eslint client.js helpers.js middleware.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^5.9.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify-es": "^1.0.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  },
+  "version": "0.0.28",
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+}

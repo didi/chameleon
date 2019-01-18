@@ -1,0 +1,43 @@
+<template lang="cml">
+
+</template>
+
+<script>
+  class App {
+    data = {
+      
+    }
+    created(res) {
+
+    }
+    computed = {
+    }
+
+    methods =  {
+    }
+  }
+  export default new App();
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "weex": {
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>

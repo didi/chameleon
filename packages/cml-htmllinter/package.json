@@ -1,0 +1,49 @@
+{
+  "name": "cml-htmllint",
+  "version": "0.0.28",
+  "description": "An chameleon template linter.",
+  "keywords": [
+    "html",
+    "lint",
+    "hint",
+    "htmllint"
+  ],
+  "author": "Chameleon-Team",
+  "main": "lib/index.js",
+  "scripts": {},
+  "mail": "ChameleonCore@didiglobal.com",
+  "license": "Apache",
+  "devDependencies": {
+    "bulkify": "^1.4.2",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "gulp": "^3.9.1",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-eslint": "^4.0.0",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-istanbul": "^1.1.2",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jsdoc": "^0.1.5",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^3.0.1",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "mocha": "^4.0.1",
+    "plato": "^1.7.0"
+  },
+  "dependencies": {
+    "bulk-require": "^1.0.1",
+    "htmlparser2": "^3.9.2",
+    "lodash": "^4.17.4",
+    "promise": "^8.0.1"
+  },
+  "browserify": {
+    "transform": [
+      "bulkify"
+    ]
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "contributors": []
+}

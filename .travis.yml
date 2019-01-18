@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "8.10.0"
+before_script:
+  - lerna bootstrap --ignore-scripts
+  - cd packages/easy-chameleon && npm i && cd ../../
+  - cd packages/chameleon-tool && npm i && cd ../../
+script:
+  - npm run coverage
+after_script:
+  - cat coverage/lcov.info | node_modules/.bin/codecov

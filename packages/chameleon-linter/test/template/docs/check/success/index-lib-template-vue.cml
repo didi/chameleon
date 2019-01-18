@@ -1,0 +1,51 @@
+<template lang="vue">
+  <view v-for="(msg, index) in messages">
+    <text>{{msg}}</text>
+  </view>
+  <view v-if="show">
+    <view :data-attr="childView ? child : 'strChild'"></view>
+  </view>
+  <show-scroller v-if="true" :scroll-x="disX" v-on:tap="onTap" v-once:onscroll="onScroll"></show-scroller>
+</template>
+
+<script>
+
+class Toast implements ToastInterface {
+  props = {
+
+  }
+  data = {
+
+  }
+  beforeCreate() {
+
+  }
+  methods = {
+
+  }
+}
+
+export default new Toast()
+</script>
+
+<style scoped>
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "show-scroller": "../../components/scroller/scroller"
+    }
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    },
+    "component": true
+  }
+}
+</script>

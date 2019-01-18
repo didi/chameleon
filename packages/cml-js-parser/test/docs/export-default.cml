@@ -1,0 +1,74 @@
+<template lang="cml">
+  <view></view>
+</template>
+
+<script>
+  import { mapGetters } from 'chameleon-store';
+  import { gettersShow, getterHide } from 'getter-types';
+
+  export default {
+    props: {
+      propOne:{
+        type:Object,
+        required: true,
+        default(){
+          return {}
+        }
+      },
+      propTwo: {
+        type: Boolean,
+        default: true
+      }
+    },
+    data: {
+      dataOne: true,
+      dataTwo: ''
+    },
+    created(res) {
+      this.$cmlEmit('eventOne');
+    },
+    computed: {
+      computedOne() {
+        return true;
+      },
+      computedTwo: function () {
+        return true;
+      },
+      ...mapGetters({
+        computedShow: gettersShow,
+        getterHide
+      })
+    },
+    methods:  {
+      onTap() {
+        return true;
+      },
+      onClick: function(e) {
+        return false;
+      }
+    }
+  };
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "weex": {
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>
