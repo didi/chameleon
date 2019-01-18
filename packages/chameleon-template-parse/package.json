@@ -1,0 +1,42 @@
+{
+  "name": "chameleon-template-parse",
+  "version": "0.0.28",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint ./src",
+    "lint": "eslint --ext .js  src --fix",
+    "dev": "webpack-dev-server",
+    "test": "mocha --recursive --reporter spec",
+    "cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- -R spec --recursive"
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "dependencies": {
+    "@babel/generator": "^7.1.2",
+    "@babel/plugin-syntax-jsx": "^7.0.0",
+    "@babel/traverse": "^7.1.0",
+    "@babel/types": "^7.1.2",
+    "babylon": "^6.18.0",
+    "tapable": "^1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chameleon-css-loader": "^0.0.28",
+    "chameleon-mixins": "^0.0.28",
+    "clean-webpack-plugin": "^0.1.19",
+    "coveralls": "^2.11.9",
+    "eslint": "^5.9.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify-es": "^1.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "mail": "ChameleonCore@didiglobal.com",
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+}

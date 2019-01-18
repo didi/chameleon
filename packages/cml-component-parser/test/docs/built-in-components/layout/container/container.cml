@@ -1,0 +1,51 @@
+<template>
+  <view class="c-container"  style="{{containerStyle}}">
+    <slot></slot>
+  </view>
+</template>
+<script>
+class CContainer {
+
+  props = {
+    direction: {
+      type: String,
+      default: 'row'
+    }
+  }
+  data = {
+  }
+  computed = {
+    isVertical(){
+      if(this.direction === 'column'){
+        return true;
+      }else if(this.direction === 'row'){
+        return false;
+      }
+    },
+    containerStyle(){
+      let finalStyle = '';
+
+      if(this.isVertical){
+        finalStyle = "flex-direction:column"
+      }
+      return finalStyle;
+    }
+  }
+}
+export default new CContainer()
+</script>
+<style scoped>
+.c-container{
+  flex:1;
+  display: flex;
+  flex-direction:row;
+}
+
+</style>
+<script cml-type="json">
+{
+    "base": {
+      "component": true
+    }
+}
+</script>

@@ -1,0 +1,6 @@
+/_book
+.DS_Store
+node_modules
+/beatles-chameleon.github.io
+_tmpbook
+/chameleon

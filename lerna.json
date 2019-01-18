@@ -1,0 +1,43 @@
+{
+  "packages": [
+    "packages/babel-plugin-chameleon-import",
+    "packages/chameleon-css-loader",
+    "packages/chameleon-dev-proxy",
+    "packages/chameleon-errors-webpack-plugin",
+    "packages/chameleon-linter",
+    "packages/chameleon-loader",
+    "packages/chameleon-miniapp-target",
+    "packages/chameleon-mixins",
+    "packages/chameleon-template-parse",
+    "packages/chameleon-templates",
+    "packages/chameleon-tool-utils",
+    "packages/chameleon-vue-precompiler",
+    "packages/chameleon-webpack-plugin",
+    "packages/chameleon-weex-vue-loader",
+    "packages/cml-component-parser",
+    "packages/cml-htmllinter",
+    "packages/cml-interface-parser",
+    "packages/cml-js-parser",
+    "packages/interface-loader",
+    "packages/runtime-check",
+    "packages/url-loader",
+    "packages/webpack-check-plugin",
+    "packages/webpack-dev-middleware",
+    "packages/webpack-liveload-middleware"
+  ],
+  "version": "0.0.28",
+  "command": {
+    "publish": {
+      "allowBranch": "master",
+      "npmClient": "npm",
+      "verifyAccess": false,
+      "registry": "https://registry.npmjs.org/"
+    },
+    "add": {
+      "registry": "https://registry.npmjs.org/"
+    },
+    "bootstrap": {
+      "registry": "https://registry.npmjs.org/"
+    }
+  }
+}

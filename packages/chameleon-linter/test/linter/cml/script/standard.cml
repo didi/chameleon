@@ -1,0 +1,31 @@
+<script>
+class ApplyRecord {
+  props = {
+    pageData:{
+      type:Object,
+      default(){
+        return {}
+      }
+    }
+  }
+
+  data = {
+    count:'tedas',
+    errorImg:require('../img/icon.png'),
+  }
+
+  computed = {
+    hasApplyList(){
+      return this.pageData.has_apply_list == 1;
+    },
+    applyList(){
+      return this.pageData.apply_list;
+    },
+    leftTimes(){
+      return this.pageData.left_times;
+    }
+  }
+}
+
+export default new ApplyRecord();
+</script>

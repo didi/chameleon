@@ -1,0 +1,22 @@
+{
+    "text": {
+        "required": "",
+        "excludes": "",
+        "includes": ["text"]
+    },
+    "scroller": {
+        "required": "",
+        "excludes": ["textarea","video"],
+        "includes": ""
+    },
+    "list": {
+        "required": "",
+        "excludes": ["textarea","video"],
+        "includes": ""
+    },
+    "video": {
+        "required": "",
+        "excludes": "",
+        "includes": ["text"]
+    }
+}

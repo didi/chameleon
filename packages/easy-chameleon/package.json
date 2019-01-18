@@ -1,0 +1,46 @@
+{
+  "name": "easy-chameleon",
+  "version": "0.0.8",
+  "description": "easy-chameleon",
+  "main": "index.js",
+  "bin": {
+    "ecml": "./bin/index.js"
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "mail": "ChameleonCore@didiglobal.com",
+  "dependencies": {
+    "babel-plugin-chameleon-import": "0.0.28",
+    "chameleon-api": "0.0.20",
+    "chameleon-bridge": "0.0.1",
+    "chameleon-css-loader": "0.0.28",
+    "chameleon-loader": "0.0.28",
+    "chameleon-miniapp-target": "0.0.28",
+    "chameleon-mixins": "0.0.28",
+    "chameleon-runtime": "0.0.3",
+    "chameleon-store": "0.0.3",
+    "chameleon-template-parse": "0.0.28",
+    "chameleon-templates": "0.0.28",
+    "chameleon-tool-utils": "0.0.28",
+    "chameleon-url-loader": "0.0.28",
+    "chameleon-vue-precompiler": "0.0.28",
+    "chameleon-weex-vue-loader": "0.0.28",
+    "clean-webpack-plugin": "0.1.19",
+    "cml-ui": "0.0.3",
+    "extract-text-webpack-plugin": "3.0.2",
+    "interface-loader": "0.0.28",
+    "ora": "3.0.0",
+    "webpack-check-plugin": "0.0.28",
+    "webpack-liveload-middleware": "0.0.24",
+    "webpack-merge": "^4.1.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^5.9.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify-es": "^1.0.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  }
+}

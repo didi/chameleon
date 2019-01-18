@@ -1,0 +1,205 @@
+/** 浮动导航 */
+#anchor-navigation-ex-navbar {
+    background-color: #fafafa;
+    border: 1px solid rgba(0, 0, 0, .07);
+    border-radius: 1px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-clip: padding-box;
+    padding: 5px 10px;
+    position: fixed;
+    /*background-color: rgba(255,255,255,0.98);*/
+    right: 50px;
+    top: 68px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 999;
+    cursor: pointer;
+    text-align: right;
+    max-height: 70%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#anchor-navigation-ex-navbar ul {
+    display: none;
+    text-align: left;
+    padding-right: 10px;
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+#anchor-navigation-ex-navbar:hover ul {
+    display: block;
+}
+
+#anchor-navigation-ex-navbar ul li a {
+    text-decoration: none;
+    border-bottom: none;
+    font-size: 14px;
+    color: #364149;
+    background: 0 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+#anchor-navigation-ex-navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+#anchor-navigation-ex-navbar ul li .title-icon {
+    padding-right: 4px;
+}
+
+/*对应官网皮肤主题颜色*/
+.book.color-theme-1 #anchor-navigation-ex-navbar {
+    background-color: #111111;
+    border-color: #7e888b;
+    color: #afa790;
+}
+
+.book.color-theme-1 #anchor-navigation-ex-navbar ul li a {
+    color: #877f6a;
+}
+
+.book.color-theme-2 #anchor-navigation-ex-navbar {
+    background-color: #2d3143;
+    border-color: #272a3a;
+    color: #bcc1d2;
+}
+
+.book.color-theme-2 #anchor-navigation-ex-navbar ul li a {
+    color: #c1c6d7;
+}
+
+/* 返回顶部 */
+#anchorNavigationExGoTop {
+    position: fixed;
+    right: 50px;
+    bottom: 68px;
+    background-color: #fafafa;
+    border: 1px solid rgba(0, 0, 0, .07);
+    border-radius: 1px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-clip: padding-box;
+    z-index: 999;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 10px;
+    color: #364149;
+}
+/*对应官网皮肤主题颜色*/
+.book.color-theme-1 #anchorNavigationExGoTop {
+    background-color: #111111;
+    border-color: #7e888b;
+    color: #afa790;
+}
+
+.book.color-theme-2 #anchorNavigationExGoTop {
+    background-color: #2d3143;
+    border-color: #272a3a;
+    color: #bcc1d2;
+}
+
+a.anchor-navigation-ex-anchor {
+    color: inherit !important;
+    display: none;
+    margin-left: -30px;
+    padding-left: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+a.anchor-navigation-ex-anchor i {
+    margin-left: -30px;
+    /*color: #000;*/
+    vertical-align: middle;
+    font-size: 16px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    position: relative;
+}
+
+h1:hover a.anchor-navigation-ex-anchor, h2:hover a.anchor-navigation-ex-anchor, h3:hover a.anchor-navigation-ex-anchor,
+h4:hover a.anchor-navigation-ex-anchor, h5:hover a.anchor-navigation-ex-anchor, h6:hover a.anchor-navigation-ex-anchor {
+    display: inline-block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal {
+    overflow: visible;
+}
+
+/* 页面内顶部固定导航  */
+#anchor-navigation-ex-pagetop-navbar{
+    border: 1px solid rgba(0, 0, 0, .07);
+    border-radius: 1px;
+    background-clip: padding-box;
+    padding: 5px 10px;
+    background-color: #fafafa;
+    font-size: 12px;
+}
+
+#anchor-navigation-ex-pagetop-navbar ul {
+    text-align: left;
+    padding-right: 10px;
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+#anchor-navigation-ex-pagetop-navbar:hover ul {
+    display: block;
+}
+
+#anchor-navigation-ex-pagetop-navbar ul li a {
+    text-decoration: none;
+    border-bottom: none;
+    font-size: 14px;
+    color: #364149;
+    background: 0 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+#anchor-navigation-ex-pagetop-navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+#anchor-navigation-ex-pagetop-navbar ul li .title-icon {
+    padding-right: 4px;
+}
+
+/*对应官网皮肤主题颜色*/
+.book.color-theme-1 #anchor-navigation-ex-pagetop-navbar {
+    background-color: #111111;
+    border-color: #7e888b;
+    color: #afa790;
+}
+
+.book.color-theme-1 #anchor-navigation-ex-pagetop-navbar ul li a {
+    color: #877f6a;
+}
+
+.book.color-theme-2 #anchor-navigation-ex-pagetop-navbar {
+    background-color: #2d3143;
+    border-color: #272a3a;
+    color: #bcc1d2;
+}
+
+.book.color-theme-2 #anchor-navigation-ex-pagetop-navbar ul li a {
+    color: #c1c6d7;
+}
+
+
+
+
+
+

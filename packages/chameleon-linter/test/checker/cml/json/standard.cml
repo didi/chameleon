@@ -1,0 +1,19 @@
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "weex": {
+
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>

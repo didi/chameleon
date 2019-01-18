@@ -1,0 +1,96 @@
+pre,
+code {
+  /* From https://github.com/isagalaev/highlight.js/blob/9.8.0/src/styles/tomorrow.css */
+  /* http://jmblog.github.io/color-themes-for-highlightjs */
+  /* Tomorrow Comment */
+  /* Tomorrow Red */
+  /* Tomorrow Orange */
+  /* Tomorrow Yellow */
+  /* Tomorrow Green */
+  /* Tomorrow Blue */
+  /* Tomorrow Purple */
+}
+pre .hljs-comment,
+code .hljs-comment,
+pre .hljs-quote,
+code .hljs-quote {
+  color: #8e908c;
+}
+pre .hljs-variable,
+code .hljs-variable,
+pre .hljs-template-variable,
+code .hljs-template-variable,
+pre .hljs-tag,
+code .hljs-tag,
+pre .hljs-name,
+code .hljs-name,
+pre .hljs-selector-id,
+code .hljs-selector-id,
+pre .hljs-selector-class,
+code .hljs-selector-class,
+pre .hljs-regexp,
+code .hljs-regexp,
+pre .hljs-deletion,
+code .hljs-deletion {
+  color: #c82829;
+}
+pre .hljs-number,
+code .hljs-number,
+pre .hljs-built_in,
+code .hljs-built_in,
+pre .hljs-builtin-name,
+code .hljs-builtin-name,
+pre .hljs-literal,
+code .hljs-literal,
+pre .hljs-type,
+code .hljs-type,
+pre .hljs-params,
+code .hljs-params,
+pre .hljs-meta,
+code .hljs-meta,
+pre .hljs-link,
+code .hljs-link {
+  color: #f5871f;
+}
+pre .hljs-attribute,
+code .hljs-attribute {
+  color: #eab700;
+}
+pre .hljs-string,
+code .hljs-string,
+pre .hljs-symbol,
+code .hljs-symbol,
+pre .hljs-bullet,
+code .hljs-bullet,
+pre .hljs-addition,
+code .hljs-addition {
+  color: #718c00;
+}
+pre .hljs-title,
+code .hljs-title,
+pre .hljs-section,
+code .hljs-section {
+  color: #4271ae;
+}
+pre .hljs-keyword,
+code .hljs-keyword,
+pre .hljs-selector-tag,
+code .hljs-selector-tag {
+  color: #8959a8;
+}
+pre .hljs,
+code .hljs {
+  display: block;
+  overflow-x: auto;
+  background: white;
+  color: #4d4d4c;
+  padding: 0.5em;
+}
+pre .hljs-emphasis,
+code .hljs-emphasis {
+  font-style: italic;
+}
+pre .hljs-strong,
+code .hljs-strong {
+  font-weight: bold;
+}

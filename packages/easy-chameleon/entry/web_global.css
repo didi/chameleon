@@ -1,0 +1,28 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* 只允许进行滚动和持续缩放操作 */
+a,
+button,
+[role="button"],
+input,
+label,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+p,
+ol,
+ul,
+dl,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}

@@ -1,0 +1,18 @@
+{
+  "mode": "history",
+  "domain": "https://api.chameleon.com",
+  "routes":[
+    {
+      "url": "/beatles/h5/user/user/homev2",
+      "path": "pages/index/index",
+      "name": "我的主页",
+      "mock": "index.php"
+    },
+    {
+      "url": "/beatles/h5/errorpage",
+      "path": "pages/error_page/error_page",
+      "name": "出错啦",
+      "mock": "errorpage.php"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+<template>
+  <view class='root'>
+    <view c-if="{{hasApplyList}}" class="scroll-container"></view>
+    <view c-else class="error-container">
+      <view calss="error-container">
+        <view class="error-img">
+          <!-- <image style="width: 100px;height:100px;" src="{{errorImg}}"></image> -->
+        </view>
+        <view class="error-desc">
+          <text class="error-text">暂无申请记录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+class ApplyRecord   {
+  props = {
+    pageData:{
+      type:Object,
+      default(){
+        window.location.href = 'xxx';
+        return {}
+      }
+    }
+  }
+
+  data = {
+    count:'tedas',
+    errorImg:require('../img/icon.png'),
+  }
+
+  computed = {
+    hasApplyList(){
+      return this.pageData.has_apply_list == 1;
+    },
+    applyList(){
+      return this.pageData.apply_list;
+    },
+    leftTimes(){
+      return this.pageData.left_times;
+    }
+  }
+}
+
+export default new ApplyRecord();
+</script>
+<style scoped>
+.root{
+  position:absolute;
+  top:88px;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:#f7f7f7;
+}
+
+.scroll-container{
+  position:absolute;
+  top:0px;
+  bottom:0;
+  left:0;
+  right:0;
+  margin-top:20px;
+}
+.error-container{
+  position:absolute;
+  top:0px;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  align-content: center;
+  justify-content: center;
+}
+.error-container{
+  width:750px;
+}
+.error-img{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items:center;
+  margin-bottom:30px;
+}
+.error-desc{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items:center;
+}
+.error-text{
+  font-size:28px;
+  color:#333;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+
+  },
+  "wx": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2",
+    "component": true
+  }
+}
+</script>

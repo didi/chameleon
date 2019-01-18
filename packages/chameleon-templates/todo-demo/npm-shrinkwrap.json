@@ -1,0 +1,108 @@
+{
+  "name": "chameleon",
+  "version": "1.0.0",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "babel-runtime": {
+      "version": "6.26.0",
+      "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.26.0.tgz",
+      "integrity": "sha1-llxwWGaOgrVde/4E/yM3vItWR/4=",
+      "requires": {
+        "core-js": "2.6.2",
+        "regenerator-runtime": "0.11.1"
+      }
+    },
+    "better-scroll": {
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/better-scroll/-/better-scroll-1.13.2.tgz",
+      "integrity": "sha512-JUt5aQYuHMjHNOD5JpIvNT502MlHAPXZsHoA6P2rNgLKX6WPQIoHhpwo0gT9FHgm9uTJ8wEg1HN9ZmRFJYjZLg==",
+      "requires": {
+        "babel-runtime": "6.26.0"
+      }
+    },
+    "chameleon-api": {
+      "version": "0.0.16",
+      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.0.16.tgz",
+      "integrity": "sha512-U111l95AI3SDLTQNPXnMqqHp1Dc1oZsJCEiLXBNf4emI9onqBuXfJSQk6Wo9ytiSvnO+MrS6Zkoo75tkhOOytw==",
+      "requires": {
+        "chameleon-bridge": "0.0.10",
+        "fetch-detector": "1.0.1",
+        "fetch-ie8": "1.5.0"
+      }
+    },
+    "chameleon-bridge": {
+      "version": "0.0.10",
+      "resolved": "https://registry.npmjs.org/chameleon-bridge/-/chameleon-bridge-0.0.10.tgz",
+      "integrity": "sha512-wG0tNxrlrmrjrEods5r0tfyWxw8zw9ggFeJgDXhoNkZz2GEBOe4Hh1FyLj93DT1r7a67pxf2XWooUTh4Y8fw1Q=="
+    },
+    "chameleon-runtime": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/chameleon-runtime/-/chameleon-runtime-0.0.3.tgz",
+      "integrity": "sha512-4BZHXmpFPI6+oHvooOf1IcAD5BkjOFwLKSD3/EcL2k9PbZ8m4XZaxdyMwuErdci24c1cgJEcINivOYg4HztbsA==",
+      "requires": {
+        "mobx": "3.6.1"
+      }
+    },
+    "chameleon-store": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/chameleon-store/-/chameleon-store-0.0.3.tgz",
+      "integrity": "sha512-f6lmeDW01xnau71iXK52haomD2etmQg+gBvVFO5T84eqs9AxtXiRkYAjxl/rqu+ejFACAm1nWMfAjXldw0lUTQ==",
+      "requires": {
+        "mobx": "3.6.1",
+        "vuex": "3.0.1"
+      }
+    },
+    "chameleon-ui-builtin": {
+      "version": "0.0.4",
+      "resolved": "https://registry.npmjs.org/chameleon-ui-builtin/-/chameleon-ui-builtin-0.0.4.tgz",
+      "integrity": "sha512-GhyYYIQxGhP866+I1xbXxtd5qyn2TVzIupY4YOXREgmEO6LhO6wdO2qXHVvJLrBoCruxYx/Xhj5HVKLNtSDTEg==",
+      "requires": {
+        "better-scroll": "1.13.2"
+      }
+    },
+    "classnames": {
+      "version": "2.2.6",
+      "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
+      "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
+    },
+    "cml-ui": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.0.3.tgz",
+      "integrity": "sha512-I4gu1PVsQtzvJHO8L1SBjnia+PHcSeo7R12UZTzwqBwZDC4xyXnRi3rZ8SRyL7MqRL3t5NWLx1pHHnALTuoi6A==",
+      "requires": {
+        "classnames": "2.2.6"
+      }
+    },
+    "core-js": {
+      "version": "2.6.2",
+      "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.6.2.tgz",
+      "integrity": "sha512-NdBPF/RVwPW6jr0NCILuyN9RiqLo2b1mddWHkUL+VnvcB7dzlnBJ1bXYntjpTGOgkZiiLWj2JxmOr7eGE3qK6g=="
+    },
+    "fetch-detector": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/fetch-detector/-/fetch-detector-1.0.1.tgz",
+      "integrity": "sha1-bLPq9zjCcnhi6GiA1hIUI+qkIIM="
+    },
+    "fetch-ie8": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/fetch-ie8/-/fetch-ie8-1.5.0.tgz",
+      "integrity": "sha1-8RQcP5bLyJN6oxsPvBp3AiD7wVs="
+    },
+    "mobx": {
+      "version": "3.6.1",
+      "resolved": "https://registry.npmjs.org/mobx/-/mobx-3.6.1.tgz",
+      "integrity": "sha1-rmOo8A4UhadA0Pka4val9o4wO+o="
+    },
+    "regenerator-runtime": {
+      "version": "0.11.1",
+      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz",
+      "integrity": "sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg=="
+    },
+    "vuex": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/vuex/-/vuex-3.0.1.tgz",
+      "integrity": "sha512-wLoqz0B7DSZtgbWL1ShIBBCjv22GV5U+vcBFox658g6V0s4wZV9P4YjCNyoHSyIBpj1f29JBoNQIqD82cR4O3w=="
+    }
+  }
+}

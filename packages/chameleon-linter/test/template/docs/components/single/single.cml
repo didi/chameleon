@@ -1,0 +1,36 @@
+<template>
+  <view></view>
+</template>
+<script>
+class Radio  {
+  props = {
+
+  }
+
+  data = {
+
+  }
+
+  methods = {
+    
+  }
+}
+export default Radio;
+</script>
+<style scoped>
+
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "usingComponents": {
+        }
+    },
+    "wx": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2",
+        "component": true
+    }
+}
+</script>

@@ -1,0 +1,42 @@
+<template>
+  <view></view>
+</template>
+<script>
+class Radio  {
+  props = {
+	  checked: {
+		  type: Boolean,
+		  default: false
+	  }
+  }
+
+  data = {
+
+  }
+
+  methods = {
+    check() {
+			this.$cmlEmit('radiocheked', e.detail)
+      return true;
+    }
+  }
+}
+export default new Radio;
+</script>
+<style scoped>
+
+</style>
+<script cml-type="json">
+{
+	"base": {
+		"usingComponents": {
+		}
+	},
+	"wx": {
+		"navigationBarTitleText": "index",
+		"backgroundTextStyle": "dark",
+		"backgroundColor": "#E2E2E2",
+		"component": true
+	}
+}
+</script>

@@ -1,0 +1,118 @@
+<template>
+  <input
+      value="{{value}}"
+      type="{{type}}"
+      placeholder="{{placeholder}}"
+      disabled="{{disabled}}"
+      maxlength="{{maxlength}}"
+      style="{{wxStyle}}"
+
+      c-bind:input="inputEvent"
+      c-bind:blur="blurEvent"
+      c-bind:focus="focusEvent"
+      c-bind:confirm="confirmEvent"
+
+      focus="{{focus}}"
+      confirm-type="{{returnKeyType}}"
+      placeholder-style="{{wxPlaceHolderStyle}}"
+  />
+</template>
+<script>
+ class Input implements InputInterface {
+    props = {
+      value: {
+        type: String,
+        default: ''
+      },
+      //input的类型
+      type: {
+        type: String,
+        default: 'text'  //枚举值 text number password
+      },
+      //input的placerholder
+      placeholder: {
+        type: String,
+        default: ''
+      },
+      //是否禁用input输入
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      //控制input是否聚焦
+      focus: {
+        type: Boolean,
+        default: false
+      },
+      //最大长度
+      maxlength: {
+        type: Number,
+        default: 140
+      },
+      //右下角返回键类型
+      returnKeyType: { //枚举值 done search next go
+        type: String,
+        default: 'done'
+      },
+      placerHolderColor: {
+        type: String,
+        default: '#bebebe'
+      },
+      inputStyle: {
+        type: String,
+        default: ''
+      }
+    }
+    data = {
+      defaultStyle: "font-size: 33px; height: 80px; line-height: 80px; padding-left:20px; padding-right:20px; color: #000; border: 1px solid #999;border-radius: 8px; text-align: left; background-color: #fff;"
+    }
+    computed ={
+      wxPlaceHolderStyle() {
+        return `color: ${this.placerHolderColor};`
+      },
+      wxStyle() {
+        let style = this.defaultStyle + this.inputStyle;
+        return style
+      }
+    }
+    watch = {
+      focus: function(newVal, oldVal) {
+      }
+    }
+    methods = {
+      inputEvent(e) {
+        this.$cmlEmit('inputevent',{
+          value: e.detail.value || ''
+        })
+      },
+      blurEvent(e) {
+        this.$cmlEmit('blurevent');
+      },
+      focusEvent(e) {
+        this.$cmlEmit('focusevent');
+      },
+      confirmEvent(e) {
+        this.$cmlEmit('confirmevent')
+      }
+    }
+    beforeCreate(){}
+    created() {}
+    beforeMount() {}
+    mounted() {}
+    beforeDestroy() {}
+    destroyed() {}
+  }
+  export default new Input();
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "wx": {
+    "component": true
+  }
+}
+</script>

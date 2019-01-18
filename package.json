@@ -1,0 +1,26 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "install": "node bash/install.js",
+    "bootstrap": "node bash/bootstrap.js",
+    "build": "lerna run build",
+    "publish": "npm run build && lerna publish",
+    "coverage": "sh ./test/test.sh",
+    "clear": "rm -rf package-lock.json  packages/*/package-lock.json",
+    "clear-all": "rimraf package-lock.json packages/*/node_modules packages/*/package-lock.json"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "lerna": "^3.5.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-istanbul": "^0.12.2",
+    "codecov": "^3.1.0",
+    "coveralls": "^3.0.2",
+    "mocha": "*",
+    "nyc": "*",
+    "rimraf": "^2.6.3"
+  }
+}

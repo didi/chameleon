@@ -1,0 +1,14 @@
+{
+  "name": "chameleon-vue-precompiler",
+  "version": "0.0.28",
+  "description": "为chameleon提供 vue-loader 的模板预编译处理能力",
+  "author": "Chameleon-Team",
+  "scripts": {},
+  "license": "Apache",
+  "main": "lib/index.js",
+  "mail": "ChameleonCore@didiglobal.com",
+  "dependencies": {
+    "esprima": "^4.0.1"
+  },
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+}

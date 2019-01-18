@@ -1,0 +1,34 @@
+{
+  "presets": [
+    "flow",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+          ]
+        }
+      }
+    ],
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-remove-strict-mode",
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }],
+    ["babel-plugin-chameleon-import", {
+      "libraryName": "chameleon-api",
+      "libraryDirectory": "src/interfaces",
+      "libraryFileName": "index.js",
+      "defaulLibraryDirectory": "",
+      "defaulLibraryFileName": "index.js",
+    }]
+  ]
+}

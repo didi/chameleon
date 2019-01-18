@@ -1,0 +1,61 @@
+<template lang="cml">
+  <view></view>
+</template>
+
+<script>
+  class App {
+    props = {
+      show: {
+        type: Boolean,
+        default: true
+      }
+    }
+    data = {
+      dataOne: true
+    }
+    created(res) {
+
+    }
+    computed = {
+      computedOne() {
+        return true;
+      },
+      computedTwo: function () {
+        return true;
+      }
+    }
+
+    methods =  {
+      onTap() {
+        return true;
+      },
+      onClick: function(e) {
+
+      }
+    }
+  }
+  export default new App();
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "weex": {
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>

@@ -1,0 +1,129 @@
+<template>
+  <view class="warning" c-bind:tap="clickOpen" data-url="{{data.url}}">
+    <view class="half">
+      <image class="tips" src="./mess.png" />
+      <rich-text class="warning-text" options="{{data.notify_title}}" />
+    </view>
+    <view class="half half-right">
+      <text class="immediately-view">立即查看</text>
+      <image class="arrow" src="https://static.chameleon.com/pinche/gift/resource/0c4a8d1daa93d7966f15db1fa84c7307-arrow.png" />
+    </view>
+  </view>
+</template>
+
+<script>
+import cml from 'chameleon-api';
+import mainInterface from '../../pages/index/index.interface';
+import { host, sendLog } from '../../config';
+
+class Toast implements ToastInterface {
+  props = {
+    data: {
+      type: Object,
+      default: null,
+    },
+    userInfo: {
+      type: Object,
+      default: null,
+    },
+  }
+  data = {
+    MAP: {
+      dina: 'dina',
+    },
+  }
+  beforeCreate() {
+    sendLog('beat_p_weizhang_sw');
+  }
+  methods = {
+    clickOpen(e) {
+      cml.post({
+        url: `${host}/beatles/homeapi/home/driver/click`,
+        data: {
+          action: 1,
+          uid: this.userInfo.uid,
+          token: this.userInfo.token,
+        },
+      }).then(() => {
+        this.$cmlEmit('cleared');
+      });
+
+      this.open(e.currentTarget.dataset.url);
+      sendLog('beat_p_weizhang_ck');
+    },
+    open(url) {
+      const newUrl = url.includes('?') ? `${url}&token=${this.userInfo.token}` : `${url}?token=${this.userInfo.token}`;
+      mainInterface.open(newUrl);
+    },
+  }
+}
+
+
+
+export default new Toast()
+</script>
+
+<style scoped>
+.warning {
+  height: 100px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 34px;
+  border-radius: 4px;
+  padding-right: 32px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 20px
+}
+
+.tips {
+  width: 24px;
+  height: 27px;
+}
+
+.arrow {
+  width: 15px;
+  height: 25px;
+  margin-left: 17px;
+}
+
+.warning-text {
+  margin-left: 11px;
+}
+
+.half {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.half-right {
+  justify-content: flex-end;
+}
+
+.immediately-view {
+  font-size: 24px;
+  color: grey;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "rich-text": "../../components/richText/richText",
+      "rich-text-title" : "../../components/richTextTitle/richTextTitle"
+    }
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    },
+    "component": true
+  }
+}
+</script>

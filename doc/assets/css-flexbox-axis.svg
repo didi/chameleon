@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width='665' height='277' viewBox='0 0 665 277'>
+	<style>
+		:root { fill: transparent; }
+		text,tspan { font-family: sans-serif; text-anchor: middle; font-size: 18px; fill: currentColor; }
+		.container { fill: #888; }
+		.item > rect { fill: #ddd; }
+		.item > text { font-size: 40px; font-weight: bold; fill: #f8f8f8; }
+		.arrow { color: hsl(0,80%,40%); stroke: currentColor; stroke-width: 3; }
+		.arrow > path + path { stroke: transparent; fill: currentColor; }
+		.bracket { color: hsl(120,80%,30%); }
+		.bracket > path { stroke: currentColor; stroke-width: 2; }
+		.side { color: hsl(240,80%,50%); }
+		.side > path { stroke-width: 3; stroke: currentColor; }
+		.display, .item > .display { font-size: 16px; font-weight: normal; font-style: italic; fill: #444; }
+	</style>
+	<g transform='translate(40,40)'>
+		<g class='side' transform="translate(503,1.5)">
+			<path d="M -10 0 h 30" stroke-dasharray="6"/>
+			<text x='25' y='4' style="text-anchor: start; ">cross start</text>
+		</g>
+		<g class='side' transform="translate(503,118.5)">
+			<path d="M -10 0 h 30" stroke-dasharray="6"/>
+			<text x='25' y='4' style="text-anchor: start; ">cross end</text>
+		</g>
+		<g class='side' transform="translate(1.5,120)">
+			<path d="M 0 -10 v 40" stroke-dasharray="5 5"/>
+			<text x='0' y='40'><tspan>main</tspan><tspan x='0' y='58'>start</tspan></text>
+		</g>
+		<g class='side' transform="translate(498.5,120)">
+			<path d="M 0 -10 v 40" stroke-dasharray="5 5"/>
+			<text x='0' y='40'><tspan>main</tspan><tspan x='0' y='58'>end</tspan></text>
+		</g>
+		<rect class='container' x='0' y='0' width='500' height='120' rx='10' ry='10' />
+		<text x='157.5' y='136' class='display'>flex container</text>
+		<g class='item' transform='translate(5,5)'>
+			<rect x='0' y='0' width='150' height='110' rx='5' ry='5' />
+			<text x='75' y='70'>1</text>
+			<text x='146' y='106' class='display' style="text-anchor: end;">flex item</text>
+		</g>
+		<g class='item' transform='translate(160,5)'>
+			<rect x='0' y='0' width='335' height='110' rx='5' ry='5' />
+			<text x='168' y='70'>2</text>
+			<text x='3' y='106' class='display' style="text-anchor: start;">flex item</text>
+		</g>
+		<g class='arrow' transform='translate(-1,60)'>
+			<circle cx='3.5' cy='0' r='5' />
+			<path d="M 8 0 h 600" />
+			<path d='M 608 0 v -5 l 10 5 l -10 5 v -5' />
+			<text x='550' y='-4' stroke='transparent' fill='black'>main axis</text>
+		</g>
+		<g class='arrow' transform='translate(250,222.5) rotate(-90)'>
+			<circle cx='220' cy='0' r='5' />
+			<path d="M 215 0 h -220" />
+			<path d='M -5 0 v -5 l -10 5 l 10 5 v -5' />
+			<text x='50' y='-4' stroke='transparent' fill='black'>cross axis</text>
+		</g>
+		<g class='bracket' transform='translate(1,-15)'>
+			<path d="M 0 10 v -10 h 498 v 10" />
+			<text x='249' y='-4'>main size</text>
+		</g>
+		<g class='bracket' transform='translate(-15,119) rotate(-90)'>
+			<path d="M 0 10 v -10 h 118 v 10" />
+			<text x='59' y='-4'>cross size</text>
+		</g>
+	</g>
+</svg>

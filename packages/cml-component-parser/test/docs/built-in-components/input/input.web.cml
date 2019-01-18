@@ -1,0 +1,94 @@
+<template>
+<view>
+  <html:input
+    value="{{value}}"
+    type="{{type}}"
+    placeholder="{{placeholder}}"
+    disabled="{{disabled}}"
+    maxlength="{{maxlength}}"
+
+    c-bind:input="inputEvent"
+    c-bind:blur="blurEvent"
+    c-bind:focus="focusEvent"
+    c-bind:keyup="keyupEvent"
+
+    pattern="{{typePattern}}"
+    ref="c-input"
+    style="{{weexStyle}}"
+  />
+</view>
+</template>
+<script>
+/*
+event: inputevent blurevent focusevent cconfirmevent
+*/
+import inputable from '../../assets/js/mixins/inputable/inputable'
+
+ class Input implements InputInterface {
+    mixins = [inputable]
+    data = {
+      defaultStyle: "line-height: normal;font-size: 33px; height: 80px;padding-left:20px; padding-right:20px; color: #000; border-width:1px; border-style:solid; border-color:#999;border-radius: 8px; text-align: left; background-color: #fff;",
+      typePattern: '*'
+    }
+
+    props = {
+      //类型
+      type: {
+        type: String,
+        default: 'text'  //枚举值 text number password
+      }
+    }
+    watch = {
+      value: function (val) {
+        this.$refs['c-input'].value = val
+      }
+    }
+    computed = {
+      weexStyle() {
+        return this.defaultStyle + this.inputStyle
+      }
+    }
+
+    methods = {
+      changeFocus(focus) {
+        if(focus) {
+          this.$refs['c-input'].focus();
+        } else {
+          this.$refs['c-input'].blur();
+        }       
+      },
+    }
+    beforeCreate(){}
+    created() {}
+    beforeMount() {}
+    mounted() {
+      this.changeFocus(this.focus);
+      // ios端 type为number不生效，需要加入pattern"[0-9]*"
+      if (this.type === 'number') {
+        this.typePattern = '[0-9]*'
+      }
+    }
+    beforeDestroy() {}
+    destroyed() {}
+  }
+
+  export default new Input();
+
+</script>
+
+<style scoped>
+input::-webkit-input-placeholder {
+  line-height: normal;
+}
+</style>
+
+<script cml-type="json">
+{
+  "web": {
+    "component": true
+  }
+}
+</script>
+
+
+

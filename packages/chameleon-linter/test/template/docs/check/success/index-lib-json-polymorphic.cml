@@ -1,0 +1,45 @@
+<template>
+  <c-scroller></c-scroller>
+</template>
+
+<script>
+
+class Toast implements ToastInterface {
+  props = {
+
+  }
+  data = {
+
+  }
+  beforeCreate() {
+
+  }
+  methods = {
+
+  }
+}
+
+export default new Toast()
+</script>
+
+<style scoped>
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "c-scroller": "../../components/scroller/scroller"
+    }
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    },
+    "component": true
+  }
+}
+</script>

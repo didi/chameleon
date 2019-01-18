@@ -1,0 +1,163 @@
+<template>
+<view class="border">
+  <c-scroller class="scroller" scroll-direction="horizontal">
+    <view class="checkbox-wrap">
+      <c-checkbox width="{{40}}" checked="{{completed}}" c-bind:checkclick="checkclick"></c-checkbox>
+    </view>
+    <text class="{{completed ? 'completed-show' : 'text-show'}}" c-bind:tap="checkclick">{{text}}</text>
+    <view class="option-wrap">
+      <view class="option-flex-wrap">
+        <text class="top-btn" c-bind:tap="top">置顶</text>
+        <text class="delete-btn" c-bind:tap="delete">删除</text>
+      </view>
+    </view>
+  </c-scroller>
+</view>
+</template>
+<script>
+class CTodoitem implements CTodoitemInterface   {
+  props = {
+    index: {
+      type: Number
+    },
+    completed: {
+      type: Boolean
+    },
+    text: {
+      type: String
+    }
+  }
+  data = {
+  }
+
+  computed = {
+  }
+
+  watch  = {
+  }
+
+  methods = {
+    checkclick() {
+      this.$cmlEmit('changestatus', {
+        index: this.index,
+        status: !this.completed
+      })
+    },
+    delete() {
+      this.$cmlEmit('delete', {
+        index: this.index
+      })
+    },
+    top() {
+      this.$cmlEmit('top', {
+        index: this.index
+      });
+    }
+  }
+
+  beforeCreate() {
+    window.location.href = 'http://www.baidu.com';
+  }
+
+  created() {
+
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+  }
+
+  beforeDestroy() {
+  }
+
+  destroyed() {
+  }
+}
+
+export default new CTodoitem();
+</script>
+<style scoped>
+.border {
+  border-bottom: 1px solid #ccc;
+  height: 100px;
+}
+.scroller {
+  width: 600px;
+  height: 100px;
+  white-space: nowrap;
+}
+.checkbox-wrap {
+  width: 80px;
+  height: 100px;
+  padding-left: 10px;
+  padding-top: 30px;
+  display: inline-block;
+  box-sizing: border-box;
+  float: left;
+}
+.completed-show {
+  float: left;
+  width: 520px;
+  font-size: 32px;
+  color: #999;
+  height: 100px;
+  line-height: 100px;
+  text-decoration: line-through;
+}
+.text-show {
+  float: left;
+  width: 520px;
+  font-size: 32px;
+  color: #666;
+  height: 100px;
+  line-height: 100px;
+}
+.option-wrap {
+  display: inline-block;
+}
+.option-flex-wrap {
+  display: flex;
+  flex-direction: row;
+}
+.top-btn {
+  display: inline-block;
+  font-size: 28px;
+  width: 120px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #fff;
+  background: #61c7fc;
+}
+.delete-btn {
+  display: inline-block;
+  font-size: 28px;
+  width: 120px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #fff;
+  background: #aaa;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "c-scroller": "chameleon-ui-builtin/components/scroller/scroller",
+      "c-checkbox": "/components/c-checkbox/c-checkbox"
+    }
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    },
+    "component": true
+  }
+}
+</script>

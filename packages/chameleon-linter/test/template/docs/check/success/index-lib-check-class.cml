@@ -1,0 +1,55 @@
+<template lang="cml">
+  <view c-if="{{showFirstView}}">
+    <view c-bind:tap="onTap"></view>
+  </view>
+</template>
+
+<script>
+  class App {
+    props = {
+      showFirstView: {
+        type: Boolean,
+        default: true
+      }
+    }
+    data = {
+      dataOne: true
+    }
+    created(res) {
+
+    }
+    computed = {
+    }
+
+    methods =  {
+      onTap() {
+        return true;
+      }
+    }
+  }
+  export default new App();
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "show-component": "../../components/show-component/scroller"
+    }
+  },
+  "weex": {
+  },
+  "wx": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "#fff"
+    }
+  }
+}
+</script>

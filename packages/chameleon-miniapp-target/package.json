@@ -1,0 +1,21 @@
+{
+  "name": "chameleon-miniapp-target",
+  "version": "0.0.28",
+  "description": "chameleon 小程序webpack的target",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify-es": "^1.0.4",
+    "webpack": "^3.12.0"
+  },
+  "dependencies": {
+    "chameleon-tool-utils": "^0.0.28"
+  },
+  "mail": "ChameleonCore@didiglobal.com",
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+}

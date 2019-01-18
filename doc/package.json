@@ -1,0 +1,22 @@
+{
+  "name": "chameleon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gitbook serve",
+    "build": "gitbook build",
+    "release": "sh release.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:beatles-chameleon/beatles-chameleon.github.io.git"
+  },
+  "author": "chameleon",
+  "license": "ISC",
+  "dependencies": {
+    "gitbook-plugin-insert-logo": "^0.1.5",
+    "glob": "^7.1.3"
+  }
+}

@@ -1,0 +1,4191 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>模板规范校验 · chameleon</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight-code/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-code3/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="cml-script.html" />
+    
+    
+    <link rel="prev" href="standards/cml-interface.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../../assets/favicon.ico' type="image/x-icon">
+    
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../quick_start/quick_start.html">
+            
+                <a href="../../quick_start/quick_start.html">
+            
+                    
+                    快速上手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../framework.html">
+            
+                <a href="../framework.html">
+            
+                    
+                    框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../quick_start/cml_cmd.html">
+            
+                <a href="../../quick_start/cml_cmd.html">
+            
+                    
+                    脚手架工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../structure.html">
+            
+                <a href="../structure.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../view/view.html">
+            
+                <a href="../../view/view.html">
+            
+                    
+                    视图层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="../../view/cmss.html">
+            
+                <a href="../../view/cmss.html">
+            
+                    
+                    CMSS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1.1" data-path="../../view/cmss/layout.html">
+            
+                <a href="../../view/cmss/layout.html">
+            
+                    
+                    布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.2" data-path="../../view/cmss/box.html">
+            
+                <a href="../../view/cmss/box.html">
+            
+                    
+                    盒模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.3" data-path="../../view/cmss/text.html">
+            
+                <a href="../../view/cmss/text.html">
+            
+                    
+                    文本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.4" data-path="../../view/cmss/unit.html">
+            
+                <a href="../../view/cmss/unit.html">
+            
+                    
+                    单位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.5" data-path="../../view/cmss/color.html">
+            
+                <a href="../../view/cmss/color.html">
+            
+                    
+                    颜色
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.6" data-path="../../view/cmss/css_diff.html">
+            
+                <a href="../../view/cmss/css_diff.html">
+            
+                    
+                    样式多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.7" data-path="../../view/cmss/base_style.html">
+            
+                <a href="../../view/cmss/base_style.html">
+            
+                    
+                    一致性基础样式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2" data-path="../../view/cml.html">
+            
+                <a href="../../view/cml.html">
+            
+                    
+                    CML-标准语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.2.1" data-path="../../view/databind.html">
+            
+                <a href="../../view/databind.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.2" data-path="../../view/condition.html">
+            
+                <a href="../../view/condition.html">
+            
+                    
+                    条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.3" data-path="../../view/iterator.html">
+            
+                <a href="../../view/iterator.html">
+            
+                    
+                    列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.4" data-path="../../view/event.html">
+            
+                <a href="../../view/event.html">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.5" data-path="../../view/directive.html">
+            
+                <a href="../../view/directive.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3" data-path="../../view/vue.html">
+            
+                <a href="../../view/vue.html">
+            
+                    
+                    CML-类vue语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.3.1" data-path="../../view/databind-vue.html">
+            
+                <a href="../../view/databind-vue.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.2" data-path="../../view/condition-vue.html">
+            
+                <a href="../../view/condition-vue.html">
+            
+                    
+                    条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.3" data-path="../../view/iterator-vue.html">
+            
+                <a href="../../view/iterator-vue.html">
+            
+                    
+                    列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.4" data-path="../../view/event-vue.html">
+            
+                <a href="../../view/event-vue.html">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.5" data-path="../../view/directive-vue.html">
+            
+                <a href="../../view/directive-vue.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.6" data-path="../../view/css-vue.html">
+            
+                <a href="../../view/css-vue.html">
+            
+                    
+                    样式语法规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.4" data-path="../../view/base_component.html">
+            
+                <a href="../../view/base_component.html">
+            
+                    
+                    基础组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../logic/logic.html">
+            
+                <a href="../../logic/logic.html">
+            
+                    
+                    逻辑层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.1" data-path="../../logic/lifecycle.html">
+            
+                <a href="../../logic/lifecycle.html">
+            
+                    
+                    生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2" data-path="../../logic/computed.html">
+            
+                <a href="../../logic/computed.html">
+            
+                    
+                    计算属性 computed
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.3" data-path="../../logic/watch.html">
+            
+                <a href="../../logic/watch.html">
+            
+                    
+                    侦听属性 watch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.4" data-path="../../logic/API.html">
+            
+                <a href="../../logic/API.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5" data-path="../../logic/store.html">
+            
+                <a href="../../logic/store.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.5.1" data-path="../../logic/store/start.html">
+            
+                <a href="../../logic/store/start.html">
+            
+                    
+                    开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.2" data-path="../../logic/store/state.html">
+            
+                <a href="../../logic/store/state.html">
+            
+                    
+                    state
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.3" data-path="../../logic/store/getters.html">
+            
+                <a href="../../logic/store/getters.html">
+            
+                    
+                    getters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.4" data-path="../../logic/store/mutation.html">
+            
+                <a href="../../logic/store/mutation.html">
+            
+                    
+                    mutation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.5" data-path="../../logic/store/action.html">
+            
+                <a href="../../logic/store/action.html">
+            
+                    
+                    action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.6" data-path="../../logic/store/module.html">
+            
+                <a href="../../logic/store/module.html">
+            
+                    
+                    子模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.7" data-path="../../logic/store/structure.html">
+            
+                <a href="../../logic/store/structure.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../settings.html">
+            
+                <a href="../settings.html">
+            
+                    
+                    配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="../json.html">
+            
+                <a href="../json.html">
+            
+                    
+                    组件配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="../router.html">
+            
+                <a href="../router.html">
+            
+                    
+                    路由配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="../config.html">
+            
+                <a href="../config.html">
+            
+                    
+                    工程配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../api/api.html">
+            
+                <a href="../../api/api.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../api/runtime/runtime.html">
+            
+                <a href="../../api/runtime/runtime.html">
+            
+                    
+                    运行时相关
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../../api/runtime/module.html">
+            
+                <a href="../../api/runtime/module.html">
+            
+                    
+                    export&import
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../../api/runtime/@import.html">
+            
+                <a href="../../api/runtime/@import.html">
+            
+                    
+                    @import
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../api/request.html">
+            
+                <a href="../../api/request.html">
+            
+                    
+                    网络请求
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../api/request.html">
+            
+                <a href="../../api/request.html#get">
+            
+                    
+                    cml.get
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../../api/request.html">
+            
+                <a href="../../api/request.html#post">
+            
+                    
+                    cml.post
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../../api/request.html">
+            
+                <a href="../../api/request.html#request">
+            
+                    
+                    cml.request
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../api/navigate.html">
+            
+                <a href="../../api/navigate.html">
+            
+                    
+                    路由导航
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../api/navigate.html">
+            
+                <a href="../../api/navigate.html#navigateto">
+            
+                    
+                    cml.navigateTo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../api/navigate.html">
+            
+                <a href="../../api/navigate.html#redirectto">
+            
+                    
+                    cml.redirectTo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../../api/navigate.html">
+            
+                <a href="../../api/navigate.html#navigateback">
+            
+                    
+                    cml.navigateBack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../api/storage.html">
+            
+                <a href="../../api/storage.html">
+            
+                    
+                    数据存储
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../../api/storage.html">
+            
+                <a href="../../api/storage.html#setstorage">
+            
+                    
+                    cml.setStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../../api/storage.html">
+            
+                <a href="../../api/storage.html#getstorage">
+            
+                    
+                    cml.getStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../../api/storage.html">
+            
+                <a href="../../api/storage.html#removestorage">
+            
+                    
+                    cml.removeStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../api/location.html">
+            
+                <a href="../../api/location.html">
+            
+                    
+                    地理位置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../../api/location.html">
+            
+                <a href="../../api/location.html#getlocationinfo">
+            
+                    
+                    cml.getLocationInfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../api/system.html">
+            
+                <a href="../../api/system.html">
+            
+                    
+                    系统信息
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="../../api/system.html">
+            
+                <a href="../../api/system.html#getsysteminfo">
+            
+                    
+                    cml.getSystemInfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../../api/launchOptions.html">
+            
+                <a href="../../api/launchOptions.html">
+            
+                    
+                    启动参数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.7.1" data-path="../../api/launchOptions.html">
+            
+                <a href="../../api/launchOptions.html#getlaunchoptionssync">
+            
+                    
+                    cml.getLaunchOptionsSync
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../../api/getRect.html">
+            
+                <a href="../../api/getRect.html">
+            
+                    
+                    元素属性
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.8.1" data-path="../../api/getRect.html">
+            
+                <a href="../../api/getRect.html#getrect">
+            
+                    
+                    cml.getRect
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../../api/px.html">
+            
+                <a href="../../api/px.html">
+            
+                    
+                    单位转换
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.9.1" data-path="../../api/px.html">
+            
+                <a href="../../api/px.html#px2cpx">
+            
+                    
+                    cml.px2cpx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9.2" data-path="../../api/px.html">
+            
+                <a href="../../api/px.html#cpx2px">
+            
+                    
+                    cml.cpx2px
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../../api/modal.html">
+            
+                <a href="../../api/modal.html">
+            
+                    
+                    交互反馈
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.10.1" data-path="../../api/modal.html">
+            
+                <a href="../../api/modal.html#showtoast">
+            
+                    
+                    cml.showToast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.2" data-path="../../api/modal.html">
+            
+                <a href="../../api/modal.html#alert">
+            
+                    
+                    cml.alert
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.3" data-path="../../api/modal.html">
+            
+                <a href="../../api/modal.html#confirm">
+            
+                    
+                    cml.confirm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../../api/title.html">
+            
+                <a href="../../api/title.html">
+            
+                    
+                    设置title
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.11.1" data-path="../../api/title.html">
+            
+                <a href="../../api/title.html#settitle">
+            
+                    
+                    cml.setTitle
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../../api/open.html">
+            
+                <a href="../../api/open.html">
+            
+                    
+                    打开/关闭应用页面
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.12.1" data-path="../../api/open.html">
+            
+                <a href="../../api/open.html#open">
+            
+                    
+                    cml.open
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12.2" data-path="../../api/open.html">
+            
+                <a href="../../api/open.html#close">
+            
+                    
+                    cml.close
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../../api/chooseImage.html">
+            
+                <a href="../../api/chooseImage.html">
+            
+                    
+                    获取照片
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.13.1" data-path="../../api/chooseImage.html">
+            
+                <a href="../../api/chooseImage.html#chooseimage">
+            
+                    
+                    cml.chooseImage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="../../api/clipBoard.html">
+            
+                <a href="../../api/clipBoard.html">
+            
+                    
+                    剪贴板
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.14.1" data-path="../../api/clipBoard.html">
+            
+                <a href="../../api/clipBoard.html#setclipboarddata">
+            
+                    
+                    cml.setClipBoardData
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14.2" data-path="../../api/clipBoard.html">
+            
+                <a href="../../api/clipBoard.html#getclipboarddata">
+            
+                    
+                    cml.getClipBoardData
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="../../api/socket.html">
+            
+                <a href="../../api/socket.html">
+            
+                    
+                    WebSocket
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.15.1" data-path="../../api/socket.html">
+            
+                <a href="../../api/socket.html#initsocket">
+            
+                    
+                    cml.initSocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="../../api/timer.html">
+            
+                <a href="../../api/timer.html">
+            
+                    
+                    计时器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.16.1" data-path="../../api/timer.html">
+            
+                <a href="../../api/timer.html#settimeout">
+            
+                    
+                    setTimeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16.2" data-path="../../api/timer.html">
+            
+                <a href="../../api/timer.html#cleartimeout">
+            
+                    
+                    clearTimeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16.3" data-path="../../api/timer.html">
+            
+                <a href="../../api/timer.html#setinterval">
+            
+                    
+                    setInterval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16.4" data-path="../../api/timer.html">
+            
+                <a href="../../api/timer.html#clearinterval">
+            
+                    
+                    clearInterval
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="../../api/caniuse.html">
+            
+                <a href="../../api/caniuse.html">
+            
+                    
+                    canIUse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="../../api/async.html">
+            
+                <a href="../../api/async.html">
+            
+                    
+                    异步流程控制
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.18.1" data-path="../../api/async.html">
+            
+                <a href="../../api/async.html">
+            
+                    
+                    Promise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18.2" data-path="../../api/async.html">
+            
+                <a href="../../api/async.html#async，await">
+            
+                    
+                    async，await
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="../../api/error_control.html">
+            
+                <a href="../../api/error_control.html">
+            
+                    
+                    异常和错误处理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.19.1" data-path="../../api/error_control.html">
+            
+                <a href="../../api/error_control.html#promise.then(">
+            
+                    
+                    promise.then().catch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19.2" data-path="../../api/error_control.html">
+            
+                <a href="../../api/error_control.html#try">
+            
+                    
+                    try catch
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="../../api/animationFrame.html">
+            
+                <a href="../../api/animationFrame.html">
+            
+                    
+                    动画关键帧
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.20.1" data-path="../../api/animationFrame.html">
+            
+                <a href="../../api/animationFrame.html#requestanimationframe">
+            
+                    
+                    requestAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20.2" data-path="../../api/animationFrame.html">
+            
+                <a href="../../api/animationFrame.html#cancelanimationframe">
+            
+                    
+                    cancelAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21" data-path="../../api/createAnimation/main.html">
+            
+                <a href="../../api/createAnimation/main.html">
+            
+                    
+                    动画
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.21.1" data-path="../../api/createAnimation/createAnimation.html">
+            
+                <a href="../../api/createAnimation/createAnimation.html">
+            
+                    
+                    cml.createAnimation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2" data-path="../../api/createAnimation/animation/main.html">
+            
+                <a href="../../api/createAnimation/animation/main.html">
+            
+                    
+                    Animation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.21.2.1" data-path="../../api/createAnimation/animation/step.html">
+            
+                <a href="../../api/createAnimation/animation/step.html">
+            
+                    
+                    .step
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.2" data-path="../../api/createAnimation/animation/rotate.html">
+            
+                <a href="../../api/createAnimation/animation/rotate.html">
+            
+                    
+                    .rotate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.3" data-path="../../api/createAnimation/animation/rotateX.html">
+            
+                <a href="../../api/createAnimation/animation/rotateX.html">
+            
+                    
+                    .rotateX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.4" data-path="../../api/createAnimation/animation/rotateY.html">
+            
+                <a href="../../api/createAnimation/animation/rotateY.html">
+            
+                    
+                    .rotateY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.5" data-path="../../api/createAnimation/animation/rotateZ.html">
+            
+                <a href="../../api/createAnimation/animation/rotateZ.html">
+            
+                    
+                    .rotateZ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.6" data-path="../../api/createAnimation/animation/scale.html">
+            
+                <a href="../../api/createAnimation/animation/scale.html">
+            
+                    
+                    .scale
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.7" data-path="../../api/createAnimation/animation/scaleX.html">
+            
+                <a href="../../api/createAnimation/animation/scaleX.html">
+            
+                    
+                    .scaleX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.8" data-path="../../api/createAnimation/animation/scaleY.html">
+            
+                <a href="../../api/createAnimation/animation/scaleY.html">
+            
+                    
+                    .scaleY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.9" data-path="../../api/createAnimation/animation/translate.html">
+            
+                <a href="../../api/createAnimation/animation/translate.html">
+            
+                    
+                    .translate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.10" data-path="../../api/createAnimation/animation/translateX.html">
+            
+                <a href="../../api/createAnimation/animation/translateX.html">
+            
+                    
+                    .translateX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.11" data-path="../../api/createAnimation/animation/translateY.html">
+            
+                <a href="../../api/createAnimation/animation/translateY.html">
+            
+                    
+                    .translateY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.12" data-path="../../api/createAnimation/animation/opacity.html">
+            
+                <a href="../../api/createAnimation/animation/opacity.html">
+            
+                    
+                    .opacity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.13" data-path="../../api/createAnimation/animation/backgroundColor.html">
+            
+                <a href="../../api/createAnimation/animation/backgroundColor.html">
+            
+                    
+                    .backgroundColor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.14" data-path="../../api/createAnimation/animation/width.html">
+            
+                <a href="../../api/createAnimation/animation/width.html">
+            
+                    
+                    .width
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.15" data-path="../../api/createAnimation/animation/height.html">
+            
+                <a href="../../api/createAnimation/animation/height.html">
+            
+                    
+                    .height
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.16" data-path="../../api/createAnimation/animation/export.html">
+            
+                <a href="../../api/createAnimation/animation/export.html">
+            
+                    
+                    .export
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22" data-path="../../api/store/store.html">
+            
+                <a href="../../api/store/store.html">
+            
+                    
+                    Store
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.22.1" data-path="../../api/store/createStore.html">
+            
+                <a href="../../api/store/createStore.html">
+            
+                    
+                    Store.createStore
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.2" data-path="../../api/store/commit.html">
+            
+                <a href="../../api/store/commit.html">
+            
+                    
+                    Store.commit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.3" data-path="../../api/store/dispatch.html">
+            
+                <a href="../../api/store/dispatch.html">
+            
+                    
+                    Store.dispatch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.4" data-path="../../api/store/mapState.html">
+            
+                <a href="../../api/store/mapState.html">
+            
+                    
+                    Store.mapState
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.5" data-path="../../api/store/mapGetters.html">
+            
+                <a href="../../api/store/mapGetters.html">
+            
+                    
+                    Store.mapGetters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.6" data-path="../../api/store/mapMutations.html">
+            
+                <a href="../../api/store/mapMutations.html">
+            
+                    
+                    Store.mapMutations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.7" data-path="../../api/store/mapActions.html">
+            
+                <a href="../../api/store/mapActions.html">
+            
+                    
+                    Store.mapActions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.8" data-path="../../api/store/registerModule.html">
+            
+                <a href="../../api/store/registerModule.html">
+            
+                    
+                    Store.registerModule
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../component/component.html">
+            
+                <a href="../../component/component.html">
+            
+                    
+                    组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../component/base/base.html">
+            
+                <a href="../../component/base/base.html">
+            
+                    
+                    内置组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../component/base/content/content.html">
+            
+                <a href="../../component/base/content/content.html">
+            
+                    
+                    基础内容
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1.1" data-path="../../component/base/content/view.html">
+            
+                <a href="../../component/base/content/view.html">
+            
+                    
+                    view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.2" data-path="../../component/base/content/text.html">
+            
+                <a href="../../component/base/content/text.html">
+            
+                    
+                    text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.3" data-path="../../component/base/content/page.html">
+            
+                <a href="../../component/base/content/page.html">
+            
+                    
+                    page
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.4" data-path="../../component/base/content/block.html">
+            
+                <a href="../../component/base/content/block.html">
+            
+                    
+                    block
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.5" data-path="../../component/base/content/cell.html">
+            
+                <a href="../../component/base/content/cell.html">
+            
+                    
+                    cell
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../../component/base/layout/layout.html">
+            
+                <a href="../../component/base/layout/layout.html">
+            
+                    
+                    布局容器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.2.1" data-path="../../component/base/layout/scroller.html">
+            
+                <a href="../../component/base/layout/scroller.html">
+            
+                    
+                    scroller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.2" data-path="../../component/base/layout/list.html">
+            
+                <a href="../../component/base/layout/list.html">
+            
+                    
+                    list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.3" data-path="../../component/base/layout/container.html">
+            
+                <a href="../../component/base/layout/container.html">
+            
+                    
+                    container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.4" data-path="../../component/base/layout/row.html">
+            
+                <a href="../../component/base/layout/row.html">
+            
+                    
+                    row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.5" data-path="../../component/base/layout/col.html">
+            
+                <a href="../../component/base/layout/col.html">
+            
+                    
+                    col
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.6" data-path="../../component/base/layout/carousel.html">
+            
+                <a href="../../component/base/layout/carousel.html">
+            
+                    
+                    carousel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.7" data-path="../../component/base/layout/carousel-item.html">
+            
+                <a href="../../component/base/layout/carousel-item.html">
+            
+                    
+                    carousel-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="../../component/base/form/form.html">
+            
+                <a href="../../component/base/form/form.html">
+            
+                    
+                    表单组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.3.1" data-path="../../component/base/form/button.html">
+            
+                <a href="../../component/base/form/button.html">
+            
+                    
+                    button
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.2" data-path="../../component/base/form/input.html">
+            
+                <a href="../../component/base/form/input.html">
+            
+                    
+                    input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.3" data-path="../../component/base/form/textarea.html">
+            
+                <a href="../../component/base/form/textarea.html">
+            
+                    
+                    textarea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.4" data-path="../../component/base/form/switch.html">
+            
+                <a href="../../component/base/form/switch.html">
+            
+                    
+                    switch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.5" data-path="../../component/base/form/radio.html">
+            
+                <a href="../../component/base/form/radio.html">
+            
+                    
+                    radio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.6" data-path="../../component/base/form/checkbox.html">
+            
+                <a href="../../component/base/form/checkbox.html">
+            
+                    
+                    checkbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4" data-path="../../component/base/media/media.html">
+            
+                <a href="../../component/base/media/media.html">
+            
+                    
+                    媒体组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.4.1" data-path="../../component/base/media/image.html">
+            
+                <a href="../../component/base/media/image.html">
+            
+                    
+                    image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.2" data-path="../../component/base/media/video.html">
+            
+                <a href="../../component/base/media/video.html">
+            
+                    
+                    video
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../component/expand/expand.html">
+            
+                <a href="../../component/expand/expand.html">
+            
+                    
+                    扩展组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../../component/expand/compound/c-toast.html">
+            
+                <a href="../../component/expand/compound/c-toast.html">
+            
+                    
+                    c-toast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../../component/expand/compound/c-loading.html">
+            
+                <a href="../../component/expand/compound/c-loading.html">
+            
+                    
+                    c-loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../../component/expand/compound/c-dialog.html">
+            
+                <a href="../../component/expand/compound/c-dialog.html">
+            
+                    
+                    c-dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="../../component/expand/compound/c-popup.html">
+            
+                <a href="../../component/expand/compound/c-popup.html">
+            
+                    
+                    c-popup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.5" data-path="../../component/expand/compound/c-tip.html">
+            
+                <a href="../../component/expand/compound/c-tip.html">
+            
+                    
+                    c-tip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.6" data-path="../../component/expand/compound/c-actionsheet.html">
+            
+                <a href="../../component/expand/compound/c-actionsheet.html">
+            
+                    
+                    c-actionsheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.7" data-path="../../component/expand/compound/c-tab.html">
+            
+                <a href="../../component/expand/compound/c-tab.html">
+            
+                    
+                    c-tab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.8" data-path="../../component/expand/compound/c-picker.html">
+            
+                <a href="../../component/expand/compound/c-picker.html">
+            
+                    
+                    c-picker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.9" data-path="../../component/expand/polymorphism/c-picker-panel.html">
+            
+                <a href="../../component/expand/polymorphism/c-picker-panel.html">
+            
+                    
+                    c-picker-panel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.10" data-path="../../component/expand/polymorphism/c-picker-item.html">
+            
+                <a href="../../component/expand/polymorphism/c-picker-item.html">
+            
+                    
+                    c-picker-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.11" data-path="../../component/expand/compound/c-checkbox-group.html">
+            
+                <a href="../../component/expand/compound/c-checkbox-group.html">
+            
+                    
+                    c-checkbox-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.12" data-path="../../component/expand/compound/c-radio-group.html">
+            
+                <a href="../../component/expand/compound/c-radio-group.html">
+            
+                    
+                    c-radio-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.13" data-path="../../component/expand/polymorphism/c-refresh.html">
+            
+                <a href="../../component/expand/polymorphism/c-refresh.html">
+            
+                    
+                    c-refresh
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../extend/advanced_use.html">
+            
+                <a href="../../extend/advanced_use.html">
+            
+                    
+                    高级使用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../polymorphism/intro.html">
+            
+                <a href="../polymorphism/intro.html">
+            
+                    
+                    多态协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="../polymorphism/api.html">
+            
+                <a href="../polymorphism/api.html">
+            
+                    
+                    接口多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../polymorphism/component.html">
+            
+                <a href="../polymorphism/component.html">
+            
+                    
+                    组件多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../engineering.html">
+            
+                <a href="../engineering.html">
+            
+                    
+                    工程化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../mock.html">
+            
+                <a href="../mock.html">
+            
+                    
+                    数据mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../source_location.html">
+            
+                <a href="../source_location.html">
+            
+                    
+                    资源定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../config.html">
+            
+                <a href="../config.html#文件指纹">
+            
+                    
+                    文件指纹
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../config.html">
+            
+                <a href="../config.html#代码压缩">
+            
+                    
+                    代码压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.5" data-path="../config.html">
+            
+                <a href="../config.html#热更新与自动刷新">
+            
+                    
+                    热更新与自动刷新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.6" data-path="../devproxy.html">
+            
+                <a href="../devproxy.html">
+            
+                    
+                    代理调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.7" data-path="../chameleon_url.html">
+            
+                <a href="../chameleon_url.html">
+            
+                    
+                    Chameleon URL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8" data-path="../polymorphism/standards.html">
+            
+                <a href="../polymorphism/standards.html">
+            
+                    
+                    规范与校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.8.1" data-path="../polymorphism/check.html">
+            
+                <a href="../polymorphism/check.html">
+            
+                    
+                    接口语法校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.2" data-path="../global_check.html">
+            
+                <a href="../global_check.html">
+            
+                    
+                    全局变量校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3" data-path="../linter.html">
+            
+                <a href="../linter.html">
+            
+                    
+                    代码规范校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.8.3.1" data-path="core.html">
+            
+                <a href="core.html">
+            
+                    
+                    核心文件校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.2" data-path="cml-file.html">
+            
+                <a href="cml-file.html">
+            
+                    
+                    CML文件规范校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.8.3.2.1" data-path="standards/cml-interface.html">
+            
+                <a href="standards/cml-interface.html">
+            
+                    
+                    interface规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.2.8.3.3" data-path="cml-template.html">
+            
+                <a href="cml-template.html">
+            
+                    
+                    模板规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.4" data-path="cml-script.html">
+            
+                <a href="cml-script.html">
+            
+                    
+                    脚本规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.5" data-path="cml-cmss.html">
+            
+                <a href="cml-cmss.html">
+            
+                    
+                    样式规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.6" data-path="cml-json.html">
+            
+                <a href="cml-json.html">
+            
+                    
+                    配置规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../terminal/io.html">
+            
+                <a href="../../terminal/io.html">
+            
+                    
+                    导入与导出
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1" data-path="../progressive.html">
+            
+                <a href="../progressive.html">
+            
+                    
+                    渐进式接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1.1" data-path="../webpack_plugin.html">
+            
+                <a href="../webpack_plugin.html">
+            
+                    
+                    webpack集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.2" data-path="../compont_export.html">
+            
+                <a href="../compont_export.html">
+            
+                    
+                    组件导出应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2" data-path="../../terminal/web/framework.html">
+            
+                <a href="../../terminal/web/framework.html">
+            
+                    
+                    Web 框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.2.1" data-path="../../terminal/web/component.html">
+            
+                <a href="../../terminal/web/component.html">
+            
+                    
+                    Web 组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.3" data-path="../../terminal/wx/framework.html">
+            
+                <a href="../../terminal/wx/framework.html">
+            
+                    
+                    微信小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.3.1" data-path="../../terminal/wx/component.html">
+            
+                <a href="../../terminal/wx/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.4" data-path="../../terminal/alipay/framework.html">
+            
+                <a href="../../terminal/alipay/framework.html">
+            
+                    
+                    支付宝小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.4.1" data-path="../../terminal/alipay/component.html">
+            
+                <a href="../../terminal/alipay/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.5" data-path="../../terminal/baidu/framework.html">
+            
+                <a href="../../terminal/baidu/framework.html">
+            
+                    
+                    百度小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.5.1" data-path="../../terminal/baidu/component.html">
+            
+                <a href="../../terminal/baidu/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.6" data-path="../../terminal/reactnative/framework.html">
+            
+                <a href="../../terminal/reactnative/framework.html">
+            
+                    
+                    ReactNative框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../../chameleon_client/introduction.html">
+            
+                <a href="../../chameleon_client/introduction.html">
+            
+                    
+                    Native渲染能力接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../../chameleon_client/integration.html">
+            
+                <a href="../../chameleon_client/integration.html">
+            
+                    
+                    Chameleon SDK接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1.1" data-path="../../chameleon_client/ios_integration.html">
+            
+                <a href="../../chameleon_client/ios_integration.html">
+            
+                    
+                    iOS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.2" data-path="../../chameleon_client/android_integration.html">
+            
+                <a href="../../chameleon_client/android_integration.html">
+            
+                    
+                    Android
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.3" data-path="../../chameleon_client/sdk_api.html">
+            
+                <a href="../../chameleon_client/sdk_api.html">
+            
+                    
+                    SDK独有方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../../chameleon_client/js_cache.html">
+            
+                <a href="../../chameleon_client/js_cache.html">
+            
+                    
+                    端JS包资源缓存、更新和预加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../../extend/extend.html">
+            
+                <a href="../../extend/extend.html">
+            
+                    
+                    定制扩展端
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../example/main.html">
+            
+                <a href="../../example/main.html">
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../example/chameleon-api.html">
+            
+                <a href="../../example/chameleon-api.html">
+            
+                    
+                    API扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../example/poly.html">
+            
+                <a href="../../example/poly.html">
+            
+                    
+                    多态组件扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../example/gestures.html">
+            
+                <a href="../../example/gestures.html">
+            
+                    
+                    手势拖拽效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../example/webpack_output.html">
+            
+                <a href="../../example/webpack_output.html">
+            
+                    
+                    普通项目使用跨端组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../../example/android_example.html">
+            
+                <a href="../../example/android_example.html">
+            
+                    
+                    Android Chameleon SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../example/ios_example.html">
+            
+                <a href="../../example/ios_example.html">
+            
+                    
+                    iOS Chameleon SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../../example/webpack_plugin.html">
+            
+                <a href="../../example/webpack_plugin.html">
+            
+                    
+                    webpack集成chameleon
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../../example/project.html">
+            
+                <a href="../../example/project.html">
+            
+                    
+                    工程化实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../../example/complex.html">
+            
+                <a href="../../example/complex.html">
+            
+                    
+                    实现一个复杂应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../../example/web_wx.html">
+            
+                <a href="../../example/web_wx.html">
+            
+                    
+                    只跨web和小程序的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="../../example/chameleon-product-diff.html">
+            
+                <a href="../../example/chameleon-product-diff.html">
+            
+                    
+                    为什么用多态协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12" data-path="../../example/components-link.html">
+            
+                <a href="../../example/components-link.html">
+            
+                    
+                    组件实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.12.1" data-path="../../example/view.html">
+            
+                <a href="../../example/view.html">
+            
+                    
+                    view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.2" data-path="../../example/text.html">
+            
+                <a href="../../example/text.html">
+            
+                    
+                    text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.3" data-path="../../example/page.html">
+            
+                <a href="../../example/page.html">
+            
+                    
+                    page
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.4" data-path="../../example/cell.html">
+            
+                <a href="../../example/cell.html">
+            
+                    
+                    cell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.5" data-path="../../example/scroller.html">
+            
+                <a href="../../example/scroller.html">
+            
+                    
+                    scroller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.6" data-path="../../example/list.html">
+            
+                <a href="../../example/list.html">
+            
+                    
+                    list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.7" data-path="../../example/container.html">
+            
+                <a href="../../example/container.html">
+            
+                    
+                    container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.8" data-path="../../example/row.html">
+            
+                <a href="../../example/row.html">
+            
+                    
+                    row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.9" data-path="../../example/col.html">
+            
+                <a href="../../example/col.html">
+            
+                    
+                    col
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.10" data-path="../../example/button.html">
+            
+                <a href="../../example/button.html">
+            
+                    
+                    button
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.11" data-path="../../example/input.html">
+            
+                <a href="../../example/input.html">
+            
+                    
+                    input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.12" data-path="../../example/textarea.html">
+            
+                <a href="../../example/textarea.html">
+            
+                    
+                    textarea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.13" data-path="../../example/switch.html">
+            
+                <a href="../../example/switch.html">
+            
+                    
+                    switch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.14" data-path="../../example/radio.html">
+            
+                <a href="../../example/radio.html">
+            
+                    
+                    radio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.15" data-path="../../example/checkbox.html">
+            
+                <a href="../../example/checkbox.html">
+            
+                    
+                    checkbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.16" data-path="../../example/image.html">
+            
+                <a href="../../example/image.html">
+            
+                    
+                    image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.17" data-path="../../example/video.html">
+            
+                <a href="../../example/video.html">
+            
+                    
+                    video
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.18" data-path="../../example/animation.html">
+            
+                <a href="../../example/animation.html">
+            
+                    
+                    animation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.19" data-path="../../example/c-refresh.html">
+            
+                <a href="../../example/c-refresh.html">
+            
+                    
+                    c-refresh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.20" data-path="../../example/c-toast.html">
+            
+                <a href="../../example/c-toast.html">
+            
+                    
+                    c-toast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.21" data-path="../../example/c-dialog.html">
+            
+                <a href="../../example/c-dialog.html">
+            
+                    
+                    c-dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.22" data-path="../../example/c-popup.html">
+            
+                <a href="../../example/c-popup.html">
+            
+                    
+                    c-popup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.23" data-path="../../example/c-tip.html">
+            
+                <a href="../../example/c-tip.html">
+            
+                    
+                    c-tip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.24" data-path="../../example/c-loading.html">
+            
+                <a href="../../example/c-loading.html">
+            
+                    
+                    c-loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.25" data-path="../../example/c-actionsheet.html">
+            
+                <a href="../../example/c-actionsheet.html">
+            
+                    
+                    c-actionsheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.26" data-path="../../example/c-picker.html">
+            
+                <a href="../../example/c-picker.html">
+            
+                    
+                    c-picker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.27" data-path="../../example/c-picker-panel.html">
+            
+                <a href="../../example/c-picker-panel.html">
+            
+                    
+                    c-picker-panel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.28" data-path="../../example/c-picker-item.html">
+            
+                <a href="../../example/c-picker-item.html">
+            
+                    
+                    c-picker-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.29" data-path="../../example/c-checkbox-group.html">
+            
+                <a href="../../example/c-checkbox-group.html">
+            
+                    
+                    c-checkbox-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.30" data-path="../../example/c-radio-group.html">
+            
+                <a href="../../example/c-radio-group.html">
+            
+                    
+                    c-radio-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.31" data-path="../../example/c-form.md">
+            
+                <span>
+            
+                    
+                    c-form
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12.32" data-path="../../example/c-tab.html">
+            
+                <a href="../../example/c-tab.html">
+            
+                    
+                    c-tab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../faq.html">
+            
+                <a href="../faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../update_record.html">
+            
+                <a href="../../update_record.html">
+            
+                    
+                    更新记录
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >模板规范校验</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;"><b></b>&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;"><b></b>&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;-template-&#x6807;&#x7B7E;&#x6821;&#x9A8C;"><b></b>&#x6A21;&#x677F; template &#x6807;&#x7B7E;&#x6821;&#x9A8C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x5185;-tags-&#x6821;&#x9A8C;"><b></b>&#x6A21;&#x677F;&#x5185; tags &#x6821;&#x9A8C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;"><b></b>&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;"><b></b>&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;"><b></b>&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;"><b></b>&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;"><b></b>&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;"><b></b>&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;"><b></b>&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><b></b>&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><b></b>&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;"><b></b>&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;</a></li></ul></ul></ul></div><a href="#&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;"><a name="&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x89C4;&#x8303;&#x6821;&#x9A8C;</h1>
+<p>&#x8BE5;&#x6587;&#x6863;&#x6C47;&#x96C6;&#x6A21;&#x677F;&#x6821;&#x9A8C;&#x652F;&#x6301;&#x6240;&#x6709;&#x68C0;&#x67E5;&#x70B9;&#xFF0C;&#x9644;&#x5F55;&#x6709;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;</p>
+<h2 id="&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;"><a name="&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6821;&#x9A8C;</h2>
+<p>&#x6A21;&#x677F;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#xFF0C;&#x6307;&#x5B9A;&#x65B9;&#x5F0F;&#x4E3A;&#x5728; template &#x6807;&#x7B7E;&#x4E0A;&#x6307;&#x5B9A; lang &#x5C5E;&#x6027;&#xFF0C; &#x5176;&#x5408;&#x6CD5;&#x503C;&#x4E3A; &quot;cml&quot; &#x548C; &quot;vue&quot;&#x3002;</p>
+<p>&#x6821;&#x9A8C;&#x70B9;:</p>
+<ul>
+<li>template &#x53EF;&#x4EE5;&#x5FFD;&#x7565; lang &#x5C5E;&#x6027;&#xFF0C;&#x6B64;&#x65F6;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; cml</li>
+<li>template lang &#x5C5E;&#x6027;&#x5982;&#x679C;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x4E3A;  &quot;cml&quot; &#x6216;&#x8005; &quot;vue&quot;</li>
+</ul>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;the tag template lang attribute: &quot;&lt;%= lang %&gt;&quot; is not valid&apos;.</p>
+</blockquote>
+<h2 id="&#x6A21;&#x677F;-template-&#x6807;&#x7B7E;&#x6821;&#x9A8C;"><a name="&#x6A21;&#x677F;-template-&#x6807;&#x7B7E;&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;-template-&#x6807;&#x7B7E;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;-template-&#x6807;&#x7B7E;&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x6A21;&#x677F;-template-&#x6807;&#x7B7E;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F; template &#x6807;&#x7B7E;&#x6821;&#x9A8C;</h2>
+<p>&#x6821;&#x9A8C;&#x70B9;&#xFF1A;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x53EA;&#x80FD;&#x4E14;&#x5FC5;&#x987B;&#x6709;&#x4E00;&#x5BF9; template &#x6839;&#x6807;&#x7B7E;&#x3002;</p>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&quot;Each template can only have one group of template tags.&quot;</p>
+</blockquote>
+<h2 id="&#x6A21;&#x677F;&#x5185;-tags-&#x6821;&#x9A8C;"><a name="&#x6A21;&#x677F;&#x5185;-tags-&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x5185;-tags-&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x5185;-tags-&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x5185;-tags-&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x5185; tags &#x6821;&#x9A8C;</h2>
+<p>&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x548C;&#x4E00;&#x4E2A;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#xFF0C;&#x5176;&#x4E2D;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x7531; template &#x7684; lang &#x5C5E;&#x6027;&#x6307;&#x5B9A;&#xFF0C;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x7531;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x89E3;&#x6790;&#x51FA;&#x6765;&#x3002; 
+&#x5BF9;&#x4E8E;&#x591A;&#x6001;&#x7EC4;&#x4EF6;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4ECE;&#x6587;&#x4EF6;&#x540D;&#x89E3;&#x6790;&#x51FA;&#x6765;&#xFF0C; &#x6BD4;&#x5982; index.web.cml, index.weex.cml, index.wx.cml &#x5BF9;&#x5E94;&#x7684;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x5206;&#x522B;&#x4E3A; web, weex, wx&#x3002;
+&#x5BF9;&#x4E8E;&#x5355;&#x6587;&#x4EF6;&#x7EC4;&#x4EF6;&#xFF0C;&#x7531;&#x4E8E;&#x5176;&#x6A21;&#x677F;&#x8981;&#x8DE8;&#x4E09;&#x7AEF;&#xFF0C;&#x6545;&#x6A21;&#x677F;&#x4E2D;&#x53EA;&#x80FD;&#x4F7F;&#x7528; chameleon &#x539F;&#x751F;&#x652F;&#x6301;&#x7684;&#x5185;&#x5EFA;&#x6807;&#x7B7E;&#x3002;</p>
+<p>&#x6821;&#x9A8C;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x5355;&#x6587;&#x4EF6;&#x7EC4;&#x4EF6;&#x53EA;&#x80FD;&#x4F7F;&#x7528; chameleon &#x5185;&#x5EFA;&#x6807;&#x7B7E;&#xFF0C;&#x4F7F;&#x7528;&#x975E;&#x5185;&#x5EFA;&#x6807;&#x7B7E;&#x6821;&#x9A8C;&#x4E0D;&#x901A;&#x8FC7;&#x3002;<ul>
+<li>chameleon &#x5185;&#x5EFA;&#x6807;&#x7B7E;&#x6709;: [&apos;template&apos;,&apos;view&apos;,&apos;text&apos;,&apos;block&apos;,&apos;scroller&apos;,&apos;list&apos;,&apos;cell&apos;,&apos;image&apos;,&apos;switch&apos;,&apos;video&apos;,&apos;input&apos;,&apos;button&apos;,&apos;radio&apos;,&apos;checkbox&apos;, &apos;page&apos;, &apos;router-view&apos;, &apos;slot&apos;]</li>
+</ul>
+</li>
+<li><strong><code>src/app/app.cml</code> &#x9879;&#x76EE;&#x542F;&#x52A8;&#x6587;&#x4EF6;&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>app</code>&#x7EC4;&#x4EF6;&#xFF0C;&#x4E14;&#x53EA;&#x6709;<code>store</code>&#x548C;<code>router-config</code>&#x5C5E;&#x6027;</strong></li>
+<li>&#x591A;&#x6001;&#x7EC4;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; chameleon &#x5185;&#x5EFA;&#x6807;&#x7B7E;&#xFF0C;&#x52A0;&#x4E0A;&#x5404;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x6240;&#x652F;&#x6301;&#x7684;&#x539F;&#x751F;&#x6807;&#x7B7E;&#xFF0C;&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x6807;&#x7B7E;&#x9A8C;&#x8BC1;&#x4E0D;&#x540C;&#x8FC7;&#x3002;&#x5728;&#x4F7F;&#x7528;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x652F;&#x6301;&#x7684;&#x539F;&#x751F;&#x6807;&#x7B7E;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528; &apos;origin-&apos; &#x4E3A;&#x524D;&#x7F00;&#x3002;&#x6BD4;&#x5982;: &#x5728; wx &#x5E73;&#x53F0;&#x4E0B;&#x4F7F;&#x7528; swiper &#x6807;&#x7B7E;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x6A21;&#x677F;&#x91CC;&#x7684;&#x5199;&#x6CD5;&#x662F; &apos;origin-swiper&apos;. &#x5404;&#x4E2A;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x652F;&#x6301;&#x7684;&#x539F;&#x751F;&#x6807;&#x7B7E;&#x5217;&#x4E3E;&#x5982;&#x4E0B;:<ul>
+<li>web &#x5E73;&#x53F0;&#x539F;&#x751F;&#x652F;&#x6301;&#x6807;&#x7B7E;: [&quot;a&quot;,&quot;abbr&quot;,&quot;acronym&quot;,&quot;address&quot;,&quot;applet&quot;,&quot;area&quot;,&quot;article&quot;,&quot;aside&quot;,&quot;audio&quot;,&quot;b&quot;,&quot;base&quot;,&quot;basefont&quot;,&quot;bdi&quot;,&quot;bdo&quot;,&quot;big&quot;,&quot;blockquote&quot;,&quot;body&quot;,&quot;br&quot;,&quot;button&quot;,&quot;canvas&quot;,&quot;caption&quot;,&quot;center&quot;,&quot;cite&quot;,&quot;code&quot;,&quot;col&quot;,&quot;colgroup&quot;,&quot;command&quot;,&quot;datalist&quot;,&quot;dd&quot;,&quot;del&quot;,&quot;details&quot;,&quot;dir&quot;,&quot;div&quot;,&quot;dfn&quot;,&quot;dialog&quot;,&quot;dl&quot;,&quot;dt&quot;,&quot;em&quot;,&quot;embed&quot;,&quot;fieldset&quot;,&quot;figcaption&quot;,&quot;figure&quot;,&quot;font&quot;,&quot;footer&quot;,&quot;form&quot;,&quot;frame&quot;,&quot;frameset&quot;,&quot;h1&quot;,&quot;h2&quot;,&quot;h3&quot;,&quot;h4&quot;,&quot;h5&quot;,&quot;h6&quot;,&quot;head&quot;,&quot;header&quot;,&quot;hr&quot;,&quot;html&quot;,&quot;i&quot;,&quot;iframe&quot;,&quot;img&quot;,&quot;input&quot;,&quot;ins&quot;,&quot;kbd&quot;,&quot;keygen&quot;,&quot;label&quot;,&quot;legend&quot;,&quot;li&quot;,&quot;link&quot;,&quot;map&quot;,&quot;mark&quot;,&quot;menu&quot;,&quot;menuitem&quot;,&quot;meta&quot;,&quot;meter&quot;,&quot;nav&quot;,&quot;noframes&quot;,&quot;noscript&quot;,&quot;object&quot;,&quot;ol&quot;,&quot;optgroup&quot;,&quot;option&quot;,&quot;output&quot;,&quot;p&quot;,&quot;param&quot;,&quot;pre&quot;,&quot;progress&quot;,&quot;q&quot;,&quot;rp&quot;,&quot;rt&quot;,&quot;ruby&quot;,&quot;s&quot;,&quot;samp&quot;,&quot;script&quot;,&quot;section&quot;,&quot;select&quot;,&quot;small&quot;,&quot;source&quot;,&quot;span&quot;,&quot;strike&quot;,&quot;strong&quot;,&quot;style&quot;,&quot;slot&quot;,&quot;sub&quot;,&quot;summary&quot;,&quot;sup&quot;,&quot;table&quot;,&quot;tbody&quot;,&quot;td&quot;,&quot;textarea&quot;,&quot;tfoot&quot;,&quot;th&quot;,&quot;thead&quot;,&quot;time&quot;,&quot;title&quot;,&quot;tr&quot;,&quot;track&quot;,&quot;tt&quot;,&quot;u&quot;,&quot;ul&quot;,&quot;var&quot;,&quot;video&quot;,&quot;wbr&quot;]</li>
+<li>weex &#x5E73;&#x53F0;&#x539F;&#x751F;&#x652F;&#x6301;&#x6807;&#x7B7E;: [&apos;a&apos;,&apos;div&apos;,&apos;image&apos;,&apos;indicator&apos;,&apos;input&apos;,&apos;list&apos;,&apos;cell&apos;,&apos;recycle-list&apos;,&apos;loading&apos;,&apos;refresh&apos;,&apos;scroller&apos;,&apos;slider&apos;,&apos;textarea&apos;,&apos;text&apos;,&apos;richtext&apos;,&apos;video&apos;,&apos;waterfall&apos;,&apos;web&apos;]</li>
+<li>wx &#x5E73;&#x53F0;&#x539F;&#x751F;&#x652F;&#x6301;&#x6807;&#x7B7E;: [&apos;template&apos;,&apos;view&apos;,&apos;block&apos;,&apos;scroll-view&apos;,&apos;swiper&apos;,&apos;movable-view&apos;,&apos;movable-area&apos;,&apos;cover-view&apos;,&apos;cover-image&apos;,&apos;icon&apos;,&apos;text&apos;,&apos;rich-text&apos;,&apos;progress&apos;,&apos;lable&apos;,&apos;input&apos;,&apos;form&apos;,&apos;checkbox&apos;,&apos;picker&apos;,&apos;picker-view&apos;,&apos;radio&apos;,&apos;switch&apos;,&apos;slider&apos;,&apos;textarea&apos;,&apos;navigator&apos;,&apos;functional-page-navigator&apos;,&apos;camera&apos;,&apos;live-player&apos;,&apos;live-pusher&apos;,&apos;map&apos;,&apos;open-data&apos;,&apos;web-view&apos;,&apos;ad&apos;,&apos;official-account&apos;,&apos;slot&apos;]</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;tag: &quot;&lt;%= tag %&gt;&quot; is either not allowed in this template or not referenced as a component&apos;</p>
+</blockquote>
+<h2 id="&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;"><a name="&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x6821;&#x9A8C;</h2>
+<p>&#x9664;&#x5F15;&#x5165;&#x7684;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;&#x548C;&apos;origin-&apos;&#x4E3A;&#x524D;&#x7F00;&#x7684;&#x539F;&#x751F;&#x6807;&#x7B7E;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x53EA;&#x80FD;&#x591F;&#x4F7F;&#x7528; template lang &#x6307;&#x5B9A;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x5BF9;&#x5E94;&#x7684;&#x6307;&#x4EE4;&#x3002;Chameleon &#x73B0;&#x53EA;&#x63D0;&#x4F9B;&#x4E24;&#x79CD;&#x6A21;&#x677F;&#x8BED;&#x8A00;  &apos;vue&apos; &#x548C; &apos;cml&apos;&#x3002;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x6307;&#x4EE4;&#x5217;&#x4E3E;&#x5982;&#x4E0B;:</p>
+<ul>
+<li>lang=&apos;cml&apos; &#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;&#xFF1A;[&apos;c-if&apos;,&apos;c-else&apos;,&apos;c-else-if&apos;,&apos;c-for&apos;,&apos;c-for-index&apos;,&apos;c-for-item&apos;,&apos;c-model&apos;,&apos;c-text&apos;,&apos;c-show&apos;,&apos;c-bind&apos;,&apos;c-catch&apos;,&apos;c-key&apos;]</li>
+<li>lang=&apos;vue&apos; &#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;&#xFF1A;[&apos;v-if&apos;,&apos;v-else&apos;,&apos;v-else-if&apos;,&apos;v-for&apos;,&apos;v-on&apos;,&apos;v-bind&apos;,&apos;v-html&apos;,&apos;v-show&apos;,&apos;v-model&apos;,&apos;v-pre&apos;,&apos;v-once&apos;,&apos;slot-scope&apos;,&apos;is&apos;,&apos;@&apos;,&apos;:&apos;]</li>
+</ul>
+<p>&#x6821;&#x9A8C;&#x70B9;&#xFF1A;</p>
+<ul>
+<li><p>&#x5355;&#x6587;&#x4EF6;&#x6A21;&#x677F;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x5BF9;&#x5E94;&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x4EE4;&#x4E4B;&#x5916;&#x7684;&#x6307;&#x4EE4;&#x6821;&#x9A8C;&#x4E0D;&#x901A;&#x8FC7;</p>
+</li>
+<li><p>&#x591A;&#x6001;&#x7EC4;&#x4EF6;&#x5404;&#x5E73;&#x53F0;&#x6587;&#x4EF6;&#x4E2D;&#x4EE5; &apos;origin-&apos; &#x4E3A;&#x524D;&#x7F00;&#x7684;&#x5E73;&#x53F0;&#x7C7B;&#x578B;&#x539F;&#x751F;&#x6807;&#x7B7E;&#x4E0A;&#x5FC5;&#x987B;&#x4F7F;<strong>&#x5E73;&#x53F0;&#x539F;&#x751F;&#x6307;&#x4EE4;</strong>&#xFF0C;&#x4E0D;&#x80FD;&#x4F7F;&#x7528; Chameleon &#x5185;&#x7F6E;&#x6307;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528;&#x6B64;&#x5916;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x6821;&#x9A8C;&#x4E0D;&#x901A;&#x8FC7;&#x3002;&#x5404;&#x5E73;&#x53F0;&#x652F;&#x6301;&#x539F;&#x751F;&#x6307;&#x4EE4;&#x5217;&#x4E3E;&#x5982;&#x4E0B;:</p>
+<ul>
+<li>web &#x5E73;&#x53F0;&#x652F;&#x6301;&#x6307;&#x4EE4;: [&apos;v-if&apos;, &apos;v-else&apos;, &apos;v-else-if&apos;, &apos;v-for&apos;, &apos;v-on&apos;, &apos;v-bind&apos;, &apos;v-html&apos;, &apos;v-show&apos;, &apos;v-model&apos;, &apos;v-pre&apos;, &apos;v-once&apos;, &apos;slot-scope&apos;, &apos;is&apos;,&apos;@&apos;,&apos;:&apos;]</li>
+<li>weex &#x5E73;&#x53F0;&#x652F;&#x6301;&#x6307;&#x4EE4;&#x540C; vue.js &#x6846;&#x67B6;: [&apos;v-if&apos;,&apos;v-else&apos;,&apos;v-else-if&apos;,&apos;v-for&apos;,&apos;v-on&apos;,&apos;v-bind&apos;,&apos;v-html&apos;,&apos;v-show&apos;,&apos;v-model&apos;,&apos;v-pre&apos;,&apos;v-once&apos;,&apos;slot-scope&apos;,&apos;is&apos;,&apos;@&apos;,&apos;:&apos;]</li>
+<li>wx &#x5E73;&#x53F0;&#x652F;&#x6301;&#x6307;&#x4EE4;&#xFF1A;[&apos;wx:if&apos;,&apos;wx:elif&apos;,&apos;wx:else&apos;,&apos;wx:for&apos;,&apos;wx:for-item&apos;,&apos;wx:for-index&apos;,&apos;wx:key&apos;,&apos;bindtap&apos;,&apos;catchtap&apos;]</li>
+</ul>
+</li>
+<li>&#x591A;&#x6001;&#x7EC4;&#x4EF6;&#x901A;&#x8FC7; usingComponents &#x914D;&#x7F6E;&#x5F15;&#x5165;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#xFF0C;&#x7EC4;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;&#x4E0A;&#x53EA;&#x80FD;&#x591F;&#x4F7F;&#x7528;<strong>&#x5E73;&#x53F0;&#x539F;&#x751F;&#x6307;&#x4EE4;</strong>&#xFF0C;&#x4E0D;&#x80FD;&#x4F7F;&#x7528; Chameleon &#x5185;&#x7F6E;&#x6307;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528;&#x6B64;&#x5916;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x6821;&#x9A8C;&#x4E0D;&#x901A;&#x8FC7;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;directive &quot;&lt;%= attribute %&gt;&quot; is not allowed to be used in this template, as the template language is set to &quot;&lt;%= lang %&gt;&quot;&apos;</p>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;tag &quot;&lt;%= name %&gt;&quot; is prefixed with &quot;origin-&quot; directive, so it\&apos;s not allowed to use a chameleon built-in directive:&quot;&lt;%= directive %&gt;&quot;&apos;</p>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;tag &quot;&lt;%= name %&gt;&quot; is a third party impored component, so it\&apos;s not allowed to use a chameleon built-in directive:&quot;&lt;%= directive %&gt;&quot;&apos;</p>
+</blockquote>
+<h2 id="&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;"><a name="&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x6821;&#x9A8C;</h2>
+<p>&#x5728;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x65F6;&#xFF0C;&#x4F1A;&#x5BF9;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x7ED1;&#x5B9A;&#x7684;&#x4E8B;&#x4EF6;&#x540D;&#x79F0;&#x8FDB;&#x884C;&#x6821;&#x9A8C;&#x3002;&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x6821;&#x9A8C;&#x5206;&#x4E3A;&#x5185;&#x5EFA;&#x7EC4;&#x4EF6;&#x4E0E;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x4E24;&#x90E8;&#x5206;&#x3002;</p>
+<p>&#x6821;&#x9A8C;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x5185;&#x5EFA;&#x7EC4;&#x4EF6;:&#x4F7F;&#x7528;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x7ED1;&#x5B9A;&#x4E8B;&#x4EF6;&#x5FC5;&#x987B;&#x5728;&#x7EC4;&#x4EF6;&#x5185;&#x6709;&#x5B9A;&#x4E49;&#x5426;&#x5219;&#x6821;&#x9A8C;&#x4E0D;&#x901A;&#x8FC7;<ul>
+<li>chameleon &#x5185;&#x5EFA;&#x7EC4;&#x4EF6;&#x6709;&#xFF1A;[&quot;template&quot;, &quot;view&quot;, &quot;text&quot;, &quot;block&quot;, &quot;scroller&quot;, &quot;list&quot;, &quot;cell&quot;, &quot;image&quot;, &quot;switch&quot;, &quot;video&quot;, &quot;input&quot;, &quot;textarea&quot;, &quot;richtext&quot;, &quot;button&quot;, &quot;radio&quot;, &quot;checkbox&quot;, &quot;page&quot;, &quot;router-view&quot;, &quot;slot&quot;, &quot;aside&quot;, &quot;col&quot;, &quot;container&quot;, &quot;foot&quot;, &quot;head&quot;, &quot;main&quot;, &quot;row&quot;]<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;component &quot;&lt;%= name %&gt;&quot; doesn\&apos;t have a defined property named &quot;&lt;%= prop %&gt;&quot;&apos;</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;&apos;component &quot;&lt;%= name %&gt;&quot; doesn\&apos;t have a defined event named &quot;&lt;%= prop %&gt;&quot;&apos;</p>
+</blockquote>
+<ul>
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;:&#x6A21;&#x677F;&#x6821;&#x9A8C;&#x65F6;&#x548C;&#x6839;&#x636E; usingComponents &#x914D;&#x7F6E;&#x89E3;&#x6790;&#x5BF9;&#x5E94;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x65F6;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x4E8B;&#x4EF6;&#x540D;&#x5FC5;&#x987B;&#x5728;&#x7EC4;&#x4EF6;&#x5185;&#x6709;&#x5B9A;&#x4E49;&#x5426;&#x5219;&#x6821;&#x9A8C;&#x4E0D;&#x901A;&#x8FC7;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;
+&quot;The property &quot;propName&quot; is not a property of component &quot;compName&quot; which path is: path/to/component&quot;</p>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;
+&quot;The event &quot;eventName&quot; is not defined in component &quot;compName&quot; which path is: path/to/component&quot;</p>
+</blockquote>
+<h2 id="&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;"><a name="&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;" class="anchor-navigation-ex-anchor" href="#&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;" class="plugin-anchor" href="#&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5D4C;&#x5957;&#x89C4;&#x5219;&#x6821;&#x9A8C;</h2>
+<p>&#x5728;&#x4F7F;&#x7528; chameleon &#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x9700;&#x8981;&#x9075;&#x5FAA;&#x4E00;&#x5B9A;&#x7684;&#x5D4C;&#x5957;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x6821;&#x9A8C;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>text &#x7EC4;&#x4EF6;<ul>
+<li>text &#x7EC4;&#x4EF6;&#x53EA;&#x80FD;&#x5305;&#x542B; text &#x7EC4;&#x4EF6;&#x4F5C;&#x4E3A;&#x5B50;&#x8282;&#x70B9;</li>
+</ul>
+</li>
+<li>scroller &#x7EC4;&#x4EF6;<ul>
+<li>scroller &#x7EC4;&#x4EF6;&#x4E0D;&#x80FD;&#x5305;&#x542B; textarea &#x6216;&#x8005; video &#x7EC4;&#x4EF6;</li>
+</ul>
+</li>
+<li>list<ul>
+<li>list &#x7EC4;&#x4EF6;&#x4E0D;&#x80FD;&#x5305;&#x542B; textarea &#x6216;&#x8005; video &#x7EC4;&#x4EF6;</li>
+</ul>
+</li>
+<li>video<ul>
+<li>video &#x7EC4;&#x4EF6;&#x5982;&#x679C;&#x5305;&#x542B;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x80FD;&#x662F; text &#x7EC4;&#x4EF6;</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;
+&apos;tag &quot;&lt;%= parent %&gt;&quot; can not have any child elements, therefor tag &quot;&lt;%= forbiddenTag %&gt;&quot; is not allowed as it\&apos;s children&apos;</p>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;
+&apos;tag &quot;&lt;%= parent %&gt;&quot; can only have &quot;&lt;%= elements %&gt;&quot; as it\&apos;s child elements, therefor tag &quot;&lt;%= forbiddenTag %&gt;&quot; is not allowed as it\&apos;s children&apos;</p>
+<p>&#x62A5;&#x9519;&#x4FE1;&#x606F;
+&apos;tag &quot;&lt;%= parent %&gt;&quot; can not have  &quot;&lt;%= forbiddenTag %&gt;&quot; as it\&apos;s child elements, and element in this list: &quot;&lt;%= elements %&gt;&quot; is forbidden as well&apos;</p>
+</blockquote>
+<h2 id="&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;"><a name="&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;" class="plugin-anchor" href="#&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9644;&#xFF1A;&#x6A21;&#x677F;&#x683C;&#x5F0F;&#x89C4;&#x8303;</h2>
+<h3 id="&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;"><a name="&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;</h3>
+<p>chameleon &#x6A21;&#x677F;&#x4E66;&#x5199;&#x89C4;&#x8303;&#x5C0A;&#x4ECE; HTML5 &#x57FA;&#x672C;&#x89C4;&#x8303;&#x3002;</p>
+<h3 id="&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;"><a name="&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x76EE;&#x5F55;&#x89C4;&#x8303;</h3>
+<p>chameleon &#x652F;&#x6301;&#x4E09;&#x7AEF;(&#x4E09;&#x79CD; native &#x73AF;&#x5883;)&#xFF0C;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x5728;&#x6BCF;&#x4E2A;&#x73AF;&#x5883;&#x5BF9;&#x5E94;&#x6709;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x3002;&#x6A21;&#x677F;&#x547D;&#x540D;&#x683C;&#x5F0F;  <code>&#x7EC4;&#x4EF6;&#x540D;&#x79F0;+&#x7AEF;&#x540D;&#x79F0;.cml</code> &#x6BD4;&#x5982;&#xFF1A;c-title &#x7EC4;&#x4EF6;</p>
+<pre><code class="lang-bash">&#x251C;&#x2500;&#x2500; components
+&#x2502;   &#x251C;&#x2500;&#x2500; c-title                              
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; c-title.web.cml                          
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; c-title.weex.cml                        
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; c-title.wx.cml
+</code></pre>
+<p>&#x5176;&#x4E2D;&#xFF1A; c-title.web.cml &#x4E3A; web &#x7AEF;&#x6A21;&#x677F;&#xFF0C;c-title.weex.cml &#x4E3A; iOS&#x3001;Android &#x7AEF;&#xFF0C;c-title.wx.cml &#x4E3A;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x3002;</p>
+<p>&#x672C;&#x8282;&#x6A21;&#x677F;&#x89C4;&#x8303;&#x5C31;&#x662F;&#x6307;&#x5BF9;&#x8FD9;&#x4E09;&#x4E2A;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#x7684;&#x7F16;&#x5199;&#x89C4;&#x8303;&#x3002;</p>
+<h3 id="&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;"><a name="&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x6307;&#x5B9A;</h3>
+<p>&#x6BCF;&#x4E2A;&#x7AEF;&#x7684;&#x6A21;&#x677F;&#x90FD;&#x53EF;&#x4EE5;&#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x9009;&#x62E9;&#x4E24;&#x79CD;&#x8BED;&#x6CD5;&#x89C4;&#x8303;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#xFF0C;cml &#x8BED;&#x6CD5;&#x89C4;&#x8303; &#x6216;&#x8005; &#x7C7B; vue &#x8BED;&#x6CD5;&#x89C4;&#x8303;&#x3002;&#x6307;&#x5B9A;&#x8BED;&#x6CD5;&#x89C4;&#x8303;&#x7684;&#x65B9;&#x5F0F;&#x4E3A;&#x5728;&#x6839;&#x8282;&#x70B9; template &#x6807;&#x7B7E;&#x4E0A;&#x7ED9;&#x5C5E;&#x6027; lang &#x6307;&#x5B9A; &quot;cml&quot; &#x6216;&#x8005; &quot;vue&quot;&#x3002;</p>
+<p>&#x5217;&#x5982;&#x6307;&#x5B9A;&#x6A21;&#x677F;&#x4E3A; cml &#x8BED;&#x6CD5;&#x89C4;&#x8303;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;cml&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x53EA;&#x80FD;&#x591F;&#x6709;&#x4E00;&#x4E2A;&#x6839;&#x8282;&#x70B9;&#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x4E3A; template &#x6807;&#x7B7E;&#xFF0C;template &#x4FBF;&#x7B7E;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x3002;</p>
+</blockquote>
+<h3 id="&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><a name="&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#x89C4;&#x8303;</h3>
+<p>&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x5185;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x6807;&#x7B7E;&#x7531;&#x4E09;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF1A;</p>
+<ol>
+<li>Chameleon &#x7684;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;<ul>
+<li>chamelon &#x652F;&#x6301;&#x7684;&#x6807;&#x7B7E;&#x6709;: template&#x3001;view&#x3001;text&#x3001;block&#x3001;scroller&#x3001;list&#x3001;cell&#x3001;image&#x3001;switch&#x3001;video&#x3001;input&#x3001;textarea&#x3001;richtext&#x3001;button&#x3001;radio&#x3001;checkbox&#x3001;page&#x3001;router-view&#x3001;slot&#x3001;aside&#x3001;col&#x3001;container&#x3001;foot&#x3001;head&#x3001;main&#x3001;row</li>
+</ul>
+</li>
+<li><p>&#x591A;&#x6001;&#x7EC4;&#x4EF6;&#x4E2D;&#x5728;&#x5E73;&#x53F0;&#x6587;&#x4EF6;&#x91CC;&#xFF0C;&#x4EE5; &apos;origin-&apos; &#x4E3A;&#x524D;&#x7F00;&#x7684;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;&#x3002;</p>
+</li>
+<li><p>&#x6A21;&#x677F;&#x6587;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7; usingComponents &#x5F15;&#x5165;&#x7684;&#x7EC4;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;&#x3002;</p>
+</li>
+</ol>
+<h4 id="&#x4E3E;&#x4F8B;"><a name="&#x4E3E;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x4E3E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3E;&#x4F8B;" class="plugin-anchor" href="#&#x4E3E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3E;&#x4F8B;</h4>
+<p>&#x4ECD;&#x4EE5; c-title &#x7EC4;&#x4EF6;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x5404;&#x4E2A;&#x6A21;&#x677F;&#x90FD;&#x6709;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;json&quot;</span>&gt;</span><span class="actionscript">
+{
+  <span class="hljs-string">&quot;base&quot;</span>: {
+    <span class="hljs-string">&quot;usingComponents&quot;</span>: {
+      <span class="hljs-string">&quot;tickets&quot;</span>: <span class="hljs-string">&quot;/components/ticket/index&quot;</span>
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<ul>
+<li>c-title.web.cml<ul>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; chameleon &#x652F;&#x6301;&#x7684; view&#x3001;text&#x3001;block &#x7B49;&#x57FA;&#x672C;&#x6807;&#x7B7E;&#xFF0C;&#x5E26; &apos;origin-&apos; &#x524D;&#x7F00;&#x7684; web &#x539F;&#x751F;&#x6807;&#x7B7E; origin-div&#x3001;origin-p&#x3001;origin-span &#x7B49;,&#x4EE5;&#x53CA;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6; tickets&#x3002;</li>
+</ul>
+</li>
+<li>c-title.weex.cml<ul>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; chameleon &#x652F;&#x6301;&#x7684; view&#x3001;text&#x3001;block &#x7B49;&#x57FA;&#x672C;&#x6807;&#x7B7E;&#xFF0C;weex &#x652F;&#x6301;&#x7684;&#x6807;&#x7B7E;&#xFF0C;&#x4EE5;&#x53CA;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6; tickets&#x3002;&#x5982;&#x679C;&#x4EE5; vue &#x4F5C;&#x4E3A; weex &#x4F7F;&#x7528;&#x7684;&#x524D;&#x7AEF;&#x6846;&#x67B6;&#xFF0C;&#x90A3;&#x4E48; weex &#x652F;&#x6301;&#x7684;&#x6807;&#x7B7E;&#x57FA;&#x672C;&#x548C; vue &#x6846;&#x67B6;&#x652F;&#x6301;&#x7684;&#x6807;&#x7B7E;&#x57FA;&#x672C;&#x4E00;&#x81F4;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x90E8;&#x5206;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x6807;&#x7B7E;&#x6BD4;&#x5982;&#xFF1A;transition &#x6807;&#x7B7E;&#xFF0C;&#x5177;&#x4F53;&#x8BF7;&#x53C2;&#x89C1; <a href="https://weex.apache.org/cn/guide/" target="_blank">weex &#x6587;&#x6863;</a>&#x3002;</li>
+</ul>
+</li>
+<li>c-title.wx.cml<ul>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; chameleon &#x652F;&#x6301;&#x7684; view&#x3001;text&#x3001;block &#x7B49;&#x57FA;&#x672C;&#x6807;&#x7B7E;&#xFF0C;&#x5E26; &apos;origin-&apos; &#x524D;&#x7F00;&#x7684; wx &#x539F;&#x751F;&#x6807;&#x7B7E;&#x6BD4;&#x5982; origin-swiper&#x3001;origin-movable-area&#x3001;origin-cover-view&#x3001;origin-web-view  &#x7B49;,&#x4EE5;&#x53CA;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6; tickets&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><a name="&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x89C4;&#x8303;</h3>
+<p>&#x9664;&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;&#x5916;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x8BED;&#x8A00;(&#x7531; template &#x6807;&#x7B7E;&#x7684; lang &#x5C5E;&#x6027;&#x6307;&#x5B9A;) &#x6240;&#x5BF9;&#x5E94;&#x7684;&#x6307;&#x4EE4;&#x96C6;&#x3002;</p>
+<ul>
+<li>&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x4E3A; cml &#x65F6;&#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;&#x6709;&#xFF1A;c-if&#x3001;c-else&#x3001;c-else-if&#x3001;c-for&#x3001;c-for-index&#x3001;c-for-item&#x3001;c-model&#x3001;c-text&#x3001;c-show&#x3001;c-bind&#x3001;c-catch</li>
+<li>&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x4E3A;&#x7C7B; vue &#x65F6;&#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;&#x6709;&#xFF1A;v-if&#x3001;v-else&#x3001;v-else-if&#x3001;v-for&#x3001;v-on&#x3001;v-bind&#x3001;v-html&#x3001;v-show&#x3001;v-model&#x3001;v-pre&#x3001;v-once&#x3001;slot-scope&#x3001;is&#x3001;@&#x3001;:</li>
+</ul>
+<blockquote>
+<p>&#x7C7B; vue &#x8BED;&#x6CD5;&#x652F;&#x6301;&#x4E0A;&#x8FF0;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x5176;&#x4ED6; vue.js &#x7684;&#x6307;&#x4EE4;&#x5982; v-cloak &#x662F;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x3002;</p>
+</blockquote>
+<h4 id="&#x4E3E;&#x4F8B;_1"><a name="&#x4E3E;&#x4F8B;_1" class="anchor-navigation-ex-anchor" href="#&#x4E3E;&#x4F8B;_1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3E;&#x4F8B;" class="plugin-anchor" href="#&#x4E3E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3E;&#x4F8B;</h4>
+<p>&#x82E5;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x4E3A; &quot;cml&quot; &#x5373; template &#x6807;&#x7B7E; lang &#x5C5E;&#x6027;&#x4E3A; &quot;cml&quot;&#xFF0C;native &#x73AF;&#x5883;&#x4E3A;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x3002;&#x8FD8;&#x662F;&#x4EE5; c-title &#x7EC4;&#x4EF6;&#x4E3A;&#x4F8B;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x65F6;&#x5BF9;&#x5E94;&#x7684;&#x662F; c-title.wx.cml &#x6A21;&#x677F;&#x3002;
+c-title.wx.cml:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;cml&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-if</span>=<span class="hljs-string">&quot;{{showMessage}}&quot;</span>&gt;</span>{{messageText}}<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">picker-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">picker-view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre>
+<p>&#x90A3;&#x4E48;&#x6A21;&#x677F;&#x91CC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; chameleon &#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;: </p>
+<p>  c-if&#x3001;c-else&#x3001;c-else-if&#x3001;c-for&#x3001;c-for-index&#x3001;c-for-item&#x3001;c-model&#x3001;c-text&#x3001;c-show&#x3001;c-bind&#x3001;c-catch</p>
+<h3 id="&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;"><a name="&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F15;&#x7528;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;</h3>
+<p>Chameleon &#x63D0;&#x4F9B;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5F15;&#x5165;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x548C;&#x5E73;&#x53F0;&#x7B2C;&#x4E09;&#x65B9;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>&#x901A;&#x8FC7;&#x7ED9;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x6DFB;&#x52A0; &apos;origin-&apos; &#x524D;&#x7F00;&#x5F15;&#x7528;&#x539F;&#x751F;&#x7EC4;&#x4EF6;</li>
+<li>&#x901A;&#x8FC7; usingComponents &#x5F15;&#x5165;&#x5E73;&#x53F0;&#x539F;&#x751F;&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6;</li>
+</ul>
+<blockquote>
+<p>&#x5F15;&#x7528;&#x7684;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x4E0A;&#x53EA;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x5E73;&#x53F0;&#x652F;&#x6301;&#x7684;&#x539F;&#x751F;&#x6307;&#x4EE4;&#xFF0C;&#x4E0D;&#x80FD;&#x4F7F;&#x7528; Chameleon &#x5185;&#x7F6E;&#x6307;&#x4EE4;&#x3002;&#x6539;&#x9650;&#x5236;&#x53EA;&#x9650;&#x4E8E;&#x7EC4;&#x4EF6;&#x672C;&#x8EAB;&#xFF0C;&#x5BF9;&#x5176;&#x5B50;&#x7EC4;&#x4EF6;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x3002;</p>
+</blockquote>
+<h4 id="&#x4E3E;&#x4F8B;_2"><a name="&#x4E3E;&#x4F8B;_2" class="anchor-navigation-ex-anchor" href="#&#x4E3E;&#x4F8B;_2"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3E;&#x4F8B;" class="plugin-anchor" href="#&#x4E3E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3E;&#x4F8B;</h4>
+<p>&#x82E5;&#x6A21;&#x677F;&#x8BED;&#x8A00;&#x4E3A; &quot;cml&quot; &#x5373; template &#x6807;&#x7B7E; lang &#x5C5E;&#x6027;&#x4E3A; &quot;cml&quot;&#xFF0C;native &#x73AF;&#x5883;&#x4E3A;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x3002;&#x8FD8;&#x662F;&#x4EE5; c-title &#x7EC4;&#x4EF6;&#x4E3A;&#x4F8B;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x65F6;&#x5BF9;&#x5E94;&#x7684;&#x662F; c-title.wx.cml &#x6A21;&#x677F;&#x3002;
+c-title.wx.cml:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;cml&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>{{messageText}}<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">origin-picker-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">origin-picker-view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre>
+<p>&#x90A3;&#x4E48;&#x6A21;&#x677F;&#x91CC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; chameleon &#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;: </p>
+<p>  c-if&#x3001;c-else&#x3001;c-else-if&#x3001;c-for&#x3001;c-for-index&#x3001;c-for-item&#x3001;c-model&#x3001;c-text&#x3001;c-show&#x3001;c-bind&#x3001;c-catch</p>
+<p>origin-picker-view &#x7EC4;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x652F;&#x6301;&#x7684;&#x6307;&#x4EE4;: </p>
+<p>  wx:if&#x3001;wx:elif&#x3001;wx:else&#x3001;wx:for&#x3001;wx:for-item&#x3001;wx:for-index&#x3001;wx:key&#x3001;bindtap&#x3001;catchtap</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="standards/cml-interface.html" class="navigation navigation-prev " aria-label="Previous page: interface规范">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="cml-script.html" class="navigation navigation-next " aria-label="Next page: 脚本规范校验">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"模板规范校验","level":"1.6.2.8.3.3","depth":5,"next":{"title":"脚本规范校验","level":"1.6.2.8.3.4","depth":5,"path":"framework/linter/cml-script.md","ref":"framework/linter/cml-script.md","articles":[]},"previous":{"title":"interface规范","level":"1.6.2.8.3.2.1","depth":6,"path":"framework/linter/standards/cml-interface.md","ref":"framework/linter/standards/cml-interface.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/chameleon/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/linter/cml-template.md","mtime":"2019-01-10T14:43:33.821Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-18T12:00:49.384Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-code3/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

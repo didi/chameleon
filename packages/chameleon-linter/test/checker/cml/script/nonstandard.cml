@@ -1,0 +1,121 @@
+<template>
+  <view class="checkbox-wrap" style="{{wrapStyle}}" c-bind:tap="click">
+    <view class="box" style="{{boxStyle}}"></view>
+  </view>
+</template>
+<script>
+class CCheckbox   {
+  props = {
+    checked: {
+      type: Boolean,
+      default: false
+    },
+    color: {
+      type: String,
+      default: '#61c7fc'
+    },
+    width: {
+      type: Number,
+      default: 50
+    }
+  }
+  data = {
+  }
+
+  computed = {
+    wrapStyle() {
+      return this.$cmlStyle({
+        'width': this.width  + 'px',
+        'height': this.width  + 'px',
+        'border-radius': this.width  + 'px',
+        'border': `1px solid ${this.color}`
+      })
+    },
+    boxStyle() {
+      if (this.checked) {
+        return this.$cmlStyle({
+          'width': this.width * 0.8 + 'px',
+          'height': this.width * 0.8 + 'px',
+          'background': this.color,
+          'border-radius': this.width + 'px'
+        })
+      } else {
+        return this.$cmlStyle({
+          'width': '0px',
+          'height': '0px',
+          'border-radius': this.width + 'px',
+          'background': this.color
+        })
+      }
+    }
+  }
+
+  watch  = {
+  }
+
+  methods = {
+    click() {
+      this.$cmlEmit('checkclick')
+    }
+  }
+
+  beforeCreate() {
+  }
+
+  created() {
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+  }
+
+  beforeDestroy() {
+  }
+
+  destroyed() {
+  }
+}
+
+export default new CCheckbox();
+</script>
+<style scoped>
+.checkbox-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.checkbox-wrap::after{
+  content: "";
+  position: absolute;
+  left: -5px;
+  right: -5px;
+  top: -5px;
+  bottom: -5px;
+}
+.box {
+  transition-property: width, height;
+  transition-duration: 0.1s;
+  transition-delay: 0s;
+  transition-timing-function: ease-in-out;
+  transition: all .1s ease-in-out;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  },
+  "wx": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2",
+    "component": true
+
+  }
+}
+</script>

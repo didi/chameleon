@@ -1,0 +1,189 @@
+Release History
+---------------
+
+### v0.7.2
+
+* fix catastrophic backtracking (a potential DoS issue) in the BEM style
+RegExp and make it more accurately represent the BEM specification
+
+### v0.7.1
+
+* recognize void elements regardless of case
+* add `indent-delta` option to require indentation to change by only one
+indent width per line
+* add `line-no-trailing-whitespace` rule (disabled by default)
+
+### v0.7.0
+
+* add option "none" to disable `class-style` while leaving `id-style` enabled
+* require a truthy value for `href-style` to be either "absolute" or "relative"
+* ignore leading and trailing whitespace in classes for `class-no-dup`
+* ensure that the default preset has values for all options
+* miscellaneous corrections to error messages
+* allow options taking a RegExp to use a string specifying one instead
+* correct line and column numbers for attributes and in `spec-char-escape`
+and `doctype-first`
+* change default value for `attr-name-style` to "dash"
+* remove CR and LF from the list of characters banned by `attr-no-unsafe-char`
+* allow regular expression input in `attr-order`
+* add `text-ignore-regex` and `raw-ignore-regex` options
+* fix error handling in inline configuration, and use issues instead of
+throwing errors for invalid configuration
+* output issues for nonexistent options in initial configuration
+* allow `preset=$previous` to undo last inline configuration
+* add `attr-validate` option
+
+### v0.6.0
+
+* fix errors when optional closing tags are omitted
+* improve handling of some kinds of malformed input
+* add `attr-order` rule
+* add `html-valid-content-model` and `head-valid-content-model` rules
+* fix some errors in default preset (causing `spec-char-escape` and
+`attr-no-unsafe-char` to be on by default as intended)
+* add verification of option values, with errors for invalid values
+
+### v0.5.0
+
+* add `class-no-dup-split-separator` option
+* change `tag-self-close` options from boolean to "always" and "never"
+* fix bugs in `tag-self-close` and `tag-name-match`
+
+### v0.4.0
+
+* add "allownull" as an option for `img-req-alt`
+* add `class-no-dup` option
+* allow inline configurations to use - and _ interchangeably
+* add "smart" as an option for `doctype-first`
+* update dependencies
+* add `tag-close` option
+* add `indent-width-cont` option
+
+### v0.3.0
+
+* updated to current versions of all dependencies
+* corrected `id-style` bug
+* unified handling of `req` options (now fail on empty tag value)
+* added `attr-name-ignore-regex` option
+* corrected `head-req-title` to fail on empty title
+* added language tag verification (`lang-style`)
+* `none` preset is now dynamically generated
+* added line length testing (`max-line-len`)
+
+### v0.2.7
+
+* fixed an issue where attributes were processed out of order
+* changed doctype-first rule to match !DOCTYPE case-insensitive (issue #116)
+* added class-style option (essentially the same as id-class-style, but only
+on class, not ids)
+
+### v0.2.6
+
+* added attr-new-line rule (special thanks to @knyga #115)
+* fixed attr-name-style issue #104 and #103
+* fixed html-req-lang issue #102
+* added id-class-ignore-regex option
+* added script to the list of tags to ban by default
+
+### v0.2.5
+
+* fixed some bugs with tag-name-match (#102)
+* added script to the list of tags checked by tag-bans
+* made error messages more consistent in style (#103)
+* fixed focusable-tabindex-style (#104)
+
+### v0.2.4
+
+* renamed "attr-no-duplication" to "attr-no-dup"
+
+### v0.2.3
+
+* added some svg void elements
+* a few bug fixes
+
+### v0.2.2
+
+* added table-req-header rule
+* added indent-width rule
+
+### v0.2.1
+
+* changed maxerr to allow a value of `false` to disable error
+throttling
+* fixed some ambiguity issues with inline configuration
+* added some rules
+
+### v0.2.0
+
+* added html-req-lang rule
+* added error codes
+* added keywords to the npm package
+* changed linter so that rules can emit issues on `end` calls
+
+### v0.0.12
+
+* allows custom regex for formats in most rules
+* removed `linter.addRule(rule)` in favor of `linter.use(plugin)`
+* raised test coverage back up to near 100%
+
+### v0.0.11
+
+* added plugin support
+
+### v0.0.10
+
+* added inline configuration
+* changed `Linter.lint` to return a promise, allowing async rules
+
+### v0.0.9
+
+* added no-unsafe-char rule
+* corrected some (line, col) for attribute rules
+
+### v0.0.8
+
+* added more rules
+* should be browserifiable
+* renamed rules to fit a better convention
+
+### v0.0.7
+
+* added rules:
+  * attr-value-quotes
+  * img-src-not-empty
+  * label-for
+  * tag-self-close
+* fixed tag-name-lowercase bug
+
+### v0.0.6
+
+* fixed some runtime errors in a few rules
+* fixed index errors that would occur on multiple runs
+of the parser
+
+### v0.0.5
+
+* fixed line,col output bug
+* added label-for rule
+
+### v0.0.4
+
+* added id-unique rule
+* extended parser output
+* refactored rules to fit new rule processing framework
+* added presets (envs)
+
+### v0.0.3
+
+* added jsdoc
+* added more rules
+* added functional test suite
+
+### v0.0.2
+
+* added more rules
+* added htmlparser2, rules run on an AST now
+
+### v0.0.1
+
+* added basic scraper for inline styles using regex
