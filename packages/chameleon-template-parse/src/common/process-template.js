@@ -95,22 +95,27 @@ exports.preParseTemplateToSatisfactoryJSX = function(source, callbacks) {
   return source;
 }
 exports.preParseAnimation = function(source, type) {
-  let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
-  source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
-  const ast = babylon.parse(source, {
-    plugins: ['jsx']
-  })
-  traverse(ast, {
-    enter(path) {
-      let node = path.node;
-      if (t.isJSXAttribute(node) && node.name.name === 'c-animation') {
-        let value = utils.trimCurly(node.value.value);
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
+  // 这个只在微信端增加callback;
+  if (type === 'wx' || type === 'alipay' || type === 'baidu') {
+    let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
+    source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
+    const ast = babylon.parse(source, {
+      plugins: ['jsx']
+    })
+    traverse(ast, {
+      enter(path) {
+        let node = path.node;
+        if (t.isJSXAttribute(node) && node.name.name === 'c-animation') {
+          let value = utils.trimCurly(node.value.value);
+          path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
+        }
       }
-    }
-  });
-  // 这里注意，每次经过babel之后，中文都需要转义过来；
-  return exports.postParseUnicode(generate(ast).code);
+    });
+    // 这里注意，每次经过babel之后，中文都需要转义过来；
+    return exports.postParseUnicode(generate(ast).code);
+  }
+  return source;
+
 }
 // 模板后置处理器
 exports.postParseMustache = function (content) {
