@@ -20,7 +20,7 @@
 
 虽然不同各端环境千变万化，但万变不离其宗的是 MVVM 架构思想，**Chameleon 目标是让MVVM跨端环境大统一**。
 
-![Alt text](https://didi.github.io/chameleon/doc/assets/mvvm3.png)
+![Alt text](https://didi.github.io/chameleon/doc/assets/mvvm4.png)
 
 
 ## 学习全景图
