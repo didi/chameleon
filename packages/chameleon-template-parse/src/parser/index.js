@@ -11,6 +11,8 @@ const {parseDirective} = require('./parse-directive.js');
 const {parseClass} = require('./parse-class.js');
 const {parseRef} = require('./parse-ref.js');
 const {parseTextContent} = require('./parse-text-content.js');
+const alipayMixins = require('chameleon-mixins/alipay-mixins.js');
+
 const {
   tagMap
 } = require('../common/cml-map.js')
@@ -127,6 +129,16 @@ exports.parseEventListener = function parseEventListener(path, type, options) {
   // 对于 JSXNamespaceName节点，仅仅需要处理 c-catch c-bind的情况，其他的不要进行处理
   if (t.isJSXNamespacedName(node) && (node.namespace.name === 'c-catch' || node.namespace.name === 'c-bind')) {
     parseEvent.call({path, type, node, options})
+  }
+}
+exports.parseAddAliEventProps = function parseAddAliEventProps(path, type, options) {
+  let node = path.node;
+  if (t.isJSXElement(node)) {
+    let attributes = node.openingElement.attributes || [];
+    let hasEventBind = attributes.find((attr) => (t.isJSXNamespacedName(attr.name) && attr.name.namespace.name === 'c-bind'));
+    if (hasEventBind) {
+      attributes.push(t.jsxAttribute(t.jsxIdentifier(alipayMixins.cmlPropsEventProxy.key), t.stringLiteral(alipayMixins.cmlPropsEventProxy.value)));
+    }
   }
 }
 // 只支持数组，小程序不支持对象的for循环；

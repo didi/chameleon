@@ -524,7 +524,9 @@ _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
       }
       // 如果自动引入的组件与用户自定义组件重名则不自动引入
       if (!~customComsKeys.indexOf(npmcomName)) {
-        coms[item.name] = item.refPath;
+        // refPath 改为相对路径
+        let refPath = _.npmRefPathToRelative(item.refPath, jsonFile, context);
+        coms[item.name] = refPath;
       }
     })
   }
@@ -637,10 +639,12 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   }
 
   if (~filePath.indexOf('node_modules')) {
-    refUrl = _.npmComponentRefPath(filePath, context)
+    refUrl = _.npmComponentRefPath(filePath, context);
+    // 改为相对路径
+    refUrl = _.npmRefPathToRelative(refUrl, filePath, context);
 
   } else {
-    // 改成绝对路径
+    // 改成相对路径
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
 
     refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
@@ -727,7 +731,30 @@ _.findInterfaceFile = function(context, cmlFilePath, comPath) {
   return _.handleComponentUrl(context, cmlFilePath, comPath, 'interface');
 }
 
-// 处理npm中组件的引用路径 root是项目根目录
+/**
+ * @description 将/npm 的组件引用改为相对路径
+ * @param npmRefPath npm绝对引用路径  /npm/cml-ui/button/button
+ * @param cmlFilePath cml文件路径
+ * @param context 项目根目录
+ */
+_.npmRefPathToRelative = function(npmRefPath, cmlFilePath, context) {
+  if (npmRefPath[0] === '/') {
+    let entryPath = _.getEntryPath(cmlFilePath, context);
+    // pages/index/index.cml  derLength = 2
+    let dirLength = entryPath.split('/').length - 1;
+    let relativePath = './';
+    for (let i = 0; i < dirLength; i++) {
+      relativePath += '../';
+    }
+    npmRefPath = npmRefPath.slice(1);
+    npmRefPath = relativePath + npmRefPath;
+    return npmRefPath;
+  } else {
+    return npmRefPath;
+  }
+}
+
+// 处理npm中组件的引用路径 root是项目根目录 得到的是绝对路径/npm
 _.npmComponentRefPath = function (componentAbsolutePath, context) {
   let refUrl = '';
   refUrl = path.relative(context, componentAbsolutePath);

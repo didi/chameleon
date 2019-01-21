@@ -474,4 +474,26 @@ describe('index.js', function () {
     expect(result3).to.be.equal('app')
 
   })
+
+  it('npmRefPathToRelative', function() {
+    let context = path.join(__dirname, './testlib/demo-project');
+    let npmRef = '/npm/cml-ui/button/button';
+    let notNpmRef = './npm/cml-ui';
+
+    let file1 = path.join(context, 'src/pages/page1/page1.cml') // ./../../npm
+    let file2 = path.join(context, 'src/pages/page1.cml') // ./../npm
+    let file3 = path.join(context, 'src/pages.cml') // ./npm
+
+    let result1 = _.npmRefPathToRelative(npmRef, file1, context);
+    let result2 = _.npmRefPathToRelative(npmRef, file2, context);
+    let result3 = _.npmRefPathToRelative(npmRef, file3, context);
+    let result4 = _.npmRefPathToRelative(notNpmRef, file3, context);
+    expect(result1).to.be.equal('./../../npm/cml-ui/button/button');
+    expect(result2).to.be.equal('./../npm/cml-ui/button/button');
+    expect(result3).to.be.equal('./npm/cml-ui/button/button');
+    expect(result4).to.be.equal(notNpmRef);
+
+
+
+  })
 })
