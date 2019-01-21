@@ -28,7 +28,6 @@ rm -rf ./${PROJECT_NAME}/doc/website
 /usr/bin/sed -i "" 's#/chameleon/doc/#/doc/#g' "book.json"
 
 cd ./${PROJECT_NAME}
-git checkout -b gh-pages
 git add .
 exit
 git commit -am "help document"
