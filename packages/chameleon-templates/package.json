@@ -10,8 +10,5 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "mail": "ChameleonCore@didiglobal.com",
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac",
-  "dependencies": {
-    "chameleon-runtime": "0.0.2"
-  }
+  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
 }
