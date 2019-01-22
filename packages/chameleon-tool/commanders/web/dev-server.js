@@ -36,7 +36,6 @@ module.exports = function({webpackConfig, options, compiler}) {
   dynamicApiMiddleware(app, options);
   if (compiler) {
 
-
     if (options.hot === true) {
       var hotMiddleware = require('webpack-hot-middleware')(compiler, {
         heartbeat: 9000,
