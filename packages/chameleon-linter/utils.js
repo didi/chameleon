@@ -94,10 +94,12 @@ let getCmlFileParts = (filepath, platform) => {
  */
 let getCmlParts = filepath => {
   let parts = {};
+  let platforms = config.getPlatforms();
   let platform;
-  let result = /([^/]*?)\.(web|wx|weex)\.cml$/.exec(filepath);
+
+  let result = new RegExp('([^/]*?)\.(' + platforms.join('|') + ')\.cml$', 'g').exec(filepath);
   if (result) {
-    let interfaceFile = filepath.replace(/\.(web|wx|weex)\.cml$/g, '.interface');
+    let interfaceFile = filepath.replace(new RegExp('\.(' + platforms.join('|') + ')\.cml$', 'ig'), '.interface');
     platform = result[2];
     if (fs.existsSync(interfaceFile)) {
       Object.assign(parts, getCmlFileParts(interfaceFile));
