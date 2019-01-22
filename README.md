@@ -1,9 +1,16 @@
+# <img src="https://didi.github.io/chameleon/doc/assets/100*100.png"/> Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon)
 
-# 介绍
-
-[![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon)
 
 **Chameleon**/kəˈmiːlɪən/，简写`CML`，中文名`卡梅龙`；中文意思`变色龙`，意味着就像变色龙一样能适应不同环境的跨端整体解决方案。
+
+## 文档
+
+主站: [didi.github.io/chameleon](https://didi.github.io/chameleon)
+* [安装](https://didi.github.io/chameleon/doc/quick_start/quick_start.html)
+* [快速上手](https://didi.github.io/chameleon/doc/quick_start/quick_start.html)
+* [API文档](https://didi.github.io/chameleon/doc/api/api.html)
+* [组件文档](https://didi.github.io/chameleon/doc/component/component.html)
+* [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 
 ## 背景
 研发同学在端内既追求h5的灵活性，也要追求性能趋近于原生。
@@ -20,7 +27,7 @@
 
 虽然不同各端环境千变万化，但万变不离其宗的是 MVVM 架构思想，**Chameleon 目标是让MVVM跨端环境大统一**。
 
-![Alt text](https://didi.github.io/chameleon/doc/assets/mvvm3.png)
+![Alt text](https://didi.github.io/chameleon/doc/assets/mvvm4.png)
 
 
 ## 学习全景图
@@ -66,7 +73,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 ##  微信 & QQ交流群
 
 **微信**<br />
-<img width="150px" src="https://didi.github.io/chameleon/doc/assets/qr-wechat.jpeg" />
+<img width="150px" src="https://didi.github.io/chameleon/doc/assets/weixin_qr.jpg" />
 
 <br />
 
