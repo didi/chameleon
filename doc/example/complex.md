@@ -1,30 +1,40 @@
 # 手把手教你系列- 实现复杂应用
+
 ## 背景介绍
  我们今天用`chameleon`来做一个网易严选项目，实现一套`cml`代码在web、小程序、Native当中运行的目标。在此项目中呢，我会介绍大家日常开发过程当中关心的一些点，
-   比如路由、状态管理、页面设计、本地数据请求、组件设计及组件扩展、多态等等，以及多端的差异化需求。
+   比如<span id="router" style="color: #B4282D;">路由</span>、
+   <span id="store" style="color: #B4282D;">状态管理</span>、
+   <span id="tiaozhuan" style="color: #B4282D;">页面跳转</span>、
+   <span id="ajax" style="color: #B4282D;">ajax请求</span>、
+   <span id="mock" style="color: #B4282D;">mock数据</span>、
+   组件设计及
+   <span id="kuozhan" style="color: #B4282D;">组件扩展</span>、
+   <span id="多态" style="color: #B4282D;">多态</span>
+   等等，以及多端的差异化需求。
+   
 ## 1 背景介绍——仿网易严选
 
 ### 1 准备
 
-- 执行 `npm i -g @didi/chameleon-cli`，安装全局chameleon-cli环境；安装成功后，执行`cml -v`查看当前版本；
-
-### 2 初始化项目
-
-- 执行`cml init project`
-- 请输入项目名
-- 等待自动执行npm install依赖
-- 切换到项目根目录执行`cml dev`
-- 会自动打开预览界面 预览界面如下：
+- 请按照【[快速上手](./quick_start.html)】一节进行`chameleon-tool`全局环境安装；
+- `cml init project`初始化一个项目，命名`wangyi `;
 
 ![](../assets/cml_preview.jpg)
 
+### 2 构建首页
+<span style="color:#B4282D;">分析</span>：我们把首页分为`content`和`footer`两部分，`content`是我们的主要内容区域，
+`footer`则是一个tab切换。切换`content`我们采用`Chameleon`的API方法[c-animate](../api/createAnimation/createAnimation.md)来实现；
+`tab`我们采用扩展组件[c-tabs](../component/expand/compound/c-tab.md)来实现；
 
 
-### 3 构建首页
-我们准备一组tab数据，放进state里面；
+
+#### 2.1 构建首页--footer
+
+<span style="color:#B4282D;">分析</span>： 为什么先介绍`footer`？因为footer的东西相对少一点，因此我们把它放在前面；我们把`tab`切换的配置数据放在[store](../api/store/store.md)里面，配合[c-tabs](../component/expand/compound/c-tab.md)
+来实现tab切换功能；为此我们准备一组tab数据，放进state,在tab组件的生命周期钩子函数里面去取值；
 - 改造`store/state.js`文件如下：
 
-```shell
+```javascript
 const state = {
   tabs: [
     {label: '首页'},
@@ -38,13 +48,10 @@ export default state
 
 ```
 
-#### 3.1 执行`cml init component`，选择普通组件，输入 `home`,回车之后我们在项目结构中可以看到，`src/components`下面多了一个`home`文件夹，文件夹里面有一个`home.cml`文件；
+- `cml init project`初始化一个`home`组件，用来放置我们首页的子组件；<span style="color:#B4282D;">注意：</span>也可以创建一个`common`组件，存放公共组件。
+- 我们在`src/component/home`文件夹下新建`tab.cml`,在`created`里面请求[store](#store)里面的数据,改造`tab.cml`代码如下；
 
-- 在`src/components/home`下面新建一个`tab.cml`文件；（复制`home.cml`文件到`src/components`，重命名`tab`即可）；
-- 我们选择chameleon内置组件`c-tabs`来作为底部tab；
-- 文件`components/home/tab.cml` 代码如下：
-
-```shell
+```javascript
 <template>
   <view class="tab">
     <c-tabs tabs="{{tabs}}"
@@ -62,7 +69,7 @@ import store from '../../store'
 class Index {
   data = {
     animationData: {},
-    tabs:[ ],
+    tabs:[],
     activeLabel: '首页',
   }
   methods = {
@@ -85,16 +92,15 @@ export default new Index();
     "usingComponents": {
         "c-tabs": "cml-ui/components/c-tab/c-tab"
     }
-  },
-  ...
+  }
 }
 </script>
 
 ```
 
-#### 3.2 把我们刚才定义的组件引入到页面`page/index/index.cml`，修改`index.cml`文件配置；
+- 把自定义组件`tab`引入到页面`page/index/index.cml`，修改`index.cml`文件配置；
 
-```shell
+```javascript
 <script cml-type="json">
 {
   "base": {
@@ -108,183 +114,41 @@ export default new Index();
 
 ```
 
-我们可以看到页面如图，鼠标滑至图中箭头指向位置，点击打开web端。
+我们可以看到页面如图，鼠标滑至图中箭头指向位置，点击打开web端调试。
 ![](../assets/tabs.png)
 
-#### 3.3 在首页添加页面元素
 
-更改`page/index/index.cml`文件，代码如下：
+#### 2.2 构建首页--content
+<span style="color:#B4282D;">分析</span>：为了多端的一致性，我们设计了内置组件[scroller](../component/base/layout/scroller.md)来处理页面的滚动区域；
+我们把首页的`content`区域分为顶部轮播、服务类型、商品分类以及特色服务四个模块儿。其中，顶部轮播我们采用内置组件[carousel](../component/base/layout/carousel.md)来实现；
+商品分类我们采用`CML-标准语法`的[列表渲染](../view/iterator.md)来实现；服务类型和特色服务我们使用`CMSS`的[flex]()标准来实现定制化的需求；
+同时我们采用`chameleon`的[数据mock](../framework/mock.md)来实现本地mock数据的ajax请求；
 
-```javascript
-<template>
-  <page title="chameleon">
-    <view class="page-container">
-      <scroller height="{{winHeight}}">
-          <view c-animation="{{animationData}}" class="content-main">
-            <view c-bind:click="click(0)" class="main1">11</view>
-            <view c-bind:click="click(1)" class="main2">22</view>
-            <view c-bind:click="click(2)" class="main3">33</view>
-            <view c-bind:click="click(3)" class="main4">44</view>
-            <view c-bind:click="click(4)" class="main5">55</view>
-          </view>
-      </scroller>
-      <tab c-bind:translate="transition" class="footer"></tab>
-    </view>
-  </page>
-</template>
-<script>
-  import cml from 'chameleon-api';
-  const animation = cml.createAnimation();
-  class Index  {
-    data = {
-      title: "chameleon",
-      winHeight: 0,
-      chameleonSrc: require('../../assets/images/chameleon.png'),
-      animationData: {}
-    }
-    methods = {
-      transition(info){
-        console.log(info);
-        const { oIndex } = info.detail;
-        this.animationData = animation.translateX( oIndex * -750 ).step({duration: 0}).export();
-      }
-  
-    }
-  
-    mounted() {
-      cml.getSystemInfo().then((info)=>{
-        this.winHeight = Number(info.viewportHeight) - 140;
-      })
-    }
-  }
-</script>
-<style scoped>
-  .page-container {
-    background: aqua;
-  }
-  .content-main {
-    display: flex;
-    flex-flow: row nowrap;
-  }
-  .main1 {
-    width: 750cpx;
-    height: 200cpx;
-    background: pink;
-  }
-  .main2 {
-    width: 750cpx;
-    height: 200cpx;
-    background: deeppink;
-  }
-  .main3 {
-    width: 750cpx;
-    height: 200cpx;
-    background: red;
-  }
-  .main4 {
-    width: 750cpx;
-    height: 200cpx;
-    background: burlywood;
-  }
-  .main5 {
-    width: 750cpx;
-    height: 200cpx;
-    background: antiquewhite;
-  }
-  .footer {
-    width: 750cpx;
-    height: 140cpx;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 500;
-  }
-</style>
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {
-        "tab": "/components/home/tab"
-    }
-  },
-  "wx": {
-    "navigationBarTitleText": "index",
-    "backgroundTextStyle": "dark",
-    "backgroundColor": "#E2E2E2"
-  }
-}
-</script>
-
-```
-刷新页面，我们在浏览器可以看到如图：
-
- <img src="../assets/tabwithcolors.png" width="300px" height="300px" />
-
-我们这里采用`chameleon-cli`内置组件`c-animation`来做tab切换时页面的切换。
-
-##### 3.3.1 给class类 `main1`添加元素
-- 在`src/components/home`下新建`carousel.cml`
-- 我们在`carousel.cml`文件中引入内置组件`carousel`，代码见`carousel` 官方示例；
-- 将自定义`carousel`组件引入到首页中去,`page/index/index.cml`文件配置如下，
+- 我们配置一个`api/getHomeImgList`接口，返回我们首页的图片数据；更改`mock/api/index.js`文件，代码如下：
 
 ```javascript
-<scroller height="{{winHeight}}">
-  <view c-animation="{{animationData}}" class="content-main">
-    <view c-bind:click="click(0)" class="main1">
-      <carousel></carousel>
-    </view>
-    ...
-  </view>
-</scroller>
-...
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {
-      "tab": "/components/home/tab",
-      "carousel": "/components/home/carousel"
-    }
-  },
-  ...
-}
-</script>
 
-```
-- 刷新页面，我们可以看到页面中的轮播图；
-
-#####   3.3.2 配置首页接口；
-- 更改`mock/api/index.js`文件，我们配置一个`api/getHomeImgList`接口，代码如下：
-
-```javascript
 {
   method: ['get', 'post'],
   path: '/api/getHomeImgList',
   controller: function (req, res, next) {
     res.json({
       code: 0,
-      data: {
+      data: { 
         bannerImgList: [
-          {imgUrl: 'https://yanxuan.nosdn.127.net/288bf88910aeba6d89689b99bec93133.jpg?imageView&quality=75&thumbnail=750x0'},
-          ...
+          { imgUrl: 'https://yanxuan.nosdn.127.net/973e299ac2e80c03acfb5d2d4501231c.jpg?imageView&quality=75&thumbnail=750x0'}
+          ...  // 详情见码源
         ],
-        classifyImgList: [
-          {imgUrl: 'http://yanxuan.nosdn.127.net/9cdedb90a09cf061cfa19f3e21321c73.png', title: '居家'},
-          ...
-        ],
-        disscountPriceImgUrl: 'https://yanxuan.nosdn.127.net/15468670774810413.gif?imageView&thumbnail=750x0&quality=75',
-        special: {
-          newPerson: 'https://yanxuan.nosdn.127.net/15468671496890421.png',
-          temai: 'https://yanxuan.nosdn.127.net/15468671650860425.png',
-          qingdan: 'https://yanxuan.nosdn.127.net/15468671650860425.png'
-        }
+        ...
       }
     });
   }
 }
+
 ```
 
-- 我们在轮播图组件去使用它，更改`carousel.cml`文件；
-— 我们采用`chameleon`API里面的`cml.get`方法去实现本地数据请求；`carousel.cml`文件代码如下：
+- 在`src/component/home`文件下分别新建`lunbo.cml`、`service.cml`、`classlist.cml`、`special.cml`四个组件；
+- 我们在`chameleon`的生命周期钩子函数里面去[请求数据](#ajax)，改造`lunbo.cml`文件如下：
 
 ```javascript
 <template>
@@ -320,40 +184,16 @@ export default new Index();
       })
     }
   }
-  export default new Carousel();
-
-</script>
-
-<style scoped>
-  .carousel-container {
-    height: 370cpx;
-  }
-  .carousel-carousel-item {
-    width: 750cpx;
-    height: 370cpx;
-  }
-  .Img {
-    width: 750cpx;
-    height: 370cpx;
-  }
-
-</style>
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {}
-  }
-}
+  export default new Carousel()
+  
 </script>
 
 ```
-刷新页面如图：
-![](../assets/carse.png)
 
-#####   3.3.3 同理我们在`component/home`下分别新建`service.cml` `special.cml` `classlist.cml`组件，具体代码如下：
+- 同理我们改造`service.cml`文件代码如下：
 
-`service.cml`代码：
 ```javascript
+
 <template>
   <view class="service">
     <text class="service-item">网易自营品牌</text>
@@ -361,130 +201,13 @@ export default new Index();
     <text class="service-item">48小时快速退款</text>
   </view>
 </template>
-<script>
-class Service { }
-export default new Service();
-</script>
-<style scoped>
-  .service{
-    width: 750cpx;
-    height: 72cpx;
-    background: #ffecdd;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 20cpx;
-  }
-  .service-item{
-    color: #B4282D;
-    font-size: 28cpx;
-  }
-</style>
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {}
-  }
-}
-</script>
 
 ```
 
-`special.cml`文件代码如下：
+- 同理我们改造`classlist.cml`文件代码如下：
+
 ```javascript
-<template>
-  <view class="special" c-bind:tap="test">
-    <view class="special-door">
-      <image src="{{disscountPriceImgUrl}}" class="special-door-img"></image>
-    </view>
-    <view class="special-info">
-      <view class="special-info-left">
-        <image src="{{special.newPerson}}" class="special-info-left-img"></image>
-      </view>
-      <view class="special-info-right">
-        <image src="{{special.temai}}" class="special-info-right-top"></image>
-        <image src="{{special.qingdan}}" class="special-info-right-bottom"></image>
-      </view>
-    </view>
-  </view>
-</template>
-<script>
-  import cml from 'chameleon-api';
-  class Special {
-    data = {
-      special: '',
-      disscountPriceImgUrl: ''
-    }
-    methods = {
-      test() {
-        cml.navigateTo({
-          "path": "/pages/list/list"
-        })
-      }
-    }
-    created() {
-      cml.get({
-        url: '/api/getHomeImgList'
-      }).then(res => {
-        if (res.code == 0) {
-          const {special, disscountPriceImgUrl} = res.data;
-          this.special = special;
-          this.disscountPriceImgUrl = disscountPriceImgUrl;
-        }
-      })
-    }
-  }
-  export default new Special();
-</script>
-<style scoped>
-  .special {
-    width: 750cpx;
-    background: rgb(226, 179, 128);
-  }
-  .special-door {
-    width: 750cpx;
-    height: 330cpx;
-  }
-  .special-door-img {
-    width: 750cpx;
-    height: 330cpx;
-  }
-  .special-info {
-    width: 750cpx;
-    padding-bottom: 40cpx;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-  .special-info-left, .special-info-left-img,.special-info-right {
-    width: 375cpx;
-    height: 392cpx;
-  }
-  .special-info-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .special-info-right-top,.special-info-right-bottom {
-    width: 375cpx;
-    height: 196cpx;
-  }
 
-</style>
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {}
-  }
-}
-</script>
-
-```
-
-`classlist.cml`文件代码如下：
-```javascript
 <template>
   <view class="classList">
     <view
@@ -500,217 +223,105 @@ export default new Service();
         <text>{{item.title}}</text>
       </view>
     </view>
+
   </view>
 </template>
+
 <script>
-import cml from "chameleon-api";
-class Classlist {
+  import cml from "chameleon-api";
+  class Classlist {
+    data = {
+      classifyImgList: []
+    }
+    methods = {
+      change() {
+        console.log('chameleon')
+      }
+    }
+    created() {
+      cml.get({
+        url: '/api/getHomeImgList'
+      }).then(res => {
+        if (res.code == 0) {
+          const {classifyImgList} = res.data;
+          this.classifyImgList = classifyImgList;
+        }
+      })
+    }
+  }
+
+  export default new Classlist();
+</script>
+
+
+```
+
+- 同理我们改造`special.cml`文件代码如下：
+
+```javascript
+<template>
+  <view class="special" c-bind:tap="test">
+    <view class="special-door">
+      <image src="{{disscountPriceImgUrl}}" class="special-door-img"></image>
+    </view>
+    <view class="special-info">
+      <view class="special-info-left">
+        <image src="{{special.newPerson}}" class="special-info-left-img"></image>
+      </view>
+
+      <view class="special-info-right">
+        <image src="{{special.temai}}" class="special-info-right-top"></image>
+        <image src="{{special.qingdan}}" class="special-info-right-bottom"></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import cml from 'chameleon-api';
+class Special {
   data = {
-    classifyImgList: []
+    special: '',
+    disscountPriceImgUrl: ''
   }
   methods = {
-    //  页面跳转我们采用chameleon API中的 cml.navigateTo 方法，详情请见文档；
-    change() {
+    test(){
       cml.navigateTo({
-        "path": "/pages/list/list"
-      });
+         "path": "/pages/list/list"
+      })
     }
   }
   created() {
     cml.get({
       url: '/api/getHomeImgList'
     }).then(res => {
-      if (res.code == 0) {
-        const {classifyImgList} = res.data;
-        this.classifyImgList = classifyImgList;
+      if(res.code == 0){
+        const { special, disscountPriceImgUrl } = res.data;
+        this.special = special;
+        this.disscountPriceImgUrl = disscountPriceImgUrl;
       }
     })
   }
 }
-
-export default new Classlist();
-</script>
-<style scoped>
-  .classList {
-    width: 750cpx;
-    height: 380cpx;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 20cpx;
-    background: #ffecdd;
-  }
-  .classList-item {
-    width: 110cpx;
-    margin: 20cpx 10cpx 0;
-  }
-  .classList-item-img {
-    width: 110cpx;
-    height: 110cpx;
-  }
-  .classList-item-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-size: 22cpx;
-    margin-top: 4cpx;
-  }
-</style>
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {}
-  }
-}
+export default new Special();
 </script>
 
 ```
 
-- 首页的组件我们写好了，接下来我们更改`pages/index/index.cml`文件，加入样式，具体代码如下：
+- 首页content子组件我们已经开发完了，接下来我们把他们引入首页中来；更改`pages/index.cml`配置：
 
-```
-<template>
-  <page title="chameleon">
-    <view class="chameleon-content" style="height:{{scrollHeight}}cpx;">
-      <view class="content-main" c-animation="{{animationData}}" style="height:{{scrollHeight}}cpx;">
-        <view class="home">
-          <scroller
-            scroll-direction="vertical"
-            bottom-offset="{{20}}"
-            height="{{scrollHeight}}"
-          >
-            <ccarousel></ccarousel>
-            <service></service>
-            <classlist></classlist>
-            <special></special>
-          </scroller>
-        </view>
-        <view class="classify">
-          <text>22222</text>
-        </view>
-        <view class="things">
-          <text>3333</text>
-        </view>
-        <view class="cart">
-          <text>44444</text>
-        </view>
-        <view class="person">
-          <text>55555</text>
-        </view>
-      </view>
-    </view>
-    <view class="footer-zhanwei">
-      <ctab c-bind:translate="transition" class="footer"></ctab>
-    </view>
-  </page>
-</template>
-
-<script>
-  import cml from 'chameleon-api';
-
-  const animation = cml.createAnimation();
-
-  class Index {
-    data = {
-      title: "chameleon",
-      scrollHeight: 0,
-      animationData: {},
-      num: 1,
-
-    }
-    methods = {
-      transition(info) {
-        const {oIndex} = info.detail;
-        this.animationData = animation.translateX(oIndex * -750).step({duration: 0}).export();
-      },
-      change() {
-        cml.navigateTo({
-          "path": "/pages/list/list"
-        })
-      }
-
-    }
-    mounted() {
-      cml.getSystemInfo().then((info) => {
-
-        if (info.env == 'weex') {
-          this.scrollHeight = Number(info.viewportHeight) - 80 - 88;
-        } else {
-          this.scrollHeight = Number(info.viewportHeight) - 80;
-        }
-
-      })
-    }
-  }
-  export default new Index();
-
-</script>
-<style scoped>
-  .chameleon-content {
-    width: 750 cpx;
-    overflow-x: hidden;
-  }
-
-  .content-main {
-    width: 3750 cpx;
-    background: #9F8A60;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-
-  .home {
-    width: 750 cpx;
-    background: #9F8A60;
-  }
-
-  .classify {
-    width: 750 cpx;
-    background: blue;
-  }
-
-  .things {
-    width: 750 cpx;
-    background: red;
-  }
-
-  .cart {
-    width: 750 cpx;
-    background: yellow;
-  }
-
-  .person {
-    width: 750 cpx;
-    background: green;
-  }
-
-  .footer-zhanwei {
-    height: 100 cpx;
-    width: 750 cpx;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-  }
-</style>
+```javascript
 <script cml-type="json">
   {
     "base": {
-    "usingComponents": {
-      "ctab": "/components/home/tab",
+      "usingComponents": {
+        "ctab": "/components/home/tab",
         "ccarousel": "/components/home/lunbo",
         "service": "/components/home/service",
         "classlist": "/components/home/classlist",
         "special": "/components/home/special"
+      }
     }
-  },
-    "wx": {
-    "navigationBarTitleText": "index",
-      "backgroundTextStyle": "dark",
-      "backgroundColor": "#E2E2E2"
-  }
   }
 </script>
 ```
@@ -719,21 +330,23 @@ export default new Classlist();
 ![](../assets/newhome.png)
 
 
-### 4 构建列表页
+### 3 构建列表页
+<span style="color:#B4282D;">分析</span>：关于`scroller`组建的重要性，我们在上文已经提过了，所以列表页我们需要在顶层包裹一个`scroller`组件，由于页面涉及到上拉刷新，我们采用
+`chameleon`的[扩展组件](#kuozhan)：[c-refresh](../component/expand/polymorphism/c-refresh.md)来实现这个需求；然后利用`CML-标准语法`的[列表渲染](../view/iterator.md)来填充我们列表；
+由于是一个新的页面，因此我们需要给他[配置路由](../framework/router.md)，以及页面的[跳转](../api/navigate.md)；当然还有列表页的[mock数据](../framework/mock.md)；
+由于构建首页我们已经介绍了组件的使用方式，故此页面不再分拆子组件；
 
-- 执行`cml init page`，输入`list`，我们可以看到在`src/pages`下多了一个`list`文件夹；
-- 配置`list`页面路由，我们更改`src/router.config.json`文件，具体如下：
-```shell
+
+- 执行`cml init page`初始化生成一个`list`页面;
+
+- 配置`list`页面[路由](#router)，我们更改`src/router.config.json`文件，具体如下：
+
+```javascript
 {
   "mode": "history",
   "domain": "https://www.chameleon.com",
   "routes":[
-    {
-      "url": "/cml/h5/index",
-      "path": "/pages/index/index",
-      "name": "首页",
-      "mock": "index.php"
-    },
+    ...
     {
       "url": "/cml/h5/list",
       "path": "/pages/list/list",
@@ -744,14 +357,23 @@ export default new Classlist();
 }
 ```
 
-- 更改`pages/list/list.cml`代码，见内置组件`c-refresh`组件官方示例代码，直接拷贝即可；
+- 如何从首页[跳转](#tiaozhuan)到列表页呢？我们更改组件`classlist.cml`中的`mathods`方法：
 
-#### 4.1 配置接口
-- 更改`mock/api/index.js`文件，我们配置一个`api/listImage`接口，代码如下：
+```javascript
+methods = {
+  change() {
+    cml.navigateTo({
+      "path": "/pages/list/list"
+    });
+  }
+}
+```
 
-```shell
-module.exports = [
-  {
+- 配置`list`页面的[mock数据](#mock)，我们配置一个`/api/listImage`接口，更改`mock/api/index.js`文件，具体如下：
+
+```javascript
+...
+{
     method: ['get', 'post'],
     path: '/api/listImage',
     controller: function (req, res, next) {
@@ -772,14 +394,13 @@ module.exports = [
         }
       });
     }
-  }
-]
+}
+
 ```
 
-#### 4.2 渲染页面
-- 修改`pages/list/list.cml`文件中的代码，修改相关的样式；
+- 改造`pages/list/list.cml`文件中的代码；
 
-```shell
+```javascript
 <template>
   <page title="列表">
     <view class="container">
@@ -901,132 +522,13 @@ module.exports = [
 
   export default new Refresh();
 </script>
-<style scoped>
-  .container {
-    flex: 1;
-  }
 
-  .bannerImg {
-    width: 750 cpx;
-    height: 390 cpx;
-    background: #f4f4f4;
-  }
-
-  .topImg {
-    width: 750 cpx;
-    height: 370 cpx;
-  }
-
-  .scrollContent__title, .scrollContent__des {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .scrollContent__title__con {
-    padding-top: 30 cpx;
-    font-size: 32 cpx;
-    color: #333;
-  }
-
-  .scrollContent__des__con {
-    font-size: 24 cpx;
-    color: #999;
-  }
-
-  .scrollContent__list {
-    width: 750 cpx;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .scrollContent__list__item {
-    width: 345 cpx;
-    background: aqua;
-    margin-left: 20 cpx;
-    padding-top: 30 cpx;
-  }
-
-  .scrollContent__list__item-content {
-    width: 345 cpx;
-    position: relative;
-  }
-
-  .scrollContent__list__item-content-img {
-    width: 345 cpx;
-    height: 345 cpx;
-  }
-
-  .scrollContent__list__item-content-des {
-    width: 345 cpx;
-    height: 40 cpx;
-    line-height: 40 cpx;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 0 20 cpx;
-    background: #F1ECE2;
-    color: #9F8A60;
-    font-size: 26 cpx;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-  }
-
-  .scrollContent__list__item-name {
-    white-space: nowrap;
-    color: #333;
-    font-size: 30 cpx;
-  }
-
-  .scrollContent__list__item-money {
-    color: #b4282d;
-    font-size: 34 cpx;
-  }
-
-  .scrollContent__list__item-tag {
-    display: inline-block;
-    width: 110 cpx;
-    padding: 0 10 cpx;
-    font-size: 20 cpx;
-    color: #B4282D;
-    background: rgba(255, 255, 255, .9);
-    border: 1px solid #B4282D;
-    border-radius: 4 cpx;
-  }
-
-  .no-more-text {
-    color: #999;
-    font-size: 36 cpx;
-    text-align: center;
-    margin: 50 cpx 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .loading-text {
-    color: #999;
-    font-size: 36 cpx;
-    text-align: center;
-    margin: 50 cpx 0;
-  }
-</style>
 <script cml-type="json">
 {
   "base": {
     "usingComponents": {
       "c-refresh": "@didi/chameleon-ui/components/c-refresh/c-refresh"
     }
-  },
-  "wx": {
-    "navigationBarTitleText": "index",
-      "backgroundTextStyle": "dark",
-      "backgroundColor": "#E2E2E2"
   }
 }
 </script>
@@ -1036,15 +538,18 @@ module.exports = [
 我们可以上拉刷新，下拉加载，如图：
 <img src="../assets/wangyilist.png" width="300px" height="100%" />
 
-### 5 构建详情页
+### 4 构建详情页
+<span style="color:#B4282D;">分析</span>：关于`scroller`组建的重要性，我们在上文已经提过了，所以详情页我们仍然需要在顶层包裹一个`scroller`组件；
+一般来讲，商品类的详情页顶部是一个商品的轮播图，下面是一些商品的参数信息。我们仍然用`chameleon`内置的组件[carousel](../component/base/layout/carousel.md)来做轮播功能，
+我们增加一个地图组件，用[组件多态](../framework/polymorphism/component.md)来实现它；由于构建首页我们已经介绍了组件的使用方式，故此页面不再分拆子组件；
 
-#### 5.1 按照构建列表页的方式新建一个`detail`页面，并在`src/router.config.json`文件中配置路由；
 
-#### 5.2 在`pages/list.cml`文件中配置跳转链接；
+- 按照构建列表页的方式新建一个`detail`页面，并在`src/router.config.json`文件中配置路由；
 
-```shell
+-  在`pages/list.cml`文件中配置跳转链接；
+
+```javascript
 methods = {
-    ...
     change(e) {
         cml.navigateTo({
             "path": "/pages/home/home",
@@ -1054,14 +559,11 @@ methods = {
             }
         })
     }
-    ...
 }
 ```
 
-#### 5.3 渲染`pages/detail.cml`页面；
-- 首先我们拷贝`carousel`官方示例代码，打开页面如图：
-![](../assets/detail_carousel.png)
-- 配置mock数据，修改`mock/api/index.js`文件，增加一个`api/detailInfo`接口，如下：
+- 配置`detail`页面的mock数据，修改`mock/api/index.js`文件，增加一个`api/detailInfo`接口，如下：
+
 ```javascript
 {
   method: ['get', 'post'],
@@ -1088,33 +590,13 @@ methods = {
     });
   }
 }
-```
-- 请求数据；
-```shell
-data = {
-  bannerImg: [],
-  descriptionInfo: [],
-  money: 0,
-  appTag: ''
-}
-created() {
-  cml.get({
-      url: '/api/detailInfo'
-  }).then(res => {
-      if(res.code == 0){
-          const { carouselList, description, money, tag } = res.data;
-          this.bannerImg = carouselList;
-          this.descriptionInfo = description;
-          this.money = money;
-          this.appTag = tag;
-      }
-  })
-}
+
 ```
 
-- 写入相关的css样式，最后detail的代码为：
 
-```shell
+- 改造`detail`页面代码如下，样式详情请见源码：
+
+```javascript
 <template>
   <page title="详情页">
     <view class="content">
@@ -1212,12 +694,9 @@ created() {
           {
             wd: 'didichuxing',
             time: new Date()
-          },
-          {
+          },{
             closeCurrent: false
-          }
-        );
-
+          });
       }
     }
 
@@ -1236,194 +715,7 @@ created() {
       })
     }
   }
-
   export default new Detail();
-</script>
-
-<style scoped>
-  .content {
-    background: #f4f4f4;
-  }
-
-  .carousel-container {
-    height: 750 cpx;
-  }
-
-  .carousel-carousel-item, .Img {
-    height: 750 cpx;
-    width: 750 cpx;
-  }
-
-  .description {
-    width: 750 cpx;
-    height: 128 cpx;
-    background-color: #F9F9F9;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .description-item {
-    width: 210 cpx;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-  }
-
-  .description-item-img {
-    width: 72 cpx;
-    height: 72 cpx;
-    overflow: hidden;
-    border-radius: 36 cpx;
-  }
-
-  .description-item-img-con {
-    width: 72 cpx;
-    height: 72 cpx;
-  }
-
-  .description-item-des {
-    height: 72 cpx;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .description-item-des-tag {
-    font-size: 28 cpx;
-    color: #666;
-  }
-
-  .section {
-    background: #fff;
-    padding: 30 cpx 0 30 cpx 30 cpx;
-  }
-
-  .class-money {
-    color: #B4282D;
-    font-size: 50 cpx;
-    font-weight: bold;
-  }
-
-  .section-tag {
-    width: 240 cpx;
-    height: 40 cpx;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6 cpx;
-    border: 2 cpx solid #B4282D;
-  }
-
-  .section-tag-con {
-    color: #B4282D;
-    font-size: 24 cpx;
-  }
-
-  .section-evaluate {
-    margin-top: 20 cpx;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .section-evaluate-info {
-    width: 550 cpx;
-    height: 90 cpx;
-    border-right: 2 cpx dashed #666;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .section-evaluate-info-name {
-    font-size: 34 cpx;
-    color: #333;
-  }
-
-  .section-evaluate-info-desc {
-    font-size: 24 cpx;
-    color: #666666;
-  }
-
-  .section-evaluate-number {
-    width: 180 cpx;
-    display: flex;
-    justify-content: center;
-  }
-
-  .section-evaluate-number-total {
-    display: flex;
-    justify-content: center;
-    color: #B4282D;
-    font-size: 30 cpx;
-  }
-
-  .section-evaluate-number-ping {
-    display: flex;
-    justify-content: center;
-    color: #666666;
-    font-size: 24 cpx;
-  }
-
-  .coupon {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    background: #ffffff;
-    padding: 30 cpx 20 cpx;
-    margin: 15 cpx 0;
-  }
-
-  .coupon-tag {
-    background-image: linear-gradient(90deg, #FF8659 0, #FF2C30 100%);
-    font-size: 22 cpx;
-    color: #ffffff;
-    padding: 0 14 cpx;
-    border-radius: 16 cpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .coupon-money {
-    font-size: 30 cpx;
-    color: #555555;
-    margin-left: 10 cpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .coupon-get {
-    color: #FF2E31;
-    font-size: 26 cpx;
-    padding: 4 cpx 16 cpx;
-    border-radius: 30 cpx;
-    border: 2 cpx solid #FF2E31;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 120 cpx;
-
-  }
-
-</style>
-
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": {}
-  },
-  "wx": {
-    "navigationBarTitleText": "index",
-    "backgroundTextStyle": "dark",
-    "backgroundColor": "#E2E2E2"
-  }
-}
 </script>
 
 ```
@@ -1431,15 +723,16 @@ created() {
 - 我们可以看到如图：<img src="../assets/detail22.png" width="200px" height="100%" />
 
 
-#### 5.4 用多态组件实现地图功能；
+#### 4.1 用[多态](#duotai)组件实现地图功能；
 
-##### 5.4.1 初始化一个多态组件；
 
-- 输入命令：`cml init component`
-- 选择多态组件，回车。
-- 在`src/component`下面，我们可以看到四个文件：`map.interface``map.web.cml``map.weex.cml``map.wx.cml`;
+##### 4.1 初始化一个多态组件；
 
-##### 5.4.2 多态组件---web组件(map.web.cml)改造；
+- 终端输入：`cml init component`，选择多态组件，输入组件名`map`，回车。
+
+- 在`src/component`下面，我们可以看到四个文件：`map.interface`、`map.web.cml`、`map.weex.cml`和`map.wx.cml`;
+
+##### 4.2 多态组件---web组件(map.web.cml)改造；
 
 - 我们选择高德地图，并且用`vue-amap`这个库；`npm i vue-amap --save`
 - 我们进行基本的改造之后，`map.web.cml`文件代码如下：
@@ -1478,26 +771,12 @@ created() {
   }
   export default new Map();
 </script>
-<style scoped>
-  .amap-wrapper {
-    width: 750cpx;
-    height: 350cpx;
-  }
-</style>
-
-<script cml-type="json">
-{
-  "base": {
-    "usingComponents": { }
-  }
-}
-</script>
 
 ```
 
 - 在`pages/detail/detail.cml`文件中，我们引入`map`组件组件。配置如下：
 
-```shell
+```javascript
 <template>
   <page title="详情页">
       <view class="content">
@@ -1515,14 +794,7 @@ created() {
       </view>
   </page>
 </template>
-<style scoped>
-  ...
-  .map{
-    width: 750cpx;
-    height: 350cpx;
-    border: 2cpx solid red;
-  }
-</style>
+
 <script cml-type="json">
 {
   "base": {
@@ -1538,12 +810,11 @@ created() {
 - 刷新页面，我们可以看到web端正常显示出来了地图；其他端显示的是默认值；
 - 接下来我们改造微信小程序端的地图组件；
 
-
-##### 5.4.2 多态组件---微信小程序组件(map.wx.cml)改造；
+##### 4.3 多态组件---微信小程序组件(map.wx.cml)改造；
 - 根据高德地图小程序开发文档，我们下载一个`amap-wx.js`的SDK文件，暂时放到`map`组件里面。
 - 根据高德地图小程序开发文档官方demo，我们改造`map.wx.cml`文件；具体代码如下：
 
-```shell
+```javascript
 <template>
   <view class="map_container">
     <origin-map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true"
@@ -1604,23 +875,17 @@ created() {
 
   export default new Map();
 </script>
-<style scoped>
-  .map {
-    width: 750 cpx;
-    height: 300 cpx;
-  }
-</style>
 
 ```
 - 刷新页面，我们可以看到小程序端和web端正常显示出来了地图；native端显示的是默认值；
 
-##### 5.4.3 多态组件---native端(map.weex.cml)改造；
+##### 4.4 多态组件---native端(map.weex.cml)改造；
 
 - 简介；
 - 我们初始化一个`map`页面：输入`cml init page`,输入`map`；我们可以看到在`src/pages`下面多出了一个文件夹；
 - 我们给新页面`map.cml`配置一下路由，改造`src/router.config.json`文件；
 
-```shell
+```javascript
 {
   "mode": "history",
   "domain": "https://www.chameleon.com",
@@ -1639,7 +904,7 @@ created() {
 
 - 我们在页面`map.cml`文件中引入我们的多态组件；具体代码如下：
 
-```shell
+```javascript
 <template>
   <view>
     <map></map>
@@ -1683,16 +948,8 @@ export default new Map();
       })
     }
   }
-  
   export default new Map();
 </script>
-
-<style scoped>
-  .map-container{
-    width: 750cpx;
-    height: 350cpx;
-  }
-</style>
 
 ```
 
@@ -1714,5 +971,4 @@ export default new Map();
 </div>
 
 代码地址：
-<a href="../extend/new-wangyi.zip" download='code'>下载</a>
-
+<a href="../extend/new-wangyi.zip" target="_blank">下载</a>
