@@ -7,7 +7,7 @@
 
 主站: [didi.github.io/chameleon](https://didi.github.io/chameleon)
 * [安装](https://didi.github.io/chameleon/doc/quick_start/quick_start.html)
-* [快速上手](https://ddi.github.io/chameleon/doc/quick_start/quick_start.html)
+* [快速上手](https://didi.github.io/chameleon/doc/quick_start/quick_start.html)
 * [API文档](https://didi.github.io/chameleon/doc/api/api.html)
 * [组件文档](https://didi.github.io/chameleon/doc/component/component.html)
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
