@@ -88,14 +88,7 @@ export default new CCheckbox();
   align-items: center;
   position: relative;
 }
-.checkbox-wrap::after{
-  content: "";
-  position: absolute;
-  left: -5cpx;
-  right: -5cpx;
-  top: -5cpx;
-  bottom: -5cpx;
-}
+
 .box {
   transition-property: width, height;
   transition-duration: 0.1s;
@@ -109,15 +102,6 @@ export default new CCheckbox();
   "base": {
     "usingComponents": {
     }
-  },
-  "wx": {
-    "component": true
-  },
-  "alipay": {
-    "component": true
-  },
-  "baidu": {
-    "component": true
   }
 }
 </script>

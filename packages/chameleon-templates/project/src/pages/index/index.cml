@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import cml from "chameleon-api";
 
 class Index  {
   data = {

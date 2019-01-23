@@ -1,6 +1,6 @@
 <script cml-type="interface">
 interface ReplaceInterface {
-  getMsg(msg: string): void;
+  getMsg(msg: String): String;
 }
 
 </script>
