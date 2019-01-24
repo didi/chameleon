@@ -13,6 +13,9 @@ parseAnimationTag.tap('wx', (args) => {
   }
   if (type === 'wx' || type === 'baidu' || type === 'alipay') {
     node.name.name = 'animation';
+    if (type === 'alipay') {
+      node.value && (node.value.value = `{{(${utils.trimCurly(node.value.value)}).actions}}`)
+    }
   }
 
 })
