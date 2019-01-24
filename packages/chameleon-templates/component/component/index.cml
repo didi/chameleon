@@ -1,5 +1,5 @@
 <template>
-  <view><text>chameleon</text></view>
+  <view><text>Hello Chameleon!</text></view>
 </template>
 
 <script>

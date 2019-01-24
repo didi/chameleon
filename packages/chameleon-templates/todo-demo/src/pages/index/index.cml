@@ -214,14 +214,7 @@ export default new Index();
   height: 22cpx;
   overflow: hidden;
 }
-.add-btn::after{
-  content: "";
-  position: absolute;
-  left: -10cpx;
-  right: -10cpx;
-  bottom: -10cpx;
-  top: -10cpx;
-}
+
 .black-arrow {
   position: absolute;
   left: -20cpx;
