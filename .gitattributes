@@ -1,0 +1,6 @@
+*.js linguist-language=JavaScript
+*.css linguist-language=JavaScript
+*.html linguist-language=JavaScript
+*.php linguist-language=JavaScript
+*.interface linguist-language=JavaScript
+*.cml linguist-language=JavaScript

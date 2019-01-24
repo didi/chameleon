@@ -37,7 +37,7 @@ parseCondition.tap('baidu', (args) => {
     let targetCondition = conditionMap[currentCondition] && conditionMap[currentCondition][type];
     if (targetCondition && currentCondition !== targetCondition) {
       node.name.name = targetCondition;
-      node.value.value = utils.trimCurly(node.value.value);
+      node.value && t.isStringLiteral(node.value) && (node.value.value = utils.trimCurly(node.value.value));
     }
   }
 })

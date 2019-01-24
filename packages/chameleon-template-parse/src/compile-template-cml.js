@@ -16,6 +16,8 @@ exports.compileTemplateForCml = function (source, type, options) {
   source = processTemplate.preParseDiffPlatformTag(source, type);
   // 预处理:属性 jsx不支持 :name="sth" ==> v-bind:name="sth"
   source = processTemplate.preParseBindAttr(source);
+  // 预处理vue事件 @click="handleClick" ==> c-bind:click="handleClick"
+  source = processTemplate.preParseVueEvent(source);
   // 预处理 标签内的 {{item.id}} 这种语法jsx无法识别，转化为 _cml{item.id}lmc_
   source = processTemplate.preParseMustache(source);
   // 预处理：解析_cml_lt_lmc_ ==> <; _cml_gt_lmc_ ==> >
