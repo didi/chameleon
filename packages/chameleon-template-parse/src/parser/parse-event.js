@@ -115,7 +115,7 @@ parseEvent.tap('alipay', (args) => {
     let container = path.container;
     let value = container.value;
     let parentPath = path.parentPath;
-    let name = node.name && node.name.name;// alipay需要将事件名称转化成大写；
+    let name = node.name && (node.name.name === 'click' ? 'tap' : node.name.name);// alipay需要将事件名称转化成大写；
     let aliName = utils.titleLize(eventMap[name] || name);
     let handler = value.value && utils.trim(value.value);
     let match = utils.isInlineStatementFn(handler);
