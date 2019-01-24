@@ -265,6 +265,7 @@ _.getJsonFileContent = function (filePath, confType) {
   } catch (e) {
     log.warn(`${filePath} 对应的json文件格式不正确`);
   }
+  jsonObject = jsonObject || {};
   let targetObject = jsonObject[confType] || {};
   if (jsonObject.base) {
     targetObject = _.merge(jsonObject.base, targetObject)
@@ -641,7 +642,7 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   if (~filePath.indexOf('node_modules')) {
     refUrl = _.npmComponentRefPath(filePath, context);
     // 改为相对路径
-    refUrl = _.npmRefPathToRelative(refUrl, filePath, context);
+    refUrl = _.npmRefPathToRelative(refUrl, cmlFilePath, context);
 
   } else {
     // 改成相对路径
