@@ -15,8 +15,12 @@ _.uniqueStyle = function(content) {
     }
     uniqueStyleKeyValue[key] = value;
   });
-  return Object.entries(uniqueStyleKeyValue).map(keyValue => keyValue.join(':'))
-    .join(';');
+
+  let result = [];
+  Object.keys(uniqueStyleKeyValue).forEach(key => {
+    result.push(`${key}:${uniqueStyleKeyValue[key]}`)
+  })
+  return result.join(';');
 }
 // 用于删除css样式的注释； /*width:100px;*/ ==> ''
 _.disappearCssComment = function(content) {
