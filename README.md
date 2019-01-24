@@ -5,7 +5,7 @@
 
 ## 文档
 
-主站: [didi.github.io/chameleon](https://didi.github.io/chameleon)
+主站: [https://cmljs.org](https://cmljs.org)
 * [安装](https://didi.github.io/chameleon/doc/quick_start/quick_start.html)
 * [快速上手](https://didi.github.io/chameleon/doc/quick_start/quick_start.html)
 * [API文档](https://didi.github.io/chameleon/doc/api/api.html)
