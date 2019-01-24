@@ -67,21 +67,22 @@ describe('parse-template-cml', function() {
     });
   });
   describe('parseConditionalStatement-alipay', function() {
-    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view></view>`;
+    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseConditionalStatement;
     let result = compileTemplate(source, 'alipay', options, callback);
     it('test-condition-alipay-transform', function() {
-      expect(result).to.equal(`<view><view a:if="true"></view><view a:elif="true"></view><view a:else="true"></view></view>`)
+      expect(result).to.equal(`<view><view a:if="true"></view><view a:elif="true"></view><view a:else></view></view>`)
     });
   });
   describe('parseConditionalStatement-baidu', function() {
-    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view></view>`;
+    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view><view c-else></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseConditionalStatement;
     let result = compileTemplate(source, 'baidu', options, callback);
+    console.log('condition-baidu',result)
     it('test-condition-baidu-transform', function() {
-      expect(result).to.equal(`<view><view s-if="true"></view><view s-elif="true"></view><view s-else="true"></view></view>`)
+      expect(result).to.equal(`<view><view s-if="true"></view><view s-elif="true"></view><view s-else="true"></view><view s-else></view></view>`)
     });
   });
   // parseEventListener
