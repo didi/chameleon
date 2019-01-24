@@ -5,6 +5,7 @@ module.exports = function(source = '', targetType) {
   if (!reg.test(source)) {
     return source;
   }
+  reg.lastIndex = 0;
   while (true) { // eslint-disable-line
     let result = reg.exec(source);
     if (!result) {break;}
