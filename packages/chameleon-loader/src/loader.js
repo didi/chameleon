@@ -219,7 +219,6 @@ module.exports = function (content) {
     })
 
     usingComponents = prepareParseUsingComponents(usingComponents);
-
     //cml 编译出wxml模板
     if (type !== 'app') {
       let parseTemplate = parts.template && parts.template[0];
@@ -430,9 +429,9 @@ module.exports = function (content) {
   }
   /**
    * 给template parse 提供组件的引用信息
-   * 目前不包括内置组件与npm库中引用的组件
+   * 目前不包括内置组件
    * 1 小程序的component is的实现  不能有内置组件  否则无法按需加载
-   * 2 判断原生组件不代理事件，内置组件与通过cmlComponents指定引入的组件库必须是cml组件，所以也可以不处理
+   * 2 判断原生组件不代理事件，
    * 
    * @param {*} originObj key 为组件名称，value为refPath的对象
    * @return {*} [{
@@ -446,6 +445,11 @@ module.exports = function (content) {
     return Object.keys(originObj).map(key=>{
       let value = originObj[key];
       let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, self.resourcePath, value, cmlType);
+      // 如果是node_modules中的refUrl中会变成npm，替换成node_modules后再查找组件
+      if(~value.indexOf('/npm') && filePath === '') {
+        value = value.replace('/npm/','/node_modules/');
+        filePath = cmlUtils.handleComponentUrl(context, self.resourcePath, value, cmlType).filePath;
+      }
       return {
         tagName: key,
         refUrl,
