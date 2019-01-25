@@ -23,6 +23,6 @@
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0"
   },
-  "version": "0.0.29",
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+  "version": "0.0.30",
+  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09"
 }

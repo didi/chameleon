@@ -55,9 +55,9 @@
       "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
     },
     "cml-ui": {
-      "version": "0.0.5",
-      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.0.5.tgz",
-      "integrity": "sha512-2JSIuvuIHwDD5DueZeo7Nx2N+EhU4kXNBJRUJqBbRR4vaQdLTyT2LqEKHRDPDjB7DxLC8WChuZS1wifa96wuXw==",
+      "version": "0.0.6",
+      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.0.6.tgz",
+      "integrity": "sha512-6Dq+h4AnCYAevIWbJE6EOLobAA1Q78eqvl9BRngRIK7/vmMwU0UYBTd3g72c9G+y42bxGBGlfrcZWKs7PqcP0A==",
       "requires": {
         "classnames": "2.2.6"
       }

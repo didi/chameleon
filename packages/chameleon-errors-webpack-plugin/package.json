@@ -1,5 +1,5 @@
 {
-  "version": "0.0.29",
+  "version": "0.0.30",
   "name": "chameleon-errors-webpack-plugin",
   "main": "index.js",
   "author": "Chameleon-Team",
@@ -33,5 +33,6 @@
     "errors",
     "webpack",
     "plugin"
-  ]
+  ],
+  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09"
 }
