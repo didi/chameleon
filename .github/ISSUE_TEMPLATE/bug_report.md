@@ -24,3 +24,4 @@ assignees: ''
  - nodejs版本、npm版本：[node v8.11.4、npm 5.6.0]
  - 手机机型: [e.g. iPhone6 12.0]
  - 端版本： [e.g. 微信小程序 7.0.3、weex 2.0、手机Safari浏览器 、PC Chrome浏览器 1.30]
+ - 电脑操作系统： [e.g. macOS High Sierra 10.13.6]
