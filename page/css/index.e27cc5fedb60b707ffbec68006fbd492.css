@@ -1,0 +1,478 @@
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+ul,
+li,
+dl,
+dt,
+dd,
+p {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+img {
+  margin: 0px;
+  padding: 0px;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  /* 触发 hasLayout */
+  zoom: 1;
+}
+a {
+  text-decoration: none;
+}
+.tc {
+  text-align: center;
+}
+.main {
+  max-width: 1024px;
+  margin: 0px auto;
+}
+.f24 {
+  font-size: 24px;
+  line-height: 24px;
+}
+.f48 {
+  font-size: 48px;
+  line-height: 48px;
+}
+.title {
+  font-size: 24px;
+  color: #474D66;
+  line-height: 36px;
+  padding-top: 4.8%;
+}
+.text {
+  font-size: 14px;
+  color: #474D66;
+  line-height: 20px;
+  margin-top: 0.8%;
+  margin-bottom: 5.2%;
+  padding: 0px 20px;
+}
+.top {
+  width: 100%;
+  background: #15143c;
+}
+.top .top-container {
+  max-width: 2000px;
+  position: relative;
+  margin: 0px auto;
+  height: 100%;
+}
+.top .top-container .banner {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.top .top-container .header {
+  width: 100%;
+  position: absolute;
+  padding-top: 24px;
+  top: 0px;
+}
+.top .top-container .header .logo {
+  width: 10%;
+  min-width: 100px;
+  margin-left: 3.5%;
+  float: left;
+}
+.top .top-container .header .logo img {
+  display: block;
+  width: 100%;
+}
+.top .top-container .top-container-cml {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 30%;
+  left: 0px;
+  padding: 0px 10px;
+}
+.top .top-container .top-container-cml p {
+  color: #fff;
+  text-align: center;
+  padding-bottom: 3.5%;
+}
+.btn {
+  margin: 0px auto;
+  width: 296px;
+}
+.btn .btn-defult {
+  width: 128px;
+  height: 36px;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  float: left;
+  color: #fff;
+  text-align: center;
+  line-height: 36px;
+  font-size: 13px;
+  margin: 0px 10px;
+}
+.btn .btn-defult a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  cursor: pointer;
+}
+.content {
+  width: 100%;
+}
+.content .introduce {
+  max-width: 1024px;
+  margin: 0px auto;
+}
+.content .introduce .introduce-list ul li {
+  width: 33.3%;
+  float: left;
+  padding: 0px 5%;
+  margin-bottom: 5.2%;
+}
+.content .introduce .introduce-list ul li .introduce-list-img {
+  width: 100px;
+  height: 100px;
+  margin: 0px auto 20px;
+}
+.content .introduce .introduce-list ul li .introduce-list-img img {
+  display: block;
+  width: 100%;
+}
+.content .introduce .introduce-list ul li .introduce-list-title {
+  color: #474D66;
+  font-size: 20px;
+  text-align: center;
+}
+.content .introduce .introduce-list ul li .introduce-list-text {
+  color: #7A8899;
+  font-size: 13px;
+  line-height: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+.platform {
+  width: 100%;
+  background-color: #F4F4F4;
+  padding-bottom: 40px;
+}
+.platform .platform-img {
+  max-width: 1024px;
+  margin: 0px 40px;
+}
+.platform .platform-img img {
+  width: 100%;
+}
+.platform-bottom {
+  max-width: 727px;
+  margin: 110px auto 0px;
+}
+.platform-bottom p {
+  text-align: center;
+  font-size: 24px;
+  color: #474D66;
+  margin-bottom: 60px;
+}
+.platform-bottom ul li {
+  float: left;
+  margin: 0px 25px 70px;
+}
+@media only screen and (max-width: 1024px) {
+.f24 {
+    font-size: 16px;
+    line-height: 24px;
+}
+.f48 {
+    font-size: 32px;
+    line-height: 48px;
+}
+.bottom .row .link-column ul {
+    max-width: 120px;
+    margin-top: 10px;
+}
+}
+@media only screen and (max-width: 800px) {
+.f24 {
+    font-size: 16px;
+    line-height: 16px;
+}
+.f48 {
+    font-size: 26px;
+    line-height: 32px;
+}
+}
+@media only screen and (max-width: 635px) {
+.f24 {
+    font-size: 12px;
+    line-height: 24px;
+}
+.f48 {
+    font-size: 18px;
+    line-height: 48px;
+}
+body {
+    font-size: 50%;
+}
+.top {
+    min-height: 300px;
+}
+.top .top-container .banner {
+    display: none;
+}
+.content .introduce .title {
+    font-size: 18px;
+}
+.content .introduce .text {
+    font-size: 12px;
+    line-height: 20px;
+}
+.content .introduce .introduce-list ul li {
+    width: 100%;
+    float: left;
+    padding: 0px 5%;
+    margin-bottom: 5.2%;
+}
+.content .introduce .introduce-list ul li .introduce-list-img {
+    width: 50px;
+    height: 50px;
+    margin: 0px auto 20px;
+}
+.content .introduce .introduce-list ul li .introduce-list-img img {
+    display: block;
+    width: 100%;
+}
+}
+
+.nav {
+  float: right;
+  margin-right: 3.5%;
+  margin-top: 4px;
+}
+.nav ul.list li.listLi {
+  float: left;
+  color: #fff;
+  margin-left: 80px;
+  cursor: pointer;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+}
+.nav ul.list li.listLi img {
+  position: relative;
+  margin-left: 8px;
+  top: -2px;
+  width: 8px;
+}
+.nav ul.list li.listLi a {
+  color: #fff;
+  cursor: pointer;
+}
+.nav ul.list li.listLi ul.listChild {
+  position: absolute;
+  top: 30px;
+  left: -14px;
+  display: none;
+  background: #fff;
+  border-radius: 2px;
+  z-index: 9999;
+}
+.nav ul.list li.listLi ul.listChild li {
+  width: 124px;
+  height: 42px;
+  line-height: 42px;
+  font-size: 14px;
+  text-align: left;
+  padding-left: 16px;
+}
+.nav ul.list li.listLi ul.listChild li a {
+  color: #7A8899;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nav ul.list li.listLi ul.listChild li a:hover {
+  color: #1D6EF0;
+}
+.nav ul.list li.listLi ul.active {
+  display: block;
+}
+@media only screen and (max-width: 600px) {
+.nav ul.list {
+    display: none;
+}
+.nav ul.list li.listLi {
+    margin-left: 20px;
+}
+.nav .menu {
+    display: block;
+}
+}
+
+.nav {
+  float: right;
+  margin-right: 3.5%;
+  margin-top: 4px;
+}
+.nav .menu img {
+  display: block;
+  width: 24px;
+}
+.nav .mNav {
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  padding-top: 10px;
+  position: fixed;
+  top: 0px;
+  left: -210px;
+  width: 200px;
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  z-index: 9999;
+}
+.nav .mNav li.listLi {
+  color: #7A8899;
+  padding-left: 22px;
+  font-size: 14px;
+  line-height: 40px;
+}
+.nav .mNav li.listLi .listChild {
+  padding-left: 20px;
+}
+.nav .mNav li.listLi .listChild li a {
+  color: #7A8899;
+}
+.nav .mNavBlock {
+  -webkit-transform: translateX(210px);
+  transform: translateX(210px);
+}
+.nav .layer {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9991;
+}
+
+.bottom {
+  width: 100%;
+  min-height: 35%;
+  background-color: #3B3E4D;
+}
+.bottom .cml-logo {
+  width: 40%;
+  float: left;
+  margin-top: 60px;
+  margin-left: 7%;
+  padding-right: 4%;
+  padding-bottom: 60px;
+}
+.bottom .cml-logo img {
+  width: 24%;
+}
+.bottom .cml-logo .cml-logo-text {
+  font-size: 12px;
+  color: #7A8899;
+  line-height: 16px;
+  margin-top: 4px;
+}
+.bottom .row {
+  float: right;
+  padding-top: 60px;
+  width: 30%;
+  min-width: 192px;
+}
+.bottom .row img {
+  display: block;
+  width: 40%;
+  height: 40%;
+  margin: 0px auto;
+}
+.bottom .row p {
+  color: #7A8899;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 10px;
+}
+.bottom .row .link-column {
+  float: left;
+  margin-right: 10%;
+}
+.bottom .row .link-column .link-column-title {
+  font-size: 12px;
+  color: #7A8899;
+  padding-bottom: 10px;
+}
+.bottom .row .link-column a {
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  color: #AFB7C2;
+  margin-top: 10px;
+  line-height: 20px;
+}
+.bottom .row .link-column ul {
+  margin-top: 10px;
+}
+.bottom .row .link-column ul li {
+  float: left;
+  margin-right: 24px;
+  min-height: 50px;
+}
+.bottom .row .link-column ul li:last-child {
+  margin-right: 0px;
+}
+.bottom .row .link-column:last-child {
+  margin-right: 0px;
+}
+@media only screen and (max-width: 600px) {
+.bottom .cml-logo {
+    width: 100%;
+    float: none;
+    border-right: 0px;
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+.bottom .cml-logo img {
+    width: 24%;
+    display: block;
+}
+.bottom .row {
+    float: none;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 40px;
+}
+.bottom .row img {
+    width: 100%;
+}
+.bottom .row .link-column ul {
+    max-width: 120px;
+    margin-top: 10px;
+}
+}
+
+/*# sourceMappingURL=index.e27cc5fedb60b707ffbec68006fbd492.css.map*/
