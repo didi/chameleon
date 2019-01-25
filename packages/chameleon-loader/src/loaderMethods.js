@@ -5,9 +5,9 @@ exports.prepareParseUsingComponents = function({loaderContext, context, originOb
   return Object.keys(originObj).map(key => {
     let value = originObj[key];
     let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, loaderContext.resourcePath, value, cmlType);
-    // 如果是node_modules中的refUrl中会变成npm，替换成/node_modules/后再查找组件
+    // 如果是node_modules中的refUrl中会变成npm，替换成/node_modules/后再查找组件 只替换node_modules 路径也会有问题
     if (~value.indexOf('/npm') && filePath === '') {
-      value = value.replace(/(.*?)npm\//g, '/node_modules/');
+      value = value.replace(/(.*?)npm\//, '/node_modules/');
       filePath = cmlUtils.handleComponentUrl(context, loaderContext.resourcePath, value, cmlType).filePath;
     }
     return {
