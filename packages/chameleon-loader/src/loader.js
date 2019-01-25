@@ -15,6 +15,7 @@ var jsonHandler = require('./cml-compile/json-handle.js');
 const { getScriptCode } = require('./interface-check/getScriptCode.js');
 const cmlUtils = require('chameleon-tool-utils');
 const prehandle = require('./utils/prehandle.js');
+const loaderMethods = require('./loaderMethods');
 let jsonObject = {};
 
 module.exports = function (content) {
@@ -442,24 +443,13 @@ module.exports = function (content) {
    * }]
    */
   function prepareParseUsingComponents(originObj) {
-    return Object.keys(originObj).map(key=>{
-      let value = originObj[key];
-      let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, self.resourcePath, value, cmlType);
-      // 如果是node_modules中的refUrl中会变成npm，替换成node_modules后再查找组件
-      if(~value.indexOf('/npm') && filePath === '') {
-        value = value.replace('/npm/','/node_modules/');
-        filePath = cmlUtils.handleComponentUrl(context, self.resourcePath, value, cmlType).filePath;
-      }
-      return {
-        tagName: key,
-        refUrl,
-        filePath,
-        isNative: !filePath.endsWith('.cml')
-      }
+    return loaderMethods.prepareParseUsingComponents({
+      loaderContext: self,
+      context,
+      originObj,
+      cmlType
     })
-     
   }
-
   // done
   return output
 }
