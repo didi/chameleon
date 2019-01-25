@@ -5,7 +5,7 @@
 
 ## 文档
 
-主站: [https://CMLJS.org](https://cmljs.org)
+主站: [CMLJS.org](https://cmljs.org)
 * [安装](https://CMLJS.org/doc/quick_start/quick_start.html)
 * [快速上手](https://CMLJS.org/doc/quick_start/quick_start.html)
 * [API文档](https://CMLJS.org/doc/api/api.html)
