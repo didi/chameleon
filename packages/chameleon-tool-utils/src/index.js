@@ -759,7 +759,7 @@ _.npmRefPathToRelative = function(npmRefPath, cmlFilePath, context) {
 _.npmComponentRefPath = function (componentAbsolutePath, context) {
   let refUrl = '';
   refUrl = path.relative(context, componentAbsolutePath);
-  refUrl = refUrl.replace('node_modules', 'npm');
+  refUrl = refUrl.replace(/node_modules/g, 'npm');
   refUrl = _.handleWinPath(refUrl);
   if (refUrl[0] !== '/') {
     refUrl = '/' + refUrl
@@ -920,7 +920,7 @@ _.getEntryPath = function (filePath, context) {
   let entryName;
   if (~filePath.indexOf('node_modules')) {
     entryName = path.relative(root, filePath);
-    entryName = entryName.replace('node_modules', 'npm');
+    entryName = entryName.replace(/node_modules/g, 'npm');
   } else {
     entryName = path.relative(projectPath, filePath);
   }
