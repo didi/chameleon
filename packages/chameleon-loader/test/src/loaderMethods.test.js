@@ -2,7 +2,7 @@ const loaderMethods = require('../../src/loaderMethods.js');
 const expect = require('chai').expect;
 const path = require('path');
 
-describe('prepareParseUsingComponents', function(){
+describe('prepareParseUsingComponents', function() {
   it('/npm/', function() {
     let originObj = {
       scroller: '/npm/cml-ui/scroller/scroller'
@@ -21,7 +21,7 @@ describe('prepareParseUsingComponents', function(){
 
     let expectPath = path.join(__dirname, './project/node_modules/cml-ui/scroller/scroller.cml')
     console.log(result)
-    result.forEach(item=>{
+    result.forEach(item => {
       if (item.tagName === 'scroller') {
         expect(item.filePath).to.be.equal(expectPath);
         expect(item.isNative).to.be.equal(false);
