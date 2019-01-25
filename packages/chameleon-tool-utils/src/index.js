@@ -265,6 +265,7 @@ _.getJsonFileContent = function (filePath, confType) {
   } catch (e) {
     log.warn(`${filePath} 对应的json文件格式不正确`);
   }
+  jsonObject = jsonObject || {};
   let targetObject = jsonObject[confType] || {};
   if (jsonObject.base) {
     targetObject = _.merge(jsonObject.base, targetObject)
