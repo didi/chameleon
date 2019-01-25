@@ -1,6 +1,6 @@
 {
   "name": "cml-js-parser",
-  "version": "0.0.30",
+  "version": "0.0.30-alpha.1",
   "description": "A tool used to get variable names and methods that can be used in templates.",
   "main": "index.js",
   "scripts": {
@@ -14,12 +14,12 @@
     "@babel/parser": "^7.2.2",
     "@babel/traverse": "^7.2.2",
     "bulk-require": "^1.0.1",
-    "chameleon-tool-utils": "^0.0.30"
+    "chameleon-tool-utils": "^0.0.30-alpha.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0"
   },
-  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09"
+  "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"
 }

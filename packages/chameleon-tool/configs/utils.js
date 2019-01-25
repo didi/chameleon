@@ -338,7 +338,7 @@ exports.getWebEntry = function (options) {
   }
   if (options.console === true) {
     htmlConf.console = true
-    htmlConf.consolejs = 'https://sfwb.didistatic.com/static/wb/didiConsole-1.0.7.min.js'
+    htmlConf.consolejs = '/preview-assets/didiConsole-1.0.7.min.js'
   }
   htmlPlugins.push(new HtmlWebpackPlugin(htmlConf))
   if (options.media === 'dev') {

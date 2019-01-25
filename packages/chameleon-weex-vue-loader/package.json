@@ -1,6 +1,6 @@
 {
   "name": "chameleon-weex-vue-loader",
-  "version": "0.0.30",
+  "version": "0.0.30-alpha.1",
   "license": "Apache",
   "main": "index.js",
   "dependencies": {
@@ -72,5 +72,5 @@
   },
   "author": "Chameleon-Team",
   "mail": "ChameleonCore@didiglobal.com",
-  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09"
+  "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"
 }
