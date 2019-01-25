@@ -22,7 +22,6 @@
     "packages/runtime-check",
     "packages/url-loader",
     "packages/webpack-check-plugin",
-    "packages/webpack-dev-middleware",
     "packages/webpack-liveload-middleware"
   ],
   "version": "0.0.30",
