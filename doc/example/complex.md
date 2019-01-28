@@ -1,37 +1,40 @@
 # 手把手教你系列- 实现复杂应用
 
 ## 背景介绍
- 我们今天用`chameleon`来做一个网易严选项目，实现一套`cml`代码在web、小程序、Native当中运行的目标。在此项目中呢，我会介绍大家日常开发过程当中关心的一些点，
-   比如<span id="router" style="color: #B4282D;">路由</span>、
-   <span id="store" style="color: #B4282D;">状态管理</span>、
-   <span id="tiaozhuan" style="color: #B4282D;">页面跳转</span>、
-   <span id="ajax" style="color: #B4282D;">ajax请求</span>、
-   <span id="mock" style="color: #B4282D;">mock数据</span>、
-   组件设计及
-   <span id="kuozhan" style="color: #B4282D;">组件扩展</span>、
-   <span id="多态" style="color: #B4282D;">多态</span>
-   等等，以及多端的差异化需求。
+ 今天我们使用`cml`开发一个复杂跨端应用————仿网易严选app，实现一套代码运行在web、小程序和Native的目标。
+ 借此项目，讲解日常开发中会遇到的问题&tip，包括不限于：
+ 
+ - [路由](#router)
+ - [状态管理](#store)
+ - [页面跳转](#tiaozhuan)
+ - [ajax请求](#ajax)
+ - [mock数据](#mock)
+ - [组件扩展](#kuozhan)
+ - [多态](#duotai)
+ - [组件配置](../framework/json.md)
+及组件设计等等，以及多端的差异化需求。
    
-## 1 背景介绍——仿网易严选
 
-### 1 准备
+<a href="../extend/new-wangyi.zip" target="_blank">项目码源</a>
 
-- 请按照【[快速上手](./quick_start.html)】一节进行`chameleon-tool`全局环境安装；
+### 1 准备工作
+
+- 参照【[快速上手](../quick_start/quick_start.md)】进行`chameleon-tool`全局环境配置；
 - `cml init project`初始化一个项目，命名`wangyi `;
 
-![](../assets/cml_preview.jpg)
-
 ### 2 构建首页
-<span style="color:#B4282D;">分析</span>：我们把首页分为`content`和`footer`两部分，`content`是我们的主要内容区域，
-`footer`则是一个tab切换。切换`content`我们采用`Chameleon`的API方法[c-animate](../api/createAnimation/createAnimation.md)来实现；
-`tab`我们采用扩展组件[c-tabs](../component/expand/compound/c-tab.md)来实现；
-
+<span style="color:#B4282D;">分析</span>：首先我们把首页分为`content`和`footer`两部分，`content`作为主要的内容区域，
+`footer`作为底部。其次，
+利用`Chameleon`的API方法[c-animate](../api/createAnimation/createAnimation.md)来实现内容`content`切换；
+然后，利用扩展组件[c-tab](../component/expand/compound/c-tab.md)来实现`tab`切换功能；
 
 
 #### 2.1 构建首页--footer
 
-<span style="color:#B4282D;">分析</span>： 为什么先介绍`footer`？因为footer的东西相对少一点，因此我们把它放在前面；我们把`tab`切换的配置数据放在[store](../api/store/store.md)里面，配合[c-tabs](../component/expand/compound/c-tab.md)
-来实现tab切换功能；为此我们准备一组tab数据，放进state,在tab组件的生命周期钩子函数里面去取值；
+<span style="color:#B4282D;">分析</span>：因为`footer`的东西相对较少，因此把它放在前面来做；
+首先把`tab`切换的配置数据放在[store](../logic/store.md)里面，配合[c-tab](../component/expand/compound/c-tab.md)
+来实现tab切换功能；
+
 - 改造`store/state.js`文件如下：
 
 ```javascript
@@ -45,25 +48,26 @@ const state = {
   ]
 }
 export default state
-
 ```
 
-- `cml init project`初始化一个`home`组件，用来放置我们首页的子组件；<span style="color:#B4282D;">注意：</span>也可以创建一个`common`组件，存放公共组件。
-- 我们在`src/component/home`文件夹下新建`tab.cml`,在`created`里面请求[store](#store)里面的数据,改造`tab.cml`代码如下；
+- `cml init project`初始化一个`home`组件，用来放置首页的子组件；
+<span style="color:#B4282D;">注意：</span>也可以创建一个`common`组件，存放公共组件。
+- 在`src/component/home`文件夹下新建`tab.cml`,
+在`created`里面请求<span id="store" style="color: #B4282D;">store</span>里面的数据,
+改造`tab.cml`代码如下；
 
 ```javascript
 <template>
   <view class="tab">
-    <c-tabs tabs="{{tabs}}"
+    <c-tab tabs="{{tabs}}"
       c-bind:tabclick="handleTabTap"
       active-label="{{activeLabel}}"
       inline="{{false}}"
       has-underline="{{false}}"
     >
-    </c-tabs>
+    </c-tab>
   </view>
 </template>
-
 <script>
 import store from '../../store'
 class Index {
@@ -90,7 +94,7 @@ export default new Index();
 {
   "base": {
     "usingComponents": {
-        "c-tabs": "cml-ui/components/c-tab/c-tab"
+        "c-tab": "cml-ui/components/c-tab/c-tab"
     }
   }
 }
@@ -98,7 +102,7 @@ export default new Index();
 
 ```
 
-- 把自定义组件`tab`引入到页面`page/index/index.cml`，修改`index.cml`文件配置；
+- 将自定义组件`tab`引入到首页，修改`page/index/index.cml`文件配置；
 
 ```javascript
 <script cml-type="json">
@@ -114,17 +118,22 @@ export default new Index();
 
 ```
 
-我们可以看到页面如图，鼠标滑至图中箭头指向位置，点击打开web端调试。
+刷新页面如图，鼠标滑至图中箭头指向位置，点击打开web端调试。
 ![](../assets/tabs.png)
 
 
 #### 2.2 构建首页--content
-<span style="color:#B4282D;">分析</span>：为了多端的一致性，我们设计了内置组件[scroller](../component/base/layout/scroller.md)来处理页面的滚动区域；
-我们把首页的`content`区域分为顶部轮播、服务类型、商品分类以及特色服务四个模块儿。其中，顶部轮播我们采用内置组件[carousel](../component/base/layout/carousel.md)来实现；
-商品分类我们采用`CML-标准语法`的[列表渲染](../view/iterator.md)来实现；服务类型和特色服务我们使用`CMSS`的[flex]()标准来实现定制化的需求；
-同时我们采用`chameleon`的[数据mock](../framework/mock.md)来实现本地mock数据的ajax请求；
+<span style="color:#B4282D;">分析</span>：
+- 为了多端的一致性，我们设计了内置组件[scroller](../component/base/layout/scroller.md)来处理页面的滚动；
+- 把首页的`content`区域分为顶部轮播、服务类型、商品分类以及特色服务四个模块。
+- 顶部轮播用内置组件[carousel](../component/base/layout/carousel.md)来实现；
+- 商品分类用`CML-标准语法`的[列表渲染](../view/iterator.md)来实现；
+- 服务类型和特色服务用`CMSS`的[flex](../view/cmss/layout.md)标准来实现定制化需求；
+- 使用`chameleon`的[数据mock](../framework/mock.md)来实现本地mock数据的ajax请求；
 
-- 我们配置一个`api/getHomeImgList`接口，返回我们首页的图片数据；更改`mock/api/index.js`文件，代码如下：
+#####  content实现
+- <span id="mock" style="color: #B4282D;">mock数据</span>：配置一个`api/getHomeImgList`接口，返回首页数据；
+更改`mock/api/index.js`文件，代码如下：
 
 ```javascript
 
@@ -148,7 +157,7 @@ export default new Index();
 ```
 
 - 在`src/component/home`文件下分别新建`lunbo.cml`、`service.cml`、`classlist.cml`、`special.cml`四个组件；
-- 我们在`chameleon`的生命周期钩子函数里面去[请求数据](#ajax)，改造`lunbo.cml`文件如下：
+- 在`chameleon`的生命周期钩子函数里面去<span id="ajax" style="color: #B4282D;">请求ajax</span>，`lunbo.cml`代码如下：
 
 ```javascript
 <template>
@@ -190,10 +199,9 @@ export default new Index();
 
 ```
 
-- 同理我们改造`service.cml`文件代码如下：
+- `service.cml`文件代码如下：
 
 ```javascript
-
 <template>
   <view class="service">
     <text class="service-item">网易自营品牌</text>
@@ -201,13 +209,11 @@ export default new Index();
     <text class="service-item">48小时快速退款</text>
   </view>
 </template>
-
 ```
 
-- 同理我们改造`classlist.cml`文件代码如下：
+- `classlist.cml`文件代码如下：
 
 ```javascript
-
 <template>
   <view class="classList">
     <view
@@ -223,10 +229,8 @@ export default new Index();
         <text>{{item.title}}</text>
       </view>
     </view>
-
   </view>
 </template>
-
 <script>
   import cml from "chameleon-api";
   class Classlist {
@@ -249,14 +253,13 @@ export default new Index();
       })
     }
   }
-
   export default new Classlist();
 </script>
 
 
 ```
 
-- 同理我们改造`special.cml`文件代码如下：
+- `special.cml`文件代码如下：
 
 ```javascript
 <template>
@@ -308,7 +311,7 @@ export default new Special();
 
 ```
 
-- 首页content子组件我们已经开发完了，接下来我们把他们引入首页中来；更改`pages/index.cml`配置：
+- 把`content`子组件引入首页中；更改`pages/index.cml`配置：
 
 ```javascript
 <script cml-type="json">
@@ -326,20 +329,21 @@ export default new Special();
 </script>
 ```
 
-刷新页面我们可以看到：
+刷新页面如图：
 ![](../assets/newhome.png)
 
 
 ### 3 构建列表页
-<span style="color:#B4282D;">分析</span>：关于`scroller`组建的重要性，我们在上文已经提过了，所以列表页我们需要在顶层包裹一个`scroller`组件，由于页面涉及到上拉刷新，我们采用
-`chameleon`的[扩展组件](#kuozhan)：[c-refresh](../component/expand/polymorphism/c-refresh.md)来实现这个需求；然后利用`CML-标准语法`的[列表渲染](../view/iterator.md)来填充我们列表；
-由于是一个新的页面，因此我们需要给他[配置路由](../framework/router.md)，以及页面的[跳转](../api/navigate.md)；当然还有列表页的[mock数据](../framework/mock.md)；
-由于构建首页我们已经介绍了组件的使用方式，故此页面不再分拆子组件；
+<span style="color:#B4282D;">分析</span>：首先最外层要包裹一个`scroller`组件，上拉刷新下来加载这个功能用
+<span id="kuozhan" style="color: #B4282D;">扩展组件</span>：[c-refresh](../component/expand/polymorphism/c-refresh.md)
+来实现；然后用`CML-标准语法`的[列表渲染](../view/iterator.md)填充列表；
+由于是一个新建页面，因此需要[配置路由](../framework/router.md)以及页面的[跳转](../api/navigate.md)；最后是列表页的[mock数据](../framework/mock.md)；
+由于构建首页已经介绍了组件的使用方式，故此页面不再分拆子组件；
 
 
-- 执行`cml init page`初始化生成一个`list`页面;
+- 执行`cml init page`初始化生成`list`页面;
 
-- 配置`list`页面[路由](#router)，我们更改`src/router.config.json`文件，具体如下：
+- 配置`list`页面<span id="router" style="color: #B4282D;">路由</span>，我们更改`src/router.config.json`文件，具体如下：
 
 ```javascript
 {
@@ -357,7 +361,7 @@ export default new Special();
 }
 ```
 
-- 如何从首页[跳转](#tiaozhuan)到列表页呢？我们更改组件`classlist.cml`中的`mathods`方法：
+- 如何从首页<span id="tiaozhuan" style="color: #B4282D;">跳转</span>到列表页呢？我们更改组件`classlist.cml`中的`methods`中的change方法：
 
 ```javascript
 methods = {
@@ -369,7 +373,8 @@ methods = {
 }
 ```
 
-- 配置`list`页面的[mock数据](#mock)，我们配置一个`/api/listImage`接口，更改`mock/api/index.js`文件，具体如下：
+- 配置`list`页面的<span id="mock" style="color: #B4282D;">mock数据</span>：
+配置`/api/listImage`接口，更改`mock/api/index.js`文件，具体如下：
 
 ```javascript
 ...
@@ -535,18 +540,18 @@ methods = {
 
 ```
 
-我们可以上拉刷新，下拉加载，如图：
+可以上拉刷新，下拉加载，如图：
 <img src="../assets/wangyilist.png" width="300px" height="100%" />
 
 ### 4 构建详情页
-<span style="color:#B4282D;">分析</span>：关于`scroller`组建的重要性，我们在上文已经提过了，所以详情页我们仍然需要在顶层包裹一个`scroller`组件；
-一般来讲，商品类的详情页顶部是一个商品的轮播图，下面是一些商品的参数信息。我们仍然用`chameleon`内置的组件[carousel](../component/base/layout/carousel.md)来做轮播功能，
-我们增加一个地图组件，用[组件多态](../framework/polymorphism/component.md)来实现它；由于构建首页我们已经介绍了组件的使用方式，故此页面不再分拆子组件；
+<span style="color:#B4282D;">分析</span>：详情页仍然需要在顶层包裹一个`scroller`组件；
+增加一个地图组件，用[组件多态](../framework/polymorphism/component.md)来实现它；
+此页面不再分拆子组件；
 
 
 - 按照构建列表页的方式新建一个`detail`页面，并在`src/router.config.json`文件中配置路由；
 
--  在`pages/list.cml`文件中配置跳转链接；
+- 在`pages/list.cml`文件中配置跳转链接；
 
 ```javascript
 methods = {
@@ -592,7 +597,6 @@ methods = {
 }
 
 ```
-
 
 - 改造`detail`页面代码如下，样式详情请见源码：
 
@@ -720,22 +724,20 @@ methods = {
 
 ```
 
-- 我们可以看到如图：<img src="../assets/detail22.png" width="200px" height="100%" />
+- 刷新页面如图：<img src="../assets/detail22.png" width="200px" height="100%" />
 
+#### 4.1 用<span id="duotai" style="color: #B4282D;">多态</span>组件实现地图功能；
 
-#### 4.1 用[多态](#duotai)组件实现地图功能；
-
-
-##### 4.1 初始化一个多态组件；
+##### 1 初始化一个多态组件；
 
 - 终端输入：`cml init component`，选择多态组件，输入组件名`map`，回车。
 
-- 在`src/component`下面，我们可以看到四个文件：`map.interface`、`map.web.cml`、`map.weex.cml`和`map.wx.cml`;
+- 在`src/component`下面，可以看到四个文件：`map.interface`、`map.web.cml`、`map.weex.cml`和`map.wx.cml`;
 
-##### 4.2 多态组件---web组件(map.web.cml)改造；
+##### 2 多态组件---web组件(map.web.cml)改造；
 
-- 我们选择高德地图，并且用`vue-amap`这个库；`npm i vue-amap --save`
-- 我们进行基本的改造之后，`map.web.cml`文件代码如下：
+- 选择高德地图，并且用`vue-amap`这个库；执行`npm i vue-amap --save`；
+- 进行基本的改造之后，`map.web.cml`文件代码如下：
 
 ```javascript
 <template>
@@ -807,12 +809,12 @@ methods = {
 
 ```
 
-- 刷新页面，我们可以看到web端正常显示出来了地图；其他端显示的是默认值；
-- 接下来我们改造微信小程序端的地图组件；
+- 刷新页面，可以看到web端正常显示出来了地图；其他端显示的是默认值；
 
-##### 4.3 多态组件---微信小程序组件(map.wx.cml)改造；
-- 根据高德地图小程序开发文档，我们下载一个`amap-wx.js`的SDK文件，暂时放到`map`组件里面。
-- 根据高德地图小程序开发文档官方demo，我们改造`map.wx.cml`文件；具体代码如下：
+
+##### 3 多态组件---微信小程序组件(map.wx.cml)改造；
+- 根据高德地图小程序开发文档，下载`amap-wx.js`的SDK文件，暂时放到`map`组件里面。
+- 改造`map.wx.cml`文件；具体代码如下：
 
 ```javascript
 <template>
@@ -877,13 +879,12 @@ methods = {
 </script>
 
 ```
-- 刷新页面，我们可以看到小程序端和web端正常显示出来了地图；native端显示的是默认值；
+- 刷新页面，小程序端和web端正常显示出来了地图；native端显示的是默认值；
 
-##### 4.4 多态组件---native端(map.weex.cml)改造；
+##### 4 多态组件---native端(map.weex.cml)改造；
 
-- 简介；
-- 我们初始化一个`map`页面：输入`cml init page`,输入`map`；我们可以看到在`src/pages`下面多出了一个文件夹；
-- 我们给新页面`map.cml`配置一下路由，改造`src/router.config.json`文件；
+- 初始化一个`map`页面：输入`cml init page`,输入`map`；
+- 给新页面`map.cml`配置路由，改造`src/router.config.json`文件；
 
 ```javascript
 {
@@ -902,7 +903,7 @@ methods = {
 
 ```
 
-- 我们在页面`map.cml`文件中引入我们的多态组件；具体代码如下：
+- 在页面`map.cml`文件中引入多态组件；具体代码如下：
 
 ```javascript
 <template>
@@ -970,5 +971,11 @@ export default new Map();
   </div>
 </div>
 
-代码地址：
-<a href="../extend/new-wangyi.zip" target="_blank">下载</a>
+## Bug & Tip
+
+- 模板报错，先检查模板语法是否符合CML规范，详情请参考[模板规范校验](../framework/linter/cml-template.md);
+- 滚动区域不符合预期，检查`scroller`属性`height`传值是否正确，或者请参考api方法[getSystemInfo](../api/system.md)获取视窗高度，手动计算滚动区域;
+- 处理滚动区域兼容多端请务必处理`page`组件的[titleBar](./page.md)高度；
+- 页面跳转传参请参考api方法：[navigateTo](../api/navigate.md),取参请参考[生命周期回调函数](../logic/lifecycle.md)的`beforeCreate`方法；
+- 样式不符合预期，请参考[样式规范校验](../framework/linter/cml-cmss.md);
+- Native端如地图组件不显示，检查`map.weex.cml`中`h5url`端口是否正确；
