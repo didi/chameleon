@@ -1,5 +1,4 @@
 ## [0.0.12](https://github.com/didi/chameleon/compare/v0.0.11...v0.0.12)
----
 
 ### Bug Fixes
 - **chameleon-css-loader** 修复低版本浏览器todo demo白屏问题，fix [#3](https://github.com/didi/chameleon/issues/3) ([d565a29](https://github.com/didi/chameleon/commit/d565a292ccef56de5c283cce2debeaca5ee7d722))
@@ -9,7 +8,6 @@
 - **chameleon-templates** 升级初始化项目依赖版本，fix [#2](https://github.com/didi/chameleon/issues/2) ([75ba521](https://github.com/didi/chameleon/commit/75ba52111634f218a404ca85fe57e448f8ed880a)）
 
 ## [0.0.13](https://github.com/didi/chameleon/compare/b2aa4b...6dc5ff9#diff-b21d2ccb648a84e2a7348250c471cc2aL32)
----
 
 ### Bug Fixes
 
