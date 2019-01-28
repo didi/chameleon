@@ -8,7 +8,7 @@
 - **chameleon-templates**  修复todo-demo图片损坏问题([de5b42d](https://github.com/didi/chameleon/commit/de5b42da50e5b7315ce1ad33b82c2e6ed94fe04a)）
 - **chameleon-templates**  升级初始化项目依赖版本，fix [#2](https://github.com/didi/chameleon/issues/2) ([75ba521](https://github.com/didi/chameleon/commit/75ba52111634f218a404ca85fe57e448f8ed880a)）
 
-##<a href="https://github.com/didi/chameleon/compare/v0.0.11...v0.0.12">0.0.12</a>
+##<a href="https://github.com/didi/chameleon/compare/b2aa4b...6dc5ff9#diff-b21d2ccb648a84e2a7348250c471cc2aL32">0.0.13</a>
 ---
 
 ### Bug Fixes
