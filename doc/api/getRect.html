@@ -3874,10 +3874,10 @@
 <tbody>
 <tr>
 <td style="text-align:center">ref</td>
-<td style="text-align:center">ref</td>
+<td style="text-align:center">String</td>
 <td style="text-align:center">&#x662F;</td>
 <td style="text-align:center">&#x65E0;</td>
-<td style="text-align:center">&#x9875;&#x9762;&#x4E0A;&#x67D0;&#x4E2A;&#x6807;&#x8BB0;&#x4E86;ref&#x5C5E;&#x6027;&#x7684;&#x8282;&#x70B9;</td>
+<td style="text-align:center">&#x9875;&#x9762;&#x4E0A;&#x6807;&#x8BB0;&#x4E86;ref&#x5C5E;&#x6027;&#x7684;&#x8282;&#x70B9;</td>
 </tr>
 <tr>
 <td style="text-align:center">context</td>
@@ -3912,27 +3912,28 @@
 <tr>
 <td style="text-align:center">left</td>
 <td style="text-align:center">number</td>
-<td style="text-align:center">&#x8DDD;&#x79BB;&#x89C6;&#x7A97;&#x5DE6;&#x4FA7;&#x8DDD;&#x79BB;</td>
+<td style="text-align:center">&#x8282;&#x70B9;&#x7684;&#x5DE6;&#x8FB9;&#x754C;&#x5750;&#x6807;</td>
 </tr>
 <tr>
 <td style="text-align:center">right</td>
 <td style="text-align:center">number</td>
-<td style="text-align:center">&#x8DDD;&#x79BB;&#x89C6;&#x7A97;&#x53F3;&#x4FA7;&#x8DDD;&#x79BB;</td>
+<td style="text-align:center">&#x8282;&#x70B9;&#x7684;&#x53F3;&#x8FB9;&#x754C;&#x5750;&#x6807;</td>
 </tr>
 <tr>
 <td style="text-align:center">top</td>
 <td style="text-align:center">number</td>
-<td style="text-align:center">&#x8DDD;&#x79BB;&#x89C6;&#x7A97;&#x9876;&#x90E8;&#x8DDD;&#x79BB;</td>
+<td style="text-align:center">&#x8282;&#x70B9;&#x7684;&#x4E0A;&#x8FB9;&#x754C;&#x5750;&#x6807;</td>
 </tr>
 <tr>
 <td style="text-align:center">bottom</td>
 <td style="text-align:center">number</td>
-<td style="text-align:center">&#x8DDD;&#x79BB;&#x89C6;&#x7A97;&#x5E95;&#x90E8;&#x8DDD;&#x79BB;</td>
+<td style="text-align:center">&#x8282;&#x70B9;&#x7684;&#x4E0B;&#x8FB9;&#x754C;&#x5750;&#x6807;</td>
 </tr>
 </tbody>
 </table>
 <h3 id="&#x4E3E;&#x4F8B;"><a name="&#x4E3E;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x4E3E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3E;&#x4F8B;" class="plugin-anchor" href="#&#x4E3E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3E;&#x4F8B;</h3>
-<pre><code class="lang-javascript">cml.getRect(<span class="hljs-keyword">this</span>.$refs.refTest, <span class="hljs-keyword">this</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+<pre><code class="lang-javascript"><span class="hljs-comment">// &apos;refTest&apos;&#x4E3A;template&#x4E2D;&#x67D0;&#x4E2A;&#x8282;&#x70B9;&#x7684;ref&#x5C5E;&#x6027;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x503C;</span>
+cml.getRect(<span class="hljs-string">&apos;refTest&apos;</span>, <span class="hljs-keyword">this</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
   cml.showToast({
     <span class="hljs-attr">message</span>: <span class="hljs-built_in">JSON</span>.stringify(res)
   })
@@ -3981,7 +3982,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"元素属性","level":"1.4.8","depth":2,"next":{"title":"cml.getRect","level":"1.4.8.1","depth":3,"anchor":"#getrect","path":"api/getRect.md","ref":"api/getRect.md#getrect","articles":[]},"previous":{"title":"cml.getLaunchOptionsSync","level":"1.4.7.1","depth":3,"anchor":"#getlaunchoptionssync","path":"api/launchOptions.md","ref":"api/launchOptions.md#getlaunchoptionssync","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/chameleon/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"api/getRect.md","mtime":"2019-01-07T09:11:13.850Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-28T10:47:26.054Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"元素属性","level":"1.4.8","depth":2,"next":{"title":"cml.getRect","level":"1.4.8.1","depth":3,"anchor":"#getrect","path":"api/getRect.md","ref":"api/getRect.md#getrect","articles":[]},"previous":{"title":"cml.getLaunchOptionsSync","level":"1.4.7.1","depth":3,"anchor":"#getlaunchoptionssync","path":"api/launchOptions.md","ref":"api/launchOptions.md#getlaunchoptionssync","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"api/getRect.md","mtime":"2019-01-29T03:35:04.182Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-29T03:56:35.868Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
