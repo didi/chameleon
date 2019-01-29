@@ -151,7 +151,7 @@ exports.register = function (commander) {
 
     inquirer.prompt(questions).then(answers => {
       let {projectName } = answers;
-      let platforms = ['h5', 'weex', '微信小程序'];
+      let platforms = ['h5', 'weex', '微信小程序','支付宝小程序','百度小程序'];
       let templateType = cmdOptions.tpl;
       let templateLang = cmdOptions.lang;
       platforms = platforms.map(item => platformMap[item]);
