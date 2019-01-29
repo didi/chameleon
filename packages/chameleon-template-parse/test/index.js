@@ -1,13 +1,25 @@
 const compileTemplate = require('../src/index.js');
 const source = `<template>
-<button></button>
-<thirdComp1 :style="computedStyle" :class="cls"></thirdComp1>
+  <c-page title="carousel">
+    <c-header title="carousel"></c-header>
+    <carousel class="container" indicator-dots="{{true}}"  current="{{0}}" circular="{{true}}">
+      <carousel-item>
+        <view  class="carousel-item" style="background-color: #EBDEAA"></view>
+      </carousel-item>
+      <carousel-item>
+        <view class="carousel-item" style="background-color: #E3EDCD"></view>
+      </carousel-item>
+      <carousel-item>
+        <view class="carousel-item" style="background-color: #EAEAEF"></view>
+      </carousel-item>
+    </carousel>
+  </c-page>
 </template>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
 // let result = compileTemplate(source,'web');
-let options = {lang: 'vue',
+let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
   cmss: {
     rem: true,
