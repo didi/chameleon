@@ -7,6 +7,84 @@ const {
   tagMap
 } = require('../common/cml-map.js')
 const utils = require('./utils');
+// 因为阿里的组件上的样式会被直接忽略掉，所以编译层要做一层标签的包裹处理；
+exports.preParseAliComponent = function(html, options) {
+  // 需要考虑问题 单标签和双标签
+  let stack = [];
+  // id="value" id='value'  class=red    disabled
+  const attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/
+  const ncname = '[a-zA-Z_][\\w\\-\\.]*'
+  const qnameCapture = `((?:${ncname}\\:)?${ncname})`
+  // 标签的匹配，这些正则都不是g这种全局匹配，所以仅仅会匹配第一个遇到的标签；
+  // const startTag = new RegExp(`^<${qnameCapture}([\\s\\S])*(\\/?)>`);
+  // const startTag = /^<([a-zA-Z-:.]*)[^>]*?>/;
+  const startTagOpen = new RegExp(`^<${qnameCapture}`) // 匹配开始open
+  const startTagClose = /^\s*(\/?)>/ // 匹配开始关闭；单标签的关闭有两种情况，第一就是 > 第二个就是 />,可以通过捕获分组 / 来判断是单闭合标签还是双开标签的开始标签的闭合
+  const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`)
+  let index = 0;
+  let last, lastTag;
+  while (html) {
+    last = html;
+    debugger;
+    if (!lastTag || !utils.isPlainTextElement(lastTag)) {
+      let textEnd = html.indexOf('<')
+      if (textEnd === 0) { // 以 < 开头的html
+        const startTagMatch = parseStartTag();
+        if (startTagMatch) {
+          stack.push(startTagMatch);
+          continue;
+        }
+      }
+      let text, rest, next
+      if (textEnd >= 0) {
+        rest = html.slice(textEnd)
+        while (
+          !endTag.test(rest) &&
+          !startTagOpen.test(rest)
+        ) {
+          // < in plain text, be forgiving and treat it as text
+          next = rest.indexOf('<', 1)
+          if (next < 0) {break}
+          textEnd += next
+          rest = html.slice(textEnd)
+        }
+        text = html.substring(0, textEnd)
+        advance(textEnd)
+      }
+
+    }
+
+  }
+  function advance (n) {
+    index += n
+    html = html.substring(n)
+  }
+  function parseStartTag () {
+    const start = html.match(startTagOpen)
+    if (start) {
+      const match = {
+        tagName: start[1],
+        attrs: [],
+        start: index
+      }
+      advance(start[0].length);
+
+      let end, attr
+      // 这里处理标签的属性值；
+      while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+        advance(attr[0].length)
+        match.attrs.push(attr)
+      }
+      if (end) {
+        match.unarySlash = !!utils.trim(end[1] || '');// 标记是否是一元标签
+        advance(end[0].length)
+        match.end = index;
+        return match
+      }
+    }
+  }
+
+}
 // 注意，所有要再次使用babylon解析html模板的，必须再次将模板转化为符合jsx语法
 exports.preParseDiffPlatformTag = function(htmlContent, type) {
   let activeTags = tagMap.diffTagMap[type] || [];
@@ -88,7 +166,6 @@ exports.alipayComponentsWraped = function(source, type, options) {
     })
     traverse(ast, {
       enter(path) {
-        debugger
         let node = path.node;
         if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
           let isComponent = usingComponents.find((item) => item.tagName === node.openingElement.name.name) || Object.keys(buildInComponents).includes(node.openingElement.name.name);
@@ -153,7 +230,7 @@ exports.preParseGtLt = function(content) {
     return exports._operationGtLt(match);
   })
 }
-
+// 将 {{}} ==> _cml{}lmc_ ,因为jsx无法识别 {{}}
 exports.preParseMustache = function (content) {
   let reg = />([\s\S]*?)<[a-zA-Z\/\-_]+?/g;
   return content.replace(reg, function (match, key) {
@@ -265,9 +342,12 @@ exports.analyzeTemplate = function(source, options) {
   return options;
 }
 // 模块内置方法
+// 这里主要处理1  >{{}}< 双花括号之间的 ==> _cml{}lmc_ ,因为jsx无法识别 {{}}
+// 2 同时将 {{}}内的 _cml_gt_lmc_  _cml_lt_lmc_ 复原  < >
 exports._operationMustache = function (content) {
   let mustacheReg = /{{([\s\S]*?)}}/g
   return content.replace(mustacheReg, function (match, key) {
+    key = exports._deOperationGtLt(key);
     return `_cml{${key}}lmc_`
   })
 }
