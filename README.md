@@ -73,7 +73,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 ##  微信 & QQ交流群
 
 **微信**<br />
-<img width="150px" src="https://CMLJS.org/doc/assets/weixin_qr.jpg" />
+<img width="150px" src="https://CMLJS.org/doc/assets/wx-qr-code.png" />
 
 <br />
 
