@@ -1,6 +1,6 @@
 {
   "name": "chameleon-templates",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,5 +10,8 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "mail": "ChameleonCore@didiglobal.com",
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09",
+  "dependencies": {
+    "chameleon-runtime": "0.0.2"
+  }
 }

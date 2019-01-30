@@ -25,7 +25,7 @@
     "packages/webpack-dev-middleware",
     "packages/webpack-liveload-middleware"
   ],
-  "version": "0.0.29",
+  "version": "0.0.30",
   "command": {
     "publish": {
       "allowBranch": "master",

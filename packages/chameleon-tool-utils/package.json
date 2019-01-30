@@ -24,7 +24,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0"
   },
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac",
+  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09",
   "license": "Apache",
   "mail": "ChameleonCore@didiglobal.com",
   "main": "src/index.js",
@@ -35,5 +35,5 @@
     "test": "mocha --recursive --reporter spec",
     "break-test": "./node_modules/.bin/mocha  --inspect-brk --recursive --reporter spec"
   },
-  "version": "0.0.29"
+  "version": "0.0.30"
 }

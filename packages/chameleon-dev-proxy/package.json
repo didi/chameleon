@@ -1,6 +1,6 @@
 {
   "name": "chameleon-dev-proxy",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "cml开发环境代理服务模块",
   "main": "index.js",
   "author": "Chameleon-Team",
@@ -11,5 +11,5 @@
     "node-mitmproxy": "^3.1.0",
     "qrcode-terminal": "^0.12.0"
   },
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09"
 }

@@ -1,6 +1,6 @@
 {
   "name": "cml-htmllint",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "An chameleon template linter.",
   "keywords": [
     "html",
@@ -45,5 +45,6 @@
   "engines": {
     "node": ">=4"
   },
-  "contributors": []
+  "contributors": [],
+  "gitHead": "f4a5177742fc402af3c0b4994f4942dd959c7c09"
 }
