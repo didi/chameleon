@@ -1,6 +1,6 @@
 {
   "name": "cml-htmllint",
-  "version": "0.0.30-alpha.1",
+  "version": "0.1.0-alpha.1",
   "description": "An chameleon template linter.",
   "keywords": [
     "html",

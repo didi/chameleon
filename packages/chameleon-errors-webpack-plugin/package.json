@@ -1,5 +1,5 @@
 {
-  "version": "0.0.30-alpha.1",
+  "version": "0.1.0-alpha.1",
   "name": "chameleon-errors-webpack-plugin",
   "main": "index.js",
   "author": "Chameleon-Team",
