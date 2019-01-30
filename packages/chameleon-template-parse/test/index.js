@@ -1,23 +1,28 @@
 const compileTemplate = require('../src/index.js');
-const source = `<template>
-  <c-page title="carousel">
-    <c-header title="carousel"></c-header>
-    <carousel class="container" indicator-dots="{{true}}"  current="{{0}}" circular="{{true}}">
-      <carousel-item>
-        <view  class="carousel-item" style="background-color: #EBDEAA"></view>
-      </carousel-item>
-      <carousel-item>
-        <view class="carousel-item" style="background-color: #E3EDCD"></view>
-      </carousel-item>
-      <carousel-item>
-        <view class="carousel-item" style="background-color: #EAEAEF"></view>
-      </carousel-item>
-    </carousel>
-  </c-page>
-</template>`
+// const source = `<template id="{{cls}}" class="{{5 > 6 ? 'cls1':'cls2'}}" style="{{computedStyle}}" name="{{5 <6 ? 'cls1':'cls2}} " title="大家好">  文本
+// <c-page title="carousel">
+//   <button title="你好" name="cls1" name="{{5 > 6 ? 'cls1':'cls2}}" style="{{computedStyle}}">
+//   {{5 > 6 ? '你好':'我好'}}
+//   </button>
+//   <input/>{{你好}}
+
+// </c-page>
+// </template>`
+// const source = `<template :id="cls" :class="5 > 6 ? 'cls1':'cls2'" :name="5 < 6 ? 'cls1':'cls2 " title="大家好">
+// <c-page title="carousel">
+//   <button title="你好" :name="cls1" :name="5 > 6 ? 'cls1':'cls2" :style="computedStyle">
+//   {{5 > 6 ? '你好':'我好'}}
+//   </button>
+//   <input/>{{你好}}
+
+// </c-page>
+// </template>`
+// let source = `<button title="你好" :class="5 < 6 ? 'cls1':'cls2'" :class="5 > 6 ? 'cls1':'cls2" :style="computedStyle">
+//   {{5 > 6 ? '你好':'我好'}} >   </button>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
+const source = `<button>{{5 > 6 ? 'cls':(6 < 7 :'cls3':'cls4')}}</button>`
 // let result = compileTemplate(source,'web');
 let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
