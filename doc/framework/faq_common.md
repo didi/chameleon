@@ -13,19 +13,112 @@
 ##### 框架有多大，性能是否有影响？
 1、小程序的主要运行性能瓶颈是webview和js虚拟机的传输性能，我们在这里会做优化，尽可能diff出修改的部分进行传输，性能会更好。
 2、包大小，小程序有包大小限制，web端包大小也是工程师关心的点。首先基于多态协议，产出包纯净保留单端代码；其次框架的api和组件会按需打包。包大小是我们重点发力点，会持续优化到极致。目前build模式包大小测试结果如下:
-<table>
+<span style="color: #ff534d;">minimize</span><span style="color: #edd0be;"> | </span><span style="color: #25c6fc;">minimize + gzip</span>   
+<table style="color: #edd0be;">
 <tr>
-  <th>平台</th><th>js总体积</th>
+  <th>平台</th><th>js总体积</th><th>外部框架</th><th>chameleon运行时代码</th><th>其他代码</th>
 </tr>
 <tr>
-  <td>web</td><td>143kb</td>
+  <td>web</td>
+  <td>
+    <span style="color: #ff534d;">141.87kb</span>  
+    |
+    <span style="color: #25c6fc;">43.72kb</span>
+  </td>
+  <td>
+    vue+vuex+vue-router<br/>
+    <span style="color: #ff534d;">99.26kb</span>  
+    | 
+    <span style="color: #25c6fc;">33.89kb</span>
+  </td>
+  <td>
+    <span style="color: #ff534d;">35.96kb</span>  
+    |
+    <span style="color: #25c6fc;"> 8.85kb</span>
+  </td>
+  <td>
+    业务代码
+  </td>
 </tr>
 <tr>
-  <td>wx</td><td>99.3kb</td>
+  <td>weex</td><td>
+    <span style="color: #ff534d;">135kb</span>  
+    |
+    <span style="color: #25c6fc;">32.43kb</span>
+  </td>
+  <td>
+    vuex+vue-router<br/>
+    <span style="color: #ff534d;">33.49kb</span>  
+    | 
+    <span style="color: #25c6fc;">17.96kb</span>
+  </td>
+  <td>
+    <span style="color: #ff534d;">25.23kb</span>  
+    |
+    <span style="color: #25c6fc;">5.94kb</span>
+  </td>
+    <td>
+    业务代码
+  </td>
 </tr>
+
 <tr>
-  <td>weex</td><td>136kb</td>
+  <td>wx</td><td>
+    <span style="color: #ff534d;">101.66kb</span>  
+    |
+    <span style="color: #25c6fc;">28.12kb</span>
+  </td>
+  <td>
+    mobx算在chameleon运行时中  
+  </td>
+  <td>
+    <span style="color: #ff534d;">98.75kb</span>  
+    |
+    <span style="color: #25c6fc;">26.53kb</span>
+  </td>
+    <td>
+    业务代码
+  </td>
 </tr>
+
+<tr>
+  <td>baidu</td><td>
+    <span style="color: #ff534d;">101.72kb</span>  
+    |
+    <span style="color: #25c6fc;"> 28.13kb</span>
+  </td>
+  <td>
+    mobx算在chameleon运行时中  
+  </td>
+  <td>
+    <span style="color: #ff534d;">98.78kb</span>  
+    |
+    <span style="color: #25c6fc;">26.61kb</span>
+  </td>
+    <td>
+    业务代码
+  </td>
+</tr>
+
+<tr>
+  <td>alipay</td><td>
+    <span style="color: #ff534d;">102kb</span>  
+    |
+    <span style="color: #25c6fc;">28.12kb</span>
+  </td>
+  <td>
+    mobx算在chameleon运行时中  
+  </td>
+  <td>
+    <span style="color: #ff534d;">99.15kb</span>  
+    |
+    <span style="color: #25c6fc;">26.34kb</span>
+  </td>
+    <td>
+    业务代码
+  </td>
+</tr>
+
 
 </table>
 
