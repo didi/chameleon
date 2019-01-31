@@ -23,28 +23,10 @@ const compileTemplate = require('../src/index.js');
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
 const source = `
-<page title="cml">
-    <view class="page-home">
-      <scroller height="{{-1}}">
-        <view class="logo-row">
-          <image class="logo-icon" src="{{homeLogo}}"></image>
-          <text class="logo-desc">Chameleon</text>
-        </view>
-        <view class="list">
-          <view class="list-cell" c-for="{{pageList}}" c-for-item="pageInfo" c-bind:tap="onItemSelected(pageInfo.url)">
-            <view class="content-item row">
-              <image class="content-item-left-icon" src="{{pageInfo.icon}}"></image>
-              <view class="text-group">
-                <text class="text-title">{{pageInfo.title}}</text>
-                <text class="text-desc">{{pageInfo.desc}}</text>
-              </view>         
-              <image class="content-item-right-icon" src="{{arrowRight}}"></image>
-            </view>
-          </view>    
-        </view>
-      </scroller>
-    </view>
-</page>`
+<view class="toast-page">
+   <view :style="style"></view>
+  </view>
+`
 // let result = compileTemplate(source,'web');
 let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button", container: "cml-buildin-container"},
@@ -62,7 +44,7 @@ let options = {lang: 'cml',
     }
   },
   usingComponents: [{
-    tagName: 'thirdComp1',
+    tagName: 'c-toast',
     refUrl: '/path/to/ref1',
     filePath: 'path/to/real1',
     isNative: true

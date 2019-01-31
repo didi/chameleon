@@ -8,17 +8,35 @@ const {
 } = require('../common/cml-map.js')
 const utils = require('./utils');
 
+exports.startCallback = function(matchStart, type, options) {
+  let lang = options.lang;
+  let usingComponents = options.usingComponents || [];
+  let buildInComponents = options.buildInComponents || {};
+  if (type === 'alipay') {
+    let isComponent = usingComponents.find((comp) => comp.tagName === matchStart.tagName) || Object.keys(buildInComponents).includes(matchStart.tagName);
+    let leftAttrsOnComponent = matchStart.attrs;// 遗留在组件上的属性,默认值是所有属性，如果是组件，那么还需要过滤
+    if (isComponent) { // 如果是组件，那么需要将组件的c-if c-else去掉
+      let filtersAttrs = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if']
+      leftAttrsOnComponent = matchStart.attrs.filter((attr) => !filtersAttrs.includes(attr[1]))
+    }
+
+    let attrString = (leftAttrsOnComponent || []).reduce((result, item) => result = result + (item[0] || ''), '')
+    return attrString;
+  }
+}
+
 /*
 @description:因为阿里的组件上的样式会被直接忽略掉，所以编译层要做一层标签的包裹处理；
-注意只处理alipay端的组件，其他的不作处理;还需要注意的一点是 c-if  c-else的处理，组件的去掉，外层标签加上；
+注意只处理alipay端的组件，其他的不作处理
 */
 exports.preParseAliComponent = function(source, type, options) {
   if (type === 'alipay') {
     let lang = options.lang;
     let usingComponents = options.usingComponents || [];
     let buildInComponents = options.buildInComponents || {};
-    let htmlArr = exports.preParseHTMLtoArray(source, type, options);
 
+    let callbacks = {startCallback: exports.startCallback};
+    let htmlArr = exports.preParseHTMLtoArray(source, type, options, callbacks);
     let newHtmlArr = [];
     htmlArr.forEach((item) => {
       if (item.type === 'tagContent') { // 标签内置直接push内容
@@ -34,73 +52,18 @@ exports.preParseAliComponent = function(source, type, options) {
       if (item.type === 'tagStart') {
         // 先 push view标签，然后再push组件标签
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
-        let leftAttrs = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class']
-        let leftAttrNodes = (item.attrs || []).filter((attr) => leftAttrs.includes(attr[1]));
-        let leftAttrsOnWrap = leftAttrNodes.reduce((result, styleClassNode) => result = result + (styleClassNode[0] || ''), '');
-        if (isComponent) {
-          if (!item.isunary) { // 如果不是一元标签，那么只在该标签前面push一个view
-            newHtmlArr.push(`<view ${leftAttrsOnWrap} >`);
-            newHtmlArr.push(item.content);
-          }
-          if (item.isunary) { // 如果是一元标签，那么在该标签前后都要push view
-            newHtmlArr.push(`<view ${leftAttrsOnWrap} >`);
-            newHtmlArr.push(item.content);
-            newHtmlArr.push(`</view>`)
-          }
-        } else { // 不是内置组件直接push
-          newHtmlArr.push(item.content)
-        }
-      }
-    });
-    return newHtmlArr.join('')
-
-  }
-  return source;
-}
-
-/* @description:提供一个将模板转化为数组的方法，以后各个端如果对模板的处理在jsx中做不了的话，可以通过处理这个数组进行解决
- 解析的数组元素分为三种类型 tagStart  tagEnd  和 tagContent,其中tagStart有可能是自闭标签
- @params:html模板
- @return:html模板对应的字符串
- */
-exports.preParseAliComponent = function(source, type, options) {
-  if (type === 'alipay') {
-    let lang = options.lang;
-    let usingComponents = options.usingComponents || [];
-    let buildInComponents = options.buildInComponents || {};
-    let htmlArr = exports.preParseHTMLtoArray(source);
-    debugger;
-    let newHtmlArr = [];
-    htmlArr.forEach((item) => {
-      if (item.type === 'tagContent') { // 标签内置直接push内容
-        newHtmlArr.push(item.content);
-      }
-      if (item.type === 'tagEnd') { // 结束标签的话，先将该标签的内容push,然后判断是否是组件
-        newHtmlArr.push(item.content);
-        let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
-        if (isComponent) {
-          newHtmlArr.push('</view>');
-        }
-      }
-      if (item.type === 'tagStart') {
-        // 先 push view标签，然后再push组件标签
-        let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
-        let styleClassNodes = (item.attrs || []).filter((attr) => {
-          if (lang === 'cml') {
-            return (attr[1] === 'class' || attr[1] === 'style');
-          }
-          if (lang === 'vue') {
-            return (attr[1] === 'class' || attr[1] === 'style' || attr[1] === 'v-bind:style' || attr[1] === 'v-bind:class')
-          }
+        let inheritNodes = (item.attrs || []).filter((attr) => {
+          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ":class"]
+          return inheritAttrsFromComp.includes(attr[1]);
         });
-        let styleClassString = styleClassNodes.reduce((result, styleClassNode) => result = result + (styleClassNode[0] || ''), '');
-        if (isComponent) {
+        let inheritString = inheritNodes.reduce((result, styleClassNode) => result = result + (styleClassNode[0] || ''), '');
+        if (isComponent) { // 如果是组件需要从组件继承一些属性过来
           if (!item.isunary) { // 如果不是一元标签，那么只在该标签前面push一个view
-            newHtmlArr.push(`<view ${styleClassString} >`);
+            newHtmlArr.push(`<view ${inheritString} >`);
             newHtmlArr.push(item.content);
           }
           if (item.isunary) { // 如果是一元标签，那么在该标签前后都要push view
-            newHtmlArr.push(`<view ${styleClassString} >`);
+            newHtmlArr.push(`<view ${inheritString} >`);
             newHtmlArr.push(item.content);
             newHtmlArr.push(`</view>`)
           }
@@ -109,7 +72,6 @@ exports.preParseAliComponent = function(source, type, options) {
         }
       }
     });
-    debugger;
     return newHtmlArr.join('')
 
   }
@@ -121,7 +83,8 @@ exports.preParseAliComponent = function(source, type, options) {
  @params:html模板
  @return:html模板对应的字符串
  */
-exports.preParseHTMLtoArray = function(html) {
+exports.preParseHTMLtoArray = function(html, type, options, callbacks) {
+  let {startCallback} = callbacks;
   // 需要考虑问题 单标签和双标签
   let stack = [];
   // id="value" id='value'  class=red    disabled
@@ -137,7 +100,6 @@ exports.preParseHTMLtoArray = function(html) {
   let index = 0;
   while (html) {
     last = html;
-    debugger;
     let textEnd = html.indexOf('<')
     // 解析标签内容，包括开始标签以及结束标签
     if (textEnd === 0) { // 以 < 开头的html
@@ -188,7 +150,6 @@ exports.preParseHTMLtoArray = function(html) {
 
     }
   }
-  debugger;
   return stack;
   function advance (n) {
     index += n
@@ -214,7 +175,7 @@ exports.preParseHTMLtoArray = function(html) {
       if (end) {
         matchStart.isunary = !!utils.trim(end[1] || '');// 标记是否是一元标签
         advance(end[0].length)
-        let attrString = (matchStart.attrs || []).reduce((result, item) => result = result + (item[0] || ''), '')
+        let attrString = startCallback(matchStart, type, options) || '';
         let content ;
         if (matchStart.isunary) {
           content = `<${matchStart.tagName} ${attrString} />`
@@ -239,6 +200,24 @@ exports.preParseHTMLtoArray = function(html) {
     }
   }
 
+}
+// 注意，所有要再次使用babylon解析html模板的，必须再次将模板转化为符合jsx语法
+exports.preParseDiffPlatformTag = function(htmlContent, type) {
+  let activeTags = tagMap.diffTagMap[type] || [];
+  let deadTags = []
+  Object.keys(tagMap.diffTagMap).forEach(key => {
+    if (key !== type) {
+      deadTags = deadTags.concat(tagMap.diffTagMap[key])
+    }
+  })
+
+  activeTags.forEach(tag => {
+    htmlContent = exports.activeTagHandler(tag, htmlContent);
+  })
+  deadTags.forEach(tag => {
+    htmlContent = exports.deadTagHandler(tag, htmlContent);
+  })
+  return htmlContent
 }
 exports.deadTagHandler = function(tag, content) {
   var contentReg = new RegExp(`<\\s*${tag}[\\s\\S]*?>[\\s\\S]*?<\\s*\\/\\s*${tag}[\\s\\S]*?>`, 'ig')
