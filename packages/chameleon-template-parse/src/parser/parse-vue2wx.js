@@ -83,6 +83,7 @@ parseVue2Wx.tap('vue2wx-v-for', (args) => {
 });
 parseVue2Wx.tap('component-is', (args) => {
   let {path, node, type, options} = args;
+  let lang = options.lang;
   let usingComponents = (options.usingComponents || []).map(item => item.tagName)
   if (type === 'wx' && t.isJSXElement(node)) {
     let currentTag = node.openingElement.name.name;
@@ -102,13 +103,18 @@ parseVue2Wx.tap('component-is', (args) => {
       let currentComp;
       (path.node.openingElement.attributes || []).forEach((attr) => {
         let attrName = attr.name
-        if (t.isJSXNamespacedName(attrName) && attrName.name.name === 'is') {
+        if (lang === 'vue' && t.isJSXNamespacedName(attrName) && attrName.name.name === 'is') {
           currentComp = attr.value.value;
         }
+        if (lang === 'cml' && t.isJSXIdentifier(attrName) && attrName.name === 'is') {
+          currentComp = utils.trimCurly(attr.value.value);
+        }
+
       })
       if (currentComp && usingComponents) {
+        let elementAttributes = path.node.openingElement.attributes || []
         usingComponents.forEach((comp) => {
-          let openTag = t.jsxOpeningElement(t.jsxIdentifier(comp), [t.jsxAttribute(t.jsxIdentifier('wx:if'), t.stringLiteral(`{{${currentComp} === '${comp}'}}`))]);
+          let openTag = t.jsxOpeningElement(t.jsxIdentifier(comp), [t.jsxAttribute(t.jsxIdentifier('wx:if'), t.stringLiteral(`{{${currentComp} === '${comp}'}}`))].concat(elementAttributes));
           let closeTag = t.jsxClosingElement(t.jsxIdentifier(comp))
           let insertNode = t.jsxElement(openTag, closeTag, jsxElementChildren, false);
 
