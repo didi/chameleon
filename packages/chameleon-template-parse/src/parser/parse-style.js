@@ -24,7 +24,7 @@ parseStyle.tap('web-cml', (args) => {
     if (styleNode && styleNode.value && utils.isMustacheReactive(styleNode.value.value)) {
       styleNode.value.value = utils.getReactiveValue(styleNode.value.value);
 
-      styleNode.value.value = `${webMixins.styleProxyName}(${styleNode.value.value},${cmssString})`
+      styleNode.value.value = `${webMixins.styleProxyName}((${styleNode.value.value}),${cmssString})`
       styleNode.name.name = `:${styleNode.name.name}`;
     } else { // 静态的
       styleNode.value.value = webStaticStyleHandle(styleNode.value.value, cmssString);
@@ -39,7 +39,7 @@ parseStyle.tap('weex-cml', (args) => {
     if (styleNode && styleNode.value && utils.isMustacheReactive(styleNode.value.value)) {
       // weex动态style
       styleNode.value.value = utils.getReactiveValue(styleNode.value.value);
-      styleNode.value.value = `${weexMixins.styleProxyName}(${styleNode.value.value})`
+      styleNode.value.value = `${weexMixins.styleProxyName}((${styleNode.value.value}))`
       styleNode.name.name = `:${styleNode.name.name}`;
     } else { // weex静态style
 
