@@ -183,6 +183,7 @@ exports.analyzeTemplate = function(source, options) {
 exports._operationMustache = function (content) {
   let mustacheReg = /{{([\s\S]*?)}}/g
   return content.replace(mustacheReg, function (match, key) {
+    key = exports._deOperationGtLt(key);
     return `_cml{${key}}lmc_`
   })
 }
