@@ -6,7 +6,7 @@
  * 2 写好处理default对象的方法
  * 3 拼接代码
  */
-
+const path = require('path');
 const parser = require('@babel/parser');
 const traverse = require('babel-traverse');
 const generate = require("babel-generator");
