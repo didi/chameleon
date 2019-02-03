@@ -3,12 +3,12 @@
 const common = require('./common.js');
 const wxStyleHandle = require('chameleon-css-loader/proxy/proxyMiniapp.js')
 
-const deepClone = function(obj){
-  if(obj.toString().slice(8, -1) !== "Object"){
+const deepClone = function(obj) {
+  if (obj.toString().slice(8, -1) !== "Object") {
     return obj;
   }
   let res = {};
-  Object.keys(obj).forEach(key=>{
+  Object.keys(obj).forEach(key => {
     res[key] = deepClone(obj[key]);
   })
   return res;
@@ -83,6 +83,8 @@ _.mixins = {
         return ;
       }
       const { cbs, index } = animation;
+      // 配合 解决百度端动画bug
+      if (cbs === undefined || index === undefined) {return ;}
       let cb = cbs[index];
       if (cb && typeof cb === 'function') {
         cb();
