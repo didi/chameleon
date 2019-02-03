@@ -1,3 +1,12 @@
+## [0.1.0-alpha.2](https://github.com/didi/chameleon/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Bug Fixes
+
+- **chameleon-template-parse** 修复 c-show bug ([4c2c750](https://github.com/didi/chameleon/commit/4c2c7507f2aa906f0580ed59d056e91be7269a93))
+- **chameleon-template-parse** 修复 component is bug ([4c2c750](https://github.com/didi/chameleon/commit/4c2c7507f2aa906f0580ed59d056e91be7269a93))
+- **chameleon-loader** 修复 window上数字目录编译报错 ([f1b236d](https://github.com/didi/chameleon/commit/f1b236dfe602daf9dd476b9c6e33e980e3640dbc))
+- **chameleon-mixins** 修复 百度小程序中动画bug ([ca41f54](https://github.com/didi/chameleon/commit/ca41f5460bc0098ce8b401e4b0fc2baad0ffc254))
+
 ## [0.1.0-alpha.1](https://github.com/didi/chameleon/compare/v0.0.12...v0.1.0-alpha.1)
 
 ### Features
