@@ -24,7 +24,7 @@
     "packages/webpack-check-plugin",
     "packages/webpack-liveload-middleware"
   ],
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "command": {
     "publish": {
       "allowBranch": "master",

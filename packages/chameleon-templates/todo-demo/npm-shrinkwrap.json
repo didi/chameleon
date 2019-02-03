@@ -28,6 +28,11 @@
         "mobx": "3.6.1"
       }
     },
+    "chameleon-scroll": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/chameleon-scroll/-/chameleon-scroll-0.0.3.tgz",
+      "integrity": "sha512-9ru7moY9uU3ZouE74OmZ4pP0YHRXkin+oLvfCqKaXHRhK2Cg8kdFRaofmaLJyokb0R6S4Q7h1IQAsMcFoWkmEA=="
+    },
     "chameleon-store": {
       "version": "0.0.3",
       "resolved": "https://registry.npmjs.org/chameleon-store/-/chameleon-store-0.0.3.tgz",
@@ -43,13 +48,6 @@
       "integrity": "sha512-k1FTI1GaGUVBhF3u5vBBZ01mOopi855emBcjkAR123VxOh1ZHh8nxlteDKADT7mTLIinyMsOiSOEO27OcFJbtA==",
       "requires": {
         "chameleon-scroll": "0.0.3"
-      },
-      "dependencies": {
-        "chameleon-scroll": {
-          "version": "0.0.3",
-          "resolved": "https://registry.npmjs.org/chameleon-scroll/-/chameleon-scroll-0.0.3.tgz",
-          "integrity": "sha512-9ru7moY9uU3ZouE74OmZ4pP0YHRXkin+oLvfCqKaXHRhK2Cg8kdFRaofmaLJyokb0R6S4Q7h1IQAsMcFoWkmEA=="
-        }
       }
     },
     "child_process": {
