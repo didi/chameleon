@@ -2423,9 +2423,9 @@
       }
     },
     "chameleon-templates": {
-      "version": "0.1.0-alpha.2",
-      "resolved": "https://registry.npmjs.org/chameleon-templates/-/chameleon-templates-0.1.0-alpha.2.tgz",
-      "integrity": "sha512-LecQDaOT0hKFM9KhjyGQ24rJ6NJuXhWZ+TS6o22o/zAQSLOT66tsxoDA362EnZJZlS9Uia1UJaFf/GcO0cnkRQ=="
+      "version": "0.1.0-alpha.2.0",
+      "resolved": "https://registry.npmjs.org/chameleon-templates/-/chameleon-templates-0.1.0-alpha.2.0.tgz",
+      "integrity": "sha512-aWJYRu2NQz+tmmETITwJLJorok/okudddGtUmNW/PbcYWhWLUt77zSW+qMGeAq19V5msBQNwIbgVBycQp5qJXw=="
     },
     "chameleon-tool-utils": {
       "version": "0.1.0-alpha.2",

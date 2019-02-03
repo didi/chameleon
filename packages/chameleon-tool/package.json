@@ -34,7 +34,7 @@
     "chameleon-miniapp-target": "0.1.0-alpha.2",
     "chameleon-mixins": "0.1.0-alpha.2",
     "chameleon-template-parse": "0.1.0-alpha.2",
-    "chameleon-templates": "0.1.0-alpha.2",
+    "chameleon-templates": "0.1.0-alpha.2.0",
     "chameleon-tool-utils": "0.1.0-alpha.2",
     "chameleon-url-loader": "0.1.0-alpha.2",
     "chameleon-vue-precompiler": "0.1.0-alpha.2",
