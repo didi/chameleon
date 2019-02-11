@@ -18,7 +18,7 @@
 
 **一端所见即多端所见**——多端高度一致，无需关注各端文档。
 
-> 不影响各端差异化灵活性。
+> 基于多态协议不影响各端差异化灵活性
 
 <a href="https://github.com/beatles-chameleon/cml-demo">
 
