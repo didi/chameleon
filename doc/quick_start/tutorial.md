@@ -1,8 +1,8 @@
-# 简易教程
-经过了快速上手的学习，你已经体验chameleon使用，下面跟随这个教程，开启你的chameleon跨端开发。
+## 简易教程
+经过了[快速上手](../quick_start/quick_start.html)的学习，你已经体验了chameleon的使用，下面跟随这个教程，开启你的chameleon跨端开发。
 
 ## 端渲染能力接入
-如果你需要跨native端渲染，则需要接入<a href="../chameleon_client/introduction.html">chameleon SDK</a>，目前支持的渲染引擎是 weex，即将支持 react native，使用时二者选其一作为项目的 native 渲染引擎。chameleon SDK包括对原生组件和本地api能力的扩展，对性能和稳定性的优化。使用方式可以参见<a href="../example/android_example.html">Android Chameleon SDK</a> 与<a href="../example/ios_example.html">IOS Chameleon SDK</a>。
+如果你不仅需要一套代码运行各类小程序和web端，还需要运行自己的自家 Native APP，则需要接入<a href="../chameleon_client/introduction.html">chameleon SDK</a>，目前支持的渲染引擎是 weex，即将支持 react native，使用时二者选其一作为项目的 native 渲染引擎。chameleon SDK包括对原生组件和本地api能力的扩展，向各类小程序的原生能力靠齐，以及对性能和稳定性做了优化。使用方式可以参见<a href="../example/android_example.html">Android Chameleon SDK</a> 与<a href="../example/ios_example.html">IOS Chameleon SDK</a>。
 
 
 ## 基本命令
@@ -119,7 +119,7 @@ export default new Index();
 
 通过以上对于开发语言的介绍，相信你只要是有过网页编程知识的人都可以快速的上手chameleon的开发。
 
-JSON部分用于描述应用、页面或组件的<a href="framework/json.html">配置信息</a>，对应于小程序的json配置文件。其中各端通用的配置字段为`usingComponents`声明组件引用。
+JSON部分用于描述应用、页面或组件的<a href="framework/json.html">配置信息</a>，对应于小程序的json配置文件。其中各端通用的配置字段为`usingComponents`，用于声明组件引用。
 
 
 
@@ -154,7 +154,54 @@ cml.showToast({
 ## 自由定制API和组件
 
 基于强大的多态协议，可自由扩展任意API和组件，不强依赖框架的更新。
-<a href="../framework/polymorphism/intro.html">多态协议</a>是是Chameleon业务层代码和各端底层组件和接口的分界点，是跨端底层差异化的解决方案，普通用户开发基本上使用不到多态协议，因为chameleon已经使用多态协议封装了丰富的组件和接口。有几种情况下可能会用到，第一 业务需求导致的各端差异化实现，比如web端和小程序要有不用的逻辑处理。第二 定制化的组件，比如要使用echarts组件，这时就需要使用多态组件实现，例如<a href="../example/poly.html">手把手教你系列- 实现多态 echart</a>。第三 定制化的底层接口，可以参考<a href="../example/chameleon-api.html">手把手教你系列- 实现多态API</a>。
+<a href="../framework/polymorphism/intro.html">多态协议</a>是Chameleon业务层代码和各端底层组件和接口的分界点，是跨端底层差异化的解决方案，普通用户开发基本上使用不到多态协议，因为chameleon已经使用多态协议封装了丰富的组件和接口。有几种情况下可能会用到
+- 第一 业务需求导致的各端差异化实现，比如web端和小程序要有不用的逻辑处理。
+- 第二 定制化的组件，比如要使用echarts组件，这时就需要使用多态组件实现，例如<a href="../example/poly.html">手把手教你系列- 实现多态 echart</a>。
+- 第三 定制化的底层接口，可以参考<a href="../example/chameleon-api.html">手把手教你系列- 实现多态API</a>。
+
+## 路由管理
+chameleon项目内置了一套各端统一的路由管理方式，项目根目录下的`src/router.config.json`是路由的配置文件,内容如下:
+
+```javascript
+{
+  "mode": "history",
+  "domain": "https://www.chameleon.com",
+  "routes":[
+    {
+      "url": "/cml/h5/index",
+      "path": "/pages/index/index",
+      "mock": "index.php"
+    }
+  ]
+}
+```
+
+- mode 为web端路由模式，分为`hash`或`history`。
+- domain 为web端地址的域名。
+- routes 为路由配置
+  - path为路由对应的cml文件的路径,以src目录下开始的绝对路径，以/开头。
+  - url为web端的访问路径
+  - mock为该路由对应的[mock文件](../framework/mock.html)(仅模拟模板下发需要)
+- 小程序端，构建时会将`router.config.json`的内容，插入到app.json的pages字段，实现小程序端的路由。
+
+路由跳转分为<a href="../api/navigate.html">应用内跳转</a>和<a href="../api/open.html">应用间跳转</a>，`chameleon-api`都提供了相应的方法：
+- navigateTo 打开新页面
+- redirectTo 页面重定向
+- navigateBack 页面返回
+- open 打开其他应用页面
+
+例如应用内打开新页面：
+```
+import cml from 'chameleon-api';
+cml.navigateTo({
+  path: '/pages/page2/page2'
+})
+
+```
+
+
+## 数据管理
+
 
 ## 工程化
 Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webpack，吸收了业内多年来积累的最有用的工程化设计，提供了前端基础开发脚手架命令工具，帮助端开发者从开发、联调、测试、上线等全流程高效的完成业务开发。
