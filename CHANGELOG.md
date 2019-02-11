@@ -1,3 +1,10 @@
+## [0.1.0-alpha.3](https://github.com/didi/chameleon/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Bug Fixes
+
+- **chameleon-tool** 修复 alpha版本cli兼容0.1.1版本的chameleon-api ([0deaa8d](https://github.com/didi/chameleon/commit/0deaa8df11f605fc08c1b71850379500ea3f38cc))
+
+
 ## [0.1.0-alpha.2](https://github.com/didi/chameleon/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
 
 ### Bug Fixes
