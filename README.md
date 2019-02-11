@@ -13,6 +13,25 @@
 * [资源汇总](https://github.com/chameleon-team/awesome-cml)：依赖库、demo示例、学习资源
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 
+
+## CML 即 多端
+
+**一端所见即多端所见**——多端高度一致，无需关注各端文档。
+
+> 不影响各端差异化灵活性。
+
+<a href="https://github.com/beatles-chameleon/cml-demo">
+
+![本地预览](https://cmljs.org/doc/assets/demo-preview.png)
+
+</a>
+
+| web   |      微信小程序      |  native-weex |  百度小程序 |  支付宝小程序 |
+|:----------:|:-------------:|:------:|:------:|:------:|
+| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/web-1.jpg" width="200px"/> </a>|  <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/wx-1.jpg" width="200px"/></a>| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/weex-1.jpg" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/baidu-1.png" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/alipay-1.png" width="200px"/></a> |
+
+
+
 ## 背景
 研发同学在端内既追求h5的灵活性，也要追求性能趋近于原生。
 面对入口扩张，主端、独立端、微信小程序、支付宝小程序、百度小程序、Android厂商联盟快应用，单一功能在各平台都要重复实现，开发和维护成本成倍增加。迫切需要维护一套代码可以构建多入口的解决方案，历经近20个月打磨，滴滴跨端解决方案Chameleon终于发布。真正专注于让一套代码运行多端。
