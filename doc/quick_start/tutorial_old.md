@@ -39,6 +39,7 @@ cml文件`<script></script>`标签中的`export default`导出的对象即为VM�
 具体参见<a href="../logic/logic.html">逻辑层</a>。
 
 ## 7 API
+
 学习包括网络请求、数据存储、系统信息、地理位置等API的使用。
 具体参见<a href="../api/api.html">API</a>。
 
