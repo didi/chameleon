@@ -180,7 +180,7 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseStyleStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-style-transform', function() {
-      expect(result).to.equal(`<view :style="_cmlStyleProxy((dynamicColor),{'rem':true,'scale':0.5,'remOptions':{'rootValue':75,'minPixelValue':1.01},'autoprefixOptions':{'browsers':['> 0.1%','ios >= 8','not ie < 12']}})"><view style="color:red"></view></view>`)
+      expect(result).to.equal(`<view :style="_cmlStyleProxy(((dynamicColor)),{'rem':true,'scale':0.5,'remOptions':{'rootValue':75,'minPixelValue':1.01},'autoprefixOptions':{'browsers':['> 0.1%','ios >= 8','not ie < 12']}})"><view style="color:red"></view></view>`)
     });
   });
   describe('parseStyleStatement-weex', function() {
@@ -201,7 +201,7 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseStyleStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-style-transform', function() {
-      expect(result).to.equal(`<view :style="_cmlStyleProxy((dynamicColor))"><view style="color: #ff0000;width: 20px"></view></view>`)
+      expect(result).to.equal(`<view :style="_cmlStyleProxy(((dynamicColor)))"><view style="color: #ff0000;width: 20px"></view></view>`)
     });
   });
   describe('parseStyleStatement-miniapp', function() {
@@ -307,7 +307,7 @@ describe('parse-template-cml', function() {
     let result = compileTemplate(source, 'web', options, callback);
     it('test-c-show-transform', function() {
       // cml语法下线解析成style后续会通过parseStyle接着进行解析；
-      expect(result).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
+      expect(result).to.equal(`<view v-show="true"></view>`)
     });
   });
   describe('parseDirectiveStatement-wx-alipay-baidu', function() {

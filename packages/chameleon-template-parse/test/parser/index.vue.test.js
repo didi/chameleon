@@ -205,7 +205,7 @@ describe('parse-template-vue', function() {
     let result = compileTemplate(source, 'web', options, callback);
     it('test-c-show-transform', function() {
       // style后续会通过parseStyle接着进行解析；
-      expect(result).to.equal(`<view :style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
+      expect(result).to.equal(`<view v-show="true"></view>`)
     });
   });
   describe('parseDirectiveStatement-wx-alipay-baidu', function() {
