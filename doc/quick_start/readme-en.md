@@ -47,12 +47,12 @@ Chameleon belongs to the latter,  and by defining an unified language framework 
 
 Although different platforms vary in their basic implementations, their fundamental structure still remains the same: MVVM architectural pattern.  **The ultimate goal of Chameleon is to unify all MVVM-like frameworks.**.
 
-![Alt text](https://CMLJS.org/doc/assets/en-mvvm.png)
+![Alt text](https://cmljs.org/doc/assets/en-mvvm.png)
 
 
 ## Overview
 
-![Alt text](https://CMLJS.org/doc/assets/en-architecture.png)
+![Alt text](https://cmljs.org/doc/assets/en-architecture.png)
 
 
 ## Development Languages
