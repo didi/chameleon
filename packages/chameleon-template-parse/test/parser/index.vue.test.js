@@ -198,7 +198,7 @@ describe('parse-template-vue', function() {
     });
   });
   // c-show
-  describe('parseDirectiveStatement-web-weex', function() {
+  describe('parseDirectiveStatement-web', function() {
     let source = `<view v-show="true"></view>`;
     let options = {lang: 'vue'};
     let callback = parseTemplate.parseDirectiveStatement;
@@ -206,6 +206,17 @@ describe('parse-template-vue', function() {
     it('test-c-show-transform', function() {
       // style后续会通过parseStyle接着进行解析；
       expect(result).to.equal(`<view v-show="true"></view>`)
+    });
+  });
+
+  describe('parseDirectiveStatement-weex', function() {
+    let source = `<view v-show="true"></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseDirectiveStatement;
+    let result = compileTemplate(source, 'weex', options, callback);
+    it('test-c-show-transform', function() {
+      // style后续会通过parseStyle接着进行解析；
+      expect(result).to.equal(`<view :style="_cmlStyleProxy(\'display:\'+(true?\'\':\'none\')+\';\'+(true?\'\':\'height:0px;width:0px;overflow:hidden\'))"></view>`)
     });
   });
   describe('parseDirectiveStatement-wx-alipay-baidu', function() {
@@ -220,6 +231,18 @@ describe('parse-template-vue', function() {
       expect(result_wx).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
       expect(result_baidu).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
       expect(result_alipay).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
+    });
+  });
+
+  describe('parse-vue2wx-wx', function() {
+    var parser = require('../../src/index.js');
+    let source = `<component :is="currentComp" shrinkComponents="comp,comp1"></component>`;
+    let options = {lang: 'vue'};
+    let result = parser(source, 'wx', options);
+    console.log(result.source);
+    it('component is', function() {
+      // cml语法下线解析成style后续会通过parseStyle接着进行解析；
+      expect(result.source).to.equal(`<comp1 wx:if="{{currentComp === \'comp1\'}}" v-bind:is="currentComp" shrinkComponents="comp,comp1" class=" cml-base cml-component  cml-base cml-comp  cml-base cml-comp1"></comp1>;\n<comp wx:if="{{currentComp === \'comp\'}}" v-bind:is="currentComp" shrinkComponents="comp,comp1" class=" cml-base cml-component  cml-base cml-comp  cml-base cml-comp1"></comp>`)
     });
   });
 
