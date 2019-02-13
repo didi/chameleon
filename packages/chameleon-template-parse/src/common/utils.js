@@ -8,6 +8,12 @@ const generate = require('@babel/generator')["default"];
 const weexMixins = require('chameleon-mixins/weex-mixins.js');
 _.trimCurly = (str) => str.replace(/(?:{{)|(?:}})/ig, '');
 
+_.getModelKey = function(modelKey) {
+  modelKey = _.trimCurly(modelKey);
+  modelKey = modelKey.trim();
+  return modelKey;
+}
+
 _.analysisFor = function (nodeValue) {
   // v-for="item in items"
   let reg1 = /\s*(.+?)\s+(?:in|of)\s+(.+)\s*/;
