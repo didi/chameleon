@@ -3,7 +3,7 @@
 
 **Chameleon**/kəˈmiːlɪən/，简写`CML`，中文名`卡梅龙`；中文意思`变色龙`，意味着就像变色龙一样能适应不同环境的跨端整体解决方案。
 
-[English Introduction](https://github.com/beatles-chameleon/beatles-chameleon.github.io/blob/master/doc/quick_start/readme-en.md) | 中文介绍
+[English Introduction](https://github.com/didi/chameleon/blob/gh-pages/doc/quick_start/readme-en.md) | 中文介绍
 
 ## 文档
 
