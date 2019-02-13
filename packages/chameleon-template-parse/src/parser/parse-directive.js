@@ -13,7 +13,7 @@ parseDirective.tap('web-weex-cml', (args) => {
     // 以下开始处理指令；
     // v-model c-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-on:input`), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
 
@@ -46,7 +46,12 @@ parseDirective.tap('web-weex-cml', (args) => {
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
       let styleNodeValue = `display:{{${elementShow}?'':'none'}};{{${elementShow}?'':'height:0px;width:0px;overflow:hidden'}}`
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+      if (type === 'weex') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+      } else if (type === 'web') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`v-show`), t.stringLiteral(elementShow)))
+      }
+
     }
   }
 });
@@ -55,7 +60,7 @@ parseDirective.tap('wx-baidu-cml', (args) => {
   if (lang === 'cml' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
     // c-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(node.value.value)))
       if (type === 'alipay') {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
@@ -103,7 +108,7 @@ parseDirective.tap('web-weex-vue', (args) => {
     // 以下开始处理指令；
     // v-model
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-on:input`), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
 
@@ -139,7 +144,12 @@ parseDirective.tap('web-weex-vue', (args) => {
       if (type === 'weex' && styleNodeValue.indexOf('_cmlStyleProxy') === -1) {
         styleNodeValue = `${weexMixins.styleProxyName}(${utils.getReactiveValue(styleNodeValue)})`
       }
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(`:style`), t.stringLiteral(styleNodeValue)))
+      if (type === 'weex') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`:style`), t.stringLiteral(styleNodeValue)))
+      } else if (type === 'web') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`v-show`), t.stringLiteral(elementShow)))
+      }
+
     }
   }
 })
@@ -148,7 +158,7 @@ parseDirective.tap('wx-vue', (args) => {
   let { path, node, type, options: {lang} } = args;
   if (lang === 'vue' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(`{{${node.value.value}}}`)))
       if (type === 'alipay') {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))

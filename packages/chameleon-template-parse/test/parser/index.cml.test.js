@@ -180,7 +180,7 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseStyleStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-style-transform', function() {
-      expect(result).to.equal(`<view :style="_cmlStyleProxy((dynamicColor),{'rem':true,'scale':0.5,'remOptions':{'rootValue':75,'minPixelValue':1.01},'autoprefixOptions':{'browsers':['> 0.1%','ios >= 8','not ie < 12']}})"><view style="color:red"></view></view>`)
+      expect(result).to.equal(`<view :style="_cmlStyleProxy(((dynamicColor)),{'rem':true,'scale':0.5,'remOptions':{'rootValue':75,'minPixelValue':1.01},'autoprefixOptions':{'browsers':['> 0.1%','ios >= 8','not ie < 12']}})"><view style="color:red"></view></view>`)
     });
   });
   describe('parseStyleStatement-weex', function() {
@@ -201,7 +201,7 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseStyleStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-style-transform', function() {
-      expect(result).to.equal(`<view :style="_cmlStyleProxy((dynamicColor))"><view style="color: #ff0000;width: 20px"></view></view>`)
+      expect(result).to.equal(`<view :style="_cmlStyleProxy(((dynamicColor)))"><view style="color: #ff0000;width: 20px"></view></view>`)
     });
   });
   describe('parseStyleStatement-miniapp', function() {
@@ -300,14 +300,24 @@ describe('parse-template-cml', function() {
     });
   });
   // c-show
-  describe('parseDirectiveStatement-web-weex', function() {
+  describe('parseDirectiveStatement-web', function() {
     let source = `<view c-show="{{true}}"></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseDirectiveStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-c-show-transform', function() {
       // cml语法下线解析成style后续会通过parseStyle接着进行解析；
-      expect(result).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
+      expect(result).to.equal(`<view v-show="true"></view>`)
+    });
+  });
+  describe('parseDirectiveStatement-weex', function() {
+    let source = `<view c-show="{{true}}"></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseDirectiveStatement;
+    let result = compileTemplate(source, 'weex', options, callback);
+    it('test-c-show-transform', function() {
+      // cml语法下线解析成style后续会通过parseStyle接着进行解析；
+      expect(result).to.equal(`<view style="display:{{true?\'\':\'none\'}};{{true?\'\':\'height:0px;width:0px;overflow:hidden\'}}"></view>`)
     });
   });
   describe('parseDirectiveStatement-wx-alipay-baidu', function() {
@@ -322,6 +332,17 @@ describe('parse-template-cml', function() {
       expect(result_wx).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
       expect(result_baidu).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
       expect(result_alipay).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
+    });
+  });
+
+  describe('parse-vue2wx-wx', function() {
+    let source = `<component is="{{comp}}" shrinkComponents="comp,comp1"></component>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'wx', options, callback);
+    it('component is', function() {
+      // cml语法下线解析成style后续会通过parseStyle接着进行解析；
+      expect(result).to.equal(`<comp1 wx:if="{{comp === \'comp1\'}}" is="{{comp}}" shrinkComponents="comp,comp1"></comp1>;\n<comp wx:if="{{comp === \'comp\'}}" is="{{comp}}" shrinkComponents="comp,comp1"></comp>`)
     });
   });
 

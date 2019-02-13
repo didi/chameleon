@@ -6,11 +6,12 @@
  * 2 写好处理default对象的方法
  * 3 拼接代码
  */
-
+const path = require('path');
 const parser = require('@babel/parser');
 const traverse = require('babel-traverse');
 const generate = require("babel-generator");
 const {getDefines, parsePlugins} = require('runtime-check');
+const cmlUtils = require('chameleon-tool-utils');
 
 /**
  * 处理对象的函数
@@ -333,6 +334,9 @@ function getCheckCode(interfaceCode, cmlCode, interfacePath, cmlPath, cmlType, e
   let result = '';
   let wrapperCode = '';
   if (interfacePath) {
+    interfacePath = path.resolve(interfacePath);
+    interfacePath = cmlUtils.handleWinPath(interfacePath);
+
     result += `const __INTERFACE__FILEPATH="${interfacePath}"`;
   }
   if (cmlType === 'weex') {

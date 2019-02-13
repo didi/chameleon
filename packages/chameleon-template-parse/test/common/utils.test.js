@@ -6,6 +6,12 @@ describe('utils', function() {
       expect(utils.trimCurly(`{{name}}`)).to.equal(`name`)
     })
   });
+
+  describe('getModelKey', function() {
+    it('trim {{ variable }} to variable', function() {
+      expect(utils.getModelKey(`{{ name }}`)).to.equal(`name`)
+    })
+  });
   describe('titleLize', function() {
     it(`titleLize a word asked for that the word cant't start with space character`, function() {
       expect(utils.titleLize('name')).to.equal(`Name`)
