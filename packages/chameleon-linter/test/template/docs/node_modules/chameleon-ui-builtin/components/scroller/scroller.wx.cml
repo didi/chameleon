@@ -1,0 +1,138 @@
+<template>
+  <origin-scroll-view
+    scroll-x="{{ scrollDirection === 'horizontal' }}"
+    scroll-y="{{ scrollDirection === 'vertical' }}"
+    scroll-with-animation="true"
+    scroll-into-view="{{toView}}"
+    lower-threshold="{{bottomOffset+'rpx'}}"
+    enable-back-to-top="true"
+    bindscrolltolower="onBottom"
+    bindscroll="onScroll"
+    class="cml-scroller"
+    style="{{wrapperStyle}}"
+    scroll-top="{{scrollTopPx}}"
+    scroll-left="{{scrollLeftPx}}"
+    ref="c-scroller"
+  >
+      <slot></slot>
+  </origin-scroll-view>
+</template>
+<script>
+  import cml from 'chameleon-api'
+  class Scroller implements ScrollerInterface {
+    props = {
+      cstyle: {
+        type: String,
+        default: ''
+      },
+      bottomOffset: {
+        // 距底部/右边多远时（单位px），触发 scrolltolower 事件
+        type: Number,
+        default: 0
+      },
+      scrollDirection: {
+        // 可选为 horizontal 或者 vertical，默认值为 vertical 。定义滚动的方向。
+        type: String,
+        default: 'vertical'
+      },
+      bounce: {
+        type: Boolean,
+        default: true
+      },
+      height: {
+        type: Number,
+        default: 0
+      },
+      width: {
+        type: Number,
+        default: 0
+      },
+      scrollTop: {
+        type: Number,
+        default: 0
+      },
+      scrollLeft: {
+        type: Number,
+        default: 0
+      }
+    }
+    data = {
+      cmtStyle: ''
+    }
+
+    computed = {
+      wrapperStyle () {
+        if (this.scrollDirection === 'vertical') {
+          if (this.height >= 0) {
+            return  `${this.cstyle};height:${this.height}rpx;`
+          }
+        } else {
+          if (this.width >= 0) {
+            return `${this.cstyle};width:${this.width}rpx;white-space:nowrap;`
+          }
+        }
+        // 没有传递的情况
+        return this.cmtStyle + this.cstyle;
+      },
+      scrollTopPx () {
+        // scroll-top仅支持px
+        return cml.cpx2px(this.scrollTop)
+      },
+      scrollLeftPx () {
+        return cml.cpx2px(this.scrollLeft)
+      }
+    }
+    methods = {
+      onScroll(e) {
+        let detail = e.detail;
+        detail.deltaX = detail.deltaX || 0;
+        detail.deltaY = detail.deltaY || 0;
+        Object.keys(detail).forEach((key) => {
+          detail[key] = cml.px2cpx(detail[key]);
+        })
+        this.$cmlEmit('onscroll', detail)
+        this.$cmlEmit('customscroll', detail)
+      },
+      onBottom(e) {
+        this.$cmlEmit('scrolltobottom', e.detail)
+      }
+    }
+    mounted () {
+      setTimeout(async() => {
+        if (this.scrollDirection === 'vertical' && !this.height) {
+          console.error('纵向滚动必须传递高度属性')
+          return
+        }
+        if (this.scrollDirection !== 'vertical' && !this.width) {
+          console.error('横向滚动必须传递宽度属性')
+          return
+        }
+        if (this.height === -1 || this.width === -1) {
+          let rectData = await cml.getRect(this.$refs['c-scroller'], this)
+          let windowRect = await cml.getSystemInfo()
+          if (this.scrollDirection === 'vertical') {
+            let height = windowRect.viewportHeight - rectData.top;
+            this.cmtStyle = `height:${height}cpx;`
+          } else {
+            let width = windowRect.viewportWidth - rectData.left
+            this.cmtStyle = `width:${width}cpx;white-space:nowrap;`
+          }
+        }
+      }, 200)
+    }
+  }
+
+  export default new Scroller();
+
+</script>
+
+<style scoped>
+</style>
+
+<script cml-type="json">
+{
+  "wx": {
+    "component": true
+  }
+}
+</script>

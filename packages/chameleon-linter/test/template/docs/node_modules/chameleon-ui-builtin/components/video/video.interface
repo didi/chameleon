@@ -1,0 +1,19 @@
+<script cml-type="interface">
+//定义事件detail对象的参数
+type EventDetail = {
+}
+interface VideoInterface {
+  controls: Boolean,
+  autoplay: Boolean,
+  loop: Boolean,
+  src:  String,
+  customstart(eventDetail: void): void;
+  custompause(eventDetail: void): void;
+  customfinish(eventDetail: void): void;
+  customfail(eventDetail: void): void;
+  start(eventDetail: void): void;
+  pause(eventDetail: void): void;
+  finish(eventDetail: void): void;
+  fail(eventDetail: void): void;
+}
+</script>

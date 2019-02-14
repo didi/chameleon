@@ -1,0 +1,120 @@
+<template>
+  <textarea 
+      value="{{value}}"
+      placeholder="{{placeholder}}"
+      disabled="{{disabled}}"
+      maxlength="{{maxlength}}"
+      style="{{wxStyle}}"
+
+      c-bind:input="inputEvent"
+      c-bind:blur="blurEvent"
+      c-bind:focus="focusEvent"
+      c-bind:confirm="confirmEvent"
+
+      focus="{{focus}}"
+      confirm-type="{{returnKeyType}}"
+      placeholder-style="{{wxPlaceHolderStyle}}"
+  >
+  </textarea>
+</template>
+<script>
+/*
+event: cinput cblur cfocus cconfirm
+*/
+ class Textarea implements TextareaInterface {
+    props = {
+      //textarea的内容
+      value: {
+        type: String,
+        default: '' 
+      },
+      //textarea的placerholder
+      placeholder: {
+        type: String,
+        default: '' 
+      },
+      //是否禁用textarea输入
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      //控制textarea是否聚焦
+      focus: {
+        type: Boolean,
+        default: false
+      },
+      //最大长度
+      maxlength: {
+        type: Number,
+        default: 140
+      },
+      //右下角返回键类型
+      returnKeyType: { //枚举值 done search next go
+        type: String,
+        default: 'done'
+      },
+      placerHolderColor: {
+        type: String,
+        default: '#666'
+      },
+      cStyle: {
+        type: String,
+        default: ''
+      },
+      rows: {
+        type: Number,
+        default: 2
+      }
+    }
+    data = {
+      defaultStyle: "font-size: 40cpx; height: 150cpx; line-height: 50cpx; padding-left:20cpx; padding-right:20cpx; color: #000; text-align: left; background-color: #fff; width:auto; border: 1px solid #999; border-radius: 8cpx;"
+    }
+    computed ={
+      wxPlaceHolderStyle() {
+        return `color: ${this.placerHolderColor}`
+      },
+      wxStyle() {
+        let style = this.defaultStyle + this.cStyle;
+        return style;
+      }
+    }
+    watch = {
+      focus: function(newVal, oldVal) {
+      }
+    }
+    methods = {
+      inputEvent(e) {
+        this.$cmlEmit('input',{
+          value: e.detail.value || ''
+        })
+        this.$cmlEmit('inputevent',{
+          value: e.detail.value || ''
+        })
+      },
+      blurEvent(e) {
+        this.$cmlEmit('blur')
+        this.$cmlEmit('blurevent')
+      },
+      focusEvent(e) {
+        this.$cmlEmit('focus')
+        this.$cmlEmit('focusevent')
+      },
+      confirmEvent(e) {
+        this.$cmlEmit('confirm')
+        this.$cmlEmit('confirmevent')
+      }
+    }
+  }
+
+  export default new Textarea();
+
+</script>
+<style scoped>
+</style>
+<script cml-type="json">
+{
+  "wx": {
+    "component": true
+  }
+}
+</script>

@@ -1,0 +1,70 @@
+<template>
+  <videoable
+      :controls="controls"
+      :autoplay="autoplay"
+      :loop="loop"
+      :src="src"
+      @start="onstart"
+      @pause="onpause"
+      @finish="onfinish"
+      @fail="onfail"
+  ></videoable>
+</template>
+<script>
+ class Video implements VideoInterface {
+    props = {
+      controls: {
+        type: Boolean,
+        default: false
+      },
+      autoplay: {
+        type: Boolean,
+        default: false
+      },
+      loop: {
+        type: Boolean,
+        default: false
+      },
+      src: {
+        type: String,
+        default: ''
+      }
+    }
+    methods = {
+      onstart (e) {
+        this.$cmlEmit('start')
+        this.$cmlEmit('customstart')
+      },
+      onpause (e) {
+        this.$cmlEmit('pause')
+        this.$cmlEmit('custompause')
+      },
+      onfinish (e) {
+        this.$cmlEmit('finish')
+        this.$cmlEmit('customfinish')
+      },
+      onfail (e) {
+        this.$cmlEmit('fail')
+        this.$cmlEmit('customfail')
+      }
+    }
+  }
+  export default new Video();
+</script>
+<style scoped>
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "videoable": "../../assets/vue/videoable"
+    }
+  },
+  "web": {
+    "component": true
+  }
+}
+</script>
+
+
+

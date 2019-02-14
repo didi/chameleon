@@ -1,0 +1,105 @@
+<template>
+  <scrollable
+    :cstyle="cstyle"
+    :bottomOffset="bottomOffset"
+    :scrollDirection="scrollDirection"
+    :bounce="bounce"
+    :height="heightPx"
+    :width="widthPx"
+    template="scroller"
+    scrollTop="{{scrollTopPx}}"
+    scrollLeft="{{scrollLeftPx}}"
+
+    @onscroll= "scrollEvent"
+    @scrolltobottom = "scrolltobottomEvent"
+  >
+    <slot></slot>
+  </scrollable>
+</template>
+<script>
+  import {cpx2px} from '../../assets/js/utils/utils'
+  class Scroller implements ScrollerInterface {
+    props = {
+      bottomOffset: {
+        // 距底部/右边多远时（单位cpx），触发 scrollbottom 事件
+        type: Number,
+        default: 0
+      },
+      bounce: {
+        type: Boolean,
+        default: true
+      },
+      cstyle: {
+        type: String,
+        default: ''
+      },
+      scrollDirection: {
+        // 可选为 horizontal 或者 vertical，默认值为 vertical 。定义滚动的方向。
+        type: String,
+        default: 'vertical'
+      },
+      height: {
+        type: Number,
+        default: 0
+      },
+      width: {
+        type: Number,
+        default: 0
+      },
+      scrollTop: {
+        type: Number,
+        default: 0
+      },
+      scrollLeft: {
+        type: Number,
+        default: 0
+      }
+    }
+    computed = {
+      heightPx () {
+        if (this.height >= 0) {
+          return cpx2px(this.height);
+        }
+        return -1;
+      },
+      widthPx () {
+        if (this.width >= 0) {
+          return cpx2px(this.width);
+        }
+        return -1;
+      },
+      scrollTopPx () {
+        return cpx2px(this.scrollTop);
+      },
+      scrollLeftPx () {
+        return cpx2px(this.scrollLeft);
+      }
+    }
+    methods = {
+      scrollEvent (e) {
+        this.$cmlEmit('onscroll', e)
+        this.$cmlEmit('customscroll', e)
+      },
+      scrolltobottomEvent (e) {
+        this.$cmlEmit('scrolltobottom', e)
+      }
+    }
+  }
+
+  export default new Scroller();
+
+</script>
+
+<style scoped>
+</style>
+
+<script cml-type="json">
+{
+  "web": {
+    "component": true,
+    "usingComponents": {
+      "scrollable": "../../assets/vue/scrollable"
+    }
+  }
+}
+</script>
