@@ -16,7 +16,12 @@ class CMLCleanPlugin {
     function clean() {
       options.paths.forEach(item => {
         item = path.join(options.root, item);
-        utils.removeSync(item);
+        try {
+          utils.removeSync(item);
+        } catch (e) {
+          utils.log.error(`please delete ${item} by yourself`);
+          throw e;
+        }
       })
     }
   }

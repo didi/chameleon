@@ -294,7 +294,7 @@ function rmkidsSync (p, options) {
   // try really hard to delete stuff on windows, because it has a
   // PROFOUNDLY annoying habit of not closing handles promptly when
   // files are deleted, resulting in spurious ENOTEMPTY errors.
-  const retries = isWindows ? 1000 : 1  // eslint-disable-line
+  const retries = isWindows ? 10000 : 1  // eslint-disable-line
   let i = 0
   do {
     let threw = true
