@@ -1,6 +1,6 @@
 {
   "name": "webpack-check-plugin",
-  "version": "0.0.30-alpha.1",
+  "version": "0.0.15-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {

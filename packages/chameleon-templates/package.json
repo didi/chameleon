@@ -1,6 +1,6 @@
 {
   "name": "chameleon-templates",
-  "version": "0.0.30-alpha.2",
+  "version": "0.0.15-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {
