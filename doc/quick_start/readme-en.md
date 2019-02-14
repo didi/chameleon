@@ -18,7 +18,7 @@ Offical website: [CMLJS.org](https://cmljs.org)
 ## CML
 **Highly consistent performance on each platform**—— Highly consistent performance, no need to reference documents for each platform.
 
-> Polymorphic protocol won't affect the flexibility of differentiation on each platform.
+> With polymorphic protocol you can easily organize your platform specified code.
 
 <a href="https://github.com/beatles-chameleon/cml-demo">
 
@@ -47,12 +47,12 @@ Chameleon belongs to the latter,  and by defining an unified language framework 
 
 Although different platforms vary in their basic implementations, their fundamental structure still remains the same: MVVM architectural pattern.  **The ultimate goal of Chameleon is to unify all MVVM-like frameworks.**.
 
-![Alt text](https://cmljs.org/doc/assets/en-mvvm.png)
+![Alt text](https://CMLJS.org/doc/assets/en-mvvm.png)
 
 
 ## Overview
 
-![Alt text](https://cmljs.org/doc/assets/en-architecture.png)
+![Alt text](https://CMLJS.org/doc/assets/en-architecture.png)
 
 
 ## Development Languages
