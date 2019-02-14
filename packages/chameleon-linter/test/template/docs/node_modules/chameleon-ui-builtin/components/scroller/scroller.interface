@@ -1,0 +1,40 @@
+<script cml-type="interface">
+/*
+定义一个inteface用于描述组件的属性和事件
+1、 如果区分组件属性和事件？
+通过类型来区分，事件为函数类型，属性为非函数类型
+2、 如何定义组件属性
+给interface添加同名的属性即可，指定类型
+3、 如何定义组件事件
+以事件名称为key值给interface定义属性，该属性是一个函数类型，返回值为void，
+定义函数的第一个参数为自定义事件传递的detail对象类型
+*/
+
+//定义事件detail对象的参数
+type scrollEventDetail = {
+  deltaX: Number,
+  deltaY: Number,
+  scrollHeight: Number,
+  scrollLeft: Number,
+  scrollTop: Number,
+  scrollWidth: Number
+}
+
+type scrolltobottomEventDetail = {
+  direction: String
+}
+
+interface ScrollerInterface {
+  cstyle: String,
+  bottomOffset: Number,
+  scrollDirection: String,
+  bounce: Boolean,
+  height: Number,
+  width: Number,
+  scrollTop: Number,
+  scrollLeft: Number,
+  onscroll(eventDetail: scrollEventDetail): void;
+  customscroll(eventDetail: scrollEventDetail): void;
+  scrolltobottom(eventDetail: scrolltobottomEventDetail): void;
+}
+</script>

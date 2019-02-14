@@ -1,0 +1,26 @@
+<script cml-type="interface">
+
+//定义事件detail对象的参数
+type inputEventDetail = {
+  value: String
+}
+interface TextareaInterface {
+  value: String,
+  placeholder: String,
+  disabled: Boolean,
+  focus: Boolean,
+  maxlength: Number,
+  returnKeyType: String,
+  placerHolderColor: String,
+  cStyle: String,
+  rows: Number,
+  inputevent(eventDetail: inputEventDetail): void;
+  blurevent(eventDetail: void): void;
+  focusevent(eventDetail: void): void;
+  confirmevent(eventDetail: void): void;
+  input(eventDetail: inputEventDetail): void;
+  blur(eventDetail: void): void;
+  focus(eventDetail: void): void;
+  confirm(eventDetail: void): void;
+}
+</script>

@@ -1,0 +1,155 @@
+<template>
+  <input
+      value="{{value}}"
+      type="{{type}}"
+      placeholder="{{placeholder}}"
+      disabled="{{disabled}}"
+      maxlength="{{maxlength}}"
+
+      c-bind:input="inputEvent"
+      c-bind:blur="blurEvent"
+      c-bind:focus="focusEvent"
+      c-bind:confirm="confirmEvent"
+
+      ref="weexinput"
+      return-key-type="{{returnKeyType}}"
+      style="{{computedStyle}}"
+  />
+</template>
+<script>
+/*
+event: inputevent blurevent focusevent cconfirmevent
+*/
+import {getValBetweenMaxAndMin} from '../../assets/js/utils/utils';
+ class Input implements InputInterface {
+    props = {
+      //input的内容
+      value: {
+        type: String,
+        default: ''
+      },
+      //input的类型
+      type: {
+        type: String,
+        default: 'text'  //枚举值 text number password
+      },
+      //input的placerholder
+      placeholder: {
+        type: String,
+        default: ''
+      },
+      //是否禁用input输入
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      //控制input是否聚焦
+      focus: {
+        type: Boolean,
+        default: false
+      },
+      //最大长度
+      maxlength: {
+        type: Number,
+        default: 140
+      },
+      //右下角返回键类型
+      returnKeyType: { //枚举值 done search next go
+        type: String,
+        default: 'done'
+      },
+      placerHolderColor: {
+        type: String,
+        default: '#bebebe'
+      },
+      cStyle: {
+        type: String,
+        default: ''
+      },
+      maxValue: { //type=number 最大值
+        type: Number,
+        default: Infinity
+      },
+      minValue: { //type=number 最小值
+        type: Number,
+        default: -Infinity
+      }
+    }
+    data = {
+      defaultStyle: "font-size: 33cpx; height: 80cpx; line-height: 80cpx; padding-left:20cpx; padding-right:20cpx; color: #000; border-width:1px; border-style:solid; border-color:#999;border-radius: 8cpx; text-align: left; background-color: #fff;",
+      inputValue: ''
+    }
+    computed ={
+      computedStyle() {
+        let style = this.defaultStyle + this.cStyle;
+        if(style[style.length-1] !== ';') {
+          style +=';'
+        }
+        style += `placeholder-color: ${this.placerHolderColor};`
+        return style
+      },
+      isInputNumber () {
+        return this.type === 'number';
+      }
+    }
+    watch = {
+      focus: function(newVal, oldVal) {
+        this.changeFocus(newVal);
+      }
+    }
+    methods = {
+      changeFocus(focus) {
+        if(focus) {
+          this.$refs['weexinput'].focus();
+        } else {
+          this.$refs['weexinput'].blur();
+        }       
+      },
+
+      inputEvent(e) {
+        let value = e.detail.value;
+        if (this.isInputNumber) {
+          value = getValBetweenMaxAndMin(value, this.maxValue, this.minValue);
+          this.inputValue = value;
+        }
+        this.$cmlEmit('input',{
+          value: value || ''
+        })
+        this.$cmlEmit('inputevent',{
+          value: value || ''
+        })
+      },
+      blurEvent(e) {
+        this.$cmlEmit('blur',{
+          value: this.inputValue || ''
+        });
+        this.$cmlEmit('blurevent',{
+          value: this.inputValue || ''
+        });
+      },
+      focusEvent(e) {
+        this.$cmlEmit('focus');
+        this.$cmlEmit('focusevent');
+      },
+      confirmEvent(e) {
+        this.$cmlEmit('confirm')
+        this.$cmlEmit('confirmevent')
+      }
+    }
+    mounted() {
+      this.changeFocus(this.focus);
+    }  
+  }
+  export default new Input();
+</script>
+
+<style scoped>
+</style>
+
+<script cml-type="json">
+{
+  "weex": {
+    "component": true
+  }
+}
+</script>

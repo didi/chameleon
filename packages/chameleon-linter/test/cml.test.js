@@ -14,6 +14,9 @@ const path = require('path');
 
 
 describe('cml', function() {
+  const projectRoot = path.resolve(__dirname, './template/docs/');
+  config.init(projectRoot);
+  
   describe('lint-json', function() {
     it('json-standard', async function() {
       const cmlPath = path.resolve(__dirname, './linter/cml/json/standard.cml');

@@ -1,0 +1,158 @@
+<template>
+  <scroller
+    ref="c-scroller"
+    style="{{wrapperStyle}}"
+    class="{{afterClass}}"
+    show-scrollbar="false"
+    scroll-direction="{{scrollDirection}}"
+    loadmoreoffset="{{bottomOffset}}"
+    offset-accuracy="10"
+    c-bind:loadmore="onBottom"
+    c-bind:scroll="onScroll"
+  >
+    <slot>
+
+    </slot>
+  </scroller>
+</template>
+<script>
+  import cml from 'chameleon-api'
+  const dom = weex.requireModule('dom')
+  class Scroller implements ScrollerInterface {
+    props = {
+      cstyle: {
+        type: String,
+        default: ''
+      },
+      bottomOffset: {
+        // 距底部/右边多远时（单位px），触发 scrolltolower 事件
+        type: Number,
+        default: 0
+      },
+      scrollDirection: {
+        // 可选为 horizontal 或者 vertical，默认值为 vertical 。定义滚动的方向。
+        type: String,
+        default: 'vertical'
+      },
+      bounce: {
+        type: Boolean,
+        default: true
+      },
+      //-1表示占用剩余高度或者宽度
+      height: {
+        type: Number,
+        default: 0
+      },
+      width: {
+        type: Number,
+        default: 0
+      },
+      scrollTop: {
+        type: Number,
+        default: 0
+      },
+      scrollLeft: {
+        type: Number,
+        default: 0
+      }
+    }
+    data = {
+      cmtStyle: ''
+    }
+    computed ={
+      wrapperStyle() {
+        if (this.scrollDirection === 'vertical') {
+          if (this.height >= 0) {
+            return  `${this.cstyle};height:${this.height}cpx;`
+          } else if (this.cstyle && this.cstyle.indexOf('height') !== -1) {
+            return this.cstyle
+          }
+        } else {
+          if (this.width >= 0) {
+            return `${this.cstyle};width:${this.width}cpx;white-space:nowrap;`
+          } else if (this.cstyle && this.cstyle.indexOf('width') !== -1) {
+            return this.cstyle
+          }
+        }
+        // 没有传递的情况
+        return this.cmtStyle + this.cstyle;
+      },
+      afterClass() {
+        return this.scrollDirection === 'vertical'
+                ? 'flex-column':
+                  'flex-row'
+      }
+    }
+    watch = {
+      scrollTop (val) {
+        this.scrollTo(val)
+      },
+      scrollLeft (val) {
+        this.scrollTo(val)
+      }
+    }
+    methods = {
+      scrollTo (offset) {
+        let el = this.$refs['c-scroller'] && this.$refs['c-scroller'].children[0]
+        if (el) {
+          dom.scrollToElement(el, { offset: offset })
+        }
+      },
+      onScroll(e) {
+        let detail = e.detail;
+        detail.deltaX = detail.deltaX || 0;
+        detail.deltaY = detail.deltaY || 0;
+        this.$cmlEmit('onscroll', detail);
+        this.$cmlEmit('customscroll', detail)
+      },
+      onBottom(e) {
+        this.$cmlEmit('scrolltobottom', e.detail)
+      }
+    }
+    mounted () {
+      setTimeout(async() => {
+        if (this.scrollDirection === 'vertical' && !this.height) {
+          console.error('纵向滚动必须传递高度属性')
+          return
+        }
+        if (this.scrollDirection === 'horizontal' && !this.width) {
+          console.error('横向滚动必须传递宽度属性')
+          return
+        }
+        if (this.height === -1 || this.width === -1) {
+          let rectData = await cml.getRect(this.$refs['c-scroller'], this)
+          let windowRect = await cml.getSystemInfo()
+          if (this.scrollDirection === 'vertical') {
+            let height = windowRect.viewportHeight - rectData.top;
+            this.cmtStyle = `height:${height}cpx;`
+          } else {
+            let width = windowRect.viewportWidth - rectData.left
+            this.cmtStyle = `width:${width}cpx;white-space:nowrap;`
+          }
+        }
+      }, 200)
+    }
+
+  }
+
+  export default new Scroller();
+
+
+</script>
+
+<style scoped>
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+</style>
+
+<script cml-type="json">
+{
+  "weex": {
+    "component": true
+  }
+}
+</script>

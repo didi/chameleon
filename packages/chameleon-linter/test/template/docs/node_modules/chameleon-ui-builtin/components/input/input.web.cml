@@ -1,0 +1,144 @@
+<template>
+    <inputable
+      :value="value"
+      :type="type"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :maxlength="maxlength"
+      :focus="focus"
+      :returnKeyType="returnKeyType"
+      :placerHolderColor="placerHolderColor"
+      :pattern="typePattern"
+      :computedStyle="computedStyle"
+      template="input"
+      :maxValue="maxValue"
+      :minValue="minValue"
+
+      @input="inputEvent"
+      @blur="blurEvent"
+      @focus="focusEvent"
+      @keyup="keyupEvent"
+    ></inputable>
+</template>
+<script>
+/*
+event: inputevent blurevent focusevent cconfirmevent
+*/
+ class Input implements InputInterface {
+    data = {
+      defaultStyle: "line-height: normal;font-size: 16px; height: 40px;padding-left:10px; padding-right:10px; color: #000; border-width:1px; border-style:solid; border-color:#999;border-radius: 4px; text-align: left; background-color: #fff;",
+      typePattern: '*'
+    }
+
+    props = {
+      //类型
+      type: {
+        type: String,
+        default: 'text'  //枚举值 text number password
+      },
+      value: {
+        type: String,
+        default: ''
+      },
+      //placerholder
+      placeholder: {
+        type: String,
+        default: ''
+      },
+      //是否禁用输入
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      //控制是否聚焦
+      focus: {
+        type: Boolean,
+        default: false
+      },
+      //最大长度
+      maxlength: {
+        type: Number,
+        default: 140
+      },
+      //右下角返回键类型
+      returnKeyType: { //枚举值 done search next go
+        type: String,
+        default: 'done'
+      },
+      placerHolderColor: {
+        type: String,
+        default: '#bebebe'
+      },
+      cStyle: {
+        type: String,
+        default: ''
+      },
+      maxValue: { //type=number 最大值
+        type: Number,
+        default: Infinity
+      },
+      minValue: { //type=number 最小值
+        type: Number,
+        default: -Infinity
+      }
+    }
+    computed = {
+      computedStyle() {
+        return this.defaultStyle + this.cStyle
+      }
+    }
+    methods = {
+      inputEvent(e) {
+        this.$cmlEmit('input', {
+          value: e.target.value || ''
+        });
+        this.$cmlEmit('inputevent', {
+          value: e.target.value || ''
+        });
+      },
+      blurEvent(e) {
+        window.scroll(0,0); // 键盘收起留白的bug
+        this.$cmlEmit('blur', {
+          value: e.target.value || ''
+        });
+        this.$cmlEmit('blurevent', {
+          value: e.target.value || ''
+        });
+      },
+      focusEvent(e) {
+        this.$cmlEmit('focus');
+        this.$cmlEmit('focusevent');
+      },
+      // support enter key event
+      keyupEvent (e) {
+        this.$cmlEmit('confirm')
+        this.$cmlEmit('confirmevent')
+      }
+    }
+  }
+
+  export default new Input();
+
+</script>
+
+<style scoped>
+input::-webkit-input-placeholder {
+  line-height: normal;
+}
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "inputable": "../../assets/vue/inputable"
+    }
+  },
+  "web": {
+    "component": true
+  }
+}
+</script>
+
+
+
