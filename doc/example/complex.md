@@ -466,7 +466,7 @@ methods = {
   </page>
 </template>
 <script>
-  import cml from '@didi/chameleon-api'
+  import cml from 'chameleon-api'
 
   class Refresh {
     data = {
@@ -679,7 +679,7 @@ methods = {
 </template>
 
 <script>
-  import cml from '@didi/chameleon-api'
+  import cml from 'chameleon-api'
 
   class Detail {
 
