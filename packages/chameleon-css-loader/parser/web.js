@@ -1,11 +1,13 @@
 
-const rem = require('../postcss/rem.js');
 const cpx = require('../postcss/cpx.js');
+const postcss = require('postcss');
+const px2rem = require('postcss-plugin-px2rem');
+const weexPlus = require('../postcss/weex-plus');
 module.exports = function(source, options = {}) {
   if (options.rem === true) {
-    return rem(source, options);
+    return postcss([px2rem(options.remOptions), weexPlus()]).process(source).css;
   } else {
     options.cpxType = 'scale';
-    return cpx(source, options);
+    return postcss([cpx(options), weexPlus()]).process(source).css;
   }
 }
