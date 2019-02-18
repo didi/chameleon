@@ -1,5 +1,6 @@
 {
   "packages": [
+    "packages/chameleon-tool",
     "packages/babel-plugin-chameleon-import",
     "packages/chameleon-css-loader",
     "packages/chameleon-dev-proxy",
