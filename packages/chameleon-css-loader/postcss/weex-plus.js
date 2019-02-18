@@ -6,7 +6,6 @@ module.exports = postcss.plugin('postcss-weex-plus', function(options) {
   return (root, result) => {
     root.walkDecls((decl, i) => {
       if (decl.prop === 'lines') {
-        decl
         const decllist = [
           postcss.decl({prop: 'overflow', value: 'hidden'}),
           postcss.decl({prop: 'text-overflow', value: 'ellipsis'}),
