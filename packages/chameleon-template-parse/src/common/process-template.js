@@ -103,7 +103,7 @@ exports.preParseAnimation = function(source, type) {
   traverse(ast, {
     enter(path) {
       let node = path.node;
-      if (t.isJSXAttribute(node) && node.name.name === 'c-animation') {
+      if (t.isJSXAttribute(node) && (node.name.name === 'c-animation' || node.name.name === 'v-animation')) {
         let value = utils.trimCurly(node.value.value).trim();
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
       }

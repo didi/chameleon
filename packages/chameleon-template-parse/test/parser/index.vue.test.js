@@ -1,5 +1,5 @@
 
-// vue语法的单元测试
+// vue单个语法的单元测试
 const babylon = require('babylon');
 const t = require('@babel/types');
 const traverse = require('@babel/traverse')["default"];

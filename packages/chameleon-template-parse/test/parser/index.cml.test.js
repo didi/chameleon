@@ -1,5 +1,5 @@
 
-// cml语法的单元测试
+// cml单个语法的单元测试
 
 
 const babylon = require('babylon');
