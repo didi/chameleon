@@ -73,7 +73,7 @@ exports.preParseGtLt = function(content) {
     return exports._operationGtLt(match);
   })
 }
-
+// 预处理 标签内的 {{item.id}} 这种语法jsx无法识别，转化为 _cml{item.id}lmc_
 exports.preParseMustache = function (content) {
   let reg = />([\s\S]*?)<[a-zA-Z\/\-_]+?/g;
   return content.replace(reg, function (match, key) {

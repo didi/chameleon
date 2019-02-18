@@ -29,7 +29,7 @@ describe('process-template', function() {
   // preParseAnimation
   describe('preParseAnimation', function() {
     it(`preParse Animation add c-bind:transitionend="_animationCb(...)"`, function() {
-      expect(processTemplate.preParseAnimation(`<view><text c-animation="{{sss}}" c-bind:transitionend="_animationCb('sss',$event)">click</text></view>;`))
+      expect(processTemplate.preParseAnimation(`<view><text c-animation="{{sss}}">click</text></view>`)).to.equal(`<view><text c-animation="{{sss}}" c-bind:transitionend="_animationCb('sss',$event)">click</text></view>;`)
     })
   });
   describe('postParseMustache', function() {
@@ -45,6 +45,17 @@ describe('process-template', function() {
   describe('postParseUnicode', function() {
     it('transform \\u to %u', function() {
       expect(processTemplate.postParseUnicode(`\\u`)).to.equal(`%u`)
+    })
+  });
+  describe('postParseOriginTag', function() {
+    it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
+      expect(processTemplate.postParseOriginTag(`<view><origin-input></origin-input></view>`)).to.equal(`<view><input></input></view>;`)
+    })
+  });
+  describe('analyzeTemplate', function() {
+    it('collect which build-in-tag is used in template', function() {
+      let options = {buildInComponents: {button: "cml-buildin-button"}};
+      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap')
     })
   });
 })

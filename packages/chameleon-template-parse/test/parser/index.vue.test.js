@@ -25,6 +25,44 @@ function compileTemplate(source, type, options, callback) {
 }
 // cml语法的单元测试
 describe('parse-template-vue', function() {
+  describe('parseTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
+    let source = `<view></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseTag;
+    let result = compileTemplate(source, 'web', options, callback);
+    it('test-tag-transform', function() {
+      expect(result).to.equal(`<div></div>`)
+    });
+  });
+  describe('afterParseTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
+    let source = `<block></block>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.afterParseTag;
+    it('test-after-tag-transform-web-weex', function() {
+      expect(compileTemplate(source, 'web', options, callback)).to.equal(`<template></template>`)
+    });
+    it('test-after-tag-transform-miniapp', function() {
+      expect(compileTemplate(source, 'wx', options, callback)).to.equal(`<block></block>`)
+    });
+  });
+  describe('parseBuildTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
+    let source = `<button></button>`;
+    let options = {lang: 'vue', buildInComponents: {button: "cml-buildin-button"} };
+    let callback = parseTemplate.parseBuildTag;
+    let result = compileTemplate(source, 'web', options, callback);
+    it('test-build-tag-transform', function() {
+      expect(result).to.equal(`<cml-buildin-button></cml-buildin-button>`)
+    });
+  });
+  describe('parseTagForSlider', function() {
+    let source = `<carousel><carousel-item></carousel-item></carousel>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseTagForSlider;
+    let result = compileTemplate(source, 'wx', options, callback);
+    it('parseTagForSlider for wx', function() {
+      expect(result).to.equal(`<swiper><swiper-item></swiper-item></swiper>`)
+    });
+  });
   // parseRefStatement:仅在所有的小程序端进行处理
   describe('parseRefStatement-miniapp', function() {
     let source = `<view ref="flag"></view>`;
@@ -176,7 +214,7 @@ describe('parse-template-vue', function() {
   });
   // parseDirectiveStatement
   describe('parseDirectiveStatement-web-weex', function() {
-    let source = `<view><input v-model="searchText" /><custom-input v-model="search"></custom-input></view>`;
+    let source = `<view><input v-model=" searchText " /><custom-input v-model="search"></custom-input></view>`;
     let options = {lang: 'vue'};
     let callback = parseTemplate.parseDirectiveStatement;
     let result = compileTemplate(source, 'web', options, callback);
@@ -185,16 +223,16 @@ describe('parse-template-vue', function() {
     });
   });
   describe('parseDirectiveStatement-wx-alipay-baidu', function() {
-    let source = `<view><input v-model="searchText" /><custom-input v-model="search"></custom-input></view>`;
+    let source = `<view><input v-model=" searchText " /><custom-input v-model="search"></custom-input></view>`;
     let options = {lang: 'vue'};
     let callback = parseTemplate.parseDirectiveStatement;
     let result_wx = compileTemplate(source, 'wx', options, callback);
     let result_baidu = compileTemplate(source, 'baidu', options, callback);
     let result_alipay = compileTemplate(source, 'alipay', options, callback);
-    it('test-class-transform', function() {
-      expect(result_wx).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{searchText}}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
-      expect(result_baidu).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{searchText}}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
-      expect(result_alipay).to.equal(`<view><input data-modelkey="searchText" bindInput="_cmlModelEventProxy" value="{{searchText}}" /><custom-input data-modelkey="search" bindInput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
+    it('test-v-model', function() {
+      expect(result_wx).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
+      expect(result_baidu).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
+      expect(result_alipay).to.equal(`<view><input data-modelkey="searchText" bindInput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindInput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
     });
   });
   // c-show
@@ -208,7 +246,21 @@ describe('parse-template-vue', function() {
       expect(result).to.equal(`<view v-show="true"></view>`)
     });
   });
-
+  // c-text
+  describe('parseDirectiveStatement-web-miniapp', function() {
+    let source = `<view v-text="value1">everything will be replaced</view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseDirectiveStatement;
+    it('test-c-text-transform', function() {
+      expect(compileTemplate(source, 'web', options, callback)).to.equal(`<view>{{value1}}</view>`)
+    });
+    it('test-c-text-transform', function() {
+      expect(compileTemplate(source, 'wx', options, callback)).to.equal(`<view>{{value1}}</view>`)
+    });
+    it('test-c-text-transform', function() {
+      expect(compileTemplate(source, 'weex', options, callback)).to.equal(`<view>{{value1}}</view>`)
+    });
+  });
   describe('parseDirectiveStatement-weex', function() {
     let source = `<view v-show="true"></view>`;
     let options = {lang: 'vue'};
