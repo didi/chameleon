@@ -104,7 +104,7 @@ exports.preParseAnimation = function(source, type) {
     enter(path) {
       let node = path.node;
       if (t.isJSXAttribute(node) && node.name.name === 'c-animation') {
-        let value = utils.trimCurly(node.value.value);
+        let value = utils.trimCurly(node.value.value).trim();
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
       }
     }

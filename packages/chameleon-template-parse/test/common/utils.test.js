@@ -82,7 +82,7 @@ describe('utils', function() {
   describe('transformWxDynamicStyleCpxToRpx', function() {
     it('cml-syanx:transformWxDynamicStyleCpxToRpx for wx dynamic style', function() {
       let result = utils.transformWxDynamicStyleCpxToRpx(`height:100cpx;{{'width:'+cpx+'cpx;'+'height:'+cpx2+'cpx;background-color:red;'}}height:200cpx;width:100cpx;`);
-      expect(result).to.equal(`height:100cpx;{{'width:' + cpx + 'rpx;' + 'height:' + cpx2 + 'rpx;background-color:red;'}}height:200rpx;width:100cpx;`);
+      expect(result).to.equal(`height:100rpx;{{'width:' + cpx + 'rpx;' + 'height:' + cpx2 + 'rpx;background-color:red;'}}height:200rpx;width:100rpx;`);
     })
   });
   describe('transformWxDynamicStyleCpxToRpx', function() {

@@ -29,7 +29,7 @@ describe('process-template', function() {
   // preParseAnimation
   describe('preParseAnimation', function() {
     it(`preParse Animation add c-bind:transitionend="_animationCb(...)"`, function() {
-      expect(processTemplate.preParseAnimation(`<view><text c-animation="{{sss}}">click</text></view>`)).to.equal(`<view><text c-animation="{{sss}}" c-bind:transitionend="_animationCb('sss',$event)">click</text></view>;`)
+      expect(processTemplate.preParseAnimation(`<view><text c-animation="{{ sss }}">click</text></view>`)).to.equal(`<view><text c-animation="{{ sss }}" c-bind:transitionend="_animationCb('sss',$event)">click</text></view>;`)
     })
   });
   describe('postParseMustache', function() {
