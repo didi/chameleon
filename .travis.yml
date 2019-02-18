@@ -4,6 +4,7 @@ node_js:
 before_script:
   - lerna bootstrap --ignore-scripts
   - cd packages/easy-chameleon && npm i && cd ../../
+  - cd packages/chameleon-tool && npm i && cd ../../
 script:
   - npm run coverage
 after_script:

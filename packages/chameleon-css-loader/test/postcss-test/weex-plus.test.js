@@ -12,6 +12,6 @@ describe('postcss/weex-plus', function() {
 
     let ret = postcss(weexPlus()).process(content).css;
     console.log(ret)
-    expect(ret).to.equal(`\n.class1 {\n  lines: 1;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n}\n`);
+    expect(ret).to.equal(`\n.class1 {\n  lines: 1;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1;\n  -webkit-box-orient: vertical;\n}\n`);
   })
 })
