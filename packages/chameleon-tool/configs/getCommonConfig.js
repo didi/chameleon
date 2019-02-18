@@ -155,7 +155,7 @@ module.exports = function (options) {
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
   // 新版api 优先读取domainMap
-  let domainMap = cml.config.get().domainMap || {
+  let domainMap = (cml.config.get().domainMap && cml.config.get().domainMap[cml.media]) || {
     apiPrefix
   };
   let defaultDomainKey = cml.config.get().defaultDomainKey || 'apiPrefix';

@@ -17,28 +17,27 @@ module.exports = function (app, options) {
     let self = this;
     let reqPath = req.path;
     let reqMethod = req.method.toLowerCase();
-    let query = req.query ;
+    let query = req.query;
     for (let j = 0; j < controllerFiles.length; j++) {
       let file = controllerFiles[j];
       delete require.cache[file];
       let apis = require(file);
-      let domainkey = query.domainkey || cml.config.get().defaultDomainKey;
+      let domainkey = query.domainkey || cml.config.get().defaultDomainKey || 'apiPrefix';
       if (!Array.isArray(apis)) {
         apis = [apis];
       }
-      // 判断是否包括mock-api多域名；
-      let hasDomainKey = apis.find((item) => Object.keys(item).includes('domainkey'));
-      let controller, api;
-      if (hasDomainKey) {
-        api = apis.find((item) => item.domainkey === domainkey);
-        controller = (api && api.request) || [];
-      } else {
-        controller = apis;
-      }
+      let controller = [];
+      apis.forEach(item => {
+        if (!item.domainKey) {
+          item.domainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
+          if (domainkey === item.domainKey) {
+            controller = controller.concat(item);
+          }
+        } else if (domainkey === item.domainKey) {
+          controller = controller.concat(item.request);
+        }
+      })
 
-      if (!Array.isArray(controller)) {
-        controller = [controller];
-      }
       for (let i = 0; i < controller.length; i++) {
         let item = controller[i];
 
