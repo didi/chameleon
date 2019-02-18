@@ -11,7 +11,7 @@ module.exports = postcss.plugin('postcss-weex-plus', function(options) {
           postcss.decl({prop: 'overflow', value: 'hidden'}),
           postcss.decl({prop: 'text-overflow', value: 'ellipsis'}),
           postcss.decl({prop: 'display', value: '-webkit-box'}),
-          postcss.decl({prop: '-webkit-line-clamp', value: 2}),
+          postcss.decl({prop: '-webkit-line-clamp', value: decl.value}),
           postcss.decl({prop: '-webkit-box-orient', value: 'vertical'})
         ];
         decl.parent.append(...decllist)
