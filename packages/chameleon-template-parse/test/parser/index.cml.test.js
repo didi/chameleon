@@ -203,14 +203,21 @@ describe('parse-template-cml', function() {
       expect(result).to.equal(`<view><view v-for="(item, index) in array"></view></view>`)
     });
   });
-  describe('parseIterationStatement-wx-alipay', function() {
+  describe('parseIterationStatement-wx', function() {
     let source = `<view><view c-for="{{array}}"></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseIterationStatement;
     let result1 = compileTemplate(source, 'wx', options, callback);
-    let result2 = compileTemplate(source, 'alipay', options, callback);
     it('test-Iteration-transform', function() {
       expect(result1).to.equal(`<view><view wx:for="{{array}}"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-alipay', function() {
+    let source = `<view><view c-for="{{array}}"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result2 = compileTemplate(source, 'alipay', options, callback);
+    it('test-Iteration-transform', function() {
       expect(result2).to.equal(`<view><view a:for="{{array}}"></view></view>`)
     });
   });
@@ -221,6 +228,43 @@ describe('parse-template-cml', function() {
     let result = compileTemplate(source, 'baidu', options, callback);
     it('test-Iteration-transform', function() {
       expect(result).to.equal(`<view><view s-for="array"></view></view>`)
+    });
+  });
+  // parseIterationStatement c-for-inde c-for-item c-key的测试
+  describe('parseIterationStatement-web-weex', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result = compileTemplate(source, 'web', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view><view v-for="(item, idx) in array" :key="item.id"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-wx', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result1 = compileTemplate(source, 'wx', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result1).to.equal(`<view><view wx:for="{{array}}" wx:for-index="idx" wx:for-item="item" wx:key="id"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-alipay', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result2 = compileTemplate(source, 'alipay', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result2).to.equal(`<view><view a:for="{{array}}" a:for-index="idx" a:for-item="item" a:key="id"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-baidu', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result = compileTemplate(source, 'baidu', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view><view s-for="array" s-for-index="idx" s-for-item="item" s-key="id"></view></view>`)
     });
   });
   // parseAttributeStatement

@@ -88,19 +88,52 @@ describe('parse-template-vue', function() {
     });
   });
   // parseVue2WxStatement：测试v-for语法转化为小程序
-  describe('parseVue2WxStatement-miniapp', function() {
-    let source = `<view v-for="(m,i) in array"><view v-for="item in array"></view></view>`;
+  describe('parseVue2WxStatement-web', function() {
+    let source = `<view v-for="(m,i) in array" v-bind:key="item.id"><view v-for="item in array"></view></view>`;
     let options = {lang: 'vue'};
     let callback = parseTemplate.parseVue2WxStatement;
-    let result_wx = compileTemplate(source, 'wx', options, callback);
-    let result_alipay = compileTemplate(source, 'alipay', options, callback);
-    let result_baidu = compileTemplate(source, 'baidu', options, callback);
+    let result = compileTemplate(source, 'web', options, callback);
     it('test-Iteration-transform', function() {
-      expect(result_wx).to.equal(`<view wx:for-item="m" wx:for-index="i" wx:for="{{array}}"><view wx:for-item="item" wx:for-index="index" wx:for="{{array}}"></view></view>`)
-      expect(result_alipay).to.equal(`<view a:for-item="m" a:for-index="i" a:for="{{array}}"><view a:for-item="item" a:for-index="index" a:for="{{array}}"></view></view>`)
-      expect(result_baidu).to.equal(`<view s-for-item="m" s-for-index="i" s-for="array"><view s-for-item="item" s-for-index="index" s-for="array"></view></view>`)
+      expect(result).to.equal(`<view v-for="(m,i) in array" v-bind:key="item.id"><view v-for="item in array"></view></view>`)
     });
   });
+  describe('parseVue2WxStatement-weex', function() {
+    let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'weex', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`)
+    });
+  });
+  describe('parseVue2WxStatement-wx', function() {
+    let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'wx', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view wx:for-item="m" wx:for-index="i" wx:for="{{array}}" wx:key="id"><view wx:for-item="item" wx:for-index="index" wx:for="{{array}}"></view></view>`)
+    });
+  });
+  describe('parseVue2WxStatement-alipay', function() {
+    let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'alipay', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view a:for-item="m" a:for-index="i" a:for="{{array}}" a:key="id"><view a:for-item="item" a:for-index="index" a:for="{{array}}"></view></view>`)
+    });
+  });
+  describe('parseVue2WxStatement-baidu', function() {
+    let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'baidu', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view s-for-item="m" s-for-index="i" s-for="array" s-key="id"><view s-for-item="item" s-for-index="index" s-for="array"></view></view>`)
+    });
+  });
+
   // parseVue2WxStatement:测试 v-bind转化为小程序端的响应值
   describe('parseVue2WxStatement-miniapp', function() {
     let source = `<view><view prop1="static" v-bind:prop2="dynamic"></view></view>`;
@@ -113,6 +146,15 @@ describe('parse-template-vue', function() {
       expect(result_wx).to.equal(`<view><view prop1="static" prop2="{{dynamic}}"></view></view>`)
       expect(result_alipay).to.equal(`<view><view prop1="static" prop2="{{dynamic}}"></view></view>`)
       expect(result_baidu).to.equal(`<view><view prop1="static" prop2="{{dynamic}}"></view></view>`)
+    });
+  });
+  describe('parseAttributeStatement-web-weex', function() {
+    let source = `<view><view prop1="static" v-bind:prop2="dynamic"></view></view>`;
+    let options = {lang: 'vue'};
+    let callback = parseTemplate.parseAttributeStatement;
+    let result = compileTemplate(source, 'web', options, callback);
+    it('test-attribute-transform', function() {
+      expect(result).to.equal(`<view><view prop1="static" v-bind:prop2="dynamic"></view></view>`)
     });
   });
   // vue语法下style只支持一个style；parseStyleStatement
