@@ -12,13 +12,10 @@ const cache = require('lru-cache')(cacheNumber);
 const hash = require('hash-sum');
 const splitParts = require('./lib/splitParts.js');
 const childProcess = require('child_process');
-const rimraf = require('./lib/rimraf.js');
 
 var _ = module.exports = {}
 
 _.log = log;
-
-_.removeSync = rimraf.sync;
 
 _.is = function (source, type) {
   return Object.prototype.toString.call(source) === '[object ' + type + ']';

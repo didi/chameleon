@@ -1,7 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var utils = require('./utils.js');
 var path = require('path');
-const CMLCleanPlugin = require('./plugins/cmlCleanPlugin.js');
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
@@ -78,7 +77,6 @@ module.exports = function (options) {
         filename: `[name].${targetObj.css}`,
         allChunks: true
       }),
-      // new CMLCleanPlugin({root: outputPath, paths: ['./']}), //  解决window系统中删除小程序文件夹失败
       new webpack.optimize.CommonsChunkPlugin({
         name: ['common', 'manifest'],
         filename: 'static/js/[name].js',

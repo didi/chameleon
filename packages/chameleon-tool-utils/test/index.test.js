@@ -474,35 +474,4 @@ describe('index.js', function () {
     expect(result3).to.be.equal('app')
 
   })
-
-  it('removeSync one file', function() {
-    var filePath = path.join(__dirname, '1.js');
-    fs.writeFileSync(filePath, '123');
-    _.removeSync(filePath);
-    expect(_.isFile(filePath)).to.be.equal(false)
-  })
-
-
-  it('removeSync dir', function() {
-    var dirPath = path.join(__dirname, './temp');
-    _.mkdir(dirPath);
-    for (let i = 0; i < 5; i++) {
-      fs.writeFileSync(path.join(dirPath, i + '.js'), i);
-    }
-    _.removeSync(dirPath);
-    expect(_.isDir(dirPath)).to.be.equal(false)
-  })
-
-  it('rimraf.js  rimraf', function() {
-    var rimraf = require('../src/lib/rimraf.js');
-    var dirPath = path.join(__dirname, './temp2');
-    _.mkdir(dirPath);
-    for (let i = 0; i < 5; i++) {
-      fs.writeFileSync(path.join(dirPath, i + '.js'), i);
-    }
-    rimraf(dirPath, function() {
-      console.log('remove success')
-      expect(_.isDir(dirPath)).to.be.equal(false)
-    });
-  })
 })
