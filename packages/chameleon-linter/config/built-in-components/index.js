@@ -34,17 +34,13 @@ function isPackageUpdated() {
     _builtinCompsInfo.name = pakcageInfo.name;
     _builtinCompsInfo.version = pakcageInfo.version;
   }
-  else {
-    _builtinCompsInfo = {
-      name: '', version: '', components: {}
-    };
-  }
   return true;
 }
 
 function getBuiltinComponents() {
   let result = {};
   let inDir = config.getCurrentWorkspace() + '/node_modules/chameleon-ui-builtin/components';
+  
   if (fs.existsSync(inDir)) {
     Parser.flatEntrance(inDir).forEach(filterFile => {
       let content = parser.resetPath(filterFile).getJsonResultsWithComponentName();
@@ -52,7 +48,7 @@ function getBuiltinComponents() {
     });
   }
   _builtinCompsInfo.components = result;
-  return result;
+  return result; 
 }
 
 function getStoredComponentInfo() {
