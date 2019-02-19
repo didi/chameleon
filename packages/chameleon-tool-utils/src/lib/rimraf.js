@@ -41,6 +41,7 @@ function rimraf (p, options, cb) {
   defaults(options)
 
   rimraf_(p, options, function CB (er) {
+    /* istanbul ignore if  */
     if (er) {
       if ((er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') &&
           busyTries < options.maxBusyTries) {
@@ -91,6 +92,7 @@ function rimraf_ (p, options, cb) {
     }
 
     options.unlink(p, er => {
+      /* istanbul ignore if  */
       if (er) {
         if (er.code === 'ENOENT') {
           return cb(null)
@@ -108,7 +110,7 @@ function rimraf_ (p, options, cb) {
     })
   })
 }
-
+/* istanbul ignore next */
 function fixWinEPERM (p, options, er, cb) {
   assert(p)
   assert(options)
@@ -134,6 +136,7 @@ function fixWinEPERM (p, options, er, cb) {
   })
 }
 
+/* istanbul ignore next */
 function fixWinEPERMSync (p, options, er) {
   let stats
 
@@ -253,6 +256,7 @@ function rimrafSync (p, options) {
       options.unlinkSync(p)
     }
   } catch (er) {
+    /* istanbul ignore if  */
     if (er.code === 'ENOENT') {
       return
     } else if (er.code === 'EPERM') {
