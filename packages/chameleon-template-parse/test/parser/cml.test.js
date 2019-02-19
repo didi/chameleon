@@ -29,33 +29,6 @@ let options = {lang: 'cml',
     isNative: false
   }]
 };
-let vueOptions = {lang: 'vue',
-  buildInComponents: {button: "cml-buildin-button"},
-  cmss: {
-    rem: true,
-    scale: 0.5,
-    remOptions: {
-      // base on 750px standard.
-      rootValue: 75,
-      // to leave 1px alone.
-      minPixelValue: 1.01
-    },
-    autoprefixOptions: {
-      browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-    }
-  },
-  usingComponents: [{
-    tagName: 'thirdComp1',
-    refUrl: '/path/to/ref1',
-    filePath: 'path/to/real1',
-    isNative: true
-  }, {
-    tagName: 'thirdComp2',
-    refUrl: '/path/to/ref2',
-    filePath: 'path/to/real2',
-    isNative: false
-  }]
-};
 describe('parse-template-cml-all', function() {
   // parseTag
   describe('parse-tag-transform', function() {
