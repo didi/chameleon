@@ -68,7 +68,8 @@ function getLintOptions(params) {
   options['attr-bans'] = whiteListConifg.getForbiddenAttrsByLang(params.lang);
 
   options['tag-only-allowed-names'] = whiteListConifg
-    .getAllowedTags()
+    .getFunctionalTags()
+    .concat(builtinComponents.getBuiltinTags())
     .concat(params.custimizedTags
       .map((tag) => {
         return tag.name;
