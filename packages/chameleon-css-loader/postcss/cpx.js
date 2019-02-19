@@ -1,5 +1,7 @@
 const postcss = require('postcss');
 // 非rem的cpx处理，rem的利用postcss-plugin-px2rem插件即可实现
+const fnv = require('fnv-plus');
+const addAlipayClassPlugin = require('./add-alipay-class')
 let scalePlugin = postcss.plugin('postcss-plugin-cpx-scale', function (options) {
   // parseType 参数决定cpx的转换
   let { unitPrecision = 5, scale = 1, cpxType = 'scale'} = options;
@@ -42,6 +44,18 @@ let scalePlugin = postcss.plugin('postcss-plugin-cpx-scale', function (options) 
 });
 
 module.exports = function (content, options) {
-  let ret = postcss(scalePlugin(options)).process(content).css;
+  let {cmlType, filePath} = options;
+  let ret ;
+  debugger;
+  if (cmlType === 'alipay') {
+    let num = 32;
+    let randomClassName = fnv.hash(filePath, num).str();
+    options.alipayClassName = `.cml-${randomClassName}`;
+    debugger;
+    // ret = postcss(scalePlugin(options), addAlipayClassPlugin(options)).process(content).css;
+    ret = postcss(scalePlugin(options)).process(content).css;
+  } else {
+    ret = postcss(scalePlugin(options)).process(content).css;
+  }
   return ret;
 }

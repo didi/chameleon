@@ -6,10 +6,12 @@ const mediaParse = require('./parser/media');
 
 module.exports = function(source, options) {
   options = options || loaderUtils.getOptions(this);
+  options.filePath = this.resourcePath;
   // 处理差异化的media代码块功能
   if (options.media) {
     return mediaParse(source, options.cmlType);
   }
+  debugger;
 
   if (source) {
     let result;

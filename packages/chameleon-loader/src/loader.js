@@ -228,7 +228,8 @@ module.exports = function (content) {
       //content是不带template标签的内容；
       let compileResult = ASTcompileTemplate(templateContent, {
         lang,
-        usingComponents
+        usingComponents,
+        filePath
       });
 
       let emitPath = entryPath.replace(miniCmlReg, `.${miniappTplExt[cmlType]}`)
@@ -355,7 +356,8 @@ module.exports = function (content) {
                     '</template>'
       return ASTcompileTemplate(before, {
         lang,
-        usingComponents
+        usingComponents,
+        filePath
       });
 
     }

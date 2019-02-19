@@ -3,7 +3,8 @@ const utils = require('../common/utils');
 const t = require('@babel/types');
 const weexMixins = require('chameleon-mixins/weex-mixins.js')
 // weex: 不支持<view><text class="{{true? 'bg-green font':''}}" >fafafa</text></view>。也就注定不能这么写多个class ,但是可以 class="cls1 cls2 cls3"
-let parseClass = new SyncHook(['args'])
+let parseClass = new SyncHook(['args']);
+const fnv = require('fnv-plus');
 // weex对于动态样式的处理  简直 amazing
 // cml语法：支持的写法如下：class="cls1 cls2"  class="{{true ? 'cls1 cls2':'cls3 cls4'}}"
 /**
@@ -74,7 +75,7 @@ parseClass.tap('weex-cml', (args) => {
 
 })
 parseClass.tap('wx-alipay-baidu-cml', (args) => {
-  let { node, type, options: {lang} } = args;
+  let { node, type, options: {lang, filePath} } = args;
   if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
@@ -82,6 +83,11 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
       attr.name.name === 'class'
     );
     let extraClass = ` cml-base cml-${tagName}`;
+    if (type === 'alipay') {
+      let num = 32;
+      let randomClassName = fnv.hash(filePath, num).str();
+      extraClass = `${extraClass} cml-${randomClassName}`
+    }
     if (classNodes.length === 0) {
       attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
     } else if (classNodes.length === 1) {
