@@ -34,18 +34,19 @@ exports.preParseAliComponent = function(source, type, options) {
     let lang = options.lang;
     let usingComponents = options.usingComponents || [];
     let buildInComponents = options.buildInComponents || {};
-
+    let exceptTags = ['carousel-item'];// 用于包括哪些组件标签不用被view标签包裹
     let callbacks = {startCallback: exports.startCallback};
     let htmlArr = exports.preParseHTMLtoArray(source, type, options, callbacks);
     let newHtmlArr = [];
     htmlArr.forEach((item) => {
+      let isExpectTags = exceptTags.includes(item.tagName)
       if (item.type === 'tagContent') { // 标签内置直接push内容
         newHtmlArr.push(item.content);
       }
       if (item.type === 'tagEnd') { // 结束标签的话，先将该标签的内容push,然后判断是否是组件
         newHtmlArr.push(item.content);
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
-        if (isComponent) {
+        if (isComponent && !isExpectTags) {
           newHtmlArr.push('</view>');
         }
       }
@@ -57,7 +58,7 @@ exports.preParseAliComponent = function(source, type, options) {
           return inheritAttrsFromComp.includes(attr[1]);
         });
         let inheritString = inheritNodes.reduce((result, styleClassNode) => result = result + (styleClassNode[0] || ''), '');
-        if (isComponent) { // 如果是组件需要从组件继承一些属性过来
+        if (isComponent && !isExpectTags) { // 如果是组件需要从组件继承一些属性过来
           if (!item.isunary) { // 如果不是一元标签，那么只在该标签前面push一个view
             newHtmlArr.push(`<view ${inheritString} >`);
             newHtmlArr.push(item.content);
