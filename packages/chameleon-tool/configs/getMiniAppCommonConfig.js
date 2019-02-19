@@ -78,7 +78,7 @@ module.exports = function (options) {
         filename: `[name].${targetObj.css}`,
         allChunks: true
       }),
-      new CMLCleanPlugin({root: outputPath, paths: ['./']}), //  解决window系统中删除小程序文件夹失败
+      // new CMLCleanPlugin({root: outputPath, paths: ['./']}), //  解决window系统中删除小程序文件夹失败
       new webpack.optimize.CommonsChunkPlugin({
         name: ['common', 'manifest'],
         filename: 'static/js/[name].js',
