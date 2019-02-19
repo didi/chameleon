@@ -140,7 +140,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button style="width:{{cpx}}rpx;height:100rpx;border-width:200rpx;{{\'width:\' + cpx + \'rpx\'}}" class=" cml-base cml-button"></cml-buildin-button><thirdComp1 style="{{\'width:\' + cpx + \'rpx;\' + \'height:\' + cpx2 + \'rpx;background-color:red\'}}" class=" cml-base cml-thirdComp1"></thirdComp1></view>`);
     });
   });
-  // ref
+  // ref  动态
   describe('parse-ref-transform', function() {
     let source = `<view ref='{{ refVlaue }}'></view>`;
     it('test-ref-transform-web', function() {
@@ -151,6 +151,19 @@ describe('parse-template-cml-all', function() {
     });
     it('test-ref-transform-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
+    });
+  });
+  // ref  静态
+  describe('parse-ref-transform', function() {
+    let source = `<view ref=' refVlaue '></view>`;
+    it('test-ref-transform-web', function() {
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div ref=" refVlaue " class=" cml-base cml-view"></div>`);
+    });
+    it('test-ref-transform-weex', function() {
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div ref=" refVlaue " class=" cml-base cml-view"></div>`);
+    });
+    it('test-ref-transform-miniapp', function() {
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id=" refVlaue "></view>`);
     });
   });
   // component is
@@ -199,7 +212,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view prop1="static" prop2="{{dynamic}}" class=" cml-base cml-view"></view>`);
     });
   })
-  //各种 <  > 的转化
+  // 各种 <  > 的转化
   describe('parse-gtlt-transform', function() {
     let source = `<view><view prop="{{dynamic}}" id="{{5 < 6 ? '5':'6'}}">{{ 5 > 6 ? 'this is 5':'this is 6'}}</view><view name="{{5 < 6?'7':'8'}}"></view></view>`;
     it('test-gtlt-transform-web', function() {

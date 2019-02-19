@@ -112,17 +112,30 @@ describe('parse-template-vue-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button style="{{\'width:\' + cpx + \'rpx;\' + \'height:\' + cpx2 + \'rpx;background-color:red\'}}" class=" cml-base cml-button"></cml-buildin-button></view>`);
     });
   });
-  // ref
+  // ref  动态
   describe('parse-ref-transform', function() {
-    let source = `<view ref='{{ refVlaue }}'></view>`;
+    let source = `<view :ref=' refVlaue '></view>`;
     it('test-ref-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div v-bind:ref="( refVlaue )" class=" cml-base cml-view"></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div v-bind:ref=" refVlaue " class=" cml-base cml-view"></div>`);
     });
     it('test-ref-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div v-bind:ref="( refVlaue )" class=" cml-base cml-view"></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div v-bind:ref=" refVlaue " class=" cml-base cml-view"></div>`);
     });
     it('test-ref-transform-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
+    });
+  });
+  // ref  静态
+  describe('parse-ref-transform', function() {
+    let source = `<view ref=' refVlaue '></view>`;
+    it('test-ref-transform-web', function() {
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div ref=" refVlaue " class=" cml-base cml-view"></div>`);
+    });
+    it('test-ref-transform-weex', function() {
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div ref=" refVlaue " class=" cml-base cml-view"></div>`);
+    });
+    it('test-ref-transform-miniapp', function() {
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id=" refVlaue "></view>`);
     });
   });
   // // component is
