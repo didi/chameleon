@@ -7,7 +7,6 @@ npm-debug.log*
 /dist
 /local
 /reports
-/node_modules
 .DS_Store
 Thumbs.db
 .idea

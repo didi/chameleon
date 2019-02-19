@@ -24,10 +24,7 @@ exports.compileTemplateForCml = function (source, type, options) {
   source = processTemplate.postParseLtGt(source);
   // 预处理c-animation 标签，给这个标签增加一个 c-bind:transitionend = "_animationCb(value,$event)",注意这个必须在所有预处理的最后，因为前面的预处理兼容了jsx的语法；
   source = processTemplate.preParseAnimation(source, type);
-  // source = processTemplate.preParseAliComponent(source, type, options);
   source = processTemplate.alipayComponentsWraped(source, type, options);
-  debugger;
-  debugger;
   if (type === 'web') {
     source = compileWebTemplate(source, type, options).code;
   }

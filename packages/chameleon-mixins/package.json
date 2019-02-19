@@ -1,6 +1,6 @@
 {
   "name": "chameleon-mixins",
-  "version": "0.0.29",
+  "version": "0.1.0-alpha.1",
   "description": "chameleon-mixins",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "license": "Apache",
   "devDependencies": {
     "chai": "^4.2.0",
-    "chameleon-css-loader": "^0.0.29",
+    "chameleon-css-loader": "0.1.0-alpha.1",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
     "gulp": "^3.9.1",
@@ -21,5 +21,5 @@
     "mocha": "^5.2.0"
   },
   "mail": "ChameleonCore@didiglobal.com",
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+  "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"
 }

@@ -60,7 +60,11 @@ module.exports = function({webpackConfig, options, compiler}) {
 
   // serve pure static assets
   var staticPath = webpackConfig.output.path;
-  app.use(express["static"](staticPath))
+  app.use(express["static"](staticPath));
+  if (~cml.activePlatform.indexOf('baidu')) {
+    let dist = path.join(cml.projectRoot, 'dist');
+    app.use(express["static"](dist));
+  }
 
   if (compiler && cml.config.get().templateType === 'smarty') {
     // php-cgi

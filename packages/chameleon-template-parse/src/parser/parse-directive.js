@@ -46,7 +46,12 @@ parseDirective.tap('web-weex-cml', (args) => {
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
       let styleNodeValue = `display:{{${elementShow}?'':'none'}};{{${elementShow}?'':'height:0px;width:0px;overflow:hidden'}}`
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+      if (type === 'weex') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+      } else if (type === 'web') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`v-show`), t.stringLiteral(elementShow)))
+      }
+
     }
   }
 });
@@ -139,7 +144,12 @@ parseDirective.tap('web-weex-vue', (args) => {
       if (type === 'weex' && styleNodeValue.indexOf('_cmlStyleProxy') === -1) {
         styleNodeValue = `${weexMixins.styleProxyName}(${utils.getReactiveValue(styleNodeValue)})`
       }
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(`:style`), t.stringLiteral(styleNodeValue)))
+      if (type === 'weex') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`:style`), t.stringLiteral(styleNodeValue)))
+      } else if (type === 'web') {
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(`v-show`), t.stringLiteral(elementShow)))
+      }
+
     }
   }
 })

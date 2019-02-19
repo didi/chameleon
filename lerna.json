@@ -22,10 +22,9 @@
     "packages/runtime-check",
     "packages/url-loader",
     "packages/webpack-check-plugin",
-    "packages/webpack-dev-middleware",
     "packages/webpack-liveload-middleware"
   ],
-  "version": "0.0.29",
+  "version": "0.1.0-alpha.1",
   "command": {
     "publish": {
       "allowBranch": "master",

@@ -282,6 +282,7 @@ exports.alipayComponentsWraped = function(source, type, options) {
     })
     traverse(ast, {
       enter(path) {
+        debugger
         let node = path.node;
         if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
           let isComponent = usingComponents.find((item) => item.tagName === node.openingElement.name.name) || Object.keys(buildInComponents).includes(node.openingElement.name.name);

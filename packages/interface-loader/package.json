@@ -1,6 +1,6 @@
 {
   "name": "interface-loader",
-  "version": "0.0.29",
+  "version": "0.1.0-alpha.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -13,9 +13,9 @@
     "@babel/parser": "7.1.0",
     "babel-generator": "6.26.1",
     "babel-traverse": "6.26.0",
-    "chameleon-tool-utils": "^0.0.29",
+    "chameleon-tool-utils": "0.1.0-alpha.1",
     "loader-utils": "1.1.0",
-    "runtime-check": "^0.0.29"
+    "runtime-check": "0.1.0-alpha.1"
   },
   "author": "Chameleon-Team",
   "license": "Apache",
@@ -25,12 +25,10 @@
     "chai": "^4.2.0",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
-    "gulp": "^3.9.1",
-    "gulp-uglify-es": "^1.0.4",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "through2": "^3.0.0"
   },
   "mail": "ChameleonCore@didiglobal.com",
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+  "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"
 }

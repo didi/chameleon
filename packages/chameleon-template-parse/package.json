@@ -1,6 +1,6 @@
 {
   "name": "chameleon-template-parse",
-  "version": "0.0.29",
+  "version": "0.1.0-alpha.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chameleon-css-loader": "^0.0.29",
-    "chameleon-mixins": "^0.0.29",
+    "chameleon-css-loader": "0.1.0-alpha.1",
+    "chameleon-mixins": "0.1.0-alpha.1",
     "clean-webpack-plugin": "^0.1.19",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
@@ -38,5 +38,5 @@
     "webpack-dev-server": "^3.1.9"
   },
   "mail": "ChameleonCore@didiglobal.com",
-  "gitHead": "0cd244cfa971463102a7bef668921b38a9d42fac"
+  "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"
 }

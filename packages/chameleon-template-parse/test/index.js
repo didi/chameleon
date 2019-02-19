@@ -1,35 +1,26 @@
 const compileTemplate = require('../src/index.js');
-// const source = `<template id="{{cls}}" class="{{5 > 6 ? 'cls1':'cls2'}}" style="{{computedStyle}}" name="{{5 <6 ? 'cls1':'cls2}} " title="大家好">  文本
-// <c-page title="carousel">
-//   <button title="你好" name="cls1" name="{{5 > 6 ? 'cls1':'cls2}}" style="{{computedStyle}}">
-//   {{5 > 6 ? '你好':'我好'}}
-//   </button>
-//   <input/>{{你好}}
-
-// </c-page>
-// </template>`
-// const source = `<template :id="cls" :class="5 > 6 ? 'cls1':'cls2'" :name="5 < 6 ? 'cls1':'cls2 " title="大家好">
-// <c-page title="carousel">
-//   <button title="你好" :name="cls1" :name="5 > 6 ? 'cls1':'cls2" :style="computedStyle">
-//   {{5 > 6 ? '你好':'我好'}}
-//   </button>
-//   <input/>{{你好}}
-
-// </c-page>
-// </template>`
-// let source = `<button title="你好" :class="5 < 6 ? 'cls1':'cls2'" :class="5 > 6 ? 'cls1':'cls2" :style="computedStyle">
-//   {{5 > 6 ? '你好':'我好'}} >   </button>`
+const source = `<template>
+  <c-page title="carousel">
+    <c-header title="carousel"></c-header>
+    <carousel class="container" indicator-dots="{{true}}"  current="{{0}}" circular="{{true}}">
+      <carousel-item>
+        <view  class="carousel-item" style="background-color: #EBDEAA"></view>
+      </carousel-item>
+      <carousel-item>
+        <view class="carousel-item" style="background-color: #E3EDCD"></view>
+      </carousel-item>
+      <carousel-item>
+        <view class="carousel-item" style="background-color: #EAEAEF"></view>
+      </carousel-item>
+    </carousel>
+  </c-page>
+</template>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
-const source = `
-<view class="toast-page">
-   <view :style="style"></view>
-  </view>
-`
 // let result = compileTemplate(source,'web');
 let options = {lang: 'cml',
-  buildInComponents: {button: "cml-buildin-button", container: "cml-buildin-container"},
+  buildInComponents: {button: "cml-buildin-button"},
   cmss: {
     rem: true,
     scale: 0.5,
@@ -44,7 +35,7 @@ let options = {lang: 'cml',
     }
   },
   usingComponents: [{
-    tagName: 'c-toast',
+    tagName: 'thirdComp1',
     refUrl: '/path/to/ref1',
     filePath: 'path/to/real1',
     isNative: true
@@ -56,9 +47,9 @@ let options = {lang: 'cml',
   }]
 };
 console.log('before-compile', source);
-// let result_web = compileTemplate(source, 'web', options);
-// let result_wx = compileTemplate(source, 'wx', options);
-// let result_baidu = compileTemplate(source, 'wx', options);
+let result_web = compileTemplate(source, 'web', options);
+let result_wx = compileTemplate(source, 'wx', options);
+let result_baidu = compileTemplate(source, 'wx', options);
 let result_alipay = compileTemplate(source, 'alipay', options);
 // let result_alipay = compileTemplate(source,'alipay',{lang:'cml'});
 // console.log('result_web', result_web)
