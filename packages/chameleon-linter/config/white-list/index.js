@@ -12,10 +12,6 @@ module.exports = {
   cml: cmlWhiteList
 }
 
-module.exports.getFunctionalTags = function() {
-  return ['template', 'component', 'block', 'slot', 'view', 'text', 'cell', 'image'];
-}
-
 module.exports.getAllowedTags = function() {
   return this.cml.tags;
 }
