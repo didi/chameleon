@@ -155,32 +155,26 @@ module.exports = function (options) {
   // 兼容原来的处理 apiPrefix
   let domainMap = cml.config.get().domainMap || {apiPrefix};
   let defaultDomainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
-  if (options.media === 'build') {
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.domainMap': JSON.stringify(domainMap)
-    }))
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.defaultDomainKey': JSON.stringify(defaultDomainKey)
-    }))
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.media': JSON.stringify(options.media)
-    }))
-  } else if (options.media === 'dev') {
+  if (options.media === 'dev') {
     // 默认去web端 dev模式的port
     let devApiPrefix = `http://${config.ip}:${webServerPort}`
     Object.keys(domainMap).forEach((key) => {
       domainMap[key] = devApiPrefix;
     })
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.domainMap': JSON.stringify(domainMap)
-    }))
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.defaultDomainKey': JSON.stringify(defaultDomainKey)
-    }))
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.media': JSON.stringify(options.media)
-    }))
   }
+  // 新cli 兼容旧api的cmlApiPrefix
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.cmlApiPrefix': JSON.stringify(domainMap[defaultDomainKey])
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.domainMap': JSON.stringify(domainMap)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.defaultDomainKey': JSON.stringify(defaultDomainKey)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.media': JSON.stringify(options.media)
+  }))
 
   if (options.minimize) {
     commonConfig.plugins = commonConfig.plugins.concat([
