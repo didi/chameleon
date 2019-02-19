@@ -163,15 +163,18 @@ _.transformWxDynamicStyleCpxToRpx = function(value) {
   return value;
 }
 _.transformNotInMustacheCpxToRpx = function(value) {
-  // 第一步
-  let isNotMustacheCpxToRpxReg = /}}[^{}]*?(cpx)/g;
-  return value.replace(isNotMustacheCpxToRpxReg, (match, key) => {
-    if (key === 'cpx') {
-      return match.replace(/cpx/, 'rpx')
+  let isNotMustacheCpxToRpxReg = /([^{}]+)?(\{\{[^{}]+\}\})?/g;
+  let temp = '';
+  const matches = value.match(isNotMustacheCpxToRpxReg);
+  value.replace(isNotMustacheCpxToRpxReg, (match, $1, $2, $3) => {
+    if ($1) {
+      temp += $1.replace(/cpx/g, 'rpx');
     }
-    return match;
+    if ($2) {
+      temp += $2;
+    }
   });
-
+  return temp
 }
 _.transformMustacheCpxToRpx = function(source) {
   const ast = babylon.parse(source, {
