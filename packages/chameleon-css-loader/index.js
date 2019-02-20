@@ -11,8 +11,6 @@ module.exports = function(source, options) {
   if (options.media) {
     return mediaParse(source, options.cmlType);
   }
-  debugger;
-
   if (source) {
     let result;
     switch (options.platform) {

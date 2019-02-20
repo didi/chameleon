@@ -46,14 +46,11 @@ let scalePlugin = postcss.plugin('postcss-plugin-cpx-scale', function (options) 
 module.exports = function (content, options) {
   let {cmlType, filePath} = options;
   let ret ;
-  debugger;
-  if (cmlType === 'alipay') {
+  if (cmlType === 'alipay') { // 对于不以app.cml结尾的文件进行样式覆盖
     let num = 32;
     let randomClassName = fnv.hash(filePath, num).str();
     options.alipayClassName = `.cml-${randomClassName}`;
-    debugger;
-    // ret = postcss(scalePlugin(options), addAlipayClassPlugin(options)).process(content).css;
-    ret = postcss(scalePlugin(options)).process(content).css;
+    ret = postcss(scalePlugin(options), addAlipayClassPlugin(options)).process(content).css;
   } else {
     ret = postcss(scalePlugin(options)).process(content).css;
   }
