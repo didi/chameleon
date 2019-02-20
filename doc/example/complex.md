@@ -413,7 +413,7 @@ methods = {
         scroll-direction="{{scrollDirection}}"
         bottom-offset="{{bottomOffset}}"
         c-bind:scrolltobottom="onBottom"
-        c-bind:customscroll="onScroll"
+        c-bind:onscroll="onScroll"
         height="{{-1}}"
       >
         <c-refresh display="{{ topRefreshing }}" c-bind:refreshevent="onrefreshUp"></c-refresh>
