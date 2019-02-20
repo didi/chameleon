@@ -392,6 +392,59 @@ exports.preParseAnimation = function(source, type) {
   return source;
 
 }
+// 语法检查：
+// vue语法不能写c-bind {{}} c-show  c-if c-model c-text  c-animation c-for
+// cml语法不能写 @     :    v-show  v-if v-model v-text v-animation v-for
+exports.preParseEventSyntax = function (content) {
+  let reg = /(?:v\-on:|@)([^\s"'<>\/=]+?)\s*=\s*/g
+  content = content.replace(reg, (m, $1) => {
+    $1 = $1 === 'click' ? 'tap' : $1;
+    return `v-on:${$1}=`
+  });
+  return content;
+}
+exports.preCheckTemplateSyntax = function(source, type, options) {
+  let {lang} = options;
+  let errorInfo
+  if (lang === 'vue') {
+    try {
+      errorInfo = exports.preCheckTemplateSyntaxForVue(source, type, options)
+
+    } catch (e) {
+      console.log('catch', e)
+    }
+  }
+  return errorInfo
+}
+exports.preCheckTemplateSyntaxForVue = function(source, type, options) {
+  debugger;
+  let {lang} = options;
+  if (lang === 'vue') {
+    let callbacks = ['preDisappearAnnotation', 'preParseEventSyntax', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt']
+    source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
+    let errorInfo = '';
+    let disabledPropsInVueSyntax = ['c-if', 'c-else-if', 'c-else', 'c-show', 'c-text', 'c-model', 'c-animation', 'c-for']
+    const ast = babylon.parse(source, {
+      plugins: ['jsx']
+    })
+    traverse(ast, {
+      enter(path) {
+        let node = path.node;
+        if (t.isJSXAttribute(node) && disabledPropsInVueSyntax.includes(node.name.name)) {
+          errorInfo += `vue 语法下不能使用 ${node.name.name}`
+        }
+        if (t.isJSXAttribute(node) && utils.isMustacheReactive(node.value.value)) {
+          errorInfo += 'vue 语法下属性值不能用 {{}}'
+        }
+        if (t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'c-bind') {
+          errorInfo += 'vue 语法下事件绑定不能用 c-bind,请使用 @ 或者v-on进行事件绑定'
+        }
+      }
+    });
+    return errorInfo
+  }
+
+}
 // 模板后置处理器
 exports.postParseMustache = function (content) {
   let reg = />([\s\S]*?)<[a-zA-Z\/\-_]+?/g;

@@ -1,13 +1,13 @@
 const compileTemplate = require('../src/index.js');
 const source = `<view>
 <cube-button @tap="handleClick"></cube-button>
-<thirdComp2 @tap="handleClick"></thirdComp2>
+<thirdComp2 c-bind:tap="handleClick"></thirdComp2>
 </view>  `
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
 // let result = compileTemplate(source,'web');
-let options = {lang: 'cml',
+let options = {lang: 'vue',
   buildInComponents: {button: "cml-buildin-button"},
   cmss: {
     rem: true,
