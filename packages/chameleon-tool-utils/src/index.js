@@ -215,6 +215,8 @@ _.isDirectory = function (filePath) {
   }
 }
 
+
+
 /**
  * @param {String} filePath  cml文件位置 已经不再支持json文件
  * @param {String} confType 获取的类型 wx|web|weex

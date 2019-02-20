@@ -7,6 +7,11 @@ describe('proxy/miniapp', function() {
     let result = parseCss(source);
     expect(/75rpx/.test(result)).to.be.ok;
   })
+
+  it('lines', function() {
+    let result = parseCss('lines:1;');
+    expect(result).to.equal('display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden');
+  })
 })
 
 

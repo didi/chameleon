@@ -105,10 +105,10 @@ exports.parseTextContentStatement = function parseTextContentStatement(path, typ
   //   parseTextContent.call({path,type,node})
   // }
 }
-exports.parseRefStatement = function parseRefStatement(path, type) {
+exports.parseRefStatement = function parseRefStatement(path, type, options) {
   let node = path.node;
-  if (t.isJSXAttribute(node) && node.name.name === 'ref') {
-    parseRef.call({path, type, node});
+  if (t.isJSXAttribute(node) && (node.name.name === 'ref' || node.name.name.name === 'ref')) {
+    parseRef.call({path, type, node, options});
   }
 }
 // web weex wx ...只处理cml语法  c-if c-else-if c-else

@@ -539,7 +539,7 @@
                 </div>
                 <p class="no-dev-content">
                   未启动Weex端构建
-    
+
                 </p>
               </div>
             </div>
@@ -558,12 +558,12 @@
                 </div>
                 <p class="no-dev-content">
                   未启动web端构建
-    
+
                 </p>
               </div>
             </div>
-            
-            
+
+
         </div>
         <div class="qrcode-box qrcode-box-bottom" id="qrcodeBox">
           <div class='qrcode-item'>
@@ -623,7 +623,6 @@
             </div>
           </div>
         </div>
-        
       </div>
     </main>
   </div>
@@ -635,8 +634,8 @@
       var jsbundle = '';
       var routerConfig  = {
         mode: 'history',
-        routes:[],
-      }; 
+        routes:[]
+      };
       var activeIndex = 0;
       var routeListDom;
       var selectInput = document.getElementById('routes-select');
@@ -648,16 +647,16 @@
         jsbundle = params.jsbundle;
       }
       function activeBuildType(params){
-        let buildType = params.buildType;
-        if (buildType.includes('weex')) {
+        var buildType = params.buildType;
+        if (~buildType.indexOf('weex')) {
           Array.isArray(buildType) && buildType.push('sfc');
         };
-        if (buildType.includes('web')) {
+        if (~buildType.indexOf('web')) {
           Array.isArray(buildType) && buildType.push('h5');
         };
-        buildType.forEach((type) => {
-          var activeDom = document.getElementById(`${type}-dev`);
-          var hideDom = document.getElementById(`${type}-no-dev`);
+        buildType.forEach(function (type) {
+          var activeDom = document.getElementById(type + '-dev');
+          var hideDom = document.getElementById(type + '-no-dev');
           if(activeDom){
             activeDom.style.display = 'block';
           }
@@ -683,7 +682,7 @@
         QR.addData(url)
         QR.make()
         $QR.innerHTML = QR.createImgTag(6, 12)
-        
+
       }
 
       //创建beatles的二维码
@@ -696,7 +695,7 @@
           pageUrl += subpath
         }
         var beatlesUrl = pageUrl + '?wx_addr=' +
-          encodeURIComponent(`${url}?t=` + Date.now());
+          encodeURIComponent(url + '?t=' + Date.now());
 
         if (path) {
           beatlesUrl += '&path=' + encodeURIComponent(path);
@@ -761,12 +760,12 @@
         if (routes) {
           var fragment = document.createDocumentFragment();
           routeListDom = document.createElement('ul');
-          
+
           routeListDom.setAttribute('id','routeList')
           for (var i = 0; i < routes.length; i++) {
             var li = document.createElement('li');
             li.setAttribute('index', i);
-            li.innerHTML = `<img style="display:none;padding-right:5px;"  src="./preview-assets/cml-right.png" alt=""><span  index=${i} title=${routes[i].path} >${routes[i].url}</span>`
+            li.innerHTML = '<img style="display:none;padding-right:5px;"  src="./preview-assets/cml-right.png" alt=""><span  index=' + i + ' title=' + routes[i].path + ' >' + routes[i].url+ '</span>';
             routeListDom.appendChild(li);
           }
           fragment.appendChild(routeListDom)
@@ -793,9 +792,11 @@
           routeListDom.children[0] && routeListDom.children[0].children[1].click();
         }
       };
+
       function createWS() {
+
         // const ws = new WebSocket(`ws://${location.hostname}:${webport}`);
-        const ws = new WebSocket(`ws://${location.host}`);
+        var ws = new WebSocket('ws://' + location.host);
         ws.onopen = function () {
           console.log('@open');
         };

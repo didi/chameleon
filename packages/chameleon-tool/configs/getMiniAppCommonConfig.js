@@ -1,7 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var utils = require('./utils.js');
 var path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
@@ -78,7 +77,6 @@ module.exports = function (options) {
         filename: `[name].${targetObj.css}`,
         allChunks: true
       }),
-      new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
       new webpack.optimize.CommonsChunkPlugin({
         name: ['common', 'manifest'],
         filename: 'static/js/[name].js',

@@ -1,5 +1,5 @@
 
-// cml语法的单元测试
+// cml单个语法的单元测试
 
 
 const babylon = require('babylon');
@@ -37,6 +37,35 @@ describe('parse-template-cml', function() {
       expect(result).to.equal(`<div></div>`)
     });
   });
+  describe('afterParseTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
+    let source = `<block></block>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.afterParseTag;
+    it('test-after-tag-transform-web-weex', function() {
+      expect(compileTemplate(source, 'web', options, callback)).to.equal(`<template></template>`)
+    });
+    it('test-after-tag-transform-miniapp', function() {
+      expect(compileTemplate(source, 'wx', options, callback)).to.equal(`<block></block>`)
+    });
+  });
+  describe('parseBuildTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
+    let source = `<button></button>`;
+    let options = {lang: 'cml', buildInComponents: {button: "cml-buildin-button"} };
+    let callback = parseTemplate.parseBuildTag;
+    let result = compileTemplate(source, 'web', options, callback);
+    it('test-build-tag-transform', function() {
+      expect(result).to.equal(`<cml-buildin-button></cml-buildin-button>`)
+    });
+  });
+  describe('parseTagForSlider', function() {
+    let source = `<carousel><carousel-item></carousel-item></carousel>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseTagForSlider;
+    let result = compileTemplate(source, 'wx', options, callback);
+    it('parseTagForSlider for wx', function() {
+      expect(result).to.equal(`<swiper><swiper-item></swiper-item></swiper>`)
+    });
+  });
   // parseRefStatement:仅在所有的小程序端进行处理
   describe('parseRefStatement-wx-alipay-baidu', function() {
     let source = `<view ref="flag"></view>`;
@@ -49,67 +78,119 @@ describe('parse-template-cml', function() {
   });
   // parseConditionalStatement
   describe('parseConditionalStatement-web-weex', function() {
-    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view></view>`;
+    let source = `<view><view c-if="{{value1}}"></view><view c-else-if="{{value2}}"></view><view c-else></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseConditionalStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-condition-web-transform', function() {
-      expect(result).to.equal(`<view><view v-if="true"></view><view v-else-if="true"></view><view v-else="true"></view></view>`)
+      expect(result).to.equal(`<view><view v-if="value1"></view><view v-else-if="value2"></view><view v-else></view></view>`)
     });
   });
   describe('parseConditionalStatement-wx', function() {
-    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view></view>`;
+    let source = `<view><view c-if="{{value1}}"></view><view c-else-if="{{value2}}"></view><view c-else></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseConditionalStatement;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-condition-wx-transform', function() {
-      expect(result).to.equal(`<view><view wx:if="true"></view><view wx:elif="true"></view><view wx:else="true"></view></view>`)
+      expect(result).to.equal(`<view><view wx:if="{{value1}}"></view><view wx:elif="{{value2}}"></view><view wx:else></view></view>`)
     });
   });
   describe('parseConditionalStatement-alipay', function() {
-    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view></view>`;
+    let source = `<view><view c-if="{{value1}}"></view><view c-else-if="{{value2}}"></view><view c-else></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseConditionalStatement;
     let result = compileTemplate(source, 'alipay', options, callback);
     it('test-condition-alipay-transform', function() {
-      expect(result).to.equal(`<view><view a:if="true"></view><view a:elif="true"></view><view a:else="true"></view></view>`)
+      expect(result).to.equal(`<view><view a:if="{{value1}}"></view><view a:elif="{{value2}}"></view><view a:else></view></view>`)
     });
   });
   describe('parseConditionalStatement-baidu', function() {
-    let source = `<view><view c-if="true"></view><view c-else-if="true"></view><view c-else="true"></view></view>`;
+    let source = `<view><view c-if="{{value1}}"></view><view c-else-if="{{value2}}"></view><view c-else></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseConditionalStatement;
     let result = compileTemplate(source, 'baidu', options, callback);
     it('test-condition-baidu-transform', function() {
-      expect(result).to.equal(`<view><view s-if="true"></view><view s-elif="true"></view><view s-else="true"></view></view>`)
+      expect(result).to.equal(`<view><view s-if="value1"></view><view s-elif="value2"></view><view s-else></view></view>`)
     });
   });
   // parseEventListener
   describe('parseEventListener-web-weex', function() {
     let source = `<view><view c-bind:tap="tapHandle"></view></view>`;
-    let options = {lang: 'cml'};
+    let originSource = `<view><origin-tag c-bind:click="handleClick"></origin-tag><thirdComp1 c-bind:click="handleClick"></thirdComp1><thirdComp2 c-bind:click="handleClick"></thirdComp2></view>  `
+    let options = {lang: 'cml',
+      buildInComponents: {button: "cml-buildin-button"},
+      usingComponents: [{
+        tagName: 'thirdComp1',
+        refUrl: '/path/to/ref1',
+        filePath: 'path/to/real1',
+        isNative: true
+      }, {
+        tagName: 'thirdComp2',
+        refUrl: '/path/to/ref2',
+        filePath: 'path/to/real2',
+        isNative: false
+      }]
+    };
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-event-transform', function() {
       expect(result).to.equal(`<view><view v-on:click="_cmlEventProxy($event,'tapHandle')"></view></view>`)
     });
+    // 原生组件事件不进行代理
+    it('test-origin-tag-event-transform', function() {
+      expect(compileTemplate(originSource, 'web', options, callback)).to.equal(`<view><origin-tag v-on:click="handleClick"></origin-tag><thirdComp1 v-on:click="handleClick"></thirdComp1><thirdComp2 v-on:click="_cmlEventProxy($event,'handleClick')"></thirdComp2></view>`)
+    });
   });
   describe('parseEventListener-wx-baidu', function() {
     let source = `<view><view c-bind:tap="tapHandle"></view></view>`;
-    let options = {lang: 'cml'};
+    let originSource = `<view><origin-tag c-bind:click="handleClick"></origin-tag><thirdComp1 c-bind:click="handleClick"></thirdComp1><thirdComp2 c-bind:click="handleClick"></thirdComp2></view>  `
+    let options = {lang: 'cml',
+      buildInComponents: {button: "cml-buildin-button"},
+      usingComponents: [{
+        tagName: 'thirdComp1',
+        refUrl: '/path/to/ref1',
+        filePath: 'path/to/real1',
+        isNative: true
+      }, {
+        tagName: 'thirdComp2',
+        refUrl: '/path/to/ref2',
+        filePath: 'path/to/real2',
+        isNative: false
+      }]
+    };
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-event-transform', function() {
       expect(result).to.equal(`<view><view bindtap="_cmlEventProxy" data-eventtap="tapHandle"></view></view>`)
     });
+    it('test-origin-tag-event-transform', function() {
+      expect(compileTemplate(originSource, 'wx', options, callback)).to.equal(`<view><origin-tag bindtap="handleClick"></origin-tag><thirdComp1 bindtap="handleClick"></thirdComp1><thirdComp2 bindtap="_cmlEventProxy" data-eventtap="handleClick"></thirdComp2></view>`)
+    });
   });
   describe('parseEventListener-alipay', function() {
     let source = `<view><view c-bind:tap="tapHandle"></view></view>`;
-    let options = {lang: 'cml'};
+    let originSource = `<view><origin-tag c-bind:click="handleClick"></origin-tag><thirdComp1 c-bind:click="handleClick"></thirdComp1><thirdComp2 c-bind:click="handleClick"></thirdComp2></view>  `
+    let options = {lang: 'cml',
+      buildInComponents: {button: "cml-buildin-button"},
+      usingComponents: [{
+        tagName: 'thirdComp1',
+        refUrl: '/path/to/ref1',
+        filePath: 'path/to/real1',
+        isNative: true
+      }, {
+        tagName: 'thirdComp2',
+        refUrl: '/path/to/ref2',
+        filePath: 'path/to/real2',
+        isNative: false
+      }]
+    };
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'alipay', options, callback);
     it('test-event-transform', function() {
       expect(result).to.equal(`<view><view onTap="_cmlEventProxy" data-eventtap="tapHandle"></view></view>`)
+    });
+    it('test-origin-tag-event-transform', function() {
+      expect(compileTemplate(originSource, 'alipay', options, callback)).to.equal(`<view><origin-tag onClick="handleClick"></origin-tag><thirdComp1 onClick="handleClick"></thirdComp1><thirdComp2 onClick="_cmlEventProxy" data-eventclick="handleClick"></thirdComp2></view>`)
     });
   });
   // parseIterationStatement
@@ -122,14 +203,21 @@ describe('parse-template-cml', function() {
       expect(result).to.equal(`<view><view v-for="(item, index) in array"></view></view>`)
     });
   });
-  describe('parseIterationStatement-wx-alipay', function() {
+  describe('parseIterationStatement-wx', function() {
     let source = `<view><view c-for="{{array}}"></view></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseIterationStatement;
     let result1 = compileTemplate(source, 'wx', options, callback);
-    let result2 = compileTemplate(source, 'alipay', options, callback);
     it('test-Iteration-transform', function() {
       expect(result1).to.equal(`<view><view wx:for="{{array}}"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-alipay', function() {
+    let source = `<view><view c-for="{{array}}"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result2 = compileTemplate(source, 'alipay', options, callback);
+    it('test-Iteration-transform', function() {
       expect(result2).to.equal(`<view><view a:for="{{array}}"></view></view>`)
     });
   });
@@ -140,6 +228,43 @@ describe('parse-template-cml', function() {
     let result = compileTemplate(source, 'baidu', options, callback);
     it('test-Iteration-transform', function() {
       expect(result).to.equal(`<view><view s-for="array"></view></view>`)
+    });
+  });
+  // parseIterationStatement c-for-inde c-for-item c-key的测试
+  describe('parseIterationStatement-web-weex', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result = compileTemplate(source, 'web', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view><view v-for="(item, idx) in array" :key="item.id"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-wx', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result1 = compileTemplate(source, 'wx', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result1).to.equal(`<view><view wx:for="{{array}}" wx:for-index="idx" wx:for-item="item" wx:key="id"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-alipay', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result2 = compileTemplate(source, 'alipay', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result2).to.equal(`<view><view a:for="{{array}}" a:for-index="idx" a:for-item="item" a:key="id"></view></view>`)
+    });
+  });
+  describe('parseIterationStatement-baidu', function() {
+    let source = `<view><view c-for="{{array}}" c-for-index="idx" c-for-item="item" c-key="id"></view></view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseIterationStatement;
+    let result = compileTemplate(source, 'baidu', options, callback);
+    it('test-Iteration-transform', function() {
+      expect(result).to.equal(`<view><view s-for="array" s-for-index="idx" s-for-item="item" s-key="id"></view></view>`)
     });
   });
   // parseAttributeStatement
@@ -278,7 +403,7 @@ describe('parse-template-cml', function() {
   });
   // parseDirectiveStatement:c-model
   describe('parseDirectiveStatement-web-weex', function() {
-    let source = `<view><input c-model="{{searchText}}" /><custom-input c-model="{{search}}"></custom-input></view>`;
+    let source = `<view><input c-model="{{ searchText }}" /><custom-input c-model="{{ search }}"></custom-input></view>`;
     let options = {lang: 'cml'};
     let callback = parseTemplate.parseDirectiveStatement;
     let result = compileTemplate(source, 'web', options, callback);
@@ -328,13 +453,27 @@ describe('parse-template-cml', function() {
     let result_baidu = compileTemplate(source, 'baidu', options, callback);
     let result_alipay = compileTemplate(source, 'alipay', options, callback);
 
-    it('test-class-transform', function() {
+    it('test-c-show-transform', function() {
       expect(result_wx).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
       expect(result_baidu).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
       expect(result_alipay).to.equal(`<view style="display:{{true?'':'none'}};{{true?'':'height:0px;width:0px;overflow:hidden'}}"></view>`)
     });
   });
-
+  // c-text
+  describe('parseDirectiveStatement-web-miniapp', function() {
+    let source = `<view c-text="{{value1}}">everything will be replaced</view>`;
+    let options = {lang: 'cml'};
+    let callback = parseTemplate.parseDirectiveStatement;
+    it('test-c-text-transform', function() {
+      expect(compileTemplate(source, 'web', options, callback)).to.equal(`<view>{{value1}}</view>`)
+    });
+    it('test-c-text-transform', function() {
+      expect(compileTemplate(source, 'wx', options, callback)).to.equal(`<view>{{value1}}</view>`)
+    });
+    it('test-c-text-transform', function() {
+      expect(compileTemplate(source, 'weex', options, callback)).to.equal(`<view>{{value1}}</view>`)
+    });
+  });
   describe('parse-vue2wx-wx', function() {
     let source = `<component is="{{comp}}" shrinkComponents="comp,comp1"></component>`;
     let options = {lang: 'cml'};
