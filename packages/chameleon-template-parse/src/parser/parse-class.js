@@ -132,7 +132,7 @@ parseClass.tap('weex-vue', (args) => {
 
 })
 parseClass.tap('wx-alipay-baidu-vue', (args) => {
-  let { node, type, options: {lang} } = args;
+  let { node, type, options: {lang, filePath} } = args;
   if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
@@ -140,7 +140,11 @@ parseClass.tap('wx-alipay-baidu-vue', (args) => {
       attr.name.name === 'class' || attr.name.name.name === 'class'
     );
     let extraClass = ` cml-base cml-${tagName}`;
-
+    if (type === 'alipay') {
+      let num = 32;
+      let randomClassName = fnv.hash(filePath, num).str();
+      extraClass = `${extraClass} cml-${randomClassName}`
+    }
     utils.handleVUEClassNodes({classNodes, attributes, extraClass, lang, type: 'miniapp'})
   }
 

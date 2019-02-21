@@ -1,13 +1,14 @@
 const compileTemplate = require('../src/index.js');
-const source = `<view>
-<cube-button @tap="handleClick"></cube-button>
-<thirdComp2 c-bind:tap="handleClick"></thirdComp2>
-</view>  `
+const source = `<scroller height="{{-1}}">
+<view v-if="false">  v-if</view>
+<view >  v-if</view>
+</scroller> `
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
 // let result = compileTemplate(source,'web');
-let options = {lang: 'vue',
+let options = {lang: 'cml',
+  filePath: '/Users/didi/components',
   buildInComponents: {button: "cml-buildin-button"},
   cmss: {
     rem: true,
@@ -36,11 +37,11 @@ let options = {lang: 'vue',
 };
 console.log('before-compile', source);
 let result_web = compileTemplate(source, 'web', options);
-// let result_wx = compileTemplate(source, 'wx', options);
+let result_wx = compileTemplate(source, 'wx', options);
 // let result_baidu = compileTemplate(source, 'wx', options);
 // let result_alipay = compileTemplate(source, 'alipay', options);
 // let result_alipay = compileTemplate(source,'alipay',{lang:'cml'});
 console.log('result_web', result_web)
-// console.log('result_wx', result_wx)
+console.log('result_wx', result_wx)
 // console.log('result_alipay', result_alipay)
 // console.log('result_baidu', result_baidu)

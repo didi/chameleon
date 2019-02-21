@@ -411,18 +411,26 @@ exports.preCheckTemplateSyntax = function(source, type, options) {
       errorInfo = exports.preCheckTemplateSyntaxForVue(source, type, options)
 
     } catch (e) {
-      console.log('catch', e)
+      errorInfo = 'vue syntax error '
+    }
+  }
+  if (lang === 'cml') {
+    try {
+      errorInfo = exports.preCheckTemplateSyntaxForCml(source, type, options)
+
+    } catch (e) {
+      errorInfo = 'cml syntax error '
     }
   }
   return errorInfo
 }
 exports.preCheckTemplateSyntaxForVue = function(source, type, options) {
-  debugger;
   let {lang} = options;
   if (lang === 'vue') {
     let callbacks = ['preDisappearAnnotation', 'preParseEventSyntax', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     let errorInfo = '';
+    let directiveError, twoWayBindError, eventBindingError;
     let disabledPropsInVueSyntax = ['c-if', 'c-else-if', 'c-else', 'c-show', 'c-text', 'c-model', 'c-animation', 'c-for']
     const ast = babylon.parse(source, {
       plugins: ['jsx']
@@ -430,14 +438,49 @@ exports.preCheckTemplateSyntaxForVue = function(source, type, options) {
     traverse(ast, {
       enter(path) {
         let node = path.node;
-        if (t.isJSXAttribute(node) && disabledPropsInVueSyntax.includes(node.name.name)) {
-          errorInfo += `vue 语法下不能使用 ${node.name.name}`
+        if (!directiveError && t.isJSXAttribute(node) && disabledPropsInVueSyntax.includes(node.name.name)) {
+          errorInfo += `vue 语法下不能使用 ${node.name.name};`
+          directiveError = true
         }
-        if (t.isJSXAttribute(node) && utils.isMustacheReactive(node.value.value)) {
-          errorInfo += 'vue 语法下属性值不能用 {{}}'
+        if (!twoWayBindError && t.isJSXAttribute(node) && utils.isMustacheReactive(node.value.value)) {
+          errorInfo += 'vue 语法下不能用 id={{value}},请使用 v-bind:id="value" 或者 :id="value" 进行响应式值的绑定;'
+          twoWayBindError = true;
         }
-        if (t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'c-bind') {
-          errorInfo += 'vue 语法下事件绑定不能用 c-bind,请使用 @ 或者v-on进行事件绑定'
+        if (!eventBindingError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'c-bind') {
+          errorInfo += 'vue 语法下不能用 c-bind 进行事件绑定,请使用 @ 或者v-on进行事件绑定;'
+          eventBindingError = true
+        }
+      }
+    });
+    return errorInfo
+  }
+
+}
+exports.preCheckTemplateSyntaxForCml = function(source, type, options) {
+  let {lang} = options;
+  if (lang === 'cml') {
+    let callbacks = ['preDisappearAnnotation', 'preParseEventSyntax', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt']
+    source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
+    let errorInfo = '';
+    let directiveError, twoWayBindError, eventBindingError;
+    let disabledPropsInVueSyntax = ['v-if', 'v-else-if', 'v-else', 'v-show', 'v-text', 'v-model', 'v-animation', 'v-for']
+    const ast = babylon.parse(source, {
+      plugins: ['jsx']
+    })
+    traverse(ast, {
+      enter(path) {
+        let node = path.node;
+        if (!directiveError && t.isJSXAttribute(node) && disabledPropsInVueSyntax.includes(node.name.name)) {
+          errorInfo += `cml 语法下不能使用 ${node.name.name};`
+          directiveError = true;
+        }
+        if (!twoWayBindError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-bind') {
+          errorInfo += 'cml 语法下不能用 :id="value" 或者 v-bind:id="value"进行响应式的值得双向绑定,请使用 id={{value}} ;'
+          twoWayBindError = true;
+        }
+        if (!eventBindingError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-on') {
+          errorInfo += 'cml 语法下不能用 @ 或者 v-on 进行事件绑定，请使用 c-bind进行事件绑定;'
+          eventBindingError = true;
         }
       }
     });
