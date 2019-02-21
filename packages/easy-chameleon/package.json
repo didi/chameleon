@@ -1,7 +1,7 @@
 {
   "name": "easy-chameleon",
-  "version": "0.0.16-alpha.0",
-  "description": "easy-chameleon",
+  "version": "0.0.16",
+  "description": "chameleon 渐进式使用 webpack插件",
   "main": "index.js",
   "bin": {
     "ecml": "./bin/index.js"
@@ -9,6 +9,17 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "mail": "ChameleonCore@didiglobal.com",
+  "keywords": [
+    "chameleon",
+    "cml",
+    "miniprogram",
+    "vue",
+    "weex",
+    "android",
+    "ios",
+    "mobile",
+    "mvvm"
+  ],
   "dependencies": {
     "babel-plugin-chameleon-import": "0.0.16-alpha.0",
     "chameleon-api": "^0.1.0",
