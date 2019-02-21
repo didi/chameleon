@@ -9,12 +9,6 @@ process.on('uncaughtException', function (err) {
   console.log(err);
 });
 
-
-process.on('unhandledRejection', error => {
-  // Will print "unhandledRejection err is not defined"
-  console.log('unhandledRejection', error.message);
-});
-
 /**
  * 获取cml文件列表
  *
