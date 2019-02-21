@@ -1,3 +1,24 @@
+## [0.0.16](https://github.com/didi/chameleon/compare/v0.0.15...v0.0.16)
+
+### Bug Fixes
+- **chameleon-tool** 修复 window上删除小程序文件夹失败([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
+- **chameleon-tool** 修复 css中h5/wx/img.png 替换成 h5/px/img.png的bug([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
+- **chameleon-tool** 修复 preview在ie内核浏览器展示失败bug([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
+- **chameleon-css-loader** 修复 text样式中的lines属性不一致([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
+- **chameleon-template-parse** 修复 模板编译c-animationbug与单元测试增加([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
+- **babel-plugin-chameleon-import** 修复 cml[get]方式调用api失败的bug([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
+
+## [0.0.15](https://github.com/didi/chameleon/compare/v0.0.14...v0.0.15)
+
+### Features
+
+- **chameleon-tool** 增加web端可以配置是否添加babel polyfill 默认不添加([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
+
+### Bug Fixes
+- **chameleon-template-parse** 修复 c-show、component动态组件([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
+- **chameleon-template-parse** 修复 c-model fix [#38](https://github.com/didi/chameleon/issues/38)([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
+- **chameleon-template-parse** 修复window系统上不能出现数字和x开头的目录 fix [#37](https://github.com/didi/chameleon/issues/37)([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
+
 ## [0.0.15](https://github.com/didi/chameleon/compare/v0.0.14...v0.0.15)
 
 ### Features
