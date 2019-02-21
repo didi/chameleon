@@ -11,10 +11,15 @@ const program = require('commander');
 let npmClient = 'npm';
 program
     .version(require('../package.json').version)
-    .option('--npm-client', 'choose npm client')
-    .parse(process.argv);
-
-if (program.npmClient) npmClient = program.npmClient;
+    .option('--npm-client [client]', 'choose npm client')
+    .action(() => {
+      if (program.npmClient.indexOf('yarn') !== -1) {
+        console.error('Not support yarn as npm client for now.');
+        process.exit(-1);
+      }
+      npmClient = program.npmClient;
+    });
+program.parse(process.argv);
 //项目中存在的依赖
 let hasDeps = {
   ...devDependencies,
