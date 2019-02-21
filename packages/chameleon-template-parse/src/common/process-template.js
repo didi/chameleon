@@ -403,18 +403,27 @@ exports.preParseEventSyntax = function (content) {
   });
   return content;
 }
+// 仅仅对跨端组件进行语法校验：不能是 .web.cml   .weex.cml   .alipay.cml  .wx.cml  .baidu.cml结尾的
 exports.preCheckTemplateSyntax = function(source, type, options) {
-  let {lang} = options;
+  let {lang, filePath} = options;
+  // 多态组件不进行语法校验
+  let polymorphicCompSuffix = `.${type}.cml`;
+  let crossPlatformSuffix = '.cml';
+  let ispolymorphicComp = filePath.endsWith(polymorphicCompSuffix);
+  // 跨端组件肯定不能是 .web.cml   .weex.cml   .alipay.cml  .wx.cml  .baidu.cml结尾的
+  let iscrossPlatform = !ispolymorphicComp && filePath.endsWith(crossPlatformSuffix);
+
   let errorInfo
-  if (lang === 'vue') {
+  if (lang === 'vue' && iscrossPlatform) {
     try {
       errorInfo = exports.preCheckTemplateSyntaxForVue(source, type, options)
 
     } catch (e) {
+      debugger;
       errorInfo = 'vue syntax error '
     }
   }
-  if (lang === 'cml') {
+  if (lang === 'cml' && iscrossPlatform) {
     try {
       errorInfo = exports.preCheckTemplateSyntaxForCml(source, type, options)
 
@@ -442,7 +451,7 @@ exports.preCheckTemplateSyntaxForVue = function(source, type, options) {
           errorInfo += `vue 语法下不能使用 ${node.name.name};`
           !directiveError.includes(node.name.name) && directiveError.push(directiveError)
         }
-        if (!twoWayBindError && t.isJSXAttribute(node) && utils.isMustacheReactive(node.value.value)) {
+        if (!twoWayBindError && t.isJSXAttribute(node) && node.value && utils.isMustacheReactive(node.value.value)) {
           errorInfo += 'vue 语法下不能用 id={{value}},请使用 v-bind:id="value" 或者 :id="value" 进行响应式值的绑定;'
           twoWayBindError = true;
         }
@@ -475,7 +484,7 @@ exports.preCheckTemplateSyntaxForCml = function(source, type, options) {
           !directiveError.includes(node.name.name) && directiveError.push(directiveError)
         }
         if (!twoWayBindError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-bind') {
-          errorInfo += 'cml 语法下不能用 :id="value" 或者 v-bind:id="value"进行响应式的值得双向绑定,请使用 id={{value}} ;'
+          errorInfo += 'cml 语法下不能用 :id="value" 或者 v-bind:id="value"进行响应式的值的双向绑定,请使用 id={{value}} ;'
           twoWayBindError = true;
         }
         if (!eventBindingError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-on') {
