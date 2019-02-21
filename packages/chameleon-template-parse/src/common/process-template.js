@@ -430,17 +430,17 @@ exports.preCheckTemplateSyntaxForVue = function(source, type, options) {
     let callbacks = ['preDisappearAnnotation', 'preParseEventSyntax', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     let errorInfo = '';
-    let directiveError, twoWayBindError, eventBindingError;
-    let disabledPropsInVueSyntax = ['c-if', 'c-else-if', 'c-else', 'c-show', 'c-text', 'c-model', 'c-animation', 'c-for']
+    let directiveError = []; let twoWayBindError; let eventBindingError;
+    let disabledDirective = ['c-if', 'c-else-if', 'c-else', 'c-show', 'c-text', 'c-model', 'c-animation', 'c-for']
     const ast = babylon.parse(source, {
       plugins: ['jsx']
     })
     traverse(ast, {
       enter(path) {
         let node = path.node;
-        if (!directiveError && t.isJSXAttribute(node) && disabledPropsInVueSyntax.includes(node.name.name)) {
+        if (directiveError.length <= disabledDirective.length && t.isJSXAttribute(node) && disabledDirective.includes(node.name.name)) {
           errorInfo += `vue 语法下不能使用 ${node.name.name};`
-          directiveError = true
+          !directiveError.includes(node.name.name) && directiveError.push(directiveError)
         }
         if (!twoWayBindError && t.isJSXAttribute(node) && utils.isMustacheReactive(node.value.value)) {
           errorInfo += 'vue 语法下不能用 id={{value}},请使用 v-bind:id="value" 或者 :id="value" 进行响应式值的绑定;'
@@ -462,17 +462,17 @@ exports.preCheckTemplateSyntaxForCml = function(source, type, options) {
     let callbacks = ['preDisappearAnnotation', 'preParseEventSyntax', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     let errorInfo = '';
-    let directiveError, twoWayBindError, eventBindingError;
-    let disabledPropsInVueSyntax = ['v-if', 'v-else-if', 'v-else', 'v-show', 'v-text', 'v-model', 'v-animation', 'v-for']
+    let directiveError = []; let twoWayBindError; let eventBindingError;
+    let disabledDirective = ['v-if', 'v-else-if', 'v-else', 'v-show', 'v-text', 'v-model', 'v-animation', 'v-for']
     const ast = babylon.parse(source, {
       plugins: ['jsx']
     })
     traverse(ast, {
       enter(path) {
         let node = path.node;
-        if (!directiveError && t.isJSXAttribute(node) && disabledPropsInVueSyntax.includes(node.name.name)) {
+        if (directiveError.length <= disabledDirective.length && t.isJSXAttribute(node) && disabledDirective.includes(node.name.name)) {
           errorInfo += `cml 语法下不能使用 ${node.name.name};`
-          directiveError = true;
+          !directiveError.includes(node.name.name) && directiveError.push(directiveError)
         }
         if (!twoWayBindError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-bind') {
           errorInfo += 'cml 语法下不能用 :id="value" 或者 v-bind:id="value"进行响应式的值得双向绑定,请使用 id={{value}} ;'

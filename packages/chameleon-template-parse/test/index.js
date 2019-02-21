@@ -1,7 +1,7 @@
 const compileTemplate = require('../src/index.js');
 const source = `<scroller height="{{-1}}">
 <view v-if="false">  v-if</view>
-<view >  v-if</view>
+<view v-else-if>  v-if</view>
 </scroller> `
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
