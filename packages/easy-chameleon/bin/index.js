@@ -7,7 +7,14 @@ let jsonFile = path.join(context,'./package.json');
 let packageObj = JSON.parse(fs.readFileSync(jsonFile,{encoding: 'utf-8'}));
 let {devDependencies = {}, dependencies = {}} = packageObj;
 const ora = require('ora');
+const program = require('commander');
+let npmClient = 'npm';
+program
+    .version(require('../package.json').version)
+    .option('--npm-client', 'choose npm client')
+    .parse(process.argv);
 
+if (program.npmClient) npmClient = program.npmClient;
 //项目中存在的依赖
 let hasDeps = {
   ...devDependencies,
@@ -70,7 +77,7 @@ let depInstallPromise = new Promise(function(resolve, reject){
     let npmlist = depInstall.map(item=>{
       return item.key + '@' + item.value
     }).join(' ')
-    let installcml = `npm i ${npmlist}`
+    let installcml = `${npmClient} i ${npmlist}`
     exec(installcml,function(err, stdot) {
       if(err) {
         reject(err)
@@ -88,7 +95,7 @@ let devDepInstallPromise = new Promise(function(resolve, reject){
     let npmlist = devDepInstall.map(item=>{
       return item.key + '@' + item.value
     }).join(' ')
-    let installcml = `npm i ${npmlist} --save-dev `
+    let installcml = `${npmClient} i ${npmlist} --save-dev `
     exec(installcml,function(err, stdot) {
       if(err) {
         reject(err)
@@ -99,7 +106,7 @@ let devDepInstallPromise = new Promise(function(resolve, reject){
   }
 })
 
-const installSpinner = ora(`npm dependencies installing...`).start()
+const installSpinner = ora(`${npmClient} dependencies installing...`).start()
 
 depInstallPromise.then(res=>{
   installSpinner.succeed('dependencies install success')
@@ -107,7 +114,7 @@ depInstallPromise.then(res=>{
   depInstall.forEach(item=>{
     installSpinner.succeed(`${item.key}@${item.value}`)
   })
-  const devSpinner = ora(`npm devDependencies installing...`).start()
+  const devSpinner = ora(`${npmClient} devDependencies installing...`).start()
   devDepInstallPromise.then(res=>{
 
     devSpinner.succeed('devDependencies install success')
