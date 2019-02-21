@@ -46,9 +46,18 @@ _.mixins = {
       }
     },
     [_.modelEventProxyName](e) {
-      let { dataset } = e.currentTarget;
-      let modelKey = dataset && dataset.modelkey
-      this[modelKey] = e.detail.value;
+      console.log('modelinput', e);
+      if (e.detail && e.detail.aliModelKey) {
+        console.log('modelkeyvalue', this[e.aliModelKey])
+        return this[e.detail.aliModelKey] = e.detail.value
+      } else {
+        let dataset = e.currentTarget && e.currentTarget.dataset
+        let modelKey = dataset && dataset.modelkey
+        if (modelKey) {
+          this[modelKey] = e.detail.value;
+        }
+      }
+
     },
     [_.eventProxyName](e) {
       let { dataset } = e.currentTarget;

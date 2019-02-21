@@ -9,13 +9,18 @@ commonMixins.merge(_, {
 })
 commonMixins.merge(_.mixins.methods, {
   [_.eventEmitName]: function(eventKey, detail) {
+    console.log('alipay-props', this.props, detail)
     let eventKeyProps = this.props["data-event" + eventKey];
+    if (Object.prototype.toString.call(detail) === '[object Object]' && this.props['data-modelkey']) {
+      let aliModelKey = this.props['data-modelkey'] || '';
+      detail = Object.assign(detail, {aliModelKey})
+    }
     eventKeyProps && this.props[_.cmlPropsEventProxy.key](eventKeyProps, detail);
     if (this.$__checkCmlEmit__) {
       this.$__checkCmlEmit__(eventKey, detail);
     }
   },
-  [_.cmlPropsEventProxy.value](eventName, value){
+  [_.cmlPropsEventProxy.value](eventName, value) {
     this[eventName] && this[eventName]({
       detail: value
     });
