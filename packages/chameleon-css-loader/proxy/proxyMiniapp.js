@@ -1,5 +1,5 @@
 const utils = require('../utils');
-
+const lines = require('../handler/lines');
 // 运行时的cpx2rpx不能使用postcss处理，因为$cmlStyle方法用到了该方法，在运行时使用postcss 会出现Cannot find module "fs"的错误
 module.exports = function(content) {
   content = utils.disappearCssComment(content);
@@ -16,6 +16,9 @@ module.exports = function(content) {
         };
       })
       .map(declaration => {
+        if (declaration.property === 'lines') {
+          return lines(declaration.value);
+        }
         declaration.value = handle(declaration.value);
         return declaration.property + ':' + declaration.value;
       })

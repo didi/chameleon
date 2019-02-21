@@ -188,7 +188,13 @@ class Plugin {
 
     if (pluginState.libraryObjs[node.object.name]) {
       // antd.Button -> _Button
-      path.replaceWith(this.importMethod(node.property.name, file, pluginState));
+      if (node.property.type === 'Identifier') {
+        //antd.Button
+        path.replaceWith(this.importMethod(node.property.name, file, pluginState));
+      } else if (node.property.type === 'Literal') {
+        //antd['Button']
+        path.replaceWith(this.importMethod(node.property.value, file, pluginState));
+      }
     } else if (pluginState.specified[node.object.name]) {
       node.object = this.importMethod(pluginState.specified[node.object.name], file, pluginState);
     }

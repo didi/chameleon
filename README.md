@@ -1,7 +1,9 @@
-# <img src="https://cmljs.org/doc/assets/100*100.png"/> Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon)
+# <img src="https://cmljs.org/doc/assets/100*100.png"/> Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon) [![license](https://img.shields.io/npm/l/chameleon-tool.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=popout-square)](https://www.npmjs.com/package/chameleon-tool) [![version](https://img.shields.io/npm/v/chameleon-tool.svg?style=flat)](https://www.npmjs.com/package/chameleon-tool) 
 
 
 **Chameleon**/kəˈmiːlɪən/，简写`CML`，中文名`卡梅龙`；中文意思`变色龙`，意味着就像变色龙一样能适应不同环境的跨端整体解决方案。
+
+[English Introduction](https://github.com/didi/chameleon/blob/gh-pages/doc/quick_start/readme-en.md) | 中文介绍
 
 ## 文档
 
@@ -10,7 +12,27 @@
 * [快速上手](https://CMLJS.org/doc/quick_start/quick_start.html)
 * [API文档](https://CMLJS.org/doc/api/api.html)
 * [组件文档](https://CMLJS.org/doc/component/component.html)
+* [资源汇总](https://github.com/chameleon-team/awesome-cml)：依赖库、demo示例、学习资源
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
+
+
+## CML 即 多端
+
+**一端所见即多端所见**——多端高度一致，无需关注各端文档。
+
+> 基于多态协议不影响各端差异化灵活性
+
+<a href="https://github.com/beatles-chameleon/cml-demo">
+
+![本地预览](https://cmljs.org/doc/assets/demo-preview.png)
+
+</a>
+
+| web   |      微信小程序      |  native-weex |  百度小程序 |  支付宝小程序 |
+|:----------:|:-------------:|:------:|:------:|:------:|
+| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/web-1.jpg" width="200px"/> </a>|  <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/wx-1.jpg" width="200px"/></a>| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/weex-1.jpg" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/baidu-1.png" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/alipay-1.png" width="200px"/></a> |
+
+
 
 ## 背景
 研发同学在端内既追求h5的灵活性，也要追求性能趋近于原生。
@@ -73,7 +95,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 ##  微信 & QQ交流群
 
 **微信**<br />
-<img width="150px" src="https://CMLJS.org/doc/assets/weixin_qr.jpg" />
+<img width="150px" src="https://CMLJS.org/doc/assets/wx-qr-code.png" />
 
 <br />
 
