@@ -281,6 +281,9 @@ exports.getWebEntry = function (options) {
   exports.copyDefaultFile(options.root, 'web', options.media);
   var entry = {};
   entry.vender = ['vue', 'vuex', 'vue-router', path.resolve(cml.root, 'configs/web_global.js')];
+  if (options.babelPolyfill === true) {
+    entry.vender.unshift('@babel/polyfill');
+  }
   // web端插入全局样式
   if (cml.config.get().baseStyle.web === true) {
     entry.vender.push('chameleon-runtime/src/platform/web/style/index.css')

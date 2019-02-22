@@ -9,6 +9,17 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "mail": "ChameleonCore@didiglobal.com",
+  "keywords": [
+    "chameleon",
+    "cml",
+    "miniprogram",
+    "vue",
+    "weex",
+    "android",
+    "ios",
+    "mobile",
+    "mvvm"
+  ],
   "dependencies": {
     "babel-plugin-chameleon-import": "0.1.0-alpha.2",
     "chameleon-api": "^0.2.0",

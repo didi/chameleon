@@ -348,7 +348,7 @@ exports.preParseGtLt = function(content) {
     return exports._operationGtLt(match);
   })
 }
-// 将 {{}} ==> _cml{}lmc_ ,因为jsx无法识别 {{}}
+// 预处理 标签内的 {{item.id}} 这种语法jsx无法识别，转化为 _cml{item.id}lmc_
 exports.preParseMustache = function (content) {
   let reg = />([\s\S]*?)<[a-zA-Z\/\-_]+?/g;
   return content.replace(reg, function (match, key) {
@@ -370,7 +370,7 @@ exports.preParseTemplateToSatisfactoryJSX = function(source, callbacks) {
   return source;
 }
 exports.preParseAnimation = function(source, type) {
-  // 这个只在微信端增加callback;
+  // 这个只在小程序端增加callback;
   if (type === 'wx' || type === 'alipay' || type === 'baidu') {
     let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
@@ -380,7 +380,7 @@ exports.preParseAnimation = function(source, type) {
     traverse(ast, {
       enter(path) {
         let node = path.node;
-        if (t.isJSXAttribute(node) && node.name.name === 'c-animation') {
+        if (t.isJSXAttribute(node) && (node.name.name === 'c-animation' || node.name.name === 'v-animation')) {
           let value = utils.trimCurly(node.value.value);
           path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
         }

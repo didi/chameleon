@@ -89,7 +89,6 @@ function replaceCmlPath(content, filename, options) {
 }
 
 function replaceCmss(content, options) {
-  debugger
   let style = cml.utils.splitParts({
     content
   }).style;

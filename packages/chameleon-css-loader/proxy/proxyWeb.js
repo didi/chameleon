@@ -1,7 +1,8 @@
 /** 提供编译时样式处理的方法 */
 // 运行时不能使用postcss 体积过大
-
+const lines = require('../handler/lines');
 const utils = require('../utils');
+
 module.exports = function(content, options) {
   if (typeof options === 'string') {
     options = JSON.parse(utils.singlequot2doublequot(options))
@@ -24,6 +25,9 @@ module.exports = function(content, options) {
         };
       })
       .map(declaration => {
+        if (declaration.property === 'lines') {
+          return lines(declaration.value);
+        }
         declaration.value = handle(declaration.value, options);
         return declaration.property + ':' + declaration.value;
       })
