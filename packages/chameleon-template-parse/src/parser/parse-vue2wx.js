@@ -35,7 +35,7 @@ parseVue2Wx.tap('vue2wx-v-bind,vue2alipay-v-bind', (args) => {
   if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     // 注意这个node节点仍然是 JSXAttribute节点；
     let bindAttrName = node.name;
-    if (t.isJSXNamespacedName(bindAttrName) && bindAttrName.namespace.name === 'v-bind' && bindAttrName.name.name !== 'key' && bindAttrName.name.name !== 'is' && bindAttrName.name.name !== 'class') {
+    if (t.isJSXNamespacedName(bindAttrName) && bindAttrName.namespace.name === 'v-bind' && bindAttrName.name.name !== 'key' && bindAttrName.name.name !== 'class') {
       // key属性不要处理；class属性不要处理；
       let finalBindAttrName = bindAttrName.name && bindAttrName.name.name;
       if (finalBindAttrName) {

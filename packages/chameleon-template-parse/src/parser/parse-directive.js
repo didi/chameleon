@@ -5,7 +5,6 @@ const utils = require('../common/utils');
 const eventProxy = require('chameleon-mixins/web-mixins.js');
 const wxEventProxy = require('chameleon-mixins/wx-mixins.js');
 let parseDirective = new SyncHook(['args'])
-const alipayMixins = require('chameleon-mixins/alipay-mixins.js');
 // cml语法
 parseDirective.tap('web-weex-cml', (args) => {
   let { path, node, type, options: {lang}} = args;
@@ -65,7 +64,6 @@ parseDirective.tap('wx-baidu-cml', (args) => {
       if (type === 'alipay') {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`onInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-eventinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(alipayMixins.cmlPropsEventProxy.key), t.stringLiteral(alipayMixins.cmlPropsEventProxy.value)));
       } else {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       }
@@ -165,7 +163,6 @@ parseDirective.tap('wx-vue', (args) => {
       if (type === 'alipay') {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`onInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-eventinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(alipayMixins.cmlPropsEventProxy.key), t.stringLiteral(alipayMixins.cmlPropsEventProxy.value)));
       } else {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
       }

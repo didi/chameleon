@@ -159,7 +159,6 @@ function compileAliPayTemplate(source, type, options) {
 
       parseTemplate.parseAnimationStatement(path, type, options);
       parseTemplate.afterParseTag(path, type, options);
-      parseTemplate.parseAddAliEventProps(path, type, options);
       parseTemplate.parseEventListener(path, type, options);
       // 解析v-model ==> value="{{modelValue}}" bindinput="_cmlModelEventProxy($event) data-modelkey="modelKey"
       parseTemplate.parseDirectiveStatement(path, type, options);
