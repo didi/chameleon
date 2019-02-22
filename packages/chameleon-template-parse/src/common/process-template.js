@@ -234,87 +234,7 @@ exports.activeTagHandler = function (tag, content) {
 
   return content;
 }
-exports.wrapAliComponents = function(source, usingComponentsMap, options) {
-  let usingComponentsKeys = Object.keys(usingComponentsMap) || [];
-  let lang = options.lang;
-  for (let i = 0 ; i < usingComponentsKeys.length; i++) {
-    let tag = usingComponentsKeys[i];
-    let {styleNode, classNode, dynamicStyleNode, dynamicClassNode} = usingComponentsMap[tag] || {};
-    let contentReg = new RegExp(`<\\s*${tag}[\\s\\S]*?>[\\s\\S]*?<\\s*\\/\\s*${tag}\\s*>`, 'ig');
-    let styleAttr = '';
-    let classAttr = '';
-    let dynamicStyle = '';
-    let dynamicClsss = '';
-    if (styleNode && styleNode.name) {
-      styleAttr = `style="${styleNode.value.value}"`
-    }
-    if (classNode && classNode.name) {
-      classAttr = `class="${classNode.value.value}"`;
-    }
-    if (lang === 'vue') {
-      if (dynamicStyleNode && t.isJSXNamespacedName(dynamicStyleNode.name)) {
-        dynamicStyle = `v-bind:style="${dynamicStyleNode.value.value}"`
-      }
-      if (dynamicClassNode && t.isJSXNamespacedName(dynamicClassNode.name)) {
-        dynamicClsss = `v-bind:class="${dynamicClassNode.value.value}"`
-      }
-    }
-    source = source.replace(contentReg, function(match) {
-      // 对应没有样式节点的
-      if ((lang === 'cml') && !styleNode && !classNode) {
-        return match;
-      } else if ((lang === 'vue') && !styleNode && !classNode && !dynamicStyleNode && !dynamicClassNode) {
-        return match
-      }
-      return `<view ${styleAttr} ${dynamicStyle} ${classAttr}  ${dynamicClsss}>${match}</view>`
-    })
-  }
-  return source;
-}
 
-// 处理支付宝小程序组件添加标签包裹
-exports.alipayComponentsWraped = function(source, type, options) {
-  if (type === 'alipay') {
-    let usingComponents = options.usingComponents || [];
-    let buildInComponents = options.buildInComponents || {};
-    let usingComponentsMap = {};
-    const ast = babylon.parse(source, {
-      plugins: ['jsx']
-    })
-    traverse(ast, {
-      enter(path) {
-        let node = path.node;
-        if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
-          let isComponent = usingComponents.find((item) => item.tagName === node.openingElement.name.name) || Object.keys(buildInComponents).includes(node.openingElement.name.name);
-          if (isComponent) {
-            let attributes = node.openingElement.attributes || [];
-            let styleNode = attributes.find((attr) => attr.name.name === 'style') ;
-            let classNode = attributes.find((attr) => attr.name.name === 'class') ;
-            // web端动态的class  style
-            let dynamicStyleNode = attributes.find((attr) => {
-              if (t.isJSXNamespacedName(attr.name)) {
-                return attr.name.name.name === 'style';
-              }
-              return false;
-            });
-            let dynamicClassNode = attributes.find((attr) => {
-              if (t.isJSXNamespacedName(attr.name)) {
-                return attr.name.name.name === 'class';
-              }
-              return false;
-            })
-            usingComponentsMap[node.openingElement.name.name] = {
-              styleNode, classNode, dynamicStyleNode, dynamicClassNode
-            }
-          }
-        }
-      }
-    });
-    return exports.wrapAliComponents(source, usingComponentsMap, options);
-  }
-  return source;
-
-}
 // 模板前置处理器
 // 预处理:属性  :name="sth" ==> v-bind:name="sth",因为jsx识别不了 :name="sth"
 exports.preParseBindAttr = function (content) {
@@ -380,7 +300,7 @@ exports.preParseAnimation = function(source, type) {
       enter(path) {
         let node = path.node;
         if (t.isJSXAttribute(node) && (node.name.name === 'c-animation' || node.name.name === 'v-animation')) {
-          let value = utils.trimCurly(node.value.value);
+          let value = utils.trimCurly(node.value.value).trim();
           path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
         }
       }

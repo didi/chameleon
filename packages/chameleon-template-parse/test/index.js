@@ -1,7 +1,5 @@
 const compileTemplate = require('../src/index.js');
-const source = `<view c-for=" array" c-key="{{index}}">
-<view>{{item.name+index}}</view>
-</view>`
+const source = `<view><text c-animation="{{ sss }}">click</text></view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
@@ -43,4 +41,3 @@ let result_alipay = compileTemplate(source, 'alipay', options);
 console.log('result_web', result_web)
 console.log('result_wx', result_wx)
 console.log('result_alipay', result_alipay)
-// console.log('result_baidu', result_baidu)
