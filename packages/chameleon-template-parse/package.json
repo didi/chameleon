@@ -18,12 +18,14 @@
     "@babel/traverse": "^7.1.0",
     "@babel/types": "^7.1.2",
     "babylon": "^6.18.0",
+    "fnv-plus": "^1.2.12",
     "tapable": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chameleon-css-loader": "0.1.0-alpha.2",
     "chameleon-mixins": "0.1.0-alpha.2",
+    "chameleon-tool-utils": "0.0.29",
     "clean-webpack-plugin": "^0.1.19",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",

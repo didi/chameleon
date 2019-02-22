@@ -4,20 +4,27 @@ var _ = module.exports = commonMixins.deepClone(commonMixins);
 
 commonMixins.merge(_.mixins.methods, {
   [_.eventEmitName]: function(eventKey, detail) {
+    console.log('alipay-props', this.props, detail, eventKey);
+    let modelkey = this.props['data-modelkey'];
     let eventKeyProps = this.props["data-event" + eventKey];
     function titleLize (word) {
       return word.replace(/^\w/, function (match) {
         return match.toUpperCase();
       })
     }
-    this.props['on' + titleLize(eventKey)]({
-      type: eventKey,
-      detail,
-      currentTarget: {
-        dataset: {
-          ['event' + eventKey]: eventKeyProps
+    let callback = this.props['on' + titleLize(eventKey)];
+    if (callback && _.isType(callback, 'Function')) {
+      callback({
+        type: eventKey,
+        detail,
+        currentTarget: {
+          dataset: {
+            ['event' + eventKey]: eventKeyProps,
+            modelkey
+          }
         }
-      }
-    })
+      })
+    }
+
   }
 });

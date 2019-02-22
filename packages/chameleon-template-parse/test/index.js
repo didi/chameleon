@@ -1,25 +1,13 @@
 const compileTemplate = require('../src/index.js');
-const source = `<template>
-  <c-page title="carousel">
-    <c-header title="carousel"></c-header>
-    <carousel class="container" indicator-dots="{{true}}"  current="{{0}}" circular="{{true}}">
-      <carousel-item>
-        <view  class="carousel-item" style="background-color: #EBDEAA"></view>
-      </carousel-item>
-      <carousel-item>
-        <view class="carousel-item" style="background-color: #E3EDCD"></view>
-      </carousel-item>
-      <carousel-item>
-        <view class="carousel-item" style="background-color: #EAEAEF"></view>
-      </carousel-item>
-    </carousel>
-  </c-page>
-</template>`
+const source = `<view c-for=" array" c-key="{{index}}">
+<view>{{item.name+index}}</view>
+</view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
 // let result = compileTemplate(source,'web');
 let options = {lang: 'cml',
+  filePath: '/Users/didi/components.cml',
   buildInComponents: {button: "cml-buildin-button"},
   cmss: {
     rem: true,
@@ -35,7 +23,7 @@ let options = {lang: 'cml',
     }
   },
   usingComponents: [{
-    tagName: 'thirdComp1',
+    tagName: 'cube-button',
     refUrl: '/path/to/ref1',
     filePath: 'path/to/real1',
     isNative: true
@@ -49,10 +37,10 @@ let options = {lang: 'cml',
 console.log('before-compile', source);
 let result_web = compileTemplate(source, 'web', options);
 let result_wx = compileTemplate(source, 'wx', options);
-let result_baidu = compileTemplate(source, 'wx', options);
+// let result_baidu = compileTemplate(source, 'wx', options);
 let result_alipay = compileTemplate(source, 'alipay', options);
 // let result_alipay = compileTemplate(source,'alipay',{lang:'cml'});
-// console.log('result_web', result_web)
-// console.log('result_wx', result_wx)
+console.log('result_web', result_web)
+console.log('result_wx', result_wx)
 console.log('result_alipay', result_alipay)
 // console.log('result_baidu', result_baidu)

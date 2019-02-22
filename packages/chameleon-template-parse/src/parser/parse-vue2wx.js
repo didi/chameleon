@@ -35,7 +35,7 @@ parseVue2Wx.tap('vue2wx-v-bind,vue2alipay-v-bind', (args) => {
   if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     // 注意这个node节点仍然是 JSXAttribute节点；
     let bindAttrName = node.name;
-    if (t.isJSXNamespacedName(bindAttrName) && bindAttrName.namespace.name === 'v-bind' && bindAttrName.name.name !== 'key' && bindAttrName.name.name !== 'is' && bindAttrName.name.name !== 'class') {
+    if (t.isJSXNamespacedName(bindAttrName) && bindAttrName.namespace.name === 'v-bind' && bindAttrName.name.name !== 'key' && bindAttrName.name.name !== 'class') {
       // key属性不要处理；class属性不要处理；
       let finalBindAttrName = bindAttrName.name && bindAttrName.name.name;
       if (finalBindAttrName) {
@@ -84,15 +84,21 @@ parseVue2Wx.tap('vue2wx-v-for', (args) => {
 parseVue2Wx.tap('component-is', (args) => {
   let {path, node, type, options} = args;
   let lang = options.lang;
+  let conditionMap = {
+    wx: 'wx:if',
+    alipay: 'a:if',
+    baidu: 's-if'
+
+  }
   let usingComponents = (options.usingComponents || []).map(item => item.tagName)
-  if (type === 'wx' && t.isJSXElement(node)) {
+  if ((type === 'wx' || type === 'alipay' || type === 'baidu') && t.isJSXElement(node)) {
     let currentTag = node.openingElement.name.name;
     let jsxElementChildren = node.children || [];
     if (currentTag === 'component') {
       let attributes = utils.getJSXElementAttrKeyValue(path);
-      let shrinkComponents = attributes.shrinkComponents;
-      if (shrinkComponents) {
-        usingComponents = shrinkComponents.split(',').reduce((result, comp) => {
+      let shrinkcomponents = attributes.shrinkcomponents;
+      if (shrinkcomponents) {
+        usingComponents = shrinkcomponents.split(',').reduce((result, comp) => {
           comp = utils.trim(comp);
           if (comp) {
             result.push(comp);
@@ -114,7 +120,7 @@ parseVue2Wx.tap('component-is', (args) => {
       if (currentComp && usingComponents) {
         let elementAttributes = path.node.openingElement.attributes || []
         usingComponents.forEach((comp) => {
-          let openTag = t.jsxOpeningElement(t.jsxIdentifier(comp), [t.jsxAttribute(t.jsxIdentifier('wx:if'), t.stringLiteral(`{{${currentComp} === '${comp}'}}`))].concat(elementAttributes));
+          let openTag = t.jsxOpeningElement(t.jsxIdentifier(comp), [t.jsxAttribute(t.jsxIdentifier(`${conditionMap[type]}`), t.stringLiteral(`{{${currentComp} === '${comp}'}}`))].concat(elementAttributes));
           let closeTag = t.jsxClosingElement(t.jsxIdentifier(comp))
           let insertNode = t.jsxElement(openTag, closeTag, jsxElementChildren, false);
 

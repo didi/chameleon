@@ -7,11 +7,17 @@ const parseTemplate = require('./parser/index.js');
 // 对于模板的预处理 - 后置处理 - 等正则的一些替换；
 const processTemplate = require('./common/process-template.js')
 // 目前事件的处理有两处：第一，c-bind,第二c-model,两者互相不影响；借鉴于此，需要新增处理事件支持传参的形式，而此时就需要处理c-bind;
+const cliUtils = require('chameleon-tool-utils');
 exports.compileTemplateForCml = function (source, type, options) {
+  let errorInfo = processTemplate.preCheckTemplateSyntax(source, type, options)
+  if (errorInfo) {
+    // throw new Error(`${errorInfo} in ${options.filePath}`)
+    cliUtils.log.warn(`${errorInfo} in ${options.filePath}`);
+  }
   // source
   // 预处理html模板中的注释，jsx不支持，这个需要优先处理，防止解析 < > 的时候出现问题；
   source = processTemplate.preDisappearAnnotation(source);
-  // 预处理：<   >  ==>  _cml&lt&lmc_  _cml&gt&lmc_,这么做的目的为了防止 preParseMustache 解析 > < 中间的内容报错，所以需要将 > < 先转化 gt lt的形式，等 preParseMustache 解析完毕之后即可将其转化回来；
+  // 预处理：<   >  ==>  _cml_lt_lmc_  _cml_gt_lmc_,这么做的目的为了防止 preParseMustache 解析 > < 中间的内容报错，所以需要将 > < 先转化 gt lt的形式，等 preParseMustache 解析完毕之后即可将其转化回来；
   source = processTemplate.preParseGtLt(source);
   source = processTemplate.preParseDiffPlatformTag(source, type);
   // 预处理:属性 jsx不支持 :name="sth" ==> v-bind:name="sth"
@@ -24,7 +30,8 @@ exports.compileTemplateForCml = function (source, type, options) {
   source = processTemplate.postParseLtGt(source);
   // 预处理c-animation 标签，给这个标签增加一个 c-bind:transitionend = "_animationCb(value,$event)",注意这个必须在所有预处理的最后，因为前面的预处理兼容了jsx的语法；
   source = processTemplate.preParseAnimation(source, type);
-  source = processTemplate.alipayComponentsWraped(source, type, options);
+  // source = processTemplate.alipayComponentsWraped(source, type, options);
+  source = processTemplate.preParseAliComponent(source, type, options);
   if (type === 'web') {
     source = compileWebTemplate(source, type, options).code;
   }

@@ -11,7 +11,6 @@ const {parseDirective} = require('./parse-directive.js');
 const {parseClass} = require('./parse-class.js');
 const {parseRef} = require('./parse-ref.js');
 const {parseTextContent} = require('./parse-text-content.js');
-const alipayMixins = require('chameleon-mixins/alipay-mixins.js');
 
 const {
   tagMap
