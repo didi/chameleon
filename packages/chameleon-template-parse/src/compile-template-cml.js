@@ -169,7 +169,6 @@ function compileAliPayTemplate(source, type, options) {
 
       parseTemplate.afterParseTag(path, type, options);
       parseTemplate.parseConditionalStatement(path, type, options);// 替换c-if c-else
-      parseTemplate.parseAddAliEventProps(path, type, options);
       parseTemplate.parseEventListener(path, type, options);
 
       // 解析c-model ==> value="{{modelValue}}" bindinput="_cmlModelEventProxy($event) data-modelkey="modelKey"

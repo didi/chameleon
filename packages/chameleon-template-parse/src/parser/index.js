@@ -131,16 +131,7 @@ exports.parseEventListener = function parseEventListener(path, type, options) {
     parseEvent.call({path, type, node, options})
   }
 }
-exports.parseAddAliEventProps = function parseAddAliEventProps(path, type, options) {
-  let node = path.node;
-  if (t.isJSXElement(node)) {
-    let attributes = node.openingElement.attributes || [];
-    let hasEventBind = attributes.find((attr) => (t.isJSXNamespacedName(attr.name) && attr.name.namespace.name === 'c-bind'));
-    if (hasEventBind) {
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(alipayMixins.cmlPropsEventProxy.key), t.stringLiteral(alipayMixins.cmlPropsEventProxy.value)));
-    }
-  }
-}
+
 // 只支持数组，小程序不支持对象的for循环；
 // web weex wx   只处理cml语法   c-for
 exports.parseIterationStatement = function parseIterationStatement(path, type, options) {
