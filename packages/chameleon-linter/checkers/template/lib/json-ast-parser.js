@@ -22,7 +22,18 @@ function getUsingComponents(jsonAst, filePath = '') {
         // inforPair.path: is the original path of base: {usingComponents: 'path/to/referenced component'}
         let interfaceInfo = cmlUtils.findInterfaceFile(currentWorkspace, filePath, infoPair.path);
         let componentInfo = cmlUtils.lintHandleComponentUrl(currentWorkspace, filePath, infoPair.path);
-        let useDefine = interfaceInfo;
+        let useDefine;
+
+        // 文件夹下同时存在同名不同后缀文件
+        // eg.
+        // index.cml
+        // index.interface
+        if (interfaceInfo && componentInfo && interfaceInfo.refUrl == (componentInfo.refUrl + '.interface')) {
+          useDefine = componentInfo;
+        }
+        else {
+          useDefine = interfaceInfo;
+        }
 
         if (!useDefine.filePath) {
           if (componentInfo && componentInfo.filePath) {

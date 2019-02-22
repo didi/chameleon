@@ -97,9 +97,9 @@ let getCmlParts = filepath => {
   let platforms = config.getPlatforms();
   let platform;
 
-  let result = new RegExp('([^/]*?)\.(' + platforms.join('|') + ')\.cml$', 'g').exec(filepath);
+  let result = new RegExp('([^/]*?)\\.(' + platforms.join('|') + ')\\.cml$', 'g').exec(filepath);
   if (result) {
-    let interfaceFile = filepath.replace(new RegExp('\.(' + platforms.join('|') + ')\.cml$', 'ig'), '.interface');
+    let interfaceFile = filepath.replace(new RegExp('\\.(' + platforms.join('|') + ')\\.cml$', 'ig'), '.interface');
     platform = result[2];
     if (fs.existsSync(interfaceFile)) {
       Object.assign(parts, getCmlFileParts(interfaceFile));
