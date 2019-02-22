@@ -127,17 +127,8 @@ function handlerH2Toc(config, count, header, tocs, pageLevel, modifyHeader) {
     var level = ''; //层级
 
     if (tocs.length <= 0) {
-        //一级节点为空时，生成一个空的一级节点，让二级节点附带在这个上面
-        // 在显示层级的时候不乱
-        if (config.showLevel) {
-            count.h1 += 1;
-        }
-        tocs.push({
-            name: "",
-            level: "",
-            url: "",
-            children: []
-        });
+        titleAddAnchor(header, id);
+        return;
     }
 
     var h1Index = tocs.length - 1;
@@ -178,31 +169,15 @@ function handlerH3Toc(config, count, header, tocs, pageLevel, modifyHeader) {
     var level = ''; //层级
 
     if (tocs.length <= 0) {
-        //一级节点为空时，生成一个空的一级节点，让二级节点附带在这个上面
-        if (config.showLevel) {
-            count.h1 += 1;
-        }
-        tocs.push({
-            name: "",
-            level: "",
-            url: "",
-            children: []
-        });
+        titleAddAnchor(header, id);
+        return;
     }
     var h1Index = tocs.length - 1;
     var h1Toc = tocs[h1Index];
     var h2Tocs = h1Toc.children;
     if (h2Tocs.length <= 0) {
-        //二级节点为空时，生成一个空的二级节点，让三级节点附带在这个上面
-        if (config.showLevel) {
-            count.h2 += 1;
-        }
-        h2Tocs.push({
-            name: "",
-            level: "",
-            url: "",
-            children: []
-        });
+        titleAddAnchor(header, id);
+        return;
     }
     var h2Toc = h1Toc.children[h2Tocs.length - 1];
 
@@ -251,16 +226,12 @@ function handlerFloatNavbar($, tocs) {
     var html = "<div id='anchor-navigation-ex-navbar'><i class='" + floatIcon + "'></i><ul>";
     for (var i = 0; i < tocs.length; i++) {
         var h1Toc = tocs[i];
-        if (h1Toc.name){
-            html += "<li><span class='title-icon " + level1Icon + "'></span><a href='#" + h1Toc.url + "'><b>" + h1Toc.level + "</b>" + h1Toc.name + "</a></li>";
-        }
+        html += "<li><span class='title-icon " + level1Icon + "'></span><a href='#" + h1Toc.url + "'><b>" + h1Toc.level + "</b>" + h1Toc.name + "</a></li>";
         if (h1Toc.children.length > 0) {
             html += "<ul>"
             for (var j = 0; j < h1Toc.children.length; j++) {
                 var h2Toc = h1Toc.children[j];
-                if(h2Toc.name){
-                    html += "<li><span class='title-icon " + level2Icon + "'></span><a href='#" + h2Toc.url + "'><b>" + h2Toc.level + "</b>" + h2Toc.name + "</a></li>";
-                }
+                html += "<li><span class='title-icon " + level2Icon + "'></span><a href='#" + h2Toc.url + "'><b>" + h2Toc.level + "</b>" + h2Toc.name + "</a></li>";
                 if (h2Toc.children.length > 0) {
                     html += "<ul>";
                     for (var k = 0; k < h2Toc.children.length; k++) {
@@ -296,16 +267,12 @@ function buildTopNavbar($, tocs) {
     var html = "<div id='anchor-navigation-ex-pagetop-navbar'><ul>";
     for (var i = 0; i < tocs.length; i++) {
         var h1Toc = tocs[i];
-        if(h1Toc.name){
-            html += "<li><span class='title-icon " + level1Icon + "'></span><a href='#" + h1Toc.url + "'><b>" + h1Toc.level + "</b>" + h1Toc.name + "</a></li>";
-        }
+        html += "<li><span class='title-icon " + level1Icon + "'></span><a href='#" + h1Toc.url + "'><b>" + h1Toc.level + "</b>" + h1Toc.name + "</a></li>";
         if (h1Toc.children.length > 0) {
             html += "<ul>"
             for (var j = 0; j < h1Toc.children.length; j++) {
                 var h2Toc = h1Toc.children[j];
-                if(h2Toc.name){
-                    html += "<li><span class='title-icon " + level2Icon + "'></span><a href='#" + h2Toc.url + "'><b>" + h2Toc.level + "</b>" + h2Toc.name + "</a></li>";
-                }
+                html += "<li><span class='title-icon " + level2Icon + "'></span><a href='#" + h2Toc.url + "'><b>" + h2Toc.level + "</b>" + h2Toc.name + "</a></li>";
                 if (h2Toc.children.length > 0) {
                     html += "<ul>";
                     for (var k = 0; k < h2Toc.children.length; k++) {
