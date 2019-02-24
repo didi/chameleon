@@ -37,7 +37,6 @@ parseClass.tap('web-cml', (args) => {
     } else {
       throw new Error(`cml语法下class节点最多只能有一个`);
     }
-    // utils.handleCMLClassNodes({classNodes, attributes, extraClass, lang, type})
   }
 
 })
@@ -70,7 +69,6 @@ parseClass.tap('weex-cml', (args) => {
       throw new Error(`cml语法下class节点最多只能有一个`);
     }
 
-    // utils.handleCMLClassNodes({classNodes, attributes, extraClass, lang, type})
   }
 
 })
@@ -98,7 +96,6 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
     } else {
       throw new Error(`cml语法下class节点最多只能有一个`);
     }
-    // utils.handleCMLClassNodes({classNodes, attributes, extraClass, lang, type: 'miniapp'})
   }
 
 })
