@@ -165,7 +165,6 @@ _.transformWxDynamicStyleCpxToRpx = function(value) {
 _.transformNotInMustacheCpxToRpx = function(value) {
   let isNotMustacheCpxToRpxReg = /([^{}]+)?(\{\{[^{}]+\}\})?/g;
   let temp = '';
-  const matches = value.match(isNotMustacheCpxToRpxReg);
   value.replace(isNotMustacheCpxToRpxReg, (match, $1, $2, $3) => {
     if ($1) {
       temp += $1.replace(/cpx/g, 'rpx');

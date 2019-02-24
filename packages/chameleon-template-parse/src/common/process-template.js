@@ -9,7 +9,6 @@ const {
 const utils = require('./utils');
 
 exports.startCallback = function(matchStart, type, options) {
-  let lang = options.lang;
   let usingComponents = options.usingComponents || [];
   let buildInComponents = options.buildInComponents || {};
   if (type === 'alipay') {
@@ -31,7 +30,6 @@ exports.startCallback = function(matchStart, type, options) {
 */
 exports.preParseAliComponent = function(source, type, options) {
   if (type === 'alipay') {
-    let lang = options.lang;
     let usingComponents = options.usingComponents || [];
     let buildInComponents = options.buildInComponents || {};
     let exceptTags = ['carousel-item', 'c-tab-item', 'checkbox', 'radio'];// 用于包括哪些组件标签不用被view标签包裹
