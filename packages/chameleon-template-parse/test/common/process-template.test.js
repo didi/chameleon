@@ -39,6 +39,11 @@ describe('process-template', function() {
     it('test alipay component wraped', function() {
       let source = `<view><c-tab-item></c-tab-item><thirdComp2 v-if="true"></thirdComp2><button class="cls1" :class="cls2" style="width:100cpx"></button><text></text></view>`
       expect(processTemplate.preParseAliComponent(source, 'alipay', options)).to.equal(`<view  ><c-tab-item  ></c-tab-item><view  v-if="true" ><thirdComp2  ></thirdComp2></view><view  class="cls1" :class="cls2" style="width:100cpx" ><button  class="cls1" :class="cls2" style="width:100cpx" ></button></view><text  ></text></view>`)
+    });
+    // 一元标签的处理,组件一元标签也是需要被包裹，非组件一元标签则不会,组件在options中有声明
+    it('test alipay component wraped', function() {
+      let source = `<view><input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
+      expect(processTemplate.preParseAliComponent(source, 'alipay', options)).to.equal(`<view  ><input  class="cls1" style="width:100cpx" /><view  class=\'btn\' ><button  class=\'btn\' /></view>你好</view>`)
     })
   });
   describe('preParseBindAttr', function() {

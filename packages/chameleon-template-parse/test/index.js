@@ -1,5 +1,5 @@
 const compileTemplate = require('../src/index.js');
-const source = `<view><text c-animation="{{ sss }}">click</text></view>`
+const source = `<view><input class="cls1" style="width:100cpx" /><button /></view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
@@ -33,11 +33,11 @@ let options = {lang: 'cml',
   }]
 };
 console.log('before-compile', source);
-let result_web = compileTemplate(source, 'web', options);
-let result_wx = compileTemplate(source, 'wx', options);
+// let result_web = compileTemplate(source, 'web', options);
+// let result_wx = compileTemplate(source, 'wx', options);
 // let result_baidu = compileTemplate(source, 'wx', options);
 let result_alipay = compileTemplate(source, 'alipay', options);
 // let result_alipay = compileTemplate(source,'alipay',{lang:'cml'});
-console.log('result_web', result_web)
-console.log('result_wx', result_wx)
+// console.log('result_web', result_web)
+// console.log('result_wx', result_wx)
 console.log('result_alipay', result_alipay)
