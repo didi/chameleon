@@ -290,11 +290,11 @@ exports.register = function (commander) {
     let questions = [{
       type: 'list',
       name: 'componentType',
-      message: '请选择组件类型',
+      message: 'please select the type of component',
       choices: [
-        '普通组件',
-        '多态组件',
-        '多态接口'
+        'normal-component',
+        'multimode-component',
+        'multimode-interface'
       ]
     }, {
       type: 'input',
@@ -317,9 +317,9 @@ exports.register = function (commander) {
       let {componentName, componentType} = answers;
       let comdir = path.join(cml.projectRoot, `src/components/${componentName}`);
       let comPathMap = {
-        '普通组件': 'component',
-        '多态组件': 'interface-component',
-        '多态接口': 'interface-js'
+        'normal-component': 'component',
+        'multimode-component': 'interface-component',
+        'multimode-interface': 'interface-js'
       }
       let tplPath = path.join(tpl.componentTpl, comPathMap[componentType]);
       let UpperName = toUpperCase(componentName);
