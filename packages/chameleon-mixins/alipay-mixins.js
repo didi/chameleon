@@ -4,7 +4,6 @@ var _ = module.exports = commonMixins.deepClone(commonMixins);
 
 commonMixins.merge(_.mixins.methods, {
   [_.eventEmitName]: function(eventKey, detail) {
-    console.log('alipay-props', this.props, detail, eventKey);
     let modelkey = this.props['data-modelkey'];
     let eventKeyProps = this.props["data-event" + eventKey];
     function titleLize (word) {

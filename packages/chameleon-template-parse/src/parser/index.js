@@ -10,7 +10,6 @@ const {parseAnimationTag} = require('./parse-animation-tag.js');
 const {parseDirective} = require('./parse-directive.js');
 const {parseClass} = require('./parse-class.js');
 const {parseRef} = require('./parse-ref.js');
-const {parseTextContent} = require('./parse-text-content.js');
 
 const {
   tagMap
@@ -51,18 +50,6 @@ exports.afterParseTag = function (path, type) {
     }
   }
 }
-exports.parseOriginTag = function(path, type) {
-  let node = path.node;
-  if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
-    if (node.openingElement.name.name.indexOf('origin-') === 0) {
-      let currentTag = node.openingElement.name.name;
-      let targetTag = currentTag.replace('origin-', '')
-      node.openingElement.name.name = targetTag;
-      node.closingElement && (node.closingElement.name.name = targetTag);
-    }
-
-  }
-}
 exports.parseBuildTag = function (path, type, options) {
   let node = path.node;
   let buildInTagMap = options && options.buildInComponents;// {button:"cml-buildin-button"}
@@ -97,15 +84,7 @@ exports.parseTagForSlider = function(path, type, options) {
     }
   }
 }
-exports.parseTextContentStatement = function parseTextContentStatement(path, type) {
-  let node = path.node;
-  if (t.isJSXElement(node)) {
-    parseTextContent.call({path, type, node})
-  }
-  // if(t.isJSXText(node)){
-  //   parseTextContent.call({path,type,node})
-  // }
-}
+
 exports.parseRefStatement = function parseRefStatement(path, type, options) {
   let node = path.node;
   if (t.isJSXAttribute(node) && (node.name.name === 'ref' || node.name.name.name === 'ref')) {

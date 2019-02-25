@@ -6,7 +6,34 @@ const traverse = require('@babel/traverse')["default"];
 const generate = require('@babel/generator')["default"];
 const parseTemplate = require('../../src/parser/index.js');
 const expect = require('chai').expect;
-
+let options = {lang: 'vue',
+  buildInComponents: {button: "cml-buildin-button"},
+  filePath: '/User/Jim-W/didi/component/button.cml',
+  cmss: {
+    rem: true,
+    scale: 0.5,
+    remOptions: {
+    // base on 750px standard.
+      rootValue: 75,
+      // to leave 1px alone.
+      minPixelValue: 1.01
+    },
+    autoprefixOptions: {
+      browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
+    }
+  },
+  usingComponents: [{
+    tagName: 'thirdComp1',
+    refUrl: '/path/to/ref1',
+    filePath: 'path/to/real1',
+    isNative: true
+  }, {
+    tagName: 'thirdComp2',
+    refUrl: '/path/to/ref2',
+    filePath: 'path/to/real2',
+    isNative: false
+  }]
+};
 function compileTemplate(source, type, options, callback) {
   const ast = babylon.parse(source, {
     plugins: ['jsx']
@@ -27,7 +54,7 @@ function compileTemplate(source, type, options, callback) {
 describe('parse-template-vue', function() {
   describe('parseTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
     let source = `<view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseTag;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-tag-transform', function() {
@@ -36,7 +63,7 @@ describe('parse-template-vue', function() {
   });
   describe('afterParseTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
     let source = `<block></block>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.afterParseTag;
     it('test-after-tag-transform-web-weex', function() {
       expect(compileTemplate(source, 'web', options, callback)).to.equal(`<template></template>`)
@@ -47,7 +74,6 @@ describe('parse-template-vue', function() {
   });
   describe('parseBuildTag', function() { // 各个端的标签转化单元测试不做全覆盖，逻辑相对简单
     let source = `<button></button>`;
-    let options = {lang: 'vue', buildInComponents: {button: "cml-buildin-button"} };
     let callback = parseTemplate.parseBuildTag;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-build-tag-transform', function() {
@@ -56,7 +82,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseTagForSlider', function() {
     let source = `<carousel><carousel-item></carousel-item></carousel>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseTagForSlider;
     let result = compileTemplate(source, 'wx', options, callback);
     it('parseTagForSlider for wx', function() {
@@ -66,7 +92,7 @@ describe('parse-template-vue', function() {
   // parseRefStatement:仅在所有的小程序端进行处理
   describe('parseRefStatement-miniapp', function() {
     let source = `<view ref="flag"></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseRefStatement;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-ref-transform', function() {
@@ -76,7 +102,7 @@ describe('parse-template-vue', function() {
   // parseVue2WxStatement:测试v-if语法转化为小程序
   describe('parseVue2WxStatement-miniapp', function() {
     let source = `<view><view v-if="true"></view><view v-else-if="true"></view><view v-else="true"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result_wx = compileTemplate(source, 'wx', options, callback);
     let result_baidu = compileTemplate(source, 'baidu', options, callback);
@@ -90,7 +116,7 @@ describe('parse-template-vue', function() {
   // parseVue2WxStatement：测试v-for语法转化为小程序
   describe('parseVue2WxStatement-web', function() {
     let source = `<view v-for="(m,i) in array" v-bind:key="item.id"><view v-for="item in array"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-Iteration-transform', function() {
@@ -99,7 +125,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseVue2WxStatement-weex', function() {
     let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-Iteration-transform', function() {
@@ -108,7 +134,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseVue2WxStatement-wx', function() {
     let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-Iteration-transform', function() {
@@ -117,7 +143,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseVue2WxStatement-alipay', function() {
     let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result = compileTemplate(source, 'alipay', options, callback);
     it('test-Iteration-transform', function() {
@@ -126,7 +152,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseVue2WxStatement-baidu', function() {
     let source = `<view v-for="(m,i) in array" v-bind:key="id"><view v-for="item in array"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result = compileTemplate(source, 'baidu', options, callback);
     it('test-Iteration-transform', function() {
@@ -137,7 +163,7 @@ describe('parse-template-vue', function() {
   // parseVue2WxStatement:测试 v-bind转化为小程序端的响应值
   describe('parseVue2WxStatement-miniapp', function() {
     let source = `<view><view prop1="static" v-bind:prop2="dynamic"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseVue2WxStatement;
     let result_wx = compileTemplate(source, 'wx', options, callback);
     let result_alipay = compileTemplate(source, 'alipay', options, callback);
@@ -150,7 +176,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseAttributeStatement-web-weex', function() {
     let source = `<view><view prop1="static" v-bind:prop2="dynamic"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseAttributeStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-attribute-transform', function() {
@@ -160,19 +186,6 @@ describe('parse-template-vue', function() {
   // vue语法下style只支持一个style；parseStyleStatement
   describe('parseStyleStatement-web', function() {
     let source = `<view v-bind:style="dynamicColor"><view style="color:red"></view></view>`;
-    let options = {lang: 'vue', cmss: {
-      rem: true,
-      scale: 0.5,
-      remOptions: {
-        // base on 750px standard.
-        rootValue: 75,
-        // to leave 1px alone.
-        minPixelValue: 1.01
-      },
-      autoprefixOptions: {
-        browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-      }
-    }};
     let callback = parseTemplate.parseStyleStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-style-transform', function() {
@@ -181,19 +194,6 @@ describe('parse-template-vue', function() {
   });
   describe('parseStyleStatement-weex', function() {
     let source = `<view v-bind:style="dynamicColor"><view style="color:red;width:20px"></view></view>`;
-    let options = {lang: 'vue', cmss: {
-      rem: true,
-      scale: 0.5,
-      remOptions: {
-        // base on 750px standard.
-        rootValue: 75,
-        // to leave 1px alone.
-        minPixelValue: 1.01
-      },
-      autoprefixOptions: {
-        browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-      }
-    }};
     let callback = parseTemplate.parseStyleStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-style-transform', function() {
@@ -202,19 +202,6 @@ describe('parse-template-vue', function() {
   });
   describe('parseStyleStatement-miniapp', function() {
     let source = `<view ><view style="color:red;width:20px"></view></view>`;
-    let options = {lang: 'vue', cmss: {
-      rem: true,
-      scale: 0.5,
-      remOptions: {
-        // base on 750px standard.
-        rootValue: 75,
-        // to leave 1px alone.
-        minPixelValue: 1.01
-      },
-      autoprefixOptions: {
-        browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-      }
-    }};
     let callback = parseTemplate.parseStyleStatement;
     let result_wx = compileTemplate(source, 'wx', options, callback);
     let result_alipay = compileTemplate(source, 'alipay', options, callback);
@@ -228,7 +215,7 @@ describe('parse-template-vue', function() {
   // parseClassStatement
   describe('parseClassStatement-web', function() {
     let source = `<view><view class="cls1 cls2" v-bind:class="true?'cls3':'cls4'"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseClassStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-class-transform', function() {
@@ -237,7 +224,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseClassStatement-weex', function() {
     let source = `<view><view class="cls1 cls2" v-bind:class="true?'cls3':'cls4'"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseClassStatement;
     let result = compileTemplate(source, 'weex', options, callback);
 
@@ -247,7 +234,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseClassStatement-wx-alipay-baidu', function() {
     let source = `<view><view class="cls1 cls2" v-bind:class="true?'cls3':'cls4'"></view></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseClassStatement;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-class-transform', function() {
@@ -257,30 +244,44 @@ describe('parse-template-vue', function() {
   // parseDirectiveStatement
   describe('parseDirectiveStatement-web-weex', function() {
     let source = `<view><input v-model=" searchText " /><custom-input v-model="search"></custom-input></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseDirectiveStatement;
     let result = compileTemplate(source, 'web', options, callback);
-    it('test-class-transform', function() {
+    it('parseDirectiveStatement-v-model-web', function() {
       expect(result).to.equal(`<view><input v-on:input="_cmlModelEventProxy($event,'searchText')" v-bind:value="searchText" /><custom-input v-on:input="_cmlModelEventProxy($event,'search')" v-bind:value="search"></custom-input></view>`)
     });
   });
-  describe('parseDirectiveStatement-wx-alipay-baidu', function() {
+  describe('parseDirectiveStatement-wx-v-model', function() {
     let source = `<view><input v-model=" searchText " /><custom-input v-model="search"></custom-input></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseDirectiveStatement;
-    let result_wx = compileTemplate(source, 'wx', options, callback);
-    let result_baidu = compileTemplate(source, 'baidu', options, callback);
-    let result_alipay = compileTemplate(source, 'alipay', options, callback);
+    let result = compileTemplate(source, 'wx', options, callback);
     it('test-v-model', function() {
-      expect(result_wx).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
-      expect(result_baidu).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
-      expect(result_alipay).to.equal(`<view><input data-modelkey="searchText" bindInput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindInput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
+      expect(result).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
+    });
+  });
+  describe('parseDirectiveStatement-baidu-v-mode', function() {
+    let source = `<view><input v-model=" searchText " /><custom-input v-model="search"></custom-input></view>`;
+
+    let callback = parseTemplate.parseDirectiveStatement;
+    let result = compileTemplate(source, 'baidu', options, callback);
+    it('test-v-model', function() {
+      expect(result).to.equal(`<view><input data-modelkey="searchText" bindinput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" bindinput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
+    });
+  });
+  describe('parseDirectiveStatement-alipay-v-model', function() {
+    let source = `<view><input v-model=" searchText " /><custom-input v-model="search"></custom-input></view>`;
+
+    let callback = parseTemplate.parseDirectiveStatement;
+    let result = compileTemplate(source, 'alipay', options, callback);
+    it('test-v-model', function() {
+      expect(result).to.equal(`<view><input data-modelkey="searchText" data-eventinput="_cmlModelEventProxy" onInput="_cmlModelEventProxy" value="{{ searchText }}" /><custom-input data-modelkey="search" data-eventinput="_cmlModelEventProxy" onInput="_cmlModelEventProxy" value="{{search}}"></custom-input></view>`)
     });
   });
   // c-show
   describe('parseDirectiveStatement-web', function() {
     let source = `<view v-show="true"></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseDirectiveStatement;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-c-show-transform', function() {
@@ -291,7 +292,7 @@ describe('parse-template-vue', function() {
   // c-text
   describe('parseDirectiveStatement-web-miniapp', function() {
     let source = `<view v-text="value1">everything will be replaced</view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseDirectiveStatement;
     it('test-c-text-transform', function() {
       expect(compileTemplate(source, 'web', options, callback)).to.equal(`<view>{{value1}}</view>`)
@@ -305,7 +306,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseDirectiveStatement-weex', function() {
     let source = `<view v-show="true"></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseDirectiveStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-c-show-transform', function() {
@@ -315,7 +316,7 @@ describe('parse-template-vue', function() {
   });
   describe('parseDirectiveStatement-wx-alipay-baidu', function() {
     let source = `<view v-show="true"></view>`;
-    let options = {lang: 'vue'};
+
     let callback = parseTemplate.parseDirectiveStatement;
     let result_wx = compileTemplate(source, 'wx', options, callback);
     let result_baidu = compileTemplate(source, 'baidu', options, callback);
@@ -329,14 +330,33 @@ describe('parse-template-vue', function() {
   });
 
   describe('parse-vue2wx-wx', function() {
-    var parser = require('../../src/index.js');
-    let source = `<component :is="currentComp" shrinkComponents="comp,comp1"></component>`;
-    let options = {lang: 'vue'};
-    let result = parser(source, 'wx', options);
-    console.log(result.source);
+    let source = `<component v-bind:is="currentComp" shrinkcomponents="comp,comp1"></component>`;
+
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'alipay', options, callback);
+
     it('component is', function() {
       // cml语法下线解析成style后续会通过parseStyle接着进行解析；
-      expect(result.source).to.equal(`<comp1 wx:if="{{currentComp === \'comp1\'}}" v-bind:is="currentComp" shrinkComponents="comp,comp1" class=" cml-base cml-component  cml-base cml-comp  cml-base cml-comp1"></comp1>;\n<comp wx:if="{{currentComp === \'comp\'}}" v-bind:is="currentComp" shrinkComponents="comp,comp1" class=" cml-base cml-component  cml-base cml-comp  cml-base cml-comp1"></comp>`)
+      expect(result).to.equal(`<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp,comp1"></comp1>;\n<comp a:if="{{currentComp === \'comp\'}}" is="{{currentComp}}" shrinkcomponents="comp,comp1"></comp>`)
+    });
+  });
+  describe('parse-vue2wx-baidu', function() {
+    let source = `<component v-bind:is="currentComp" shrinkcomponents="comp,comp1"></component>`;
+
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'baidu', options, callback);
+    it('component is', function() {
+      // cml语法下线解析成style后续会通过parseStyle接着进行解析；
+      expect(result).to.equal(`<comp1 s-if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp,comp1"></comp1>;\n<comp s-if="{{currentComp === \'comp\'}}" is="{{currentComp}}" shrinkcomponents="comp,comp1"></comp>`)
+    });
+  });
+  describe('parse-vue2wx-alipay', function() {
+    let source = `<component v-bind:is="currentComp" shrinkcomponents="comp,comp1"></component>`;
+
+    let callback = parseTemplate.parseVue2WxStatement;
+    let result = compileTemplate(source, 'alipay', options, callback);
+    it('component is', function() {
+      expect(result).to.equal(`<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp,comp1"></comp1>;\n<comp a:if="{{currentComp === \'comp\'}}" is="{{currentComp}}" shrinkcomponents="comp,comp1"></comp>`)
     });
   });
 
