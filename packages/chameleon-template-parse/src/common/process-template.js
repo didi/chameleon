@@ -52,7 +52,7 @@ exports.preParseAliComponent = function(source, type, options) {
         // 先 push view标签，然后再push组件标签
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
         let inheritNodes = (item.attrs || []).filter((attr) => {
-          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ":class"]
+          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ":class", "c-show", "v-show"]
           return inheritAttrsFromComp.includes(attr[1]);
         });
         let inheritString = inheritNodes.reduce((result, styleClassNode) => result = result + (styleClassNode[0] || ''), '');

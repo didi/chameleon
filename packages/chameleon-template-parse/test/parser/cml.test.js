@@ -71,7 +71,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view>`)
     });
     it('test-directive-c-show-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci"><cml-buildin-button class=" cml-base cml-button cml-10fntci" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"><cml-buildin-button class=" cml-base cml-button cml-10fntci" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view></view>`)
     });
     it('test-directive-c-show-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view>`)

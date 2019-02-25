@@ -41,135 +41,135 @@ describe('parse-template-vue-all', function() {
   // directive v-model
   describe('parse-directive-transform', function() {
     let source = `<view><button v-model=" value1"></button></view>`;
-    it('test-directive-comodel-transform-web', function() {
+    it('test-directive-v-model-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-on:input="_cmlModelEventProxy($event,\'value1\')" v-bind:value="value1" class=" cml-base cml-button"></cml-buildin-button></div>`);
     });
-    it('test-directive-comodel-transform-weex', function() {
+    it('test-directive-v-model-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-on:input="_cmlModelEventProxy($event,\'value1\')" v-bind:value="value1" class=" cml-base cml-button"></cml-buildin-button></div>`)
     });
-    it('test-directive-comodel-transform-wx', function() {
+    it('test-directive-v-model-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button data-modelkey="value1" bindinput="_cmlModelEventProxy" value="{{ value1}}" class=" cml-base cml-button"></cml-buildin-button></view>`)
     });
-    it('test-directive-comodel-transform-alipay', function() {
+    it('test-directive-v-model-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci"><cml-buildin-button data-modelkey="value1" data-eventinput="_cmlModelEventProxy" onInput="_cmlModelEventProxy" value="{{ value1}}" class=" cml-base cml-button cml-10fntci"></cml-buildin-button></view></view>`)
     });
-    it('test-directive-comodel-transform-baidu', function() {
+    it('test-directive-v-model-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button data-modelkey="value1" bindinput="_cmlModelEventProxy" value="{{ value1}}" class=" cml-base cml-button"></cml-buildin-button></view>`)
     });
   });
-  // directive c-show
+  // directive v-show
   describe('parse-directive-transform', function() {
     let source = `<view><button v-show="  value1"></button></view>`;
-    it('test-directive-c-show-transform-web', function() {
+    it('test-directive-v-show-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" v-show="  value1"></cml-buildin-button></div>`);
     });
-    it('test-directive-c-show-transform-weex', function() {
+    it('test-directive-v-show-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" v-bind:style="_cmlStyleProxy(\'display:\'+(  value1?\'\':\'none\')+\';\'+(  value1?\'\':\'height:0px;width:0px;overflow:hidden\'))"></cml-buildin-button></div>`)
     });
-    it('test-directive-c-show-transform-wx', function() {
+    it('test-directive-v-show-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" style="display:{{  value1?\'\':\'none\'}};{{  value1?\'\':\'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view>`)
     });
-    it('test-directive-c-show-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci"><cml-buildin-button class=" cml-base cml-button cml-10fntci" style="display:{{  value1?\'\':\'none\'}};{{  value1?\'\':\'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view></view>`)
+    it('test-directive-v-show-transform-alipay', function() {
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci" style="display:{{  value1?\'\':\'none\'}};{{  value1?\'\':\'height:0px;width:0px;overflow:hidden\'}}"><cml-buildin-button class=" cml-base cml-button cml-10fntci" style="display:{{  value1?\'\':\'none\'}};{{  value1?\'\':\'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view></view>`)
     });
-    it('test-directive-c-show-transform-baidu', function() {
+    it('test-directive-v-show-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" style="display:{{  value1?\'\':\'none\'}};{{  value1?\'\':\'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view>`)
     });
   });
-  // directive c-text
+  // directive v-text
   describe('parse-directive-transform', function() {
     let source = `<view><button v-text="  value1"></button></view>`;
-    it('test-directive-c-text-transform-web', function() {
+    it('test-directive-v-text-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button">{{value1}}</cml-buildin-button></div>`);
     });
-    it('test-directive-c-text-transform-weex', function() {
+    it('test-directive-v-text-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button">{{value1}}</cml-buildin-button></div>`)
     });
-    it('test-directive-c-text-transform-wx', function() {
+    it('test-directive-v-text-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button">{{value1}}</cml-buildin-button></view>`)
     });
-    it('test-directive-c-text-transform-alipay', function() {
+    it('test-directive-v-text-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci"><cml-buildin-button class=" cml-base cml-button cml-10fntci">{{value1}}</cml-buildin-button></view></view>`)
     });
-    it('test-directive-c-text-transform-baidu', function() {
+    it('test-directive-v-text-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button">{{value1}}</cml-buildin-button></view>`)
     });
   });
-  // directive c-if  c-else-if  c-else
+  // directive v-if  v-else-if  v-else
   describe('parse-directive-transform', function() {
     let source = `<view><button v-if="value1"></button>
     <view v-else-if="value1"></view>
     <view v-else="value1"></view></view>`;
-    it('test-directive-c-condition-transform-web', function() {
+    it('test-directive-v-condition-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-if="value1" class=" cml-base cml-button"></cml-buildin-button>\n    <div v-else-if="value1" class=" cml-base cml-view"></div>\n    <div v-else="value1" class=" cml-base cml-view"></div></div>`);
     });
-    it('test-directive-c-condition-transform-weex', function() {
+    it('test-directive-v-condition-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-if="value1" class=" cml-base cml-button"></cml-buildin-button>\n    <div v-else-if="value1" class=" cml-base cml-view"></div>\n    <div v-else="value1" class=" cml-base cml-view"></div></div>`)
     });
-    it('test-directive-c-condition-transform-wx', function() {
+    it('test-directive-v-condition-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button wx:if="{{value1}}" class=" cml-base cml-button"></cml-buildin-button>\n    <view wx:elif="{{value1}}" class=" cml-base cml-view"></view>\n    <view wx:else="{{value1}}" class=" cml-base cml-view"></view></view>`)
     });
-    it('test-directive-c-condition-transform-alipay', function() {
+    it('test-directive-v-condition-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:if="{{value1}}" class=" cml-base cml-view cml-10fntci"><cml-buildin-button class=" cml-base cml-button cml-10fntci"></cml-buildin-button></view>\n    <view a:elif="{{value1}}" class=" cml-base cml-view cml-10fntci"></view>\n    <view a:else="{{value1}}" class=" cml-base cml-view cml-10fntci"></view></view>`)
     });
-    it('test-directive-c-condition-transform-baidu', function() {
+    it('test-directive-v-condition-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button s-if="value1" class=" cml-base cml-button"></cml-buildin-button>\n    <view s-elif="value1" class=" cml-base cml-view"></view>\n    <view s-else="value1" class=" cml-base cml-view"></view></view>`)
     });
   });
-  // directive c-for  c-for-index  c-for-item c-key
+  // directive v-for
   describe('parse-directive-transform', function() {
     let source = `<view><view v-for="(item ,index) in array">{{item.id}}  </view></view>`;
-    it('test-directive-c-interator-transform-web', function() {
+    it('test-directive-v-interator-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item ,index) in array" class=" cml-base cml-view">{{item.id}}  </div></div>`);
     });
-    it('test-directive-c-interator-transform-weex', function() {
+    it('test-directive-v-interator-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item ,index) in array" class=" cml-base cml-view">{{item.id}}  </div></div>`)
     });
-    it('test-directive-c-interator-transform-wx', function() {
+    it('test-directive-v-interator-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view wx:for-item="item" wx:for-index="index" wx:for="{{array}}" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
-    it('test-directive-c-interator-transform-alipay', function() {
+    it('test-directive-v-interator-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:for-item="item" a:for-index="index" a:for="{{array}}" class=" cml-base cml-view cml-10fntci">{{item.id}}  </view></view>`)
     });
-    it('test-directive-c-interator-transform-baidu', function() {
+    it('test-directive-v-interator-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><view s-for-item="item" s-for-index="index" s-for="array" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
   });
   // directive c-for  c-for-index  c-for-item c-key
   describe('parse-directive-transform', function() {
     let source = `<view><view v-for="(item,index) in array" :key="item.id">{{item.id}}  </view></view>`;
-    it('test-directive-c-interator-key-transform-web', function() {
+    it('test-directive-v-interator-key-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item,index) in array" v-bind:key="item.id" class=" cml-base cml-view">{{item.id}}  </div></div>`);
     });
-    it('test-directive-c-interator-key-transform-weex', function() {
+    it('test-directive-v-interator-key-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item,index) in array" v-bind:key="item.id" class=" cml-base cml-view">{{item.id}}  </div></div>`)
     });
-    it('test-directive-c-interator-key-transform-wx', function() {
+    it('test-directive-v-interator-key-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view wx:for-item="item" wx:for-index="index" wx:for="{{array}}" wx:key="id" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
-    it('test-directive-c-interator-key-transform-alipay', function() {
+    it('test-directive-v-interator-key-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:for-item="item" a:for-index="index" a:for="{{array}}" a:key="id" class=" cml-base cml-view cml-10fntci">{{item.id}}  </view></view>`)
     });
-    it('test-directive-c-interator-key-transform-baidu', function() {
+    it('test-directive-v-interator-key-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><view s-for-item="item" s-for-index="index" s-for="array" s-key="id" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
   });
   // directive c-for  c-for-index  c-for-item c-key:*this
   describe('parse-directive-transform', function() {
     let source = `<view><view v-for="(item,index) in array" :key="item">{{item.id}}  </view></view>`;
-    it('test-directive-c-interator-*this-transform-web', function() {
+    it('test-directive-v-interator-*this-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item,index) in array" v-bind:key="item" class=" cml-base cml-view">{{item.id}}  </div></div>`);
     });
-    it('test-directive-c-interator-*this-transform-weex', function() {
+    it('test-directive-v-interator-*this-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item,index) in array" v-bind:key="item" class=" cml-base cml-view">{{item.id}}  </div></div>`)
     });
-    it('test-directive-c-interator-*this-transform-wx', function() {
+    it('test-directive-v-interator-*this-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view wx:for-item="item" wx:for-index="index" wx:for="{{array}}" wx:key="*this" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
-    it('test-directive-c-interator-*this-transform-alipay', function() {
+    it('test-directive-v-interator-*this-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:for-item="item" a:for-index="index" a:for="{{array}}" a:key="*this" class=" cml-base cml-view cml-10fntci">{{item.id}}  </view></view>`)
     });
-    it('test-directive-c-interator-*this-transform-baidu', function() {
+    it('test-directive-v-interator-*this-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><view s-for-item="item" s-for-index="index" s-for="array" s-key="*this" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
   });
