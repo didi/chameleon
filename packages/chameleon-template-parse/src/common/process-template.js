@@ -364,15 +364,15 @@ exports.preCheckTemplateSyntaxForVue = function(source, type, options) {
       enter(path) {
         let node = path.node;
         if (directiveError.length <= disabledDirective.length && t.isJSXAttribute(node) && disabledDirective.includes(node.name.name)) {
-          errorInfo += `vue 语法下不能使用 ${node.name.name};`
+          errorInfo += `${node.name.name} can't be used with vue syntax ;`
           !directiveError.includes(node.name.name) && directiveError.push(directiveError)
         }
         if (!twoWayBindError && t.isJSXAttribute(node) && node.value && utils.isMustacheReactive(node.value.value)) {
-          errorInfo += 'vue 语法下不能用 id={{value}},请使用 v-bind:id="value" 或者 :id="value" 进行响应式值的绑定;'
+          errorInfo += '<div id={{value}}></div> can not be used with vue syntax,please use <div v-bind:id="value"></div> 或者 <div :id="value"></div> '
           twoWayBindError = true;
         }
         if (!eventBindingError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'c-bind') {
-          errorInfo += 'vue 语法下不能用 c-bind 进行事件绑定,请使用 @ 或者v-on进行事件绑定;'
+          errorInfo += "with vue syntax you can not use 'c-bind' to get event binded , please use  @ or v-on;"
           eventBindingError = true
         }
       }
@@ -396,15 +396,15 @@ exports.preCheckTemplateSyntaxForCml = function(source, type, options) {
       enter(path) {
         let node = path.node;
         if (directiveError.length <= disabledDirective.length && t.isJSXAttribute(node) && disabledDirective.includes(node.name.name)) {
-          errorInfo += `cml 语法下不能使用 ${node.name.name};`
+          errorInfo += `${node.name.name} can't be used with cml syntax ;`
           !directiveError.includes(node.name.name) && directiveError.push(directiveError)
         }
         if (!twoWayBindError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-bind') {
-          errorInfo += 'cml 语法下不能用 :id="value" 或者 v-bind:id="value"进行响应式的值的双向绑定,请使用 id={{value}} ;'
+          errorInfo += '<div v-bind:id="value"></div> 或者 <div :id="value"></div> can not be used with cml syntax,please use  <div id={{value}}></div> '
           twoWayBindError = true;
         }
         if (!eventBindingError && t.isJSXNamespacedName(node.name) && node.name.namespace.name === 'v-on') {
-          errorInfo += 'cml 语法下不能用 @ 或者 v-on 进行事件绑定，请使用 c-bind进行事件绑定;'
+          errorInfo += "with cml syntax you can not use @ or v-on  to get event binded , please use  'c-bind';"
           eventBindingError = true;
         }
       }
