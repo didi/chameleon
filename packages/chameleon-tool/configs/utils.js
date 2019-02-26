@@ -254,6 +254,9 @@ exports.getMiniAppEntry = function (cmlType) {
     if (!chameleonFilePath) {
       return;
     }
+    if (!cml.utils.isFile(chameleonFilePath)) {
+      return;
+    }
     if (~hasEntryedPath.indexOf(chameleonFilePath)) {
       return;
     }
@@ -485,7 +488,8 @@ exports.getBabelPath = function () {
     babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
     babelPath.push(path.join(cml.root, 'node_modules', item))
   })
-  return babelPath;
+  let configBabelPath = cml.config.get().babelPath || [];
+  return configBabelPath.concat(babelPath);
 }
 exports.getExcludeBabelPath = function() {
   let excludeBablePath = [/(\.min\.js)/, /node_modules\/core-js/];

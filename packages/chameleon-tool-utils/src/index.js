@@ -275,11 +275,11 @@ _.getJsonFileContent = function (filePath, confType) {
   if (_.isCli()) {
     let fileType = _.getCmlFileType(filePath, cml.projectRoot, confType);
     if (fileType === 'app') {
+      targetObject.pages = targetObject.pages || [];
       // 有配置路由文件，给app.json添加pages
       let {routerConfig, hasError} = _.getRouterConfig();
       if (!hasError) {
         if (routerConfig.routes) {
-          targetObject.pages = targetObject.pages || [];
           routerConfig.routes.forEach(item => {
             if (!~targetObject.pages.indexOf(item.path)) {
               let itemPath = item.path;
@@ -291,6 +291,24 @@ _.getJsonFileContent = function (filePath, confType) {
             }
           })
         }
+      }
+      // 处理copyNpm 直接拷贝的pages
+      let copyNpm = cml.config.get().copyNpm && cml.config.get().copyNpm[confType];
+      if (copyNpm && copyNpm.length > 0) {
+        copyNpm.forEach(function(npmName) {
+          debugger
+          let packageJson = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
+          let cmlConfig = packageJson.cml && packageJson.cml[confType]; 
+          if (cmlConfig && cmlConfig.pages && cmlConfig.pages.length > 0) {
+            cmlConfig.pages.forEach(item => {
+              if (!~targetObject.pages.indexOf(item)) {
+                targetObject.pages.push(item);
+              } else {
+                cml.log.error(`page ${item} in ${npmName} is conflict in project!`)
+              }
+            })
+          }
+        })
       }
     } else if (fileType === 'component') {
       targetObject.component = true;
