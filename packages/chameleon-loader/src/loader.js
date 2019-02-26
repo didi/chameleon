@@ -106,7 +106,7 @@ module.exports = function (content) {
 
   const parts = parse(content);
   if(parts.styles.length >1) {
-    throw new Error(`${self.resourcePath}中声明了${parts.styles.length}个style部分，只允许一个。`)
+    throw new Error(`${self.resourcePath} statement ${parts.styles.length} style tag,but only allow one`)
   }
   const hasScoped = parts.styles.some(({ scoped }) => scoped)
   const templateAttrs = parts.template && parts.template.attrs && parts.template.attrs
@@ -414,7 +414,7 @@ module.exports = function (content) {
       if(filePath) {
         defineComponets += `import ${toUpperCase(comKey)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}" \n`
       } else {
-        cmlUtils.log.error(self.resourcePath+'中未找到组件:'+ comPath);
+        cmlUtils.log.error(`can't find component:${comPath} in ${self.resourcePath} `);
         defineComponets += `import ${toUpperCase(comKey)} from "${comPath}" \n`
       }
     })
