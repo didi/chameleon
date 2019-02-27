@@ -217,7 +217,11 @@ const getClass = (ast) => {
         // 接口
         if (path.node['implements']) {
           path.node['implements'].forEach(implament => {
-            clazz.interfaces.push(implament.id.name);
+            clazz.interfaces.push({
+              name: implament.id.name,
+              line: implament.id.loc.start.line,
+              column: implament.id.loc.start.column
+            });
           });
         }
 
@@ -303,30 +307,41 @@ const checkScript = async (result) => {
     const classDefines = getClass(script.ast);
 
     classDefines.forEach(clazz => {
-      clazz.interfaces.forEach(interfaceName => {
+      clazz.interfaces.forEach(interface => {
+        let interfaceName = interface.name;
         let define = interfaceDefine[interfaceName];
 
-        for (let key of Object.keys(define)) {
-          if ((define[key] && define[key].type == 'Generic') && clazz.properties.indexOf(key) == -1) {
-            result['interface'].messages.push({
-              line: define[key].line,
-              column: define[key].column,
-              token: key,
-              msg: 'property [' + key + '] is not found in file [' + script.file + ']'
-            });
+        if (define) {
+          for (let key of Object.keys(define)) {
+            if ((define[key] && define[key].type == 'Generic') && clazz.properties.indexOf(key) == -1) {
+              result['interface'].messages.push({
+                line: define[key].line,
+                column: define[key].column,
+                token: key,
+                msg: 'property [' + key + '] is not found in file [' + script.file + ']'
+              });
+            }
+            else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
+              platforms.forEach(platform => {
+                if (result[platform]) {
+                  result['interface'].messages.push({
+                    line: define[key].line,
+                    column: define[key].column,
+                    token: key,
+                    msg: 'method [' + key + '] is not found in file [' + script.file + ']'
+                  });
+                }
+              });
+            }
           }
-          else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
-            platforms.forEach(platform => {
-              if (result[platform]) {
-                result['interface'].messages.push({
-                  line: define[key].line,
-                  column: define[key].column,
-                  token: key,
-                  msg: 'method [' + key + '] is not found in file [' + script.file + ']'
-                });
-              }
-            });
-          }
+        }
+        else {
+          script.messages.push({
+            line: interface.line,
+            column: interface.column,
+            token: interfaceName,
+            msg: 'Interface [' + interfaceName + '] has been used but no definition found in the file [' + result['interface'].file + ']'
+          });
         }
 
         clazz.events.forEach(event => {
