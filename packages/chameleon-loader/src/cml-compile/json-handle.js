@@ -13,7 +13,7 @@ module.exports = function(loaderContext, jsonObject, cmlType) {
         components[key] = refUrl;
       } else {
         delete components[key];
-        cmlUtils.log.error(loaderContext.resourcePath + '中未找到组件:' + refUrl);
+        cmlUtils.log.error(`can't find component:${refUrl} in ${loaderContext.resourcePath}`);
       }
     })
   }

@@ -216,7 +216,6 @@ _.isDirectory = function (filePath) {
 }
 
 
-
 /**
  * @param {String} filePath  cml文件位置 已经不再支持json文件
  * @param {String} confType 获取的类型 wx|web|weex
@@ -236,10 +235,10 @@ _.getJsonFileContent = function (filePath, confType) {
         cmlType: 'json'
       })
       if (!content) {
-        _.log.error(`文件${filePath}不存在<script cml-type="json"></script>配置`)
+        _.log.error(`The file ${filePath}is not exist <script cml-type="json"></script>`)
       }
     } else {
-      _.log.error(`没有找到文件${filePath}`)
+      _.log.error(`There is no file:${filePath}`)
     }
   } else if (~['.wxml', '.axml', '.swan'].indexOf(path.extname(filePath))) {
     let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan)/, '.json');
@@ -251,21 +250,21 @@ _.getJsonFileContent = function (filePath, confType) {
       try {
         jsonObject = JSON.parse(content);
       } catch (e) {
-        log.warn('文件：' + jsonFilePath + ',json格式不正确');
+        log.warn('JSON configThe in file：' + jsonFilePath + ' is not correct ');
       }
       return jsonObject;
     } else {
-      _.log.error(`未找到${filePath}对应的json文件`)
+      _.log.error(`can't find the .json file corresponding to :${filePath}  `)
     }
   } else {
-    _.log.error(`文件${filePath}不存在json配置`)
+    _.log.error(`The file :${filePath} is missing .json file corresponding to`)
   }
 
   let jsonObject = {}
   try {
     jsonObject = JSON.parse(content);
   } catch (e) {
-    log.warn(`${filePath} 对应的json文件格式不正确`);
+    log.warn(`The .json file corresponding to :${filePath} is not correct`);
   }
   jsonObject = jsonObject || {};
   let targetObject = jsonObject[confType] || {};
@@ -401,7 +400,7 @@ _.deleteScript = function ({
 _.checkProjectConfig = function () {
   /* istanbul ignore if  */
   if (!cml.config.loaded) {
-    log.error('未在chameleon根目录下执行命令或项目根目录没有chameleon.config.js配置文件')
+    log.error('Chameleon command line should be excuted in the root directory or  there is short of the file :chameleon.config.js in the root directory   ')
     process.exit();
   }
 }
@@ -431,7 +430,7 @@ _.getNpmComponents = function (cmlType, context) {
 
     })
   } else {
-    throw new Error(`chameleon.config.js 中 cmlComponents 字段需要配置成Array类型`)
+    throw new Error(`The field : cmlComponents in chameleon.config.js should be arraytype `)
   }
 
   return cml.npmComponents[cmlType] = npmComponents;
@@ -714,7 +713,7 @@ _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
     let cmlType = cmlTypeList[i];
     let result = _.handleComponentUrl(context, cmlFilePath, comPath, cmlType);
     if (result.filePath) {
-      // 如果是.cml并且不是多态的cml文件 
+      // 如果是.cml并且不是多态的cml文件
       let cmlReg = new RegExp(`\\.${cmlType}\\.cml$`)
       if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
         result.isCml = true;
@@ -882,10 +881,10 @@ _.getExportEntry = function (cmlType, context, entry = []) {
       }
     })
   } else {
-    _.log.warn('请指定export的entry')
+    _.log.warn('please assign the entry of what you want to export')
   }
   if (exportFiles.length == 0) {
-    throw new Error('未找到要导出的cml文件')
+    throw new Error(`can't find the entry file that you want to export`)
   }
   return exportFiles;
 }
@@ -943,7 +942,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
     type = 'component';
   } else {
     var entryName = _.getPureEntryName(cmlFilePath, cmlType, context);
-    if ('app/app' === entryName) {
+    if (entryName === 'app/app') {
       type = 'app';
     } else {
       let {routerConfig, hasError} = _.getRouterConfig();

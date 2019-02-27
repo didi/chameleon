@@ -35,7 +35,7 @@ parseClass.tap('web-cml', (args) => {
         }
       })
     } else {
-      throw new Error(`cml语法下class节点最多只能有一个`);
+      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
     }
   }
 
@@ -66,7 +66,7 @@ parseClass.tap('weex-cml', (args) => {
 
       })
     } else {
-      throw new Error(`cml语法下class节点最多只能有一个`);
+      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
     }
 
   }
@@ -94,7 +94,7 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
         itemNode.value.value = dealedClassNodeValue;
       })
     } else {
-      throw new Error(`cml语法下class节点最多只能有一个`);
+      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
     }
   }
 
