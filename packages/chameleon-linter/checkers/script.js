@@ -291,7 +291,7 @@ const checkScript = async (result) => {
   });
 
   if (!result['interface']) {
-    let interfaceFile = script.file.replace(new RegExp('\.(' + platforms.join('|') + ')\.cml$', 'ig'), '.interface');
+    let interfaceFile = script.file.replace(new RegExp('\\.(' + platforms.join('|') + ')\\.cml$', 'ig'), '.interface');
     if (/\.interface$/.test(interfaceFile)) {
       result['interface'] = {
         messages: [{
