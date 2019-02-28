@@ -40,7 +40,7 @@ parseDirective.tap('web-weex-cml', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`c-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with c-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -91,7 +91,7 @@ parseDirective.tap('wx-baidu-cml', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`c-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with c-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -136,7 +136,7 @@ parseDirective.tap('web-weex-vue', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`v-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with v-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -189,7 +189,7 @@ parseDirective.tap('wx-vue', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`v-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with v-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 

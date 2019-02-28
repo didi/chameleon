@@ -85,13 +85,13 @@ describe('process-template', function() {
   describe('preCheckTemplateSyntax', function() {
     it('preCheckTemplateSyntax for cml', function() {
       let checkOptions = {lang: 'cml', filePath: '/users/components/button.cml'}
-      expect(processTemplate.preCheckTemplateSyntax(`<view @click="handleClick " v-if="true" :id="value"></view>`, 'web', checkOptions)).to.equal(`cml 语法下不能用 @ 或者 v-on 进行事件绑定，请使用 c-bind进行事件绑定;cml 语法下不能使用 v-if;cml 语法下不能用 :id="value" 或者 v-bind:id="value"进行响应式的值的双向绑定,请使用 id={{value}} ;`)
+      expect(processTemplate.preCheckTemplateSyntax(`<view @click="handleClick " v-if="true" :id="value"></view>`, 'web', checkOptions)).to.equal(`with cml syntax you can not use @ or v-on  to get event binded , please use  \'c-bind\';v-if can\'t be used with cml syntax ;<div v-bind:id="value"></div> 或者 <div :id="value"></div> can not be used with cml syntax,please use  <div id={{value}}></div> `)
     })
   });
   describe('preCheckTemplateSyntax', function() {
     it('preCheckTemplateSyntax for vue', function() {
       let checkOptions = {lang: 'vue', filePath: '/users/components/button.cml'}
-      expect(processTemplate.preCheckTemplateSyntax(`<view c-bind:click="handleClick " c-if="true" id="{{value}}"></view>`, 'web', checkOptions)).to.equal(`vue 语法下不能用 c-bind 进行事件绑定,请使用 @ 或者v-on进行事件绑定;vue 语法下不能使用 c-if;vue 语法下不能用 id={{value}},请使用 v-bind:id="value" 或者 :id="value" 进行响应式值的绑定;`)
+      expect(processTemplate.preCheckTemplateSyntax(`<view c-bind:click="handleClick " c-if="true" id="{{value}}"></view>`, 'web', checkOptions)).to.equal(`with vue syntax you can not use \'c-bind\' to get event binded , please use  @ or v-on;c-if can\'t be used with vue syntax ;<div id={{value}}></div> can not be used with vue syntax,please use <div v-bind:id="value"></div> 或者 <div :id="value"></div> `)
     })
   });
   describe('postParseMustache', function() {

@@ -130,7 +130,7 @@ exports.register = function (commander) {
       {
         type: 'input',
         name: 'projectName',
-        message: '请输入项目名称',
+        message: 'please input the name of project:',
         validate: function (value) {
           if (!value) {
             return 'project name can not be empty'
@@ -163,6 +163,7 @@ exports.register = function (commander) {
       let projectTpl = projectMap[cmdOptions.demo];
 
       fse.copySync(projectTpl, pagedir);
+      debugger;
       // package.json文件中的name需要更改
       var packagePath = path.join(pagedir, 'package.json');
       let packageContent = JSON.parse(fs.readFileSync(packagePath, 'utf-8'));
@@ -183,7 +184,7 @@ exports.register = function (commander) {
       fs.writeFileSync(configFile, content);
 
       var npmignore = path.join(pagedir, '.npmignore');
-
+        debugger;
       // npm包中的.gitignore变成了.npmignore
       if (cml.utils.isFile(npmignore)) {
         fse.moveSync(npmignore, path.join(pagedir, '.gitignore'));
@@ -290,11 +291,11 @@ exports.register = function (commander) {
     let questions = [{
       type: 'list',
       name: 'componentType',
-      message: '请选择组件类型',
+      message: 'please select the type of component',
       choices: [
-        '普通组件',
-        '多态组件',
-        '多态接口'
+        'normal-component',
+        'multimode-component',
+        'multimode-interface'
       ]
     }, {
       type: 'input',
@@ -317,9 +318,9 @@ exports.register = function (commander) {
       let {componentName, componentType} = answers;
       let comdir = path.join(cml.projectRoot, `src/components/${componentName}`);
       let comPathMap = {
-        '普通组件': 'component',
-        '多态组件': 'interface-component',
-        '多态接口': 'interface-js'
+        'normal-component': 'component',
+        'multimode-component': 'interface-component',
+        'multimode-interface': 'interface-js'
       }
       let tplPath = path.join(tpl.componentTpl, comPathMap[componentType]);
       let UpperName = toUpperCase(componentName);
