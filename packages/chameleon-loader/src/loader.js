@@ -93,6 +93,8 @@ module.exports = function (content) {
 
   //需要区分cml的类型 app componet  page 拼接不同的方法
   var entryPath = cmlUtils.getEntryPath(self.resourcePath, context);
+  // 小程序中有文件夹有@符号无法上传  决定json js wxml文件生成路径
+  entryPath = cmlUtils.handleSpecialChar(entryPath);
   let type = 'page';
   if ('app/app.cml' === entryPath) {
     entryPath = 'app.cml';
@@ -249,6 +251,10 @@ module.exports = function (content) {
     })
 
     let jsonResult = JSON.stringify(newJsonObj, '', 4);
+    // 小程序中有文件夹有@符号无法上传
+    Object.keys(jsonResult.usingComponents).forEach(key=>{
+      jsonResult.usingComponents[key] = cmlUtils.handleSpecialChar(jsonResult.usingComponents[key])
+    });
     self.emitFile(emitJsonPath, jsonResult);
 
     //cml

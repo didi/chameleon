@@ -262,6 +262,8 @@ exports.getMiniAppEntry = function (cmlType) {
     }
     hasEntryedPath.push(chameleonFilePath);
     let entryName = cml.utils.getPureEntryName(chameleonFilePath, cmlType, root);
+    // 小程序中有文件夹有@符号无法上传  决定生成样式文件路径
+    entryName = cml.utils.handleSpecialChar(entryName);
     entry[entryName] = chameleonFilePath;
 
     // 处理json文件中引用的组件作为入口,wxml文件

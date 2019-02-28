@@ -295,7 +295,6 @@ _.getJsonFileContent = function (filePath, confType) {
       let copyNpm = cml.config.get().copyNpm && cml.config.get().copyNpm[confType];
       if (copyNpm && copyNpm.length > 0) {
         copyNpm.forEach(function(npmName) {
-          debugger
           let packageJson = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
           let cmlConfig = packageJson.cml && packageJson.cml[confType]; 
           if (cmlConfig && cmlConfig.pages && cmlConfig.pages.length > 0) {
@@ -985,5 +984,11 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
   }
   return type;
 
+}
 
+// 小程序中有文件夹有@符号无法上传
+_.handleSpecialChar = function (str) {
+  let result = str.replace(/\@/g, '_')
+  console.log(result);
+  return result
 }
