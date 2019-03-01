@@ -250,11 +250,11 @@ module.exports = function (content) {
       }
     })
 
-    let jsonResult = JSON.stringify(newJsonObj, '', 4);
     // 小程序中有文件夹有@符号无法上传
-    Object.keys(jsonResult.usingComponents).forEach(key=>{
-      jsonResult.usingComponents[key] = cmlUtils.handleSpecialChar(jsonResult.usingComponents[key])
+    Object.keys(newJsonObj.usingComponents).forEach(key=>{
+      newJsonObj.usingComponents[key] = cmlUtils.handleSpecialChar(newJsonObj.usingComponents[key])
     });
+    let jsonResult = JSON.stringify(newJsonObj, '', 4);
     self.emitFile(emitJsonPath, jsonResult);
 
     //cml

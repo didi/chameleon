@@ -989,6 +989,5 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
 // 小程序中有文件夹有@符号无法上传
 _.handleSpecialChar = function (str) {
   let result = str.replace(/\@/g, '_')
-  console.log(result);
   return result
 }
