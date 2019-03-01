@@ -52,7 +52,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button data-modelkey="value1" bindinput="_cmlModelEventProxy" value="{{  value1}}" class=" cml-base cml-button"></cml-buildin-button></view>`)
     });
     it('test-directive-comodel-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci"><cml-buildin-button data-modelkey="value1" data-eventinput="_cmlModelEventProxy" onInput="_cmlModelEventProxy" value="{{  value1}}" class=" cml-base cml-button cml-10fntci"></cml-buildin-button></view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view class=" cml-base cml-view cml-5766bf8a"><cml-buildin-button data-modelkey="value1" data-eventinput="_cmlModelEventProxy" onInput="_cmlModelEventProxy" value="{{  value1}}" class=" cml-base cml-button cml-5766bf8a"></cml-buildin-button></view></view>`)
     });
     it('test-directive-comodel-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button data-modelkey="value1" bindinput="_cmlModelEventProxy" value="{{  value1}}" class=" cml-base cml-button"></cml-buildin-button></view>`)
@@ -71,7 +71,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view>`)
     });
     it('test-directive-c-show-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"><cml-buildin-button class=" cml-base cml-button cml-10fntci" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view class=" cml-base cml-view cml-5766bf8a" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"><cml-buildin-button class=" cml-base cml-button cml-5766bf8a" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view></view>`)
     });
     it('test-directive-c-show-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button" style="display:{{value1 ? \'\' : \'none\'}};{{value1 ? \'\' : \'height:0px;width:0px;overflow:hidden\'}}"></cml-buildin-button></view>`)
@@ -90,7 +90,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button">{{value1}}</cml-buildin-button></view>`)
     });
     it('test-directive-c-text-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view class=" cml-base cml-view cml-10fntci"><cml-buildin-button class=" cml-base cml-button cml-10fntci">{{value1}}</cml-buildin-button></view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view class=" cml-base cml-view cml-5766bf8a"><cml-buildin-button class=" cml-base cml-button cml-5766bf8a">{{value1}}</cml-buildin-button></view></view>`)
     });
     it('test-directive-c-text-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button">{{value1}}</cml-buildin-button></view>`)
@@ -111,14 +111,14 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button wx:if="{{  value1}}" class=" cml-base cml-button"></cml-buildin-button>\n    <view wx:elif="{{  value1}}" class=" cml-base cml-view"></view>\n    <view wx:else="{{  value1}}" class=" cml-base cml-view"></view></view>`)
     });
     it('test-directive-c-condition-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:if="{{  value1}}" class=" cml-base cml-view cml-10fntci"><cml-buildin-button class=" cml-base cml-button cml-10fntci"></cml-buildin-button></view>\n    <view a:elif="{{  value1}}" class=" cml-base cml-view cml-10fntci"></view>\n    <view a:else="{{  value1}}" class=" cml-base cml-view cml-10fntci"></view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view a:if="{{  value1}}" class=" cml-base cml-view cml-5766bf8a"><cml-buildin-button class=" cml-base cml-button cml-5766bf8a"></cml-buildin-button></view>\n    <view a:elif="{{  value1}}" class=" cml-base cml-view cml-5766bf8a"></view>\n    <view a:else="{{  value1}}" class=" cml-base cml-view cml-5766bf8a"></view></view>`)
     });
     it('test-directive-c-condition-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button s-if="  value1" class=" cml-base cml-button"></cml-buildin-button>\n    <view s-elif="  value1" class=" cml-base cml-view"></view>\n    <view s-else="  value1" class=" cml-base cml-view"></view></view>`)
     });
   });
   // directive c-for  c-for-index  c-for-item c-key
-  describe('parse-directive-transform', function() {
+  describe('parse-c-interation-transform', function() {
     let source = `<view><view c-for="{{array}}">{{item.id}}  </view></view>`;
     it('test-directive-c-interator-transform-web', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><div v-for="(item, index) in array" class=" cml-base cml-view">{{item.id}}  </div></div>`);
@@ -130,7 +130,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view wx:for="{{array}}" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
     it('test-directive-c-interator-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:for="{{array}}" class=" cml-base cml-view cml-10fntci">{{item.id}}  </view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view a:for="{{array}}" class=" cml-base cml-view cml-5766bf8a">{{item.id}}  </view></view>`)
     });
     it('test-directive-c-interator-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><view s-for="array" class=" cml-base cml-view">{{item.id}}  </view></view>`)
@@ -149,7 +149,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view wx:for="{{array}}" wx:key="id" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
     it('test-directive-c-interator-key-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:for="{{array}}" a:key="id" class=" cml-base cml-view cml-10fntci">{{item.id}}  </view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view a:for="{{array}}" a:key="id" class=" cml-base cml-view cml-5766bf8a">{{item.id}}  </view></view>`)
     });
     it('test-directive-c-interator-key-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><view s-for="array" s-key="id" class=" cml-base cml-view">{{item.id}}  </view></view>`)
@@ -168,7 +168,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view wx:for="{{array}}" wx:key="*this" class=" cml-base cml-view">{{item.id}}  </view></view>`)
     });
     it('test-directive-c-interator-*this-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><view a:for="{{array}}" a:key="*this" class=" cml-base cml-view cml-10fntci">{{item.id}}  </view></view>`)
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view a:for="{{array}}" a:key="*this" class=" cml-base cml-view cml-5766bf8a">{{item.id}}  </view></view>`)
     });
     it('test-directive-c-interator-*this-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><view s-for="array" s-key="*this" class=" cml-base cml-view">{{item.id}}  </view></view>`)
@@ -187,7 +187,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2"></thirdComp2></view>`);
     });
     it('test-event-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci"><tag onTap="handleClick" class=" cml-base cml-origin-tag cml-10fntci"></tag><view class=" cml-base cml-view cml-10fntci"><thirdComp1 onTap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1 cml-10fntci"></thirdComp1></view><view class=" cml-base cml-view cml-10fntci"><thirdComp2 onTap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2 cml-10fntci"></thirdComp2></view></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag onTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 onTap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 onTap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
     });
     it('test-event-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2"></thirdComp2></view>`);
@@ -237,7 +237,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
     });
     it('test-ref-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
     });
   });
   // ref  静态
@@ -256,7 +256,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id=" refVlaue "></view>`);
     });
     it('test-ref-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-10fntci  _cml_ref_lmc_" id=" refVlaue "></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a  _cml_ref_lmc_" id=" refVlaue "></view>`);
     });
   });
   // component is
@@ -275,7 +275,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<comp2 s-if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component  cml-base cml-comp1  cml-base cml-comp2"></comp2>;\n<comp1 s-if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component  cml-base cml-comp1  cml-base cml-comp2"></comp1>`);
     });
     it('test-component-is-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<comp2 a:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component cml-10fntci  cml-base cml-comp1 cml-10fntci  cml-base cml-comp2 cml-10fntci"></comp2>;\n<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component cml-10fntci  cml-base cml-comp1 cml-10fntci  cml-base cml-comp2 cml-10fntci"></comp1>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<comp2 a:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp2>;\n<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp1>`);
     });
   });
 
@@ -295,7 +295,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view animation="{{ animationData }}" bindtransitionend="_cmlInlineStatementEventProxy" data-arg1="$event" data-arg0="animationData" data-args="\'animationData\',$event" data-eventtransitionend="_animationCb" class=" cml-base cml-view"></view>`);
     });
     it('test-c-animation-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view animation="{{( animationData ).actions}}" onTransitionend="_cmlInlineStatementEventProxy" data-arg1="$event" data-arg0="animationData" data-args="\'animationData\',$event" data-eventtransitionend="_animationCb" class=" cml-base cml-view cml-10fntci"></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view animation="{{( animationData ).actions}}" onTransitionend="_cmlInlineStatementEventProxy" data-arg1="$event" data-arg0="animationData" data-args="\'animationData\',$event" data-eventtransitionend="_animationCb" class=" cml-base cml-view cml-5766bf8a"></view>`);
     });
   });
   // attribute
