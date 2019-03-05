@@ -12,7 +12,7 @@
 * [快速上手](https://CMLJS.org/doc/quick_start/quick_start.html)
 * [API文档](https://CMLJS.org/doc/api/api.html)
 * [组件文档](https://CMLJS.org/doc/component/component.html)
-* [资源汇总💰](https://github.com/chameleon-team/awesome-cml)：依赖库、demo示例、学习资源
+* [资源汇总💰](https://github.com/chameleon-team/awesome-cml)：依赖库、demo、完整应用示例、学习资源
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 
 
