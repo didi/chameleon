@@ -24,7 +24,7 @@ function getScriptCode(loaderContext, cmlType, cmlCode, media, check = {}) {
 
       }
     } else {
-      throw new Error(`多态组件未找到对应的interface文件：${interfacePath}`)
+      throw new Error(`multimode-component can't find interface file：${interfacePath}`)
     }
   }
 

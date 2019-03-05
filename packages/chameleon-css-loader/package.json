@@ -16,6 +16,7 @@
   "license": "Apache",
   "dependencies": {
     "autoprefixer": "^9.3.1",
+    "fnv-plus": "^1.2.12",
     "loader-utils": "^1.1.0",
     "postcss": "^7.0.6",
     "postcss-plugin-px2rem": "^0.7.0",

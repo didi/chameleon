@@ -46,9 +46,12 @@ _.mixins = {
       }
     },
     [_.modelEventProxyName](e) {
-      let { dataset } = e.currentTarget;
+      let dataset = e.currentTarget && e.currentTarget.dataset
       let modelKey = dataset && dataset.modelkey
-      this[modelKey] = e.detail.value;
+      if (modelKey) {
+        this[modelKey] = e.detail.value;
+      }
+
     },
     [_.eventProxyName](e) {
       let { dataset } = e.currentTarget;

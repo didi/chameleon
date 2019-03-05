@@ -84,12 +84,12 @@ function wrapper(obj) {
       let detailType = input[0];
       let errList = checkType(eventDetail, detailType, []);
       if (errList && errList.length) {
-        showErrorMessage(`错误信息: event ${eventName} detail 参数校验失败
+        showErrorMessage(`errorinfo: event ${eventName} detail verification fails
             ${errList.join('\n')}
           `)
       }
     } else {
-      showErrorMessage(`错误信息: 接口中未定义 event ${eventName}
+      showErrorMessage(`errorinfo:  event ${eventName} is not defined in interface
             ${errList.join('\n')}
           `)
     }
@@ -99,7 +99,7 @@ function wrapper(obj) {
     props.forEach(item => {
       let errList = checkType(this[item.key], item.value, []);
       if (errList && errList.length) {
-        showErrorMessage(`错误信息: prop [${item.key}] 类型校验错误
+        showErrorMessage(`error: prop [${item.key}] verification fails
           ${errList.join('\n')}
         `)
       }
@@ -114,7 +114,7 @@ function wrapper(obj) {
     obj.watch[item.key] = function (newVal, oldVal) {
       let errList = checkType(newVal, item.value, []);
       if (errList && errList.length) {
-        showErrorMessage(`错误信息: prop [${item.key}] 类型校验错误
+        showErrorMessage(`errorinfo: prop [${item.key}] verification fails
             ${errList.join('\n')}
           `)
       }

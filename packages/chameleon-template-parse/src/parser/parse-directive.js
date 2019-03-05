@@ -5,7 +5,6 @@ const utils = require('../common/utils');
 const eventProxy = require('chameleon-mixins/web-mixins.js');
 const wxEventProxy = require('chameleon-mixins/wx-mixins.js');
 let parseDirective = new SyncHook(['args'])
-
 // cml语法
 parseDirective.tap('web-weex-cml', (args) => {
   let { path, node, type, options: {lang}} = args;
@@ -13,7 +12,7 @@ parseDirective.tap('web-weex-cml', (args) => {
     // 以下开始处理指令；
     // v-model c-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-on:input`), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
 
@@ -41,7 +40,7 @@ parseDirective.tap('web-weex-cml', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`c-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with c-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -60,12 +59,13 @@ parseDirective.tap('wx-baidu-cml', (args) => {
   if (lang === 'cml' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
     // c-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(node.value.value)))
       if (type === 'alipay') {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`onInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-eventinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       } else {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       }
       path.replaceWith(t.jsxAttribute(t.jsxIdentifier(`data-modelkey`), t.stringLiteral(`${modelKey}`)))
     }
@@ -91,7 +91,7 @@ parseDirective.tap('wx-baidu-cml', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`c-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with c-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -108,7 +108,7 @@ parseDirective.tap('web-weex-vue', (args) => {
     // 以下开始处理指令；
     // v-model
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-on:input`), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
 
@@ -136,7 +136,7 @@ parseDirective.tap('web-weex-vue', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`v-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with v-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -158,10 +158,11 @@ parseDirective.tap('wx-vue', (args) => {
   let { path, node, type, options: {lang} } = args;
   if (lang === 'vue' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
-      let modelKey = utils.trimCurly(node.value.value);
+      let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(`{{${node.value.value}}}`)))
       if (type === 'alipay') {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`onInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-eventinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       } else {
         path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
       }
@@ -188,7 +189,7 @@ parseDirective.tap('wx-vue', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`v-show指令所在元素，不能再有style属性`);
+        throw new Error(`The style attribute can't be used in the element that has  attributes with v-show `);
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
