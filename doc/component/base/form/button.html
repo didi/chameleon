@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>button · chameleon</title>
+        <title>表单组件 · chameleon</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -82,10 +82,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="input.html" />
+    <link rel="next" href="button.html" />
     
     
-    <link rel="prev" href="form.html" />
+    <link rel="prev" href="../layout/carousel-item.html" />
     
 
     
@@ -2038,9 +2038,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1.1" data-path="../content/content.html">
+        <li class="chapter " data-level="1.5.1.1" data-path="../content/view.html">
             
-                <a href="../content/content.html">
+                <a href="../content/view.html">
             
                     
                     基础内容
@@ -2122,9 +2122,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.1.2" data-path="../layout/layout.html">
+        <li class="chapter " data-level="1.5.1.2" data-path="../layout/scroller.html">
             
-                <a href="../layout/layout.html">
+                <a href="../layout/scroller.html">
             
                     
                     布局容器
@@ -2232,9 +2232,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.1.3" data-path="form.html">
+        <li class="chapter active" data-level="1.5.1.3" data-path="button.html">
             
-                <a href="form.html">
+                <a href="button.html">
             
                     
                     表单组件
@@ -2329,9 +2329,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.1.4" data-path="../media/media.html">
+        <li class="chapter " data-level="1.5.1.4" data-path="../media/image.html">
             
-                <a href="../media/media.html">
+                <a href="../media/image.html">
             
                     
                     媒体组件
@@ -3154,9 +3154,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.4.1.1" data-path="../../../chameleon_client/ios_integration.html">
+        <li class="chapter " data-level="1.6.4.1.1" data-path="../../../chameleon_client/ios/introduction.html">
             
-                <a href="../../../chameleon_client/ios_integration.html">
+                <a href="../../../chameleon_client/ios/introduction.html">
             
                     
                     iOS
@@ -3164,6 +3164,38 @@
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1.1.1" data-path="../../../chameleon_client/ios/module.html">
+            
+                <a href="../../../chameleon_client/ios/module.html">
+            
+                    
+                    Module的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.1.2" data-path="../../../chameleon_client/ios/cache.html">
+            
+                <a href="../../../chameleon_client/ios/cache.html">
+            
+                    
+                    预加载和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -3938,7 +3970,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >button</a>
+        <a href="../../.." >表单组件</a>
     </h1>
 </div>
 
@@ -3998,136 +4030,42 @@
     <td>String</td>
     <td>&#x5426;</td>
     <td></td>
-    <td>&#x81EA;&#x5B9A;&#x4E49;button&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x6837;&#x5F0F;&#x5B57;&#x6BB5;&#x91C7;&#x7528;&#x9A7C;&#x5CF0;&#x6216;&#x8005;&#x77ED;&#x6A2A;&#x7EBF;&#x547D;&#x540D;</td>
+    <td>&#x81EA;&#x5B9A;&#x4E49;button&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;background-color:blue;height:100cpx;&quot;</td>
   </tr>
   <tr>
     <td>text-style</td>
     <td>String</td>
     <td>&#x5426;</td>
     <td></td>
-    <td>&#x81EA;&#x5B9A;&#x4E49;&#x6309;&#x94AE;text&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x6837;&#x5F0F;&#x5B57;&#x6BB5;&#x91C7;&#x7528;&#x9A7C;&#x5CF0;&#x6216;&#x8005;&#x77ED;&#x6A2A;&#x7EBF;&#x547D;&#x540D;</td>
+    <td>&#x81EA;&#x5B9A;&#x4E49;&#x6309;&#x94AE;text&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;color:red;text-align:center;&quot;</td>
   </tr>
   <tr>
     <td>disabled-style</td>
     <td>String</td>
     <td>&#x5426;</td>
     <td></td>
-    <td>&#x5B9A;&#x4E49;button disabled&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x6837;&#x5F0F;&#x5B57;&#x6BB5;&#x91C7;&#x7528;&#x9A7C;&#x5CF0;&#x6216;&#x8005;&#x77ED;&#x6A2A;&#x7EBF;&#x547D;&#x540D;</td>
+    <td>&#x5B9A;&#x4E49;button disabled&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;background-color:grew;&quot;</td>
   </tr>
   <tr>
-    <td>open-type</td>
+    <td>text-style-disabled</td>
     <td>String</td>
     <td>&#x5426;</td>
     <td></td>
-    <td>&#x5FAE;&#x4FE1;&#x5F00;&#x653E;&#x80FD;&#x529B;&#xFF0C;&#x53EA;&#x652F;&#x6301;wx&#x7AEF;</td>
+    <td>&#x5B9A;&#x4E49;button disabled&#x65F6;text&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;color:white;&quot;</td>
   </tr>
   <tr>
-    <td>lang</td>
-    <td>String</td>
-    <td>&#x5426;</td>
-    <td>&quot;en&quot;</td>
-    <td>&#x6307;&#x5B9A;&#x8FD4;&#x56DE;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x6709;&#x6548;&#x503C;&#xFF1A;zh_CN &#x7B80;&#x4F53;&#x4E2D;&#x6587;&#xFF0C;zh_TW &#x7E41;&#x4F53;&#x4E2D;&#x6587;&#xFF0C;en &#x82F1;&#x6587;
-      <br>open-type=&quot;getUserInfo&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>c-bind:getuserinfo</td>
-    <td>Handler</td>
-    <td>&#x5426;</td>
-    <td></td>
-    <td>&#x7528;&#x6237;&#x70B9;&#x51FB;&#x8BE5;&#x6309;&#x94AE;&#x65F6;&#xFF0C;&#x4F1A;&#x8FD4;&#x56DE;&#x83B7;&#x53D6;&#x5230;&#x7684;&#x7528;&#x6237;&#x4FE1;&#x606F;
-      <br>open-type=&quot;getUserInfo&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>session-from</td>
+    <td>btn-hover-style</td>
     <td>String</td>
     <td>&#x5426;</td>
     <td></td>
-    <td>&#x4F1A;&#x8BDD;&#x6765;&#x6E90;
-      <br>open-type=&quot;contact&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
+    <td>&#x6307;&#x5B9A;&#x6309;&#x94AE;&#x6309;&#x4E0B;&#x53BB;&#x7684;&#x6548;&#x679C;&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;background-color:pink;&quot;</td>
   </tr>
   <tr>
-    <td>send-message-title</td>
-    <td>String</td>
-    <td>&#x5426;</td>
-    <td>&quot;&#x5F53;&#x524D;&#x6807;&#x9898;&quot;</td>
-    <td>&#x4F1A;&#x8BDD;&#x5185;&#x6D88;&#x606F;&#x5361;&#x7247;&#x6807;&#x9898;
-      <br>open-type=&quot;contact&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>send-message-path</td>
-    <td>String</td>
-    <td>&#x5426;</td>
-    <td>&quot;&#x5F53;&#x524D;&#x5206;&#x4EAB;&#x8DEF;&#x5F84;&quot;</td>
-    <td>&#x4F1A;&#x8BDD;&#x5185;&#x6D88;&#x606F;&#x5361;&#x7247;&#x70B9;&#x51FB;&#x8DF3;&#x8F6C;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DEF;&#x5F84;
-      <br>open-type=&quot;contact&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>send-message-img</td>
-    <td>String</td>
-    <td>&#x5426;</td>
-    <td>&#x622A;&#x56FE;</td>
-    <td>&#x4F1A;&#x8BDD;&#x5185;&#x6D88;&#x606F;&#x5361;&#x7247;&#x56FE;&#x7247;
-      <br>open-type=&quot;contact&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>show-message-card</td>
-    <td>Boolean</td>
-    <td>&#x5426;</td>
-    <td>false</td>
-    <td>&#x662F;&#x5426;&#x663E;&#x793A;&#x4F1A;&#x8BDD;&#x5185;&#x6D88;&#x606F;&#x5361;&#x7247;
-      <br>open-type=&quot;contact&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>c-bind:contact</td>
-    <td>Handler</td>
-    <td>&#x5426;</td>
-    <td></td>
-    <td>&#x5BA2;&#x670D;&#x6D88;&#x606F;&#x56DE;&#x8C03;
-      <br>open-type=&quot;contact&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>c-bind:getphonenumber</td>
-    <td>Handler</td>
-    <td>&#x5426;</td>
-    <td></td>
-    <td>&#x83B7;&#x53D6;&#x7528;&#x6237;&#x624B;&#x673A;&#x53F7;&#x56DE;&#x8C03;
-      <br>open-type=&quot;getPhoneNumber&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>app-parameter</td>
+    <td>text-hover-style</td>
     <td>String</td>
     <td>&#x5426;</td>
     <td></td>
-    <td>&#x6253;&#x5F00;APP&#x65F6;&#xFF0C;&#x5411;APP&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;
-      <br>open-type=&quot;launchApp&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>c-bind:error</td>
-    <td>Handler</td>
-    <td>&#x5426;</td>
-    <td></td>
-    <td>&#x5F53;&#x4F7F;&#x7528;&#x5F00;&#x653E;&#x80FD;&#x529B;&#x65F6;&#xFF0C;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#x7684;&#x56DE;&#x8C03;
-      <br>open-type=&quot;launchApp&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
-  </tr>
-  <tr>
-    <td>c-bind:opensetting</td>
-    <td>Handler</td>
-    <td>&#x5426;</td>
-    <td></td>
-    <td>&#x5728;&#x6253;&#x5F00;&#x6388;&#x6743;&#x8BBE;&#x7F6E;&#x9875;&#x540E;&#x56DE;&#x8C03;
-      <br>open-type=&quot;openSetting&quot;&#x65F6;&#x751F;&#x6548;
-    </td>
+    <td>&#x6307;&#x5B9A;&#x6309;&#x94AE;&#x6309;&#x4E0B;&#x53BB;&#x7684;text&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;color:pink;&quot;</td>
   </tr>
   <tr>
     <td>c-bind:onclick</td>
@@ -4143,44 +4081,159 @@
       event.detail = { type, disabled }
     </td>
   </tr>
+  <!-- <tr>
+    <td>open-type</td>
+    <td>String</td>
+    <td>否</td>
+    <td></td>
+    <td>微信开放能力，只支持wx端</td>
+  </tr>
+  <tr>
+    <td>lang</td>
+    <td>String</td>
+    <td>否</td>
+    <td>"en"</td>
+    <td>指定返回用户信息的语言，有效值：zh_CN 简体中文，zh_TW 繁体中文，en 英文
+      <br/>open-type="getUserInfo"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>c-bind:getuserinfo</td>
+    <td>Handler</td>
+    <td>否</td>
+    <td></td>
+    <td>用户点击该按钮时，会返回获取到的用户信息
+      <br/>open-type="getUserInfo"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>session-from</td>
+    <td>String</td>
+    <td>否</td>
+    <td></td>
+    <td>会话来源
+      <br/>open-type="contact"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>send-message-title</td>
+    <td>String</td>
+    <td>否</td>
+    <td>"当前标题"</td>
+    <td>会话内消息卡片标题
+      <br/>open-type="contact"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>send-message-path</td>
+    <td>String</td>
+    <td>否</td>
+    <td>"当前分享路径"</td>
+    <td>会话内消息卡片点击跳转小程序路径
+      <br/>open-type="contact"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>send-message-img</td>
+    <td>String</td>
+    <td>否</td>
+    <td>截图</td>
+    <td>会话内消息卡片图片
+      <br/>open-type="contact"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>show-message-card</td>
+    <td>Boolean</td>
+    <td>否</td>
+    <td>false</td>
+    <td>是否显示会话内消息卡片
+      <br/>open-type="contact"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>c-bind:contact</td>
+    <td>Handler</td>
+    <td>否</td>
+    <td></td>
+    <td>客服消息回调
+      <br/>open-type="contact"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>c-bind:getphonenumber</td>
+    <td>Handler</td>
+    <td>否</td>
+    <td></td>
+    <td>获取用户手机号回调
+      <br/>open-type="getPhoneNumber"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>app-parameter</td>
+    <td>String</td>
+    <td>否</td>
+    <td></td>
+    <td>打开APP时，向APP传递的参数
+      <br/>open-type="launchApp"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>c-bind:error</td>
+    <td>Handler</td>
+    <td>否</td>
+    <td></td>
+    <td>当使用开放能力时，发生错误的回调
+      <br/>open-type="launchApp"时生效
+    </td>
+  </tr>
+  <tr>
+    <td>c-bind:opensetting</td>
+    <td>Handler</td>
+    <td>否</td>
+    <td></td>
+    <td>在打开授权设置页后回调
+      <br/>open-type="openSetting"时生效
+    </td>
+  </tr> -->
 </table>
 
-<h3 id="open-type-&#x7684;&#x6709;&#x6548;&#x503C;"><a name="open-type-&#x7684;&#x6709;&#x6548;&#x503C;" class="anchor-navigation-ex-anchor" href="#open-type-&#x7684;&#x6709;&#x6548;&#x503C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="open-type-&#x7684;&#x6709;&#x6548;&#x503C;" class="plugin-anchor" href="#open-type-&#x7684;&#x6709;&#x6548;&#x503C;"><i class="fa fa-link" aria-hidden="true"></i></a>open-type &#x7684;&#x6709;&#x6548;&#x503C;</h3>
+<!-- ### open-type 的有效值
+
 <table>
   <tr>
-    <th>&#x503C;</th>
-    <th>&#x8BF4;&#x660E;</th>
+    <th>值</th>
+    <th>说明</th>
   </tr>
   <tr>
     <td>contact</td>
-    <td>&#x6253;&#x5F00;&#x5BA2;&#x670D;&#x4F1A;&#x8BDD;&#xFF0C;&#x5982;&#x679C;&#x7528;&#x6237;&#x5728;&#x4F1A;&#x8BDD;&#x4E2D;&#x70B9;&#x51FB;&#x6D88;&#x606F;&#x5361;&#x7247;&#x540E;&#x8FD4;&#x56DE;&#x5C0F;&#x7A0B;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE; c-bind:contact &#x56DE;&#x8C03;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x7528;&#x6237;&#x6240;&#x70B9;&#x6D88;&#x606F;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x5F84; path &#x548C;&#x5BF9;&#x5E94;&#x7684;&#x53C2;&#x6570; query</td>
+    <td>打开客服会话，如果用户在会话中点击消息卡片后返回小程序，可以从 c-bind:contact 回调中获取到用户所点消息的页面路径 path 和对应的参数 query</td>
   </tr>
   <tr>
     <td>share</td>
-    <td>&#x89E6;&#x53D1;&#x7528;&#x6237;&#x8F6C;&#x53D1;</td>
+    <td>触发用户转发</td>
   </tr>
   <tr>
     <td>getUserInfo</td>
-    <td>&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4FE1;&#x606F;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;c-bind:getuserinfo&#x56DE;&#x8C03;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x7528;&#x6237;&#x4FE1;&#x606F;</td>
+    <td>获取用户信息，可以从c-bind:getuserinfo回调中获取到用户信息</td>
   </tr>
   <tr>
     <td>getPhoneNumber</td>
-    <td>&#x83B7;&#x53D6;&#x7528;&#x6237;&#x624B;&#x673A;&#x53F7;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;c-bind:getphonenumber&#x56DE;&#x8C03;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x5FAE;&#x4FE1;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x52A0;&#x5BC6;&#x6570;&#x636E;</td>
+    <td>获取用户手机号，可以从c-bind:getphonenumber回调中获取到微信服务器返回的加密数据</td>
   </tr>
   <tr>
     <td>launchApp</td>
-    <td>&#x6253;&#x5F00;APP&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;app-parameter&#x5C5E;&#x6027;&#x8BBE;&#x5B9A;&#x5411;APP&#x4F20;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7; c-bind:error &#x53EF;&#x4EE5;&#x76D1;&#x542C;&#x6253;&#x5F00; APP &#x7684;&#x9519;&#x8BEF;&#x4E8B;&#x4EF6;</td>
+    <td>打开APP，可以通过app-parameter属性设定向APP传的参数，通过 c-bind:error 可以监听打开 APP 的错误事件</td>
   </tr>
   <tr>
     <td>openSetting</td>
-    <td>&#x6253;&#x5F00;&#x6388;&#x6743;&#x8BBE;&#x7F6E;&#x9875;</td>
+    <td>打开授权设置页</td>
   </tr>
   <tr>
     <td>feedback</td>
-    <td>&#x6253;&#x5F00;&#x201C;&#x610F;&#x89C1;&#x53CD;&#x9988;&#x201D;&#x9875;&#x9762;</td>
+    <td>打开“意见反馈”页面</td>
   </tr>
-</table>
-
+</table> -->
 <h3 id="&#x793A;&#x4F8B;"><a name="&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;" class="plugin-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;</h3>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
@@ -4255,12 +4308,12 @@
 
             
                 
-                <a href="form.html" class="navigation navigation-prev " aria-label="Previous page: 表单组件">
+                <a href="../layout/carousel-item.html" class="navigation navigation-prev " aria-label="Previous page: carousel-item">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="input.html" class="navigation navigation-next " aria-label="Next page: input">
+                <a href="button.html" class="navigation navigation-next " aria-label="Next page: button">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -4271,7 +4324,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"button","level":"1.5.1.3.1","depth":4,"next":{"title":"input","level":"1.5.1.3.2","depth":4,"path":"component/base/form/input.md","ref":"component/base/form/input.md","articles":[]},"previous":{"title":"表单组件","level":"1.5.1.3","depth":3,"path":"component/base/form/form.md","ref":"component/base/form/form.md","articles":[{"title":"button","level":"1.5.1.3.1","depth":4,"path":"component/base/form/button.md","ref":"component/base/form/button.md","articles":[]},{"title":"input","level":"1.5.1.3.2","depth":4,"path":"component/base/form/input.md","ref":"component/base/form/input.md","articles":[]},{"title":"textarea","level":"1.5.1.3.3","depth":4,"path":"component/base/form/textarea.md","ref":"component/base/form/textarea.md","articles":[]},{"title":"switch","level":"1.5.1.3.4","depth":4,"path":"component/base/form/switch.md","ref":"component/base/form/switch.md","articles":[]},{"title":"radio","level":"1.5.1.3.5","depth":4,"path":"component/base/form/radio.md","ref":"component/base/form/radio.md","articles":[]},{"title":"checkbox","level":"1.5.1.3.6","depth":4,"path":"component/base/form/checkbox.md","ref":"component/base/form/checkbox.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"component/base/form/button.md","mtime":"2019-01-11T15:44:44.148Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-22T08:10:12.891Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"表单组件","level":"1.5.1.3","depth":3,"next":{"title":"button","level":"1.5.1.3.1","depth":4,"path":"component/base/form/button.md","ref":"component/base/form/button.md","articles":[]},"previous":{"title":"carousel-item","level":"1.5.1.2.7","depth":4,"path":"component/base/layout/carousel-item.md","ref":"component/base/layout/carousel-item.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"component/base/form/button.md","mtime":"2019-03-05T05:09:09.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-05T05:21:29.388Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
