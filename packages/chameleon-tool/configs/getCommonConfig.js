@@ -84,14 +84,19 @@ module.exports = function (options) {
         loader: 'chameleon-url-loader',
         options: {
           limit: false, // 不做limit的base64转换，需要添加?inline参数
-          name: getstaticPath('img')
+          name: getstaticPath('img'),
+          outputPath: function(output) {
+            // 处理图片中的@符号 改成_ 解决在支付宝小程序中上传失败的问题
+            output = cml.utils.handleSpecialChar(output)
+            return output;
+          }
         }
       }, {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'file-loader',
         options: {
           name: getstaticPath('media')
-
+         
         }
       },
       {
