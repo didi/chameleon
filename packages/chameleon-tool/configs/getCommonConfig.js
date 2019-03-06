@@ -9,6 +9,7 @@ const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
 const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
+const StyleOrderPlugin = require('./plugins/StyleOrderPlugin');
 
 module.exports = function (options) {
   let {
@@ -138,7 +139,8 @@ module.exports = function (options) {
       }),
       new ChameleonErrorsWebpackPlugin({
         cmlType: type
-      })
+      }),
+      new StyleOrderPlugin()
     ]
   }
   if (cml.config.get().enableGlobalCheck === true) {
