@@ -1,4 +1,4 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var utils = require('./utils.js');
 var path = require('path');
 var webpack = require('webpack')

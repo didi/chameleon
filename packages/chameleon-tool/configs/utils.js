@@ -1,5 +1,5 @@
 var path = require('path')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var fs = require('fs');
 const fse = require('fs-extra');
 const HtmlWebpackPlugin = require('html-webpack-plugin')

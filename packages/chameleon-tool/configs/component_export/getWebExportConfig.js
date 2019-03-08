@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { getBabelPath, getGlobalCheckWhiteList, styleLoaders, getWebEntry } = require('../utils');
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
@@ -41,7 +41,7 @@ module.exports = function (options) {
   publicPath = options.publicPath || '/';
 
   var cmlLoaders = [{
-    loader: 'vue-loader',
+    loader: 'cml-vue-loader',
     options: Object.assign(getCmlLoaderConfig({ type: 'web', disableExtract, media, mode }), {
       postcss: {
         config: {
@@ -192,7 +192,7 @@ module.exports = function (options) {
         {
           test: /\.vue$/,
           use: [{
-            loader: 'vue-loader',
+            loader: 'cml-vue-loader',
             options: Object.assign(getCmlLoaderConfig({ type: 'web', disableExtract }), {
               postcss: {
                 config: {
