@@ -215,7 +215,6 @@ module.exports = function (options) {
           definePlugin[key] = JSON.stringify(definePlugin[key])
         })
       }
-      debugger
       commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
     })
   }

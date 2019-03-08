@@ -984,12 +984,11 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
     if (entryName === 'app/app') {
       type = 'app';
     } else {
-
       let cmlPages = cml.config.get().cmlPages || [];
-      cmlPages = cmlPages.map(item => 'npm/' + _.handleSpecialChar(item));
+      let npmNames = cmlPages.map(item => 'node_modules/' + item);
       let cmlPagesIndex = -1;
-      for (let i = 0; i < cmlPages.length; i++) {
-        if (~entryName.indexOf(cmlPages[i])) {
+      for (let i = 0; i < npmNames.length; i++) {
+        if (~cmlFilePath.indexOf(npmNames[i])) {
           cmlPagesIndex = i;
           break;
         }
@@ -998,7 +997,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       if (cmlPagesIndex != -1) {
         let routerConfig = _.readCmlPagesRouterConfig(context, cmlPages[cmlPagesIndex]);
         let pageFiles = routerConfig.routes.map(item => {
-          return path.join(context, 'node_modules', cmlPages[cmlPagesIndex], 'src', item.path, '.cml');
+          return path.join(context, 'node_modules', cmlPages[cmlPagesIndex], 'src', item.path + '.cml');
         })
         // 如果是配置的路由则是page
         if (~pageFiles.indexOf(cmlFilePath)) {
