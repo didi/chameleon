@@ -308,6 +308,26 @@ _.getJsonFileContent = function (filePath, confType) {
           }
         })
       }
+      // 处理cmlPages配置的npm包中cml项目的页面
+      let cmlPages = cml.config.get().cmlPages;
+      if (cmlPages && cmlPages.length > 0) {
+        cmlPages.forEach(function(npmName) {
+          let npmRouterConfig = _.readCmlPagesRouterConfig(cml.projectRoot, npmName);
+          npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+            let routePath = item.path;
+            if (routePath[0] === '/') {
+              routePath = routePath.slice(1);
+            }
+            if (!~targetObject.pages.indexOf(routePath)) {
+              targetObject.pages.push(routePath);
+            } else {
+              cml.log.error(`page ${routePath} in ${npmName} is conflict in project!`)
+            }
+          })
+
+        })
+      }
+
     } else if (fileType === 'component') {
       targetObject.component = true;
     } else {
@@ -962,24 +982,50 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
     if (entryName === 'app/app') {
       type = 'app';
     } else {
-      let {routerConfig, hasError} = _.getRouterConfig();
-      if (!hasError) {
-        let routes = routerConfig.routes;
-        // 删除/
-        let pageNames = routes.map(item => {
-          if (item.path && item.path[0] == '/') {
-            return item.path.slice(1);
-          } else {
-            return '';
-          }
+
+      let cmlPages = cml.config.get().cmlPages || [];
+      cmlPages = cmlPages.map(item => 'npm/' + _.handleSpecialChar(item));
+      let cmlPagesIndex = -1;
+      for (let i = 0; i < cmlPages.length; i++) {
+        if (~entryName.indexOf(cmlPages[i])) {
+          cmlPagesIndex = i;
+          break;
+        }
+      }
+      // 是cmlPages npm包中的cml文件 用cmlPages中的router.config.json判断
+      if (cmlPagesIndex != -1) {
+        let routerConfig = _.readCmlPagesRouterConfig(context, cmlPages[cmlPagesIndex]);
+        let pageFiles = routerConfig.routes.map(item => {
+          return path.join(context, 'node_modules', cmlPages[cmlPagesIndex], 'src', item.path, '.cml');
         })
         // 如果是配置的路由则是page
-        if (~pageNames.indexOf(entryName)) {
+        if (~pageFiles.indexOf(cmlFilePath)) {
           type = 'page';
         } else {
           type = 'component';
         }
+      } else {
+        // 不是cmlPages 中的cml文件走正常判断
+        let {routerConfig, hasError} = _.getRouterConfig();
+        if (!hasError) {
+          let routes = routerConfig.routes;
+          // 删除/
+          let pageNames = routes.map(item => {
+            if (item.path && item.path[0] == '/') {
+              return item.path.slice(1);
+            } else {
+              return '';
+            }
+          })
+          // 如果是配置的路由则是page
+          if (~pageNames.indexOf(entryName)) {
+            type = 'page';
+          } else {
+            type = 'component';
+          }
+        }
       }
+
     }
   }
   return type;
@@ -990,4 +1036,8 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
 _.handleSpecialChar = function (str) {
   let result = str.replace(/\@/g, '_')
   return result
+}
+
+_.readCmlPagesRouterConfig = function(context, npmName) {
+  return JSON.parse(fs.readFileSync(path.join(context, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}))
 }

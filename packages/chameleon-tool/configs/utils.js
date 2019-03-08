@@ -244,6 +244,24 @@ exports.getMiniAppEntry = function (cmlType) {
     npmComponents.forEach(item => {
       addEntry(item.filePath)
     })
+
+    // cmlPages的入口
+    let cmlPages = cml.config.get().cmlPages;
+    if (cmlPages && cmlPages.length > 0) {
+      cmlPages.forEach(function(npmName) {
+        let npmRouterConfig = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}));
+        npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+          let routePath = item.path;
+          let cmlFilePath = path.join(root, 'node_modules', npmName, 'src', routePath + '.cml');
+          if (cml.utils.isFile(cmlFilePath)) {
+            addEntry(cmlFilePath);
+          } else {
+            cml.log.error(`${cmlFilePath} is not find!`);
+          }
+        })
+
+      })
+    }
   }
   exports.updateEntry({ entry, cmlType, root, addEntry });
 
