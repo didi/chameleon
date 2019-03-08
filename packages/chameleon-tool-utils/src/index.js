@@ -314,7 +314,9 @@ _.getJsonFileContent = function (filePath, confType) {
         cmlPages.forEach(function(npmName) {
           let npmRouterConfig = _.readCmlPagesRouterConfig(cml.projectRoot, npmName);
           npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
-            let routePath = item.path;
+            let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
+            let routePath = _.getPureEntryName(cmlFilePath, confType, cml.projectRoot);
+            routePath = _.handleSpecialChar(routePath);
             if (routePath[0] === '/') {
               routePath = routePath.slice(1);
             }

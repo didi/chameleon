@@ -9,7 +9,7 @@ const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
 const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
-
+const fs = require('fs');
 module.exports = function (options) {
   let {
     type,
@@ -203,6 +203,23 @@ module.exports = function (options) {
   if (moduleIdType && moduleIdMap[moduleIdType]) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
+
+  let cmlPages = cml.config.get().cmlPages;
+  if (cmlPages && cmlPages.length > 0) {
+    cmlPages.forEach(npmName => {
+      let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'),{encoding:'utf-8'}));
+      let cmlConfig = packageJSON.cml || {};
+      let definePlugin = cmlConfig.definePlugin;
+      if (definePlugin) {
+        Object.keys(definePlugin).forEach(key => {
+          definePlugin[key] = JSON.stringify(definePlugin[key])
+        })
+      }
+      debugger
+      commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
+    })
+  }
+
 
   return commonConfig;
 }
