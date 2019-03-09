@@ -147,7 +147,7 @@ function compileWxTemplate(source, type, options) {
       parseTemplate.parseIterationStatement(path, type, options);
       //
       parseTemplate.parseStyleStatement(path, type, options);
-      // 用于支持 v-bind:name="sth" ==> name="{{sth}}"
+      // <component is="{{currentComp}}"></component>
       parseTemplate.parseVue2WxStatement(path, type, options);
     }
   })
@@ -183,7 +183,7 @@ function compileAliPayTemplate(source, type, options) {
       parseTemplate.parseIterationStatement(path, type, options);
       //
       parseTemplate.parseStyleStatement(path, type, options);
-      // 用于支持 v-bind:name="sth" ==> name="{{sth}}"
+      // 用于支持 <component is="{{currentComp}}"></component>
       parseTemplate.parseVue2WxStatement(path, type, options);
     }
   })
@@ -219,7 +219,7 @@ function compileBaiduTemplate(source, type, options) {
       parseTemplate.parseIterationStatement(path, type, options);
       //
       parseTemplate.parseStyleStatement(path, type, options);
-      // 用于支持 v-bind:name="sth" ==> name="{{sth}}"
+      // <component is="{{currentComp}}"></component>
       parseTemplate.parseVue2WxStatement(path, type, options);
     }
   })

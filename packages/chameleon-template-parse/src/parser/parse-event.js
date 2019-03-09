@@ -60,6 +60,7 @@ parseEvent.tap('wx-baidu', (args) => {
     let value = container.value;
     let parentPath = path.parentPath;
     let name = node.name.name === 'click' ? 'tap' : node.name.name;
+    name = utils.dasherise(name);
     let wxName = node.name.name === 'click' ? 'tap' : node.name.name;
     let handler = value.value && utils.trim(value.value);
     let match = utils.isInlineStatementFn(handler);
