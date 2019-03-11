@@ -4020,8 +4020,8 @@
 <li>&#x7C7B;&#x4F3C;&#x201C;&#x5206;&#x4EAB;&#x5230;&#x670B;&#x53CB;&#x5708;&#x201D;&#x529F;&#x80FD;&#x5728;&#x5C0F;&#x7A0B;&#x5E8F;&#x3001;Web&#x3001;Native&#x5929;&#x751F;&#x6709;&#x5E95;&#x5C42;&#x80FD;&#x529B;&#x5DEE;&#x5F02;</li>
 </ul>
 <p>&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4E3E;&#x4F8B;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x67F1;&#x72B6;&#x56FE;&#x56FE;&#x8868;&#x4E00;&#x822C;&#x4F1A;&#x60F3;&#x5230;&#x5F88;&#x5F3A;&#x5927;&#x7684;&#x5F00;&#x6E90;&#x53EF;&#x89C6;&#x5316;&#x5E93; <a href="http://echarts.baidu.com/" target="_blank">echart</a>&#x3002;</p>
-<p>&#x672C;&#x6587;&#x8BB2;&#x8BB2;&#x5982;&#x4F55;&#x5728;CML&#x9879;&#x76EE;&#x4E2D;<strong>&#x4F18;&#x96C5;</strong>&#x7684;&#x4F7F;&#x7528;echart&#x5E93;&#xFF0C;&#x6700;&#x7EC8;&#x5B9E;&#x73B0;&#x6548;&#x679C;&#x56FE;&#x3002;</p>
-<p><img src="../assets/example/poly_echart.png" style="width:600px;display:block"></p>
+<p>&#x672C;&#x6587;&#x8BB2;&#x8BB2;&#x5982;&#x4F55;&#x5728;CML&#x9879;&#x76EE;&#x4E2D;&#x4F18;&#x96C5;&#x7684;&#x4F7F;&#x7528;echart&#x5E93;,&#x6700;&#x7EC8;&#x6548;&#x679C;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/example/echart_all.png" style="width: 600px; display: block;"></p>
 <p>&#x5728;CML&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x53EF;&#x4EE5;&#x57FA;&#x4E8E;<a href="../framework/polymorphism/component.html">&#x591A;&#x6001;&#x7EC4;&#x4EF6;</a>&#x6765;&#x5F00;&#x53D1;&#x3002;</p>
 <p><img src="../assets/polymorphism_widget.png" style="width:600px;display:block">
 &#x591A;&#x6001;&#x534F;&#x8BAE;&#x7684;&#x610F;&#x4E49;&#x6211;&#x5C31;&#x4E0D;&#x505A;&#x8D58;&#x8FF0;&#x4E86;&#xFF0C;&#x76F4;&#x63A5;&#x8BF4;&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x3002;</p>
@@ -4048,30 +4048,33 @@ cml init component
     &#x251C;&#x2500;&#x2500; echart.weex.cml
     &#x2514;&#x2500;&#x2500; echart.wx.cml
 </code></pre>
-<p>&#x4FEE;&#x6539;<strong>src/pages/index/index.cml</strong>&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684;json&#x914D;&#x7F6E;&#xFF0C;&#x5F15;&#x7528;&#x591A;&#x6001;&#x7EC4;&#x4EF6;</p>
+<p>&#x4FEE;&#x6539;src/pages/index/index.cml&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684;json&#x914D;&#x7F6E;&#xFF0C;&#x5F15;&#x7528;&#x591A;&#x6001;&#x7EC4;&#x4EF6;</p>
 <pre><code>  &quot;base&quot;: {
     &quot;usingComponents&quot;: {
       &quot;echart&quot;: &quot;/components/echart/echart&quot;,
       &quot;demo-com&quot;: &quot;/components/demo-com/demo-com&quot;
     }
   }
-</code></pre><p>&#x4FEE;&#x6539;<strong>src/pages/index/index.cml</strong>&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684;<strong><template></template></strong>&#x7EC4;&#x4EF6;
-&#x8C03;&#x7528;<code>echart</code>&#x7EC4;&#x4EF6;</p>
+</code></pre><p>&#x4FEE;&#x6539;src/pages/index/index.cml&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684;&#x7EC4;&#x4EF6;<code>template</code>&#x6A21;&#x677F;&#xFF0C;&#x8C03;&#x7528;<code>echart</code>&#x7EC4;&#x4EF6;</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">page</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;chameleon&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;page-container&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">scroller</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;scroller-wrap&quot;</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">demo-com</span> <span class="hljs-attr">imageSrc</span>=<span class="hljs-string">&quot;{{ chameleonSrc }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo-com</span>&gt;</span>
-         <span class="hljs-tag">&lt;<span class="hljs-name">echart</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hi&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">echart</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">demo-com</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;{{title}}&quot;</span> <span class="hljs-attr">image-src</span>=<span class="hljs-string">&quot;{{chameleonSrc}}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo-com</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">echart</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;echart&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hi&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">echart</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">scroller</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">page</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
 <p>&#x4FEE;&#x6539;style&#x6807;&#x7B7E;&#x4EE3;&#x7801;&#x7ED9;<code>&lt;echart&gt;</code>&#x6807;&#x7B7E;&#x6DFB;&#x52A0;&#x5BBD;&#x9AD8;</p>
-<pre><code class="lang-css"><span class="hljs-selector-tag">echart</span>{
+<pre><code class="lang-css"><span class="hljs-selector-class">.scroller-wrap</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">align-items</span>: center;
+}
+<span class="hljs-selector-class">.echart</span>{
+  <span class="hljs-attribute">display</span>:flex;
+  <span class="hljs-attribute">flex-direction</span>:row;
+  <span class="hljs-attribute">justify-content</span>: center;
   <span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;
   <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;
 }
@@ -4149,33 +4152,21 @@ Google&#x641C;&#x7D22;&#x5230;&#x4E86;<a href="https://github.com/ecomfe/echarts
 </code></pre>
 <p>&#x65B0;&#x5EFA;<strong>./src/components/echart/bar.js</strong>&#xFF0C;&#x4F5C;&#x4E3A;&#x7EDF;&#x4E00;&#x5B58;&#x653E;echart&#x56FE;&#x8868;&#x7684;&#x914D;&#x7F6E;&#x4EE3;&#x7801;&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getdata</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> {
-    <span class="hljs-attr">legend</span>: {},
-    <span class="hljs-attr">tooltip</span>: {},
-    <span class="hljs-attr">dataset</span>: {
-      <span class="hljs-comment">// provide data.</span>
-      source: [
-        [<span class="hljs-string">&apos;latte&apos;</span>, ...randomize()],
-        [<span class="hljs-string">&apos;tea&apos;</span>, ...randomize()],
-        [<span class="hljs-string">&apos;cocoa&apos;</span>, ...randomize()],
-        [<span class="hljs-string">&apos;brownie&apos;</span>, ...randomize()]
-      ]
-    },
-    <span class="hljs-comment">// declare x axis, which is a category axis, mapping</span>
-    <span class="hljs-comment">// to the first column by default.</span>
-    xaxis: { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;category&apos;</span> },
-    <span class="hljs-comment">// declare y axis, which is a value axis.</span>
-    yaxis: {},
-    <span class="hljs-comment">// declare several series, each of them mapped to a</span>
-    <span class="hljs-comment">// column of the dataset by default.</span>
-    series: [{ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;bar&apos;</span> }, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;bar&apos;</span> }, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;bar&apos;</span> }]
-  }
-}
+  <span class="hljs-keyword">var</span> option = {
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomize</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>].map(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> math.round(<span class="hljs-number">300</span> + math.random() * <span class="hljs-number">700</span>) / <span class="hljs-number">10</span>
-  })
+    <span class="hljs-attr">tooltip</span>: {},
+
+    <span class="hljs-attr">xAxis</span>: {
+        <span class="hljs-attr">data</span>: [<span class="hljs-string">&quot;&#x886C;&#x886B;&quot;</span>,<span class="hljs-string">&quot;&#x7F8A;&#x6BDB;&#x886B;&quot;</span>,<span class="hljs-string">&quot;&#x96EA;&#x7EBA;&#x886B;&quot;</span>]
+    },
+    <span class="hljs-attr">yAxis</span>: {},
+    <span class="hljs-attr">series</span>: [{
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;&#x9500;&#x91CF;&apos;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;bar&apos;</span>,
+        <span class="hljs-attr">data</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">36</span>]
+    }]
+  };
+  <span class="hljs-keyword">return</span> option;
 }
 </code></pre>
 <p>&#x4FEE;&#x6539;<strong>./src/components/echart/echart.wx.cml</strong>&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684;JS&#x4EE3;&#x7801;&#xFF0C;&#x7F16;&#x5199;&#x4F20;&#x9012;&#x7ED9;&#x7EC4;&#x4EF6;&#x7684;&#x53C2;&#x6570;</p>
@@ -4253,7 +4244,7 @@ Google&#x641C;&#x7D22;&#x5230;&#x4E86;<a href="https://github.com/ecomfe/echarts
 <h2 id="&#x5B9E;&#x73B0;web&#x7AEF;echart"><a name="&#x5B9E;&#x73B0;web&#x7AEF;echart" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;web&#x7AEF;echart"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;web&#x7AEF;echart" class="plugin-anchor" href="#&#x5B9E;&#x73B0;web&#x7AEF;echart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;web&#x7AEF;echart</h2>
 <p>web&#x7AEF;&#x4F7F;&#x7528;vue&#x6846;&#x67B6;&#xFF0C;&#x6240;&#x4EE5;&#x627E;&#x5230;echart&#x7684;vue&#x7248;&#x672C; <a href="https://github.com/ecomfe/vue-echarts" target="_blank">vue-echarts</a>&#xFF0C;
 &#x6309;&#x4ED6;&#x8BF4;&#x660E;&#x6587;&#x6863;&#xFF0C;&#x76F4;&#x63A5;&#x5728;chameleon&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;demo-poly(&#x6211;&#x521B;&#x5EFA;&#x7684;project&#x540D;)&#x4E0B;&#x5B89;&#x88C5;&#x7EC4;&#x4EF6;</p>
-<pre><code>npm install vue-echarts --save
+<pre><code>npm install echarts vue-echarts --save
 </code></pre><p>&#x6253;&#x5F00;<strong>src/components/echart/echart.web.cml</strong>
 &#x4FEE;&#x6539;json&#x6807;&#x7B7E;&#x914D;&#x7F6E;&#xFF0C;&#x5F15;&#x7528;&#x7EC4;&#x4EF6;</p>
 <pre><code class="lang-javascripton">{
@@ -4278,20 +4269,20 @@ Google&#x641C;&#x7D22;&#x5230;&#x4E86;<a href="https://github.com/ecomfe/echarts
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
 <p>&#x4FEE;&#x6539;script&#xFF0C;&#x8BBE;&#x7F6E;&#x4F20;&#x5165;chart&#x7EC4;&#x4EF6;&#x7684;&#x53C2;&#x6570;</p>
-<pre><code>import &apos;echarts/lib/chart/bar&apos;
-import getBar from &apos;./bar&apos;
-class Echart implements EchartInterface {
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;echarts/lib/chart/bar&apos;</span>
+<span class="hljs-keyword">import</span> getBar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./bar&apos;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Echart</span> <span class="hljs-title">implements</span> <span class="hljs-title">EchartInterface</span> </span>{
   props = {
-    name: {
-      type: String,
-      default: &apos;&#x9ED8;&#x8BA4;&#x503C;&apos;
+    <span class="hljs-attr">name</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+      <span class="hljs-attr">default</span>: <span class="hljs-string">&apos;&#x9ED8;&#x8BA4;&#x503C;&apos;</span>
     }
   }
 
   data = {
-      bar: getBar(),
-      initOptions: {
-        renderer: &apos;canvas&apos;
+      <span class="hljs-attr">bar</span>: getBar(),
+      <span class="hljs-attr">initOptions</span>: {
+        <span class="hljs-attr">renderer</span>: <span class="hljs-string">&apos;canvas&apos;</span>
       }
   }
 
@@ -4314,8 +4305,8 @@ class Echart implements EchartInterface {
   }
 
   mounted() {
-    this.$cmlEmit(&apos;onshow&apos;,{
-      value: this.name
+    <span class="hljs-keyword">this</span>.$cmlEmit(<span class="hljs-string">&apos;onshow&apos;</span>,{
+      <span class="hljs-attr">value</span>: <span class="hljs-keyword">this</span>.name
     })
   }
 
@@ -4326,44 +4317,102 @@ class Echart implements EchartInterface {
   }
 }
 
-export default new Echart();
-</code></pre><p>&#x6B64;&#x65F6;web&#x7AEF;&#x4E5F;&#x80FD;&#x770B;&#x5230;&#x56FE;&#x8868;&#x6548;&#x679C;&#x4E86;</p>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Echart();
+</code></pre>
+<p>&#x6B64;&#x65F6;web&#x7AEF;&#x4E5F;&#x80FD;&#x770B;&#x5230;&#x56FE;&#x8868;&#x6548;&#x679C;&#x4E86;</p>
 <p><img src="../assets/example/echart_web.png" style="width:300px;display:block"></p>
 <h2 id="&#x5B9E;&#x73B0;native-weex&#x7AEF;echart"><a name="&#x5B9E;&#x73B0;native-weex&#x7AEF;echart" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;native-weex&#x7AEF;echart"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;native-weex&#x7AEF;echart" class="plugin-anchor" href="#&#x5B9E;&#x73B0;native-weex&#x7AEF;echart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;native weex&#x7AEF;echart</h2>
-<p>weex&#x4E0D;&#x652F;&#x6301;canvas&#x63A5;&#x53E3;&#xFF0C;&#x6240;&#x4EE5;&#x65E0;&#x6CD5;&#x5728;weex&#x73AF;&#x5883;&#x4E0B;&#x8FD0;&#x884C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;weex&#x7684;web&#x7EC4;&#x4EF6;&#xFF0C;&#x6CBF;&#x7528;&#x521A;&#x521A;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x7684;web&#x7AEF;&#x56FE;&#x8868;&#x5730;&#x5740;&#x3002;</p>
-<p> echart.xxx.cml &#x662F;&#x7070;&#x5EA6;cml&#x7EC4;&#x4EF6;&#xFF0C;&#x5728;&#x5FAE;&#x4FE1;&#x3001;web&#x3001;weex&#xFF0C;&#x5B83;&#x5206;&#x522B;&#x53EA;&#x80FD;&#x5F15;&#x7528;&#x5C0F;&#x7A0B;&#x5E8F;&#x7EC4;&#x4EF6;&#x6587;&#x4EF6;&#x5939;&#x3001;vue&#x7EC4;&#x4EF6;&#x3001;weex&#x7EC4;&#x4EF6;&#xFF08;vue&#x6269;&#x5C55;&#x540D;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;weex&#x7EC4;&#x4EF6;&#x3002;</p>
-<p> &#x65B0;&#x5EFA;<code>src/components/echart/weex.vue</code>&#xFF0C;&#x5199;&#x5165;&#x4EE3;&#x7801;</p>
+<p>weex&#x4E0D;&#x652F;&#x6301;canvas&#x63A5;&#x53E3;&#xFF0C;&#x6240;&#x4EE5;&#x65E0;&#x6CD5;&#x5728;weex&#x73AF;&#x5883;&#x4E0B;&#x8FD0;&#x884C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;weex&#x7684;<a href="https://weex.apache.org/zh/docs/components/web.html#&#x7B80;&#x4ECB;" target="_blank">web&#x7EC4;&#x4EF6;</a></p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x70B9;&#x5C31;&#x662F; weex&#x7684; <a href="https://weex.apache.org/zh/docs/components/web.html#&#x7B80;&#x4ECB;" target="_blank">web</a>&#x7EC4;&#x4EF6;&#x662F;&#x7528;&#x4E8E;&#x5C55;&#x793A;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x7684;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x7528;&#x4E8E;&#x5C55;&#x793A;  echarts  </p>
+<pre><code class="lang-html">cml init page 
+
+
+&#x7136;&#x540E;&#x8F93;&#x5165;&#x9875;&#x9762;&#x540D;&#x79F0;
+
+weex-echarts
+</code></pre>
+<p>&#x7136;&#x540E;&#x5728; <code>./src/pages/weex-echarts/weex-echarts.cml</code>&#x4E2D;&#x5199;&#x5165;&#x56FE;&#x8868;&#x8FD9;&#x4E2A;&#x9875;&#x9762;&#x7684;&#x5185;&#x5BB9;</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrapper&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">web</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;webview&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 500px; height: 500px&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;{{h5url}}&quot;</span>
-      @<span class="hljs-attr">pagestart</span>=<span class="hljs-string">&quot;onPageStart&quot;</span> @<span class="hljs-attr">pagefinish</span>=<span class="hljs-string">&quot;onPageFinish&quot;</span> @<span class="hljs-attr">error</span>=<span class="hljs-string">&quot;onError&quot;</span> @<span class="hljs-attr">receivedtitle</span>=<span class="hljs-string">&quot;onReceivedTitle&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">web</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">page</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;chameleon&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">scroller</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;{{-1}}&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;scroller-wrap&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">echart</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;echart&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hi&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">echart</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">scroller</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">page</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
-  <span class="hljs-selector-class">.wrapper</span> {
-        <span class="hljs-attribute">flex-direction</span>: column;
-        <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
-    }
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-  <span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">data</span>: {
-      <span class="hljs-attr">pagestart</span>: <span class="hljs-string">&apos;&apos;</span>,
-      <span class="hljs-attr">pagefinish</span>: <span class="hljs-string">&apos;&apos;</span>,
-      <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;&apos;</span>,
-      <span class="hljs-attr">error</span>: <span class="hljs-string">&apos;&apos;</span>,
-      <span class="hljs-attr">canGoBack</span>: <span class="hljs-literal">false</span>,
-      <span class="hljs-attr">canGoForward</span>: <span class="hljs-literal">false</span>,
-      <span class="hljs-comment">//&#x8FD9;&#x662F;&#x4F5C;&#x8005;&#x7684;&#x672C;&#x673A;IP</span>
-      h5url: <span class="hljs-string">&apos;http://172.22.139.44:8000/cml/h5/index&apos;</span>
-    },
-    <span class="hljs-attr">methods</span>: {
-      <span class="hljs-attr">onPageStart</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span>  </span>{
+  data = {
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Index();
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+
+<span class="hljs-selector-class">.scroller-wrap</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">align-items</span>: center;
+}
+<span class="hljs-selector-class">.echart</span>{
+  <span class="hljs-attribute">display</span>:flex;
+  <span class="hljs-attribute">flex-direction</span>:row;
+  <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;json&quot;</span>&gt;</span><span class="actionscript">
+{
+  <span class="hljs-string">&quot;base&quot;</span>: {
+    <span class="hljs-string">&quot;usingComponents&quot;</span>: {
+      <span class="hljs-string">&quot;echart&quot;</span>: <span class="hljs-string">&quot;/components/echart/echart&quot;</span>,
+    }
+  },
+  <span class="hljs-string">&quot;wx&quot;</span>: {
+    <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+    <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+    <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#E2E2E2&quot;</span>
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>&#x5728;<code>./src/components/echart/echart.weex.cml</code>&#x91CC;&#x9762;&#x4FEE;&#x6539;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">web</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;h5url&quot;</span>
+      @<span class="hljs-attr">pagestart</span>=<span class="hljs-string">&quot;onPageStart&quot;</span> @<span class="hljs-attr">pagefinish</span>=<span class="hljs-string">&quot;onPageFinish&quot;</span> @<span class="hljs-attr">error</span>=<span class="hljs-string">&quot;onError&quot;</span> @<span class="hljs-attr">receivedtitle</span>=<span class="hljs-string">&quot;onReceivedTitle&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">web</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Echart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">EchartInterface</span> </span>{
+  props = {
+    name: {
+      type: String,
+      <span class="hljs-keyword">default</span>: <span class="hljs-string">&apos;&#x9ED8;&#x8BA4;&#x503C;&apos;</span>
+    }
+  }
+  data = {
+    pagestart: <span class="hljs-string">&apos;&apos;</span>,
+      pagefinish: <span class="hljs-string">&apos;&apos;</span>,
+      title: <span class="hljs-string">&apos;&apos;</span>,
+      error: <span class="hljs-string">&apos;&apos;</span>,
+      canGoBack: <span class="hljs-literal">false</span>,
+      canGoForward: <span class="hljs-literal">false</span>,
+      <span class="hljs-comment">//&#x8FD9;&#x662F;&#x4F5C;&#x8005;&#x7684;&#x672C;&#x673A;IP,cml/h5/weex-echarts &#x8FD9;&#x4E2A;&#x9875;&#x9762;&#x53EA;&#x6709;echarts&#x56FE;&#x8868;</span>
+      h5url: <span class="hljs-string">&apos;http://172.22.137.224:8000/cml/h5/weex-echarts&apos;</span>
+  }
+  methods = {
+    onPageStart: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
         <span class="hljs-keyword">this</span>.pagestart = e.url;
       },
-      <span class="hljs-attr">onPageFinish</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+      onPageFinish: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
         <span class="hljs-keyword">this</span>.pagefinish = e.url;
         <span class="hljs-keyword">this</span>.canGoBack = e.canGoBack;
         <span class="hljs-keyword">this</span>.canGoForward = e.canGoForward;
@@ -4371,34 +4420,45 @@ export default new Echart();
           <span class="hljs-keyword">this</span>.title = e.title;
         }
       },
-      <span class="hljs-attr">onError</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+      onError: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
         <span class="hljs-keyword">this</span>.error = url;
       },
-      <span class="hljs-attr">onReceivedTitle</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+      onReceivedTitle: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
         <span class="hljs-keyword">this</span>.title = e.title;
       }
-    }
   }
+  mounted() {
+    <span class="hljs-keyword">this</span>.$cmlEmit(<span class="hljs-string">&apos;onshow&apos;</span>,{
+      value: <span class="hljs-keyword">this</span>.name
+    })
+  }
+}
+
+export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Echart();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-<p>&#x5728;<code>./src/components/echart/echart.weex.cml</code>&#x91CC;&#x9762;&#x4FEE;&#x6539;json&#x6807;&#x7B7E;&#x914D;&#x7F6E;&#x5F15;&#x7528;&#x521A;&#x521A;&#x65B0;&#x5EFA;&#x7684;weex.vue&#x7EC4;&#x4EF6;</p>
-<pre><code class="lang-javascripton">{
-  &quot;base&quot;: {
-    &quot;usingComponents&quot;: {
-      &quot;echart&quot;: &quot;./weex&quot;
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> &gt;</span><span class="css">
+<span class="hljs-selector-class">.mychart_dom_bar</span>{
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">500</span>cpx;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">750</span>cpx;
+}
+<span class="hljs-selector-class">.container</span>{
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">500</span>cpx;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">750</span>cpx;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;json&quot;</span>&gt;</span><span class="actionscript">
+{
+  <span class="hljs-string">&quot;base&quot;</span>: {
+    <span class="hljs-string">&quot;usingComponents&quot;</span>: {
     }
   }
 }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>&#x5728;<code>./src/components/echart/echart.weex.cml</code>&#x91CC;&#x9762;&#x4FEE;&#x6539;template&#x6807;&#x7B7E;&#x914D;&#x7F6E;&#x8C03;&#x7528;&#x521A;&#x521A;&#x65B0;&#x5EFA;&#x7684;weex.vue&#x7EC4;&#x4EF6;</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">echart</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">echart</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-</code></pre>
-<p>&#x6700;&#x7EC8;&#x6548;&#x679C;&#x5982;&#x56FE;</p>
-<p><img src="../assets/example/poly_echart.png" style="width: 300px; display: block"></p>
+<p>&#x6B64;&#x65F6;weex&#x7AEF;&#x4E5F;&#x80FD;&#x770B;&#x5230;&#x56FE;&#x8868;&#x6548;&#x679C;&#x4E86;</p>
+<p><img src="../assets/example/echart_weex.png" style="width:300px;display:block"></p>
 <h2 id="&#x6700;&#x540E;"><a name="&#x6700;&#x540E;" class="anchor-navigation-ex-anchor" href="#&#x6700;&#x540E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6700;&#x540E;" class="plugin-anchor" href="#&#x6700;&#x540E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6700;&#x540E;</h2>
 <ul>
 <li><p>&#x540C;&#x65F6;&#x5982;&#x679C;&#x6709;&#x66F4;&#x591A;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x9700;&#x8981;&#x7531;&#x8C03;&#x7528;&#x65B9;index.cml&#x4F20;&#x5165;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x518D;echart.interface&#x4E2D;&#x5B9A;&#x4E49;&#x66F4;&#x591A;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x4FDD;&#x969C;&#x5404;&#x7AEF;&#x4E00;&#x81F4;&#x3002;</p>
@@ -4451,7 +4511,7 @@ export default new Echart();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"多态组件扩展","level":"1.7.2","depth":2,"next":{"title":"手势拖拽效果","level":"1.7.3","depth":2,"path":"example/gestures.md","ref":"./example/gestures.md","articles":[]},"previous":{"title":"API扩展","level":"1.7.1","depth":2,"path":"example/chameleon-api.md","ref":"./example/chameleon-api.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"example/poly.md","mtime":"2019-01-17T11:39:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-08T04:56:59.063Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"多态组件扩展","level":"1.7.2","depth":2,"next":{"title":"手势拖拽效果","level":"1.7.3","depth":2,"path":"example/gestures.md","ref":"./example/gestures.md","articles":[]},"previous":{"title":"API扩展","level":"1.7.1","depth":2,"path":"example/chameleon-api.md","ref":"./example/chameleon-api.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"example/poly.md","mtime":"2019-03-11T08:43:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-11T09:06:41.219Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
