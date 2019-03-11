@@ -89,6 +89,7 @@ var chameleonConfig = {
   baidu: miniappConfig,
   web: {
     dev: {
+      babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       moduleIdType: 'name',
       hot: false,
       analysis: false,
@@ -98,6 +99,7 @@ var chameleonConfig = {
       }
     },
     build: {
+      babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       hash: true,
       minimize: true,
       moduleIdType: 'chameleon',

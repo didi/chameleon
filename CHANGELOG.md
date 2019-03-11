@@ -1,3 +1,19 @@
+## [0.1.0-alpha.4](https://github.com/didi/chameleon/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+- 终端提示英文化
+- 样式隔离，模板包裹，特殊属性被包裹层继承
+- 事件处理优化
+- 动画和轮播图的模板解析支持
+- chameleon-template-parse 单测完善到 90% 以上 增加对模板解析时候语法的校验
+- mock多域名请求优化
+
+### Bug Fixes
+
+- 修复component is v-model c-model v-show c-show
+
+
 ## [0.1.0-alpha.3](https://github.com/didi/chameleon/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
 
 ### Bug Fixes
@@ -37,5 +53,4 @@
 - **chameleon-loader** 修复cml-ui中组件事件不代理的问题([21e0709](https://github.com/didi/chameleon/commit/21e0709353a2635f9055a79009b9d992dfb68f78)）
 - **chameleon-templates** 修复todo-demo图片损坏问题([de5b42d](https://github.com/didi/chameleon/commit/de5b42da50e5b7315ce1ad33b82c2e6ed94fe04a)）
 - **chameleon-templates** 升级初始化项目依赖版本，fix [#2](https://github.com/didi/chameleon/issues/2) ([75ba521](https://github.com/didi/chameleon/commit/75ba52111634f218a404ca85fe57e448f8ed880a)）
-
 

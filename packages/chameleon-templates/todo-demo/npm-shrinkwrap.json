@@ -5,9 +5,9 @@
   "requires": true,
   "dependencies": {
     "chameleon-api": {
-      "version": "0.2.0",
-      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.2.0.tgz",
-      "integrity": "sha512-mojW8jCToPkJdX+RsepAe/ijqVC3PhACIulYd0Ap45Xh4iEB0HY/YRQtK9c//M/oqMxpzrUKXTwpNkHjSowQdQ==",
+      "version": "0.3.0-alpha.0",
+      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.3.0-alpha.0.tgz",
+      "integrity": "sha512-/qMyPikRj/q3C5TYHFCW6GJl13OhBbkd4TkAqTOlc2JiEQsef4N4NFChNnIfFijOEJzMRZAy3y3sf2ej2/diUg==",
       "requires": {
         "chameleon-bridge": "0.1.0",
         "child_process": "1.0.2",

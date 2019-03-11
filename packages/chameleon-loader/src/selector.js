@@ -29,7 +29,7 @@ module.exports = function (content) {
     part = part[index]
   }
   let output = part.content;
-  if (query.type === 'styles' && ~['app', 'component'].indexOf(query.fileType) && query.isInjectBaseStyle === 'true') {
+  if (query.type === 'styles' && ~['page', 'component'].indexOf(query.fileType) && query.isInjectBaseStyle === 'true') {
     // 支付宝 component 不插入
     if (!(query.cmlType === 'alipay' && query.fileType === 'component')) {
       output = `

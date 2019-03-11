@@ -31,6 +31,12 @@ describe('parse/web', function() {
     expect(/1rem/.test(result1)).to.be.ok;
     expect(/37.5px/.test(result2)).to.be.ok;
   })
+
+
+  it('lines', function() {
+    let result = parseCss('lines:1;');
+    expect(result).to.equal('display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden');
+  })
 })
 
 

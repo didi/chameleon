@@ -8,6 +8,12 @@ const generate = require('@babel/generator')["default"];
 const weexMixins = require('chameleon-mixins/weex-mixins.js');
 _.trimCurly = (str) => str.replace(/(?:{{)|(?:}})/ig, '');
 
+_.getModelKey = function(modelKey) {
+  modelKey = _.trimCurly(modelKey);
+  modelKey = modelKey.trim();
+  return modelKey;
+}
+
 _.analysisFor = function (nodeValue) {
   // v-for="item in items"
   let reg1 = /\s*(.+?)\s+(?:in|of)\s+(.+)\s*/;
@@ -157,15 +163,17 @@ _.transformWxDynamicStyleCpxToRpx = function(value) {
   return value;
 }
 _.transformNotInMustacheCpxToRpx = function(value) {
-  // 第一步
-  let isNotMustacheCpxToRpxReg = /}}[^{}]*?(cpx)/g;
-  return value.replace(isNotMustacheCpxToRpxReg, (match, key) => {
-    if (key === 'cpx') {
-      return match.replace(/cpx/, 'rpx')
+  let isNotMustacheCpxToRpxReg = /([^{}]+)?(\{\{[^{}]+\}\})?/g;
+  let temp = '';
+  value.replace(isNotMustacheCpxToRpxReg, (match, $1, $2, $3) => {
+    if ($1) {
+      temp += $1.replace(/cpx/g, 'rpx');
     }
-    return match;
+    if ($2) {
+      temp += $2;
+    }
   });
-
+  return temp
 }
 _.transformMustacheCpxToRpx = function(source) {
   const ast = babylon.parse(source, {
@@ -187,90 +195,90 @@ _.transformMustacheCpxToRpx = function(source) {
   }
   return result
 }
-_.handleCMLClassNodes = function (options) {
-  let { type } = options;
-  _[`${type}CMLClassNodes`](options);
-}
-_.webCMLClassNodes = function (options) {
-  let { classNodes, attributes, extraClass } = options;
-  if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-  } else if (classNodes.length === 1) { // 可能是动态class或者静态class
-    classNodes.forEach((itemNode) => {
-      if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
-        attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(`${extraClass}`)))
-        itemNode.name.name = `:${itemNode.name.name}`
-        let newClassNodeValue = utils.trimCurly(itemNode.value.value);
-        itemNode.value.value = `${newClassNodeValue}`;
-      } else {// 静态的
-        itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
-      }
-    })
-  } else if (classNodes.length === 2) {
-    classNodes.forEach((itemNode) => {
-      if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
-        itemNode.name.name = `:${itemNode.name.name}`
-        let newClassNodeValue = utils.trimCurly(itemNode.value.value);
-        itemNode.value.value = `${newClassNodeValue}`;
-      } else { // 静态的
-        itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
-      }
-    })
-  }
-}
-_.weexCMLClassNodes = function (options) {
-  let { classNodes, attributes, extraClass } = options;
-  if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-  } else if (classNodes.length === 1) { // 可能是动态class或者静态class
-    classNodes.forEach((itemNode) => {
-      if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
-        attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(`${extraClass}`)));
-        itemNode.name.name = `:${itemNode.name.name}`
-        let newClassNodeValue = utils.trimCurly(itemNode.value.value);
-        itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
-      } else {// 静态的
-        itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
-      }
-    })
-  } else if (classNodes.length === 2) {
-    classNodes.forEach((itemNode) => {
-      if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
-        itemNode.name.name = `:${itemNode.name.name}`
-        let newClassNodeValue = utils.trimCurly(itemNode.value.value);
-        itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
-      } else { // 静态的
-        itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
-      }
-    })
-  }
-}
-_.miniappCMLClassNodes = function (options) {
-  let { classNodes, attributes, extraClass } = options;
-  if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-  } else if (classNodes.length === 1) { // 可能是动态class或者静态class
-    classNodes.forEach((itemNode) => {
-      itemNode.value.value = `${itemNode.value.value} ${extraClass}`
-    })
-  } else if (classNodes.length === 2) {
-    let reactiveClassNode = classNodes.find((itemNode) => utils.isMustacheReactive(itemNode.value.value));
-    let staticClassNode = classNodes.find((itemNode) => !utils.isMustacheReactive(itemNode.value.value));
-    let reactiveClassNodeValue = reactiveClassNode && reactiveClassNode.value.value;
-    let staticClassNodeValue = staticClassNode && staticClassNode.value.value;
+// _.handleCMLClassNodes = function (options) {
+//   let { type } = options;
+//   _[`${type}CMLClassNodes`](options);
+// }
+// _.webCMLClassNodes = function (options) {
+//   let { classNodes, attributes, extraClass } = options;
+//   if (classNodes.length === 0) {
+//     attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+//   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
+//     classNodes.forEach((itemNode) => {
+//       if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
+//         attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(`${extraClass}`)))
+//         itemNode.name.name = `:${itemNode.name.name}`
+//         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
+//         itemNode.value.value = `${newClassNodeValue}`;
+//       } else {// 静态的
+//         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
+//       }
+//     })
+//   } else if (classNodes.length === 2) {
+//     classNodes.forEach((itemNode) => {
+//       if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
+//         itemNode.name.name = `:${itemNode.name.name}`
+//         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
+//         itemNode.value.value = `${newClassNodeValue}`;
+//       } else { // 静态的
+//         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
+//       }
+//     })
+//   }
+// }
+// _.weexCMLClassNodes = function (options) {
+//   let { classNodes, attributes, extraClass } = options;
+//   if (classNodes.length === 0) {
+//     attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+//   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
+//     classNodes.forEach((itemNode) => {
+//       if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
+//         attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(`${extraClass}`)));
+//         itemNode.name.name = `:${itemNode.name.name}`
+//         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
+//         itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
+//       } else {// 静态的
+//         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
+//       }
+//     })
+//   } else if (classNodes.length === 2) {
+//     classNodes.forEach((itemNode) => {
+//       if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
+//         itemNode.name.name = `:${itemNode.name.name}`
+//         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
+//         itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
+//       } else { // 静态的
+//         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
+//       }
+//     })
+//   }
+// }
+// _.miniappCMLClassNodes = function (options) {
+//   let { classNodes, attributes, extraClass } = options;
+//   if (classNodes.length === 0) {
+//     attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+//   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
+//     classNodes.forEach((itemNode) => {
+//       itemNode.value.value = `${itemNode.value.value} ${extraClass}`
+//     })
+//   } else if (classNodes.length === 2) {
+//     let reactiveClassNode = classNodes.find((itemNode) => utils.isMustacheReactive(itemNode.value.value));
+//     let staticClassNode = classNodes.find((itemNode) => !utils.isMustacheReactive(itemNode.value.value));
+//     let reactiveClassNodeValue = reactiveClassNode && reactiveClassNode.value.value;
+//     let staticClassNodeValue = staticClassNode && staticClassNode.value.value;
 
-    let newValue = `${reactiveClassNodeValue} ${staticClassNodeValue} ${extraClass}`
+//     let newValue = `${reactiveClassNodeValue} ${staticClassNodeValue} ${extraClass}`
 
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(newValue)))
-    // 将原来的class节点全部删除；
-    classNodes.forEach((classNode) => {
-      let classNodeIndex = attributes.indexOf(classNode);
-      if (classNodeIndex !== -1) {
-        attributes.splice(classNodeIndex, 1)
-      }
-    })
-  }
-}
+//     attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(newValue)))
+//     // 将原来的class节点全部删除；
+//     classNodes.forEach((classNode) => {
+//       let classNodeIndex = attributes.indexOf(classNode);
+//       if (classNodeIndex !== -1) {
+//         attributes.splice(classNodeIndex, 1)
+//       }
+//     })
+//   }
+// }
 _.handleVUEClassNodes = function (options) {
   let { type } = options;
   _[`${type}VUEClassNodes`](options);
@@ -368,3 +376,15 @@ _.miniappVUEClassNodes = function (options) {
 
   }
 }
+_.makeMap = function(str, expectsLowerCase) {
+  const map = Object.create(null)
+  const list = str.split(',')
+  for (let i = 0; i < list.length; i++) {
+    map[list[i]] = true
+  }
+  return expectsLowerCase
+    ? val => map[val.toLowerCase()]
+    : val => map[val]
+}
+_.isPlainTextElement = _.makeMap('script,style,textarea', true)
+

@@ -5,7 +5,7 @@ const {startServer: startWeexLiveLoad, broadcast} = require('./weex/socket-serve
 const previewSocket = require('./web/web-socket.js');
 const cmlLinter = require('chameleon-linter');
 const watch = require('glob-watcher');
-
+const fse = require('fs-extra');
 
 /**
  * 非web端构建
@@ -15,7 +15,24 @@ const watch = require('glob-watcher');
 exports.getBuildPromise = async function (media, type) {
 
   let options = exports.getOptions(media, type);
-  let webpackConfig = await getConfig(options)
+  let webpackConfig = await getConfig(options);
+  if (~['wx', 'baidu', 'alipay'].indexOf(type)) {
+    // 异步删除output目录
+    var outputpath = webpackConfig.output.path;
+    await new Promise(function(resolve, reject) {
+      fse.remove(outputpath, function(err) {
+        if (err) {
+          reject(err);
+        }
+        resolve();
+      })
+    })["catch"](e => {
+      let message = `clear file error! please remove direction ${outputpath} by yourself!`
+      cml.log.error(message);
+      throw new Error(e)
+    })
+
+  }
   return new Promise(function(resolve, reject) {
     // watch模式
     if (media === 'dev') {
@@ -43,7 +60,7 @@ exports.getBuildPromise = async function (media, type) {
         if (err) {
           reject(err);
         }
-        resolve();  
+        resolve();
       });
     }
   })

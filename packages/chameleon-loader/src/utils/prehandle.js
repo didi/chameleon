@@ -4,7 +4,7 @@ exports.injectWeexBaseStyle = function(content, self) {
   let newcontent = content;
   let parts = parse(content);
   if (parts.styles && parts.styles.length > 1) {
-    throw new Error(`${self.resourcePath}中声明了${parts.styles.length}个style部分，只允许一个。`)
+    throw new Error(`${self.resourcePath} statement ${parts.styles.length} style tag,but only allow one`)
   }
 
   if (parts.styles && parts.styles.length === 1) {
@@ -18,7 +18,7 @@ exports.webAddStyleScope = function(content, self) {
   let newcontent = content;
   let parts = parse(content);
   if (parts.styles && parts.styles.length > 1) {
-    throw new Error(`${self.resourcePath}中声明了${parts.styles.length}个style部分，只允许一个。`)
+    throw new Error(`${self.resourcePath} statement ${parts.styles.length} style tag,but only allow one`)
   }
 
   if (parts.styles && parts.styles.length === 1) {

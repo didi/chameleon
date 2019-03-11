@@ -1,6 +1,6 @@
 {
   "name": "chameleon-css-loader",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.4",
   "description": "chameleon样式处理",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "license": "Apache",
   "dependencies": {
     "autoprefixer": "^9.3.1",
+    "hash-sum": "^1.0.2",
     "loader-utils": "^1.1.0",
     "postcss": "^7.0.6",
     "postcss-plugin-px2rem": "^0.7.0",
