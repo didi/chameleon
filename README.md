@@ -69,6 +69,8 @@
 
 <b>通过以上对于开发语言的介绍，相信你看到只要是有过网页编程知识的人都可以快速的上手chameleon的开发</b>。
 
+## 多端高度一致
+深入到编程语言维度保障一致性，包括框架、生命周期、内置组件、事件通信、路由、界面布局、界面单位、组件作用域、组件通信等高度统一
 
 ## 丰富的组件
 在用CML写页面时，chameleon提供了[丰富的组件](https://CMLJS.org/doc/component/component.html)供开发者使用，内置的有`button switch radio checkbox`等组件，扩展的有`c-picker c-dialog c-loading`等等,覆盖了开发工作中常用的组件。
@@ -78,6 +80,9 @@
 为了方便开发者的高效开发，chameleon提供了[丰富的API库](https://CMLJS.org/doc/api/api.html),发布为npm包`chameleon-api`，里面包括了网络请求、数据存储、地理位置、系统信息、动画等方法。
 ## 自由定制API和组件
 基于强大的[多态协议](https://CMLJS.org/doc/framework/polymorphism/intro.html)，可自由扩展任意API和组件，不强依赖框架的更新。各端原始项目中已积累大量组件，也能直接引入到跨端项目中使用。
+
+基于强大的[多态协议](https://CMLJS.org/doc/framework/polymorphism/intro.html)，充分隔离各端差异化实现，轻松维护一套代码实现跨多端
+
 ## <a href="https://CMLJS.org/doc/framework/polymorphism/check.html">智能规范校验</a>
 代码规范校验，当出现不符合规范要求的代码时，编辑器会展示智能提示，不用挨个调试各端代码，同时命令行启动窗口也会提示代码的错误位置。
 
