@@ -246,23 +246,23 @@ describe('parse-template-vue-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id=" refVlaue "></view>`);
     });
   });
-  // // component is
+  //  component is
   describe('parse-component-is-transform', function() {
-    let source = `<component :is="currentComp" shrinkcomponents="comp1,comp2" :image-src="chameleonSrc" title="this is title"></component>`;
+    let source = `<component :is="currentComp" shrinkcomponents="comp1,comp2" :image-src="chameleonSrc" title="this is title" @click="handleClick"></component>`;
     it('test-component-is-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" class=" cml-base cml-component"></component>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\')" class=" cml-base cml-component"></component>`);
     });
     it('test-component-is-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" class=" cml-base cml-component"></component>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\')" class=" cml-base cml-component"></component>`);
     });
     it('test-component-is-transform-wx', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<comp2 wx:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component  cml-base cml-comp1  cml-base cml-comp2"></comp2>;\n<comp1 wx:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component  cml-base cml-comp1  cml-base cml-comp2"></comp1>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<comp2 wx:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 wx:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
     });
     it('test-component-is-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<comp2 a:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp2>;\n<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp1>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<comp2 a:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" onTap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp2>;\n<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" onTap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a"></comp1>`);
     });
     it('test-component-is-transform-baidu', function() {
-      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<comp2 s-if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component  cml-base cml-comp1  cml-base cml-comp2"></comp2>;\n<comp1 s-if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" class=" cml-base cml-component  cml-base cml-comp1  cml-base cml-comp2"></comp1>`);
+      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<comp2 s-if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 s-if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
     });
   });
 
