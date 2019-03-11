@@ -1,3 +1,19 @@
+## [0.1.0-alpha.4](https://github.com/didi/chameleon/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+- 终端提示英文化
+- 样式隔离，模板包裹，特殊属性被包裹层继承
+- 事件处理优化
+- 动画和轮播图的模板解析支持
+- chameleon-template-parse 单测完善到 90% 以上 增加对模板解析时候语法的校验
+- mock多域名请求优化
+
+### Bug Fixes
+
+- 修复component is v-model c-model v-show c-show
+
+
 ## [0.1.0-alpha.3](https://github.com/didi/chameleon/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
 
 ### Bug Fixes
