@@ -156,30 +156,33 @@ module.exports = function (options) {
   if (options.analysis) {
     commonConfig.plugins.push(new BundleAnalyzerPlugin())
   }
+
   let devApiPrefix = `http://${config.ip}:${webServerPort}`
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
   // 新版api 优先读取domainMap
-  let domainMap = (cml.config.get().domainMap && cml.config.get().domainMap[cml.media]) || {
-    apiPrefix
-  };
-  let defaultDomainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
+  let domain = options.domain || {};
+
+
   if (options.media === 'dev') {
-    // dev模式默认apiPrefix
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.devApiPrefix': JSON.stringify(devApiPrefix)
-    }))
+    // dev模式添加domainKey参数
+    Object.keys(domain).forEach(key => {
+      if (domain[key].toLowerCase() === 'localhost') {
+        domain[key] = devApiPrefix;
+      }
+      domain[key] = domain[key] + '__DEV_SPLIT__' + key;
+    })
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
     'process.env.cmlApiPrefix': JSON.stringify(apiPrefix)
   }))
-  commonConfig.plugins.push(new webpack.DefinePlugin({
-    'process.env.domainMap': JSON.stringify(domainMap)
-  }))
-  commonConfig.plugins.push(new webpack.DefinePlugin({
-    'process.env.defaultDomainKey': JSON.stringify(defaultDomainKey)
-  }))
+  Object.keys(domain).forEach(key => {
+    commonConfig.plugins.push(new webpack.DefinePlugin({
+      ['process.env.domain.' + key]: JSON.stringify(domain[key])
+    }))
+  })
+
   commonConfig.plugins.push(new webpack.DefinePlugin({
     'process.env.media': JSON.stringify(options.media)
   }))
