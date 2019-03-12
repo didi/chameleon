@@ -155,6 +155,18 @@ const _ = {};
 module.exports = _;
 
 _.get = function() {
+  if (chameleonConfig.base) {
+    let baseConfig = chameleonConfig.base;
+    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex'];
+    if (baseConfig) {
+      platforms.forEach(platform => {
+        if (chameleonConfig[platform]) {
+          utils.merge(chameleonConfig[platform], baseConfig);
+        }
+      })
+      delete chameleonConfig.base;
+    }
+  }
   return chameleonConfig;
 }
 
