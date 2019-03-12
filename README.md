@@ -96,7 +96,8 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 ## 联系我们
 
 [ChameleonCore@didiglobal.com](mailto:ChameleonCore@didiglobal.com)
-## Beatles Chameleon 团队
+
+## [Beatles Chameleon 团队](https://github.com/chameleon-team)
 
 负责人：Conan
 
