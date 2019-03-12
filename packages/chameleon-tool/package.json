@@ -84,7 +84,7 @@
     "postcss-loader": "2.1.5",
     "postcss-plugin-px2rem": "0.7.0",
     "postcss-plugin-weex": "0.1.6",
-    "prettier": "^1.15.3",
+    "prettier": "1.15.3",
     "shelljs": "0.8.2",
     "style-loader": "0.18.2",
     "stylus": "0.54.5",

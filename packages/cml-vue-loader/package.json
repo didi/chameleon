@@ -9,7 +9,7 @@
     "postcss": "^6.0.8",
     "postcss-load-config": "^1.1.0",
     "postcss-selector-parser": "^2.0.0",
-    "prettier": "^1.7.0",
+    "prettier": "1.15.3",
     "resolve": "^1.4.0",
     "source-map": "^0.6.1",
     "vue-hot-reload-api": "^2.2.0",
@@ -74,6 +74,4 @@
     "css-loader": "*",
     "vue-template-compiler": "^2.0.0"
   }
-
- 
 }
