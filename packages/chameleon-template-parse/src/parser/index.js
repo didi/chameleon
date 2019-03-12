@@ -87,7 +87,11 @@ exports.parseTagForSlider = function(path, type, options) {
 
 exports.parseRefStatement = function parseRefStatement(path, type, options) {
   let node = path.node;
-  if (t.isJSXAttribute(node) && (node.name.name === 'ref' || node.name.name.name === 'ref')) {
+  let lang = options.lang;
+  // cml语法下只解析 ref节点，不解析 :ref节点
+  if (lang === 'cml' && t.isJSXAttribute(node) && node.name.name === 'ref') {
+    parseRef.call({path, type, node, options});
+  } else if (lang === 'vue' && t.isJSXAttribute(node) && (node.name.name === 'ref' || node.name.name.name === 'ref')) {
     parseRef.call({path, type, node, options});
   }
 }
@@ -131,8 +135,12 @@ exports.parseAttributeStatement = function parseAttributeStatement(path, type) {
 };
 exports.parseStyleStatement = function parseStyleStatement(path, type, options) {
   let node = path.node;
+  let lang = options.lang;
   // node.name.name === 'style' (代表静态style) == node.name.name.name === 'style' (代表动态style)
-  if (t.isJSXAttribute(node) && (node.name.name === 'style' || node.name.name.name === 'style')) {
+  // cml语法下，不要解析 :style ，因为有可能是原生组件或者原生标签
+  if (lang === 'cml' && t.isJSXAttribute(node) && node.name.name === 'style') {
+    parseStyle.call({path, node, type, options});
+  } else if (lang === 'vue' && t.isJSXAttribute(node) && (node.name.name === 'style' || node.name.name.name === 'style')) {
     parseStyle.call({path, node, type, options});
   }
 }

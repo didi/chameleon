@@ -73,14 +73,18 @@ parseClass.tap('weex-cml', (args) => {
 
 })
 parseClass.tap('wx-alipay-baidu-cml', (args) => {
-  let { node, type, options: {lang, filePath} } = args;
+  let { node, type, options: {lang, filePath, usingComponents} } = args;
   if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
     let classNodes = attributes.filter((attr) => // 如果没有符合条件的classNodes则返回一个空数组
       attr.name.name === 'class'
     );
+    let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
     let extraClass = ` cml-base cml-${tagName}`;
+    if (isUsingComponents && type === 'wx') {
+      extraClass = ` cml-view cml-${tagName}`;
+    }
     if (type === 'alipay') {
       let randomClassName = hash(filePath);
       extraClass = `${extraClass} cml-${randomClassName}`
@@ -128,7 +132,7 @@ parseClass.tap('weex-vue', (args) => {
 
 })
 parseClass.tap('wx-alipay-baidu-vue', (args) => {
-  let { node, type, options: {lang, filePath} } = args;
+  let { node, type, options: {lang, filePath, usingComponents} } = args;
   if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
@@ -136,6 +140,10 @@ parseClass.tap('wx-alipay-baidu-vue', (args) => {
       attr.name.name === 'class' || attr.name.name.name === 'class'
     );
     let extraClass = ` cml-base cml-${tagName}`;
+    let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
+    if (isUsingComponents && type === 'wx') {
+      extraClass = ` cml-view cml-${tagName}`;
+    }
     if (type === 'alipay') {
       let randomClassName = hash(filePath);
       extraClass = `${extraClass} cml-${randomClassName}`

@@ -10,8 +10,10 @@ _.mixins = {
   methods: {
     //支持事件传参
     [_.inlineStatementEventProxy](...args){
+      let _cml_event_lmc; // ...args 的参数是用户传入的，可能为任意值，防止冲突；(a,'item',e);
       args = args.reduce((result,arg) => {
         if(arg instanceof Event){
+          _cml_event_lmc = arg;
           result.push(getNewEvent(arg))
         }else{
           result.push(arg)
@@ -19,8 +21,12 @@ _.mixins = {
         return result;
       },[]);
       let originFuncName = args[0];
+      let isStopBubble = args[1];
+      if(isStopBubble && _cml_event_lmc && typeof _cml_event_lmc.stopPropagation === 'function'){
+        _cml_event_lmc.stopPropagation();
+      }
       if(this[originFuncName] && _.isType(this[originFuncName], 'Function')){
-        this[originFuncName](...args.slice(1))
+        this[originFuncName](...args.slice(2))
       }else{
         console.log(`can not find function ${originFuncName}`)
       }
@@ -31,8 +37,11 @@ _.mixins = {
       this[modelKey] = newEvent.detail.value;
 
     },
-    [_.eventProxyName](e, originFuncName) {
+    [_.eventProxyName](e, originFuncName,isStopBubble) {
       //调用原始事件
+      if(isStopBubble && typeof e.stopPropagation === 'function'){
+        e.stopPropagation();
+      }
       if(this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
         //获取新的事件对象
         let newEvent = getNewEvent(e);

@@ -13,7 +13,17 @@ _.getModelKey = function(modelKey) {
   modelKey = modelKey.trim();
   return modelKey;
 }
-
+// 驼峰化单词
+_.camelize = function(str) {
+  return str.replace(/[-_\s]+(.)/g, function(match, key) {
+    return key ? key.toUpperCase() : '';
+  })
+}
+// 中划线化单词
+_.dasherise = function(str) {
+  return str.replace(/([A-Z])/g, '-$1').replace(/[-_\s]+/g, '-')
+    .toLowerCase();
+}
 _.analysisFor = function (nodeValue) {
   // v-for="item in items"
   let reg1 = /\s*(.+?)\s+(?:in|of)\s+(.+)\s*/;

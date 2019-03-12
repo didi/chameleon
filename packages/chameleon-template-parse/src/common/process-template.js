@@ -253,8 +253,14 @@ exports.preParseVueEvent = function (content) {
   //         v-on | @--> <--  属性名  --><--=-->
   let reg = /(?:v\-on:|@)([^\s"'<>\/=]+?)\s*=\s*/g
   content = content.replace(reg, (m, $1) => {
-    $1 = $1 === 'click' ? 'tap' : $1;
-    return `c-bind:${$1}=`
+    if (typeof $1 === "string" && $1.endsWith('.stop')) {
+      $1 = $1.replace('.stop', '');
+      $1 = $1 === 'click' ? 'tap' : $1;
+      return `c-catch:${$1}=`;
+    } else {
+      $1 = $1 === 'click' ? 'tap' : $1;
+      return `c-bind:${$1}=`
+    }
   });
   return content;
 }
@@ -309,14 +315,20 @@ exports.preParseAnimation = function(source, type) {
   return source;
 
 }
-// 语法检查：
+// 语法检查：这个不参与真正的模板编译；
 // vue语法不能写c-bind {{}} c-show  c-if c-model c-text  c-animation c-for
 // cml语法不能写 @     :    v-show  v-if v-model v-text v-animation v-for
 exports.preParseEventSyntax = function (content) {
   let reg = /(?:v\-on:|@)([^\s"'<>\/=]+?)\s*=\s*/g
   content = content.replace(reg, (m, $1) => {
-    $1 = $1 === 'click' ? 'tap' : $1;
-    return `v-on:${$1}=`
+    if (typeof $1 === "string" && $1.endsWith('.stop')) {
+      $1 = $1.replace('.stop', '');
+      $1 = $1 === 'click' ? 'tap' : $1;
+      return `v-on:${$1}=`;
+    } else {
+      $1 = $1 === 'click' ? 'tap' : $1;
+      return `v-on:${$1}=`
+    }
   });
   return content;
 }
