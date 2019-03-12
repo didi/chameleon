@@ -519,8 +519,7 @@ exports.getExcludeBabelPath = function() {
 
 exports.getGlobalCheckWhiteList = function () {
   return [
-    'node_modules/vuex/dist/vuex.esm.js',
-    "commonlogin.min.js"
+    /node_modules[\/\\](mobx|vuex)/
   ].concat(cml.config.get().globalCheckWhiteList)
 }
 
