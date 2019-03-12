@@ -5,7 +5,7 @@ exports.tagMap = {
       wx: 'cover-view',
       web: 'div',
       weex: 'div',
-      alipay: 'view',
+      alipay: 'cover-view',
       baidu: 'cover-view'
     },
     'view': {
