@@ -3,7 +3,7 @@ var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var fs = require('fs');
 const fse = require('fs-extra');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-let webpostcssLoader;
+let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
 
