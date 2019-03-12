@@ -35,7 +35,6 @@ let options = {lang: 'cml',
   }]
 };
 console.log('before-compile', source);
-<<<<<<< HEAD
 // let result_web = compileTemplate(source, 'web', options);
 // let result_weex = compileTemplate(source, 'weex', options);
 let result_wx = compileTemplate(source, 'wx', options);
@@ -45,13 +44,3 @@ let result_wx = compileTemplate(source, 'wx', options);
 // console.log('result_weex', result_weex)
 console.log('result_wx', result_wx)
 // console.log('result_alipay', result_alipay)
-=======
-let result_web = compileTemplate(source, 'web', options);
-// let result_wx = compileTemplate(source, 'wx', options);
-// let result_baidu = compileTemplate(source, 'wx', options);
-let result_alipay = compileTemplate(source, 'alipay', options);
-// let result_alipay = compileTemplate(source,'alipay',{lang:'cml'});
-console.log('result_web', result_web)
-// console.log('result_wx', result_wx)
-console.log('result_alipay', result_alipay)
->>>>>>> 2a10c8365248948fb345ed3c09c3af1f6f385036
