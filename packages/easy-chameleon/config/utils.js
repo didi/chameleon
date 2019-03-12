@@ -154,7 +154,7 @@ exports.styleLoaders = function (options) {
         })
         let minLoader = loader;
         // min.css 为后缀的css不过postcss-loader
-        minLoader.splice(minLoader.indexOf(webpostcssLoader), 1);
+        minLoader.splice(minLoader.indexOf('postcss-loader'), 1);
         output.push({
           test: new RegExp('min\\.' + extension + '$'),
           use: minLoader
