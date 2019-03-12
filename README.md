@@ -96,6 +96,14 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 ## 联系我们
 
 [ChameleonCore@didiglobal.com](mailto:ChameleonCore@didiglobal.com)
+## Beatles Chameleon 团队
+
+负责人：Conan
+
+内部成员：透心凉、Sgoddon、动机不纯、Jalon、Jack、卡尺哈哈、change、Observer、Kevin、guoqingSmile、Mr.MY、JiM、lzc、名字待定
+
+贡献者：
+期待你加入
 
 ##  微信 & QQ交流群
 
