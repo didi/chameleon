@@ -1,0 +1,4592 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>微信小程序项目迁移chameleon指引 · chameleon</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight-code/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code3/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="android_example.html" />
+    
+    
+    <link rel="prev" href="web_wx.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../assets/favicon.ico' type="image/x-icon">
+    
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../quick_start/quick_start.html">
+            
+                <a href="../quick_start/quick_start.html">
+            
+                    
+                    快速上手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../framework/framework.html">
+            
+                <a href="../framework/framework.html">
+            
+                    
+                    框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../quick_start/cml_cmd.html">
+            
+                <a href="../quick_start/cml_cmd.html">
+            
+                    
+                    脚手架工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../framework/structure.html">
+            
+                <a href="../framework/structure.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../view/view.html">
+            
+                <a href="../view/view.html">
+            
+                    
+                    视图层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="../view/cmss.html">
+            
+                <a href="../view/cmss.html">
+            
+                    
+                    CMSS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1.1" data-path="../view/cmss/layout.html">
+            
+                <a href="../view/cmss/layout.html">
+            
+                    
+                    布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.2" data-path="../view/cmss/box.html">
+            
+                <a href="../view/cmss/box.html">
+            
+                    
+                    盒模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.3" data-path="../view/cmss/text.html">
+            
+                <a href="../view/cmss/text.html">
+            
+                    
+                    文本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.4" data-path="../view/cmss/unit.html">
+            
+                <a href="../view/cmss/unit.html">
+            
+                    
+                    单位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.5" data-path="../view/cmss/color.html">
+            
+                <a href="../view/cmss/color.html">
+            
+                    
+                    颜色
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.6" data-path="../view/cmss/css_diff.html">
+            
+                <a href="../view/cmss/css_diff.html">
+            
+                    
+                    样式多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.1.7" data-path="../view/cmss/base_style.html">
+            
+                <a href="../view/cmss/base_style.html">
+            
+                    
+                    一致性基础样式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2" data-path="../view/cml.html">
+            
+                <a href="../view/cml.html">
+            
+                    
+                    CML-标准语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.2.1" data-path="../view/databind.html">
+            
+                <a href="../view/databind.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.2" data-path="../view/condition.html">
+            
+                <a href="../view/condition.html">
+            
+                    
+                    条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.3" data-path="../view/iterator.html">
+            
+                <a href="../view/iterator.html">
+            
+                    
+                    列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.4" data-path="../view/event.html">
+            
+                <a href="../view/event.html">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.5" data-path="../view/component.html">
+            
+                <a href="../view/component.html">
+            
+                    
+                    动态组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2.6" data-path="../view/directive.html">
+            
+                <a href="../view/directive.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3" data-path="../view/vue.html">
+            
+                <a href="../view/vue.html">
+            
+                    
+                    CML-类vue语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.3.1" data-path="../view/databind-vue.html">
+            
+                <a href="../view/databind-vue.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.2" data-path="../view/condition-vue.html">
+            
+                <a href="../view/condition-vue.html">
+            
+                    
+                    条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.3" data-path="../view/iterator-vue.html">
+            
+                <a href="../view/iterator-vue.html">
+            
+                    
+                    列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.4" data-path="../view/event-vue.html">
+            
+                <a href="../view/event-vue.html">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.5" data-path="../view/component-vue.html">
+            
+                <a href="../view/component-vue.html">
+            
+                    
+                    动态组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.6" data-path="../view/directive-vue.html">
+            
+                <a href="../view/directive-vue.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3.7" data-path="../view/css-vue.html">
+            
+                <a href="../view/css-vue.html">
+            
+                    
+                    样式语法规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.4" data-path="../view/base_component.html">
+            
+                <a href="../view/base_component.html">
+            
+                    
+                    基础组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../logic/logic.html">
+            
+                <a href="../logic/logic.html">
+            
+                    
+                    逻辑层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.1" data-path="../logic/lifecycle.html">
+            
+                <a href="../logic/lifecycle.html">
+            
+                    
+                    生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2" data-path="../logic/computed.html">
+            
+                <a href="../logic/computed.html">
+            
+                    
+                    计算属性 computed
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.3" data-path="../logic/watch.html">
+            
+                <a href="../logic/watch.html">
+            
+                    
+                    侦听属性 watch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.4" data-path="../logic/API.html">
+            
+                <a href="../logic/API.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5" data-path="../logic/store.html">
+            
+                <a href="../logic/store.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.5.1" data-path="../logic/store/start.html">
+            
+                <a href="../logic/store/start.html">
+            
+                    
+                    开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.2" data-path="../logic/store/state.html">
+            
+                <a href="../logic/store/state.html">
+            
+                    
+                    state
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.3" data-path="../logic/store/getters.html">
+            
+                <a href="../logic/store/getters.html">
+            
+                    
+                    getters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.4" data-path="../logic/store/mutation.html">
+            
+                <a href="../logic/store/mutation.html">
+            
+                    
+                    mutation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.5" data-path="../logic/store/action.html">
+            
+                <a href="../logic/store/action.html">
+            
+                    
+                    action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.6" data-path="../logic/store/module.html">
+            
+                <a href="../logic/store/module.html">
+            
+                    
+                    子模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5.7" data-path="../logic/store/structure.html">
+            
+                <a href="../logic/store/structure.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../framework/settings.html">
+            
+                <a href="../framework/settings.html">
+            
+                    
+                    配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="../framework/json.html">
+            
+                <a href="../framework/json.html">
+            
+                    
+                    组件配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="../framework/router.html">
+            
+                <a href="../framework/router.html">
+            
+                    
+                    路由配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="../framework/config.html">
+            
+                <a href="../framework/config.html">
+            
+                    
+                    工程配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../api/api.html">
+            
+                <a href="../api/api.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../api/runtime/runtime.html">
+            
+                <a href="../api/runtime/runtime.html">
+            
+                    
+                    运行时相关
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../api/runtime/module.html">
+            
+                <a href="../api/runtime/module.html">
+            
+                    
+                    export&import
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../api/runtime/@import.html">
+            
+                <a href="../api/runtime/@import.html">
+            
+                    
+                    @import
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../api/request.html">
+            
+                <a href="../api/request.html">
+            
+                    
+                    网络请求
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../api/request.html">
+            
+                <a href="../api/request.html#get">
+            
+                    
+                    cml.get
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../api/request.html">
+            
+                <a href="../api/request.html#post">
+            
+                    
+                    cml.post
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../api/request.html">
+            
+                <a href="../api/request.html#request">
+            
+                    
+                    cml.request
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../api/navigate.html">
+            
+                <a href="../api/navigate.html">
+            
+                    
+                    路由导航
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../api/navigate.html">
+            
+                <a href="../api/navigate.html#navigateto">
+            
+                    
+                    cml.navigateTo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../api/navigate.html">
+            
+                <a href="../api/navigate.html#redirectto">
+            
+                    
+                    cml.redirectTo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../api/navigate.html">
+            
+                <a href="../api/navigate.html#navigateback">
+            
+                    
+                    cml.navigateBack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../api/storage.html">
+            
+                <a href="../api/storage.html">
+            
+                    
+                    数据存储
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../api/storage.html">
+            
+                <a href="../api/storage.html#setstorage">
+            
+                    
+                    cml.setStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../api/storage.html">
+            
+                <a href="../api/storage.html#getstorage">
+            
+                    
+                    cml.getStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../api/storage.html">
+            
+                <a href="../api/storage.html#removestorage">
+            
+                    
+                    cml.removeStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../api/location.html">
+            
+                <a href="../api/location.html">
+            
+                    
+                    地理位置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../api/location.html">
+            
+                <a href="../api/location.html#getlocationinfo">
+            
+                    
+                    cml.getLocationInfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../api/system.html">
+            
+                <a href="../api/system.html">
+            
+                    
+                    系统信息
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="../api/system.html">
+            
+                <a href="../api/system.html#getsysteminfo">
+            
+                    
+                    cml.getSystemInfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../api/launchOptions.html">
+            
+                <a href="../api/launchOptions.html">
+            
+                    
+                    启动参数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.7.1" data-path="../api/launchOptions.html">
+            
+                <a href="../api/launchOptions.html#getlaunchoptionssync">
+            
+                    
+                    cml.getLaunchOptionsSync
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../api/getRect.html">
+            
+                <a href="../api/getRect.html">
+            
+                    
+                    元素属性
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.8.1" data-path="../api/getRect.html">
+            
+                <a href="../api/getRect.html#getrect">
+            
+                    
+                    cml.getRect
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../api/px.html">
+            
+                <a href="../api/px.html">
+            
+                    
+                    单位转换
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.9.1" data-path="../api/px.html">
+            
+                <a href="../api/px.html#px2cpx">
+            
+                    
+                    cml.px2cpx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9.2" data-path="../api/px.html">
+            
+                <a href="../api/px.html#cpx2px">
+            
+                    
+                    cml.cpx2px
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../api/modal.html">
+            
+                <a href="../api/modal.html">
+            
+                    
+                    交互反馈
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.10.1" data-path="../api/modal.html">
+            
+                <a href="../api/modal.html#showtoast">
+            
+                    
+                    cml.showToast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.2" data-path="../api/modal.html">
+            
+                <a href="../api/modal.html#alert">
+            
+                    
+                    cml.alert
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.3" data-path="../api/modal.html">
+            
+                <a href="../api/modal.html#confirm">
+            
+                    
+                    cml.confirm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../api/title.html">
+            
+                <a href="../api/title.html">
+            
+                    
+                    设置title
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.11.1" data-path="../api/title.html">
+            
+                <a href="../api/title.html#settitle">
+            
+                    
+                    cml.setTitle
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../api/open.html">
+            
+                <a href="../api/open.html">
+            
+                    
+                    打开/关闭应用页面
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.12.1" data-path="../api/open.html">
+            
+                <a href="../api/open.html#open">
+            
+                    
+                    cml.open
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12.2" data-path="../api/open.html">
+            
+                <a href="../api/open.html#close">
+            
+                    
+                    cml.close
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../api/chooseImage.html">
+            
+                <a href="../api/chooseImage.html">
+            
+                    
+                    获取照片
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.13.1" data-path="../api/chooseImage.html">
+            
+                <a href="../api/chooseImage.html#chooseimage">
+            
+                    
+                    cml.chooseImage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="../api/clipBoard.html">
+            
+                <a href="../api/clipBoard.html">
+            
+                    
+                    剪贴板
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.14.1" data-path="../api/clipBoard.html">
+            
+                <a href="../api/clipBoard.html#setclipboarddata">
+            
+                    
+                    cml.setClipBoardData
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14.2" data-path="../api/clipBoard.html">
+            
+                <a href="../api/clipBoard.html#getclipboarddata">
+            
+                    
+                    cml.getClipBoardData
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="../api/socket.html">
+            
+                <a href="../api/socket.html">
+            
+                    
+                    WebSocket
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.15.1" data-path="../api/socket.html">
+            
+                <a href="../api/socket.html#initsocket">
+            
+                    
+                    cml.initSocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="../api/timer.html">
+            
+                <a href="../api/timer.html">
+            
+                    
+                    计时器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.16.1" data-path="../api/timer.html">
+            
+                <a href="../api/timer.html#settimeout">
+            
+                    
+                    setTimeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16.2" data-path="../api/timer.html">
+            
+                <a href="../api/timer.html#cleartimeout">
+            
+                    
+                    clearTimeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16.3" data-path="../api/timer.html">
+            
+                <a href="../api/timer.html#setinterval">
+            
+                    
+                    setInterval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16.4" data-path="../api/timer.html">
+            
+                <a href="../api/timer.html#clearinterval">
+            
+                    
+                    clearInterval
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="../api/caniuse.html">
+            
+                <a href="../api/caniuse.html">
+            
+                    
+                    canIUse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="../api/async.html">
+            
+                <a href="../api/async.html">
+            
+                    
+                    异步流程控制
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.18.1" data-path="../api/async.html">
+            
+                <a href="../api/async.html">
+            
+                    
+                    Promise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18.2" data-path="../api/async.html">
+            
+                <a href="../api/async.html#async，await">
+            
+                    
+                    async，await
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="../api/error_control.html">
+            
+                <a href="../api/error_control.html">
+            
+                    
+                    异常和错误处理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.19.1" data-path="../api/error_control.html">
+            
+                <a href="../api/error_control.html#promise.then(">
+            
+                    
+                    promise.then().catch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19.2" data-path="../api/error_control.html">
+            
+                <a href="../api/error_control.html#try">
+            
+                    
+                    try catch
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="../api/animationFrame.html">
+            
+                <a href="../api/animationFrame.html">
+            
+                    
+                    动画关键帧
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.20.1" data-path="../api/animationFrame.html">
+            
+                <a href="../api/animationFrame.html#requestanimationframe">
+            
+                    
+                    requestAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20.2" data-path="../api/animationFrame.html">
+            
+                <a href="../api/animationFrame.html#cancelanimationframe">
+            
+                    
+                    cancelAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21" data-path="../api/createAnimation/main.html">
+            
+                <a href="../api/createAnimation/main.html">
+            
+                    
+                    动画
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.21.1" data-path="../api/createAnimation/createAnimation.html">
+            
+                <a href="../api/createAnimation/createAnimation.html">
+            
+                    
+                    cml.createAnimation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2" data-path="../api/createAnimation/animation/main.html">
+            
+                <a href="../api/createAnimation/animation/main.html">
+            
+                    
+                    Animation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.21.2.1" data-path="../api/createAnimation/animation/step.html">
+            
+                <a href="../api/createAnimation/animation/step.html">
+            
+                    
+                    .step
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.2" data-path="../api/createAnimation/animation/rotate.html">
+            
+                <a href="../api/createAnimation/animation/rotate.html">
+            
+                    
+                    .rotate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.3" data-path="../api/createAnimation/animation/rotateX.html">
+            
+                <a href="../api/createAnimation/animation/rotateX.html">
+            
+                    
+                    .rotateX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.4" data-path="../api/createAnimation/animation/rotateY.html">
+            
+                <a href="../api/createAnimation/animation/rotateY.html">
+            
+                    
+                    .rotateY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.5" data-path="../api/createAnimation/animation/rotateZ.html">
+            
+                <a href="../api/createAnimation/animation/rotateZ.html">
+            
+                    
+                    .rotateZ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.6" data-path="../api/createAnimation/animation/scale.html">
+            
+                <a href="../api/createAnimation/animation/scale.html">
+            
+                    
+                    .scale
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.7" data-path="../api/createAnimation/animation/scaleX.html">
+            
+                <a href="../api/createAnimation/animation/scaleX.html">
+            
+                    
+                    .scaleX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.8" data-path="../api/createAnimation/animation/scaleY.html">
+            
+                <a href="../api/createAnimation/animation/scaleY.html">
+            
+                    
+                    .scaleY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.9" data-path="../api/createAnimation/animation/translate.html">
+            
+                <a href="../api/createAnimation/animation/translate.html">
+            
+                    
+                    .translate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.10" data-path="../api/createAnimation/animation/translateX.html">
+            
+                <a href="../api/createAnimation/animation/translateX.html">
+            
+                    
+                    .translateX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.11" data-path="../api/createAnimation/animation/translateY.html">
+            
+                <a href="../api/createAnimation/animation/translateY.html">
+            
+                    
+                    .translateY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.12" data-path="../api/createAnimation/animation/opacity.html">
+            
+                <a href="../api/createAnimation/animation/opacity.html">
+            
+                    
+                    .opacity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.13" data-path="../api/createAnimation/animation/backgroundColor.html">
+            
+                <a href="../api/createAnimation/animation/backgroundColor.html">
+            
+                    
+                    .backgroundColor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.14" data-path="../api/createAnimation/animation/width.html">
+            
+                <a href="../api/createAnimation/animation/width.html">
+            
+                    
+                    .width
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.15" data-path="../api/createAnimation/animation/height.html">
+            
+                <a href="../api/createAnimation/animation/height.html">
+            
+                    
+                    .height
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21.2.16" data-path="../api/createAnimation/animation/export.html">
+            
+                <a href="../api/createAnimation/animation/export.html">
+            
+                    
+                    .export
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22" data-path="../api/store/store.html">
+            
+                <a href="../api/store/store.html">
+            
+                    
+                    Store
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.22.1" data-path="../api/store/createStore.html">
+            
+                <a href="../api/store/createStore.html">
+            
+                    
+                    Store.createStore
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.2" data-path="../api/store/commit.html">
+            
+                <a href="../api/store/commit.html">
+            
+                    
+                    Store.commit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.3" data-path="../api/store/dispatch.html">
+            
+                <a href="../api/store/dispatch.html">
+            
+                    
+                    Store.dispatch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.4" data-path="../api/store/mapState.html">
+            
+                <a href="../api/store/mapState.html">
+            
+                    
+                    Store.mapState
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.5" data-path="../api/store/mapGetters.html">
+            
+                <a href="../api/store/mapGetters.html">
+            
+                    
+                    Store.mapGetters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.6" data-path="../api/store/mapMutations.html">
+            
+                <a href="../api/store/mapMutations.html">
+            
+                    
+                    Store.mapMutations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.7" data-path="../api/store/mapActions.html">
+            
+                <a href="../api/store/mapActions.html">
+            
+                    
+                    Store.mapActions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22.8" data-path="../api/store/registerModule.html">
+            
+                <a href="../api/store/registerModule.html">
+            
+                    
+                    Store.registerModule
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../component/component.html">
+            
+                <a href="../component/component.html">
+            
+                    
+                    组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../component/base/base.html">
+            
+                <a href="../component/base/base.html">
+            
+                    
+                    内置组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../component/base/content/view.html">
+            
+                <a href="../component/base/content/view.html">
+            
+                    
+                    基础内容
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1.1" data-path="../component/base/content/view.html">
+            
+                <a href="../component/base/content/view.html">
+            
+                    
+                    view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.2" data-path="../component/base/content/text.html">
+            
+                <a href="../component/base/content/text.html">
+            
+                    
+                    text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.3" data-path="../component/base/content/page.html">
+            
+                <a href="../component/base/content/page.html">
+            
+                    
+                    page
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.4" data-path="../component/base/content/block.html">
+            
+                <a href="../component/base/content/block.html">
+            
+                    
+                    block
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.5" data-path="../component/base/content/cell.html">
+            
+                <a href="../component/base/content/cell.html">
+            
+                    
+                    cell
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../component/base/layout/scroller.html">
+            
+                <a href="../component/base/layout/scroller.html">
+            
+                    
+                    布局容器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.2.1" data-path="../component/base/layout/scroller.html">
+            
+                <a href="../component/base/layout/scroller.html">
+            
+                    
+                    scroller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.2" data-path="../component/base/layout/list.html">
+            
+                <a href="../component/base/layout/list.html">
+            
+                    
+                    list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.3" data-path="../component/base/layout/container.html">
+            
+                <a href="../component/base/layout/container.html">
+            
+                    
+                    container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.4" data-path="../component/base/layout/row.html">
+            
+                <a href="../component/base/layout/row.html">
+            
+                    
+                    row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.5" data-path="../component/base/layout/col.html">
+            
+                <a href="../component/base/layout/col.html">
+            
+                    
+                    col
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.6" data-path="../component/base/layout/carousel.html">
+            
+                <a href="../component/base/layout/carousel.html">
+            
+                    
+                    carousel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.7" data-path="../component/base/layout/carousel-item.html">
+            
+                <a href="../component/base/layout/carousel-item.html">
+            
+                    
+                    carousel-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="../component/base/form/button.html">
+            
+                <a href="../component/base/form/button.html">
+            
+                    
+                    表单组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.3.1" data-path="../component/base/form/button.html">
+            
+                <a href="../component/base/form/button.html">
+            
+                    
+                    button
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.2" data-path="../component/base/form/input.html">
+            
+                <a href="../component/base/form/input.html">
+            
+                    
+                    input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.3" data-path="../component/base/form/textarea.html">
+            
+                <a href="../component/base/form/textarea.html">
+            
+                    
+                    textarea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.4" data-path="../component/base/form/switch.html">
+            
+                <a href="../component/base/form/switch.html">
+            
+                    
+                    switch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.5" data-path="../component/base/form/radio.html">
+            
+                <a href="../component/base/form/radio.html">
+            
+                    
+                    radio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3.6" data-path="../component/base/form/checkbox.html">
+            
+                <a href="../component/base/form/checkbox.html">
+            
+                    
+                    checkbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4" data-path="../component/base/media/image.html">
+            
+                <a href="../component/base/media/image.html">
+            
+                    
+                    媒体组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.4.1" data-path="../component/base/media/image.html">
+            
+                <a href="../component/base/media/image.html">
+            
+                    
+                    image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.2" data-path="../component/base/media/video.html">
+            
+                <a href="../component/base/media/video.html">
+            
+                    
+                    video
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../component/expand/expand.html">
+            
+                <a href="../component/expand/expand.html">
+            
+                    
+                    扩展组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../component/expand/compound/c-toast.html">
+            
+                <a href="../component/expand/compound/c-toast.html">
+            
+                    
+                    c-toast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../component/expand/compound/c-loading.html">
+            
+                <a href="../component/expand/compound/c-loading.html">
+            
+                    
+                    c-loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../component/expand/compound/c-dialog.html">
+            
+                <a href="../component/expand/compound/c-dialog.html">
+            
+                    
+                    c-dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="../component/expand/compound/c-popup.html">
+            
+                <a href="../component/expand/compound/c-popup.html">
+            
+                    
+                    c-popup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.5" data-path="../component/expand/compound/c-tip.html">
+            
+                <a href="../component/expand/compound/c-tip.html">
+            
+                    
+                    c-tip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.6" data-path="../component/expand/compound/c-actionsheet.html">
+            
+                <a href="../component/expand/compound/c-actionsheet.html">
+            
+                    
+                    c-actionsheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.7" data-path="../component/expand/compound/c-tab.html">
+            
+                <a href="../component/expand/compound/c-tab.html">
+            
+                    
+                    c-tab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.8" data-path="../component/expand/compound/c-picker.html">
+            
+                <a href="../component/expand/compound/c-picker.html">
+            
+                    
+                    c-picker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.9" data-path="../component/expand/polymorphism/c-picker-panel.html">
+            
+                <a href="../component/expand/polymorphism/c-picker-panel.html">
+            
+                    
+                    c-picker-panel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.10" data-path="../component/expand/polymorphism/c-picker-item.html">
+            
+                <a href="../component/expand/polymorphism/c-picker-item.html">
+            
+                    
+                    c-picker-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.11" data-path="../component/expand/compound/c-checkbox-group.html">
+            
+                <a href="../component/expand/compound/c-checkbox-group.html">
+            
+                    
+                    c-checkbox-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.12" data-path="../component/expand/compound/c-radio-group.html">
+            
+                <a href="../component/expand/compound/c-radio-group.html">
+            
+                    
+                    c-radio-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.13" data-path="../component/expand/polymorphism/c-refresh.html">
+            
+                <a href="../component/expand/polymorphism/c-refresh.html">
+            
+                    
+                    c-refresh
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../extend/advanced_use.html">
+            
+                <a href="../extend/advanced_use.html">
+            
+                    
+                    高级使用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../framework/polymorphism/intro.html">
+            
+                <a href="../framework/polymorphism/intro.html">
+            
+                    
+                    多态协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="../framework/polymorphism/api.html">
+            
+                <a href="../framework/polymorphism/api.html">
+            
+                    
+                    接口多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../framework/polymorphism/component.html">
+            
+                <a href="../framework/polymorphism/component.html">
+            
+                    
+                    组件多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../framework/engineering.html">
+            
+                <a href="../framework/engineering.html">
+            
+                    
+                    工程化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../framework/mock.html">
+            
+                <a href="../framework/mock.html">
+            
+                    
+                    数据mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../framework/source_location.html">
+            
+                <a href="../framework/source_location.html">
+            
+                    
+                    资源定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../framework/config.html">
+            
+                <a href="../framework/config.html#文件指纹">
+            
+                    
+                    文件指纹
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../framework/config.html">
+            
+                <a href="../framework/config.html#代码压缩">
+            
+                    
+                    代码压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.5" data-path="../framework/config.html">
+            
+                <a href="../framework/config.html#热更新与自动刷新">
+            
+                    
+                    热更新与自动刷新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.6" data-path="../framework/devproxy.html">
+            
+                <a href="../framework/devproxy.html">
+            
+                    
+                    代理调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.7" data-path="../framework/chameleon_url.html">
+            
+                <a href="../framework/chameleon_url.html">
+            
+                    
+                    Chameleon URL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8" data-path="../framework/polymorphism/standards.html">
+            
+                <a href="../framework/polymorphism/standards.html">
+            
+                    
+                    规范与校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.8.1" data-path="../framework/polymorphism/check.html">
+            
+                <a href="../framework/polymorphism/check.html">
+            
+                    
+                    接口语法校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.2" data-path="../framework/global_check.html">
+            
+                <a href="../framework/global_check.html">
+            
+                    
+                    全局变量校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3" data-path="../framework/linter.html">
+            
+                <a href="../framework/linter.html">
+            
+                    
+                    代码规范校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.8.3.1" data-path="../framework/linter/core.html">
+            
+                <a href="../framework/linter/core.html">
+            
+                    
+                    核心文件校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.2" data-path="../framework/linter/cml-file.html">
+            
+                <a href="../framework/linter/cml-file.html">
+            
+                    
+                    CML文件规范校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.8.3.2.1" data-path="../framework/linter/standards/cml-interface.html">
+            
+                <a href="../framework/linter/standards/cml-interface.html">
+            
+                    
+                    interface规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.3" data-path="../framework/linter/cml-template.html">
+            
+                <a href="../framework/linter/cml-template.html">
+            
+                    
+                    模板规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.4" data-path="../framework/linter/cml-script.html">
+            
+                <a href="../framework/linter/cml-script.html">
+            
+                    
+                    脚本规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.5" data-path="../framework/linter/cml-cmss.html">
+            
+                <a href="../framework/linter/cml-cmss.html">
+            
+                    
+                    样式规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8.3.6" data-path="../framework/linter/cml-json.html">
+            
+                <a href="../framework/linter/cml-json.html">
+            
+                    
+                    配置规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../terminal/io.html">
+            
+                <a href="../terminal/io.html">
+            
+                    
+                    导入与导出
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1" data-path="../framework/progressive.html">
+            
+                <a href="../framework/progressive.html">
+            
+                    
+                    渐进式接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1.1" data-path="../framework/webpack_plugin.html">
+            
+                <a href="../framework/webpack_plugin.html">
+            
+                    
+                    webpack集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.2" data-path="../framework/compont_export.html">
+            
+                <a href="../framework/compont_export.html">
+            
+                    
+                    组件导出应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2" data-path="../terminal/web/framework.html">
+            
+                <a href="../terminal/web/framework.html">
+            
+                    
+                    Web 框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.2.1" data-path="../terminal/web/component.html">
+            
+                <a href="../terminal/web/component.html">
+            
+                    
+                    Web 组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.3" data-path="../terminal/weex/framework.html">
+            
+                <a href="../terminal/weex/framework.html">
+            
+                    
+                    Weex 框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.3.1" data-path="../terminal/weex/component.html">
+            
+                <a href="../terminal/weex/component.html">
+            
+                    
+                    Weex 组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.4" data-path="../terminal/wx/framework.html">
+            
+                <a href="../terminal/wx/framework.html">
+            
+                    
+                    微信小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.4.1" data-path="../terminal/wx/component.html">
+            
+                <a href="../terminal/wx/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.5" data-path="../terminal/alipay/framework.html">
+            
+                <a href="../terminal/alipay/framework.html">
+            
+                    
+                    支付宝小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.5.1" data-path="../terminal/alipay/component.html">
+            
+                <a href="../terminal/alipay/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.6" data-path="../terminal/baidu/framework.html">
+            
+                <a href="../terminal/baidu/framework.html">
+            
+                    
+                    百度小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.6.1" data-path="../terminal/baidu/component.html">
+            
+                <a href="../terminal/baidu/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../chameleon_client/introduction.html">
+            
+                <a href="../chameleon_client/introduction.html">
+            
+                    
+                    Native渲染能力接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../chameleon_client/integration.html">
+            
+                <a href="../chameleon_client/integration.html">
+            
+                    
+                    Chameleon SDK接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1.1" data-path="../chameleon_client/ios/introduction.html">
+            
+                <a href="../chameleon_client/ios/introduction.html">
+            
+                    
+                    iOS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1.1.1" data-path="../chameleon_client/ios/module.html">
+            
+                <a href="../chameleon_client/ios/module.html">
+            
+                    
+                    Module的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.1.2" data-path="../chameleon_client/ios/cache.html">
+            
+                <a href="../chameleon_client/ios/cache.html">
+            
+                    
+                    预加载和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.2" data-path="../chameleon_client/android/introduction.html">
+            
+                <a href="../chameleon_client/android/introduction.html">
+            
+                    
+                    Android
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1.2.1" data-path="../chameleon_client/android/module.html">
+            
+                <a href="../chameleon_client/android/module.html">
+            
+                    
+                    Module的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.2.2" data-path="../chameleon_client/android/adapter.html">
+            
+                <a href="../chameleon_client/android/adapter.html">
+            
+                    
+                    Adapter的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.2.3" data-path="../chameleon_client/android/cache.html">
+            
+                <a href="../chameleon_client/android/cache.html">
+            
+                    
+                    预加载和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.3" data-path="../chameleon_client/sdk_api.html">
+            
+                <a href="../chameleon_client/sdk_api.html">
+            
+                    
+                    SDK独有方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../chameleon_client/js_cache.html">
+            
+                <a href="../chameleon_client/js_cache.html">
+            
+                    
+                    端JS包资源缓存、更新和预加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../extend/extend.html">
+            
+                <a href="../extend/extend.html">
+            
+                    
+                    定制扩展端
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="main.html">
+            
+                <a href="main.html">
+            
+                    
+                    教程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="chameleon-api.html">
+            
+                <a href="chameleon-api.html">
+            
+                    
+                    API扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="poly.html">
+            
+                <a href="poly.html">
+            
+                    
+                    多态组件扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="gestures.html">
+            
+                <a href="gestures.html">
+            
+                    
+                    手势拖拽效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="project.html">
+            
+                <a href="project.html">
+            
+                    
+                    工程化实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="webpack_output.html">
+            
+                <a href="webpack_output.html">
+            
+                    
+                    普通项目使用跨端组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="webpack_plugin.html">
+            
+                <a href="webpack_plugin.html">
+            
+                    
+                    webpack集成chameleon
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="web_wx.html">
+            
+                <a href="web_wx.html">
+            
+                    
+                    只跨web和小程序的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.8" data-path="wx_to_chameleon.html">
+            
+                <a href="wx_to_chameleon.html">
+            
+                    
+                    微信小程序项目迁移chameleon指引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="android_example.html">
+            
+                <a href="android_example.html">
+            
+                    
+                    Android Chameleon SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="ios_example.html">
+            
+                <a href="ios_example.html">
+            
+                    
+                    iOS Chameleon SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="chameleon-product-diff.html">
+            
+                <a href="chameleon-product-diff.html">
+            
+                    
+                    为什么用多态协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12" data-path="../framework/edit-plugin.html">
+            
+                <a href="../framework/edit-plugin.html">
+            
+                    
+                    编辑器插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13" data-path="components-link.html">
+            
+                <a href="components-link.html">
+            
+                    
+                    组件实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.13.1" data-path="view.html">
+            
+                <a href="view.html">
+            
+                    
+                    view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.2" data-path="text.html">
+            
+                <a href="text.html">
+            
+                    
+                    text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.3" data-path="page.html">
+            
+                <a href="page.html">
+            
+                    
+                    page
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.4" data-path="cell.html">
+            
+                <a href="cell.html">
+            
+                    
+                    cell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.5" data-path="scroller.html">
+            
+                <a href="scroller.html">
+            
+                    
+                    scroller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.6" data-path="list.html">
+            
+                <a href="list.html">
+            
+                    
+                    list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.7" data-path="container.html">
+            
+                <a href="container.html">
+            
+                    
+                    container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.8" data-path="row.html">
+            
+                <a href="row.html">
+            
+                    
+                    row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.9" data-path="col.html">
+            
+                <a href="col.html">
+            
+                    
+                    col
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.10" data-path="button.html">
+            
+                <a href="button.html">
+            
+                    
+                    button
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.11" data-path="input.html">
+            
+                <a href="input.html">
+            
+                    
+                    input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.12" data-path="textarea.html">
+            
+                <a href="textarea.html">
+            
+                    
+                    textarea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.13" data-path="switch.html">
+            
+                <a href="switch.html">
+            
+                    
+                    switch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.14" data-path="radio.html">
+            
+                <a href="radio.html">
+            
+                    
+                    radio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.15" data-path="checkbox.html">
+            
+                <a href="checkbox.html">
+            
+                    
+                    checkbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.16" data-path="image.html">
+            
+                <a href="image.html">
+            
+                    
+                    image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.17" data-path="video.html">
+            
+                <a href="video.html">
+            
+                    
+                    video
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.18" data-path="animation.html">
+            
+                <a href="animation.html">
+            
+                    
+                    animation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.19" data-path="c-refresh.html">
+            
+                <a href="c-refresh.html">
+            
+                    
+                    c-refresh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.20" data-path="c-toast.html">
+            
+                <a href="c-toast.html">
+            
+                    
+                    c-toast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.21" data-path="c-dialog.html">
+            
+                <a href="c-dialog.html">
+            
+                    
+                    c-dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.22" data-path="c-popup.html">
+            
+                <a href="c-popup.html">
+            
+                    
+                    c-popup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.23" data-path="c-tip.html">
+            
+                <a href="c-tip.html">
+            
+                    
+                    c-tip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.24" data-path="c-loading.html">
+            
+                <a href="c-loading.html">
+            
+                    
+                    c-loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.25" data-path="c-actionsheet.html">
+            
+                <a href="c-actionsheet.html">
+            
+                    
+                    c-actionsheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.26" data-path="c-picker.html">
+            
+                <a href="c-picker.html">
+            
+                    
+                    c-picker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.27" data-path="c-picker-panel.html">
+            
+                <a href="c-picker-panel.html">
+            
+                    
+                    c-picker-panel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.28" data-path="c-picker-item.html">
+            
+                <a href="c-picker-item.html">
+            
+                    
+                    c-picker-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.29" data-path="c-checkbox-group.html">
+            
+                <a href="c-checkbox-group.html">
+            
+                    
+                    c-checkbox-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.30" data-path="c-radio-group.html">
+            
+                <a href="c-radio-group.html">
+            
+                    
+                    c-radio-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13.31" data-path="c-tab.html">
+            
+                <a href="c-tab.html">
+            
+                    
+                    c-tab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../framework/faq.html">
+            
+                <a href="../framework/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../update_record.html">
+            
+                <a href="../update_record.html">
+            
+                    
+                    更新记录
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../alpha_version.html">
+            
+                <a href="../alpha_version.html">
+            
+                    
+                    尝鲜版
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >微信小程序项目迁移chameleon指引</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon"><b></b>&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#1-&#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;"><b></b>1 &#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#2-&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;"><b></b>2 &#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#3-&#x8FC1;&#x79FB;-appjs&#x3001;appjson"><b></b>3 &#x8FC1;&#x79FB; app.js&#x3001;app.json</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#310-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x8DEF;&#x7531;pages&#x914D;&#x7F6E;"><b></b>3.1.0 &#x8FC1;&#x79FB; app.json &#x2014;&#x2014;&#x2014;&#x2014; &#x8DEF;&#x7531;pages&#x914D;&#x7F6E;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#311-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x5176;&#x4ED6;&#x914D;&#x7F6E;"><b></b>3.1.1 &#x8FC1;&#x79FB; app.json &#x2014;&#x2014;&#x2014;&#x2014; &#x5176;&#x4ED6;&#x914D;&#x7F6E;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;"><b></b>3.2 &#x8FC1;&#x79FB; app.js &#x2014;&#x2014;&#x2014;&#x2014;  &#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#4-&#x8FC1;&#x79FB;&#x9875;&#x9762;"><b></b>4 &#x8FC1;&#x79FB;&#x9875;&#x9762;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#41-&#x65B0;&#x5EFA;&#x9875;&#x9762;"><b></b>4.1 &#x65B0;&#x5EFA;&#x9875;&#x9762;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#42--&#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;"><b></b>4.2  &#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#43-&#x8FC1;&#x79FB;&#x9875;&#x9762;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><b></b>4.3 &#x8FC1;&#x79FB;&#x9875;&#x9762; &#x2014;&#x2014;&#x2014;&#x2014; &#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><b></b>5 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><b></b>5.1  &#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#52-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x914D;&#x7F6E;"><b></b>5.2 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6; &#x2014;&#x2014;&#x2014;&#x2014; &#x914D;&#x7F6E;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#53-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;"><b></b>5.3 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6; &#x2014;&#x2014;&#x2014;&#x2014; &#x751F;&#x547D;&#x5468;&#x671F;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><b></b>6 &#x9875;&#x9762;&amp;&amp;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><b></b>6.1 template&#x6A21;&#x677F;&#x8FC1;&#x79FB;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><b></b>6.2 JS&#x5185;&#x5BB9;&#x8FC1;&#x79FB;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><b></b>6.3 style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;</a></li></ul></ul></ul></div><a href="#&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon"><a name="&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon" class="anchor-navigation-ex-anchor" href="#&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon" class="plugin-anchor" href="#&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5982;&#x4F55;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x9879;&#x76EE;&#x5230;chameleon</h1>
+<h2 id="1-&#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;"><a name="1-&#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#1-&#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;" class="plugin-anchor" href="#1-&#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>1 &#x8FC1;&#x79FB;&#x539F;&#x5219;&#xFF1A;</h2>
+<h4 id="11-&#x6309;&#x7167;&#x5C0F;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;&#xFF0C;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;"><a name="11-&#x6309;&#x7167;&#x5C0F;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;&#xFF0C;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#11-&#x6309;&#x7167;&#x5C0F;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;&#xFF0C;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="11-&#x6309;&#x7167;&#x5C0F;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;&#xFF0C;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#11-&#x6309;&#x7167;&#x5C0F;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;&#xFF0C;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 &#x6309;&#x7167;&#x5C0F;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;&#xFF0C;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x884C;&#x8FC1;&#x79FB;</h4>
+<h4 id="12-&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;tabbar&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;c-tabbar&#x7EC4;&#x4EF6;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x548C;&#x5FAE;&#x4FE1;&#x7AEF;&#x539F;&#x751F;&#x7684;&#x5728;json&#x4E2D;&#x7684;&#x914D;&#x7F6E;tabbar&#x5E76;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;"><a name="12-&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;tabbar&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;c-tabbar&#x7EC4;&#x4EF6;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x548C;&#x5FAE;&#x4FE1;&#x7AEF;&#x539F;&#x751F;&#x7684;&#x5728;json&#x4E2D;&#x7684;&#x914D;&#x7F6E;tabbar&#x5E76;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;" class="anchor-navigation-ex-anchor" href="#12-&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;tabbar&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;c-tabbar&#x7EC4;&#x4EF6;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x548C;&#x5FAE;&#x4FE1;&#x7AEF;&#x539F;&#x751F;&#x7684;&#x5728;json&#x4E2D;&#x7684;&#x914D;&#x7F6E;tabbar&#x5E76;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="12-&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;tabbar&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;c-tabbar&#x7EC4;&#x4EF6;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x548C;&#x5FAE;&#x4FE1;&#x7AEF;&#x539F;&#x751F;&#x7684;&#x5728;json&#x4E2D;&#x7684;&#x914D;&#x7F6E;tabbar&#x5E76;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;" class="plugin-anchor" href="#12-&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;tabbar&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;c-tabbar&#x7EC4;&#x4EF6;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x548C;&#x5FAE;&#x4FE1;&#x7AEF;&#x539F;&#x751F;&#x7684;&#x5728;json&#x4E2D;&#x7684;&#x914D;&#x7F6E;tabbar&#x5E76;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2 &#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;tabbar&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;<code>c-tabbar</code>&#x7EC4;&#x4EF6;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x548C;&#x5FAE;&#x4FE1;&#x7AEF;&#x539F;&#x751F;&#x7684;&#x5728;json&#x4E2D;&#x7684;&#x914D;&#x7F6E;tabbar&#x5E76;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;</h4>
+<h4 id="13-&#x5C0F;&#x7A0B;&#x5E8F;&#x591A;&#x6587;&#x4EF6;&#x7ED3;&#x6784;---cml&#x5355;&#x6587;&#x4EF6;&#x9875;&#x9762;"><a name="13-&#x5C0F;&#x7A0B;&#x5E8F;&#x591A;&#x6587;&#x4EF6;&#x7ED3;&#x6784;---cml&#x5355;&#x6587;&#x4EF6;&#x9875;&#x9762;" class="anchor-navigation-ex-anchor" href="#13-&#x5C0F;&#x7A0B;&#x5E8F;&#x591A;&#x6587;&#x4EF6;&#x7ED3;&#x6784;---cml&#x5355;&#x6587;&#x4EF6;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="13-&#x5C0F;&#x7A0B;&#x5E8F;&#x591A;&#x6587;&#x4EF6;&#x7ED3;&#x6784;---cml&#x5355;&#x6587;&#x4EF6;&#x9875;&#x9762;" class="plugin-anchor" href="#13-&#x5C0F;&#x7A0B;&#x5E8F;&#x591A;&#x6587;&#x4EF6;&#x7ED3;&#x6784;---cml&#x5355;&#x6587;&#x4EF6;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3 &#x5C0F;&#x7A0B;&#x5E8F;&#x591A;&#x6587;&#x4EF6;&#x7ED3;&#x6784; -&gt; cml&#x5355;&#x6587;&#x4EF6;&#x9875;&#x9762;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xxx.wxml</td>
+<td><code>&lt;template&gt;&lt;/template&gt;</code></td>
+</tr>
+<tr>
+<td>xxx.js</td>
+<td><code>&lt;script&gt;&lt;/script&gt;</code></td>
+</tr>
+<tr>
+<td>xxx.wxss</td>
+<td><code>&lt;style&gt;&lt;/style&gt;</code></td>
+</tr>
+<tr>
+<td>xxx.json</td>
+<td><code>&lt;script cml-type=&quot;json&quot;&gt;&lt;/script&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;"><a name="2-&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;" class="anchor-navigation-ex-anchor" href="#2-&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;" class="plugin-anchor" href="#2-&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>2 &#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;</h2>
+<pre><code>cml init project
+</code></pre><p>&#x521D;&#x59CB;&#x5316;&#x540E;&#xFF0C;cml&#x9879;&#x76EE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/to_chameleon/cml-project.png" width="400px"></p>
+<p>&#x4F9D;&#x5177;&#x4F53;&#x60C5;&#x51B5; <a href="https://cmljs.org/doc/framework/config.html?h=platforms" target="_blank">&#x914D;&#x7F6E;&#x6784;&#x5EFA;&#x5E73;&#x53F0;</a> &#x548C; <a href="https://cmljs.org/doc/example/web_wx.html" target="_blank">&#x914D;&#x7F6E;&#x5E73;&#x53F0;&#x57FA;&#x7840;&#x6837;&#x5F0F;</a></p>
+<p>&#x53EF;&#x4FEE;&#x6539; <a href="https://cmljs.org/doc/framework/config.html?h=chameleon.config.js" target="_blank">chameleon.config.js</a> &#x7684; platforms &#x548C; baseStyle &#x5B57;&#x6BB5;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/to_chameleon/project-config.png" width="400px"></p>
+<p>&#x5047;&#x8BBE;&#x6709;&#x4E0B;&#x9762;&#x1F447;&#x7ED3;&#x6784;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;&#x9879;&#x76EE;</p>
+<p><img src="../assets/to_chameleon/wx-project.png" width="400px"></p>
+<p>pages&#x4E0B;&#x5305;&#x542B;&#x5404;&#x4E2A;&#x9875;&#x9762;&#xFF0C;components&#x4E0B;&#x5305;&#x542B;&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;</p>
+<h2 id="3-&#x8FC1;&#x79FB;-appjs&#x3001;appjson"><a name="3-&#x8FC1;&#x79FB;-appjs&#x3001;appjson" class="anchor-navigation-ex-anchor" href="#3-&#x8FC1;&#x79FB;-appjs&#x3001;appjson"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-&#x8FC1;&#x79FB;-appjs&#x3001;appjson" class="plugin-anchor" href="#3-&#x8FC1;&#x79FB;-appjs&#x3001;appjson"><i class="fa fa-link" aria-hidden="true"></i></a>3 &#x8FC1;&#x79FB; app.js&#x3001;app.json</h2>
+<p><strong>&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x914D;&#x7F6E;</strong>  <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE" target="_blank">&#x5FAE;&#x4FE1;&#x5E94;&#x7528;&#x7684;&#x914D;&#x7F6E;</a></p>
+<p>app.json</p>
+<pre><code class="lang-javascript">{
+  <span class="hljs-string">&quot;pages&quot;</span>:[
+    <span class="hljs-string">&quot;pages/index1&quot;</span>,
+    <span class="hljs-string">&quot;pages/index2&quot;</span>,
+    <span class="hljs-string">&quot;pages/index3&quot;</span>,
+    <span class="hljs-string">&quot;pages/index4&quot;</span>,
+  ],
+  <span class="hljs-string">&quot;window&quot;</span>:{
+    <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>:<span class="hljs-string">&quot;light&quot;</span>,
+    <span class="hljs-string">&quot;navigationBarBackgroundColor&quot;</span>: <span class="hljs-string">&quot;#fff&quot;</span>,
+    <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;WeChat&quot;</span>,
+    <span class="hljs-string">&quot;navigationBarTextStyle&quot;</span>:<span class="hljs-string">&quot;black&quot;</span>
+  }
+}
+</code></pre>
+<h3 id="310-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x8DEF;&#x7531;pages&#x914D;&#x7F6E;"><a name="310-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x8DEF;&#x7531;pages&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#310-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x8DEF;&#x7531;pages&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="310-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x8DEF;&#x7531;pages&#x914D;&#x7F6E;" class="plugin-anchor" href="#310-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x8DEF;&#x7531;pages&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1.0 &#x8FC1;&#x79FB; app.json &#x2014;&#x2014;&#x2014;&#x2014; &#x8DEF;&#x7531;pages&#x914D;&#x7F6E;</h3>
+<p>&#x4EE5;&#x4E0A;&#x5C0F;&#x7A0B;&#x5E8F; <code>app.json</code> &#x4E2D; <code>pages</code> &#x5B57;&#x6BB5; -&gt; <code>src/router.config.json</code> &#x4E2D; <code>path</code> &#x5B57;&#x6BB5;</p>
+<pre><code class="lang-javascript">{
+  <span class="hljs-string">&quot;mode&quot;</span>: <span class="hljs-string">&quot;history&quot;</span>,
+  <span class="hljs-string">&quot;domain&quot;</span>: <span class="hljs-string">&quot;https://www.chameleon.com&quot;</span>,
+  <span class="hljs-string">&quot;routes&quot;</span>:[
+    {
+      <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/cml/h5/index&quot;</span>,
+      <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;/pages/index1/index1&quot;</span>,
+      <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;&#x9996;&#x9875;&quot;</span>,
+      <span class="hljs-string">&quot;mock&quot;</span>: <span class="hljs-string">&quot;index.php&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/cml/h5/inner-detail&quot;</span>,
+      <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;/pages/index2/index2&quot;</span>,
+      <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;&#x9996;&#x9875;&quot;</span>,
+      <span class="hljs-string">&quot;mock&quot;</span>: <span class="hljs-string">&quot;index.php&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/cml/h5/inner-home&quot;</span>,
+      <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;/pages/index3/index3&quot;</span>,
+      <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;&#x9996;&#x9875;&quot;</span>,
+      <span class="hljs-string">&quot;mock&quot;</span>: <span class="hljs-string">&quot;index.php&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/cml/h5/inner-my&quot;</span>,
+      <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;/pages/index4/index4&quot;</span>,
+      <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;&#x9996;&#x9875;&quot;</span>,
+      <span class="hljs-string">&quot;mock&quot;</span>: <span class="hljs-string">&quot;index.php&quot;</span>
+    }
+  ]
+}
+</code></pre>
+<h3 id="311-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x5176;&#x4ED6;&#x914D;&#x7F6E;"><a name="311-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x5176;&#x4ED6;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#311-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x5176;&#x4ED6;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="311-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x5176;&#x4ED6;&#x914D;&#x7F6E;" class="plugin-anchor" href="#311-&#x8FC1;&#x79FB;-appjson-&#x2014;&#x2014;&#x2014;&#x2014;-&#x5176;&#x4ED6;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1.1 &#x8FC1;&#x79FB; app.json &#x2014;&#x2014;&#x2014;&#x2014; &#x5176;&#x4ED6;&#x914D;&#x7F6E;</h3>
+<p>&#x5C0F;&#x7A0B;&#x5E8F; <code>app.json</code> &#x4E2D; &#x5176;&#x4ED6;&#x5B57;&#x6BB5; -&gt; <code>src/app/app.cml</code> &#x4E2D;&#x914D;&#x7F6E;</p>
+<pre><code class="lang-javascript">
+&lt;script cml-type=&quot;json&quot;&gt;
+{
+  &quot;wx&quot;: {
+    &quot;window&quot;: {
+      &quot;backgroundTextStyle&quot;:&quot;light&quot;,
+      &quot;navigationBarBackgroundColor&quot;: &quot;#fff&quot;,
+      &quot;navigationBarTitleText&quot;: &quot;Chameleon&quot;,
+      &quot;navigationBarTextStyle&quot;:&quot;black&quot;
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h3 id="32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;"><a name="32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;" class="plugin-anchor" href="#32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 &#x8FC1;&#x79FB; app.js &#x2014;&#x2014;&#x2014;&#x2014;  &#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;</h3>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onLaunch</td>
+<td>beforeCreate</td>
+</tr>
+<tr>
+<td>onShow</td>
+<td>mounted</td>
+</tr>
+<tr>
+<td>onHide</td>
+<td>destroyed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-&#x8FC1;&#x79FB;&#x9875;&#x9762;"><a name="4-&#x8FC1;&#x79FB;&#x9875;&#x9762;" class="anchor-navigation-ex-anchor" href="#4-&#x8FC1;&#x79FB;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="4-&#x8FC1;&#x79FB;&#x9875;&#x9762;" class="plugin-anchor" href="#4-&#x8FC1;&#x79FB;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a>4 &#x8FC1;&#x79FB;&#x9875;&#x9762;</h2>
+<h3 id="41-&#x65B0;&#x5EFA;&#x9875;&#x9762;"><a name="41-&#x65B0;&#x5EFA;&#x9875;&#x9762;" class="anchor-navigation-ex-anchor" href="#41-&#x65B0;&#x5EFA;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="41-&#x65B0;&#x5EFA;&#x9875;&#x9762;" class="plugin-anchor" href="#41-&#x65B0;&#x5EFA;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a>4.1 &#x65B0;&#x5EFA;&#x9875;&#x9762;</h3>
+<p>&#x5982;&#x4E0A;&#x6240;&#x8FF0;&#xFF0C;&#x5C0F;&#x7A0B;&#x5E8F; <code>app.json</code> &#x4E2D; <code>pages</code> &#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x5BF9;&#x5E94;<code>router.config.json</code>&#x4E2D;&#x6BCF;&#x6761;&#x8DEF;&#x7531;&#x9879;&#xFF0C;&#x5BF9;&#x5E94;<code>cml</code>&#x9879;&#x76EE;&#x7684;&#x6BCF;&#x4E2A;&#x9875;&#x9762;</p>
+<pre><code class="lang-javascript">cml init page
+
+&#x8F93;&#x5165; index1
+
+cml init page 
+
+&#x8F93;&#x5165; index2 
+...
+</code></pre>
+<p>&#x5229;&#x7528;&#x811A;&#x624B;&#x67B6;&#x547D;&#x4EE4;&#xFF0C;&#x5728;<code>src/pages</code>&#x4E2D;&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x9875;&#x9762;</p>
+<h3 id="42--&#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;"><a name="42--&#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#42--&#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="42--&#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;" class="plugin-anchor" href="#42--&#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2  &#x8FC1;&#x79FB;<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE" target="_blank">&#x9875;&#x9762;&#x914D;&#x7F6E;</a></h3>
+<p>&#x5047;&#x8BBE;&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x6709;&#x9875;&#x9762;  <code>index1.json</code> &#x914D;&#x7F6E;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-javascript">{
+  <span class="hljs-string">&quot;usingComponents&quot;</span>: {
+    <span class="hljs-string">&quot;my-component1&quot;</span>: <span class="hljs-string">&quot;/components/comp1&quot;</span>,
+    <span class="hljs-string">&quot;my-component2&quot;</span>: <span class="hljs-string">&quot;/components/comp2&quot;</span>,
+    <span class="hljs-string">&quot;my-component3&quot;</span>: <span class="hljs-string">&quot;/components/comp3&quot;</span>,
+  }
+}
+</code></pre>
+<p>&#x4FEE;&#x6539;<code>src/pages/index1.cml</code> &#x9875;&#x9762;&#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-javascript">&lt;script cml-type=&quot;json&quot;&gt;
+{
+  &quot;base&quot;: {
+    &quot;usingComponents&quot;: {
+         &quot;my-component1&quot;: &quot;/components/comp1&quot;,
+        &quot;my-component2&quot;: &quot;/components/comp2&quot;,
+        &quot;my-component3&quot;: &quot;/components/comp3&quot;,
+    }
+  },
+  &quot;wx&quot;: {
+    &quot;navigationBarTitleText&quot;: &quot;index&quot;,
+    &quot;backgroundTextStyle&quot;: &quot;dark&quot;,
+    &quot;backgroundColor&quot;: &quot;#E2E2E2&quot;
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p>&#x5176;&#x4E2D;&#xFF1A;</p>
+<ul>
+<li><p><code>base</code> &#x4EE3;&#x8868;&#x5404;&#x4E2A;&#x5C0F;&#x7A0B;&#x5E8F;&#x9875;&#x9762;&#x7684;&#x5171;&#x6709;&#x914D;&#x7F6E;</p>
+</li>
+<li><p><code>wx</code> &#x4EE3;&#x8868;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7279;&#x6709;&#x7684;&#x914D;&#x7F6E;</p>
+</li>
+</ul>
+<h3 id="43-&#x8FC1;&#x79FB;&#x9875;&#x9762;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><a name="43-&#x8FC1;&#x79FB;&#x9875;&#x9762;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;" class="anchor-navigation-ex-anchor" href="#43-&#x8FC1;&#x79FB;&#x9875;&#x9762;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="43-&#x8FC1;&#x79FB;&#x9875;&#x9762;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;" class="plugin-anchor" href="#43-&#x8FC1;&#x79FB;&#x9875;&#x9762;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><i class="fa fa-link" aria-hidden="true"></i></a>4.3 &#x8FC1;&#x79FB;&#x9875;&#x9762; &#x2014;&#x2014;&#x2014;&#x2014; &#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;</h3>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onLoad</td>
+<td>beforeCreate</td>
+</tr>
+<tr>
+<td>onShow</td>
+<td>mounted</td>
+</tr>
+<tr>
+<td>onUnload</td>
+<td>destroyed</td>
+</tr>
+<tr>
+<td>onReady</td>
+<td>methods.onReady</td>
+</tr>
+<tr>
+<td>onHide</td>
+<td>methods.onHide</td>
+</tr>
+<tr>
+<td>onShareAppMessage</td>
+<td>methods.onShareAppMessage</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><a name="5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>5 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;</h2>
+<h3 id="51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><a name="51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>5.1  &#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;</h3>
+<p>&#x5982;&#x4E0A;&#xFF0C;<code>index1.json</code>&#x9875;&#x9762;&#x4E2D;&#x5F15;&#x7528;&#x4E86;&#x7EC4;&#x4EF6; <code>comp1  comp2  comp3</code>;</p>
+<p>&#x7EC4;&#x4EF6;&#x5206;&#x4E3A;&#xFF1A;<code>&#x666E;&#x901A;&#x7EC4;&#x4EF6;</code> &#x548C; <code>&#x591A;&#x6001;&#x7EC4;&#x4EF6;</code> </p>
+<p>&#x8FD9;&#x91CC;&#x4EE5;<code>&#x666E;&#x901A;&#x7EC4;&#x4EF6;</code>&#x4E3A;&#x4F8B;&#xFF0C;&#x591A;&#x6001;&#x7EC4;&#x4EF6;&#x5177;&#x4F53;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;<a href="https://cmljs.org/doc/framework/polymorphism/component.html?h=%E5%A4%9A%E6%80%81%E7%BB%84%E4%BB%B6" target="_blank">&#x53C2;&#x8003;</a></p>
+<pre><code class="lang-javascript">cml init component 
+&#x9009;&#x62E9; &#x666E;&#x901A;&#x7EC4;&#x4EF6;(normal-component)
+&#x8F93;&#x5165; comp1
+
+cml init component 
+&#x9009;&#x62E9; &#x666E;&#x901A;&#x7EC4;&#x4EF6;(normal-component)
+&#x8F93;&#x5165; comp2
+
+.....
+</code></pre>
+<p><img src="../assets/to_chameleon/init-component.png" width="400px"></p>
+<p>&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x5728; <code>src/components</code>&#x4E0B;&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x7EC4;&#x4EF6;;</p>
+<h3 id="52-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x914D;&#x7F6E;"><a name="52-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#52-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="52-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x914D;&#x7F6E;" class="plugin-anchor" href="#52-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>5.2 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6; &#x2014;&#x2014;&#x2014;&#x2014; &#x914D;&#x7F6E;</h3>
+<p>&#x540C;<code>4.2 &#x8FC1;&#x79FB;&#x9875;&#x9762;&#x914D;&#x7F6E;</code></p>
+<h3 id="53-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;"><a name="53-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;" class="anchor-navigation-ex-anchor" href="#53-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="53-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;" class="plugin-anchor" href="#53-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;-&#x2014;&#x2014;&#x2014;&#x2014;-&#x751F;&#x547D;&#x5468;&#x671F;"><i class="fa fa-link" aria-hidden="true"></i></a>5.3 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6; &#x2014;&#x2014;&#x2014;&#x2014; &#x751F;&#x547D;&#x5468;&#x671F;</h3>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>created</td>
+<td>created</td>
+</tr>
+<tr>
+<td>attached</td>
+<td>beforeMount</td>
+</tr>
+<tr>
+<td>ready</td>
+<td>mounted</td>
+</tr>
+<tr>
+<td>detached</td>
+<td>destroyed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><a name="6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;" class="anchor-navigation-ex-anchor" href="#6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;" class="plugin-anchor" href="#6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><i class="fa fa-link" aria-hidden="true"></i></a>6 &#x9875;&#x9762;&amp;&amp;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;</h2>
+<h3 id="61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><a name="61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1 <code>template</code>&#x6A21;&#x677F;&#x8FC1;&#x79FB;</h3>
+<p>&#x8FD9;&#x91CC;&#x4EE5;<code>cml</code>&#x8BED;&#x6CD5;&#x4E3A;&#x4F8B;&#xFF1A;<a href="https://cmljs.org/doc/view/cml.html" target="_blank">cml&#x57FA;&#x7840;&#x8BED;&#x6CD5;</a></p>
+<h4 id="611-&#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x3001;&#x6761;&#x4EF6;&#x6E32;&#x67D3;&#x3001;&#x5FAA;&#x73AF;&#x3001;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8FC1;&#x79FB;"><a name="611-&#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x3001;&#x6761;&#x4EF6;&#x6E32;&#x67D3;&#x3001;&#x5FAA;&#x73AF;&#x3001;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#611-&#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x3001;&#x6761;&#x4EF6;&#x6E32;&#x67D3;&#x3001;&#x5FAA;&#x73AF;&#x3001;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="611-&#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x3001;&#x6761;&#x4EF6;&#x6E32;&#x67D3;&#x3001;&#x5FAA;&#x73AF;&#x3001;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#611-&#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x3001;&#x6761;&#x4EF6;&#x6E32;&#x67D3;&#x3001;&#x5FAA;&#x73AF;&#x3001;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.1 &#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x3001;&#x6761;&#x4EF6;&#x6E32;&#x67D3;&#x3001;&#x5FAA;&#x73AF;&#x3001;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8FC1;&#x79FB;</h4>
+<p>&#x5047;&#x8BBE;&#xFF0C;&#x539F;&#x6709;&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;scroller-wrap&quot;</span>&gt;</span>
+    &#x6570;&#x636E;&#x7ED1;&#x5B9A;
+<span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>{{}}<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+&#x6761;&#x4EF6;&#x6E32;&#x67D3;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:if</span>&gt;</span>wx:if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:elif</span>&gt;</span>wx:elif<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:else</span>&gt;</span>wx:else<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+&#x5FAA;&#x73AF;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;{{array}}&quot;</span> <span class="hljs-attr">wx:for-index</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">wx:for-item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;tapTest&quot;</span> <span class="hljs-attr">data-hi</span>=<span class="hljs-string">&quot;WeChat&quot;</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;tapName&quot;</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+</code></pre>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x4F7F;&#x7528; <code>cml</code>&#x8BED;&#x6CD5;&#x540E;&#xFF1A;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>
+    &#x6570;&#x636E;&#x7ED1;&#x5B9A;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>{{}}<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    &#x6761;&#x4EF6;&#x6E32;&#x67D3;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-if</span>&gt;</span>c-if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-else-if</span>&gt;</span>c-else-if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-else</span>&gt;</span>c-else<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    &#x5FAA;&#x73AF;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-for</span>=<span class="hljs-string">&quot;{{array}}&quot;</span> <span class="hljs-attr">c-for-index</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">c-for-item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    &#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;tapTest&quot;</span> <span class="hljs-attr">data-hi</span>=<span class="hljs-string">&quot;WeChat&quot;</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;tapName&quot;</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    chameleon&#x8BED;&#x6CD5;&#x6269;&#x5C55;&#x4E86;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#xFF0C;&#x652F;&#x6301;&#x76F4;&#x63A5;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x4F20;&#x53C2;
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;tapTest&quot;</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;tapName(&apos;weChat&apos;,1,2,item)&quot;</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+</code></pre>
+<h4 id="612-&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;"><a name="612-&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#612-&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="612-&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#612-&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.2 &#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;</h4>
+<p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x4F7F;&#x7528;&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x7684;&#x539F;&#x751F;&#x7EC4;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x5728;&#x539F;&#x751F;&#x6807;&#x7B7E;&#x524D;&#x52A0;&#x4E0A; <code>origin-</code>&#xFF0C;<code>cml</code>&#x6846;&#x67B6;&#x4F1A;&#x6E32;&#x67D3;&#x539F;&#x751F;&#x7EC4;&#x4EF6;<a href="https://cmljs.org/doc/framework/linter/cml-template.html#%08%E5%BC%95%E7%94%A8%E5%B9%B3%E5%8F%B0%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6" target="_blank">&#x53C2;&#x8003;</a></p>
+<p>&#x5047;&#x8BBE;&#xFF0C;&#x539F;&#x6709;&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-html">
+<span class="hljs-tag">&lt;<span class="hljs-name">picker-view</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;{{value}}&quot;</span> <span class="hljs-attr">bindchange</span>=<span class="hljs-string">&quot;bindChange&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">picker-view-column</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;{{list}}&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>{{item}}<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">picker-view-column</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">picker-view</span>&gt;</span>
+</code></pre>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x4F7F;&#x7528;<code>cml</code>&#x8BED;&#x6CD5;&#x540E;&#xFF1A;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">origin-picker-view</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;{{value}}&quot;</span> <span class="hljs-attr">bindchange</span>=<span class="hljs-string">&quot;bindChange&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">origin-picker-view-column</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-for</span>=<span class="hljs-string">&quot;{{list}}&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>{{item}}<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">origin-picker-view-column</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">origin-picker-view</span>&gt;</span>
+</code></pre>
+<h4 id="613-&#x6A21;&#x677F;&#x4E0A;&#x9700;&#x8981;&#x66FF;&#x6362;&#x7684;&#x8BED;&#x6CD5;&#x6C47;&#x603B;"><a name="613-&#x6A21;&#x677F;&#x4E0A;&#x9700;&#x8981;&#x66FF;&#x6362;&#x7684;&#x8BED;&#x6CD5;&#x6C47;&#x603B;" class="anchor-navigation-ex-anchor" href="#613-&#x6A21;&#x677F;&#x4E0A;&#x9700;&#x8981;&#x66FF;&#x6362;&#x7684;&#x8BED;&#x6CD5;&#x6C47;&#x603B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="613-&#x6A21;&#x677F;&#x4E0A;&#x9700;&#x8981;&#x66FF;&#x6362;&#x7684;&#x8BED;&#x6CD5;&#x6C47;&#x603B;" class="plugin-anchor" href="#613-&#x6A21;&#x677F;&#x4E0A;&#x9700;&#x8981;&#x66FF;&#x6362;&#x7684;&#x8BED;&#x6CD5;&#x6C47;&#x603B;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.3 &#x6A21;&#x677F;&#x4E0A;&#x9700;&#x8981;&#x66FF;&#x6362;&#x7684;&#x8BED;&#x6CD5;&#x6C47;&#x603B;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wx:if</td>
+<td>c-if</td>
+</tr>
+<tr>
+<td>wx:elif</td>
+<td>c-else-if</td>
+</tr>
+<tr>
+<td>wx:else</td>
+<td>c-else</td>
+</tr>
+<tr>
+<td>wx:for</td>
+<td>c-for</td>
+</tr>
+<tr>
+<td>wx:for-index</td>
+<td>c-for-index</td>
+</tr>
+<tr>
+<td>wx:for-item</td>
+<td>c-for-item</td>
+</tr>
+<tr>
+<td>wx:key</td>
+<td>c-key</td>
+</tr>
+<tr>
+<td>bindtap</td>
+<td>c-bind:tap</td>
+</tr>
+<tr>
+<td>catchtap</td>
+<td>c-catch:tap</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x7684;&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x673A;&#x5236;&#xFF0C;&#x6620;&#x5C04;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>this.triggerEvent(xxx,xxx)</td>
+<td>this.$cmlEmit(xxx,xxx)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="614-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><a name="614-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;" class="anchor-navigation-ex-anchor" href="#614-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="614-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;" class="plugin-anchor" href="#614-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.4 chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;</h4>
+<h5 id="&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;"><a name="&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;" class="plugin-anchor" href="#&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55; c-show&#x3001;c-model&#x3001;c-show <a href="https://cmljs.org/doc/view/directive.html" target="_blank">&#x53C2;&#x8003;</a></h5>
+<h5 id="component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;"><a name="component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;" class="plugin-anchor" href="#component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>component is &#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55; <a href="https://cmljs.org/doc/view/component.html" target="_blank">&#x53C2;&#x8003;</a></h5>
+<h5 id="&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;"><a name="&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;" class="plugin-anchor" href="#&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570; <a href="https://cmljs.org/doc/view/event.html" target="_blank">&#x53C2;&#x8003;</a></h5>
+<h3 id="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><a name="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2 JS&#x5185;&#x5BB9;&#x8FC1;&#x79FB;</h3>
+<h4 id="621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;"><a name="621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;" class="anchor-navigation-ex-anchor" href="#621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;" class="plugin-anchor" href="#621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.1 &#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB; &#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;</h4>
+<h4 id="622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;"><a name="622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.2 &#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;</h4>
+<pre><code class="lang-javascript">props = {
+}
+data = {
+}
+computed = {
+}
+watch  = {
+}
+methods = {
+
+}
+</code></pre>
+<h4 id="623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;"><a name="623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.3 properties &#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
+<th>chameleon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>properties = { type: xxx,value: xxx }</td>
+<td>props = { type: xxx, default: xxx }</td>
+</tr>
+</tbody>
+</table>
+<h4 id="624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><a name="624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.4 &#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;API&#x7684;&#x8FC1;&#x79FB;</h4>
+<p>&#x5047;&#x8BBE;&#xFF0C;&#x539F;&#x6709;&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-javascript">wx.redirectTo({
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&apos;test?id=1&apos;</span>
+})
+</code></pre>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x4F7F;&#x7528;<code>cml</code>&#x8BED;&#x6CD5;&#x540E;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> cml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chameleon-api&apos;</span>
+cml.redirectTo({
+  <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/pages/navigateBack/index&apos;</span>,
+  <span class="hljs-attr">query</span>: {
+    <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">b</span>: <span class="hljs-string">&apos;test&apos;</span>
+  }
+})
+</code></pre>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank">&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;API&#x6587;&#x6863;</a></p>
+<p><a href="https://cmljs.org/doc/api/navigate.html#redirectto" target="_blank">chameleon-api&#x7684;&#x6587;&#x6863;</a></p>
+<h3 id="63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><a name="63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.3 style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;</h3>
+<p>&#x6A21;&#x677F;&#x4E0A;&#x7684;&#x6837;&#x5F0F;&#x8BED;&#x6CD5; <a href="https://cmljs.org/doc/view/cmss.html" target="_blank">&#x53C2;&#x8003;</a>,&#x57FA;&#x672C;&#x548C;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF1B;</p>
+<p>&#x5982;&#x679C;&#x6837;&#x5F0F;&#x60F3;&#x8981;&#x9002;&#x914D;&#x591A;&#x7AEF;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5355;&#x4F4D;&#x6539;&#x6210;<code>cpx</code>;</p>
+<p>&#x5047;&#x8BBE;&#xFF0C;&#x539F;&#x6709;&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-css"><span class="hljs-selector-class">.demo-com</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">400</span>rpx;
+  <span class="hljs-attribute">justify-content</span>: center;
+}
+<span class="hljs-selector-class">.title</span> {
+  <span class="hljs-attribute">align-self</span>: center;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#61c7fc</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">72</span>rpx;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">160</span>rpx;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">20</span>rpx;
+}
+<span class="hljs-selector-class">.logo</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">150</span>rpx;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">150</span>rpx;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">100</span>rpx;
+}
+</code></pre>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x4F7F;&#x7528;<code>cml</code>&#x8BED;&#x6CD5;&#x540E;&#xFF1A;</p>
+<pre><code class="lang-css"><span class="hljs-selector-class">.demo-com</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">400</span>cpx;
+  <span class="hljs-attribute">justify-content</span>: center;
+}
+<span class="hljs-selector-class">.title</span> {
+  <span class="hljs-attribute">align-self</span>: center;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#61c7fc</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">72</span>cpx;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">160</span>cpx;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">20</span>cpx;
+}
+<span class="hljs-selector-class">.logo</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">150</span>cpx;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">150</span>cpx;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">100</span>cpx;
+}
+</code></pre>
+<p>&#x4EE5;&#x4E0A;&#xFF0C;&#x7B80;&#x5355;&#x7684;&#x4ECB;&#x7ECD;&#x4E86;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x8FC1;&#x79FB;&#x5230;chameleon&#x7684;&#x7B80;&#x5355;&#x6B65;&#x9AA4;&#xFF0C;&#x5982;&#x679C;&#x8FD8;&#x6709;&#x4EFB;&#x4F55;&#x7591;&#x95EE;&#xFF0C;&#x6B22;&#x8FCE;&#x968F;&#x65F6;&#x5728;chameleon&#x5B98;&#x65B9;&#x5FAE;&#x4FE1;&#x548C;&#x5B98;&#x65B9;QQ&#x7FA4;&#x91CC;&#x8FDB;&#x884C;&#x53CD;&#x9988;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x968F;&#x65F6;&#x89E3;&#x7B54;&#x60A8;&#x7684;&#x56F0;&#x60D1;&#xFF0C;&#x518D;&#x6B21;&#x611F;&#x8C22;&#x60A8;&#x5BF9;chameleon&#x7684;&#x652F;&#x6301;~</p>
+<p>&#x200B;                                                                Best wishes  </p>
+<p>&#x200B;                                                                 Chameleon   &#x56E2;&#x961F;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="web_wx.html" class="navigation navigation-prev " aria-label="Previous page: 只跨web和小程序的应用">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="android_example.html" class="navigation navigation-next " aria-label="Next page: Android Chameleon SDK">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"微信小程序项目迁移chameleon指引","level":"1.7.8","depth":2,"next":{"title":"Android Chameleon SDK","level":"1.7.9","depth":2,"path":"example/android_example.md","ref":"./example/android_example.md","articles":[]},"previous":{"title":"只跨web和小程序的应用","level":"1.7.7","depth":2,"path":"example/web_wx.md","ref":"./example/web_wx.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"example/wx_to_chameleon.md","mtime":"2019-03-12T09:49:48.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-12T11:03:43.902Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code3/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
