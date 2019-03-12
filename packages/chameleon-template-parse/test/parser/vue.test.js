@@ -177,10 +177,10 @@ describe('parse-template-vue-all', function() {
   describe('parse-event-transform', function() {
     let source = `<view><origin-tag v-on:tap="handleClick"></origin-tag><thirdComp1 @tap="handleClick(1,item,'str')"></thirdComp1><thirdComp2 v-on:tap="handleClick(1,item,'str')"></thirdComp2></view>`;
     it('test-event-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
     it('test-event-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
     it('test-event-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
@@ -190,6 +190,16 @@ describe('parse-template-vue-all', function() {
     });
     it('test-event-transform-baidu', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2"></thirdComp2></view>`);
+    });
+  });
+  // parseEvent-.stop  web weex
+  describe('parse-event-transform-stop', function() {
+    let source = `<view><origin-tag v-on:tap.stop="handleClick"></origin-tag><thirdComp1 @tap.stop="handleClick(1,item,'str')"></thirdComp1><thirdComp2 v-on:tap.stop="handleClick(1,item,'str')"></thirdComp2></view>`;
+    it('test-event-transform-web-stop', function() {
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',true,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+    });
+    it('test-event-transform-weex-stop', function() {
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',true,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
   });
   // class
@@ -250,10 +260,10 @@ describe('parse-template-vue-all', function() {
   describe('parse-component-is-transform', function() {
     let source = `<component :is="currentComp" shrinkcomponents="comp1,comp2" :image-src="chameleonSrc" title="this is title" @click="handleClick"></component>`;
     it('test-component-is-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\')" class=" cml-base cml-component"></component>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\',false)" class=" cml-base cml-component"></component>`);
     });
     it('test-component-is-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\')" class=" cml-base cml-component"></component>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<component v-bind:is="currentComp" shrinkcomponents="comp1,comp2" v-bind:image-src="chameleonSrc" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\',false)" class=" cml-base cml-component"></component>`);
     });
     it('test-component-is-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<comp2 wx:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 wx:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
