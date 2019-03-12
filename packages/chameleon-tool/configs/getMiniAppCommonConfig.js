@@ -4,6 +4,7 @@ var path = require('path');
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
+const CopyNpmPlugin = require('./plugins/CopyNpmPLugin.js');
 module.exports = function (options) {
   let {
     type,
@@ -81,6 +82,10 @@ module.exports = function (options) {
         name: ['common', 'manifest'],
         filename: 'static/js/[name].js',
         minChunks: 2
+      }),
+      new CopyNpmPlugin({
+        cmlType: type,
+        root: outputPath
       })
     ]
 

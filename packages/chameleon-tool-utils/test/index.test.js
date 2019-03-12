@@ -493,7 +493,10 @@ describe('index.js', function () {
     expect(result3).to.be.equal('./npm/cml-ui/button/button');
     expect(result4).to.be.equal(notNpmRef);
 
+  })
 
-
+  it('handleSpecialChar', function() {
+    let result = _.handleSpecialChar('npm/@didi/name');
+    expect(result).to.be.equal('npm/_didi/name')
   })
 })

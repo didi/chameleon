@@ -22,18 +22,17 @@ module.exports = function (app, options) {
       let file = controllerFiles[j];
       delete require.cache[file];
       let apis = require(file);
-      let domainkey = query.domainkey || cml.config.get().defaultDomainKey || 'apiPrefix';
+      let domainKey = query.domainKey;
       if (!Array.isArray(apis)) {
         apis = [apis];
       }
       let controller = [];
       apis.forEach(item => {
         if (!item.domainKey) {
-          item.domainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
-          if (domainkey === item.domainKey) {
+          if (!domainKey) {
             controller = controller.concat(item);
           }
-        } else if (domainkey === item.domainKey) {
+        } else if (domainKey === item.domainKey) {
           controller = controller.concat(item.request);
         }
       })
