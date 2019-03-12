@@ -322,7 +322,9 @@ module.exports = function (content) {
     const scriptContent = parseScript.content || '';
     let newTemplate = handleTemplate();
     if(type === 'app') {
-      newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,'<view class="app"><router-view></router-view></view>')
+      newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
+      <router-view ></router-view> 
+    </div>`)
       // newTemplate = `<template><view><router-view></router-view></view></template>`
     }
     let newScript = handleVueScript();

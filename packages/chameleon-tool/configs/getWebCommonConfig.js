@@ -28,14 +28,14 @@ module.exports = function (options) {
         config: {
           path: path.join(cml.root, './configs/postcss/web/.postcssrc.js')
         }
-      },
-      compilerModules: [
-        {
-          postTransformNode: el => {
-            require('chameleon-vue-precompiler')()(el)
-          }
-        }
-      ]
+      }
+      // compilerModules: [
+      //   {
+      //     postTransformNode: el => {
+      //       require('chameleon-vue-precompiler')()(el)
+      //     }
+      //   }
+      // ]
     })
 
   },
@@ -76,14 +76,14 @@ module.exports = function (options) {
                 config: {
                   path: path.join(cml.root, './configs/postcss/web/.postcssrc.js')
                 }
-              },
-              compilerModules: [
-                {
-                  postTransformNode: el => {
-                    require('chameleon-vue-precompiler')()(el)
-                  }
-                }
-              ]
+              }
+              // compilerModules: [
+              //   {
+              //     postTransformNode: el => {
+              //       require('chameleon-vue-precompiler')()(el)
+              //     }
+              //   }
+              // ]
             })
           }
           ]

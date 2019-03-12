@@ -47,15 +47,15 @@ module.exports = function (options) {
         config: {
           path: path.join(cml.root, './configs/postcss/web/.postcssrc.js')
         }
-      },
-      compilerModules: [
-        {
-          postTransformNode: el => {
-            // to convert vnode for weex components.
-            require('chameleon-vue-precompiler')()(el)
-          }
-        }
-      ]
+      }
+      // compilerModules: [
+      //   {
+      //     postTransformNode: el => {
+      //       // to convert vnode for weex components.
+      //       require('chameleon-vue-precompiler')()(el)
+      //     }
+      //   }
+      // ]
     })
   },
   {
@@ -131,7 +131,7 @@ module.exports = function (options) {
               loader: 'chameleon-url-loader',
               options: {
                 name: getstaticPath('img'),
-                fallback: mode === 'production' ? undefined :path.resolve(__dirname, './export-loader.js'),
+                fallback: mode === 'production' ? undefined : path.resolve(__dirname, './export-loader.js'),
                 fileType: 'assets',
                 mode
               }
@@ -143,7 +143,7 @@ module.exports = function (options) {
           loader: 'file-loader',
           options: {
             name: getstaticPath('media'),
-            useRelativePath: mode === 'production' ? false : true,
+            useRelativePath: mode !== 'production',
             outputPath: function(url) {
               return mode === 'production' ? url : url + '?__export';
             }
@@ -154,7 +154,7 @@ module.exports = function (options) {
           loader: 'file-loader',
           options: {
             name: getstaticPath('fonts'),
-            useRelativePath: mode === 'production' ? false : true,
+            useRelativePath: mode !== 'production',
             outputPath: function(url) {
               return mode === 'production' ? url : url + '?__export';
             }
@@ -198,14 +198,14 @@ module.exports = function (options) {
                 config: {
                   path: path.join(cml.root, './configs/postcss/web/.postcssrc.js')
                 }
-              },
-              compilerModules: [
-                {
-                  postTransformNode: el => {
-                    require('chameleon-vue-precompiler')()(el)
-                  }
-                }
-              ]
+              }
+              // compilerModules: [
+              //   {
+              //     postTransformNode: el => {
+              //       require('chameleon-vue-precompiler')()(el)
+              //     }
+              //   }
+              // ]
 
             })
           }

@@ -1,9 +1,6 @@
 const compileTemplate = require('../src/index.js');
-const source = `<view class="pay-detail-li">
-<text c-if="{{fee_detail.length > 2 && fee_detail[3]}}">行程总计（含{{fee_detail.length > 2 && fee_detail[3].name}}{{fee_detail.length > 2 && fee_detail[3].fee}}）</text>
-<text c-else-if="{{fee_detail.length > 1 && fee_detail[2]}}">行程总计（含{{fee_detail.length > 1 && fee_detail[2].name}}{{fee_detail.length > 1 && fee_detail[2].fee}}）</text>
-<text c-else>行程总计</text>
-<text>{{total_fee || '0.00元'}}</text>
+const source = `<view c-bind:click="handleClick(1,2,3)" style="width:400cpx;height:200cpx;background-color:red">change-component
+<view c-bind:click="handleBubble" style="width:200cpx;height:50cpx;background-color:green"> 触发冒泡</view>
 </view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
@@ -38,6 +35,7 @@ let options = {lang: 'cml',
   }]
 };
 console.log('before-compile', source);
+<<<<<<< HEAD
 // let result_web = compileTemplate(source, 'web', options);
 // let result_weex = compileTemplate(source, 'weex', options);
 let result_wx = compileTemplate(source, 'wx', options);
@@ -47,3 +45,13 @@ let result_wx = compileTemplate(source, 'wx', options);
 // console.log('result_weex', result_weex)
 console.log('result_wx', result_wx)
 // console.log('result_alipay', result_alipay)
+=======
+let result_web = compileTemplate(source, 'web', options);
+// let result_wx = compileTemplate(source, 'wx', options);
+// let result_baidu = compileTemplate(source, 'wx', options);
+let result_alipay = compileTemplate(source, 'alipay', options);
+// let result_alipay = compileTemplate(source,'alipay',{lang:'cml'});
+console.log('result_web', result_web)
+// console.log('result_wx', result_wx)
+console.log('result_alipay', result_alipay)
+>>>>>>> 2a10c8365248948fb345ed3c09c3af1f6f385036
