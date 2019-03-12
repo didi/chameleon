@@ -200,7 +200,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',true,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
     it('test-event-transform-weex-stop', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',true,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
   });
   // class
