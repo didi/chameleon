@@ -36,7 +36,7 @@ describe('parse-template-cml-all', function() {
     let source = `<view><button></button><thirdComp1></thirdComp1><thirdComp2></thirdComp2></view>`;
     it('test-tag-transform', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button"></cml-buildin-button><thirdComp1 class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button"></cml-buildin-button><thirdComp1 class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 class=" cml-base cml-thirdComp2"></thirdComp2></view>`)
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button"></cml-buildin-button><thirdComp1 class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 class=" cml-view cml-thirdComp2"></thirdComp2></view>`)
     });
   });
   // directive c-model
@@ -184,7 +184,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
     it('test-event-transform-wx', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2"></thirdComp2></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
     });
     it('test-event-transform-alipay', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag onTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 onTap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 onTap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
@@ -204,7 +204,7 @@ describe('parse-template-cml-all', function() {
     });
     // wx baidu alipay
     it('parse-class-miniapp', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="cls1 {{true ? \'cls2\':\'cls3\'}}  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="cls1 {{true ? \'cls2\':\'cls3\'}}  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-view cml-thirdComp1"></thirdComp1></view>`);
     });
   });
   // style 以及 miniappp端cpx动态测试
@@ -218,7 +218,7 @@ describe('parse-template-cml-all', function() {
     });
     // wx baidu alipay
     it('parse-style-miniapp', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button style="width:{{cpx}}rpx;height:100rpx;border-width:200rpx;{{\'width:\' + cpx + \'rpx\'}}" class=" cml-base cml-button"></cml-buildin-button><thirdComp1 style="{{\'width:\' + cpx + \'rpx;\' + \'height:\' + cpx2 + \'rpx;background-color:red\'}}" class=" cml-base cml-thirdComp1"></thirdComp1></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button style="width:{{cpx}}rpx;height:100rpx;border-width:200rpx;{{\'width:\' + cpx + \'rpx\'}}" class=" cml-base cml-button"></cml-buildin-button><thirdComp1 style="{{\'width:\' + cpx + \'rpx;\' + \'height:\' + cpx2 + \'rpx;background-color:red\'}}" class=" cml-view cml-thirdComp1"></thirdComp1></view>`);
     });
   });
   // ref  动态
