@@ -16,8 +16,9 @@
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 
 ## 仓库更新说明
-分支说明
+本仓库仅包含编译时代码，全部开源代码参见：https://github.com/chameleon-team
 
+本仓库分支说明
 - master分支为稳定功能分支
 - v0.0.x分支为0.0.x版本代码
 - v0.1.x分支为0.1.x版本代码
