@@ -30,7 +30,7 @@ module.exports = function (content) {
     if (!interfaceContent) {
       throw new Error(`文件: ${filePath}未定义<script cml-type="interface"></script>`)
     }
-    if (!interfaceContent) {
+    if (!methodFileContent) {
       throw new Error(`文件: ${filePath}未定义<script cml-type="${cmlType}"></script>`)
     }
     let result = `
