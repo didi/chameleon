@@ -17,7 +17,7 @@
 
 ## 仓库更新说明
 每份master代码提交都有很严格流程规范，为了稳定性可控，会先在分支经历一段时间灰度期:
-[进行中的项目介绍](https://github.com/didi/chameleon/wiki/%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE)
+[进行中的项目分支介绍](https://github.com/didi/chameleon/wiki/%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE)
 
 ## CML 即 多端
 
