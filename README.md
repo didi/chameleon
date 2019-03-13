@@ -15,6 +15,9 @@
 * [资源汇总💰](https://github.com/chameleon-team/awesome-cml)：依赖库、demo、完整应用示例、学习资源
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 
+## 分支更新说明
+每份master代码提交都有很严格流程规范，为了稳定性可控，会先在分支经历一段时间灰度期:
+[进行中的项目介绍](https://github.com/didi/chameleon/wiki/%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE)
 
 ## CML 即 多端
 
@@ -31,7 +34,6 @@
 | web   |      微信小程序      |  native-weex |  百度小程序 |  支付宝小程序 |
 |:----------:|:-------------:|:------:|:------:|:------:|
 | <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/web-1.jpg" width="200px"/> </a>|  <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/wx-1.jpg" width="200px"/></a>| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/weex-1.jpg" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/baidu-1.png" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/alipay-1.png" width="200px"/></a> |
-
 
 
 ## 背景
