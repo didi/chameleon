@@ -76,8 +76,6 @@ const checkSyntax = function (part) {
     });
   }
   catch (e) {
-    console.log('============');
-    console.log(ast);
     console.log(e);
   }
 
