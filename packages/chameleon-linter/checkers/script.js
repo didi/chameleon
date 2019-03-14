@@ -286,13 +286,8 @@ const checkScript = async (result) => {
     }
   });
 
-<<<<<<< Updated upstream
-  if (!result['interface']) {
-    let interfaceFile = script.file.replace(new RegExp('\.(' + platforms.join('|') + ')\.cml$', 'ig'), '.interface');
-=======
   if (!result['interface'] && script) {
     let interfaceFile = script.file.replace(new RegExp('\\.(' + platforms.join('|') + ')\\.cml$', 'ig'), '.interface');
->>>>>>> Stashed changes
     if (/\.interface$/.test(interfaceFile)) {
       result['interface'] = {
         messages: [{
