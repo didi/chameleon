@@ -245,7 +245,7 @@ const wrapper = function (obj) {
       let errList = checkType(argValues[index], argType, []);
       if (errList && errList.length > 0) {
         showErrorMessage(`
-        校验位置: 方法${methodName}第${index + 1}个参数
+        校验位置: 方法${methodName} 或该${methodName}的回调函数中第${index + 1}个参数
         错误信息: ${errList.join('\n')}`)
       }
     });

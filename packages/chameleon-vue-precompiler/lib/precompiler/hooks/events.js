@@ -100,7 +100,8 @@ function bindEvents(evts, el, attrs, cmlEvents, appearAttached) {
     })
   }
 
-  const hasBubbleParent = checkBubble(el)
+  // const hasBubbleParent = checkBubble(el)
+  const hasBubbleParent = true;
 
   /**
    * stop propagation by default unless attr 'bubble' is set to true.
