@@ -124,7 +124,8 @@ function bindEvents(evts, el, attrs, cmlEvents, appearAttached) {
    * - scroll -> cml$scroll
    */
   if (evts.click) {
-    evts['cml$tap'] = extend({}, evts.click)
+    evts['cml$tap'] = extend({}, evts.click);
+    delete evts.click;
     if (!hasBubbleParent) {
       evts.click = {
         value: '$stopOuterA'
