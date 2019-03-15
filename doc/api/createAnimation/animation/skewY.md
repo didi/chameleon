@@ -11,6 +11,6 @@
 ### 返回值
 |返回值|类型|说明|
 |:--:|:--:|:--:|
-|[animation](/api/createAnimation/animation/main.md)|animation|动画实例|
+|[animation](/api/createAnimation/animation/main.html)|animation|动画实例|
 
 > 注： 调用export方法后不会清除该样式

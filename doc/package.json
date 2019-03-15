@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gitbook serve",
     "build": "gitbook build",
-    "release": "sh release.sh"
+    "release": "sh release.sh",
+    "releaseall": "sh release.sh && sh release_didi.sh && release_cml_team.sh"
   },
   "repository": {
     "type": "git",

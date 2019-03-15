@@ -11,7 +11,7 @@
  - [mock数据](#mock)
  - [组件扩展](#kuozhan)
  - [多态](#duotai)
- - [组件配置](../framework/json.md)
+ - [组件配置](../framework/json.html)
 及组件设计等等，以及多端的差异化需求。
    
 
@@ -19,20 +19,20 @@
 
 ### 1 准备工作
 
-- 参照【[快速上手](../quick_start/quick_start.md)】进行`chameleon-tool`全局环境配置；
+- 参照【[快速上手](../quick_start/quick_start.html)】进行`chameleon-tool`全局环境配置；
 - `cml init project`初始化一个项目，命名`wangyi `;
 
 ### 2 构建首页
 <span style="color:#B4282D;">分析</span>：首先我们把首页分为`content`和`footer`两部分，`content`作为主要的内容区域，
 `footer`作为底部。其次，
-利用`Chameleon`的API方法[c-animate](../api/createAnimation/createAnimation.md)来实现内容`content`切换；
-然后，利用扩展组件[c-tab](../component/expand/compound/c-tab.md)来实现`tab`切换功能；
+利用`Chameleon`的API方法[c-animate](../api/createAnimation/createAnimation.html)来实现内容`content`切换；
+然后，利用扩展组件[c-tab](../component/expand/compound/c-tab.html)来实现`tab`切换功能；
 
 
 #### 2.1 构建首页--footer
 
 <span style="color:#B4282D;">分析</span>：因为`footer`的东西相对较少，因此把它放在前面来做；
-首先把`tab`切换的配置数据放在[store](../logic/store.md)里面，配合[c-tab](../component/expand/compound/c-tab.md)
+首先把`tab`切换的配置数据放在[store](../logic/store.html)里面，配合[c-tab](../component/expand/compound/c-tab.html)
 来实现tab切换功能；
 
 - 改造`store/state.js`文件如下：
@@ -124,12 +124,12 @@ export default new Index();
 
 #### 2.2 构建首页--content
 <span style="color:#B4282D;">分析</span>：
-- 为了多端的一致性，我们设计了内置组件[scroller](../component/base/layout/scroller.md)来处理页面的滚动；
+- 为了多端的一致性，我们设计了内置组件[scroller](../component/base/layout/scroller.html)来处理页面的滚动；
 - 把首页的`content`区域分为顶部轮播、服务类型、商品分类以及特色服务四个模块。
-- 顶部轮播用内置组件[carousel](../component/base/layout/carousel.md)来实现；
-- 商品分类用`CML-标准语法`的[列表渲染](../view/iterator.md)来实现；
-- 服务类型和特色服务用`CMSS`的[flex](../view/cmss/layout.md)标准来实现定制化需求；
-- 使用`chameleon`的[数据mock](../framework/mock.md)来实现本地mock数据的ajax请求；
+- 顶部轮播用内置组件[carousel](../component/base/layout/carousel.html)来实现；
+- 商品分类用`CML-标准语法`的[列表渲染](../view/iterator.html)来实现；
+- 服务类型和特色服务用`CMSS`的[flex](../view/cmss/layout.html)标准来实现定制化需求；
+- 使用`chameleon`的[数据mock](../framework/mock.html)来实现本地mock数据的ajax请求；
 
 #####  content实现
 - <span id="mock" style="color: #B4282D;">mock数据</span>：配置一个`api/getHomeImgList`接口，返回首页数据；
@@ -335,9 +335,9 @@ export default new Special();
 
 ### 3 构建列表页
 <span style="color:#B4282D;">分析</span>：首先最外层要包裹一个`scroller`组件，上拉刷新下来加载这个功能用
-<span id="kuozhan" style="color: #B4282D;">扩展组件</span>：[c-refresh](../component/expand/polymorphism/c-refresh.md)
-来实现；然后用`CML-标准语法`的[列表渲染](../view/iterator.md)填充列表；
-由于是一个新建页面，因此需要[配置路由](../framework/router.md)以及页面的[跳转](../api/navigate.md)；最后是列表页的[mock数据](../framework/mock.md)；
+<span id="kuozhan" style="color: #B4282D;">扩展组件</span>：[c-refresh](../component/expand/polymorphism/c-refresh.html)
+来实现；然后用`CML-标准语法`的[列表渲染](../view/iterator.html)填充列表；
+由于是一个新建页面，因此需要[配置路由](../framework/router.html)以及页面的[跳转](../api/navigate.html)；最后是列表页的[mock数据](../framework/mock.html)；
 由于构建首页已经介绍了组件的使用方式，故此页面不再分拆子组件；
 
 
@@ -545,7 +545,7 @@ methods = {
 
 ### 4 构建详情页
 <span style="color:#B4282D;">分析</span>：详情页仍然需要在顶层包裹一个`scroller`组件；
-增加一个地图组件，用[组件多态](../framework/polymorphism/component.md)来实现它；
+增加一个地图组件，用[组件多态](../framework/polymorphism/component.html)来实现它；
 此页面不再分拆子组件；
 
 
@@ -973,9 +973,9 @@ export default new Map();
 
 ## Bug & Tip
 
-- 模板报错，先检查模板语法是否符合CML规范，详情请参考[模板规范校验](../framework/linter/cml-template.md);
-- 滚动区域不符合预期，检查`scroller`属性`height`传值是否正确，或者请参考api方法[getSystemInfo](../api/system.md)获取视窗高度，手动计算滚动区域;
-- 处理滚动区域兼容多端请务必处理`page`组件的[titleBar](./page.md)高度；
-- 页面跳转传参请参考api方法：[navigateTo](../api/navigate.md),取参请参考[生命周期回调函数](../logic/lifecycle.md)的`beforeCreate`方法；
-- 样式不符合预期，请参考[样式规范校验](../framework/linter/cml-cmss.md);
+- 模板报错，先检查模板语法是否符合CML规范，详情请参考[模板规范校验](../framework/linter/cml-template.html);
+- 滚动区域不符合预期，检查`scroller`属性`height`传值是否正确，或者请参考api方法[getSystemInfo](../api/system.html)获取视窗高度，手动计算滚动区域;
+- 处理滚动区域兼容多端请务必处理`page`组件的[titleBar](./page.html)高度；
+- 页面跳转传参请参考api方法：[navigateTo](../api/navigate.html),取参请参考[生命周期回调函数](../logic/lifecycle.html)的`beforeCreate`方法；
+- 样式不符合预期，请参考[样式规范校验](../framework/linter/cml-cmss.html);
 - Native端如地图组件不显示，检查`map.weex.cml`中`h5url`端口是否正确；

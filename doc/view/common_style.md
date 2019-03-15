@@ -299,7 +299,7 @@ transform 属性向元素应用 2D 转换。该属性允许我们对元素进行
 </style>
 ```
 ##  transition
-现在您可以在CSS中使用transition属性来提升您应用的交互性与视觉感受，transition中包括布局动画，即LayoutAnimation，现在布局产生变化的同时也能使用transition带来的流畅动画。transition允许CSS的属性值在一定的时间区间内平滑地过渡。
+现在你可以在CSS中使用transition属性来提升你应用的交互性与视觉感受，transition中包括布局动画，即LayoutAnimation，现在布局产生变化的同时也能使用transition带来的流畅动画。transition允许CSS的属性值在一定的时间区间内平滑地过渡。
 
 ### 参数
 - transition-property:允许过渡动画的属性名，设置不同样式transition效果的键值对，默认值为空，表示不执行任何transition，下表列出了所有合法的参数属性：
