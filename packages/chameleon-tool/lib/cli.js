@@ -2,9 +2,7 @@
 
 var commander = require('commander');
 var cmlpackage = require('../package.json');
-
 var argv = process.argv;
-
 module.exports.run = function () {
 
   var first = argv[2];
@@ -17,7 +15,7 @@ module.exports.run = function () {
     let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay'];
     cmdList = cmdList.map(key => {
       return {
-        key: 'key',
+        key,
         cmd: require(`../commanders/${key}/index.js`) // eslint-disable-line 
       }
     })

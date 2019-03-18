@@ -5,7 +5,6 @@ const utils = require('./utils.js');
 const config = require('./config.js');
 const log = require('./log.js');
 const argv = require('minimist')(process.argv.slice(2));
-const fs = require('fs');
 const EventEmitter = require('events');
 
 const chameleon = {};
