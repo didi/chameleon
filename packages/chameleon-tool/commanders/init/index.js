@@ -295,7 +295,7 @@ exports.register = function (commander) {
       choices: [
         'Normal component',
         'Polymorphic component',
-        'Polymorphic interface'
+        'Polymorphic function'
       ]
     }, {
       type: 'input',
@@ -318,9 +318,9 @@ exports.register = function (commander) {
       let {componentName, componentType} = answers;
       let comdir = path.join(cml.projectRoot, `src/components/${componentName}`);
       let comPathMap = {
-        'normal-component': 'component',
-        'multimode-component': 'interface-component',
-        'multimode-interface': 'interface-js'
+        'Normal component': 'component',
+        'Polymorphic component': 'interface-component',
+        'Polymorphic function': 'interface-js'
       }
       let tplPath = path.join(tpl.componentTpl, comPathMap[componentType]);
       let UpperName = toUpperCase(componentName);
