@@ -59,9 +59,9 @@ _.parseMiniAppScriptForWx = function (filePath) {
   if (extName === '.wxml') {
     // <wxs src="../wxs/utils.wxs" module="utils" />
     // <wxs module="sss" src="../wxs/utils.wxs" module="utils" ></wxs>
-    let wxsReg = /<wxs[\s\S]*?[\/]*>/g;
+    let miniScriptTagReg = /<wxs[\s\S]*?[\/]*>/g;
     let srcReg = /src\s*=\s*("[^"]*"|'[^']*')/
-    let matches = source.match(wxsReg);
+    let matches = source.match(miniScriptTagReg);
     if (!matches) {
       return []
     } else if (matches && Array.isArray(matches)) {
@@ -78,6 +78,75 @@ _.parseMiniAppScriptForWx = function (filePath) {
       if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
         let value = node.arguments[0].value
         if (typeof value === 'string' && value.endsWith('.wxs')) {
+          scriptPaths.push(node.arguments[0].value)
+        }
+
+      }
+    };
+    _.commonParseScript(source, callback);
+  }
+  return scriptPaths;
+}
+_.parseMiniAppScriptForAlipay = function (filePath) {
+  let source = fs.readFileSync(filePath, {encoding: 'utf-8'});
+  let extName = path.extname(filePath);
+  let scriptPaths = [];
+  if (extName === '.axml') {
+    let miniScriptTagReg = /<import-sjs[\s\S]*?[\/]*>/g;
+    let srcReg = /from\s*=\s*("[^"]*"|'[^']*')/
+    let matches = source.match(miniScriptTagReg);
+    if (!matches) {
+      return []
+    } else if (matches && Array.isArray(matches)) {
+      matches.forEach((item) => {
+        let srcMatches = item.match(srcReg);
+        if (srcMatches && Array.isArray(srcMatches)) {
+          scriptPaths.push(srcMatches[1].slice(1, -1))
+        }
+      })
+    }
+  } else if (extName === '.sjs') {
+    let callback = function(path) {
+      let node = path.node;
+      if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
+        let value = node.arguments[0].value
+        if (typeof value === 'string' && value.endsWith('.sjs')) {
+          scriptPaths.push(node.arguments[0].value)
+        }
+
+      }
+    };
+    _.commonParseScript(source, callback);
+  }
+  return scriptPaths;
+}
+_.parseMiniAppScriptForBaidu = function (filePath) {
+  let source = fs.readFileSync(filePath, {encoding: 'utf-8'});
+  let extName = path.extname(filePath);
+  if (filePath.endsWith('.filter.js')) {
+    extName = '.filter.js';
+  }
+  let scriptPaths = [];
+  if (extName === '.swan') {
+    let miniScriptTagReg = /<filter[\s\S]*?[\/]*>/g;
+    let srcReg = /from\s*=\s*("[^"]*"|'[^']*')/
+    let matches = source.match(miniScriptTagReg);
+    if (!matches) {
+      return []
+    } else if (matches && Array.isArray(matches)) {
+      matches.forEach((item) => {
+        let srcMatches = item.match(srcReg);
+        if (srcMatches && Array.isArray(srcMatches)) {
+          scriptPaths.push(srcMatches[1].slice(1, -1))
+        }
+      })
+    }
+  } else if (extName === '.filter.js') {
+    let callback = function(path) {
+      let node = path.node;
+      if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
+        let value = node.arguments[0].value
+        if (typeof value === 'string' && value.endsWith('.filter.js')) {
           scriptPaths.push(node.arguments[0].value)
         }
 
