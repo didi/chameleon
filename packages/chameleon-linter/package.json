@@ -37,6 +37,8 @@
     "lodash.uniq": "^4.5.0",
     "postcss": "^7.0.5",
     "stylelint": "^9.7.0",
+    "stylus": "^0.54.5",
+    "stylus-converter": "^0.8.1",
     "traverse": "^0.6.6"
   },
   "devDependencies": {

@@ -64,12 +64,6 @@ export default new Replace();
     }
   },
   "alipay": {
-    "window": {
-      "defaultTitle": "component",
-      "pullRefresh": false,
-      "allowsBounceVertical": "YES",
-      "titleBarColor": "#ffffff"
-    }
   }
 }
 </script>

@@ -63,15 +63,6 @@ export default new Replace();
     }
   },
   "baidu": {
-    "window": {
-      "navigationBarBackgroundColor": "#ffffff",
-      "navigationBarTextStyle": "white",
-      "navigationBarTitleText": "component",
-      "backgroundColor": "#ffffff",
-      "backgroundTextStyle": "dark",
-      "enablePullDownRefresh": false,
-      "onReachBottomDistance": 50
-    }
   }
 }
 </script>

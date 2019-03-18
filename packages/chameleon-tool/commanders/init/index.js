@@ -293,9 +293,9 @@ exports.register = function (commander) {
       name: 'componentType',
       message: 'please select the type of component',
       choices: [
-        'normal-component',
-        'multimode-component',
-        'multimode-interface'
+        'Normal component',
+        'Polymorphic component',
+        'Polymorphic interface'
       ]
     }, {
       type: 'input',
