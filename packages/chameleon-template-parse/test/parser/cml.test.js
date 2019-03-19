@@ -202,6 +202,16 @@ describe('parse-template-cml-all', function() {
     it('test-event-transform-weex-stop', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',true,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
+    it('test-event-transform-wx-stop', function() {
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,\'str\')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
+    });
+    it('test-event-transform-baidu-stop', function() {
+      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2"></thirdComp2></view>`);
+    });
+    it('test-event-transform-alipay-stop', function() {
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag catchTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 catchTap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
+    });
+
   });
   // class
   describe('parse-class-transform', function() {

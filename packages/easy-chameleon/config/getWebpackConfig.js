@@ -215,7 +215,16 @@ function getCmlLoaders(options) {
     case 'web':
       loaders = [{
           loader: 'vue-loader',
-          options: Object.assign(cmlLoaderConfig)
+          options: Object.assign(cmlLoaderConfig,{
+            compilerModules: [
+              {
+                postTransformNode: el => {
+                  // to convert vnode for weex components.
+                  require('chameleon-vue-precompiler')()(el)
+                }
+              }
+            ]
+          })
         },
         cmlLoader
       ]    
