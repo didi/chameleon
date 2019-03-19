@@ -499,4 +499,139 @@ describe('index.js', function () {
     let result = _.handleSpecialChar('npm/@didi/name');
     expect(result).to.be.equal('npm/_didi/name')
   })
+
+  it(`getJsonFileContent cli app`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {}
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/app/app.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+  })
+
+  it(`getJsonFileContent cli page`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {}
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+  })
+
+  it(`getJsonFileContent cli component`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {}
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/components/com1/com1.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+  })
+
+  it(`mkdir`, function () {
+    let pathdir = path.join(__dirname, 'temp')
+    _.mkdir(pathdir)
+    expect(_.isDir(pathdir)).to.be.equal(true)
+  })
+
+  it(`copyNpm and cmlPages`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlPages: ['cml-pages'],
+          copyNpm: {
+            wx: ['copy-npm']
+          }
+        }
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/app/app.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`getNpmComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    let result = _.getNpmComponents('wx', cml.projectRoot);
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`getBuildinComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    let result = _.getBuildinComponents('wx', cml.projectRoot);
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`getTargetInsertComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    let result = _.getTargetInsertComponents(path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`addNpmComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    var obj = {};
+    _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    console.log(obj)
+    expect(obj).to.has.property('usingComponents');
+
+  })
+  
 })
