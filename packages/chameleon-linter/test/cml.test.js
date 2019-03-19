@@ -14,7 +14,12 @@ const path = require('path');
 
 
 describe('cml', function() {
+
+
   describe('lint-json', function() {
+    before(async function() {
+      config.init(path.resolve(__dirname, '../linter/cml/json/'));
+    });
     it('json-standard', async function() {
       const cmlPath = path.resolve(__dirname, './linter/cml/json/standard.cml');
       const parts = utils.getCmlParts(cmlPath);
