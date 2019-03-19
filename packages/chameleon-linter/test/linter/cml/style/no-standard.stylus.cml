@@ -1,4 +1,4 @@
-<style scoped>
+<style scoped lang="stylus">
 /* reset */
 /*只作用于 web body下的first-child 节点*/
 .app-root
