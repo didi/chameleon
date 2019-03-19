@@ -1,0 +1,5 @@
+- 基于vue-loader@14.2.3改造
+- css的插入顺序有bug，不采用cml-extract-css-webpack-plugin是
+- injectStyle方法在Vue实例的beforeCreated阶段插入导致父组件先插入
+- 再插入子组件，所有css也是子组件在后，子组件的优先级高
+- 解决办法是在执行模块时就执行injectStyle，模块依赖的组件都是import，import优先执行，就会比本组件的injectStyle之前先执行

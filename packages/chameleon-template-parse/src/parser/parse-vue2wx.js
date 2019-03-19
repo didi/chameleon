@@ -118,8 +118,9 @@ parseVue2Wx.tap('component-is', (args) => {
 
       })
       if (currentComp && usingComponents) {
-        let elementAttributes = path.node.openingElement.attributes || []
+        let elementAttributes = path.node.openingElement.attributes || [];
         usingComponents.forEach((comp) => {
+          elementAttributes = JSON.parse(JSON.stringify(elementAttributes))
           let openTag = t.jsxOpeningElement(t.jsxIdentifier(comp), [t.jsxAttribute(t.jsxIdentifier(`${conditionMap[type]}`), t.stringLiteral(`{{${currentComp} === '${comp}'}}`))].concat(elementAttributes));
           let closeTag = t.jsxClosingElement(t.jsxIdentifier(comp))
           let insertNode = t.jsxElement(openTag, closeTag, jsxElementChildren, false);

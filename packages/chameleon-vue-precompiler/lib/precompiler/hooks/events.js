@@ -100,7 +100,8 @@ function bindEvents(evts, el, attrs, cmlEvents, appearAttached) {
     })
   }
 
-  const hasBubbleParent = checkBubble(el)
+  // const hasBubbleParent = checkBubble(el)
+  const hasBubbleParent = true;
 
   /**
    * stop propagation by default unless attr 'bubble' is set to true.
@@ -123,7 +124,8 @@ function bindEvents(evts, el, attrs, cmlEvents, appearAttached) {
    * - scroll -> cml$scroll
    */
   if (evts.click) {
-    evts['cml$tap'] = extend({}, evts.click)
+    evts['cml$tap'] = extend({}, evts.click);
+    delete evts.click;
     if (!hasBubbleParent) {
       evts.click = {
         value: '$stopOuterA'

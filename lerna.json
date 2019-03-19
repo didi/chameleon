@@ -24,7 +24,9 @@
     "packages/runtime-check",
     "packages/url-loader",
     "packages/webpack-check-plugin",
-    "packages/webpack-liveload-middleware"
+    "packages/webpack-liveload-middleware",
+    "packages/cml-vue-loader",
+    "packages/cml-extract-css-webpack-plugin"
   ],
   "version": "0.1.0-alpha.4",
   "command": {

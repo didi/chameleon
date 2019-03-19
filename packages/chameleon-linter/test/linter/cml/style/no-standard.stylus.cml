@@ -1,0 +1,10 @@
+<style scoped lang="stylus">
+/* reset */
+/*只作用于 web body下的first-child 节点*/
+.app-root
+  position:
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+</style>

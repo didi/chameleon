@@ -6,7 +6,18 @@ describe('utils', function() {
       expect(utils.trimCurly(`{{name}}`)).to.equal(`name`)
     })
   });
-
+  //驼峰化
+  describe('camelize', function() {
+    it('transform ab-c to abC' , function() {
+      expect(utils.camelize(`abc-de-f`)).to.equal(`abcDeF`)
+    })
+  });
+  //中划线化
+  describe('dasherise', function() {
+    it('transform  abcDeF to abc-de-f' , function() {
+      expect(utils.dasherise(`abcDeF`)).to.equal(`abc-de-f`)
+    })
+  });
   describe('getModelKey', function() {
     it('trim {{ variable }} to variable', function() {
       expect(utils.getModelKey(`{{ name }}`)).to.equal(`name`)
