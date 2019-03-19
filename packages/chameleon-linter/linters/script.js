@@ -42,7 +42,6 @@ const checkSyntax = function (part) {
       column: err.loc.column + 1,
       msg: err.message.replace(/ \((\d+):(\d+)\)$/, '')
     });
-    return;
   }
   try {
     traverse(ast, {
