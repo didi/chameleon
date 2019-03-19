@@ -80,7 +80,9 @@ describe('cml', function() {
 
 
   describe('lint-style', function () {
-
+    before(async function() {
+      config.init(path.resolve(__dirname, '../linter/cml/style/'));
+    });
     it('style-standard', async function () {
       const cmlPath = path.resolve(__dirname, './linter/cml/style/standard.cml');
       const parts = utils.getCmlParts(cmlPath);
@@ -112,6 +114,33 @@ describe('cml', function() {
       ]);
     });
 
+    // 支持stylus
+    it('style-stylus', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/style/standard.stylus.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await styleLinter(parts.style);
+      expect(result.messages).to.deep.equal([]);
+    });
+    // 支持stylus 错误情况
+    it('style-stylus-error', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/style/no-standard.stylus.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await styleLinter(parts.style);
+      expect(result.messages).to.deep.equal([
+        {
+          "column": 3,
+          "line": 5,
+          "msg": "Unknown word "
+        }
+      ]);
+    });
+    // 支持stylus
+    it('style-important', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/style/no-standard-important.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await styleLinter(parts.style);
+      expect(result.messages).to.deep.equal([]);
+    });
     // 缺少分号
     it('style-no-semicolon', async function () {
       const cmlPath = path.resolve(__dirname, './linter/cml/style/no-semicolon.cml');
