@@ -23,6 +23,24 @@ module.exports = function(content) {
       `
     })
 
+    // cmlPages 中的页面
+    let cmlPages = cml.config.get().cmlPages;
+    if (cmlPages && cmlPages.length > 0) {
+      cmlPages.forEach(function(npmName) {
+        let npmRouterConfig = cml.utils.readCmlPagesRouterConfig(cml.projectRoot, npmName);
+        npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+          let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
+          routerList += `
+            {
+              path: "${item.url}",
+              name: "${item.name}",
+              component: require("${cmlFilePath}").default
+            },
+            `
+        })
+      })
+    }
+
     let routerTemplate = `
     //根据配置生成路由
     {

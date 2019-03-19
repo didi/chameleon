@@ -217,8 +217,8 @@ module.exports = function (options) {
         Object.keys(definePlugin).forEach(key => {
           definePlugin[key] = JSON.stringify(definePlugin[key])
         })
+        commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
       }
-      commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
     })
   }
 
