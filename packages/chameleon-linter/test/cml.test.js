@@ -129,8 +129,8 @@ describe('cml', function() {
       expect(result.messages).to.deep.equal([
         {
           "column": 3,
-          "line": 5,
-          "msg": "Unknown word "
+          "line": 7,
+          "msg": "expected \"indent\", got \";\""
         }
       ]);
     });
@@ -178,6 +178,25 @@ describe('cml', function() {
           msg: 'Unexpected token, expected ","'
         }
       ]);
+    });
+    it('nonstandard-arrow', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/script/nonstandard-arrow.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await scriptLinter(parts.script);
+      expect(result.messages).to.deep.equal(
+        [
+          {
+            "column": 5,
+            "line": 19,
+            "msg": "computed property \"hasApplyList\" cannot be used as an arrow function"
+          },
+          {
+            "column": 3,
+            "line": 30,
+            "msg": "lifecycle hook \"mounted\" cannot be used as an arrow function"
+          }
+        ]
+      );
     });
     it('syntax-error', async function () {
       const projectRoot = path.resolve(__dirname, './template/docs/');
