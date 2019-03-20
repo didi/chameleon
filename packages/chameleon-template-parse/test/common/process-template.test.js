@@ -44,6 +44,15 @@ describe('process-template', function() {
     it('test alipay component wraped', function() {
       let source = `<view><input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
       expect(processTemplate.preParseAliComponent(source, 'alipay', options)).to.equal(`<view  ><input  class="cls1" style="width:100cpx" /><view  class=\'btn\' ><button  class=\'btn\' /></view>你好</view>`)
+    });
+    // 不传options
+    it('test alipay component wraped', function() {
+      let source = `<view><input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
+      expect(processTemplate.preParseAliComponent(source, 'alipay', {})).to.equal(`<view  ><input  class="cls1" style="width:100cpx" /><button  class=\'btn\' />你好</view>`)
+    });
+    it('test alipay component wraped', function() {
+      let source = `<view><input class="cls1" style="width:100cpx" />'<textarea>faf<textarea>'<button class='btn' />你好</textarea>`
+      expect(processTemplate.preParseAliComponent(source, 'alipay', {})).to.equal(`<view  ><input  class="cls1" style="width:100cpx" />\'<textarea  >faf<textarea  >\'<button  class=\'btn\' />你好</textarea>`)
     })
   });
   describe('preParseBindAttr', function() {
@@ -117,7 +126,18 @@ describe('process-template', function() {
   describe('analyzeTemplate', function() {
     it('collect which build-in-tag is used in template', function() {
       let options = {buildInComponents: {button: "cml-buildin-button"}};
-      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap')
+      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap');
+      expect(processTemplate.analyzeTemplate(``, options)).to.include.keys('buildInComponents')
+    })
+  });
+  describe('_operationGtLt', function() {
+    it('transform _operationGtLt', function() {
+      expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
+    })
+  });
+  describe('_deOperationGtLt', function() {
+    it('transform _deOperationGtLt', function() {
+      expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
     })
   });
 })

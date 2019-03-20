@@ -132,16 +132,7 @@ _.getStaticValueFromMixinValue = function(value) {
   let reg = /[{]{2}[^{}]*?[}]{2}/g;
   return value.replace(reg, ' ');
 }
-// 注意如果匹配不到则会返回null;
-_.getDynamicValuefromMixinValue = function(value) {
-  let reg = /[{]{2}[^{}]*?[}]{2}/g;
-  let matches = value.match(reg);
-  if (matches) {
-    return matches.join('');
-  } else {
-    return value;
-  }
-}
+
 
 /**
  * @params:
@@ -376,15 +367,5 @@ _.miniappVUEClassNodes = function (options) {
 
   }
 }
-_.makeMap = function(str, expectsLowerCase) {
-  const map = Object.create(null)
-  const list = str.split(',')
-  for (let i = 0; i < list.length; i++) {
-    map[list[i]] = true
-  }
-  return expectsLowerCase
-    ? val => map[val.toLowerCase()]
-    : val => map[val]
-}
-_.isPlainTextElement = _.makeMap('script,style,textarea', true)
+
 
