@@ -1,12 +1,8 @@
 {
   "name": "chameleon-templates",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" ",
-    "postpublish": "git push"
-  },
   "author": "Chameleon-Team",
   "license": "Apache",
   "mail": "ChameleonCore@didiglobal.com",
