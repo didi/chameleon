@@ -1,6 +1,10 @@
 {
   "name": "chameleon-linter",
+  "version": "0.1.0-alpha.4",
   "description": "cml规范校验工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc ./node_modules/mocha/bin/mocha ./test/**/*.test.js --timeout=3000",
     "non-report-test": "./node_modules/mocha/bin/mocha ./test/template/linter/**/*.test.js",
     "break-non-report": "./node_modules/mocha/bin/mocha --inspect-brk  ./test/template/linter/**/*.test.js"
   },
