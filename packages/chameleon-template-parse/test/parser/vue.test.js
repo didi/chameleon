@@ -194,16 +194,16 @@ describe('parse-template-vue-all', function() {
   });
   // class
   describe('parse-class-transform', function() {
-    let source = `<view><button :class="true ? 'cls2':'cls3'" class="cls1"></button><thirdComp1 class="cls4"></thirdComp1></view>`;
+    let source = `<view><button :class="true ? 'cls2':'cls3'" class="cls1"></button><thirdComp1 class="cls4"></thirdComp1><view :class="computedCls"></view></view>`;
     it('parse-class-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="true ? \'cls2\':\'cls3\'" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="true ? \'cls2\':\'cls3\'" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1><div v-bind:class="computedCls" class=" cml-base cml-view"></div></div>`);
     });
     it('parse-class-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy((true ? \'cls2\':\'cls3\'))" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy((true ? \'cls2\':\'cls3\'))" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1><div v-bind:class="_weexClassProxy((computedCls))" class=" cml-base cml-view"></div></div>`);
     });
     // wx baidu alipay
     it('parse-class-miniapp', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1><view class="{{computedCls}}  cml-base cml-view"></view></view>`);
     });
   });
   // style 以及 miniappp端cpx动态测试
