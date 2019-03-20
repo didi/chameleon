@@ -1,3 +1,4 @@
+
 let fs = null;
 let path = null;
 let tpl = null;
@@ -109,24 +110,6 @@ exports.register = function (commander) {
 
   function initProject() {
     let questions = [
-      // {
-      //   type: 'checkbox',
-      //   name: 'platforms',
-      //   message: '请选择项目需要支持的平台，默认已全选',
-      //   choices: [
-      //     'h5',
-      //     'weex',
-      //     '微信小程序'
-      //   ],
-      //   validate: function(value) {
-      //     value = value || [];
-      //     if (value.length === 0) {
-      //       return '至少选择一个平台'
-      //     }
-      //     return true;
-      //   },
-      //   default: ['h5', 'weex', '微信小程序']
-      // },
       {
         type: 'input',
         name: 'projectName',
@@ -143,7 +126,6 @@ exports.register = function (commander) {
           if (fs.existsSync(value)) {
             return 'There is already a project with the same name in the current directory,please change one'
           }
-
           return true;
         }
       }
@@ -163,7 +145,6 @@ exports.register = function (commander) {
       let projectTpl = projectMap[cmdOptions.demo];
 
       fse.copySync(projectTpl, pagedir);
-      debugger;
       // package.json文件中的name需要更改
       var packagePath = path.join(pagedir, 'package.json');
       let packageContent = JSON.parse(fs.readFileSync(packagePath, 'utf-8'));
@@ -184,7 +165,6 @@ exports.register = function (commander) {
       fs.writeFileSync(configFile, content);
 
       var npmignore = path.join(pagedir, '.npmignore');
-        debugger;
       // npm包中的.gitignore变成了.npmignore
       if (cml.utils.isFile(npmignore)) {
         fse.moveSync(npmignore, path.join(pagedir, '.gitignore'));
