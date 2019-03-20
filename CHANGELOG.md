@@ -1,3 +1,11 @@
+## [0.1.1](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.1.1)
+
+### Features
+
+- init component命令提示文案
+- init 多态组件中的json部分优化
+
+
 ## [0.1.0-alpha.4](https://github.com/didi/chameleon/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
 
 ### Features
