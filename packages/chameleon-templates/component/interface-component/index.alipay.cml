@@ -62,14 +62,6 @@ export default new Replace();
   "base": {
     "usingComponents": {
     }
-  },
-  "alipay": {
-    "window": {
-      "defaultTitle": "component",
-      "pullRefresh": false,
-      "allowsBounceVertical": "YES",
-      "titleBarColor": "#ffffff"
-    }
   }
 }
 </script>
