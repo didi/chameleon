@@ -194,20 +194,16 @@ describe('parse-template-vue-all', function() {
   });
   // class
   describe('parse-class-transform', function() {
-    let source = `<view><button :class="true ? 'cls2':'cls3'" class="cls1"></button><thirdComp1 class="cls4"></thirdComp1><view :class="computedCls"></view></view>`;
+    let source = `<view><button :class="true ? 'cls2':'cls3'" class="cls1"></button><thirdComp1 class="cls4"></thirdComp1></view>`;
     it('parse-class-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="true ? \'cls2\':\'cls3\'" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1><div v-bind:class="computedCls" class=" cml-base cml-view"></div></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="true ? \'cls2\':\'cls3\'" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1></div>`);
     });
     it('parse-class-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy((true ? \'cls2\':\'cls3\'))" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1><div v-bind:class="_weexClassProxy((computedCls))" class=" cml-base cml-view"></div></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy((true ? \'cls2\':\'cls3\'))" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1></div>`);
     });
-    // wx baidu
-    it('parse-class-wx-baidu', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1><view class="{{computedCls}}  cml-base cml-view"></view></view>`);
-    });
-    // alipay
-    it('parse-class-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-view cml-5766bf8a"><cml-buildin-button class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-button cml-5766bf8a"></cml-buildin-button></view><view class="cls4  cml-base cml-view cml-5766bf8a"><thirdComp1 class="cls4  cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class="{{computedCls}}  cml-base cml-view cml-5766bf8a"></view></view>`);
+    // wx baidu alipay
+    it('parse-class-miniapp', function() {
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1></view>`);
     });
   });
   // style 以及 miniappp端cpx动态测试
@@ -233,14 +229,8 @@ describe('parse-template-vue-all', function() {
     it('test-ref-transform-weex', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div v-bind:ref=" refVlaue " class=" cml-base cml-view"></div>`);
     });
-    it('test-ref-transform-wx', function() {
+    it('test-ref-transform-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
-    });
-    it('test-ref-transform-baidu', function() {
-      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
-    });
-    it('test-ref-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
     });
   });
   // ref  静态
@@ -320,10 +310,6 @@ describe('parse-template-vue-all', function() {
     it('test-gtlt-transform-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view prop="{{dynamic}}" id="{{5 < 6 ? \'5\':\'6\'}}" class=" cml-base cml-view">{{5 > 6 ? \'this is 5\' : \'this is 6\'}}</view><view name="{{5 < 6?\'7\':\'8\'}}" class=" cml-base cml-view"></view></view>`);
     });
-  })
-  describe('vue syntax error', function() {
-    let source = `<view c-bind:click="handleClick " c-if="true" id="{{value}}"></view>`
-    compileTemplate(source, 'web', options)
   })
 
 })

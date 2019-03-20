@@ -84,7 +84,6 @@ exports.parseTagForSlider = function(path, type, options) {
     }
   }
 }
-
 exports.parseRefStatement = function parseRefStatement(path, type, options) {
   let node = path.node;
   if (t.isJSXAttribute(node) && (node.name.name === 'ref' || node.name.name.name === 'ref')) {

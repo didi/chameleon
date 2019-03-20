@@ -206,10 +206,6 @@ describe('parse-template-cml-all', function() {
     it('parse-class-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="cls1 {{true ? \'cls2\':\'cls3\'}}  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1></view>`);
     });
-    // alipay
-    it('parse-class-miniapp', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view class="cls1 {{true ? \'cls2\':\'cls3\'}}  cml-base cml-view cml-5766bf8a"><cml-buildin-button class="cls1 {{true ? \'cls2\':\'cls3\'}}  cml-base cml-button cml-5766bf8a"></cml-buildin-button></view><view class="cls4  cml-base cml-view cml-5766bf8a"><thirdComp1 class="cls4  cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view></view>`);
-    });
   });
   // style 以及 miniappp端cpx动态测试
   describe('parse-style-transform', function() {
@@ -327,10 +323,6 @@ describe('parse-template-cml-all', function() {
     it('test-gtlt-transform-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view prop="{{dynamic}}" id="{{5 < 6 ? \'5\':\'6\'}}" class=" cml-base cml-view">{{5 > 6 ? \'this is 5\' : \'this is 6\'}}</view><view name="{{5 < 6?\'7\':\'8\'}}" class=" cml-base cml-view"></view></view>`);
     });
-  })
-  describe('cml syntax error', function() {
-    let source = `<view @click="handleClick " v-if="true" :id="value"></view>`
-    compileTemplate(source, 'web', options)
   })
 
 })
