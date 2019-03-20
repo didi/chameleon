@@ -44,6 +44,11 @@ describe('process-template', function() {
     it('test alipay component wraped', function() {
       let source = `<view><input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
       expect(processTemplate.preParseAliComponent(source, 'alipay', options)).to.equal(`<view  ><input  class="cls1" style="width:100cpx" /><view  class=\'btn\' ><button  class=\'btn\' /></view>你好</view>`)
+    });
+    // 解析文本
+    it('test alipay component wraped', function() {
+      let source = `<view>this is text <input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
+      expect(processTemplate.preParseAliComponent(source, 'alipay', options)).to.equal(`<view  >this is text <input  class="cls1" style="width:100cpx" /><view  class=\'btn\' ><button  class=\'btn\' /></view>你好</view>`)
     })
   });
   describe('preParseBindAttr', function() {
@@ -118,6 +123,7 @@ describe('process-template', function() {
     it('collect which build-in-tag is used in template', function() {
       let options = {buildInComponents: {button: "cml-buildin-button"}};
       expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap')
+      expect(processTemplate.analyzeTemplate(``, options)).to.include.keys('buildInComponents')
     })
   });
 })
