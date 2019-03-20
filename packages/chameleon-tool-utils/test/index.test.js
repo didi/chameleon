@@ -513,4 +513,43 @@ describe('index.js', function () {
     expect(obj).to.has.property('usingComponents');
 
   })
+
+  it(`getJsonFileContent cli app`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {}
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/app/app.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+  })
+
+  it(`getJsonFileContent cli page`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {}
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+  })
+
+  it(`getJsonFileContent cli component`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {}
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/components/com1/com1.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+  })
 })
