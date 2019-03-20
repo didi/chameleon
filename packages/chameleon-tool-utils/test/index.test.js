@@ -493,7 +493,24 @@ describe('index.js', function () {
     expect(result3).to.be.equal('./npm/cml-ui/button/button');
     expect(result4).to.be.equal(notNpmRef);
 
+  })
 
+  it(`addNpmComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    var obj = {};
+    _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    console.log(obj)
+    expect(obj).to.has.property('usingComponents');
 
   })
 })
