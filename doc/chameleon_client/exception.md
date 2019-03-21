@@ -27,7 +27,7 @@
 
     跳转地址格式：
 
-        ${H5主链接}?cml_addr=${weex bundle地址}&${其他参数}
+        ${H5主链接}?wx_addr=${weex bundle地址}&${其他参数}
 
     可变字段说明：
 

@@ -4093,22 +4093,6 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
 }
 export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;alipay&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UtilsInterface</span> </span>{
-  getMsg(msg) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;alipay:&apos;</span> + msg;
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;baidu&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UtilsInterface</span> </span>{
-  getMsg(msg) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;baidu:&apos;</span> + msg;
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <p>&#x6587;&#x4EF6;&#x4E2D;&#x5229;&#x7528;<script></script>&#x6807;&#x7B7E;&#x5C06;&#x5404;&#x7AEF;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x7269;&#x7406;&#x9694;&#x79BB;&#xFF0C;&#x5229;&#x7528;cml-type&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x5E73;&#x53F0;&#x3002;
 <code>cml-type=&quot;interface&quot;</code>&#x4E3A;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x90E8;&#x5206;&#xFF0C;&#x5229;&#x7528;<a href="check.html">&#x63A5;&#x53E3;&#x6821;&#x9A8C;&#x8BED;&#x6CD5;</a>&#x5B9A;&#x4E49;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x6CD5;&#x53CA;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x4E0E;&#x8FD4;&#x56DE;&#x503C;&#x3002;</p>
@@ -4146,10 +4130,6 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
   });
 } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(process.env.platform === <span class="hljs-string">&apos;wx&apos;</span>) {
   wx.setStorageSync(key, value);
-} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(process.env.platform === <span class="hljs-string">&apos;alipay&apos;</span>) {
-  my.setStorageSync(key, value);
-} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(process.env.platform === <span class="hljs-string">&apos;baidu&apos;</span>) {
-  swan.setStorageSync(key, value);
 } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(process.env.platform === <span class="hljs-string">&apos;weex&apos;</span>) {
   storage.setItem(key, value, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
   });
@@ -4224,36 +4204,6 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
 }
 export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;alipay&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-comment">// alipay&#x7AEF;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UtilsInterface</span> </span>{
-  setStorage(key, value, cb) {
-    <span class="hljs-keyword">try</span> {
-      my.setStorageSync(key, value);
-      cb(<span class="hljs-string">&apos;success&apos;</span>);
-    }
-    <span class="hljs-keyword">catch</span>(e) {
-      cb(<span class="hljs-string">&apos;fail&apos;</span>);
-    }
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;baidu&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-comment">// baidu&#x7AEF;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UtilsInterface</span> </span>{
-  setStorage(key, value, cb) {
-    <span class="hljs-keyword">try</span> {
-      swan.setStorageSync(key, value);
-      cb(<span class="hljs-string">&apos;success&apos;</span>);
-    }
-    <span class="hljs-keyword">catch</span>(e) {
-      cb(<span class="hljs-string">&apos;fail&apos;</span>);
-    }
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <h3 id="&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F18;&#x52BF;"><a name="&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F18;&#x52BF;" class="anchor-navigation-ex-anchor" href="#&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F18;&#x52BF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F18;&#x52BF;" class="plugin-anchor" href="#&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F18;&#x52BF;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F18;&#x52BF;</h3>
 <ul>
@@ -4311,7 +4261,7 @@ chameleon&#x7684;&#x76EE;&#x6807;&#x662F;&#x8DE8;&#x591A;&#x7AEF;&#xFF0C;&#x63A5
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"接口多态","level":"1.6.1.1","depth":3,"next":{"title":"组件多态","level":"1.6.1.2","depth":3,"path":"framework/polymorphism/component.md","ref":"framework/polymorphism/component.md","articles":[]},"previous":{"title":"多态协议","level":"1.6.1","depth":2,"path":"framework/polymorphism/intro.md","ref":"framework/polymorphism/intro.md","articles":[{"title":"接口多态","level":"1.6.1.1","depth":3,"path":"framework/polymorphism/api.md","ref":"framework/polymorphism/api.md","articles":[]},{"title":"组件多态","level":"1.6.1.2","depth":3,"path":"framework/polymorphism/component.md","ref":"framework/polymorphism/component.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/polymorphism/api.md","mtime":"2019-03-20T10:18:04.125Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-20T12:03:28.960Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"接口多态","level":"1.6.1.1","depth":3,"next":{"title":"组件多态","level":"1.6.1.2","depth":3,"path":"framework/polymorphism/component.md","ref":"framework/polymorphism/component.md","articles":[]},"previous":{"title":"多态协议","level":"1.6.1","depth":2,"path":"framework/polymorphism/intro.md","ref":"framework/polymorphism/intro.md","articles":[{"title":"接口多态","level":"1.6.1.1","depth":3,"path":"framework/polymorphism/api.md","ref":"framework/polymorphism/api.md","articles":[]},{"title":"组件多态","level":"1.6.1.2","depth":3,"path":"framework/polymorphism/component.md","ref":"framework/polymorphism/component.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/polymorphism/api.md","mtime":"2019-03-15T07:55:46.907Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T11:59:46.140Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
