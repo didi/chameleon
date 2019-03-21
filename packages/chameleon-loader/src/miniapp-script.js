@@ -78,7 +78,7 @@ _.parseMiniAppScriptForWx = function (filePath) {
       if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
         let value = node.arguments[0].value
         if (typeof value === 'string' && value.endsWith('.wxs')) {
-          scriptPaths.push(node.arguments[0].value)
+          scriptPaths.push(value)
         }
 
       }
@@ -108,10 +108,10 @@ _.parseMiniAppScriptForAlipay = function (filePath) {
   } else if (extName === '.sjs') {
     let callback = function(path) {
       let node = path.node;
-      if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
-        let value = node.arguments[0].value
+      if (t.isImportDeclaration(node)) {
+        let value = node.source && node.source.value;
         if (typeof value === 'string' && value.endsWith('.sjs')) {
-          scriptPaths.push(node.arguments[0].value)
+          scriptPaths.push(value)
         }
 
       }
@@ -147,7 +147,7 @@ _.parseMiniAppScriptForBaidu = function (filePath) {
       if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
         let value = node.arguments[0].value
         if (typeof value === 'string' && value.endsWith('.filter.js')) {
-          scriptPaths.push(node.arguments[0].value)
+          scriptPaths.push(value)
         }
 
       }
