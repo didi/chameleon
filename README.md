@@ -61,12 +61,6 @@
 
 ![Alt text](https://CMLJS.org/doc/assets/mvvm4.png)
 
-
-## 学习全景图
-
-![Alt text](https://CMLJS.org/doc/assets/architecture.png)
-
-
 ## 开发语言
 从事过网页编程的人知道，网页编程采用的是HTML + CSS + JS这样的组合，同样道理，chameleon中采用的是 CML + CMSS + JS。
 
