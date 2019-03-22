@@ -184,7 +184,6 @@ module.exports = function (content) {
 
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
-    debugger;
     
     if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan')) {
       //生成json文件
