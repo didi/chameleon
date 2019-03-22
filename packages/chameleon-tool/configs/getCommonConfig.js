@@ -207,9 +207,9 @@ module.exports = function (options) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
 
-  let cmlPages = cml.config.get().cmlPages;
-  if (cmlPages && cmlPages.length > 0) {
-    cmlPages.forEach(npmName => {
+  let subProject = cml.config.get().subProject;
+  if (subProject && subProject.length > 0) {
+    subProject.forEach(npmName => {
       let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'),{encoding:'utf-8'}));
       let cmlConfig = packageJSON.cml || {};
       let definePlugin = cmlConfig.definePlugin;

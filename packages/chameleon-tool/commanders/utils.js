@@ -245,11 +245,11 @@ exports.createConfigJson = function() {
       }
       result.push(route);
     })
-    // 处理cmlPages配置的npm包中cml项目的页面
-    let cmlPages = cml.config.get().cmlPages;
-    if (cmlPages && cmlPages.length > 0) {
-      cmlPages.forEach(function(npmName) {
-        let npmRouterConfig = cml.utils.readCmlPagesRouterConfig(cml.projectRoot, npmName);
+    // 处理subProject配置的npm包中cml项目的页面
+    let subProject = cml.config.get().subProject;
+    if (subProject && subProject.length > 0) {
+      subProject.forEach(function(npmName) {
+        let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
           let routePath = cml.utils.getPureEntryName(cmlFilePath, '', cml.projectRoot);

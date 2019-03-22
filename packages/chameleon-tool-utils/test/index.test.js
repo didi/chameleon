@@ -545,13 +545,13 @@ describe('index.js', function () {
     expect(_.isDir(pathdir)).to.be.equal(true)
   })
 
-  it(`copyNpm and cmlPages`, function () {
+  it(`copyNpm and subProject`, function () {
     global.cml = {};
     cml.projectRoot = path.join(__dirname, './testlib/demo-project');
     cml.config = {
       get() {
         return {
-          cmlPages: ['cml-pages'],
+          subProject: ['cml-pages'],
           copyNpm: {
             wx: ['copy-npm']
           }
