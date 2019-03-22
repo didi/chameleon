@@ -3990,25 +3990,6 @@
             
 
             
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.9.1" data-path="../alpha_version.html">
-            
-                <a href="../alpha_version.html">
-            
-                    
-                    尝鲜版
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
         </li>
     
 
@@ -4064,8 +4045,16 @@
 </ul>
 <p><code>https://h5&#x5730;&#x5740;</code>?
 <code>cml_addr=jsbundle&#x5730;&#x5740;</code>&amp;
+<code>path=&#x8DEF;&#x7531;path(&#x901A;&#x7528;&#x5B57;&#x6BB5;)</code>&amp;
+<code>envVersion=&#x8981;&#x6253;&#x5F00;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;&#x7248;&#x672C;(&#x901A;&#x7528;&#x5B57;&#x6BB5;)</code>&amp;
 <code>weixin_appid=123456</code>&amp;
-<code>path=&#x8DEF;&#x7531;path</code></p>
+<code>weixin_path=&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DEF;&#x7531;path</code>&amp;
+<code>weixin_envVersion=&#x8981;&#x6253;&#x5F00;&#x7684;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x7248;&#x672C;</code>&amp;
+<code>baidu_appid=123456</code>&amp;
+<code>baidu_path=&#x767E;&#x5EA6;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DEF;&#x7531;path</code>&amp;
+<code>baidu_envVersion=&#x8981;&#x6253;&#x5F00;&#x7684;&#x767E;&#x5EA6;&#x5C0F;&#x7A0B;&#x5E8F;&#x7248;&#x672C;</code>&amp;
+<code>alipay_appid=123456</code>&amp;
+<code>alipay_path=&#x652F;&#x4ED8;&#x5B9D;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DEF;&#x7531;path</code></p>
 <table>
     <tr>
         <th>&#x53C2;&#x6570;</th>
@@ -4080,7 +4069,17 @@
     <tr>
         <td>cml_addr</td>
         <td>&#x63CF;&#x8FF0;weex/rn js bundle&#x5730;&#x5740;</td>
-        <td>&#x5185;&#x90E8;&#x975E;&#x4F7F;&#x7528;sdk&#x5F00;&#x53D1;&#x8005;&#x6682;&#x65F6;&#x4F7F;&#x7528;wx_addr&#x5B57;&#x6BB5;</td>
+        <td>&#x5185;&#x90E8;&#x975E;&#x4F7F;&#x7528;sdk&#x5F00;&#x53D1;&#x8005;&#x6682;&#x65F6;&#x4F7F;&#x7528;cml_addr&#x5B57;&#x6BB5;</td>
+    </tr>
+    <tr>
+        <td>path</td>
+        <td>&#x63CF;&#x8FF0;&#x5E94;&#x7528;&#x91CC;&#x9762;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x7531;&#xFF0C; &#x5373;<a href="router.html">&#x8DEF;&#x7531;</a>&#x91CC;&#x9762;&#x7684;path&#x503C; </td>
+        <td>&#x82E5;&#x672A;&#x586B;&#x5199;weixin_path, baidu_path, alipay_path&#x65F6;, &#x7EDF;&#x4E00;&#x4F7F;&#x7528;&#x8BE5;&#x5B57;&#x6BB5;</td>
+    </tr>
+    <tr>
+        <td>envVersion</td>
+        <td>&#x8981;&#x6253;&#x5F00;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;&#x7248;&#x672C; </td>
+        <td>&#x6709;&#x6548;&#x503C; develop&#xFF08;&#x5F00;&#x53D1;&#x7248;&#xFF09;&#xFF0C;trial&#xFF08;&#x4F53;&#x9A8C;&#x7248;&#xFF09;&#xFF0C;release&#xFF08;&#x6B63;&#x5F0F;&#x7248;&#xFF09; &#xFF0C;&#x4EC5;&#x5728;&#x5F53;&#x524D;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x5F00;&#x53D1;&#x7248;&#x6216;&#x4F53;&#x9A8C;&#x7248;&#x65F6;&#x6B64;&#x53C2;&#x6570;&#x6709;&#x6548;(&#x4EC5;&#x652F;&#x6301;<a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.navigateToMiniProgram.html" target="_blank">&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;</a>&#x548C;<a href="https://docs.alipay.com/mini/api/open-miniprogram" target="_blank">&#x652F;&#x4ED8;&#x5B9D;&#x5C0F;&#x7A0B;&#x5E8F;</a>)</td>
     </tr>
     <tr>
         <td>weixin_appid</td>
@@ -4088,9 +4087,39 @@
         <td>&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DF3;&#x8F6C;&#x9700;&#x8981; <a href="https://developers.weixin.qq.com/minigame/dev/api/open-api/miniprogram-navigate/wx.navigateToMiniProgram.html?t=18091916" target="_blank">appid</a></td>
     </tr>
     <tr>
-        <td>path</td>
-        <td>&#x63CF;&#x8FF0;&#x5E94;&#x7528;&#x91CC;&#x9762;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x7531;&#xFF0C; &#x5373;<a href="router.html">&#x8DEF;&#x7531;</a>&#x91CC;&#x9762;&#x7684;path&#x503C; </td>
+        <td>weixin_path</td>
+        <td>&#x63CF;&#x8FF0;&#x5E94;&#x7528;&#x91CC;&#x9762;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x7531;(&#x76EE;&#x6807;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x975E;chameleon&#x9879;&#x76EE;&#x65F6;&#x53EF;&#x7528;)</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>weixin_envVersion</td>
+        <td>&#x8981;&#x6253;&#x5F00;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;&#x7248;&#x672C; </td>
+        <td>&#x6709;&#x6548;&#x503C; develop&#xFF08;&#x5F00;&#x53D1;&#x7248;&#xFF09;&#xFF0C;trial&#xFF08;&#x4F53;&#x9A8C;&#x7248;&#xFF09;&#xFF0C;release&#xFF08;&#x6B63;&#x5F0F;&#x7248;&#xFF09; &#xFF0C;&#x4EC5;&#x5728;&#x5F53;&#x524D;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x5F00;&#x53D1;&#x7248;&#x6216;&#x4F53;&#x9A8C;&#x7248;&#x65F6;&#x6B64;&#x53C2;&#x6570;&#x6709;&#x6548;(&#x8BE5;&#x5B57;&#x6BB5;&#x4EC5;&#x5BF9;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DF3;&#x8F6C;&#x751F;&#x6548;)</td>
+    </tr>
+    <tr>
+        <td>baidu_appid</td>
+        <td>&#x63CF;&#x8FF0;&#x767E;&#x5EA6;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;appKey</td>
+        <td>&#x767E;&#x5EA6;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DF3;&#x8F6C;&#x9700;&#x8981; <a href="https://smartprogram.baidu.com/docs/develop/api/open_smartprogram/#navigateToSmartProgram/" target="_blank">appKey</a></td>
+    </tr>
+    <tr>
+        <td>baidu_path</td>
+        <td>&#x63CF;&#x8FF0;&#x5E94;&#x7528;&#x91CC;&#x9762;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x7531;(&#x76EE;&#x6807;&#x767E;&#x5EA6;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x975E;chameleon&#x9879;&#x76EE;&#x65F6;&#x53EF;&#x7528;)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>alipay_appid</td>
+        <td>&#x63CF;&#x8FF0;&#x652F;&#x4ED8;&#x5B9D;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;app id</td>
+        <td>&#x652F;&#x4ED8;&#x5B9D;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DF3;&#x8F6C;&#x9700;&#x8981; <a href="https://docs.alipay.com/mini/api/open-miniprogram" target="_blank">appid</a></td>
+    </tr>
+    <tr>
+        <td>alipay_path</td>
+        <td>&#x63CF;&#x8FF0;&#x5E94;&#x7528;&#x91CC;&#x9762;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x7531;(&#x76EE;&#x6807;&#x652F;&#x4ED8;&#x5B9D;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x975E;chameleon&#x9879;&#x76EE;&#x65F6;&#x53EF;&#x7528;)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>alipay_envVersion</td>
+        <td>&#x8981;&#x6253;&#x5F00;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;&#x7248;&#x672C; </td>
+        <td>&#x6709;&#x6548;&#x503C; develop&#xFF08;&#x5F00;&#x53D1;&#x7248;&#xFF09;&#xFF0C;trial&#xFF08;&#x4F53;&#x9A8C;&#x7248;&#xFF09;&#xFF0C;release&#xFF08;&#x6B63;&#x5F0F;&#x7248;&#xFF09; &#xFF0C;&#x4EC5;&#x5728;&#x5F53;&#x524D;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x5F00;&#x53D1;&#x7248;&#x6216;&#x4F53;&#x9A8C;&#x7248;&#x65F6;&#x6B64;&#x53C2;&#x6570;&#x6709;&#x6548;(&#x8BE5;&#x5B57;&#x6BB5;&#x4EC5;&#x5BF9;&#x652F;&#x4ED8;&#x5B9D;&#x5C0F;&#x7A0B;&#x5E8F;&#x8DF3;&#x8F6C;&#x751F;&#x6548;)</td>
     </tr>
 </table>
 
@@ -4138,7 +4167,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chameleon URL","level":"1.6.2.7","depth":3,"next":{"title":"规范与校验","level":"1.6.2.8","depth":3,"path":"framework/polymorphism/standards.md","ref":"framework/polymorphism/standards.md","articles":[{"title":"接口语法校验","level":"1.6.2.8.1","depth":4,"path":"framework/polymorphism/check.md","ref":"framework/polymorphism/check.md","articles":[]},{"title":"全局变量校验","level":"1.6.2.8.2","depth":4,"path":"framework/global_check.md","ref":"framework/global_check.md","articles":[]},{"title":"代码规范校验","level":"1.6.2.8.3","depth":4,"path":"framework/linter.md","ref":"framework/linter.md","articles":[{"title":"核心文件校验","level":"1.6.2.8.3.1","depth":5,"path":"framework/linter/core.md","ref":"framework/linter/core.md","articles":[]},{"title":"CML文件规范校验","level":"1.6.2.8.3.2","depth":5,"path":"framework/linter/cml-file.md","ref":"framework/linter/cml-file.md","articles":[{"title":"interface规范","level":"1.6.2.8.3.2.1","depth":6,"path":"framework/linter/standards/cml-interface.md","ref":"framework/linter/standards/cml-interface.md","articles":[]}]},{"title":"模板规范校验","level":"1.6.2.8.3.3","depth":5,"path":"framework/linter/cml-template.md","ref":"framework/linter/cml-template.md","articles":[]},{"title":"脚本规范校验","level":"1.6.2.8.3.4","depth":5,"path":"framework/linter/cml-script.md","ref":"framework/linter/cml-script.md","articles":[]},{"title":"样式规范校验","level":"1.6.2.8.3.5","depth":5,"path":"framework/linter/cml-cmss.md","ref":"framework/linter/cml-cmss.md","articles":[]},{"title":"配置规范校验","level":"1.6.2.8.3.6","depth":5,"path":"framework/linter/cml-json.md","ref":"framework/linter/cml-json.md","articles":[]}]}]},"previous":{"title":"代理调试","level":"1.6.2.6","depth":3,"path":"framework/devproxy.md","ref":"framework/devproxy.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/chameleon_url.md","mtime":"2019-03-15T06:08:52.307Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T11:59:46.140Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chameleon URL","level":"1.6.2.7","depth":3,"next":{"title":"规范与校验","level":"1.6.2.8","depth":3,"path":"framework/polymorphism/standards.md","ref":"framework/polymorphism/standards.md","articles":[{"title":"接口语法校验","level":"1.6.2.8.1","depth":4,"path":"framework/polymorphism/check.md","ref":"framework/polymorphism/check.md","articles":[]},{"title":"全局变量校验","level":"1.6.2.8.2","depth":4,"path":"framework/global_check.md","ref":"framework/global_check.md","articles":[]},{"title":"代码规范校验","level":"1.6.2.8.3","depth":4,"path":"framework/linter.md","ref":"framework/linter.md","articles":[{"title":"核心文件校验","level":"1.6.2.8.3.1","depth":5,"path":"framework/linter/core.md","ref":"framework/linter/core.md","articles":[]},{"title":"CML文件规范校验","level":"1.6.2.8.3.2","depth":5,"path":"framework/linter/cml-file.md","ref":"framework/linter/cml-file.md","articles":[{"title":"interface规范","level":"1.6.2.8.3.2.1","depth":6,"path":"framework/linter/standards/cml-interface.md","ref":"framework/linter/standards/cml-interface.md","articles":[]}]},{"title":"模板规范校验","level":"1.6.2.8.3.3","depth":5,"path":"framework/linter/cml-template.md","ref":"framework/linter/cml-template.md","articles":[]},{"title":"脚本规范校验","level":"1.6.2.8.3.4","depth":5,"path":"framework/linter/cml-script.md","ref":"framework/linter/cml-script.md","articles":[]},{"title":"样式规范校验","level":"1.6.2.8.3.5","depth":5,"path":"framework/linter/cml-cmss.md","ref":"framework/linter/cml-cmss.md","articles":[]},{"title":"配置规范校验","level":"1.6.2.8.3.6","depth":5,"path":"framework/linter/cml-json.md","ref":"framework/linter/cml-json.md","articles":[]}]}]},"previous":{"title":"代理调试","level":"1.6.2.6","depth":3,"path":"framework/devproxy.md","ref":"framework/devproxy.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/chameleon_url.md","mtime":"2019-03-22T05:25:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T13:58:47.546Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

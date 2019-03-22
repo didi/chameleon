@@ -3990,25 +3990,6 @@
             
 
             
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.9.1" data-path="../alpha_version.html">
-            
-                <a href="../alpha_version.html">
-            
-                    
-                    尝鲜版
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
         </li>
     
 
@@ -4168,6 +4149,7 @@
 &lt;/script&gt;
 </code></pre>
 <h3 id="32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><a name="32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;" class="anchor-navigation-ex-anchor" href="#32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;" class="plugin-anchor" href="#32-&#x8FC1;&#x79FB;-appjs-&#x2014;&#x2014;&#x2014;&#x2014;--&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 &#x8FC1;&#x79FB; app.js &#x2014;&#x2014;&#x2014;&#x2014;  <a href="https://cmljs.org/doc/logic/lifecycle.html" target="_blank">&#x751F;&#x547D;&#x5468;&#x671F;</a>&#x6620;&#x5C04;</h3>
+<p>&#x5C0F;&#x7A0B;&#x5E8F; <code>app.js</code>&#x4E2D;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F; -&gt; <code>src/app.cml</code></p>
 <table>
 <thead>
 <tr>
@@ -4187,6 +4169,30 @@
 <tr>
 <td>onHide</td>
 <td>destroyed</td>
+</tr>
+</tbody>
+</table>
+<p>&#x603B;&#x7ED3;</p>
+<p>&#x5C0F;&#x7A0B;&#x5E8F;&#x4E2D;<code>app.json  app.js  app.wxss</code>&#x548C; <code>src/app.cml</code>&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x5982;&#x4E0B;</p>
+<table>
+<thead>
+<tr>
+<th>&#x5C0F;&#x7A0B;&#x5E8F; app.js</th>
+<th>cml&#x9879;&#x76EE; src/app.cml</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.js</td>
+<td><code>&lt;script&gt;&lt;/script&gt;</code></td>
+</tr>
+<tr>
+<td>app.wxss</td>
+<td><code>&lt;style&gt;&lt;/style&gt;</code></td>
+</tr>
+<tr>
+<td>app.json</td>
+<td><code>&lt;script cml-type=&quot;json&quot;&gt;&lt;/script&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -4210,7 +4216,10 @@ cml init page
     <span class="hljs-string">&quot;my-component1&quot;</span>: <span class="hljs-string">&quot;/components/comp1&quot;</span>,
     <span class="hljs-string">&quot;my-component2&quot;</span>: <span class="hljs-string">&quot;/components/comp2&quot;</span>,
     <span class="hljs-string">&quot;my-component3&quot;</span>: <span class="hljs-string">&quot;/components/comp3&quot;</span>,
-  }
+  },
+  <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+  <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+  <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#E2E2E2&quot;</span>
 }
 </code></pre>
 <p>&#x4FEE;&#x6539;<code>src/pages/index1.cml</code> &#x9875;&#x9762;&#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
@@ -4273,6 +4282,9 @@ cml init page
 </tr>
 </tbody>
 </table>
+<p>&#x603B;&#x7ED3;</p>
+<p>1 &#x5C0F;&#x7A0B;&#x5E8F;&#x9875;&#x9762;&#x7684;&#x8FC1;&#x79FB;&#x90FD;&#x8981;&#x901A;&#x8FC7; <code>cml init page</code>&#x53BB;&#x521D;&#x59CB;&#x5316;&#x8FD9;&#x4E2A;&#x9875;&#x9762;</p>
+<p>2 &#x521D;&#x59CB;&#x5316;&#x7684;&#x9875;&#x9762;&#x8981;&#x5728;<code>src/router.config.json</code>&#x914D;&#x7F6E;&#x5BF9;&#x5E94;&#x7684;<code>path</code>&#x5B57;&#x6BB5;</p>
 <h2 id="5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><a name="5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#5-&#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>5 &#x8FC1;&#x79FB;&#x7EC4;&#x4EF6;</h2>
 <h3 id="51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><a name="51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#51--&#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>5.1  &#x65B0;&#x5EFA;&#x7EC4;&#x4EF6;</h3>
 <p>&#x5982;&#x4E0A;&#xFF0C;<code>index1.json</code>&#x9875;&#x9762;&#x4E2D;&#x5F15;&#x7528;&#x4E86;&#x7EC4;&#x4EF6; <code>comp1  comp2  comp3</code>;</p>
@@ -4319,6 +4331,9 @@ cml init component
 </tr>
 </tbody>
 </table>
+<p>&#x603B;&#x7ED3;</p>
+<p>1 &#x5C0F;&#x7A0B;&#x5E8F;&#x7EC4;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;&#x90FD;&#x8981;&#x901A;&#x8FC7; <code>cml init component</code>&#x53BB;&#x521D;&#x59CB;&#x5316;&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;</p>
+<p>2 &#x521D;&#x59CB;&#x5316;&#x7684;&#x7EC4;&#x4EF6;&#x8981;&#x5728;&#x4F7F;&#x7528;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684;&#x5730;&#x65B9;&#x914D;&#x7F6E; <code>usingComponents</code>&#x5B57;&#x6BB5;</p>
 <h2 id="6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><a name="6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;" class="anchor-navigation-ex-anchor" href="#6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;" class="plugin-anchor" href="#6-&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;"><i class="fa fa-link" aria-hidden="true"></i></a>6 &#x9875;&#x9762;&amp;&amp;&#x7EC4;&#x4EF6;&#x8FC1;&#x79FB;&#x7EC6;&#x8282;</h2>
 <h3 id="61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><a name="61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#61-template&#x6A21;&#x677F;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1 <code>template</code>&#x6A21;&#x677F;&#x8FC1;&#x79FB;</h3>
 <p>&#x8FD9;&#x91CC;&#x4EE5;<code>cml</code>&#x8BED;&#x6CD5;&#x4E3A;&#x4F8B;&#xFF1A;<a href="https://cmljs.org/doc/view/cml.html" target="_blank">cml&#x57FA;&#x7840;&#x8BED;&#x6CD5;</a></p>
@@ -4328,8 +4343,8 @@ cml init component
     &#x6570;&#x636E;&#x7ED1;&#x5B9A;
 <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>{{}}<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
 &#x6761;&#x4EF6;&#x6E32;&#x67D3;
-    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:if</span>&gt;</span>wx:if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:elif</span>&gt;</span>wx:elif<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:if</span>=<span class="hljs-string">&quot;{{condition1}}&quot;</span>&gt;</span>wx:if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:elif</span>=<span class="hljs-string">&quot;{{condition2}}&quot;</span>&gt;</span>wx:elif<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:else</span>&gt;</span>wx:else<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
 &#x5FAA;&#x73AF;
     <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;{{array}}&quot;</span> <span class="hljs-attr">wx:for-index</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">wx:for-item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
@@ -4342,8 +4357,8 @@ cml init component
     &#x6570;&#x636E;&#x7ED1;&#x5B9A;
     <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>{{}}<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
     &#x6761;&#x4EF6;&#x6E32;&#x67D3;
-    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-if</span>&gt;</span>c-if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-else-if</span>&gt;</span>c-else-if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-if</span>=<span class="hljs-string">&quot;{{condition1}}&quot;</span>&gt;</span>c-if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-else-if</span>=<span class="hljs-string">&quot;{{condition2}}&quot;</span>&gt;</span>c-else-if<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-else</span>&gt;</span>c-else<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
     &#x5FAA;&#x73AF;
     <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">c-for</span>=<span class="hljs-string">&quot;{{array}}&quot;</span> <span class="hljs-attr">c-for-index</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">c-for-item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
@@ -4512,6 +4527,106 @@ cml init component
 </tr>
 </tbody>
 </table>
+<h4 id="615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><a name="615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;" class="anchor-navigation-ex-anchor" href="#615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;" class="plugin-anchor" href="#615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.5 chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;</h4>
+<p>&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55; c-show&#x3001;c-model&#x3001;c-show <a href="https://cmljs.org/doc/view/directive.html" target="_blank">&#x53C2;&#x8003;</a></p>
+<p>component is &#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55; <a href="https://cmljs.org/doc/view/component.html" target="_blank">&#x53C2;&#x8003;</a></p>
+<p>&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570; <a href="https://cmljs.org/doc/view/event.html" target="_blank">&#x53C2;&#x8003;</a></p>
+<p>&#x603B;&#x7ED3;</p>
+<p>1 &#x5BF9;&#x4E8E;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;<code>wx:if wx:for</code>&#x7B49;&#x8981;&#x66FF;&#x6362;&#x6210;cml&#x5BF9;&#x5E94;&#x7684;&#x8BED;&#x6CD5; <code>c-if  c-for</code></p>
+<p>2 &#x5BF9;&#x4E8E;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#xFF0C;&#x8981;&#x8F6C;&#x5316;&#x6210;cml&#x7684;<code>c-bind  c-catch</code>&#x7684;&#x5F62;&#x5F0F;&#xFF0C;cml&#x6269;&#x5C55;&#x4E86;&#x652F;&#x6301;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;</p>
+<h3 id="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><a name="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2 JS&#x5185;&#x5BB9;&#x8FC1;&#x79FB;</h3>
+<h4 id="621-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;"><a name="621-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#621-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="621-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;" class="plugin-anchor" href="#621-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.1 &#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB; <a href="../logic/logic.html">&#x53C2;&#x8003;</a></h4>
+<p>&#x5176;&#x4E2D;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x70B9; &#x5C0F;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684; <code>properties</code> &#x5BF9;&#x5E94;&#x4E8E; cml&#x4E2D;&#x7684; <code>props</code></p>
+<p>&#x5C0F;&#x7A0B;&#x5E8F;</p>
+<pre><code class="lang-javascript"> properties: {
+    <span class="hljs-attr">innerText</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+      <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;default value&apos;</span>,
+    }
+  },
+</code></pre>
+<p>cml&#x9879;&#x76EE;</p>
+<pre><code class="lang-javascript">props = {
+  <span class="hljs-attr">innerText</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">default</span>: <span class="hljs-string">&apos;default value&apos;</span>,
+  }
+}
+</code></pre>
+<h4 id="622-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><a name="622-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#622-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="622-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#622-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.2 &#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;API&#x7684;&#x8FC1;&#x79FB;</h4>
+<p>&#x5047;&#x8BBE;&#xFF0C;&#x539F;&#x6709;&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-javascript">wx.redirectTo({
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&apos;test?id=1&apos;</span>
+})
+</code></pre>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x4F7F;&#x7528;<code>cml</code>&#x8BED;&#x6CD5;&#x540E;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> cml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chameleon-api&apos;</span>
+cml.redirectTo({
+  <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/pages/navigateBack/index&apos;</span>,
+  <span class="hljs-attr">query</span>: {
+    <span class="hljs-attr">id</span>:<span class="hljs-number">1</span>
+  }
+})
+</code></pre>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank">&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;API&#x6587;&#x6863;</a></p>
+<p><a href="https://cmljs.org/doc/api/navigate.html#redirectto" target="_blank">chameleon-api&#x7684;&#x6587;&#x6863;</a></p>
+<p>&#x8FD9;&#x91CC;&#x5BF9;&#x4E8E;API&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;API&#x548C;chameleon&#x7684;API&#x7684;&#x6587;&#x6863;&#x4E2D;&#x5BF9;&#x5E94;&#x7EC6;&#x5219;&#x505A;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x8868;&#x683C;&#xFF0C;&#x5982;&#x4E0B;</p>
+<table>
+<thead>
+<tr>
+<th>&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;API</th>
+<th>chameleon-api</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.canIUse.html" target="_blank">wx.canIUse</a></td>
+<td><a href="https://cmljs.org/doc/api/caniuse.html" target="_blank">canIUse</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.getSystemInfoSync.html" target="_blank">&#x7CFB;&#x7EDF;&#x4FE1;&#x606F;</a></td>
+<td><a href="https://cmljs.org/doc/api/system.html" target="_blank">&#x7CFB;&#x7EDF;&#x4FE1;&#x606F;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/clearInterval.html" target="_blank">&#x8BA1;&#x65F6;&#x5668;</a></td>
+<td><a href="https://cmljs.org/doc/api/timer.html" target="_blank">&#x8BA1;&#x65F6;&#x5668;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.switchTab.html" target="_blank">&#x8DEF;&#x7531;</a></td>
+<td><a href="https://cmljs.org/doc/api/navigate.html" target="_blank">&#x8DEF;&#x7531;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.showToast.html" target="_blank">&#x4EA4;&#x4E92;</a></td>
+<td><a href="https://cmljs.org/doc/api/modal.html" target="_blank">&#x4EA4;&#x4E92;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.setNavigationBarTitle.html" target="_blank">&#x8BBE;&#x7F6E;&#x9875;&#x9762;title</a></td>
+<td><a href="https://cmljs.org/doc/api/title.html#settitle" target="_blank">&#x8BBE;&#x7F6E;&#x9875;&#x9762;title</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.createAnimation.html" target="_blank">&#x52A8;&#x753B;</a></td>
+<td><a href="https://cmljs.org/doc/api/createAnimation/main.html" target="_blank">&#x52A8;&#x753B;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.request.html" target="_blank">&#x7F51;&#x7EDC;</a></td>
+<td><a href="https://cmljs.org/doc/api/request.html" target="_blank">&#x7F51;&#x7EDC;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.setStorageSync.html" target="_blank">&#x6570;&#x636E;&#x7F13;&#x5B58;</a></td>
+<td><a href="https://cmljs.org/doc/api/storage.html" target="_blank">&#x6570;&#x636E;&#x7F13;&#x5B58;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.chooseImage.html" target="_blank">&#x83B7;&#x53D6;&#x56FE;&#x7247;&#x4FE1;&#x606F;</a></td>
+<td><a href="https://cmljs.org/doc/api/chooseImage.html" target="_blank">&#x83B7;&#x53D6;&#x56FE;&#x7247;&#x4FE1;&#x606F;</a></td>
+</tr>
+<tr>
+<td><a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.openLocation.html" target="_blank">&#x4F4D;&#x7F6E;</a></td>
+<td><a href="https://cmljs.org/doc/api/location.html" target="_blank">&#x4F4D;&#x7F6E;</a></td>
+</tr>
+</tbody>
+</table>
+<p>&#x4EE5;&#x4E0A; <code>chameleon-api</code>&#x63D0;&#x4F9B;&#x7684;&#x63A5;&#x53E3;&#x90FD;&#x662F;&#x652F;&#x6301;&#x8DE8;&#x591A;&#x7AEF;&#x7684;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E00;&#x4E9B;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x7684;&#x8DE8;&#x591A;&#x7AEF;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x800C;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#x53C8;&#x662F;&#x5FC5;&#x987B;&#x7528;&#x5230;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x63A5;&#x53E3;&#x591A;&#x6001;&#x6765;&#x5B9E;&#x73B0; <a href="https://cmljs.org/doc/framework/polymorphism/api.html?h=%E5%A4%9A%E6%80%81%E6%8E%A5%E5%8F%A3" target="_blank">&#x53C2;&#x8003;</a></p>
+<h4 id="623-&#x5C0F;&#x7A0B;&#x5E8F;&#x4E8B;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;"><a name="623-&#x5C0F;&#x7A0B;&#x5E8F;&#x4E8B;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#623-&#x5C0F;&#x7A0B;&#x5E8F;&#x4E8B;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="623-&#x5C0F;&#x7A0B;&#x5E8F;&#x4E8B;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#623-&#x5C0F;&#x7A0B;&#x5E8F;&#x4E8B;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.3 &#x5C0F;&#x7A0B;&#x5E8F;&#x4E8B;&#x4EF6;&#x7684;&#x8FC1;&#x79FB;</h4>
 <p>&#x6CE8;&#x610F;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x7684;&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x673A;&#x5236;&#xFF0C;&#x6620;&#x5C04;&#x5982;&#x4E0B;&#xFF1A;</p>
 <table>
 <thead>
@@ -4527,54 +4642,34 @@ cml init component
 </tr>
 </tbody>
 </table>
-<h4 id="615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><a name="615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;" class="anchor-navigation-ex-anchor" href="#615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;" class="plugin-anchor" href="#615-chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.5 chameleon&#x5BF9;&#x4E8E;&#x8BED;&#x6CD5;&#x7684;&#x6269;&#x5C55;&#x652F;&#x6301;</h4>
-<h5 id="&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;"><a name="&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;" class="plugin-anchor" href="#&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55;-c-show&#x3001;c-model&#x3001;c-show-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6307;&#x4EE4;&#x7684;&#x6269;&#x5C55; c-show&#x3001;c-model&#x3001;c-show <a href="https://cmljs.org/doc/view/directive.html" target="_blank">&#x53C2;&#x8003;</a></h5>
-<h5 id="component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;"><a name="component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;" class="plugin-anchor" href="#component-is-&#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>component is &#x52A8;&#x6001;&#x7EC4;&#x4EF6;&#x7684;&#x6269;&#x5C55; <a href="https://cmljs.org/doc/view/component.html" target="_blank">&#x53C2;&#x8003;</a></h5>
-<h5 id="&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;"><a name="&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;" class="plugin-anchor" href="#&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x652F;&#x6301;&#x5185;&#x8054;&#x4E8B;&#x4EF6;&#x4F20;&#x53C2;&#x6570; <a href="https://cmljs.org/doc/view/event.html" target="_blank">&#x53C2;&#x8003;</a></h5>
-<h4 id="616-&#x8FC1;&#x79FB;&#x6CE8;&#x610F;&#x70B9;"><a name="616-&#x8FC1;&#x79FB;&#x6CE8;&#x610F;&#x70B9;" class="anchor-navigation-ex-anchor" href="#616-&#x8FC1;&#x79FB;&#x6CE8;&#x610F;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="616-&#x8FC1;&#x79FB;&#x6CE8;&#x610F;&#x70B9;" class="plugin-anchor" href="#616-&#x8FC1;&#x79FB;&#x6CE8;&#x610F;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1.6 &#x8FC1;&#x79FB;&#x6CE8;&#x610F;&#x70B9;</h4>
-<h5 id="&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;"><a name="&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;" class="plugin-anchor" href="#&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;</h5>
+<p>&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x53C2;&#x6570;</p>
 <ul>
 <li><p>chameleon&#x5BF9;<code>web native  wx</code>&#x5404;&#x4E2A;&#x7AEF;&#x7684;&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x4E86;&#x7EDF;&#x4E00;&#x4EE3;&#x7406; <a href="https://cmljs.org/doc/view/event.html?h=%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1" target="_blank">&#x53C2;&#x8003;</a>&#xFF1B;</p>
 </li>
 <li><p>&#x5BF9;&#x4E8E;&#x7070;&#x5EA6;&#x533A;&#x7EC4;&#x4EF6;(&#x591A;&#x6001;&#x7EC4;&#x4EF6;) &#x5404;&#x4E2A;&#x7AEF;&#x7684;&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#x8FD8;&#x662F;<strong>&#x5BF9;&#x5E94;&#x7AEF;&#x7684;&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;</strong>&#xFF0C;chameleon&#x6846;&#x67B6;&#x4E0D;&#x4F1A;&#x5BF9;&#x7070;&#x5EA6;&#x533A;<code>origin-</code>&#x5F00;&#x5934;&#x7684;&#x6807;&#x7B7E;&#x548C;&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6; &#x6807;&#x7B7E;&#x4E0A;&#x7ED1;&#x5B9A;&#x7684;&#x4E8B;&#x4EF6;&#x8FDB;&#x884C;&#x4E8B;&#x4EF6;&#x4EE3;&#x7406;</p>
 </li>
 </ul>
-<h3 id="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><a name="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#62-js&#x5185;&#x5BB9;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2 JS&#x5185;&#x5BB9;&#x8FC1;&#x79FB;</h3>
-<h4 id="621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;"><a name="621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;" class="anchor-navigation-ex-anchor" href="#621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;" class="plugin-anchor" href="#621-&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB;-&#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.1 &#x751F;&#x547D;&#x5468;&#x671F;&#x8FC1;&#x79FB; &#x4E0A;&#x6587;&#x5DF2;&#x5217;&#x4E3E;&#xFF0C;&#x4E0D;&#x5728;&#x8D58;&#x8FF0;</h4>
-<h4 id="622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;"><a name="622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;" class="anchor-navigation-ex-anchor" href="#622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;" class="plugin-anchor" href="#622-&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;-&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.2 &#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB; <a href="../logic/logic.html">&#x53C2;&#x8003;</a></h4>
-<h4 id="623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;"><a name="623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#623-properties-&#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.3 properties &#x5C5E;&#x6027;&#x7684;&#x8FC1;&#x79FB;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x5C0F;&#x7A0B;&#x5E8F;</th>
-<th>chameleon</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>properties = { type: xxx,value: xxx }</td>
-<td>props = { type: xxx, default: xxx }</td>
-</tr>
-</tbody>
-</table>
-<h4 id="624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><a name="624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#624-&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;api&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.4 &#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;API&#x7684;&#x8FC1;&#x79FB;</h4>
-<p>&#x5047;&#x8BBE;&#xFF0C;&#x539F;&#x6709;&#x5C0F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-javascript">wx.redirectTo({
-  <span class="hljs-attr">url</span>: <span class="hljs-string">&apos;test?id=1&apos;</span>
-})
+<h4 id="624-&#x6A21;&#x5757;&#x5316;&#x7684;&#x8FC1;&#x79FB;"><a name="624-&#x6A21;&#x5757;&#x5316;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#624-&#x6A21;&#x5757;&#x5316;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="624-&#x6A21;&#x5757;&#x5316;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#624-&#x6A21;&#x5757;&#x5316;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.2.4 &#x6A21;&#x5757;&#x5316;&#x7684;&#x8FC1;&#x79FB;</h4>
+<p>&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x6A21;&#x5757;&#x5316;-<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/module.html" target="_blank">&#x53C2;&#x8003;</a></p>
+<p>cml&#x7684;&#x6A21;&#x5757;&#x5316;</p>
+<p>&#x5047;&#x5982; &#x6A21;&#x5757;&#x6587;&#x4EF6; <code>m1.js</code></p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">info</span>:<span class="hljs-string">&quot;I am chameleon&quot;</span>
+}
 </code></pre>
-<p>&#x90A3;&#x4E48;&#xFF0C;&#x4F7F;&#x7528;<code>cml</code>&#x8BED;&#x6CD5;&#x540E;&#xFF1A;</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> cml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chameleon-api&apos;</span>
-cml.redirectTo({
-  <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/pages/navigateBack/index&apos;</span>,
-  <span class="hljs-attr">query</span>: {
-    <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,
-    <span class="hljs-attr">b</span>: <span class="hljs-string">&apos;test&apos;</span>
-  }
-})
+<p><code>xxx.cml</code>  &#x5F15;&#x7528;&#x4E86; <code>m1.js</code></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> cml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chameleon-api&apos;</span> <span class="hljs-comment">//node_modules&#x4E2D;&#x7684;&#x6A21;&#x5757;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;cml&apos;</span>,cml)
+<span class="hljs-keyword">const</span> m1 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path/to/m1.js&apos;</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;m1&apos;</span>,m1.info) <span class="hljs-comment">// I am chameleon</span>
 </code></pre>
-<p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank">&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;API&#x6587;&#x6863;</a></p>
-<p><a href="https://cmljs.org/doc/api/navigate.html#redirectto" target="_blank">chameleon-api&#x7684;&#x6587;&#x6863;</a></p>
+<p>&#x603B;&#x7ED3;</p>
+<p>1 &#x5C0F;&#x7A0B;&#x5E8F;JS&#x5C42;&#x7528;&#x5230;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;<code>wx</code>&#x8981;&#x901A;&#x8FC7;<a href="https://cmljs.org/doc/api/api.html" target="_blank">chameleon-api</a>&#x53BB;&#x66FF;&#x6362;&#x6210;&#x5BF9;&#x5E94;&#x7684;,&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684;API&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;<a href="https://cmljs.org/doc/framework/polymorphism/api.html?h=%E5%A4%9A%E6%80%81%E6%8E%A5%E5%8F%A3" target="_blank">&#x591A;&#x6001;&#x63A5;&#x53E3;</a>&#x53BB;&#x5B9E;&#x73B0;</p>
+<p>2 &#x5C0F;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;<code>properties data</code>&#x5BF9;&#x5E94;&#x4E8E;cml&#x9879;&#x76EE; <code>props</code> ,<code>data</code></p>
+<p>3 &#x5C0F;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x9664;&#x4E86;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E4B;&#x5916;&#x7684;&#x4E8B;&#x4EF6;&#x90FD;&#x5BF9;&#x5E94;&#x5728; cml&#x9879;&#x76EE;&#x4E2D;&#x7684;<code>methods</code></p>
+<p>4 chameleon&#x63D0;&#x4F9B;&#x4E86;<code>chameleon-store</code><a href="https://cmljs.org/doc/logic/store.html?h=chameleon-store" target="_blank">&#x53C2;&#x8003;</a>,&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x4E00;&#x4E9B;&#x5168;&#x5C40;&#x7684;&#x53D8;&#x91CF;</p>
+<p>5 &#x5C0F;&#x7A0B;&#x5E8F;&#x89E6;&#x53D1;&#x89C6;&#x56FE;&#x66F4;&#x65B0;&#x7684;<code>setData</code>&#x4E0D;&#x80FD;&#x518D;&#x4F7F;&#x7528;&#xFF0C;chameleon&#x81EA;&#x5E26;&#x4E86;&#x4E00;&#x5957;<a href="https://cmljs.org/doc/logic/data_bind.html" target="_blank">&#x54CD;&#x5E94;&#x5F0F;&#x7684;&#x6570;&#x636E;&#x89C6;&#x56FE;&#x7ED1;&#x5B9A;</a></p>
+<p>6 &#x6A21;&#x5757;&#x5316;&#x4E2D;&#x5F15;&#x7528;&#x7684;&#x6A21;&#x5757;&#x8981;&#x4FDD;&#x8BC1;&#x591A;&#x7AEF;&#x7684;&#x9002;&#x7528;&#x6027;&#xFF0C;&#x53C2;&#x8003; <a href="https://github.com/chameleon-team/chameleon-api" target="_blank">chameleon-api</a></p>
 <h3 id="63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><a name="63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#63-style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.3 style&#x5185;&#x5BB9;&#x7684;&#x8FC1;&#x79FB;</h3>
 <h4 id="631-&#x9875;&#x9762;&#x5E03;&#x5C40;&#x7684;&#x8FC1;&#x79FB;"><a name="631-&#x9875;&#x9762;&#x5E03;&#x5C40;&#x7684;&#x8FC1;&#x79FB;" class="anchor-navigation-ex-anchor" href="#631-&#x9875;&#x9762;&#x5E03;&#x5C40;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="631-&#x9875;&#x9762;&#x5E03;&#x5C40;&#x7684;&#x8FC1;&#x79FB;" class="plugin-anchor" href="#631-&#x9875;&#x9762;&#x5E03;&#x5C40;&#x7684;&#x8FC1;&#x79FB;"><i class="fa fa-link" aria-hidden="true"></i></a>6.3.1 &#x9875;&#x9762;&#x5E03;&#x5C40;&#x7684;&#x8FC1;&#x79FB;</h4>
 <p>&#x7531;&#x4E8E;chameleon&#x5E94;&#x7528;&#x662F; &#x8DE8;&#x591A;&#x7AEF;<code>web  native  &#x5C0F;&#x7A0B;&#x5E8F;</code>&#x6846;&#x67B6;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x8DE8;<code>native</code>&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528; <code>flexbox</code>&#x8FDB;&#x884C;&#x6837;&#x5F0F;&#x5E03;&#x5C40;&#xFF0C;&#x5176;&#x4ED6;&#x573A;&#x666F;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="https://cmljs.org/doc/example/web_wx.html" target="_blank">&#x53EA;&#x8DE8;web&#x548C;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x5E94;&#x7528;</a></p>
@@ -4670,7 +4765,7 @@ cml.redirectTo({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"微信小程序项目迁移chameleon指引","level":"1.2.1","depth":2,"next":{"title":"web项目迁移chameleon指引","level":"1.2.2","depth":2,"path":"example/web_to_chameleon.md","ref":"./example/web_to_chameleon.md","articles":[]},"previous":{"title":"快速上手","level":"1.2","depth":1,"path":"quick_start/quick_start.md","ref":"quick_start/quick_start.md","articles":[{"title":"微信小程序项目迁移chameleon指引","level":"1.2.1","depth":2,"path":"example/wx_to_chameleon.md","ref":"./example/wx_to_chameleon.md","articles":[]},{"title":"web项目迁移chameleon指引","level":"1.2.2","depth":2,"path":"example/web_to_chameleon.md","ref":"./example/web_to_chameleon.md","articles":[]},{"title":"weex项目迁移chameleon指引","level":"1.2.3","depth":2,"path":"example/weex_to_chameleon.md","ref":"./example/weex_to_chameleon.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"example/wx_to_chameleon.md","mtime":"2019-03-20T08:37:21.006Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T11:59:46.140Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"微信小程序项目迁移chameleon指引","level":"1.2.1","depth":2,"next":{"title":"web项目迁移chameleon指引","level":"1.2.2","depth":2,"path":"example/web_to_chameleon.md","ref":"./example/web_to_chameleon.md","articles":[]},"previous":{"title":"快速上手","level":"1.2","depth":1,"path":"quick_start/quick_start.md","ref":"quick_start/quick_start.md","articles":[{"title":"微信小程序项目迁移chameleon指引","level":"1.2.1","depth":2,"path":"example/wx_to_chameleon.md","ref":"./example/wx_to_chameleon.md","articles":[]},{"title":"web项目迁移chameleon指引","level":"1.2.2","depth":2,"path":"example/web_to_chameleon.md","ref":"./example/web_to_chameleon.md","articles":[]},{"title":"weex项目迁移chameleon指引","level":"1.2.3","depth":2,"path":"example/weex_to_chameleon.md","ref":"./example/weex_to_chameleon.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"example/wx_to_chameleon.md","mtime":"2019-03-22T05:25:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T13:58:47.546Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -9,7 +9,7 @@
 熟悉脚手架基本的命令，可以加快开发效率。
 `cml init`快速初始化项目、页面、组件,
 `cml dev|build`  启动开发和生产模式的构建，
-`cml web|wx|weex dev|build`单独启动某一端的构建。
+`cml web|wx|alipay|baidu|weex dev|build`单独启动某一端的构建。
 详细参见<a href="./cml_cmd.html">脚手架工具</a>。
 
 ## 目录与文件结构

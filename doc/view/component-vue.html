@@ -3990,25 +3990,6 @@
             
 
             
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.9.1" data-path="../alpha_version.html">
-            
-                <a href="../alpha_version.html">
-            
-                    
-                    尝鲜版
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
         </li>
     
 
@@ -4074,54 +4055,68 @@
 </table>
 
 
-<pre><code class="lang-vue">&lt;template&gt;
-  &lt;view class=&quot;page-container&quot;&gt;
-    &lt;view v-bind:tap=&quot;handleElementClick&quot;&gt;&lt;text&gt;&#x7EC4;&#x4EF6;&#x6539;&#x53D8;&lt;/text&gt;&lt;/view&gt;
-    &lt;component :is=&quot;currentComp&quot; shrinkcomponents=&quot;comp,comp1&quot;&gt;&lt;/component&gt;
-  &lt;/view&gt;
-&lt;/template&gt;
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;page-container&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">v-bind:tap</span>=<span class="hljs-string">&quot;handleElementClick&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>&#x7EC4;&#x4EF6;&#x6539;&#x53D8;<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">:is</span>=<span class="hljs-string">&quot;currentComp&quot;</span> <span class="hljs-attr">shrinkcomponents</span>=<span class="hljs-string">&quot;comp,comp1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-&lt;script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
 
-class Index {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> </span>{
   data = {
-    dataComp:&apos;comp&apos;,
+    <span class="hljs-attr">dataComp</span>:<span class="hljs-string">&apos;comp&apos;</span>,
   }
   computed ={
     currentComp(){
-      return this.dataComp === &apos;comp&apos; ? &apos;comp1&apos; : &apos;comp&apos;;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.dataComp === <span class="hljs-string">&apos;comp&apos;</span> ? <span class="hljs-string">&apos;comp1&apos;</span> : <span class="hljs-string">&apos;comp&apos;</span>;
     }
   }
   methods = {
     handleElementClick (a,b) {
-      console.log(&apos;handleElementClick&apos;,arguments,a,b)
-      this.dataComp = (this.dataComp === &apos;comp&apos; ? &apos;comp1&apos; : &apos;comp&apos;)
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;handleElementClick&apos;</span>,<span class="hljs-built_in">arguments</span>,a,b)
+      <span class="hljs-keyword">this</span>.dataComp = (<span class="hljs-keyword">this</span>.dataComp === <span class="hljs-string">&apos;comp&apos;</span> ? <span class="hljs-string">&apos;comp1&apos;</span> : <span class="hljs-string">&apos;comp&apos;</span>)
     }
   }
 }
 
-export default new Index();
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Index();
 
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script cml-type=&quot;json&quot;&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;json&quot;</span>&gt;</span><span class="actionscript">
 {
-    &quot;base&quot;: {
-        &quot;usingComponents&quot;: {
-          &quot;comp&quot;:&quot;./comp&quot;,
-          &quot;comp1&quot;:&quot;./comp1&quot;,
-          &quot;comp2&quot;:&quot;./comp2&quot;,
-          &quot;comp3&quot;:&quot;./comp3&quot;,
+    <span class="hljs-string">&quot;base&quot;</span>: {
+        <span class="hljs-string">&quot;usingComponents&quot;</span>: {
+          <span class="hljs-string">&quot;comp&quot;</span>:<span class="hljs-string">&quot;./comp&quot;</span>,
+          <span class="hljs-string">&quot;comp1&quot;</span>:<span class="hljs-string">&quot;./comp1&quot;</span>,
+          <span class="hljs-string">&quot;comp2&quot;</span>:<span class="hljs-string">&quot;./comp2&quot;</span>,
+          <span class="hljs-string">&quot;comp3&quot;</span>:<span class="hljs-string">&quot;./comp3&quot;</span>,
         }
     },
-    &quot;wx&quot;: {
-        &quot;navigationBarTitleText&quot;: &quot;index&quot;,
-        &quot;backgroundTextStyle&quot;: &quot;dark&quot;,
-        &quot;backgroundColor&quot;: &quot;#E2E2E2&quot;
-
+    <span class="hljs-string">&quot;wx&quot;</span>: {
+        <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+        <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+        <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#E2E2E2&quot;</span>
+    },
+    <span class="hljs-string">&quot;alipay&quot;</span>: {
+      <span class="hljs-string">&quot;defaultTitle&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+      <span class="hljs-string">&quot;pullRefresh&quot;</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">&quot;allowsBounceVertical&quot;</span>: <span class="hljs-string">&quot;YES&quot;</span>,
+      <span class="hljs-string">&quot;titleBarColor&quot;</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>
+    },
+    <span class="hljs-string">&quot;baidu&quot;</span>: {
+      <span class="hljs-string">&quot;navigationBarBackgroundColor&quot;</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>,
+      <span class="hljs-string">&quot;navigationBarTextStyle&quot;</span>: <span class="hljs-string">&quot;white&quot;</span>,
+      <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+      <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>,
+      <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+      <span class="hljs-string">&quot;enablePullDownRefresh&quot;</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">&quot;onReachBottomDistance&quot;</span>: <span class="hljs-number">50</span>
     }
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <h2 id="bugtips"><a name="bugtips" class="anchor-navigation-ex-anchor" href="#bugtips"><i class="fa fa-link" aria-hidden="true"></i></a><a name="bugtips" class="plugin-anchor" href="#bugtips"><i class="fa fa-link" aria-hidden="true"></i></a>Bug&amp;Tips</h2>
 <p>&#x6CE8;&#x610F; : &#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x662F;&#x901A;&#x8FC7;&#x6761;&#x4EF6;&#x5224;&#x65AD;&#x6765;&#x6A21;&#x62DF;component is&#x7684;&#x6548;&#x679C;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x8981;&#x5728;component &#x6807;&#x7B7E;&#x4E0A;&#x5728;&#x5728;&#x5199;c-if c-else  c-else-if&#x7B49;&#x6761;&#x4EF6;&#x5224;&#x65AD;</p>
@@ -4168,7 +4163,7 @@ export default new Index();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"动态组件","level":"1.3.3.3.5","depth":4,"next":{"title":"指令","level":"1.3.3.3.6","depth":4,"path":"view/directive-vue.md","ref":"view/directive-vue.md","articles":[]},"previous":{"title":"事件","level":"1.3.3.3.4","depth":4,"path":"view/event-vue.md","ref":"view/event-vue.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"view/component-vue.md","mtime":"2019-03-15T06:08:52.648Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T11:59:46.140Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"动态组件","level":"1.3.3.3.5","depth":4,"next":{"title":"指令","level":"1.3.3.3.6","depth":4,"path":"view/directive-vue.md","ref":"view/directive-vue.md","articles":[]},"previous":{"title":"事件","level":"1.3.3.3.4","depth":4,"path":"view/event-vue.md","ref":"view/event-vue.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"view/component-vue.md","mtime":"2019-03-22T05:25:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T13:58:47.546Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

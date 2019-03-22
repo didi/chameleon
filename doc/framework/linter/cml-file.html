@@ -3990,25 +3990,6 @@
             
 
             
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.9.1" data-path="../../alpha_version.html">
-            
-                <a href="../../alpha_version.html">
-            
-                    
-                    尝鲜版
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
         </li>
     
 
@@ -4073,7 +4054,7 @@
 <pre><code class="lang-bash">demo.cml
 </code></pre>
 <h3 id="2-&#x591A;&#x7AEF;&#x5B9E;&#x73B0;&#x4E0D;&#x4E00;&#x81F4;&#x7EC4;&#x4EF6;&#x547D;&#x540D;&#x683C;&#x5F0F;&#xFF1A;"><a name="2-&#x591A;&#x7AEF;&#x5B9E;&#x73B0;&#x4E0D;&#x4E00;&#x81F4;&#x7EC4;&#x4EF6;&#x547D;&#x540D;&#x683C;&#x5F0F;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#2-&#x591A;&#x7AEF;&#x5B9E;&#x73B0;&#x4E0D;&#x4E00;&#x81F4;&#x7EC4;&#x4EF6;&#x547D;&#x540D;&#x683C;&#x5F0F;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x591A;&#x7AEF;&#x5B9E;&#x73B0;&#x4E0D;&#x4E00;&#x81F4;&#x7EC4;&#x4EF6;&#x547D;&#x540D;&#x683C;&#x5F0F;&#xFF1A;" class="plugin-anchor" href="#2-&#x591A;&#x7AEF;&#x5B9E;&#x73B0;&#x4E0D;&#x4E00;&#x81F4;&#x7EC4;&#x4EF6;&#x547D;&#x540D;&#x683C;&#x5F0F;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x591A;&#x7AEF;&#x5B9E;&#x73B0;&#x4E0D;&#x4E00;&#x81F4;&#x7EC4;&#x4EF6;&#x547D;&#x540D;&#x683C;&#x5F0F;&#xFF1A;</h3>
-<pre><code class="lang-bash">[component name].[weex|wx|web].cml
+<pre><code class="lang-bash">[component name].[weex|wx|alipay|baidu|web].cml
 </code></pre>
 <p>&#x7EC4;&#x4EF6;&#x6587;&#x4EF6;&#x540D;&#x6309;&#x7167;&#x9002;&#x914D;&#x7AEF;&#x547D;&#x540D;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x4E00;&#x76EE;&#x5F55;&#x4E0B;&#x7684;interface&#x6587;&#x4EF6;&#x7EC4;&#x5408;&#x4F7F;&#x7528;</p>
 <pre><code class="lang-bash">[component name].interface
@@ -4082,6 +4063,8 @@
 <pre><code class="lang-bash">demo.interface
 demo.weex.cml
 demo.wx.cml
+demo.alipay.cml
+demo.baidu.cml
 demo.web.cml
 </code></pre>
 <h2 id="cml&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x89C4;&#x8303;"><a name="cml&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#cml&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cml&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x89C4;&#x8303;" class="plugin-anchor" href="#cml&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>CML&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x89C4;&#x8303;</h2>
@@ -4118,10 +4101,24 @@ demo.web.cml
   },
   <span class="hljs-string">&quot;wx&quot;</span>: {
     <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
-     <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
-     <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#E2E2E2&quot;</span>,
-     <span class="hljs-string">&quot;component&quot;</span>: <span class="hljs-literal">true</span>
-  }
+    <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+    <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#E2E2E2&quot;</span>
+  },
+  <span class="hljs-string">&quot;alipay&quot;</span>: {
+    <span class="hljs-string">&quot;defaultTitle&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+    <span class="hljs-string">&quot;pullRefresh&quot;</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">&quot;allowsBounceVertical&quot;</span>: <span class="hljs-string">&quot;YES&quot;</span>,
+    <span class="hljs-string">&quot;titleBarColor&quot;</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>
+  },
+  <span class="hljs-string">&quot;baidu&quot;</span>: {
+    <span class="hljs-string">&quot;navigationBarBackgroundColor&quot;</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>,
+    <span class="hljs-string">&quot;navigationBarTextStyle&quot;</span>: <span class="hljs-string">&quot;white&quot;</span>,
+    <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;index&quot;</span>,
+    <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>,
+    <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+    <span class="hljs-string">&quot;enablePullDownRefresh&quot;</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">&quot;onReachBottomDistance&quot;</span>: <span class="hljs-number">50</span>
+  },
   <span class="hljs-string">&quot;web&quot;</span>: {
   },
   <span class="hljs-string">&quot;weex&quot;</span>: {
@@ -4174,7 +4171,7 @@ demo.web.cml
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CML文件规范校验","level":"1.6.2.8.3.2","depth":5,"next":{"title":"interface规范","level":"1.6.2.8.3.2.1","depth":6,"path":"framework/linter/standards/cml-interface.md","ref":"framework/linter/standards/cml-interface.md","articles":[]},"previous":{"title":"核心文件校验","level":"1.6.2.8.3.1","depth":5,"path":"framework/linter/core.md","ref":"framework/linter/core.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/linter/cml-file.md","mtime":"2019-03-15T06:08:52.312Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T11:59:46.140Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CML文件规范校验","level":"1.6.2.8.3.2","depth":5,"next":{"title":"interface规范","level":"1.6.2.8.3.2.1","depth":6,"path":"framework/linter/standards/cml-interface.md","ref":"framework/linter/standards/cml-interface.md","articles":[]},"previous":{"title":"核心文件校验","level":"1.6.2.8.3.1","depth":5,"path":"framework/linter/core.md","ref":"framework/linter/core.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/linter/cml-file.md","mtime":"2019-03-22T05:25:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T13:58:47.546Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

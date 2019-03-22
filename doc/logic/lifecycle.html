@@ -3990,25 +3990,6 @@
             
 
             
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.9.1" data-path="../alpha_version.html">
-            
-                <a href="../alpha_version.html">
-            
-                    
-                    尝鲜版
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
         </li>
     
 
@@ -4161,7 +4142,7 @@
 </code></pre>
 <h3 id="&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;"><a name="&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;" class="anchor-navigation-ex-anchor" href="#&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;" class="plugin-anchor" href="#&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;</h3>
 <p><code>cml</code> &#x5728; <a href="../../framework/polymorphism/component.html#webweexwxcml">*.[web|weex|wx].cml</a> &#x6587;&#x4EF6;&#x4E2D;&#x652F;&#x6301;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x591A;&#x6001;&#xFF0C;&#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x5E73;&#x53F0;&#x6DFB;&#x52A0;&#x4E13;&#x5C5E;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A;&#x9875;&#x9762;<code>home.cml</code>&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5C0F;&#x7A0B;&#x5E8F;&#x9875;&#x9762;&#x751F;&#x547D;&#x5468;&#x671F;<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0" target="_blank">onHide</a>&#xFF0C;&#x53EF;&#x4EE5;&#x5982;&#x4E0B;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<p>&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A;&#x9875;&#x9762;<code>home.cml</code>&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5C0F;&#x7A0B;&#x5E8F;&#x9875;&#x9762;&#x751F;&#x547D;&#x5468;&#x671F;<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0" target="_blank">&#x5FAE;&#x4FE1;&#x7AEF;onHide</a>&#x3001;<a href="https://docs.alipay.com/mini/framework/page#object%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E" target="_blank">&#x652F;&#x4ED8;&#x5B9D;&#x7AEF;onHide</a>&#x3001;<a href="https://smartprogram.baidu.com/docs/develop/framework/app_service_page/#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/" target="_blank">&#x767E;&#x5EA6;&#x7AEF;onHide</a>&#xFF0C;&#x53EF;&#x4EE5;&#x5982;&#x4E0B;&#x5B9E;&#x73B0;&#xFF1A;</p>
 <ol>
 <li><p>&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x6267;&#x884C; <code>cml init component</code>&#xFF0C;&#x9009;&#x62E9; <code>multimode-interface</code> &#x591A;&#x6001;&#x63A5;&#x53E3;&#xFF0C;&#x8F93;&#x5165;interface name: <code>lifecycleInterface</code>&#xFF0C;&#x81EA;&#x52A8;&#x751F;&#x6210;<code>src/components/lifecycleInterface</code>
 <img src="../assets/initinterface.png" width="300px"></p>
@@ -4197,6 +4178,24 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LifecycleInterfaceInterface</span> </span>{
   onHide() {
     console.log(<span class="hljs-string">&apos;wx hide&apos;</span>)
+  }
+}
+export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;alipay&quot;</span>&gt;</span><span class="actionscript">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LifecycleInterfaceInterface</span> </span>{
+  onHide() {
+    console.log(<span class="hljs-string">&apos;alipay hide&apos;</span>)
+  }
+}
+export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;baidu&quot;</span>&gt;</span><span class="actionscript">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LifecycleInterfaceInterface</span> </span>{
+  onHide() {
+    console.log(<span class="hljs-string">&apos;baidu hide&apos;</span>)
   }
 }
 export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
@@ -4268,7 +4267,7 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"生命周期","level":"1.3.4.2","depth":3,"next":{"title":"计算属性 computed","level":"1.3.4.3","depth":3,"path":"logic/computed.md","ref":"logic/computed.md","articles":[]},"previous":{"title":"响应式数据绑定系统","level":"1.3.4.1","depth":3,"path":"logic/data_bind.md","ref":"logic/data_bind.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"logic/lifecycle.md","mtime":"2019-03-15T06:08:52.318Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T11:59:46.140Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"生命周期","level":"1.3.4.2","depth":3,"next":{"title":"计算属性 computed","level":"1.3.4.3","depth":3,"path":"logic/computed.md","ref":"logic/computed.md","articles":[]},"previous":{"title":"响应式数据绑定系统","level":"1.3.4.1","depth":3,"path":"logic/data_bind.md","ref":"logic/data_bind.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","insert-logo","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"/doc/assets/100*100.png","style":"background: none;"},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"logic/lifecycle.md","mtime":"2019-03-22T05:25:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T13:58:47.546Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
