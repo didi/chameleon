@@ -36,7 +36,6 @@ module.exports = function({webpackConfig, options, compiler}) {
   dynamicApiMiddleware(app, options);
   if (compiler) {
 
-
     if (options.hot === true) {
       var hotMiddleware = require('webpack-hot-middleware')(compiler, {
         heartbeat: 9000,
@@ -61,7 +60,11 @@ module.exports = function({webpackConfig, options, compiler}) {
 
   // serve pure static assets
   var staticPath = webpackConfig.output.path;
-  app.use(express["static"](staticPath))
+  app.use(express["static"](staticPath));
+  if (~cml.activePlatform.indexOf('baidu')) {
+    let dist = path.join(cml.projectRoot, 'dist');
+    app.use(express["static"](dist));
+  }
 
   if (compiler && cml.config.get().templateType === 'smarty') {
     // php-cgi

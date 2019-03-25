@@ -1,6 +1,6 @@
 {
   "name": "chameleon-template-parse",
-  "version": "0.0.16-alpha.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,14 @@
     "@babel/traverse": "^7.1.0",
     "@babel/types": "^7.1.2",
     "babylon": "^6.18.0",
+    "hash-sum": "^1.0.2",
     "tapable": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chameleon-css-loader": "0.0.16-alpha.0",
-    "chameleon-mixins": "0.0.16-alpha.0",
+    "chameleon-css-loader": "0.1.1",
+    "chameleon-mixins": "0.1.1",
+    "chameleon-tool-utils": "0.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",

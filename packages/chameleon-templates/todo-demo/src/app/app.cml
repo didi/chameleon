@@ -31,6 +31,19 @@ export default new App();
       "navigationBarTitleText": "CNODE",
       "navigationBarTextStyle": "white"
     }
+  },
+  "baidu": {
+    "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#ffffff",
+      "navigationBarTitleText": "Chameleon",
+      "navigationBarTextStyle": "black"
+    }
+  },
+  "alipay": {
+      "window": {
+        "defaultTitle": "Chameleon"
+      }
   }
 }
 </script>

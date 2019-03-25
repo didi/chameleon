@@ -3,7 +3,8 @@ const utils = require('../common/utils');
 const t = require('@babel/types');
 const weexMixins = require('chameleon-mixins/weex-mixins.js')
 // weex: 不支持<view><text class="{{true? 'bg-green font':''}}" >fafafa</text></view>。也就注定不能这么写多个class ,但是可以 class="cls1 cls2 cls3"
-let parseClass = new SyncHook(['args'])
+let parseClass = new SyncHook(['args']);
+const hash = require('hash-sum');
 // weex对于动态样式的处理  简直 amazing
 // cml语法：支持的写法如下：class="cls1 cls2"  class="{{true ? 'cls1 cls2':'cls3 cls4'}}"
 /**
@@ -34,9 +35,8 @@ parseClass.tap('web-cml', (args) => {
         }
       })
     } else {
-      throw new Error(`cml语法下class节点最多只能有一个`);
+      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
     }
-    // utils.handleCMLClassNodes({classNodes, attributes, extraClass, lang, type})
   }
 
 })
@@ -66,15 +66,14 @@ parseClass.tap('weex-cml', (args) => {
 
       })
     } else {
-      throw new Error(`cml语法下class节点最多只能有一个`);
+      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
     }
 
-    // utils.handleCMLClassNodes({classNodes, attributes, extraClass, lang, type})
   }
 
 })
 parseClass.tap('wx-alipay-baidu-cml', (args) => {
-  let { node, type, options: {lang} } = args;
+  let { node, type, options: {lang, filePath} } = args;
   if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
@@ -82,6 +81,10 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
       attr.name.name === 'class'
     );
     let extraClass = ` cml-base cml-${tagName}`;
+    if (type === 'alipay') {
+      let randomClassName = hash(filePath);
+      extraClass = `${extraClass} cml-${randomClassName}`
+    }
     if (classNodes.length === 0) {
       attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
     } else if (classNodes.length === 1) {
@@ -90,9 +93,8 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
         itemNode.value.value = dealedClassNodeValue;
       })
     } else {
-      throw new Error(`cml语法下class节点最多只能有一个`);
+      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
     }
-    // utils.handleCMLClassNodes({classNodes, attributes, extraClass, lang, type: 'miniapp'})
   }
 
 })
@@ -126,7 +128,7 @@ parseClass.tap('weex-vue', (args) => {
 
 })
 parseClass.tap('wx-alipay-baidu-vue', (args) => {
-  let { node, type, options: {lang} } = args;
+  let { node, type, options: {lang, filePath} } = args;
   if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
@@ -134,7 +136,10 @@ parseClass.tap('wx-alipay-baidu-vue', (args) => {
       attr.name.name === 'class' || attr.name.name.name === 'class'
     );
     let extraClass = ` cml-base cml-${tagName}`;
-
+    if (type === 'alipay') {
+      let randomClassName = hash(filePath);
+      extraClass = `${extraClass} cml-${randomClassName}`
+    }
     utils.handleVUEClassNodes({classNodes, attributes, extraClass, lang, type: 'miniapp'})
   }
 

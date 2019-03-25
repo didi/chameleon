@@ -10,7 +10,7 @@ const {parseAnimationTag} = require('./parse-animation-tag.js');
 const {parseDirective} = require('./parse-directive.js');
 const {parseClass} = require('./parse-class.js');
 const {parseRef} = require('./parse-ref.js');
-const {parseTextContent} = require('./parse-text-content.js');
+
 const {
   tagMap
 } = require('../common/cml-map.js')
@@ -50,18 +50,6 @@ exports.afterParseTag = function (path, type) {
     }
   }
 }
-exports.parseOriginTag = function(path, type) {
-  let node = path.node;
-  if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
-    if (node.openingElement.name.name.indexOf('origin-') === 0) {
-      let currentTag = node.openingElement.name.name;
-      let targetTag = currentTag.replace('origin-', '')
-      node.openingElement.name.name = targetTag;
-      node.closingElement && (node.closingElement.name.name = targetTag);
-    }
-
-  }
-}
 exports.parseBuildTag = function (path, type, options) {
   let node = path.node;
   let buildInTagMap = options && options.buildInComponents;// {button:"cml-buildin-button"}
@@ -87,7 +75,7 @@ exports.parseBuildTag = function (path, type, options) {
 // 配合安震，解析c-slider;
 exports.parseTagForSlider = function(path, type, options) {
   let node = path.node;
-  if ((type === 'wx') && t.isJSXElement(node)) {
+  if ((type === 'wx' || type === 'baidu' || type === 'alipay') && t.isJSXElement(node)) {
     let currentTag = node.openingElement.name.name;
     let targetTag = tagMap.wxTagMap[currentTag];
     if (targetTag && currentTag !== targetTag) {
@@ -95,15 +83,6 @@ exports.parseTagForSlider = function(path, type, options) {
       node.closingElement && (node.closingElement.name.name = targetTag);
     }
   }
-}
-exports.parseTextContentStatement = function parseTextContentStatement(path, type) {
-  let node = path.node;
-  if (t.isJSXElement(node)) {
-    parseTextContent.call({path, type, node})
-  }
-  // if(t.isJSXText(node)){
-  //   parseTextContent.call({path,type,node})
-  // }
 }
 exports.parseRefStatement = function parseRefStatement(path, type, options) {
   let node = path.node;
@@ -129,6 +108,7 @@ exports.parseEventListener = function parseEventListener(path, type, options) {
     parseEvent.call({path, type, node, options})
   }
 }
+
 // 只支持数组，小程序不支持对象的for循环；
 // web weex wx   只处理cml语法   c-for
 exports.parseIterationStatement = function parseIterationStatement(path, type, options) {

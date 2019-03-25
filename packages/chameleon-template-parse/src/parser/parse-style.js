@@ -15,7 +15,7 @@ let parseStyle = new SyncHook(['args'])
 parseStyle.tap('web-cml', (args) => {
   let { node, type, options: { lang, cmss } } = args;
   if (!cmss) {
-    throw new Error('请确认是否传入cmss相关参数配置');
+    throw new Error('please ensure that if you configed the cmss in chameleon.config.js');
   }
   if (lang === 'cml' && type === 'web') {
     let styleNode = node;
@@ -61,7 +61,7 @@ parseStyle.tap('wx-alipay-baidu-cml', (args) => {
 parseStyle.tap('web-vue', (args) => {
   let { node, type, options: { lang, cmss } } = args;
   if (!cmss) {
-    throw new Error('请确认是否传入cmss相关参数配置');
+    throw new Error('please ensure that if you configed the cmss in chameleon.config.js');
   }
   if (lang === 'vue' && type === 'web') {
     // web端处理动态style；
@@ -99,7 +99,7 @@ parseStyle.tap('miniapp-vue', (args) => {
           newStyleNodeValue = utils.transformWxDynamicStyleCpxToRpx(`{{${styleNode.value.value}}}`);
           path.replaceWith(t.jsxAttribute(t.jsxIdentifier('style'), t.stringLiteral(newStyleNodeValue)));
         } catch (err) {
-          throw new Error(`${type}端${lang}语法下，style属性书写有误，请查看文档`);
+          throw new Error(`${type} platform with ${lang} syntax，the attributes style is not correct`);
         }
       } else if (styleNode.value && !utils.isMustacheReactive(styleNode.value.value)) { // 静态的
         styleNode.value && (styleNode.value.value = wxStaticStyleHandle(styleNode.value.value));

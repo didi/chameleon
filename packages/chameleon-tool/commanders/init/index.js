@@ -1,3 +1,4 @@
+
 let fs = null;
 let path = null;
 let tpl = null;
@@ -109,28 +110,10 @@ exports.register = function (commander) {
 
   function initProject() {
     let questions = [
-      // {
-      //   type: 'checkbox',
-      //   name: 'platforms',
-      //   message: '请选择项目需要支持的平台，默认已全选',
-      //   choices: [
-      //     'h5',
-      //     'weex',
-      //     '微信小程序'
-      //   ],
-      //   validate: function(value) {
-      //     value = value || [];
-      //     if (value.length === 0) {
-      //       return '至少选择一个平台'
-      //     }
-      //     return true;
-      //   },
-      //   default: ['h5', 'weex', '微信小程序']
-      // },
       {
         type: 'input',
         name: 'projectName',
-        message: '请输入项目名称',
+        message: 'please input the name of project:',
         validate: function (value) {
           if (!value) {
             return 'project name can not be empty'
@@ -143,7 +126,6 @@ exports.register = function (commander) {
           if (fs.existsSync(value)) {
             return 'There is already a project with the same name in the current directory,please change one'
           }
-
           return true;
         }
       }
@@ -151,7 +133,7 @@ exports.register = function (commander) {
 
     inquirer.prompt(questions).then(answers => {
       let {projectName } = answers;
-      let platforms = ['h5', 'weex', '微信小程序'];
+      let platforms = ['h5', 'weex', '微信小程序','支付宝小程序','百度小程序'];
       let templateType = cmdOptions.tpl;
       let templateLang = cmdOptions.lang;
       platforms = platforms.map(item => platformMap[item]);
@@ -183,7 +165,6 @@ exports.register = function (commander) {
       fs.writeFileSync(configFile, content);
 
       var npmignore = path.join(pagedir, '.npmignore');
-
       // npm包中的.gitignore变成了.npmignore
       if (cml.utils.isFile(npmignore)) {
         fse.moveSync(npmignore, path.join(pagedir, '.gitignore'));
@@ -290,11 +271,11 @@ exports.register = function (commander) {
     let questions = [{
       type: 'list',
       name: 'componentType',
-      message: '请选择组件类型',
+      message: 'please select the type of component',
       choices: [
-        '普通组件',
-        '多态组件',
-        '多态接口'
+        'Normal component',
+        'Polymorphic component',
+        'Polymorphic function'
       ]
     }, {
       type: 'input',
@@ -317,9 +298,9 @@ exports.register = function (commander) {
       let {componentName, componentType} = answers;
       let comdir = path.join(cml.projectRoot, `src/components/${componentName}`);
       let comPathMap = {
-        '普通组件': 'component',
-        '多态组件': 'interface-component',
-        '多态接口': 'interface-js'
+        'Normal component': 'component',
+        'Polymorphic component': 'interface-component',
+        'Polymorphic function': 'interface-js'
       }
       let tplPath = path.join(tpl.componentTpl, comPathMap[componentType]);
       let UpperName = toUpperCase(componentName);

@@ -17,14 +17,26 @@ module.exports = function (app, options) {
     let self = this;
     let reqPath = req.path;
     let reqMethod = req.method.toLowerCase();
-
+    let query = req.query;
     for (let j = 0; j < controllerFiles.length; j++) {
       let file = controllerFiles[j];
       delete require.cache[file];
-      let controller = require(file);
-      if (!(controller instanceof Array)) {
-        controller = [controller];
+      let apis = require(file);
+      let domainkey = query.domainkey || cml.config.get().defaultDomainKey || 'apiPrefix';
+      if (!Array.isArray(apis)) {
+        apis = [apis];
       }
+      let controller = [];
+      apis.forEach(item => {
+        if (!item.domainKey) {
+          item.domainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
+          if (domainkey === item.domainKey) {
+            controller = controller.concat(item);
+          }
+        } else if (domainkey === item.domainKey) {
+          controller = controller.concat(item.request);
+        }
+      })
 
       for (let i = 0; i < controller.length; i++) {
         let item = controller[i];
@@ -34,7 +46,6 @@ module.exports = function (app, options) {
         if (typeof method === 'string') {
           method = [method];
         }
-
         if (~method.indexOf(reqMethod) && item.path === reqPath) {
           return item.controller.call(self, req, res, next);
         }

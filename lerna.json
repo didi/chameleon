@@ -1,5 +1,7 @@
 {
   "packages": [
+    "packages/chameleon-tool",
+    "packages/easy-chameleon",
     "packages/babel-plugin-chameleon-import",
     "packages/chameleon-css-loader",
     "packages/chameleon-dev-proxy",
@@ -24,7 +26,7 @@
     "packages/webpack-check-plugin",
     "packages/webpack-liveload-middleware"
   ],
-  "version": "0.0.16-alpha.0",
+  "version": "0.1.1",
   "command": {
     "publish": {
       "allowBranch": "master",

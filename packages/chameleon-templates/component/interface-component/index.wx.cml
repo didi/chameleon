@@ -61,14 +61,6 @@ export default new Replace();
   "base": {
     "usingComponents": {
     }
-  },
-  "wx": {
-    "window": {
-      "backgroundTextStyle": "dark",
-      "navigationBarBackgroundColor": "#343434",
-      "navigationBarTitleText": "CNODE",
-      "navigationBarTextStyle": "#fff"
-    }
   }
 }
 </script>

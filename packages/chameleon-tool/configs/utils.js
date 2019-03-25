@@ -41,7 +41,8 @@ exports.cssLoaders = function (options) {
       {
         loader: 'chameleon-css-loader',
         options: {
-          platform: 'miniapp'
+          platform: 'miniapp',
+          cmlType: type
         }
       },
       getPostCssLoader(type)

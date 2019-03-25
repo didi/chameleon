@@ -26,11 +26,24 @@ export default new App();
 {
   "wx": {
     "window": {
-      "backgroundTextStyle": "dark",
-      "navigationBarBackgroundColor": "#343434",
-      "navigationBarTitleText": "CNODE",
-      "navigationBarTextStyle": "white"
+      "backgroundTextStyle":"light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "Chameleon",
+      "navigationBarTextStyle":"black"
     }
+  },
+  "baidu": {
+    "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#ffffff",
+      "navigationBarTitleText": "Chameleon",
+      "navigationBarTextStyle": "black"
+    }
+  },
+  "alipay": {
+      "window": {
+        "defaultTitle": "Chameleon"
+      }
   }
 }
 </script>

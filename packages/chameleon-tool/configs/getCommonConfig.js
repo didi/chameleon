@@ -26,8 +26,8 @@ module.exports = function (options) {
   let publicPath;
   let defaultPublichPathMap = {
     'wx': '/',
-    'baidu': '/',
     'alipay': '/',
+    'baidu': `http://${config.ip}:${webServerPort}/baidu/`, // baidu小程序的publicPath不能设置能/  所以在启动dev服务的时候 也将dist作为静态资源
     'web': `http://${config.ip}:${webServerPort}/`,
     'weex': `http://${config.ip}:${webServerPort}/weex/`
   }
@@ -151,17 +151,33 @@ module.exports = function (options) {
   if (options.analysis) {
     commonConfig.plugins.push(new BundleAnalyzerPlugin())
   }
-  if (options.apiPrefix) {
+  let devApiPrefix = `http://${config.ip}:${webServerPort}`
+  // 兼容旧版api
+  let apiPrefix = options.apiPrefix || devApiPrefix;
+  // 新版api 优先读取domainMap
+  let domainMap = (cml.config.get().domainMap && cml.config.get().domainMap[cml.media]) || {
+    apiPrefix
+  };
+  let defaultDomainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
+  if (options.media === 'dev') {
+    // dev模式默认apiPrefix
     commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.cmlApiPrefix': JSON.stringify(options.apiPrefix)
-    }))
-  } else if (options.media === 'dev') {
-    // 默认去web端 dev模式的port
-    let apiPrefix = `http://${config.ip}:${webServerPort}`
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.cmlApiPrefix': JSON.stringify(apiPrefix)
+      'process.env.devApiPrefix': JSON.stringify(devApiPrefix)
     }))
   }
+  // 兼容旧版api
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.cmlApiPrefix': JSON.stringify(apiPrefix)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.domainMap': JSON.stringify(domainMap)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.defaultDomainKey': JSON.stringify(defaultDomainKey)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.media': JSON.stringify(options.media)
+  }))
 
   if (options.minimize) {
     commonConfig.plugins = commonConfig.plugins.concat([

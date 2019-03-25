@@ -17,7 +17,7 @@ module.exports = function(content) {
   }
   targetFilePath = resource.replace(/\.wxml/, extMap[type]);
   if (!cmlUtils.isFile(targetFilePath)) {
-    throw new Error(`未找到文件${targetFilePath}`)
+    throw new Error(`can't find ${targetFilePath}`)
   } else {
     self.addDependency(targetFilePath);
     output = fs.readFileSync(targetFilePath, {encoding: 'utf-8'})

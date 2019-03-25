@@ -216,7 +216,6 @@ _.isDirectory = function (filePath) {
 }
 
 
-
 /**
  * @param {String} filePath  cml文件位置 已经不再支持json文件
  * @param {String} confType 获取的类型 wx|web|weex
@@ -236,10 +235,10 @@ _.getJsonFileContent = function (filePath, confType) {
         cmlType: 'json'
       })
       if (!content) {
-        _.log.error(`文件${filePath}不存在<script cml-type="json"></script>配置`)
+        _.log.error(`The file ${filePath}is not exist <script cml-type="json"></script>`)
       }
     } else {
-      _.log.error(`没有找到文件${filePath}`)
+      _.log.error(`There is no file:${filePath}`)
     }
   } else if (~['.wxml', '.axml', '.swan'].indexOf(path.extname(filePath))) {
     let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan)/, '.json');
@@ -251,21 +250,21 @@ _.getJsonFileContent = function (filePath, confType) {
       try {
         jsonObject = JSON.parse(content);
       } catch (e) {
-        log.warn('文件：' + jsonFilePath + ',json格式不正确');
+        log.warn('JSON configThe in file：' + jsonFilePath + ' is not correct ');
       }
       return jsonObject;
     } else {
-      _.log.error(`未找到${filePath}对应的json文件`)
+      _.log.error(`can't find the .json file corresponding to :${filePath}  `)
     }
   } else {
-    _.log.error(`文件${filePath}不存在json配置`)
+    _.log.error(`The file :${filePath} is missing .json file corresponding to`)
   }
 
   let jsonObject = {}
   try {
     jsonObject = JSON.parse(content);
   } catch (e) {
-    log.warn(`${filePath} 对应的json文件格式不正确`);
+    log.warn(`The .json file corresponding to :${filePath} is not correct`);
   }
   jsonObject = jsonObject || {};
   let targetObject = jsonObject[confType] || {};
@@ -401,7 +400,7 @@ _.deleteScript = function ({
 _.checkProjectConfig = function () {
   /* istanbul ignore if  */
   if (!cml.config.loaded) {
-    log.error('未在chameleon根目录下执行命令或项目根目录没有chameleon.config.js配置文件')
+    log.error('Chameleon command line should be excuted in the root directory or  there is short of the file :chameleon.config.js in the root directory   ')
     process.exit();
   }
 }
@@ -431,7 +430,7 @@ _.getNpmComponents = function (cmlType, context) {
 
     })
   } else {
-    throw new Error(`chameleon.config.js 中 cmlComponents 字段需要配置成Array类型`)
+    throw new Error(`The field : cmlComponents in chameleon.config.js should be arraytype `)
   }
 
   return cml.npmComponents[cmlType] = npmComponents;
@@ -527,7 +526,9 @@ _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
       }
       // 如果自动引入的组件与用户自定义组件重名则不自动引入
       if (!~customComsKeys.indexOf(npmcomName)) {
-        coms[item.name] = item.refPath;
+        // refPath 改为相对路径
+        let refPath = _.npmRefPathToRelative(item.refPath, jsonFile, context);
+        coms[item.name] = refPath;
       }
     })
   }
@@ -640,10 +641,12 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   }
 
   if (~filePath.indexOf('node_modules')) {
-    refUrl = _.npmComponentRefPath(filePath, context)
+    refUrl = _.npmComponentRefPath(filePath, context);
+    // 改为相对路径
+    refUrl = _.npmRefPathToRelative(refUrl, cmlFilePath, context);
 
   } else {
-    // 改成绝对路径
+    // 改成相对路径
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
 
     refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
@@ -710,7 +713,7 @@ _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
     let cmlType = cmlTypeList[i];
     let result = _.handleComponentUrl(context, cmlFilePath, comPath, cmlType);
     if (result.filePath) {
-      // 如果是.cml并且不是多态的cml文件 
+      // 如果是.cml并且不是多态的cml文件
       let cmlReg = new RegExp(`\\.${cmlType}\\.cml$`)
       if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
         result.isCml = true;
@@ -730,7 +733,30 @@ _.findInterfaceFile = function(context, cmlFilePath, comPath) {
   return _.handleComponentUrl(context, cmlFilePath, comPath, 'interface');
 }
 
-// 处理npm中组件的引用路径 root是项目根目录
+/**
+ * @description 将/npm 的组件引用改为相对路径
+ * @param npmRefPath npm绝对引用路径  /npm/cml-ui/button/button
+ * @param cmlFilePath cml文件路径
+ * @param context 项目根目录
+ */
+_.npmRefPathToRelative = function(npmRefPath, cmlFilePath, context) {
+  if (npmRefPath[0] === '/') {
+    let entryPath = _.getEntryPath(cmlFilePath, context);
+    // pages/index/index.cml  derLength = 2
+    let dirLength = entryPath.split('/').length - 1;
+    let relativePath = './';
+    for (let i = 0; i < dirLength; i++) {
+      relativePath += '../';
+    }
+    npmRefPath = npmRefPath.slice(1);
+    npmRefPath = relativePath + npmRefPath;
+    return npmRefPath;
+  } else {
+    return npmRefPath;
+  }
+}
+
+// 处理npm中组件的引用路径 root是项目根目录 得到的是绝对路径/npm
 _.npmComponentRefPath = function (componentAbsolutePath, context) {
   let refUrl = '';
   refUrl = path.relative(context, componentAbsolutePath);
@@ -855,10 +881,10 @@ _.getExportEntry = function (cmlType, context, entry = []) {
       }
     })
   } else {
-    _.log.warn('请指定export的entry')
+    _.log.warn('please assign the entry of what you want to export')
   }
   if (exportFiles.length == 0) {
-    throw new Error('未找到要导出的cml文件')
+    throw new Error(`can't find the entry file that you want to export`)
   }
   return exportFiles;
 }
@@ -916,7 +942,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
     type = 'component';
   } else {
     var entryName = _.getPureEntryName(cmlFilePath, cmlType, context);
-    if ('app/app' === entryName) {
+    if (entryName === 'app/app') {
       type = 'app';
     } else {
       let {routerConfig, hasError} = _.getRouterConfig();

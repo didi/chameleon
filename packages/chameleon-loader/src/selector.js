@@ -29,11 +29,14 @@ module.exports = function (content) {
     part = part[index]
   }
   let output = part.content;
-  if (query.type === 'styles' && ~['app', 'component'].indexOf(query.fileType) && query.isInjectBaseStyle === 'true') {
-    output = `
-      @import 'chameleon-runtime/src/platform/${query.cmlType}/style/index.css';
-      ${output}
-    `
+  if (query.type === 'styles' && ~['page', 'component'].indexOf(query.fileType) && query.isInjectBaseStyle === 'true') {
+    // 支付宝 component 不插入
+    if (!(query.cmlType === 'alipay' && query.fileType === 'component')) {
+      output = `
+        @import 'chameleon-runtime/src/platform/${query.cmlType}/style/index.css';
+        ${output}
+      `
+    }
   }
   if (query.type == 'script') {
     // 拼接wx所需要的运行时代码，如果在loader中拼接，拼接的代码将不会过loader了
