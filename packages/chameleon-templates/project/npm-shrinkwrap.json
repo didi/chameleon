@@ -5,25 +5,32 @@
   "requires": true,
   "dependencies": {
     "chameleon-api": {
-      "version": "0.3.0-alpha.0",
-      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.3.0-alpha.0.tgz",
-      "integrity": "sha512-/qMyPikRj/q3C5TYHFCW6GJl13OhBbkd4TkAqTOlc2JiEQsef4N4NFChNnIfFijOEJzMRZAy3y3sf2ej2/diUg==",
+      "version": "0.3.0-alpha.4",
+      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.3.0-alpha.4.tgz",
+      "integrity": "sha512-NxKQBJpN84t9XRgOGCcvjfjj4QIzZNECT7wX0PM1ObK4x/vPesJ+4vRxQrss8xJvYjFvve7GncTyM1Tm1RxNHw==",
       "requires": {
         "chameleon-bridge": "0.1.0",
         "child_process": "1.0.2",
         "fetch-detector": "1.0.1",
         "fetch-ie8": "1.5.0"
+      },
+      "dependencies": {
+        "chameleon-bridge": {
+          "version": "0.1.0",
+          "resolved": "https://registry.npmjs.org/chameleon-bridge/-/chameleon-bridge-0.1.0.tgz",
+          "integrity": "sha512-1Qc7F4ts0zlfglGn3VnVSPg3SRge37gu5/EQ+Mz8K3vqpRgoXGPN6cRtK+4wrvqox740gml+yWsuV10GY2xB1A=="
+        }
       }
     },
     "chameleon-bridge": {
-      "version": "0.1.0",
-      "resolved": "https://registry.npmjs.org/chameleon-bridge/-/chameleon-bridge-0.1.0.tgz",
-      "integrity": "sha512-1Qc7F4ts0zlfglGn3VnVSPg3SRge37gu5/EQ+Mz8K3vqpRgoXGPN6cRtK+4wrvqox740gml+yWsuV10GY2xB1A=="
+      "version": "0.1.1-alpha.2",
+      "resolved": "https://registry.npmjs.org/chameleon-bridge/-/chameleon-bridge-0.1.1-alpha.2.tgz",
+      "integrity": "sha512-5IFZPamHYErbMYPD/H+RT5GAmxDqDZ0YlkBAbDGIDm82WFEFlpp7MnDclb1ZjJ2/txz3WmUOQQq/ZvOrVqACJg=="
     },
     "chameleon-runtime": {
-      "version": "0.0.4",
-      "resolved": "https://registry.npmjs.org/chameleon-runtime/-/chameleon-runtime-0.0.4.tgz",
-      "integrity": "sha512-Ctz2AtTcETVtpjB49NdovzgASXFSTpo7uv17zJkiEN8OPmr5DozbIa2EkBwQgDwmiEdgsrKi4p5GiHI8ozU0Bg==",
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/chameleon-runtime/-/chameleon-runtime-0.1.0.tgz",
+      "integrity": "sha512-bfAvgQb3cYsNLcYkLDLbkXz88g6Pr8bC8BpAhJyibbSBfMK++GnoZxB9Xq+OYyFHpJ6VP2Jn+f6S6lgFve4brw==",
       "requires": {
         "mobx": "3.6.1"
       }
