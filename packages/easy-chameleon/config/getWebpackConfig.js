@@ -35,7 +35,7 @@ exports.getConfig = function(options = {}) {
   if(!cmlType){
     throw new Error('未传递cmlType');
   }
-  if(!media){
+  if(!media){ 
     throw new Error('未传递media');
   }
 
@@ -215,7 +215,16 @@ function getCmlLoaders(options) {
     case 'web':
       loaders = [{
           loader: 'vue-loader',
-          options: Object.assign(cmlLoaderConfig)
+          options: Object.assign(cmlLoaderConfig,{
+            compilerModules: [
+              {
+                postTransformNode: el => {
+                  // to convert vnode for weex components.
+                  require('chameleon-vue-precompiler')()(el)
+                }
+              }
+            ]
+          })
         },
         cmlLoader
       ]    

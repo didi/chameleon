@@ -14,7 +14,12 @@ const path = require('path');
 
 
 describe('cml', function() {
+
+
   describe('lint-json', function() {
+    before(async function() {
+      config.init(path.resolve(__dirname, '../linter/cml/json/'));
+    });
     it('json-standard', async function() {
       const cmlPath = path.resolve(__dirname, './linter/cml/json/standard.cml');
       const parts = utils.getCmlParts(cmlPath);
@@ -75,7 +80,9 @@ describe('cml', function() {
 
 
   describe('lint-style', function () {
-
+    before(async function() {
+      config.init(path.resolve(__dirname, '../linter/cml/style/'));
+    });
     it('style-standard', async function () {
       const cmlPath = path.resolve(__dirname, './linter/cml/style/standard.cml');
       const parts = utils.getCmlParts(cmlPath);
@@ -107,6 +114,33 @@ describe('cml', function() {
       ]);
     });
 
+    // 支持stylus
+    it('style-stylus', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/style/standard.stylus.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await styleLinter(parts.style);
+      expect(result.messages).to.deep.equal([]);
+    });
+    // 支持stylus 错误情况
+    it('style-stylus-error', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/style/no-standard.stylus.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await styleLinter(parts.style);
+      expect(result.messages).to.deep.equal([
+        {
+          "column": 3,
+          "line": 7,
+          "msg": "expected \"indent\", got \";\""
+        }
+      ]);
+    });
+    // 支持stylus
+    it('style-important', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/style/no-standard-important.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await styleLinter(parts.style);
+      expect(result.messages).to.deep.equal([]);
+    });
     // 缺少分号
     it('style-no-semicolon', async function () {
       const cmlPath = path.resolve(__dirname, './linter/cml/style/no-semicolon.cml');
@@ -144,6 +178,25 @@ describe('cml', function() {
           msg: 'Unexpected token, expected ","'
         }
       ]);
+    });
+    it('nonstandard-arrow', async function () {
+      const cmlPath = path.resolve(__dirname, './linter/cml/script/nonstandard-arrow.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      const result = await scriptLinter(parts.script);
+      expect(result.messages).to.deep.equal(
+        [
+          {
+            "column": 5,
+            "line": 19,
+            "msg": "computed property \"hasApplyList\" cannot be used as an arrow function"
+          },
+          {
+            "column": 3,
+            "line": 30,
+            "msg": "lifecycle hook \"mounted\" cannot be used as an arrow function"
+          }
+        ]
+      );
     });
     it('syntax-error', async function () {
       const projectRoot = path.resolve(__dirname, './template/docs/');

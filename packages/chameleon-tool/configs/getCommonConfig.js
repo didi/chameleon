@@ -25,8 +25,8 @@ module.exports = function (options) {
 
   let publicPath;
   let defaultPublichPathMap = {
-    'wx': '/',
-    'alipay': '/',
+    'wx': `http://${config.ip}:${webServerPort}/wx/`,
+    'alipay': `http://${config.ip}:${webServerPort}/alipay/`,
     'baidu': `http://${config.ip}:${webServerPort}/baidu/`, // baidu小程序的publicPath不能设置能/  所以在启动dev服务的时候 也将dist作为静态资源
     'web': `http://${config.ip}:${webServerPort}/`,
     'weex': `http://${config.ip}:${webServerPort}/weex/`
@@ -46,18 +46,17 @@ module.exports = function (options) {
       alias: {
         '$CMLPROJECT': path.resolve(cml.root),
         '$PROJECT': path.resolve(root),
-        '$ROUTER': path.resolve(root, 'node_modules/chameleon-runtime/.temp/router.js'),
         '$ROUTER_CONFIG': path.resolve(root, './src/router.config.json')
       },
       modules: [
         'node_modules',
-        path.join(cml.root, '/node_modules')
+        path.join(cml.root, '/node_modules'),
       ]
     },
     resolveLoader: {
       modules: [
-        'node_modules',
-        path.join(cml.root, '/node_modules')
+        path.join(cml.root, '/node_modules'),
+        'node_modules'
       ]
     },
     module: {
@@ -207,9 +206,9 @@ module.exports = function (options) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
 
-  let cmlPages = cml.config.get().cmlPages;
-  if (cmlPages && cmlPages.length > 0) {
-    cmlPages.forEach(npmName => {
+  let subProject = cml.config.get().subProject;
+  if (subProject && subProject.length > 0) {
+    subProject.forEach(npmName => {
       let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'),{encoding:'utf-8'}));
       let cmlConfig = packageJSON.cml || {};
       let definePlugin = cmlConfig.definePlugin;
@@ -217,8 +216,8 @@ module.exports = function (options) {
         Object.keys(definePlugin).forEach(key => {
           definePlugin[key] = JSON.stringify(definePlugin[key])
         })
+        commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
       }
-      commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
     })
   }
 

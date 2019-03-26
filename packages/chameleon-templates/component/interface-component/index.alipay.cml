@@ -62,8 +62,6 @@ export default new Replace();
   "base": {
     "usingComponents": {
     }
-  },
-  "alipay": {
   }
 }
 </script>
