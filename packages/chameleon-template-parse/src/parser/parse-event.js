@@ -93,7 +93,7 @@ parseEvent.tap('wx-baidu', (args) => {
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       value.value = `${eventProxy.inlineStatementEventProxy}`;
-      let args = match && utils.doublequot2singlequot(match[1]);
+      let args = match && utils.doublequot2singlequot(match[1]).trim();
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-args`), t.stringLiteral(args)))
       if (args) {
@@ -148,7 +148,7 @@ parseEvent.tap('alipay', (args) => {
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       value.value = `${eventProxy.inlineStatementEventProxy}`;
-      let args = match && utils.doublequot2singlequot(match[1]);
+      let args = match && utils.doublequot2singlequot(match[1]).trim();
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-args`), t.stringLiteral(args)))
       if (args) {

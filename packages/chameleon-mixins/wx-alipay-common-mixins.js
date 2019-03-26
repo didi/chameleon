@@ -24,21 +24,24 @@ _.mixins = {
     [_.inlineStatementEventProxy](e) {
       let { dataset } = e.currentTarget;
       let originFuncName = dataset && dataset[`event${e.type}`];
-
       let argsStr = dataset && dataset.args;
-      let argsArr = argsStr.split(',').reduce((result, item, index) => {
-        let arg = dataset[`arg${index}`];
-        if (arg === "$event") {
-          let newEvent = getNewEvent(e);
-          result.push(newEvent);
-        } else {
-          // 这里的值微信已经计算好了；到dateset的时候已经是计算的结果 比如msg = 'sss' data-arg1="{{msg + 1}}"
-          // dataset[arg1] = 'sss1'
-          result.push(dataset[`arg${index}`])
-        }
-        return result;
+      let argsArr = [];
+      // 由于百度对于 data-arg="" 在dataset.arg = true 值和微信端不一样所以需要重新处理下这部分逻辑
+      if (argsStr && typeof argsStr === 'string') {
+        argsArr = argsStr.split(',').reduce((result, item, index) => {
+          let arg = dataset[`arg${index}`];
+          if (arg === "$event") {
+            let newEvent = getNewEvent(e);
+            result.push(newEvent);
+          } else {
+            // 这里的值微信已经计算好了；到dateset的时候已经是计算的结果 比如msg = 'sss' data-arg1="{{msg + 1}}"
+            // dataset[arg1] = 'sss1'
+            result.push(dataset[`arg${index}`])
+          }
+          return result;
 
-      }, []);
+        }, []);
+      }
       if (originFuncName && this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
         this[originFuncName](...argsArr)
       } else {
