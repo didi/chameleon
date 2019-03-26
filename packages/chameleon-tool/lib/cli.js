@@ -11,38 +11,49 @@ module.exports.run = function () {
     cml.log.notice(`current running chameleon(${cml.root})`)
     version();
   } else {
-    commander.usage('[command] [options]')
-    commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
-    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay'];
-    cmdList = cmdList.map(key => ({
-      key,
-        cmd: require(`../commanders/${key}/index.js`) // eslint-disable-line 
-    }))
 
-    cmdList.forEach(item => {
-      let cmd = item.cmd;
-      cmd.register(
-        commander
-          .command(cmd.name)
-          .option('-l, --log [debug]', 'logLevel')
-          .usage(cmd.usage)
-          .description(cmd.desc)
-      );
-    })
+    
 
-    if (cml.config.get().commanderPlugins && cml.config.get().commanderPlugins.length > 0) {
-      cml.config.get().commanderPlugins.forEach(item => {
-        let CommanderPlugin = require(path.join(cml.projectRoot, 'node_modules', item)); // eslint-disable-line
-        let commanderInstance = new CommanderPlugin();
-        let subCommander = commander
-          .command(commanderInstance.name)
-          .option('-l, --log [debug]', 'logLevel')
-          .usage(commanderInstance.usage)
-          .description(commanderInstance.desc);
-        commanderInstance.registerCommander({commander: subCommander})
+
+    // if (cml.config.get().commanderPlugins && cml.config.get().commanderPlugins.length > 0) {
+    //   cml.config.get().commanderPlugins.forEach(item => {
+    //     let CommanderPlugin = require(path.join(cml.projectRoot, 'node_modules', item)); // eslint-disable-line
+    //     let commanderInstance = new CommanderPlugin();
+    //     let subCommander = commander
+    //       .command(commanderInstance.name)
+    //       .option('-l, --log [debug]', 'logLevel')
+    //       .usage(commanderInstance.usage)
+    //       .description(commanderInstance.desc);
+    //     commanderInstance.registerCommander({commander: subCommander})
+    //   })
+    // }
+    //   扩展端
+    if (cml.config.get().platformPlugin && cml.config.get().platformPlugin[first]) {
+
+    } else {
+      commander.usage('[command] [options]')
+      commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
+      let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay'];
+      cmdList = cmdList.map(key => ({
+        key,
+          cmd: require(`../commanders/${key}/index.js`) // eslint-disable-line 
+      }))
+
+      cmdList.forEach(item => {
+        let cmd = item.cmd;
+        cmd.register(
+          commander
+            .command(cmd.name)
+            .option('-l, --log [debug]', 'logLevel')
+            .usage(cmd.usage)
+            .description(cmd.desc)
+        );
       })
+      commander.parse(argv);
     }
-    commander.parse(argv);
+    console.log(first);
+
+
   }
 
   function version() {
