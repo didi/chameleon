@@ -118,6 +118,9 @@ exports.getWebBuildPromise = async function (media, isCompile) {
  * @param {*} type  wx web weex
  */
 exports.startReleaseAll = async function (media) {
+  if (media === 'build') {
+    process.env.NODE_ENV = 'production';
+  }
   let allPlatform = cml.config.get().platforms;
   let offPlatform = [];
   let activePlatform = []; // 启动编译的platform
@@ -154,6 +157,9 @@ exports.startReleaseAll = async function (media) {
 }
 
 exports.startReleaseOne = async function(media, type) {
+  if (media === 'build') {
+    process.env.NODE_ENV = 'production';
+  }
   // 给preview使用
   cml.activePlatform = [type];
   if (type === 'web') {
