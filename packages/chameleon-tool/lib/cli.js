@@ -4,6 +4,8 @@ const commander = require('commander');
 const cmlpackage = require('../package.json');
 const argv = process.argv;
 const path = require('path');
+const extendPlatform = require('../commanders/extendPlatform.js');
+
 module.exports.run = function () {
 
   var first = argv[2];
@@ -11,10 +13,6 @@ module.exports.run = function () {
     cml.log.notice(`current running chameleon(${cml.root})`)
     version();
   } else {
-
-    
-
-
     // if (cml.config.get().commanderPlugins && cml.config.get().commanderPlugins.length > 0) {
     //   cml.config.get().commanderPlugins.forEach(item => {
     //     let CommanderPlugin = require(path.join(cml.projectRoot, 'node_modules', item)); // eslint-disable-line
@@ -29,7 +27,7 @@ module.exports.run = function () {
     // }
     //   扩展端
     if (cml.config.get().platformPlugin && cml.config.get().platformPlugin[first]) {
-
+      extendPlatform({platform: first, media: argv[3]});
     } else {
       commander.usage('[command] [options]')
       commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
