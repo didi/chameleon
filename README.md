@@ -33,11 +33,7 @@
 
 > 基于多态协议不影响各端差异化灵活性
 
-<a href="https://github.com/beatles-chameleon/cml-demo">
-
-![本地预览](https://cmljs.org/doc/assets/demo-preview.png)
-
-</a>
+<img src="https://cmljs.org/doc/assets/efficient.gif" />
 
 | web   |      微信小程序      |  native-weex |  百度小程序 |  支付宝小程序 |
 |:----------:|:-------------:|:------:|:------:|:------:|
