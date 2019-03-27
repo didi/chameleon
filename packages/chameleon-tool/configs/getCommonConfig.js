@@ -160,7 +160,13 @@ module.exports = function (options) {
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
   // 新版api 优先读取domainMap
-  let domain = options.domain || {};
+  // 浅拷贝不影响config中的domain
+  let domain = {};
+  if (options.domain) {
+    domain = {
+      ...options.domain
+    }
+  }
 
 
   if (options.media === 'dev') {

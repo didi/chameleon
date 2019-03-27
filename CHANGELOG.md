@@ -1,3 +1,21 @@
+## [0.2.0-alpha.0](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.2.0-alpha.0)
+
+### Features
+
+- 优化api多域名mock方式
+- 组件间css优先级修复
+- chameleon.config.js支持base配置
+- cml和vue的语法支持事件冒泡
+- vue语法下扩展了 v-on:click.stop="handleClick" 的形式来阻止冒泡
+- wx端用户自定义组件不添加 cml-base class
+- component is支持事件绑定以及component is上的属性解析
+- 支持cml子项目放入node_module中引入
+- 支持拷贝node_modules中的小程序子项目
+
+### Bug Fixes
+
+- 修复 组件间css优先级 使父组件可覆盖子组件样式
+
 ## [0.1.0-alpha.4](https://github.com/didi/chameleon/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
 
 ### Features
