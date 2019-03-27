@@ -161,7 +161,7 @@ _.get = function() {
     if (baseConfig) {
       platforms.forEach(platform => {
         if (chameleonConfig[platform]) {
-          utils.merge(chameleonConfig[platform], baseConfig);
+          utils.merge(chameleonConfig[platform], JSON.parse(JSON.stringify(baseConfig)));
         }
       })
       delete chameleonConfig.base;
