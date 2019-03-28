@@ -3,13 +3,19 @@ const cmlUtils = require('@didi/chameleon-cli-utils');
 const {getCode} = require('./lib/check.js');
 const getInterfaceCode = require('./lib/getInterfaceCode.js');
 const getMethodCode = require('./lib/getMethodCode.js');
-module.exports = function({cmlType, media, source, filePath, check, resolve }) {
+const path = require('path');
+
+const defaultResolve = function(filePath, relativePath) {
+  return path.resolve(path.dirname(filePath), relativePath)
+}
+
+// resolve 用于处理interface中include文件中的引用
+module.exports = function({cmlType, media, source, filePath, check, resolve = defaultResolve }) {
   let interfaceResut = getInterfaceCode({interfacePath: filePath, content: source})
   let methodResult = getMethodCode({interfacePath: filePath, content: source, cmlType, resolve})
 
-
-  let {content: interfaceContent, devDeps: interfacedevDeps, contentFilePath: interfaceFilePath} = interfaceResut;
-  let {content: methodContent, devDeps: methoddevDeps, contentFilePath: methodFilePath} = methodResult;
+  let {content: interfaceContent, devDeps: interfacedevDeps} = interfaceResut;
+  let {content: methodContent, devDeps: methoddevDeps} = methodResult;
   let devDeps = [].concat(interfacedevDeps).concat(methoddevDeps);
   if (!interfaceContent) {
     throw new Error(`文件: ${filePath}未定义<script cml-type="interface"></script>`)

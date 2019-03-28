@@ -16,6 +16,5 @@
     "test": "mocha"
   },
   "author": "",
-  "license": "ISC",
-  "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
+  "license": "ISC"
 }

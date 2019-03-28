@@ -23,6 +23,5 @@
   "devDependencies": {
     "@babel/helper-fixtures": "^7.0.0",
     "@babel/parser": "^7.0.0"
-  },
-  "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
+  }
 }

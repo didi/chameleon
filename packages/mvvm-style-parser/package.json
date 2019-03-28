@@ -9,10 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chameleon-tool-utils": "latest",
+    "chameleon-tool-utils": "^0.1.1",
     "less": "3.9.0",
     "postcss": "^7.0.14",
     "stylus": "0.54.5"
-  },
-  "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
+  }
 }
