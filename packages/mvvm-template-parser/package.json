@@ -1,0 +1,18 @@
+{
+  "name": "mvvm-template-parser",
+  "version": "0.0.7",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/traverse": "^7.3.4",
+    "@babel/types": "^7.3.4",
+    "mvvm-babel-generator": "latest",
+    "mvvm-babel-parser": "latest"
+  },
+  "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
+}

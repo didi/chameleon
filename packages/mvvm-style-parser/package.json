@@ -1,0 +1,18 @@
+{
+  "name": "mvvm-style-parser",
+  "version": "0.0.7",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chameleon-tool-utils": "latest",
+    "less": "3.9.0",
+    "postcss": "^7.0.14",
+    "stylus": "0.54.5"
+  },
+  "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
+}

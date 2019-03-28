@@ -1,0 +1,1 @@
+####  mvvm协议标准中处理interface文件

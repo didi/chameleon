@@ -1,0 +1,24 @@
+{
+  "name": "mvvm-pack",
+  "version": "0.0.7",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chameleon-tool-utils": "latest",
+    "mvvm-interface-parser": "latest",
+    "mvvm-script-parser": "latest",
+    "mvvm-style-parser": "latest",
+    "mvvm-template-parser": "latest",
+    "chai": "^4.2.0",
+    "chalk": "^2.4.2",
+    "enhanced-resolve": "^4.1.0",
+    "mime": "^2.4.0",
+    "webpack": "^4.29.6"
+  },
+  "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
+}

@@ -1,0 +1,68 @@
+<template>
+  <view>
+    <text>web端自定义组件</text>
+    <text>props:{{name}}</text>
+  </view>
+</template>
+
+<script>
+
+class PhCom implements PhComInterface {
+  props = {
+    name: {
+      type: String,
+      default: '默认值'
+    }
+  }
+
+  data = {
+  }
+
+  computed = {
+  }
+
+  watch = {
+  }
+  
+  methods = {
+  }
+
+  beforeCreate() {
+  }
+
+  created() {
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+    this.$cmlEmit('onshow',{
+      value: this.name
+    })
+  }
+
+  beforeDestroy() {
+  }
+  
+  destroyed() {
+  }
+}
+
+export default new PhCom();
+</script>
+
+<style >
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {}
+  }
+}
+</script>
+
+
+
