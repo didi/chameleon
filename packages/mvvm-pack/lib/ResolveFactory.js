@@ -2,7 +2,7 @@
 const { ResolverFactory, NodeJsInputFileSystem, CachedInputFileSystem} = require('enhanced-resolve');
 const path = require('path');
 module.exports = function(options) {
-  
+
   let defaultOptions = {
     extensions: ['.cml', '.interface', '.vue', '.js', '.json'],
     alias: {
@@ -24,7 +24,7 @@ module.exports = function(options) {
   return ResolverFactory.createResolver(Object.assign(
     {
       useSyncFileSystemCalls: true,
-      fileSystem: new CachedInputFileSystem(new NodeJsInputFileSystem(), 4000),
+      fileSystem: new CachedInputFileSystem(new NodeJsInputFileSystem(), 4000)
     },
     defaultOptions,
     options.config.resolve

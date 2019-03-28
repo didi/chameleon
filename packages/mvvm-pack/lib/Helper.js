@@ -18,7 +18,7 @@ _.splitFileName = function(filePath) {
 }
 
 _.isInline = function(filePath) {
-  if(~filePath.indexOf("__inline")) {
+  if (~filePath.indexOf("__inline")) {
     return true;
   }
   return false;

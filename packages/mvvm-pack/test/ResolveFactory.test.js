@@ -25,7 +25,7 @@ describe('ResolveFactory', function() {
         throw err;
       }
       console.log(result)
-      expect(result).to.equal(path.join(__dirname,'../src/Event.js'))
+      expect(result).to.equal(path.join(__dirname, '../src/Event.js'))
     })
   })
 
