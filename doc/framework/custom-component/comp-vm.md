@@ -1,6 +1,6 @@
 # 组件 VM
-## 定义段与示例方法
-`组件 VM`可用于定义组件，指定组件的属性、数据、方法等。
+
+在`.cml` 文件 `<script />` 代码块`export default`的对象实例，可用于定义组件，指定组件的属性、数据、方法等。
 
 ```
 cml init component
@@ -8,9 +8,7 @@ cml init component
 输入 component-tag-name
 ```
 
-自定义组件的构造器，可以指定组件的属性、数据、方法、数据监听等；
-
-简单介绍如下
+定义如下：
 
 | 字段名                                                | 类型     | 说明                                                         |
 | ----------------------------------------------------- | -------- | ------------------------------------------------------------ |
@@ -28,13 +26,14 @@ cml init component
 
 ## 组件间的通信
 
-组件间的通信方式有以下几种
+组件间的通信方式有以下几种：
 
-### 通过在父组件模板中进行数据绑定
+### 父组件 -> 子组件： props传递
 
-父组件
+**代码示例**
 
-```vue
+```html
+<!-- index.cml -->
 <template>
 <view >
   <component-tag-name parent-prop="{{parent}}">
@@ -55,9 +54,8 @@ export default new Index();
 
 ```
 
-子组件
-
-```vue
+```html
+<!-- component-tag-name.cml -->
 <template>
   <view>
     <view>{{parentProp.msg}}</view>
@@ -79,11 +77,12 @@ export default new ComponentTagName();
 </script>
 ```
 
-### 通过子组件和父组件之间的事件 [参考](https://cmljs.org/doc/view/event.html)
+### 子组件 -> 父组件：事件通讯 [参考](https://cmljs.org/doc/view/event.html)
 
-父组件
+**代码示例**
 
-```vue
+```html
+<!-- index.cml -->
 <template>
 <view >
   <component-tag-name  c-bind:parentevent="handleParentEvent">
@@ -103,9 +102,8 @@ export default new Index();
 </script>
 ```
 
-子组件
-
-```vue
+```html
+<!-- component-tag-name.cml -->
 <template>
   <view>
     <view c-bind:tap="handleClick"></view>

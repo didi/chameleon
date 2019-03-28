@@ -15,7 +15,7 @@
     <th>说明</th>
   </tr>
   <tr>
-    <td>data</td>
+    <td>list</td>
     <td>Array</td>
     <td>是</td>
     <td></td>
@@ -77,7 +77,7 @@
                         <c-picker-time
                             text-align="center"
                             height="{{400}}"
-                            data="{{hours}}"
+                            list="{{hours}}"
                             default-index="{{defaultHour}}"
                             c-bind:selectchange="changeHour">
                         </c-picker-time>
@@ -86,7 +86,7 @@
                         <c-picker-time
                             text-align="center"
                             height="{{400}}"
-                            data="{{minutes}}"
+                            list="{{minutes}}"
                             default-index="{{defaultMinute}}"
                             c-bind:selectchange="changeMinute">
                         </c-picker-time>

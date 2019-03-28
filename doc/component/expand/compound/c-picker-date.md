@@ -15,7 +15,7 @@
     <th>说明</th>
   </tr>
   <tr>
-    <td>data</td>
+    <td>list</td>
     <td>Array</td>
     <td>是</td>
     <td></td>
@@ -76,7 +76,7 @@
                     <c-picker-date
                         text-align="center"
                         height="{{400}}"
-                        data="{{years}}"
+                        list="{{years}}"
                         default-index="{{defaultYear}}"
                         c-bind:selectchange="changeYear">
                     </c-picker-date>
@@ -85,7 +85,7 @@
                     <c-picker-date
                         text-align="center"
                         height="{{400}}"
-                        data="{{months}}"
+                        list="{{months}}"
                         default-index="{{defaultMonth}}"
                         c-bind:selectchange="changeMonth">
                     </c-picker-date>
@@ -94,7 +94,7 @@
                     <c-picker-date
                         text-align="center"
                         height="{{400}}"
-                        data="{{days}}"
+                        list="{{days}}"
                         default-index="{{defaultDay}}"
                         c-bind:selectchange="changeDay">
                     </c-picker-date>
