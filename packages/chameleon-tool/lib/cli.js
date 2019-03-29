@@ -3,8 +3,7 @@
 const commander = require('commander');
 const cmlpackage = require('../package.json');
 const argv = process.argv;
-const path = require('path');
-const extendPlatform = require('../commanders/extendPlatform.js');
+// const path = require('path');
 
 module.exports.run = function () {
 
@@ -26,6 +25,7 @@ module.exports.run = function () {
     //   })
     // }
     //   扩展端
+    const extendPlatform = require('../commanders/extendPlatform.js');
     if (cml.config.get().platformPlugin && cml.config.get().platformPlugin[first]) {
       extendPlatform({platform: first, media: argv[3]});
     } else {
@@ -49,9 +49,6 @@ module.exports.run = function () {
       })
       commander.parse(argv);
     }
-    console.log(first);
-
-
   }
 
   function version() {

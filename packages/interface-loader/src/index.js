@@ -13,7 +13,8 @@ module.exports = function (source) {
     let context = path.dirname(filePath);
     self.resolveSync(context, relativePath);
   }
-  let {result, devDeps} = mvvmInterfaceParser({cmlType, media, source, filePath, check, resolve});
+  // todo
+  let {result, devDeps} = mvvmInterfaceParser({cmlType, media, source, filePath, check});
   devDeps.forEach(item => {
     this.addDependency(item);
   })

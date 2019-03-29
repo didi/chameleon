@@ -585,26 +585,20 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
     if (packageJson && packageJson.main) {
       main = packageJson && packageJson.main;
     }
-    let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
-
-    // 需要忽略掉的组件
-    let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu'];
-    if (~ignoreComponents.indexOf(cmlType)) {
-      ignoreComponents.splice(ignoreComponents.indexOf(cmlType), 1);
-    }
-    ignoreComponents = ignoreComponents.map(item => `\\.${item}\\.cml`)
-
-    let ignoreReg = new RegExp(`(${ignoreComponents.join('|')})`);
-
     let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`)
-    glob.sync(globPath).forEach(comPath => {
+    // npm包中的多态组件也是以interface文件为入口进行查找，多态api无法找到对应cml文件
+    let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.interface');
+    glob.sync(globPath).forEach(interfacePath => {
       // 其他端的多态cml组件排除在外
-      if (!ignoreReg.test(comPath)) {
-        let comKey = path.basename(comPath).replace(cmlExtReg, '');
+      let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
+      let cmlFilePath = _.findPolymorphicComponent(interfacePath, content, cmlType);
+
+      if (_.isFile(cmlFilePath)) {
+        let comKey = path.basename(cmlFilePath).replace(cmlExtReg, '');
         components.push({
           name: comKey,
-          filePath: comPath,
-          refPath: _.npmComponentRefPath(comPath, context)
+          filePath: cmlFilePath,
+          refPath: _.npmComponentRefPath(cmlFilePath, context)
         })
       }
     })
@@ -716,6 +710,7 @@ const RecordCml2Interface = _.RecordCml2Interface = {};
 // 判断不带后缀的文件路径是否存在
 // filePath  是不带后缀的文件路径
 _.findComponent = function (filePath, cmlType) {
+
   // 如果没有传递cmlType  默认是interface  这个情况是给cmllint用的 构建必须传cmlType
   // cml-linter 需要获取interface文件
   if (cmlType === 'interface') {
@@ -747,8 +742,8 @@ _.findComponent = function (filePath, cmlType) {
 
     // 多态文件路径
     let polymorphicComponentPath = _.findPolymorphicComponent(interfacePath, content, cmlType);
+
     if (polymorphicComponentPath) {
-      RecordCml2Interface[polymorphicComponentPath] = interfacePath;
       return polymorphicComponentPath;
     }
   }
@@ -773,53 +768,60 @@ _.findComponent = function (filePath, cmlType) {
   return false;
 }
 
+
 // 根据interface寻找多态组件路径 多态组件优先级 · 1interface文件中指定  2 未指定找同名多态cml文件  3 include中查找
 _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
-  
-  let parts = _.splitParts({content});
-  let include = null;
-  for (let i = 0;i < parts.customBlocks.length;i++) {
-    if (parts.customBlocks[i].type === 'include') {
-      if (include) {
-        throw new Error(`file just allow has only one <include></include>: ${interfacePath}`)
+
+  function find(interfacePath, content, cmlType) {
+    let parts = _.splitParts({content});
+    let include = null;
+    for (let i = 0;i < parts.customBlocks.length;i++) {
+      if (parts.customBlocks[i].type === 'include') {
+        if (include) {
+          throw new Error(`file just allow has only one <include></include>: ${interfacePath}`)
+        }
+        include = parts.customBlocks[i];
       }
-      include = parts.customBlocks[i];
     }
-  }
-  let targetScript = null;
-  for (let i = 0;i < parts.script.length;i++) {
-    if (parts.script[i].cmlType === cmlType) {
-      targetScript = parts.script[i];
+    let targetScript = null;
+    for (let i = 0;i < parts.script.length;i++) {
+      if (parts.script[i].cmlType === cmlType) {
+        targetScript = parts.script[i];
+      }
     }
-  }
-  // interface文件中script src 指定
-  if (targetScript && targetScript.attrs && targetScript.attrs.src) {
-    let cmlFilePath = path.resolve(path.dirname(interfacePath), targetScript.attrs.src);
-    let reg = new RegExp(`\\.${cmlType}\\.cml$`);
-    if (!reg.test(cmlFilePath)) {
-      throw new Error(`${targetScript.attrs.src} must end with .${cmlType}.cml: ${interfacePath}`)
+    // interface文件中script src 指定
+    if (targetScript && targetScript.attrs && targetScript.attrs.src) {
+      let cmlFilePath = path.resolve(path.dirname(interfacePath), targetScript.attrs.src);
+      let reg = new RegExp(`\\.${cmlType}\\.cml$`);
+      // 获取npm包中的组件时 只能够根据interface文件去查找 无法区分是多态组件还是接口 如果找到了组件就返回 找不到就返回空
+      if (reg.test(cmlFilePath)) {
+        return cmlFilePath;
+      }
+      return;
     }
-    if (!_.isFile(cmlFilePath)) {
-      throw new Error(`${cmlFilePath} is not exist : ${interfacePath}`)
+  
+    // 同名文件
+    let sameNamePath = interfacePath.replace(/\.interface$/, `.${cmlType}.cml`);
+    if (_.isFile(sameNamePath)) {
+      return sameNamePath;
     }
-    return cmlFilePath;
+  
+    // include中查找
+    if (include && include.attrs && include.attrs.src) {
+      let includeFilePath = path.resolve(path.dirname(interfacePath), include.attrs.src);
+      if (!_.isFile) {
+        throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
+      }
+      let newContent = fs.readFileSync(includeFilePath, {encoding: 'utf-8'});
+      return find(includeFilePath, newContent, cmlType);
+    }
   }
 
-  // 同名文件
-  let sameNamePath = interfacePath.replace(/\.interface$/, `.${cmlType}.cml`);
-  if (_.isFile(sameNamePath)) {
-    return sameNamePath;
+  let cmlFilePath = find(interfacePath, content, cmlType);
+  if (cmlFilePath) {
+    RecordCml2Interface[cmlFilePath] = interfacePath;
   }
-
-  // include中查找
-  if (include && include.attrs && include.attrs.src) {
-    let includeFilePath = path.resolve(path.dirname(interfacePath), include.attrs.src);
-    if (!_.isFile) {
-      throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
-    }
-    let newContent = fs.readFileSync(includeFilePath, {encoding: 'utf-8'});
-    return _.findPolymorphicComponent(includeFilePath, newContent, cmlType);
-  }
+  return cmlFilePath;
 }
 // 提供给cml-lint使用 cml-lint不知道cmlType
 _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {

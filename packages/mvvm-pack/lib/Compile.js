@@ -204,7 +204,7 @@ class Compile {
         await this.compileModule(currentNode);
         break;
       default:
-        throw new Error('未找到该nodeType');
+        throw new Error('not find nodeType '+ currentNode.nodeType);
     }
     // 实现层级编译
     // 子模块的编译
@@ -239,7 +239,6 @@ class Compile {
   compileCMLFile(currentNode) {
     let realPath = currentNode.realPath;
     let content = currentNode.source;
-    let {cmlType} = this.options;
     let parts = cmlUtils.splitParts({content});
 
     if (parts.template && parts.template[0]) {
@@ -257,11 +256,10 @@ class Compile {
 
     if (parts.script && parts.script.length > 0) {
       parts.script.forEach(item => {
-        let moduleType = item.cmlType === 'json' ? this.moduleType.JSON : this.moduleType.JS;
         let newNode = this.createNode({
           realPath,
           nodeType: this.nodeType.Module,
-          moduleType: moduleType,
+          moduleType: this.moduleType.JS,
           source: item.content
         })
         newNode.attrs = item.attrs;
@@ -304,8 +302,11 @@ class Compile {
         await this.compileASSET(currentNode);
         break;
       case "Other":
-        await this.compileOther(currentNode);
+      //   await this.compileOther(currentNode);
         break;
+      default:
+        throw new Error('not find compile Module Type ' + currentNode.moduleType)
+
     }
   }
 
@@ -340,7 +341,7 @@ class Compile {
   }
   async compileJS(currentNode) {
     let self = this;
-    let { cmlType, media, projectRoot, cmlRoot, config} = this.options;
+    let { cmlType, media, config} = this.options;
     let {source, devDeps} = await JSParser.standardParser({
       cmlType,
       media,
@@ -373,7 +374,7 @@ class Compile {
   }
 
   async compileJSON(currentNode) {
-    let {cmlType, media, projectRoot, cmlRoot, config} = this.options;
+    let {cmlType, projectRoot} = this.options;
     let jsonObject;
     try {
       jsonObject = JSON.parse(currentNode.source);
@@ -414,16 +415,10 @@ class Compile {
 
   async compileASSET(currentNode) {
     let realPath = currentNode.realPath;
-    let mimetype = mime.getType(realPath);
-
     if (cmlUtils.isInline(realPath)) {
       currentNode.output = `module.exports = ${JSON.stringify(this.getPublicPath(realPath)
       )}`
     }
-  }
-
-  async compileOther(currentNode) {
-
   }
 
   // 用户想要添加文件依赖触发watch重新编译 需要给node添加依赖createNode创建节点
@@ -442,7 +437,7 @@ class Compile {
         moduleType = moduleType || this.moduleType.Other;
       }
     } else {
-      moduleType = 'NULL';
+      moduleType = 'ALL';
     }
 
     let key = `${nodeType}_${moduleType}_${realPath}`;
@@ -507,9 +502,6 @@ class Compile {
         let hash = cmlUtils.createMd5(buf);
         if (publicPath[publicPath.length - 1] !== '/') {
           publicPath = publicPath + '/';
-        }
-        if (modId[0] === '/') {
-          modId = modId.slice(1);
         }
         let assetsPath = this.assetsPath;
         if (assetsPath[0] === '/') {

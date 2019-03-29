@@ -42,5 +42,4 @@ module.exports = function({platform, media}) {
   } else {
     compiler.run()
   }
-
 }
