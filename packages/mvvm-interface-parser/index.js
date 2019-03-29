@@ -1,5 +1,5 @@
 
-const cmlUtils = require('@didi/chameleon-cli-utils');
+const cmlUtils = require('chameleon-tool-utils');
 const {getCode} = require('./lib/check.js');
 const getInterfaceCode = require('./lib/getInterfaceCode.js');
 const getMethodCode = require('./lib/getMethodCode.js');

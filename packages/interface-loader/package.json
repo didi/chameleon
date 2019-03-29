@@ -15,7 +15,7 @@
     "babel-traverse": "6.26.0",
     "chameleon-tool-utils": "0.2.0-alpha.0",
     "loader-utils": "1.1.0",
-    "mvvm-interface-parser": "0.0.1",
+    "mvvm-interface-parser": "0.2.0-alpha.0",
     "runtime-check": "0.2.0-alpha.0"
   },
   "author": "Chameleon-Team",

@@ -1,6 +1,6 @@
 {
   "name": "mvvm-pack",
-  "version": "0.0.7",
+  "version": "0.2.0-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,12 +11,13 @@
   "dependencies": {
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
-    "chameleon-tool-utils": "^0.1.1",
+    "chameleon-tool-utils": "0.2.0-alpha.0",
     "enhanced-resolve": "^4.1.0",
     "mime": "^2.4.0",
-    "mvvm-interface-parser": "0.0.1",
-    "mvvm-script-parser": "0.0.1",
-    "mvvm-style-parser": "0.0.1",
-    "mvvm-template-parser": "0.0.1"
+    "mvvm-interface-parser": "0.2.0-alpha.0",
+    "mvvm-script-parser": "0.2.0-alpha.0",
+    "mvvm-style-parser": "0.2.0-alpha.0",
+    "mvvm-template-parser": "0.2.0-alpha.0",
+    "watchpack": "^1.6.0"
   }
 }

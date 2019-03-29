@@ -1,6 +1,6 @@
 {
   "name": "mvvm-babel-parser",
-  "version": "0.0.7",
+  "version": "0.2.0-alpha.0",
   "description": "",
   "main": "lib/index.js",
   "directories": {

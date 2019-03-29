@@ -1,6 +1,6 @@
 
 
-const mvvmpack = require('@didi/mvvm-pack');
+const mvvmpack = require('mvvm-pack');
 const path = require('path');
 
 // 扩展端的构建

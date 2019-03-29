@@ -3,12 +3,12 @@
  * */
 'use strict';
 
-const {parsePlugins} = require('@didi/runtime-check');
+const {parsePlugins} = require('runtime-check');
 const parser = require('@babel/parser');
 const babel = require('@babel/core');
 const traverse = require('@babel/traverse');
 const t = require('@babel/types');
-const cmlUtils = require('@didi/chameleon-cli-utils');
+const cmlUtils = require('chameleon-tool-utils');
 const {getCheckCode} = require('./lib/check');
 const interfaceParser = require('mvvm-interface-parser');
 const getInterfaceCode = require('mvvm-interface-parser/lib/getInterfaceCode.js');

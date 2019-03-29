@@ -1,4 +1,4 @@
-const cmlUtils = require('@didi/chameleon-cli-utils');
+const cmlUtils = require('chameleon-tool-utils');
 const fs = require('fs');
 const path = require('path');
 module.exports = function({interfacePath, content}) {

@@ -10,8 +10,8 @@ const path = require('path');
 const parser = require('@babel/parser');
 const traverse = require('@babel/traverse');
 const generate = require("@babel/generator");
-const {getDefines, parsePlugins} = require('@didi/runtime-check');
-const cmlUtils = require('@didi/chameleon-cli-utils');
+const {getDefines, parsePlugins} = require('runtime-check');
+const cmlUtils = require('chameleon-tool-utils');
 
 /**
  * 处理对象的函数

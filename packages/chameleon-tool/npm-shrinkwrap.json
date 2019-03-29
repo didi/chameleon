@@ -6539,6 +6539,11 @@
       "resolved": "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.7.tgz",
       "integrity": "sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s="
     },
+    "mvvm-pack": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/mvvm-pack/-/mvvm-pack-0.0.1.tgz",
+      "integrity": "sha512-+Z1GCHVBxmSsMh8jpNyo6p4Tu8MbGsZuoP/pG1FWtW3n/ETuBxJnhx4FFWT3jJp4WCsiNcv41+jAYl7fykTu4A=="
+    },
     "nan": {
       "version": "2.12.1",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.12.1.tgz",

@@ -2,7 +2,7 @@ const parser = require('@babel/parser');
 const traverse = require('@babel/traverse');
 const t = require('@babel/types');
 const generator = require("@babel/generator");
-const {parsePlugins} = require('@didi/runtime-check');
+const {parsePlugins} = require('runtime-check');
 
 
 // resolve 解析路径的方法

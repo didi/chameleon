@@ -1,9 +1,9 @@
 const parser = require('@babel/parser');
 const traverse = require('@babel/traverse');
 const generate = require("@babel/generator");
-const {getDefines, parsePlugins} = require('@didi/runtime-check');
+const {getDefines, parsePlugins} = require('runtime-check');
 const path = require('path');
-const cmlUtils = require('@didi/chameleon-cli-utils');
+const cmlUtils = require('chameleon-tool-utils');
 
 /**
  * 处理ast导出表达式

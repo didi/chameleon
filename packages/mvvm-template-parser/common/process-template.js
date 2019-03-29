@@ -1,7 +1,7 @@
-const parser = require('@didi/mvvm-babel-parser');
+const parser = require('mvvm-babel-parser');
 const t = require('@babel/types');
 const traverse = require('@babel/traverse')["default"];
-const generate = require('@didi/mvvm-babel-generator')["default"];
+const generate = require('mvvm-babel-generator')["default"];
 const _ = module.exports = {};
 
 /* 将vue语法的模板转化为cml语法
