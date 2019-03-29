@@ -1,33 +1,29 @@
 const cmlUtils = require('chameleon-tool-utils');
+const getInterfaceCode = require('mvvm-interface-parser/lib/getInterfaceCode.js');
 const {getCheckCode} = require('./check.js');
-const fs = require('fs');
 
 function getScriptCode(loaderContext, cmlType, cmlCode, media, check = {}) {
-  const interfacePath = loaderContext.resourcePath.replace(`.${cmlType}.cml`, '.interface')
-  if (~loaderContext.resourcePath.indexOf(`.${cmlType}.cml`)) {
-    // 添加interface文件作为loader的依赖 触发重新编译
-    if (cmlUtils.isFile(interfacePath)) {
-      loaderContext.addDependency(interfacePath);
-      if (media === 'dev' && check.enable === true) {
-        // 运行时校验
-        let interfaceCode = fs.readFileSync(interfacePath, {encoding: 'utf-8'})
-        let interfaceReg = new RegExp(`<script[\\s]+?cml-type=["']interface["'][\\s]*?>([\\s\\S]*?)<\\/script>`)
-        let interfaceMaches = interfaceCode.match(interfaceReg);
-        if (interfaceMaches) {
-          interfaceCode = interfaceMaches[1];
-        }
-        try {
-          cmlCode = getCheckCode(interfaceCode, cmlCode, interfacePath, loaderContext.resourcePath, cmlType, check.enableTypes);
-        } catch (e) {
-          // 当有语法错误 babel parse会报错，报错信息不友好，对cmlCode不处理，交给webpack对错误模块处理
-        }
-
+  let reg = new RegExp(`\\.${cmlType}\\.cml$`);
+  let cmlPath = loaderContext.resourcePath;
+  // 多态cml组件获取接口校验部分代码
+  if (reg.test(cmlPath)) {
+    if (media === 'dev' && check.enable === true) {
+      let interfacePath = cmlUtils.RecordCml2Interface[cmlPath];
+      if (!interfacePath) {
+        throw new Error(`not find interface for ${cmlPath}`)
       }
-    } else {
-      throw new Error(`multimode-component can't find interface file：${interfacePath}`)
+      let {content: interfaceCode, devDeps: interfaceDevDeps, contentFilePath} = getInterfaceCode({interfacePath});
+      interfaceDevDeps.forEach(item => {
+        loaderContext.addDependency(item);
+      })
+      try {
+        cmlCode = getCheckCode(interfaceCode, cmlCode, contentFilePath, cmlPath, cmlType, check.enableTypes);
+      } catch (e) {
+        // 当有语法错误 babel parse会报错，报错信息不友好
+        cmlUtils.log.error(`chameleon-loader: ${cmlPath} or ${contentFilePath} syntax error！`)
+      }
     }
   }
-
   return cmlCode;
 }
 

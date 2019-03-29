@@ -9,9 +9,9 @@ const babel = require('@babel/core');
 const traverse = require('@babel/traverse');
 const t = require('@babel/types');
 const cmlUtils = require('@didi/chameleon-cli-utils');
-const fs = require('fs');
 const {getCheckCode} = require('./lib/check');
-const interfaceParser = require('@didi/mvvm-interface-parser');
+const interfaceParser = require('mvvm-interface-parser');
+const getInterfaceCode = require('mvvm-interface-parser/lib/getInterfaceCode.js');
 const generator = require("@babel/generator");
 const path = require('path');
 
@@ -21,35 +21,25 @@ const defaultResolve = function(filePath, relativePath) {
 // 标准的script部分处理
 exports.standardParser = function({cmlType, media, source, filePath, check, resolve = defaultResolve }) {
   let devDeps = [];
-  if (/\.cml$/.test(filePath)) {
+  let reg = new RegExp(`\\.${cmlType}\\.cml$`);
 
-    const interfacePath = filePath.replace(`.${cmlType}.cml`, '.interface')
-    // 多态文件中的script部分要处理
-    if (~filePath.indexOf(`.${cmlType}.cml`)) {
-      if (cmlUtils.isFile(interfacePath)) {
-        if (media === 'dev' && check.enable === true) {
-          // 运行时校验
-          let interfaceCode = fs.readFileSync(interfacePath, {encoding: 'utf-8'})
-          let interfaceReg = new RegExp(`<script[\\s]+?cml-type=["']interface["'][\\s]*?>([\\s\\S]*?)<\\/script>`)
-          let interfaceMaches = interfaceCode.match(interfaceReg);
-          if (interfaceMaches) {
-            interfaceCode = interfaceMaches[1];
-          }
-          try {
-            debugger
-            source = getCheckCode(interfaceCode, source, interfacePath, filePath, cmlType, check.enableTypes);
-          } catch (e) {
-            // 当有语法错误 babel parse会报错，报错信息不友好
-            cmlUtils.log.error(`mvvm-interface-parser: ${filePath} or ${interfacePath} syntax error！`)
-          }
-
-        }
-      } else {
-        throw new Error(`multimode-component can't find interface file：${interfacePath}`)
+  // 多态组件 获取interface文件并拼接
+  if (reg.test(filePath)) {
+    let interfacePath = cmlUtils.RecordCml2Interface[filePath];
+    if (!interfacePath) {
+      throw new Error(`not find interface for ${filePath}`)
+    }
+    let {content: interfaceCode, devDeps: interfaceDevDeps, contentFilePath} = getInterfaceCode({interfacePath});
+    devDeps = interfaceDevDeps;
+    if (media === 'dev' && check.enable === true) {
+      try {
+        source = getCheckCode(interfaceCode, source, contentFilePath, filePath, cmlType, check.enableTypes);
+      } catch (e) {
+        // 当有语法错误 babel parse会报错，报错信息不友好
+        cmlUtils.log.error(`mvvm-interface-parser: ${filePath} or ${contentFilePath} syntax error！`)
       }
     }
   }
-  
   // .interface文件
   else if (/\.interface$/.test(filePath)) {
     let interfaceResult = interfaceParser({cmlType, media, source, filePath, check, resolve });

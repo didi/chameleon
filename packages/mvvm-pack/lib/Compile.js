@@ -11,7 +11,8 @@ const fs = require('fs');
 const Watching = require('./Watching');
 const Log = require('./Log');
 const {AMDWrapper} = require('./Mod/index.js');
-const helper = require('./Helper.js');
+const mime = require('mime');
+
 class Compile {
 
   constructor(options) {
@@ -22,7 +23,6 @@ class Compile {
     this.event = new Event();
     this._resolve = ResolveFactory(options);
     this.fileDependencies = new Set(); // 整个编译过程依赖的文件 编译完成后watch需要
-    this.helper = helper;
     new NodeEnvironmentPlugin().apply(this); // 文件系统
     this.stringExt = /\.(cml|interface|js|json|css|less|sass|scss|stylus|styl)(\?.*)?$/;// 转成utf-8编码的文件后缀
     this.nodeType = {
@@ -225,7 +225,7 @@ class Compile {
   }
 
   readNodeSource(currentNode) {
-    let buf = this.readFileSync(this.helper.delQueryPath(currentNode.realPath));
+    let buf = this.readFileSync(cmlUtils.delQueryPath(currentNode.realPath));
     currentNode.ext = path.extname(currentNode.realPath);
     if (this.stringExt.test(currentNode.ext)) {
       buf = this.utf8BufferToString(buf);
@@ -391,7 +391,7 @@ class Compile {
       targetObject.usingComponents = targetObject.usingComponents || {};
       Object.keys(targetObject.usingComponents).forEach(key => {
         let comPath = targetObject.usingComponents[key];
-        let { filePath } = cmlUtils.handleComponentUrl(projectRoot, cml.helper.delQueryPath(currentNode.realPath), comPath, cmlType);
+        let { filePath } = cmlUtils.handleComponentUrl(projectRoot, cmlUtils.delQueryPath(currentNode.realPath), comPath, cmlType);
         if (cmlUtils.isFile(filePath)) {
           let nodeType = this.nodeType.Module;
           if (path.extname(filePath) === '.cml') {
@@ -416,7 +416,7 @@ class Compile {
     let realPath = currentNode.realPath;
     let mimetype = mime.getType(realPath);
 
-    if (this.helper.isInline(realPath)) {
+    if (cmlUtils.isInline(realPath)) {
       currentNode.output = `module.exports = ${JSON.stringify(this.getPublicPath(realPath)
       )}`
     }
@@ -470,7 +470,7 @@ class Compile {
       newNode.modId = modId;
       newNode.jsType = 'AMD';
     }
-    let noQueryPath = this.helper.delQueryPath(realPath);
+    let noQueryPath = cmlUtils.delQueryPath(realPath);
     newNode.mtime = fs.statSync(noQueryPath).mtime.getTime();
     newNode.ext = path.extname(noQueryPath);
     if (source) {
@@ -493,18 +493,18 @@ class Compile {
   }
   // 根据资源路径 返回base64或者publicPath
   getPublicPath(filePath) {
-    let publicPath = compiler.options.config.output.publicPath;
+    let publicPath = this.options.config.output.publicPath;
     let mimetype = mime.getType(filePath);
-    let buf = this.readFileSync(this.helper.delQueryPath(filePath));
+    let buf = this.readFileSync(cmlUtils.delQueryPath(filePath));
     let result = '';
-    if (this.helper.isInline(filePath)) {
+    if (cmlUtils.isInline(filePath)) {
       result = `data:${mimetype || ''};base64,${buf.toString('base64')}`
     } else {
       if (typeof publicPath === 'function') {
         return publicPath(filePath);
       } else {
         // let modId = this.createModId(filePath);
-        let hash = this.helper.createMd5(buf);
+        let hash = cmlUtils.createMd5(buf);
         if (publicPath[publicPath.length - 1] !== '/') {
           publicPath = publicPath + '/';
         }
@@ -515,7 +515,7 @@ class Compile {
         if (assetsPath[0] === '/') {
           assetsPath = assetsPath.slice(1);
         }
-        let splitName = cml.helper.splitFileName(filePath);
+        let splitName = cmlUtils.splitFileName(filePath);
         result = publicPath + assetsPath;
         let replaceMap = {
           filename: splitName[0],

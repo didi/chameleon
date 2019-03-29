@@ -12,6 +12,8 @@ const cache = require('lru-cache')(cacheNumber);
 const hash = require('hash-sum');
 const splitParts = require('./lib/splitParts.js');
 const childProcess = require('child_process');
+const crypto = require('crypto');
+
 
 var _ = module.exports = {}
 
@@ -708,6 +710,9 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
 
 }
 
+// 记录多态cml文件对应的interface文件的路径及
+const RecordCml2Interface = _.RecordCml2Interface = {};
+
 // 判断不带后缀的文件路径是否存在
 // filePath  是不带后缀的文件路径
 _.findComponent = function (filePath, cmlType) {
@@ -720,15 +725,35 @@ _.findComponent = function (filePath, cmlType) {
     } else {
       return false;
     }
-
   }
-  let extlist = ['.cml', `.${cmlType}.cml`];
-  for (let i = 0; i < extlist.length; i++) {
-    let newFilePath = filePath + extlist[i];
-    if (_.isFile(newFilePath)) {
-      return newFilePath;
+
+  /**
+   * 1 .cml 文件
+   * 2 .interface 文件   遍历寻找到interface的内容  遍历寻找到当前cmlType的多态cml文件的真实路径  然后内存中记录这个多态cml文件对应的interface文件内容与依赖的文件 在处理多态cml组件是添加dev依赖
+   * 3 各端的原生组件  可以添加钩子扩展寻找方法
+   *  */
+
+  let cmlFilePath = filePath + '.cml';
+  if (_.isFile(cmlFilePath)) {
+    return cmlFilePath;
+  }
+
+  // 记录多态组件依赖的第一级interface文件 编译cml文件时再根据这个interface文件查找接口定义 
+  // 不保存接口定义的代码，这样保证interface变化 触发cml编译 重新编译时重新或者接口定义
+  let interfacePath = filePath + '.interface';
+
+  if (_.isFile(interfacePath)) {
+    let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
+
+    // 多态文件路径
+    let polymorphicComponentPath = _.findPolymorphicComponent(interfacePath, content, cmlType);
+    if (polymorphicComponentPath) {
+      RecordCml2Interface[polymorphicComponentPath] = interfacePath;
+      return polymorphicComponentPath;
     }
   }
+
+
   let fileExtMap = {
     weex: '.vue',
     web: '.vue',
@@ -742,9 +767,60 @@ _.findComponent = function (filePath, cmlType) {
   if (_.isFile(extFilePath)) {
     return extFilePath;
   }
+
+  // 这里以后扩展原生组件
+
   return false;
 }
 
+// 根据interface寻找多态组件路径 多态组件优先级 · 1interface文件中指定  2 未指定找同名多态cml文件  3 include中查找
+_.findPolymorphicComponent = function(interfacePath, content, cmlType) {
+  
+  let parts = _.splitParts({content});
+  let include = null;
+  for (let i = 0;i < parts.customBlocks.length;i++) {
+    if (parts.customBlocks[i].type === 'include') {
+      if (include) {
+        throw new Error(`file just allow has only one <include></include>: ${interfacePath}`)
+      }
+      include = parts.customBlocks[i];
+    }
+  }
+  let targetScript = null;
+  for (let i = 0;i < parts.script.length;i++) {
+    if (parts.script[i].cmlType === cmlType) {
+      targetScript = parts.script[i];
+    }
+  }
+  // interface文件中script src 指定
+  if (targetScript && targetScript.attrs && targetScript.attrs.src) {
+    let cmlFilePath = path.resolve(path.dirname(interfacePath), targetScript.attrs.src);
+    let reg = new RegExp(`\\.${cmlType}\\.cml$`);
+    if (!reg.test(cmlFilePath)) {
+      throw new Error(`${targetScript.attrs.src} must end with .${cmlType}.cml: ${interfacePath}`)
+    }
+    if (!_.isFile(cmlFilePath)) {
+      throw new Error(`${cmlFilePath} is not exist : ${interfacePath}`)
+    }
+    return cmlFilePath;
+  }
+
+  // 同名文件
+  let sameNamePath = interfacePath.replace(/\.interface$/, `.${cmlType}.cml`);
+  if (_.isFile(sameNamePath)) {
+    return sameNamePath;
+  }
+
+  // include中查找
+  if (include && include.attrs && include.attrs.src) {
+    let includeFilePath = path.resolve(path.dirname(interfacePath), include.attrs.src);
+    if (!_.isFile) {
+      throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
+    }
+    let newContent = fs.readFileSync(includeFilePath, {encoding: 'utf-8'});
+    return _.findPolymorphicComponent(includeFilePath, newContent, cmlType);
+  }
+}
 // 提供给cml-lint使用 cml-lint不知道cmlType
 _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
   let cmlTypeList = ['wx', 'web', 'weex', 'alipay', 'baidu'];
@@ -1041,4 +1117,27 @@ _.handleSpecialChar = function (str) {
 
 _.readsubProjectRouterConfig = function(context, npmName) {
   return JSON.parse(fs.readFileSync(path.join(context, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}))
+}
+
+
+_.createMd5 = function(content) {
+  let md5 = crypto.createHash('md5');
+  md5.update(content);
+  return md5.digest('hex');
+}
+
+_.delQueryPath = function(filePath) {
+  return filePath.split('?')[0];
+}
+
+_.splitFileName = function(filePath) {
+  let basename = path.basename(_.split('?')[0]);
+  return basename.split('.');
+}
+
+_.isInline = function(filePath) {
+  if (~filePath.indexOf("__inline")) {
+    return true;
+  }
+  return false;
 }
