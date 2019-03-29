@@ -27,6 +27,7 @@
     "jsdom": "11.1.0",
     "loader-utils": "1.1.0",
     "lru-cache": "4.1.1",
+    "mvvm-interface-parser": "0.2.0-alpha.0",
     "resolve": "1.4.0",
     "runtime-check": "0.2.0-alpha.0",
     "source-map": "0.6.1",
