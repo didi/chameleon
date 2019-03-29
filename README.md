@@ -33,7 +33,7 @@
 
 > 基于多态协议不影响各端差异化灵活性
 
-![效果展示](https://cmljs.org/doc/assets/efficient.gif?1)
+![效果展示](https://cmljs.org/doc/assets/efficient.gif)
 
 | web   |      微信小程序      |  native-weex |  百度小程序 |  支付宝小程序 |
 |:----------:|:-------------:|:------:|:------:|:------:|
