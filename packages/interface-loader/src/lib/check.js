@@ -296,6 +296,10 @@ const wrapper = function (obj) {
    */
   const createWarpper = function (funcName, originFunc) {
     return function () {
+      // 白名单方法
+      if (this && this.$polyHooks && this.$polyHooks.indexOf(originFunc)) {
+        return originFunc.apply(this, arguments);
+      }
       const argValues = Array.prototype.slice.call(arguments)
         .map(function (arg, index) {
           // 对传入的方法要做特殊的处理，这个是传入的callback，对callback函数再做包装
@@ -307,7 +311,6 @@ const wrapper = function (obj) {
 
       checkArgsType(funcName, argValues);
 
-
       const result = originFunc.apply(this, argValues);
 
       checkReturnType(funcName, result)
@@ -317,7 +320,13 @@ const wrapper = function (obj) {
 
   // 获取所有方法
   const keys = Object.keys(methods);
-
+  Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).forEach(key => {
+    if (!/constructor|prototype|length/ig.test(key)) {
+      if (!~keys.indexOf(key)) {
+        showErrorMessage('method [' + key + '] not declare in the interface!');
+      }
+    }
+  })
   // 处理包装方法
   keys.forEach(key => {
     const originFunc = obj[key];
