@@ -297,7 +297,7 @@ const wrapper = function (obj) {
   const createWarpper = function (funcName, originFunc) {
     return function () {
       // 白名单方法
-      if (this && this.$polyHooks && this.$polyHooks.indexOf(originFunc)) {
+      if (this && this.$cmlPolyHooks && this.$cmlPolyHooks.indexOf(originFunc)) {
         return originFunc.apply(this, arguments);
       }
       const argValues = Array.prototype.slice.call(arguments)
