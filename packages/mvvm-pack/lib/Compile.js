@@ -165,6 +165,7 @@ class Compile {
 
   }
 
+  // 路由变化何时要触发编译
   getRouterConfig() {
     let {projectRoot} = this.options;
     // 有配置路由文件，给app.json添加pages
