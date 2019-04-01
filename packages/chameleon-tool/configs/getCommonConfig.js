@@ -45,6 +45,7 @@ module.exports = function (options) {
       extensions: ['.cml', '.interface', '.vue', '.js'],
       alias: {
         '$CMLPROJECT': path.resolve(cml.root),
+        '/components': path.resolve(cml.projectRoot, 'src/components'),
         '$PROJECT': path.resolve(root),
         '$ROUTER_CONFIG': path.resolve(root, './src/router.config.json')
       },

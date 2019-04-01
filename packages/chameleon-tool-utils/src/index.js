@@ -750,17 +750,22 @@ _.findComponent = function (filePath, cmlType) {
 
 
   let fileExtMap = {
-    weex: '.vue',
-    web: '.vue',
+    weex: ['.vue', '.js'],
+    web: ['.vue', '.js'],
     wx: '.wxml',
     baidu: '.swan',
     alipay: '.axml'
   }
 
   let ext = fileExtMap[cmlType];
-  let extFilePath = filePath + ext;
-  if (_.isFile(extFilePath)) {
-    return extFilePath;
+  if (typeof ext === 'string') {
+    ext = [ext];
+  }
+  for (let i = 0; i < ext.length; i++) {
+    let extFilePath = filePath + ext[i];
+    if (_.isFile(extFilePath)) {
+      return extFilePath;
+    }
   }
 
   // 这里以后扩展原生组件

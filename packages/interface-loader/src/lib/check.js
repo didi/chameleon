@@ -51,15 +51,17 @@ const wrapper = function (obj) {
   /* eslint-disable no-undef */
   const types = defines.types;
   const interfaceNames = defines.classes[className];
-  const methods = {};
+  let methods = {};
 
   interfaceNames && interfaceNames.forEach(interfaceName => {
     const keys = Object.keys(defines.interfaces);
     keys.forEach(key => {
-      Object.assign(methods, defines.interfaces[key]);
+      methods = {
+        ...methods,
+        ...defines.interfaces[key]
+      }
     });
   });
-
   /**
    * 获取类型
    *
@@ -89,8 +91,9 @@ const wrapper = function (obj) {
     let type = originType.replace('_cml_nullable_lmc_', '');
     (type === "Void") && (type = "Undefined")
     let currentType = getType(value);
-    let canUseNullable = enableTypes.includes("Nullable");
-    let canUseObject = enableTypes.includes("Object");
+    let canUseNullable = !!~enableTypes.indexOf("Nullable");
+    let canUseObject = !!~enableTypes.indexOf("Object");
+    let canUseArray = !!~enableTypes.indexOf("Array");
     if (currentType == 'Null') {
       if (type == "Null") {// 如果定义的参数的值就是 Null，那么校验通过
         errList = [];
@@ -159,7 +162,7 @@ const wrapper = function (obj) {
     }
     if (currentType == 'Array') {
       if (type == 'Array') {
-        (!canUseObject) ? errList.push(`不能直接定义类型${type}，需要使用符合类型定义，请确认是否开启了可以直接定义 Array 类型参数；`) : (errList = []);
+        (!canUseArray) ? errList.push(`不能直接定义类型${type}，需要使用符合类型定义，请确认是否开启了可以直接定义 Array 类型参数；`) : (errList = []);
       } else {
         if (types[type]) {
           // 数组元素的类型
@@ -194,8 +197,8 @@ const wrapper = function (obj) {
       return errList;
     }
     if (currentType == 'Promise') {
-      if (type == 'Promise') {
-        errList = [];
+      if (type === 'Promise') {
+        errList.push(`不能直接定义Promise类型，异步请采用回调函数的形式！`)
       } else {
         errList.push(`定义了${type}类型的参数，传入的却是${currentType},请检查所传参数是否和接口定义的一致`)
       }
@@ -293,6 +296,10 @@ const wrapper = function (obj) {
    */
   const createWarpper = function (funcName, originFunc) {
     return function () {
+      // 白名单方法
+      if (this && this.$cmlPolyHooks && this.$cmlPolyHooks.indexOf(originFunc)) {
+        return originFunc.apply(this, arguments);
+      }
       const argValues = Array.prototype.slice.call(arguments)
         .map(function (arg, index) {
           // 对传入的方法要做特殊的处理，这个是传入的callback，对callback函数再做包装
@@ -304,7 +311,6 @@ const wrapper = function (obj) {
 
       checkArgsType(funcName, argValues);
 
-
       const result = originFunc.apply(this, argValues);
 
       checkReturnType(funcName, result)
@@ -314,7 +320,13 @@ const wrapper = function (obj) {
 
   // 获取所有方法
   const keys = Object.keys(methods);
-
+  Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).forEach(key => {
+    if (!/constructor|prototype|length/ig.test(key)) {
+      if (!~keys.indexOf(key)) {
+        showErrorMessage('method [' + key + '] not declare in the interface!');
+      }
+    }
+  })
   // 处理包装方法
   keys.forEach(key => {
     const originFunc = obj[key];
