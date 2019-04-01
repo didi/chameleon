@@ -37,7 +37,7 @@
 
 | web   |      微信小程序      |  native-weex |  百度小程序 |  支付宝小程序 |
 |:----------:|:-------------:|:------:|:------:|:------:|
-| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cml.js.org/cml-demo/preview/web-1.jpg" width="200px"/> </a>|  <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cml.js.org/cml-demo/preview/wx-1.jpg" width="200px"/></a>| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cml.js.org/cml-demo/preview/weex-1.jpg" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cml.js.org/cml-demo/preview/baidu-1.png" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cml.js.org/cml-demo/preview/alipay-1.png" width="200px"/></a> |
+| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/web-1.jpg" width="200px"/> </a>|  <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/wx-1.jpg" width="200px"/></a>| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/weex-1.jpg" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/baidu-1.png" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/alipay-1.png" width="200px"/></a> |
 
 
 ## 背景
