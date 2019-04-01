@@ -423,7 +423,6 @@ module.exports = function (content) {
         defineComponets += `import ${toUpperCase(comKey)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}" \n`
       } else {
         cmlUtils.log.error(`can't find component:${comPath} in ${self.resourcePath} `);
-        defineComponets += `import ${toUpperCase(comKey)} from "${comPath}" \n`
       }
     })
     return {
