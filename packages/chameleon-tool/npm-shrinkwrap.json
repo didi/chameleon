@@ -1,6 +1,6 @@
 {
   "name": "chameleon-tool",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2762,9 +2762,9 @@
       }
     },
     "cml-extract-css-webpack-plugin": {
-      "version": "0.2.0-alpha.0",
-      "resolved": "https://registry.npmjs.org/cml-extract-css-webpack-plugin/-/cml-extract-css-webpack-plugin-0.2.0-alpha.0.tgz",
-      "integrity": "sha512-CWlpAetymozGTvWUTr7lgQeIbmlbF6CMN9tOqFw9uMqCdp7w2YYojyvNFx9KYWhOEBIkVjC3WBraTOilnts8Jw==",
+      "version": "0.2.0-alpha.1",
+      "resolved": "https://registry.npmjs.org/cml-extract-css-webpack-plugin/-/cml-extract-css-webpack-plugin-0.2.0-alpha.1.tgz",
+      "integrity": "sha512-MyNSkU2AcpVW9VOunUYyneF9/1nxTcGWNLoBbLyPF7blOzKW86FERV3Z2/M4zH4O3dVm5ESX5errtwCQhOB/hQ==",
       "requires": {
         "async": "2.6.1",
         "loader-utils": "1.2.3",

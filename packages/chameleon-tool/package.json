@@ -1,6 +1,6 @@
 {
   "name": "chameleon-tool",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "description": "chameleon 脚手架工具",
   "main": "chameleon.js",
   "scripts": {
@@ -53,7 +53,7 @@
     "chameleon-webpack-plugin": "^0.2.0-alpha.0",
     "chameleon-weex-vue-loader": "^0.2.0-alpha.0",
     "clean-webpack-plugin": "0.1.19",
-    "cml-extract-css-webpack-plugin": "^0.2.0-alpha.0",
+    "cml-extract-css-webpack-plugin": "^0.2.0-alpha.1",
     "cml-vue-loader": "0.2.0-alpha.0",
     "commander": "2.16.0",
     "connect-history-api-fallback": "^1.5.0",
