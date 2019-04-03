@@ -1,4 +1,5 @@
 const check = require('./lib/check.js');
+const chalk = require('chalk');
 
 class WebpackCheckPlugin {
   constructor(options) {
@@ -55,11 +56,11 @@ class WebpackCheckPlugin {
               if (tokens && tokens.length) {
                 tokens.forEach(token => {
 
-                  throw new Error(`
+                  throw new Error(chalk.red(`
                   不能在${type} 项目中使用全局变量【${token.name}】 
                   文件位置: ${module.resource}
                   具体代码: ${sourceLine[token.loc.line - 1]}
-                  `)
+                  `))
                 })
               }
             } catch (e) {
