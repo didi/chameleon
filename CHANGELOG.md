@@ -1,3 +1,10 @@
+## [0.2.0](https://github.com/didi/chameleon/compare/v0.2.0-alpha.1...v0.2.0)
+
+### Bug Fixes
+
+- 默认开启全局变量校验，升级初始化项目中依赖符合全局变量校验
+- linter校验支持component is的校验
+
 ## [0.2.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0-alpha.0...v0.2.0-alpha.1)
 
 ### Bug Fixes
