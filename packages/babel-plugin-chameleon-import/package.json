@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-chameleon-import",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0",
   "description": "Component modular import plugin for babel.",
   "repository": {
     "type": "git",

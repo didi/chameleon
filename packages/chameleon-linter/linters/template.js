@@ -4,6 +4,7 @@ const config = require('../config');
 const whiteListConifg = require('../config/white-list');
 const builtinComponents = require('../config/built-in-components');
 const tagEmbedRules = require('../config/tag-embed-rules.json');
+const fakeComps = require('../config/fakeComps');
 
 const utils = require('../utils');
 const linter = new htmllint.Linter();
@@ -117,26 +118,12 @@ function getLintOptions(params) {
  * A temporary solution for application entrance file app.cml
  * @param {Object} options lint options
  */
-function addFakeAppComp(options) {
+function addFakeComp(options, comp) {
   if (options['component-allow-attr']) {
-    options['component-allow-attr'].app = {
-      vars: ['store', 'routerConfig'],
-      methods: [],
-      props: [{
-        name: 'store',
-        required: true
-      }, {
-        name: 'routerConfig',
-        required: true
-      }],
-      events: []
-    };
+    options['component-allow-attr'][comp.name] = comp.allowAttrs;
   }
-}
-
-function addFakeAppTag(options) {
   if (options['tag-only-allowed-names']) {
-    options['tag-only-allowed-names'].push('app');
+    options['tag-only-allowed-names'].push(comp.name);
   }
 }
 
@@ -188,10 +175,16 @@ module.exports = (part, jsonAst) => {
       })}
     });
 
+    // adding fake comps
+    const allowedFakeComps = ['component'];
     if (isAppEntranceFile(part.file)) {
-      addFakeAppTag(lintOptions);
-      addFakeAppComp(lintOptions);
+      allowedFakeComps.push('app');
     }
+    fakeComps && fakeComps.forEach((comp) => {
+      if (~allowedFakeComps.indexOf(comp.name)) {
+        addFakeComp(lintOptions, comp);
+      }
+    });
 
     lintResults = await htmllint(part.rawContent, lintOptions);
 
