@@ -53,6 +53,8 @@
 
 而 Chameleon 属于后者，通过定义统一的语言框架+<a href="https://CML.JS.org/doc/framework/polymorphism/intro.html">统一多态协议</a>，从多端（对应多个独立服务）业务中抽离出自成体系、连续性强、可维护强的“前端中台服务”。
 
+![设计理念](https://cml.js.org/doc/assets/chameleon-idea.png)
+
 ### 跨端目标
 
 虽然不同各端环境千变万化，但万变不离其宗的是 MVVM 架构思想，**Chameleon 目标是让MVVM跨端环境大统一**。
