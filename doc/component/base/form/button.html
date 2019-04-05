@@ -4234,15 +4234,22 @@
     <td>text</td>
     <td>String</td>
     <td>&#x5426;</td>
-    <td>&quot;&#x786E;&#x8BA4;&quot;</td>
-    <td>&#x6309;&#x94AE;&#x6587;&#x6848;</td>
+    <td>&#x65E0;</td>
+    <td>&#x6309;&#x94AE;&#x6587;&#x6848;&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x4E8E; slot &#x5C5E;&#x6027;&#xFF0C;&#x6CE8;&#x610F;&#xFF1A;&#x9ED8;&#x8BA4;button&#x5185;&#x5BB9;&#x4E3A;&#x7A7A;</td>
   </tr>
   <tr>
     <td>size</td>
     <td>String</td>
     <td>&#x5426;</td>
-    <td>&quot;none&quot;</td>
-    <td>&#x6309;&#x94AE;&#x5C3A;&#x5BF8;,&#x53EF;&#x9009;&#x503C;&#xFF1A;full&#x3001;big&#x3001;medium&#x3001;small</td>
+    <td>stretch</td>
+    <td>&#x6309;&#x94AE;&#x5C3A;&#x5BF8;,&#x53EF;&#x9009;&#x503C;&#xFF1A;stretch&#x3001;auto&#x3001;full&#x3001;big&#x3001;medium&#x3001;small&#xFF0C;&#x6CE8;&#xFF1A;stretch &#x4EE3;&#x8868;&#x4F9D;&#x636E;&#x7236;&#x5BB9;&#x5668;&#x5168;&#x6491;&#x5F00;&#x3001;auto &#x4EE3;&#x8868;&#x4F9D;&#x636E;button&#x5185;&#x5BB9;&#x5BBD;&#x5EA6;&#x81EA;&#x9002;&#x5E94;</td>
+  </tr>
+  <tr>
+    <td>width</td>
+    <td>Number</td>
+    <td>&#x5426;</td>
+    <td>&#x65E0;</td>
+    <td>&#x81EA;&#x5B9A;&#x4E49;&#x6309;&#x94AE;&#x5BBD;&#x5EA6;&#xFF0C;&#x5355;&#x4F4D;&#x4E3A; cpx&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x4E8E; size &#x5C5E;&#x6027; &#x6CE8;&#x610F;&#xFF1A;&#x7C7B;&#x578B;&#x662F; Number</td>
   </tr>
   <tr>
     <td>type</td>
@@ -4299,6 +4306,13 @@
     <td>&#x5426;</td>
     <td></td>
     <td>&#x6307;&#x5B9A;&#x6309;&#x94AE;&#x6309;&#x4E0B;&#x53BB;&#x7684;text&#x6837;&#x5F0F;&#xFF0C;&#x5982; &quot;color:pink;&quot;</td>
+  </tr>
+  <tr>
+    <td>slot</td>
+    <td></td>
+    <td>&#x5426;</td>
+    <td></td>
+    <td>&#x7F6E;&#x4E8E;button&#x91CC;&#x7684;&#x63D2;&#x69FD;&#xFF0C;&#x53EF;&#x81EA;&#x7531;&#x5B9A;&#x4E49;</td>
   </tr>
   <tr>
     <td>c-bind:onclick</td>
@@ -4557,7 +4571,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"表单组件","level":"3.1.1.3","depth":3,"next":{"title":"button","level":"3.1.1.3.1","depth":4,"path":"component/base/form/button.md","ref":"component/base/form/button.md","articles":[]},"previous":{"title":"carousel-item","level":"3.1.1.2.7","depth":4,"path":"component/base/layout/carousel-item.md","ref":"component/base/layout/carousel-item.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"component/base/form/button.md","mtime":"2019-03-05T05:09:09.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-04T10:05:37.360Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"表单组件","level":"3.1.1.3","depth":3,"next":{"title":"button","level":"3.1.1.3.1","depth":4,"path":"component/base/form/button.md","ref":"component/base/form/button.md","articles":[]},"previous":{"title":"carousel-item","level":"3.1.1.2.7","depth":4,"path":"component/base/layout/carousel-item.md","ref":"component/base/layout/carousel-item.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"component/base/form/button.md","mtime":"2019-04-05T16:23:40.740Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-05T16:47:37.434Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
