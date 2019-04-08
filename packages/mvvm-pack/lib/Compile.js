@@ -32,12 +32,12 @@ class Compile {
       Module: 'Module'
     }
     this.moduleType = {
-      CML: "CML",
-      CMSS: "CMSS",
-      JS: "JS",
-      JSON: "JSON",
-      ASSET: "ASSET",
-      OTHER: "OTHER"
+      Template: "Template",
+      Style: "Style",
+      Script: "Script",
+      Json: "Json",
+      Asset: "Asset",
+      Other: "Other"
     }
     this.compileQueue = []; // 待编译节点列表
     this.log = new Log({
@@ -47,29 +47,29 @@ class Compile {
     this.moduleRule = [ // 文件后缀对应module信息
       {
         test: /\.css|\.less$/,
-        moduleType: this.moduleType.CMSS,
+        moduleType: this.moduleType.Style,
         attrs: {
           lang: 'less'
         }
       },
       {
         test: /\.stylus|\.styls$/,
-        moduleType: this.moduleType.CMSS,
+        moduleType: this.moduleType.Style,
         attrs: {
           lang: 'stylus'
         }
       },
       {
         test: /\.js|\.interface$/,
-        moduleType: this.moduleType.JS
+        moduleType: this.moduleType.Script
       },
       {
         test: /\.json$/,
-        moduleType: this.moduleType.JSON
+        moduleType: this.moduleType.Json
       },
       {
         test: /\.(png|jpe?g|gif|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff|woff2?|eot|ttf|otf)(\?.*)?$/,
-        moduleType: this.moduleType.ASSET
+        moduleType: this.moduleType.Asset
       }
     ]
 
@@ -107,9 +107,9 @@ class Compile {
   hook(eventName, func) {
     this.event.on(eventName, func);
   }
-  emit(eventName, params) {
-    this.log.debug('emit log:' + eventName)
-    this.event.emit(eventName, params);
+  emit(eventName, ...params) {
+    this.log.debug('emit log:' + eventName + 'params:' + params)
+    this.event.emit(eventName, ...params);
   }
 
   // 触发事件 带通用参数
@@ -184,6 +184,7 @@ class Compile {
     };
   }
 
+
   async compileNode(currentNode) {
     if (currentNode.compiled) {
       return;
@@ -246,7 +247,7 @@ class Compile {
       let newNode = this.createNode({
         realPath,
         nodeType: this.nodeType.Module,
-        moduleType: this.moduleType.CML,
+        moduleType: this.moduleType.Template,
         source: item.content
       })
       newNode.attrs = item.attrs;
@@ -256,17 +257,17 @@ class Compile {
 
     if (parts.script && parts.script.length > 0) {
       parts.script.forEach(item => {
+        let moduleType = item.cmlType === 'json' ? this.moduleType.Json : this.moduleType.Script;
         let newNode = this.createNode({
           realPath,
           nodeType: this.nodeType.Module,
-          moduleType: this.moduleType.JS,
+          moduleType,
           source: item.content
         })
+       
         newNode.attrs = item.attrs;
         newNode.parent = currentNode;
         currentNode.childrens.push(newNode);
-
-
       })
     }
 
@@ -275,7 +276,7 @@ class Compile {
       let newNode = this.createNode({
         realPath,
         nodeType: this.nodeType.Module,
-        moduleType: this.moduleType.CMSS,
+        moduleType: this.moduleType.Style,
         source: item.content
       })
       newNode.attrs = item.attrs;
@@ -286,22 +287,22 @@ class Compile {
 
   async compileModule(currentNode) {
     switch (currentNode.moduleType) {
-      case 'CML':
-        await this.compileCML(currentNode);
+      case this.moduleType.Template:
+        await this.compileTemplate(currentNode);
         break;
-      case 'CMSS':
-        await this.compileCMSS(currentNode);
+      case this.moduleType.Style:
+        await this.compileStyle(currentNode);
         break;
-      case 'JS':
-        await this.compileJS(currentNode);
+      case this.moduleType.Script:
+        await this.compileScript(currentNode);
         break;
-      case 'JSON':
-        await this.compileJSON(currentNode);
+      case this.moduleType.Json:
+        await this.compileJson(currentNode);
         break;
-      case 'ASSET':
-        await this.compileASSET(currentNode);
+      case this.moduleType.Assets:
+        await this.compileAsset(currentNode);
         break;
-      case "OTHER":
+      case this.moduleType.Other:
       //   await this.compileOther(currentNode);
         break;
       default:
@@ -310,7 +311,7 @@ class Compile {
     }
   }
 
-  async compileCML(currentNode) {
+  async compileTemplate(currentNode) {
     let {convert, output} = await CMLParser.standardParser({
       source: currentNode.source,
       lang: currentNode.attrs.lang
@@ -319,7 +320,7 @@ class Compile {
     currentNode.output = output;
   }
 
-  async compileCMSS(currentNode) {
+  async compileStyle(currentNode) {
     let {output, imports} = await CMSSParser.standardCompile({
       source: currentNode.source,
       filePath: currentNode.realPath,
@@ -334,12 +335,12 @@ class Compile {
       let newNode = this.createNode({
         realPath: item,
         nodeType: this.nodeType.Module,
-        moduleType: this.moduleType.CMSS
+        moduleType: this.moduleType.Style
       })
       currentNode.devDependencies.push(newNode);
     })
   }
-  async compileJS(currentNode) {
+  async compileScript(currentNode) {
     let self = this;
     let { cmlType, media, config} = this.options;
     let {source, devDeps} = await JSParser.standardParser({
@@ -373,7 +374,7 @@ class Compile {
 
   }
 
-  async compileJSON(currentNode) {
+  async compileJson(currentNode) {
     let {cmlType, projectRoot} = this.options;
     let jsonObject;
     try {
@@ -402,7 +403,7 @@ class Compile {
             realPath: filePath,
             nodeType
           })
-          currentNode.parent.childrens.push(subNode);
+          currentNode.parent.dependencies.push(subNode);
           this.compileQueue.push(subNode);
         } else {
           this.log.error(`can't find component:${comPath} in ${currentNode.realPath} `);
@@ -413,7 +414,7 @@ class Compile {
     }
   }
 
-  async compileASSET(currentNode) {
+  async compileAsset(currentNode) {
     let realPath = currentNode.realPath;
     if (cmlUtils.isInline(realPath)) {
       currentNode.output = `module.exports = ${JSON.stringify(this.getPublicPath(realPath)
@@ -423,7 +424,7 @@ class Compile {
 
   // 用户想要添加文件依赖触发watch重新编译 需要给node添加依赖createNode创建节点
   createNode({realPath, source, nodeType, moduleType}) {
-    this.fileDependencies.add(realPath);
+    this.fileDependencies.add(cmlUtils.delQueryPath(realPath));
 
     let attrs;
     if (nodeType === this.nodeType.Module) {
@@ -445,9 +446,20 @@ class Compile {
     缓存判断 1 同一个文件节点不重复创建 compileNode时 compiled为true
     有文件 并且mtime 都相同 证明依赖的文件都没有改动  否则删除缓存
     */
-    if (this.graphNodeMap[key] && this.graphNodeMap[key].notChange(this.fileTimestamps)) {
-      return this.graphNodeMap[key];
+    if (this.graphNodeMap[key]) {
+      // 如果是cml文件的children则判断父节点是否有变化
+      let targetNode = this.graphNodeMap[key].parent ? this.graphNodeMap[key].parent : this.graphNodeMap[key];
+      if (targetNode.notChange(this.fileTimestamps)) {
+        let fileDeps = targetNode.getDependenciesFilePaths();
+        fileDeps.forEach(item => this.fileDependencies.add(item));
+        return this.graphNodeMap[key];
+      }
     }
+    // if (this.graphNodeMap[key] && this.graphNodeMap[key].notChange(this.fileTimestamps)) {
+    //   let fileDeps = this.graphNodeMap[key].getDependenciesFilePaths();
+    //   fileDeps.forEach(item => this.fileDependencies.add(item));
+    //   return this.graphNodeMap[key];
+    // }
 
     let newNode = new CMLNode({
       realPath,
@@ -523,13 +535,53 @@ class Compile {
 
   // 开启用户自定义编译
   async customCompile() {
-    while (this.oneLoopCompiledNode.length) {
-      let currentNode = this.oneLoopCompiledNode.shift();
-      let key = currentNode.moduleType === null ? `compile-${currentNode.nodeType}` : `compile-${currentNode.nodeType}-${currentNode.moduleType}`;
-      this.emit(key, currentNode);
-      // AMD模块包装
-      if (~[this.moduleType.JS, this.moduleType.ASSET].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
-        AMDWrapper({compiler: this, currentNode})
+    // 队列串行编译
+    // while (this.oneLoopCompiledNode.length) {
+    //   let currentNode = this.oneLoopCompiledNode.shift();
+    //   let key = currentNode.moduleType === null ? `compile-${currentNode.nodeType}` : `compile-${currentNode.nodeType}-${currentNode.moduleType}`;
+    //   this.emit(key, currentNode);
+    //   // AMD模块包装
+    //   if (~[this.moduleType.Script, this.moduleType.Asset].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
+    //     AMDWrapper({compiler: this, currentNode})
+    //   }
+    // }
+
+    //  递归编译
+    this.customCompileNode(this.projectGraph);
+  }
+
+  customCompileNode(currentNode) {
+    // 存在这个节点
+    let index = this.oneLoopCompiledNode.indexOf(currentNode);
+    if (index !== -1) {
+      // console.log('custom compile' + currentNode.moduleType + currentNode.realPath)
+      // 先删除 保证之编译一次
+      this.oneLoopCompiledNode.splice(index, 1);
+      if (~[this.nodeType.App, this.nodeType.Page, this.nodeType.Component].indexOf(currentNode.nodeType)) {
+        this.log.debug('custom compile preCML:' + currentNode.nodeType + '_' + currentNode.realPath);
+
+        this.emit(`preCML`, currentNode, currentNode.nodeType);
+      } else {
+        // Template Script Style Json
+        this.log.debug('custom compile '+ currentNode.moduleType + ':' + currentNode.realPath);
+
+        this.emit(currentNode.moduleType, currentNode);
+        // AMD模块包装
+        if (~[this.moduleType.Script, this.moduleType.Asset].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
+          AMDWrapper({compiler: this, currentNode})
+        }
+      }
+      currentNode.childrens.forEach(item => {
+        this.customCompileNode(item);
+      })
+
+      currentNode.dependencies.forEach(item => {
+        this.customCompileNode(item);
+      })
+
+      if (~[this.nodeType.App, this.nodeType.Page, this.nodeType.Component].indexOf(currentNode.nodeType)) {
+        this.log.debug('custom compile postCML:' + currentNode.nodeType + '_' + currentNode.realPath);
+        this.emit(`postCML`, currentNode, currentNode.nodeType);
       }
     }
   }

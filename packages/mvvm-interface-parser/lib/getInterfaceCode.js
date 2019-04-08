@@ -23,9 +23,6 @@ module.exports = function({interfacePath, content}) {
         include = parts.customBlocks[i];
       }
     }
-    if (~filePath.indexOf('src/components/inter2/inter2.interface')) {
-      console.log(include)
-    }
     let interfaceScript = null;
     for (let i = 0;i < parts.script.length;i++) {
       if (parts.script[i].cmlType === 'interface') {

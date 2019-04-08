@@ -21,6 +21,7 @@ class Watching {
   }
 
   async _go() {
+    // 记录上一次编译开始的时间  下次watch从这时候开始
     this.startTime = Date.now();
     this.running = true;
     this.invalid = false;

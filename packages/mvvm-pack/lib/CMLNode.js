@@ -25,7 +25,6 @@ class CMLNode {
   // 文件的修改时间map  todo
   notChange(fileTimestamps) {
     let depNodes = this.getDependenciesNode();
-    depNodes = [...new Set(depNodes)];
     let result = depNodes.every(node => {
       let result = fs.statSync(node.realPath.split('?')[0]).mtime.getTime() === node.mtime;
       return result;
@@ -33,15 +32,25 @@ class CMLNode {
     return result;
   }
 
-  getDependenciesNode(depNode = []) {
-    if (!~depNode.indexOf(this)) {
-      depNode.push(this);
-      this.dependencies.concat(this.devDependencies).concat(this.childrens)
-        .forEach(item => {
-          item.getDependenciesNode(depNode);
-        })
+  getDependenciesNode(depList = []) {
+    if (!~depList.indexOf(this)) {
+      depList.push(this);
+      let newDepList = [];
+      newDepList = newDepList.concat(this.dependencies, this.devDependencies, this.childrens);
+      newDepList = [...new Set(newDepList)];
+      newDepList.forEach(item => {
+        item.getDependenciesNode(depList);
+      })
     }
-    return depNode;
+    return depList;
+  }
+
+  getDependenciesFilePaths() {
+    let depNodes = this.getDependenciesNode();
+    let result = depNodes.map(node => {
+      return node.realPath.split('?')[0];
+    })
+    return result;
   }
 }
 
