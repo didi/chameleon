@@ -1,11 +1,10 @@
 {
   "name": "chameleon-templates",
-  "version": "0.2.0",
+  "version": "0.3.0-alpha.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" ",
-    "postpublish": "git push"
+    "test": "echo \"Error: no test specified\" "
   },
   "author": "Chameleon-Team",
   "license": "Apache",

@@ -1,3 +1,19 @@
+## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
+
+### Bug Fixes
+* preview页面iframe未撑开修复
+* weex的 build模式jsbundle中存在本地路径
+
+### Features
+* 小程序的图片地址本地图片改网络图片
+* 解决父级目录babel-loader问题
+* build模式config.json的生成
+* 支持微信wxs 支付宝sjs 百度.filter.js的文件引用
+* web端weex端 多态组件支持js格式的vue组件
+* 小程序和weex也添加babelPolyfill的选项
+* 校验不支持Promise类型定义
+* 默认添加/components 别名
+* 校验添加生命周期函数白名单
 ## [0.2.0](https://github.com/didi/chameleon/compare/v0.2.0-alpha.1...v0.2.0)
 
 ### Bug Fixes
