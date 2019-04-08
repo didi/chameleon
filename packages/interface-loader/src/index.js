@@ -9,7 +9,9 @@ module.exports = function (source) {
   let {cmlType, media, check = {}} = options;
   const filePath = this.resourcePath;
   let self = this;
+  debugger
   const resolve = function(filePath, relativePath) {
+
     let context = path.dirname(filePath);
     self.resolveSync(context, relativePath);
   }

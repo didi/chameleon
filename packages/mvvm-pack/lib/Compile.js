@@ -437,11 +437,9 @@ class Compile {
         moduleType = moduleType || this.moduleType.Other;
       }
     } else {
-      moduleType = 'ALL';
+      moduleType = null;
     }
-
-    let key = `${nodeType}_${moduleType}_${realPath}`;
-
+    let key = moduleType === null ? `${nodeType}_${realPath}` : `${nodeType}_${moduleType}_${realPath}`;
 
     /*
     缓存判断 1 同一个文件节点不重复创建 compileNode时 compiled为true
@@ -527,13 +525,13 @@ class Compile {
   async customCompile() {
     while (this.oneLoopCompiledNode.length) {
       let currentNode = this.oneLoopCompiledNode.shift();
-      this.emit(`compile-${currentNode.nodeType}-${currentNode.moduleType}`, {compiler: this, currentNode});
+      let key = currentNode.moduleType === null ? `compile-${currentNode.nodeType}` : `compile-${currentNode.nodeType}-${currentNode.moduleType}`;
+      this.emit(key, currentNode);
       // AMD模块包装
       if (~[this.moduleType.JS, this.moduleType.ASSET].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
         AMDWrapper({compiler: this, currentNode})
       }
     }
-    this.emit('compile-end', {projectGraph: this.projectGraph})
   }
 
   utf8BufferToString(buf) {
