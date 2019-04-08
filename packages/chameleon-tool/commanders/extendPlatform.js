@@ -29,12 +29,14 @@ module.exports = function({platform, media}) {
   }
 
   let compiler = new mvvmpack(mvvmOptions);
-  plugin.hook(compiler);
-  compiler.hook('start-run', function() {
+  plugin.register(compiler);
+  let startTime = Date.now();
+  compiler.hook('start-run', function(time) {
+    startTime = time;
     cml.log.notice(platform + ' Compiling...')
   })
-  compiler.hook('end-run', function(compileTime) {
-    cml.log.notice(platform + ' Compiled successfully in ' + compileTime + 'ms')
+  compiler.hook('end-run', function(time) {
+    cml.log.notice(platform + ' Compiled successfully in ' + (time - startTime) + 'ms')
   })
   if (media === 'dev') {
     compiler.watch(200, function() {

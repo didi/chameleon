@@ -37,7 +37,7 @@ class Compile {
       JS: "JS",
       JSON: "JSON",
       ASSET: "ASSET",
-      Other: "Other"
+      OTHER: "OTHER"
     }
     this.compileQueue = []; // 待编译节点列表
     this.log = new Log({
@@ -93,15 +93,14 @@ class Compile {
 
   async run() {
     this.log.debug('start run!');
-    let startTime = Date.now();
-    this.emit('start-run', startTime);
+    this.emit('start-run', Date.now());
     // 每次编译要清空 编译图 重新计算  this.graphNodeMap做缓存
     this.projectGraph = null;
     this.fileDependencies = new Set();
     this.oneLoopCompiledNode = [];
     await this.createProjectGraph();
     await this.customCompile();
-    this.emit('end-run', (Date.now() - startTime));
+    this.emit('end-run', (Date.now()));
 
   }
 
@@ -302,7 +301,7 @@ class Compile {
       case 'ASSET':
         await this.compileASSET(currentNode);
         break;
-      case "Other":
+      case "OTHER":
       //   await this.compileOther(currentNode);
         break;
       default:
