@@ -28,9 +28,9 @@
       "integrity": "sha512-5IFZPamHYErbMYPD/H+RT5GAmxDqDZ0YlkBAbDGIDm82WFEFlpp7MnDclb1ZjJ2/txz3WmUOQQq/ZvOrVqACJg=="
     },
     "chameleon-runtime": {
-      "version": "0.2.0-alpha.0",
-      "resolved": "https://registry.npmjs.org/chameleon-runtime/-/chameleon-runtime-0.2.0-alpha.0.tgz",
-      "integrity": "sha512-4J8kT+9nqFpPuk+GJawKNDXcjpP4nEOvn7Jp8kbxdZi10dBHdovbX/CncSBuoyL3D1LttVq7ICjHlc9avYMuIQ==",
+      "version": "0.1.4",
+      "resolved": "https://registry.npmjs.org/chameleon-runtime/-/chameleon-runtime-0.1.4.tgz",
+      "integrity": "sha512-k1/k/b3XVZR+G+2PzdGheyL3QcH43ixGmzmuzS08Wg4H/ZC0lQ6kAieQNl3LtnrkMO0DCbfI5B+Ce36EQEp8bg==",
       "requires": {
         "mobx": "3.6.1"
       }
