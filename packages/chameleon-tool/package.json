@@ -64,7 +64,7 @@
     "express": "4.16.3",
     "file-loader": "1.1.11",
     "fs-extra": "6.0.1",
-    "fsevents": "1.2.7",
+    "fsevents": "^1.2.6",
     "glob": "7.1.2",
     "glob-watcher": "^5.0.3",
     "html-loader": "0.5.5",
