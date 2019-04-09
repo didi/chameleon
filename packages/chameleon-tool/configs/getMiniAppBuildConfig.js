@@ -35,7 +35,7 @@ module.exports = function (options) {
     ]
   }
   if (media === 'export') {
-    return getMiniAppExportConfig(options);
+    return getMiniAppExportConfig(merge(commonConfig, buildConfig), options);
   }
   return merge(commonConfig, buildConfig)
 }
