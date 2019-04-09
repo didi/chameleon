@@ -1,3 +1,12 @@
+## [0.3.0-alpha.2](https://github.com/didi/chameleon/compare/v0.3.0-alpha.1...v0.3.0-alpha.2)
+
+### Features
+* 支持微信wxs 支付宝sjs 百度.filter.js的文件引用  [issues/67](https://github.com/didi/chameleon/issues/67)
+
+### Bug Fixes
+* 修复 小程序组件导出 样式文件压缩
+* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
+
 ## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
 
 ### Bug Fixes
