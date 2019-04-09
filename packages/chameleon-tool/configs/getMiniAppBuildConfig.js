@@ -7,9 +7,6 @@ var getMiniAppExportConfig = require("./component_export/getMiniAppExportConfig"
 
 module.exports = function (options) {
   let {type, media} = options;
-  if (media === 'export') {
-    return getMiniAppExportConfig(options);
-  }
   var commonConfig = getMiniAppCommonConfig(options);
   var buildConfig = {
     plugins: [
@@ -36,6 +33,9 @@ module.exports = function (options) {
       }),
       new UglifyJsPlugin({})
     ]
+  }
+  if (media === 'export') {
+    return getMiniAppExportConfig(options);
   }
   return merge(commonConfig, buildConfig)
 }
