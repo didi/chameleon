@@ -12,6 +12,6 @@
     "chameleon-runtime": "^0.1.4",
     "chameleon-store": "0.0.3",
     "chameleon-ui-builtin": "^0.1.2",
-    "cml-ui": "^0.1.3"
+    "cml-ui": "^0.1.5"
   }
 }
