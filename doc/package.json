@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "gitbook-plugin-insert-logo": "^0.1.5",
-    "gitbook-plugin-theme-custom": "0.0.5",
+    "gitbook-plugin-theme-custom": "0.0.7",
     "glob": "^7.1.3"
   }
 }
