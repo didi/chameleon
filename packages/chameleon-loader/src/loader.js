@@ -16,6 +16,7 @@ const { getScriptCode } = require('./interface-check/getScriptCode.js');
 const cmlUtils = require('chameleon-tool-utils');
 const prehandle = require('./utils/prehandle.js');
 const loaderMethods = require('./loaderMethods');
+const miniAppScript = require('./miniapp-script.js');
 let jsonObject = {};
 
 module.exports = function (content) {
@@ -183,6 +184,7 @@ module.exports = function (content) {
 
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
+    
     if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan')) {
       //生成json文件
       let jsonFile = filePath.replace(miniTplExtReg,'.json');
@@ -194,7 +196,7 @@ module.exports = function (content) {
 
       //wxml不处理直接生成
       self.emitFile(entryPath, content);
-
+      miniAppScript.addMiniAppScript(self,filePath,context,cmlType)
       var styleString = getWxmlRequest('styles');
       var scriptString = getWxmlRequest('script');
       output += `var __cml__style = ${styleString};\n`
