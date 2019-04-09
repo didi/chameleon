@@ -27,7 +27,7 @@ var miniappConfig = {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
     entry: [
-      './components'
+      './src/components'
     ],
     publicPath: '../../'
   }

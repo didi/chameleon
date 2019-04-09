@@ -19,7 +19,7 @@ module.exports = function(loaderContext, jsonObject, cmlType) {
   }
   cmlUtils.addNpmComponents(jsonObject, jsonPath, cmlType, context)
   
-
+  
   return jsonObject;
 
 
