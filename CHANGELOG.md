@@ -1,3 +1,40 @@
+## [0.3.0-alpha.2](https://github.com/didi/chameleon/compare/v0.3.0-alpha.1...v0.3.0-alpha.2)
+
+### Features
+* 支持微信wxs 支付宝sjs 百度.filter.js的文件引用  [issues/67](https://github.com/didi/chameleon/issues/67)
+
+### Bug Fixes
+* 修复 小程序组件导出 样式文件压缩
+* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
+
+## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
+
+### Bug Fixes
+* preview页面iframe未撑开修复
+* weex的 build模式jsbundle中存在本地路径
+
+### Features
+* 小程序的图片地址本地图片改网络图片
+* 解决父级目录babel-loader问题
+* build模式config.json的生成
+* web端weex端 多态组件支持js格式的vue组件
+* 小程序和weex也添加babelPolyfill的选项
+* 校验不支持Promise类型定义
+* 默认添加/components 别名
+* 校验添加生命周期函数白名单
+## [0.2.0](https://github.com/didi/chameleon/compare/v0.2.0-alpha.1...v0.2.0)
+
+### Bug Fixes
+
+- 默认开启全局变量校验，升级初始化项目中依赖符合全局变量校验
+- linter校验支持component is的校验
+
+## [0.2.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0-alpha.0...v0.2.0-alpha.1)
+
+### Bug Fixes
+
+- 修复 js中import css文件导致构建停滞的bug
+
 ## [0.2.0-alpha.0](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.2.0-alpha.0)
 
 ### Features

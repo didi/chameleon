@@ -320,13 +320,14 @@ const wrapper = function (obj) {
 
   // 获取所有方法
   const keys = Object.keys(methods);
-  Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).forEach(key => {
-    if (!/constructor|prototype|length/ig.test(key)) {
-      if (!~keys.indexOf(key)) {
-        showErrorMessage('method [' + key + '] not declare in the interface!');
-      }
-    }
-  })
+  // 微信 预览模式会执行 白屏暂时注释
+  // Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).forEach(key => {
+  //   if (!/constructor|prototype|length/ig.test(key)) {
+  //     if (!~keys.indexOf(key)) {
+  //       showErrorMessage('method [' + key + '] not declare in the interface!');
+  //     }
+  //   }
+  // })
   // 处理包装方法
   keys.forEach(key => {
     const originFunc = obj[key];

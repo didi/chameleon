@@ -82,7 +82,7 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
     );
     let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
     let extraClass = ` cml-base cml-${tagName}`;
-    if (isUsingComponents && type === 'wx') {
+    if (isUsingComponents && (type === 'wx' || type === 'baidu')) {
       extraClass = ` cml-view cml-${tagName}`;
     }
     if (type === 'alipay') {
@@ -141,7 +141,7 @@ parseClass.tap('wx-alipay-baidu-vue', (args) => {
     );
     let extraClass = ` cml-base cml-${tagName}`;
     let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
-    if (isUsingComponents && type === 'wx') {
+    if (isUsingComponents && (type === 'wx' || type === 'baidu')) {
       extraClass = ` cml-view cml-${tagName}`;
     }
     if (type === 'alipay') {

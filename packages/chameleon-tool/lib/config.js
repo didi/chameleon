@@ -27,7 +27,7 @@ var miniappConfig = {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
     entry: [
-      './components'
+      './src/components'
     ],
     publicPath: '../../'
   }
@@ -68,7 +68,7 @@ var chameleonConfig = {
     wxAppId: ''
   },
   enableLinter: true,
-  enableGlobalCheck: false,
+  enableGlobalCheck: true,
   globalCheckWhiteList: [ // 全局校验的白名单文件 后缀匹配
   ],
   cmss: {

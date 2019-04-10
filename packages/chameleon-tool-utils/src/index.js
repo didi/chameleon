@@ -674,7 +674,6 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
       refUrl
     }
   }
-
   if (~filePath.indexOf('node_modules')) {
     refUrl = _.npmComponentRefPath(filePath, context);
     // 改为相对路径
@@ -683,18 +682,18 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   } else {
     // 改成相对路径
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
+  }
 
-    refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
-    if (cmlType === 'wx') {
-      refUrl = refUrl.replace(/\.wxml/g, '');
-    }
-    if (cmlType === 'alipay') {
-      refUrl = refUrl.replace(/\.axml/g, '');
-    }
+  refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
+  if (cmlType === 'wx') {
+    refUrl = refUrl.replace(/\.wxml$/g, '');
+  }
+  if (cmlType === 'alipay') {
+    refUrl = refUrl.replace(/\.axml$/g, '');
+  }
 
-    if (cmlType === 'baidu') {
-      refUrl = refUrl.replace(/\.swan/g, '');
-    }
+  if (cmlType === 'baidu') {
+    refUrl = refUrl.replace(/\.swan$/g, '');
   }
 
   return {
