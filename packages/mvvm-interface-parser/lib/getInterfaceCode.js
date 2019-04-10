@@ -1,6 +1,7 @@
 const cmlUtils = require('chameleon-tool-utils');
 const fs = require('fs');
 const path = require('path');
+
 module.exports = function({interfacePath, content}) {
 
   let devDeps = [];
@@ -41,7 +42,7 @@ module.exports = function({interfacePath, content}) {
       if (!include.attrs.src) {
         throw new Error(`not define src attribute: ${filePath}`)
       }
-      let newFilePath = path.resolve(path.dirname(filePath), include.attrs.src);
+      let newFilePath = cmlUtils.resolveAsync(filePath, include.attrs.src);
       if (!cmlUtils.isFile(newFilePath)) {
         throw new Error(`not find file: ${newFilePath}`)
       }
@@ -58,7 +59,7 @@ module.exports = function({interfacePath, content}) {
     let {part, filePath} = result;
     // script 有src属性的
     if (part.attrs && part.attrs.src) {
-      let newFilePath = path.resolve(path.dirname(filePath), part.attrs.src);
+      let newFilePath = cmlUtils.resolveAsync(filePath, part.attrs.src);
       if (!cmlUtils.isFile(newFilePath)) {
         throw new Error(`not find file: ${newFilePath}`)
       }

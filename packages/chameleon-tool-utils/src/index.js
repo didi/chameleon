@@ -14,6 +14,8 @@ const splitParts = require('./lib/splitParts.js');
 const childProcess = require('child_process');
 const crypto = require('crypto');
 
+const resolve = require('resolve');
+
 
 var _ = module.exports = {}
 
@@ -39,6 +41,15 @@ let builtinNpmName = 'chameleon-ui-builtin';
 _.setBuiltinNpmName = function(npmName) {
   builtinNpmName = npmName;
   return builtinNpmName;
+}
+
+// include 和script的src不支持别名查找
+_.resolveAsync = function(filepath, requirePath) {
+  let fromCwd
+  try {
+    fromCwd = resolve.sync(requirePath, { basedir: path.dirname(filepath)})
+  } catch (e) {}
+  return fromCwd
 }
 
 
@@ -773,7 +784,7 @@ _.findComponent = function (filePath, cmlType) {
 }
 
 
-// 根据interface寻找多态组件路径 多态组件优先级 · 1interface文件中指定  2 未指定找同名多态cml文件  3 include中查找
+// 根据interface寻找多态组件路径 多态组件优先级 · 1 interface文件中指定  2 未指定找同名多态cml文件  3 include中查找
 _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
 
   function find(interfacePath, content, cmlType) {
@@ -795,7 +806,7 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
     }
     // interface文件中script src 指定
     if (targetScript && targetScript.attrs && targetScript.attrs.src) {
-      let cmlFilePath = path.resolve(path.dirname(interfacePath), targetScript.attrs.src);
+      let cmlFilePath = _.resolveAsync(interfacePath, targetScript.attrs.src);
       let reg = new RegExp(`\\.${cmlType}\\.cml$`);
       // 获取npm包中的组件时 只能够根据interface文件去查找 无法区分是多态组件还是接口 如果找到了组件就返回 找不到就返回空
       if (reg.test(cmlFilePath)) {
@@ -803,16 +814,14 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
       }
       return;
     }
-  
     // 同名文件
     let sameNamePath = interfacePath.replace(/\.interface$/, `.${cmlType}.cml`);
     if (_.isFile(sameNamePath)) {
       return sameNamePath;
     }
-  
     // include中查找
     if (include && include.attrs && include.attrs.src) {
-      let includeFilePath = path.resolve(path.dirname(interfacePath), include.attrs.src);
+      let includeFilePath = _.resolveAsync(interfacePath, include.attrs.src);
       if (!_.isFile) {
         throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
       }

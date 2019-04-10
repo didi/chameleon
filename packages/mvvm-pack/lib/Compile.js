@@ -32,12 +32,12 @@ class Compile {
       Module: 'Module'
     }
     this.moduleType = {
-      Template: "Template",
-      Style: "Style",
-      Script: "Script",
-      Json: "Json",
-      Asset: "Asset",
-      Other: "Other"
+      template: "template",
+      style: "style",
+      script: "script",
+      json: "json",
+      asset: "asset",
+      other: "other"
     }
     this.compileQueue = []; // 待编译节点列表
     this.log = new Log({
@@ -47,29 +47,29 @@ class Compile {
     this.moduleRule = [ // 文件后缀对应module信息
       {
         test: /\.css|\.less$/,
-        moduleType: this.moduleType.Style,
+        moduleType: this.moduleType.style,
         attrs: {
           lang: 'less'
         }
       },
       {
         test: /\.stylus|\.styls$/,
-        moduleType: this.moduleType.Style,
+        moduleType: this.moduleType.style,
         attrs: {
           lang: 'stylus'
         }
       },
       {
         test: /\.js|\.interface$/,
-        moduleType: this.moduleType.Script
+        moduleType: this.moduleType.script
       },
       {
         test: /\.json$/,
-        moduleType: this.moduleType.Json
+        moduleType: this.moduleType.json
       },
       {
         test: /\.(png|jpe?g|gif|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff|woff2?|eot|ttf|otf)(\?.*)?$/,
-        moduleType: this.moduleType.Asset
+        moduleType: this.moduleType.asset
       }
     ]
 
@@ -257,7 +257,7 @@ class Compile {
 
     if (parts.script && parts.script.length > 0) {
       parts.script.forEach(item => {
-        let moduleType = item.cmlType === 'json' ? this.moduleType.Json : this.moduleType.Script;
+        let moduleType = item.cmlType === 'json' ? this.moduleType.json : this.moduleType.script;
         let newNode = this.createNode({
           realPath,
           nodeType: this.nodeType.Module,
@@ -276,7 +276,7 @@ class Compile {
       let newNode = this.createNode({
         realPath,
         nodeType: this.nodeType.Module,
-        moduleType: this.moduleType.Style,
+        moduleType: this.moduleType.style,
         source: item.content
       })
       newNode.attrs = item.attrs;
@@ -290,19 +290,19 @@ class Compile {
       case this.moduleType.Template:
         await this.compileTemplate(currentNode);
         break;
-      case this.moduleType.Style:
+      case this.moduleType.style:
         await this.compileStyle(currentNode);
         break;
-      case this.moduleType.Script:
+      case this.moduleType.script:
         await this.compileScript(currentNode);
         break;
-      case this.moduleType.Json:
+      case this.moduleType.json:
         await this.compileJson(currentNode);
         break;
-      case this.moduleType.Assets:
+      case this.moduleType.assets:
         await this.compileAsset(currentNode);
         break;
-      case this.moduleType.Other:
+      case this.moduleType.other:
       //   await this.compileOther(currentNode);
         break;
       default:
@@ -335,7 +335,7 @@ class Compile {
       let newNode = this.createNode({
         realPath: item,
         nodeType: this.nodeType.Module,
-        moduleType: this.moduleType.Style
+        moduleType: this.moduleType.style
       })
       currentNode.devDependencies.push(newNode);
     })
@@ -435,7 +435,7 @@ class Compile {
             attrs = rule.attrs;
           }
         })
-        moduleType = moduleType || this.moduleType.Other;
+        moduleType = moduleType || this.moduleType.other;
       }
     } else {
       moduleType = null;
@@ -447,7 +447,7 @@ class Compile {
     有文件 并且mtime 都相同 证明依赖的文件都没有改动  否则删除缓存
     */
     if (this.graphNodeMap[key]) {
-      // 如果是cml文件的children则判断父节点是否有变化
+      // 如果是cml文件的children则判断父节点是否有变化, 因为json节点的编译会给父节点添加dependencies，所以父节点变化了子节点也要重新编译
       let targetNode = this.graphNodeMap[key].parent ? this.graphNodeMap[key].parent : this.graphNodeMap[key];
       if (targetNode.notChange(this.fileTimestamps)) {
         let fileDeps = targetNode.getDependenciesFilePaths();
@@ -455,11 +455,6 @@ class Compile {
         return this.graphNodeMap[key];
       }
     }
-    // if (this.graphNodeMap[key] && this.graphNodeMap[key].notChange(this.fileTimestamps)) {
-    //   let fileDeps = this.graphNodeMap[key].getDependenciesFilePaths();
-    //   fileDeps.forEach(item => this.fileDependencies.add(item));
-    //   return this.graphNodeMap[key];
-    // }
 
     let newNode = new CMLNode({
       realPath,
@@ -470,10 +465,9 @@ class Compile {
     })
 
     // js模块的模块类型
-    if (~["JS", 'ASSET'].indexOf(moduleType)) {
+    if (~[this.moduleType.script, this.moduleType.asset].indexOf(moduleType)) {
       let modId = this.createModId(realPath);
       newNode.modId = modId;
-      newNode.jsType = 'AMD';
     }
     let noQueryPath = cmlUtils.delQueryPath(realPath);
     newNode.mtime = fs.statSync(noQueryPath).mtime.getTime();
@@ -541,7 +535,7 @@ class Compile {
     //   let key = currentNode.moduleType === null ? `compile-${currentNode.nodeType}` : `compile-${currentNode.nodeType}-${currentNode.moduleType}`;
     //   this.emit(key, currentNode);
     //   // AMD模块包装
-    //   if (~[this.moduleType.Script, this.moduleType.Asset].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
+    //   if (~[this.moduleType.script, this.moduleType.asset].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
     //     AMDWrapper({compiler: this, currentNode})
     //   }
     // }
@@ -555,21 +549,22 @@ class Compile {
     let index = this.oneLoopCompiledNode.indexOf(currentNode);
     if (index !== -1) {
       // console.log('custom compile' + currentNode.moduleType + currentNode.realPath)
-      // 先删除 保证之编译一次
+      // 先删除 保证只编译一次
       this.oneLoopCompiledNode.splice(index, 1);
       if (~[this.nodeType.App, this.nodeType.Page, this.nodeType.Component].indexOf(currentNode.nodeType)) {
         this.log.debug('custom compile preCML:' + currentNode.nodeType + '_' + currentNode.realPath);
 
-        this.emit(`preCML`, currentNode, currentNode.nodeType);
+        this.emit(`compile-preCML`, currentNode, currentNode.nodeType);
       } else {
         // Template Script Style Json
-        this.log.debug('custom compile '+ currentNode.moduleType + ':' + currentNode.realPath);
+        this.log.debug('custom compile ' + currentNode.moduleType + ':' + currentNode.realPath);
+        let parent = currentNode.parent || {};
 
-        this.emit(currentNode.moduleType, currentNode);
+        this.emit(`compile-${currentNode.moduleType}`, currentNode, parent.nodeType);
         // AMD模块包装
-        if (~[this.moduleType.Script, this.moduleType.Asset].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
-          AMDWrapper({compiler: this, currentNode})
-        }
+        // if (~[this.moduleType.script, this.moduleType.asset].indexOf(currentNode.moduleType) && currentNode.jsType === 'AMD') {
+        //   AMDWrapper({compiler: this, currentNode})
+        // }
       }
       currentNode.childrens.forEach(item => {
         this.customCompileNode(item);
@@ -581,7 +576,7 @@ class Compile {
 
       if (~[this.nodeType.App, this.nodeType.Page, this.nodeType.Component].indexOf(currentNode.nodeType)) {
         this.log.debug('custom compile postCML:' + currentNode.nodeType + '_' + currentNode.realPath);
-        this.emit(`postCML`, currentNode, currentNode.nodeType);
+        this.emit(`compile-postCML`, currentNode, currentNode.nodeType);
       }
     }
   }

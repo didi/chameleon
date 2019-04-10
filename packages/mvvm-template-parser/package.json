@@ -1,6 +1,6 @@
 {
   "name": "mvvm-template-parser",
-  "version": "0.2.0-alpha.0",
+  "version": "0.3.0-alpha.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,8 @@
   "dependencies": {
     "@babel/traverse": "^7.3.4",
     "@babel/types": "^7.3.4",
-    "mvvm-babel-generator": "0.2.0-alpha.0",
-    "mvvm-babel-parser": "0.2.0-alpha.0"
+    "mvvm-babel-generator": "0.3.0-alpha.2",
+    "mvvm-babel-parser": "0.3.0-alpha.2"
   },
   "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
 }
