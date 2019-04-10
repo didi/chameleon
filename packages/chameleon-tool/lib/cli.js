@@ -24,11 +24,21 @@ module.exports.run = function () {
     //     commanderInstance.registerCommander({commander: subCommander})
     //   })
     // }
+
+
+
     //   扩展端
-    const extendPlatform = require('../commanders/extendPlatform.js');
-    if (cml.config.get().platformPlugin && cml.config.get().platformPlugin[first]) {
-      extendPlatform({platform: first, media: argv[3]});
-    } else {
+    // const extendPlatform = require('../commanders/extendPlatform.js');
+    // if (cml.config.get().platformPlugin && cml.config.get().platformPlugin[first]) {
+    //   extendPlatform({platform: first, media: argv[3]});
+    // } 
+    const extPlatform = require('../commanders/extPlatform.js');
+
+    if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(first)) {
+      extPlatform({type: first, media: argv[3]});
+    } 
+    
+    else {
       commander.usage('[command] [options]')
       commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
       let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay'];

@@ -450,8 +450,8 @@ module.exports = function (content) {
     output += 'module.exports.el = \'' + params.entry + '\'\n' +
       'new Vue(module.exports)\n'
   }
-  // console.log(output)
-
+  console.log(output)
+debugger
   // done
   return output
 }

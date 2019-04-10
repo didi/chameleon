@@ -20,18 +20,20 @@ exports.getBuildPromise = async function (media, type) {
   if (~['wx', 'baidu', 'alipay'].indexOf(type)) {
     // 异步删除output目录
     var outputpath = webpackConfig.output.path;
-    await new Promise(function(resolve, reject) {
-      fse.remove(outputpath, function(err) {
-        if (err) {
-          reject(err);
-        }
-        resolve();
+    if (outputpath) {
+      await new Promise(function(resolve, reject) {
+        fse.remove(outputpath, function(err) {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        })
+      })["catch"](e => {
+        let message = `clear file error! please remove direction ${outputpath} by yourself!`
+        cml.log.error(message);
+        throw new Error(e)
       })
-    })["catch"](e => {
-      let message = `clear file error! please remove direction ${outputpath} by yourself!`
-      cml.log.error(message);
-      throw new Error(e)
-    })
+    }
 
   }
   return new Promise(function(resolve, reject) {
@@ -73,6 +75,13 @@ exports.getBuildPromise = async function (media, type) {
  * @param {*} type  wx web weex
  */
 exports.getOptions = function (media, type) {
+  if (!~['web','weex','alipay','baidu','wx'].indexOf(type)) {
+    return {
+      type: type,
+      media,
+      root: cml.projectRoot
+    };
+  }
   let chameleonConfig = cml.config.get()[type][media];
 
   if (!chameleonConfig) {

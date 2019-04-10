@@ -74,6 +74,7 @@
     "less": "3.0.4",
     "less-loader": "4.1.0",
     "minimist": "1.2.0",
+    "mvvm-cml-loader": "0.0.1",
     "mvvm-pack": "0.3.0-alpha.2",
     "node-phpcgi": "0.3.7",
     "node-watch": "^0.5.9",

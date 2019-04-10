@@ -74,6 +74,7 @@ class Compile {
     ]
 
     this.resolve = this.resolve.bind(this);
+    this.outputFileList = {}; // 输出对象
   }
 
   // path 是源文件路径 request是要解析的路径

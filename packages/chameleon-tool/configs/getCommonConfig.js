@@ -33,6 +33,9 @@ module.exports = function (options) {
   }
 
   publicPath = options.publicPath || defaultPublichPathMap[type];
+  if(!publicPath) {
+    publicPath  =`http://${config.ip}:${webServerPort}/${type}/`
+  }
 
 
   let commonConfig = {
