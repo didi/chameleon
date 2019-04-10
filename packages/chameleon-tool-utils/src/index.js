@@ -584,6 +584,7 @@ _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
       }
     })
   }
+  
 }
 
 // 通过单个packages

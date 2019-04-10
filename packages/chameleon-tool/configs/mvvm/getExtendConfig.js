@@ -1,6 +1,6 @@
 const merge = require('webpack-merge')
 const path = require('path');
-// const cmlLoader = path.join(__dirname, './extCmlLoader.js');
+const MvvmGraphPlugin = require('./mvvmGraphPlugin.js');
 const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 
@@ -31,14 +31,7 @@ module.exports = function(options) {
       ]
     },
     plugins: [
-      {
-        apply(compiler) {
-          compiler.plugin('should-emit', function(compilation) {
-            debugger
-          })
-
-        }
-      }
+      new MvvmGraphPlugin()
     ]
   };
   return merge(getCommonConfig(options), extendConfig);
