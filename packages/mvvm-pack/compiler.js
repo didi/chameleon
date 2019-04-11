@@ -1,8 +1,9 @@
-
 const CMLNode = require('./cmlNode.js');
 const path = require('path');
-class mvvmGraphPlugin {
-  constructor() {
+const Log = require('./log.js');
+const EventEmitter = require('events');
+class Compiler {
+  constructor(webpackCompiler) {
     this.moduleRule = [ // 文件后缀对应module信息
       {
         test: /\.css|\.less$/,
@@ -31,39 +32,52 @@ class mvvmGraphPlugin {
         moduleType: 'asset'
       }
     ]
+    this.outputFiles = {}; // 输出文件 key为文件路径 value为输出文件内容
+    this.projectGraph = null;
+    this.log = new Log();
+    this.event = new EventEmitter();
+    this.webpackCompiler = webpackCompiler;
   }
-  apply(compiler) {
-    let self = this;
-    compiler.plugin('should-emit', function(compilation) {
-      let outPutFile = {}; // 输出文件 key为文件路径 value为输出文件内容
 
-      let modules = compilation.modules;
-      let appModule;
-      for (let i = 0; i < modules.length; i++) {
-        if (modules[i]._nodeType === 'app') {
-          appModule = modules[i];
-        }
-        // 静态资源的写入
-        if (modules[i]._nodeType === 'module' && modules[i]._moduleType === 'asset') {
-          if (modules[i]._assetSource && modules[i]._outputPath) {
-            outPutFile[modules[i]._outputPath] = modules[i]._assetSource;
-          }
+  run(modules) {
+    this.projectGraph = null;
+    this.outputFiles = {};
+    this.module2Node(modules);
+    this.customCompile();
+    this.packFile();
+    this.emit('pack', this.projectGraph);
+    this.emitFiles();
+
+  }
+
+  emit(eventName, ...params) {
+    this.log.debug('emit log:' + eventName + 'params:' + params)
+    this.event.emit(eventName, ...params);
+  }
+
+
+  // 处理webpack modules
+  module2Node(modules) {
+    let appModule;
+    for (let i = 0; i < modules.length; i++) {
+      if (modules[i]._nodeType === 'app') {
+        appModule = modules[i];
+      }
+      // 静态资源的写入
+      if (modules[i]._nodeType === 'module' && modules[i]._moduleType === 'asset') {
+        if (modules[i]._assetSource && modules[i]._outputPath) {
+          this.outputFiles[modules[i]._outputPath] = modules[i]._assetSource;
         }
       }
+    }
 
-      if (!appModule) {
-        throw new Error('not find app.cml node!')
-      }
+    if (!appModule) {
+      throw new Error('not find app.cml node!')
+    }
 
-      let moduleNodeMap = new Map();
-      // appModule
-      let mvvmGraph = self.createGraph(appModule, null, moduleNodeMap);
+    let moduleNodeMap = new Map();
+    this.projectGraph = self.createGraph(appModule, null, moduleNodeMap);
 
-      // 返回false 不进入emit阶段
-      return false;
-      
-    })
-    
   }
 
   // 创建依赖图
@@ -121,11 +135,53 @@ class mvvmGraphPlugin {
         })
         options.moduleType = options.moduleType || 'other';
       }
-      
       options.source = module._cmlSource || module._source && module._source._value;
     }
     return new CMLNode(options)
   }
+
+
+  // 开启用户自定义编译
+  customCompile() {
+    // 队列串行编译
+    //  递归编译
+    this.customCompileNode(this.projectGraph);
+  }
+
+  customCompileNode(currentNode) {
+
+    if (~['app', 'page', 'component'].indexOf(currentNode.nodeType)) {
+      this.emit(`compile-preCML`, currentNode, currentNode.nodeType);
+    } else {
+      // template script style json
+      let parent = currentNode.parent || {};
+      this.emit(`compile-${currentNode.moduleType}`, currentNode, parent.nodeType);
+    }
+    currentNode.childrens.forEach(item => {
+      this.customCompileNode(item);
+    })
+
+    currentNode.dependencies.forEach(item => {
+      this.customCompileNode(item);
+    })
+
+    if (~['app', 'page', 'component'].indexOf(currentNode.nodeType)) {
+      this.emit(`compile-postCML`, currentNode, currentNode.nodeType);
+    }
+  }
+
+
+  writeFile(filePath, content) {
+    if (this.outputFiles[filePath]) {
+      throw new Error(`has already write file ${filePath}`);
+    } else {
+      this.outputFiles[filePath] = content;
+    }
+  }
+
+  emitFiles() {
+    
+  }
 }
 
-module.exports = mvvmGraphPlugin;
+module.exports = Compiler;

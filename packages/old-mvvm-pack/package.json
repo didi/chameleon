@@ -1,0 +1,23 @@
+{
+  "name": "mvvm-pack",
+  "version": "0.3.0-alpha.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chalk": "^2.4.2",
+    "chameleon-tool-utils": "0.3.0-alpha.2",
+    "enhanced-resolve": "^4.1.0",
+    "mime": "^2.4.0",
+    "mvvm-interface-parser": "0.3.0-alpha.2",
+    "mvvm-script-parser": "0.3.0-alpha.2",
+    "mvvm-style-parser": "0.3.0-alpha.2",
+    "mvvm-template-parser": "0.3.0-alpha.2",
+    "watchpack": "^1.6.0"
+  }
+}

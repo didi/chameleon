@@ -1,1 +1,2 @@
-module.exports = require('./lib/MVVMPack.js');
+const mvvmGraphPlugin = require('./mvvmGraphPlugin.js');
+const compiler = require('./compiler.js');
