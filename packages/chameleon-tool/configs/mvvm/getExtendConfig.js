@@ -1,9 +1,8 @@
 const merge = require('webpack-merge')
 const path = require('path');
-const MvvmGraphPlugin = require('./mvvmGraphPlugin.js');
 const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
-
+const {MvvmGraphPlugin} = require('mvvm-pack');
 module.exports = function(options) {
   let {type, media} = options;
   let extendConfig = {

@@ -35,7 +35,7 @@ class mvvmGraphPlugin {
     ]
   }
   apply(compiler) {
-    let mvvmCompiler = new MvvmCompiler();
+    let mvvmCompiler = new MvvmCompiler(compiler);
     
     compiler.plugin('should-emit', function(compilation) {
       mvvmCompiler.run(compilation.modules);

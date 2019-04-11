@@ -2,6 +2,7 @@ const CMLNode = require('./cmlNode.js');
 const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
+const cmlUtils = require('chameleon-tool-utils');
 class Compiler {
   constructor(webpackCompiler) {
     this.moduleRule = [ // 文件后缀对应module信息
@@ -40,11 +41,11 @@ class Compiler {
   }
 
   run(modules) {
+    debugger
     this.projectGraph = null;
     this.outputFiles = {};
     this.module2Node(modules);
     this.customCompile();
-    this.packFile();
     this.emit('pack', this.projectGraph);
     this.emitFiles();
 
@@ -60,13 +61,14 @@ class Compiler {
   module2Node(modules) {
     let appModule;
     for (let i = 0; i < modules.length; i++) {
-      if (modules[i]._nodeType === 'app') {
-        appModule = modules[i];
+      let item = modules[i];
+      if (item._nodeType === 'app') {
+        appModule = item;
       }
       // 静态资源的写入
-      if (modules[i]._nodeType === 'module' && modules[i]._moduleType === 'asset') {
-        if (modules[i]._assetSource && modules[i]._outputPath) {
-          this.outputFiles[modules[i]._outputPath] = modules[i]._assetSource;
+      if (item._nodeType === 'module' && item._moduleType === 'asset') {
+        if (item._cmlSource && item._outputPath) {
+          this.writeFile(item._outputPath, item._cmlSource);
         }
       }
     }
@@ -76,7 +78,7 @@ class Compiler {
     }
 
     let moduleNodeMap = new Map();
-    this.projectGraph = self.createGraph(appModule, null, moduleNodeMap);
+    this.projectGraph = this.createGraph(appModule, null, moduleNodeMap);
 
   }
 
@@ -180,7 +182,19 @@ class Compiler {
   }
 
   emitFiles() {
-    
+    let outputPath = this.webpackCompiler.options.output.path;
+    for (let key in this.outputFiles) {
+      if (this.outputFiles.hasOwnProperty(key)) {
+        let outFilePath = path.join(outputPath, key);
+        if (typeof this.outputFiles[key] === 'string') {
+          cmlUtils.fse.outputFileSync(outFilePath, this.outputFiles[key])
+        } else {
+          cmlUtils.fse.outputFileSync(outFilePath, this.outputFiles[key], {
+            encoding: 'binary'
+          })
+        }
+      }
+    }
   }
 }
 

@@ -34,6 +34,8 @@ _.setCli = function (flag) {
   global.cml.__ISCML__ = flag;
 }
 
+_.fse = fse;
+
 // 内置组件库名称
 let builtinNpmName = 'chameleon-ui-builtin';
 

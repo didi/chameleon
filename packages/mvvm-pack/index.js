@@ -1,2 +1,7 @@
-const mvvmGraphPlugin = require('./mvvmGraphPlugin.js');
-const compiler = require('./compiler.js');
+const MvvmGraphPlugin = require('./mvvmGraphPlugin.js');
+const MvvMCompiler = require('./compiler.js');
+
+module.exports = {
+  MvvmGraphPlugin,
+  MvvMCompiler
+}
