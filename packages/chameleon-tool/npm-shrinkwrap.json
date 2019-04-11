@@ -7334,6 +7334,32 @@
         "loader-utils": "1.2.3"
       }
     },
+    "mvvm-file-loader": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/mvvm-file-loader/-/mvvm-file-loader-0.0.1.tgz",
+      "integrity": "sha512-84LWUtZEKkiOmqZMd8ukwqgte6pjW4SnXOlImrY77lg2BUzGd0xcg5aLIQjwjQh1yZlh4/CBrgCFYhDgobfjHg==",
+      "requires": {
+        "loader-utils": "1.2.3",
+        "mime": "2.4.2",
+        "schema-utils": "0.4.7"
+      },
+      "dependencies": {
+        "mime": {
+          "version": "2.4.2",
+          "resolved": "https://registry.npmjs.org/mime/-/mime-2.4.2.tgz",
+          "integrity": "sha512-zJBfZDkwRu+j3Pdd2aHsR5GfH2jIWhmL1ZzBoc+X+3JEti2hbArWcyJ+1laC1D2/U/W1a/+Cegj0/OnEU2ybjg=="
+        },
+        "schema-utils": {
+          "version": "0.4.7",
+          "resolved": "https://registry.npmjs.org/schema-utils/-/schema-utils-0.4.7.tgz",
+          "integrity": "sha512-v/iwU6wvwGK8HbU9yi3/nhGzP0yGSuhQMzL6ySiec1FSrZZDkhm4noOSWzrNFo/jEc+SJY6jRTwuwbSXJPDUnQ==",
+          "requires": {
+            "ajv": "6.6.2",
+            "ajv-keywords": "3.2.0"
+          }
+        }
+      }
+    },
     "nan": {
       "version": "2.13.2",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.13.2.tgz",

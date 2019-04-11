@@ -34,6 +34,14 @@ module.exports = function(options) {
       new MvvmGraphPlugin()
     ]
   };
-  return merge(getCommonConfig(options), extendConfig);
+  // options.moduleIdType = 'hash';
+  let commonConfig = getCommonConfig(options);
+  commonConfig.module.rules.forEach(item => {
+    if (~['chameleon-url-loader', 'file-loader'].indexOf(item.loader)) {
+      item.loader = 'mvvm-file-loader';
+      item.options.publicPath = commonConfig.output.publicPath
+    }
+  })
+  return merge(commonConfig, extendConfig);
 
 }

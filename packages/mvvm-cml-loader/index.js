@@ -5,6 +5,7 @@ const cmlUtils = require('chameleon-tool-utils');
 const path = require('path');
 
 module.exports = function(source) {
+  this._module._cmlSource = source;
   let output = '';
   const self = this;
   const rawOptions = loaderUtils.getOptions(this) || {};
@@ -46,7 +47,7 @@ module.exports = function(source) {
   output += `
       var script = require('${helper.getPartLoaders({selectorOptions, partType: 'script', loaders, resourcePath})}');
   `
-  this._module._fileType = fileType;
+  this._module._nodeType = fileType;
   // app的依赖是page
   if (fileType === 'app') {
     self.addDependency(path.join(context, './src/router.config.json'));

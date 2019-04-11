@@ -10,6 +10,7 @@ const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
+
 module.exports = function (options) {
   let {
     type,
@@ -33,8 +34,8 @@ module.exports = function (options) {
   }
 
   publicPath = options.publicPath || defaultPublichPathMap[type];
-  if(!publicPath) {
-    publicPath  =`http://${config.ip}:${webServerPort}/${type}/`
+  if (!publicPath) {
+    publicPath = `http://${config.ip}:${webServerPort}/${type}/`
   }
 
 
@@ -98,7 +99,12 @@ module.exports = function (options) {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'file-loader',
         options: {
-          name: getstaticPath('media')
+          name: getstaticPath('media'),
+          outputPath: function(output) {
+            // 处理图片中的@符号 改成_ 解决在支付宝小程序中上传失败的问题
+            output = cml.utils.handleSpecialChar(output)
+            return output;
+          }
          
         }
       },
@@ -106,7 +112,12 @@ module.exports = function (options) {
         test: /\.(woff|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'file-loader',
         options: {
-          name: getstaticPath('fonts')
+          name: getstaticPath('fonts'),
+          outputPath: function(output) {
+            // 处理图片中的@符号 改成_ 解决在支付宝小程序中上传失败的问题
+            output = cml.utils.handleSpecialChar(output)
+            return output;
+          }
         }
       },
 
@@ -215,6 +226,7 @@ module.exports = function (options) {
   if (moduleIdType && moduleIdMap[moduleIdType]) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
+  
 
   let subProject = cml.config.get().subProject;
   if (subProject && subProject.length > 0) {
