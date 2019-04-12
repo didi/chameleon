@@ -9,7 +9,8 @@ const _ = module.exports = {};
 1 :id="value"  => v-bind:id="value"
 2 @click="handleClick" => c-bind:click="handleClick" 或者c-catch
 */
-_.vueToCml = function(source) {
+
+_.vueToCml = function(source,options = {}) {
   // 去掉模板中的注释
   source = _.preDisappearAnnotation(source);
   // 模板中所有的  :id="value" ==>  v-bind:id="value"
@@ -17,8 +18,11 @@ _.vueToCml = function(source) {
   // 模板中所有的 @click="handleClick"  => c-bind:click="handleClick"
   source = _.preParseVueEvent(source);
   // 模板通过 @babel/parser进行解析
-  source = _.compileTemplate(source);
-  return source;
+  source = _.compileTemplate(source,options);
+  return {
+    source,
+    usedBuildInTagMap: options.usedBuildInTagMap || {}
+  }
 
 }
 // 去掉html模板中的注释
@@ -58,13 +62,14 @@ _.preParseVueEvent = function (content) {
   });
   return content;
 }
-_.compileTemplate = function(source) {
+_.compileTemplate = function(source,options) {
   const ast = parser.parse(source, {
     plugins: ['jsx']
   });
   traverse(ast, {
     enter(path) {
-      _.parseAllAttributes(path)
+      _.parseAllAttributes(path);
+      _.parseBuildTag(path,options);
     }
   });
   debugger;
@@ -176,5 +181,27 @@ _.analysisFor = function (nodeValue) {
     item,
     index,
     list
+  }
+}
+_.parseBuildTag = function (path, options) {
+  let node = path.node;
+  let buildInTagMap = options && options.buildInComponents;// {button:"cml-buildin-button"}
+  if (t.isJSXElement(node) && buildInTagMap) {
+    let currentTag = node.openingElement.name.name;
+    let targetTag = buildInTagMap[currentTag];
+    // 收集用了哪些内置组件 usedBuildInTagMap:{button:'cml-buildin-button',radio:'cml-buildin-radio'}
+    let usingComponents = (options.usingComponents || []).map(item => item.tagName)
+    // 兼容用户自己写了组件和内置组件重名
+    let isUserComponent = usingComponents.includes(currentTag);
+    if (isUserComponent) { // 如果是用户的内置组件，这里不做任何处理，直接返回
+      return;
+    } else {
+      if (targetTag && currentTag !== targetTag) {
+        node.openingElement.name.name = targetTag;
+        node.closingElement && (node.closingElement.name.name = targetTag);
+        (!options.usedBuildInTagMap) && (options.usedBuildInTagMap = {});
+        options.usedBuildInTagMap[currentTag] = targetTag;
+      }
+    }
   }
 }
