@@ -30,7 +30,10 @@ module.exports = function(options) {
       ]
     },
     plugins: [
-      new MvvmGraphPlugin()
+      new MvvmGraphPlugin({
+        cmlType: type,
+        media
+      })
     ]
   };
   // options.moduleIdType = 'hash';
