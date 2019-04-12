@@ -63,9 +63,9 @@
       "integrity": "sha1-sffn/HPSXn/R1FWtyU4UODAYK1o="
     },
     "cml-ui": {
-      "version": "0.1.5",
-      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.1.5.tgz",
-      "integrity": "sha512-TEMNoQF4WtRl8f3Ji8GTAbYzFKekx33oIPoNG09NJVLUn4szvib3Mk2fCmOhi2lWcOLSwtWyQ0oDcUV5yeyNvw=="
+      "version": "0.1.7",
+      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.1.7.tgz",
+      "integrity": "sha512-oxzAHXzi4D2nxnoEk0XylAbuBwSDZhR/G43UmjePOfGnDJBNhgIMB3UnDGjIpEmJVS5S0t1pEGPNCjFrzJ+LnQ=="
     },
     "fetch-detector": {
       "version": "1.0.1",
