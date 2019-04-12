@@ -42,6 +42,7 @@ var _OrderUndefinedError2 = _interopRequireDefault(_OrderUndefinedError);
 
 var _helpers = require('./lib/helpers');
 
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49,6 +50,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var NS = _path2.default.dirname(_fs2.default.realpathSync(__filename));
 
 var nextId = 0;
+
+
+var cmlHelper = require('./helper');
 
 var ExtractTextPlugin = function () {
   function ExtractTextPlugin(options) {
@@ -244,6 +248,11 @@ var ExtractTextPlugin = function () {
           });
         });
         compilation.plugin('additional-assets', function (callback) {
+          // const 
+          let cmlDepsMap = compiler._cmlDepsMap ||  {};
+          let allFileSort = cmlHelper.getAllFileSort(cmlDepsMap);
+          
+
           extractedChunks.forEach(function (extractedChunk) {
             if (extractedChunk.getNumberOfModules()) {
               extractedChunk.sortModules(function (a, b) {
@@ -253,9 +262,12 @@ var ExtractTextPlugin = function () {
                 }
                 return (0, _helpers.getOrder)(a, b);
               });
+              debugger
               var chunk = extractedChunk.originalChunk;
+
               //重新排列vue和cml文件中的css顺序
-              sortStyleModule(extractedChunk);
+              // sortStyleModule(extractedChunk);
+              cmlHelper.sortChunk(extractedChunk, allFileSort);
 
               var source = _this3.renderExtractedChunk(extractedChunk);
               var getPath = function getPath(format) {
@@ -322,3 +334,4 @@ function sortStyleModule(extractedChunk) {
 
   extractedChunk._modules = new Set(modules);
 }
+
