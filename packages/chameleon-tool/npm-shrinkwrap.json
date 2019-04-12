@@ -1,6 +1,6 @@
 {
   "name": "chameleon-tool",
-  "version": "0.3.0-alpha.3",
+  "version": "0.3.0-alpha.4",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2468,9 +2468,9 @@
       }
     },
     "chameleon-templates": {
-      "version": "0.3.0-alpha.3",
-      "resolved": "https://registry.npmjs.org/chameleon-templates/-/chameleon-templates-0.3.0-alpha.3.tgz",
-      "integrity": "sha512-Ue6+SsjdGOFQ6u194NWx3/pGMCHCe+6QunyXMFusIguvIhtejPbR8ys2UMn8WBOwbEq6rWKmn6+6lQEt3f37IQ=="
+      "version": "0.3.0-alpha.4",
+      "resolved": "https://registry.npmjs.org/chameleon-templates/-/chameleon-templates-0.3.0-alpha.4.tgz",
+      "integrity": "sha512-hBuldmH8rmB/PiEP/6Qml1wxG6LmI4yTr6CBCoS56zwb15dntO3kzu4btwSZeooEyC8cLEAOw/lu3bj6+8tRXQ=="
     },
     "chameleon-tool-utils": {
       "version": "0.3.0-alpha.3",

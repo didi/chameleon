@@ -1,3 +1,10 @@
+## [0.3.0-alpha.4](https://github.com/didi/chameleon/compare/v0.3.0-alpha.3...v0.3.0-alpha.4)
+
+###  Bug Fixes
+* 回退模板的chameleon-ui-builtin@0.2.1 到chameleon-ui-builtin@0.2.0， 因为image组件不兼容样式设置
+
+
+
 ## [0.3.0-alpha.3](https://github.com/didi/chameleon/compare/v0.3.0-alpha.2...v0.3.0-alpha.3)
 
 ### Features
