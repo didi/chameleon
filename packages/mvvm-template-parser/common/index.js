@@ -21,8 +21,23 @@ let source = `<template>
     <view class="cls1 cls2" :class="true ? 'cls3':'cls4'"></view>
     <view  class="cls1 cls2"></view>
     <view  :class="true ? 'cls4' : 'cls5'"></view>
+    <button></button>
 </view>
 </template>`
+let options = {lang: 'cml',
+  buildInComponents: {button: "cml-buildin-button"},
+  usingComponents: [{
+    tagName: 'thirdComp1',
+    refUrl: '/path/to/ref1',
+    filePath: 'path/to/real1',
+    isNative: true
+  }, {
+    tagName: 'thirdComp2',
+    refUrl: '/path/to/ref2',
+    filePath: 'path/to/real2',
+    isNative: false
+  }]
+};
 // let source = `<view style="{{item.id}}">{{item.id}}{{item[11]}}</view>`
-let result = processTemplate.vueToCml(source);
+let result = processTemplate.vueToCml(source,options);
 console.log('sss', result)
