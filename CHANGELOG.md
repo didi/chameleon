@@ -1,3 +1,12 @@
+## [0.3.0-alpha.3](https://github.com/didi/chameleon/compare/v0.3.0-alpha.2...v0.3.0-alpha.3)
+
+### Features
+* 升级初始化项目运行时依赖
+* weex config.json中增加md5字段
+
+### Bug Fixes
+* 组件间css优先级问题
+
 ## [0.3.0-alpha.2](https://github.com/didi/chameleon/compare/v0.3.0-alpha.1...v0.3.0-alpha.2)
 
 ### Features
