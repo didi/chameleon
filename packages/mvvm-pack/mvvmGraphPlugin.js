@@ -12,6 +12,9 @@ class mvvmGraphPlugin {
     let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
     let plugin = new PlatformPlugin(this.options);
     let mvvmCompiler = new MvvmCompiler(compiler);
+    cml.event.on('find-component', function( {context, cmlFilePath, comPath, cmlType}, result) {
+
+    })
     plugin.register(mvvmCompiler);
     
     compiler.plugin('should-emit', function(compilation) {

@@ -77,6 +77,7 @@ class Compiler {
       throw new Error('not find app.cml node!')
     }
 
+    // 记录已经创建的节点
     let moduleNodeMap = new Map();
     this.projectGraph = this.createGraph(appModule, null, moduleNodeMap);
 
@@ -91,9 +92,11 @@ class Compiler {
     }
     targetModule.dependencies.forEach(item => {
       if (item.module) {
+        // 如果已经创建了节点
         if (moduleNodeMap.has(item.module)) {
 
           let subNode = moduleNodeMap.get(item.module);
+          // 如果 子节点的文件路径和父节点相同 ze是CML文件 放入childrens
           if (subNode.realPath === currentNode.realPath) {
             subNode.parent = currentNode;
             currentNode.childrens.push(subNode);
@@ -102,6 +105,7 @@ class Compiler {
           }
 
         } else {
+          // 创建节点
           let subNode = this.createNode(item.module);
           moduleNodeMap.set(item.module, subNode);
           if (subNode.realPath === currentNode.realPath) {
@@ -110,6 +114,7 @@ class Compiler {
           } else {
             currentNode.dependencies.push(subNode);
           }
+          // 递归创建
           this.createGraph(item.module, subNode, moduleNodeMap)
         }
       }
@@ -126,10 +131,11 @@ class Compiler {
     options.identifier = module.rawRequest;
     options.modId = module.rawRequest; // 模块化的id 这里可以优化成hash
     if (options.nodeType === 'module') {
-
+      // loader中设置
       if (module._moduleType) {
         options.moduleType = module._moduleType;
       } else {
+        // 根据后缀
         this.moduleRule.forEach(rule => {
           if (rule.test.test(module.resource)) {
             options.moduleType = rule.moduleType;
@@ -137,8 +143,15 @@ class Compiler {
         })
         options.moduleType = options.moduleType || 'other';
       }
-      options.source = module._cmlSource || module._source && module._source._value;
     }
+
+    // 可能出现module._cmlSource为空字符串的情况
+    if (module._cmlSource !== undefined) {
+      options.source = module._cmlSource;
+    } else {
+      options.source = module._source && module._source._value;
+    }
+
     return new CMLNode(options)
   }
 

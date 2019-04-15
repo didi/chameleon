@@ -617,6 +617,22 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
         })
       }
     })
+    // 多态组件之外 还有普通的cml组件 怎么判断  文件名中.cml 用.分隔后数组长度是2 后面是cml
+    let cmlGlobPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
+    glob.sync(cmlGlobPath).forEach(cmlFilePath => {
+      // 其他端的多态cml组件排除在外
+      let paths = path.basename(cmlFilePath).split('.');
+      if (paths.length === 2 && paths[1] === 'cml') {
+        if (_.isFile(cmlFilePath)) {
+          let comKey = path.basename(cmlFilePath).replace(cmlExtReg, '');
+          components.push({
+            name: comKey,
+            filePath: cmlFilePath,
+            refPath: _.npmComponentRefPath(cmlFilePath, context)
+          })
+        }
+      }
+    })
   }
 
   return components;
@@ -684,6 +700,17 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
     }
   }
   if (!findFile) {
+    if (_.isCli()) {
+      const result = {
+        filePath: '',
+        refUrl
+      };
+      cml.event.emit('find-component', {context, cmlFilePath, comPath, cmlType}, result);
+      // 通过扩展找到文件
+      if (result.filePath && _.isFile(result.filePath)) {
+        return result;
+      }
+    }
     return {
       filePath: '',
       refUrl

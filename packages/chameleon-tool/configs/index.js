@@ -21,7 +21,6 @@ module.exports = async function (options) {
   await utils.setFreePort();
   let {type, media} = options;
   let webpackConfig;
-  debugger
   if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(type)) {
     webpackConfig = getExtendConfig(options);
   } else {

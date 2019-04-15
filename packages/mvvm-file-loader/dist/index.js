@@ -81,7 +81,6 @@ function loader(content) {
     } else if(typeof options.publicPath === 'string') {
       publicPath = options.publicPath + outputPath;
     }
-    debugger
     this._module._nodeType = 'module';
     this._module._moduleType = 'asset';
     this._module._cmlSource = content;
