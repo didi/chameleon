@@ -1,3 +1,9 @@
+## [0.3.0-alpha.5](https://github.com/didi/chameleon/compare/v0.3.0-alpha.4...v0.3.0-alpha.5)
+
+###  Bug Fixes
+* 修复 cml weex build生成config.json 格式不正确
+
+
 ## [0.3.0-alpha.4](https://github.com/didi/chameleon/compare/v0.3.0-alpha.3...v0.3.0-alpha.4)
 
 ###  Bug Fixes
