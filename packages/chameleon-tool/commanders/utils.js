@@ -203,12 +203,15 @@ exports.createConfigJson = function() {
   };
   // 获取weex jsbundle地址
   let weexjs = configObj.weexjs || '';
+  let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
-  const md5sum = crypto.createHash('md5');
-  const buffer = fs.readFileSync(weexjsPath);
-  md5sum.update(buffer);    
-  const md5str = md5sum.digest('hex').toUpperCase();
+  if (cml.utils.isFile(weexjsPath)) {
+    const md5sum = crypto.createHash('md5');
+    const buffer = fs.readFileSync(weexjsPath);
+    md5sum.update(buffer); 
+    md5str = md5sum.digest('hex').toUpperCase();
+  }
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
