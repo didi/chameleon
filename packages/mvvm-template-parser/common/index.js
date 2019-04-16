@@ -22,12 +22,14 @@ let source = `<template>
     <view  class="cls1 cls2"></view>
     <view  :class="true ? 'cls4' : 'cls5'"></view>
     <button></button>
+    <third-comp1 h-on:click="click1"></third-comp1>
+    <origin-checkbox :class="click1"></origin-checkbox>
 </view>
 </template>`
 let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
   usingComponents: [{
-    tagName: 'thirdComp1',
+    tagName: 'third-comp1',
     refUrl: '/path/to/ref1',
     filePath: 'path/to/real1',
     isNative: true

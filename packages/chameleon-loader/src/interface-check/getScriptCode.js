@@ -3,15 +3,12 @@ const getInterfaceCode = require('mvvm-interface-parser/lib/getInterfaceCode.js'
 const {getCheckCode} = require('./check.js');
 
 function getScriptCode(loaderContext, cmlType, cmlCode, media, check = {}) {
-  let reg = new RegExp(`\\.${cmlType}\\.cml$`);
   let cmlPath = loaderContext.resourcePath;
-  // 多态cml组件获取接口校验部分代码
-  if (reg.test(cmlPath)) {
-    if (media === 'dev' && check.enable === true) {
-      let interfacePath = cmlUtils.RecordCml2Interface[cmlPath];
-      if (!interfacePath) {
-        throw new Error(`not find interface for ${cmlPath}`)
-      }
+  // 多态cml组件获取接口校验部分代码  不根据文件名称判断 只能根据是否有interface文件
+  if (media === 'dev' && check.enable === true) {
+    let interfacePath = cmlUtils.RecordCml2Interface[cmlPath];
+    // 如果有interface文件
+    if (interfacePath) {
       let {content: interfaceCode, devDeps: interfaceDevDeps, contentFilePath} = getInterfaceCode({interfacePath});
       interfaceDevDeps.forEach(item => {
         loaderContext.addDependency(item);

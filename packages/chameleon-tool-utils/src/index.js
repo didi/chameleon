@@ -617,22 +617,23 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
         })
       }
     })
+    // npm包中的组件库都是以interface为入口
     // 多态组件之外 还有普通的cml组件 怎么判断  文件名中.cml 用.分隔后数组长度是2 后面是cml
-    let cmlGlobPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
-    glob.sync(cmlGlobPath).forEach(cmlFilePath => {
-      // 其他端的多态cml组件排除在外
-      let paths = path.basename(cmlFilePath).split('.');
-      if (paths.length === 2 && paths[1] === 'cml') {
-        if (_.isFile(cmlFilePath)) {
-          let comKey = path.basename(cmlFilePath).replace(cmlExtReg, '');
-          components.push({
-            name: comKey,
-            filePath: cmlFilePath,
-            refPath: _.npmComponentRefPath(cmlFilePath, context)
-          })
-        }
-      }
-    })
+    // let cmlGlobPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
+    // glob.sync(cmlGlobPath).forEach(cmlFilePath => {
+    //   // 其他端的多态cml组件排除在外
+    //   let paths = path.basename(cmlFilePath).split('.');
+    //   if (paths.length === 2 && paths[1] === 'cml') {
+    //     if (_.isFile(cmlFilePath)) {
+    //       let comKey = path.basename(cmlFilePath).replace(cmlExtReg, '');
+    //       components.push({
+    //         name: comKey,
+    //         filePath: cmlFilePath,
+    //         refPath: _.npmComponentRefPath(cmlFilePath, context)
+    //       })
+    //     }
+    //   }
+    // })
   }
 
   return components;
@@ -701,6 +702,7 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   }
   if (!findFile) {
     if (_.isCli()) {
+      // 扩展查找组件方法
       const result = {
         filePath: '',
         refUrl
@@ -764,16 +766,11 @@ _.findComponent = function (filePath, cmlType) {
   }
 
   /**
-   * 1 .cml 文件
-   * 2 .interface 文件   遍历寻找到interface的内容  遍历寻找到当前cmlType的多态cml文件的真实路径  然后内存中记录这个多态cml文件对应的interface文件内容与依赖的文件 在处理多态cml组件是添加dev依赖
-   * 3 各端的原生组件  可以添加钩子扩展寻找方法
+   * 1 .interface 文件   遍历寻找到interface的内容  遍历寻找到当前cmlType的多态cml文件的真实路径  然后内存中记录这个多态cml文件对应的interface文件内容与依赖的文件 在处理多态cml组件是添加dev依赖
+   * 2 .cml 文件
    *  */
 
-  let cmlFilePath = filePath + '.cml';
-  if (_.isFile(cmlFilePath)) {
-    return cmlFilePath;
-  }
-
+  // 1
   // 记录多态组件依赖的第一级interface文件 编译cml文件时再根据这个interface文件查找接口定义 
   // 不保存接口定义的代码，这样保证interface变化 触发cml编译 重新编译时重新或者接口定义
   let interfacePath = filePath + '.interface';
@@ -789,7 +786,13 @@ _.findComponent = function (filePath, cmlType) {
     }
   }
 
+  // 2
+  let cmlFilePath = filePath + '.cml';
+  if (_.isFile(cmlFilePath)) {
+    return cmlFilePath;
+  }
 
+  // 3
   let fileExtMap = {
     weex: ['.vue', '.js'],
     web: ['.vue', '.js'],
@@ -809,7 +812,6 @@ _.findComponent = function (filePath, cmlType) {
     }
   }
 
-  // 这里以后扩展原生组件
 
   return false;
 }
@@ -838,7 +840,8 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
     // interface文件中script src 指定
     if (targetScript && targetScript.attrs && targetScript.attrs.src) {
       let cmlFilePath = _.resolveAsync(interfacePath, targetScript.attrs.src);
-      let reg = new RegExp(`\\.${cmlType}\\.cml$`);
+      let reg = new RegExp(`\\.cml$`); // 只要是.cml文件就可以 不限制多态文件名称
+      // let reg = new RegExp(`\\.${cmlType}\\.cml$`);
       // 获取npm包中的组件时 只能够根据interface文件去查找 无法区分是多态组件还是接口 如果找到了组件就返回 找不到就返回空
       if (reg.test(cmlFilePath)) {
         return cmlFilePath;
