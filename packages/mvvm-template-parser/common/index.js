@@ -22,8 +22,8 @@ let source = `<template>
     <view  class="cls1 cls2"></view>
     <view  :class="true ? 'cls4' : 'cls5'"></view>
     <button></button>
-    <third-comp1 h-on:click="click1"></third-comp1>
-    <origin-checkbox :class="click1"></origin-checkbox>
+    <third-comp1 v-on:click="click1"></third-comp1>
+    <origin-checkbox :class="click1" class="cls1"></origin-checkbox>
 </view>
 </template>`
 let options = {lang: 'cml',
