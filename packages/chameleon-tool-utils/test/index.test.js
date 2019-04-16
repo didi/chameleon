@@ -2,7 +2,7 @@ var _ = require('../src/index.js');
 var expect = require('chai').expect;
 const path = require('path');
 const fs = require('fs');
-
+const EventEmitter = require('events');
 const cmlFileContent = fs.readFileSync(path.resolve(__dirname, './testlib/index.cml'), {
   encoding: 'utf-8'
 });
@@ -329,6 +329,8 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    global.cml.event = new EventEmitter();
+
     cml.config.merge({
       cmlComponents: ['cml-ui']
     })
@@ -353,6 +355,8 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    global.cml.event = new EventEmitter();
+
     cml.config.merge({
       cmlComponents: ['cml-ui']
     })
@@ -641,6 +645,7 @@ describe('index.js', function () {
         }
       }
     }
+    cml.event = new EventEmitter();
     _.setCli(true);
     cml.utils = _;
     var obj = {};
@@ -651,12 +656,18 @@ describe('index.js', function () {
   })
 
   it(`deleteExt`, function () {
+    global.cml = {};
+    _.setCli(true);  
+    global.cml.event = new EventEmitter();
     let path1 = '/src/pages/name.web.cml';
     let path2 = '/src/pages/name.cml';
+    let path3 = 'name.cml';
     let result1 = _.deleteExt(path1);
     let result2 = _.deleteExt(path2);
+    let result3 = _.deleteExt(path3);
     expect(result1).to.be.equal('/src/pages/name');
     expect(result2).to.be.equal('/src/pages/name');
+    expect(result3).to.be.equal('name');
 
   })
 })

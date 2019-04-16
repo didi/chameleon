@@ -570,6 +570,7 @@ _.isBuildIn = function (filePath) {
 
 // 给json文件添加npm和buildin的components
 _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
+  
   let npmComponents = _.getTargetInsertComponents(jsonFile, cmlType, context);
   if (npmComponents.length) {
     let coms = jsonObject.usingComponents = jsonObject.usingComponents ? jsonObject.usingComponents : {};
@@ -600,16 +601,18 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
     if (packageJson && packageJson.main) {
       main = packageJson && packageJson.main;
     }
-    let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`)
+    // let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`)
     // npm包中的多态组件也是以interface文件为入口进行查找，多态api无法找到对应cml文件
     let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.interface');
+
     glob.sync(globPath).forEach(interfacePath => {
       // 其他端的多态cml组件排除在外
       let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
       let cmlFilePath = _.findPolymorphicComponent(interfacePath, content, cmlType);
 
       if (_.isFile(cmlFilePath)) {
-        let comKey = path.basename(cmlFilePath).replace(cmlExtReg, '');
+        // 组件的名称是interface文件的名称
+        let comKey = _.deleteExt(path.basename(interfacePath));
         components.push({
           name: comKey,
           filePath: cmlFilePath,
@@ -617,6 +620,7 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
         })
       }
     })
+
     // npm包中的组件库都是以interface为入口
     // 多态组件之外 还有普通的cml组件 怎么判断  文件名中.cml 用.分隔后数组长度是2 后面是cml
     // let cmlGlobPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
@@ -728,17 +732,18 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
   }
 
-  refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
-  if (cmlType === 'wx') {
-    refUrl = refUrl.replace(/\.wxml$/g, '');
-  }
-  if (cmlType === 'alipay') {
-    refUrl = refUrl.replace(/\.axml$/g, '');
-  }
+  // refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
+  // if (cmlType === 'wx') {
+  //   refUrl = refUrl.replace(/\.wxml$/g, '');
+  // }
+  // if (cmlType === 'alipay') {
+  //   refUrl = refUrl.replace(/\.axml$/g, '');
+  // }
 
-  if (cmlType === 'baidu') {
-    refUrl = refUrl.replace(/\.swan$/g, '');
-  }
+  // if (cmlType === 'baidu') {
+  //   refUrl = refUrl.replace(/\.swan$/g, '');
+  // }
+  refUrl = _.deleteExt(refUrl);
 
   return {
     refUrl,
@@ -878,8 +883,11 @@ _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
     let result = _.handleComponentUrl(context, cmlFilePath, comPath, cmlType);
     if (result.filePath) {
       // 如果是.cml并且不是多态的cml文件
-      let cmlReg = new RegExp(`\\.${cmlType}\\.cml$`)
-      if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
+      // let cmlReg = new RegExp(`\\.${cmlType}\\.cml$`)
+      // if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
+      //   result.isCml = true;
+      // }
+      if (!_.RecordCml2Interface[result.filePath]) {
         result.isCml = true;
       }
       return result;
@@ -929,7 +937,8 @@ _.npmComponentRefPath = function (componentAbsolutePath, context) {
   if (refUrl[0] !== '/') {
     refUrl = '/' + refUrl
   }
-  refUrl = refUrl.replace(/(\.cml|\.web\.cml|\.alipay\.cml|\.baidu\.cml|\.wx\.cml|\.weex\.cml)/, '');
+  // refUrl = refUrl.replace(/(\.cml|\.web\.cml|\.alipay\.cml|\.baidu\.cml|\.wx\.cml|\.weex\.cml)/, '');
+  refUrl = _.deleteExt(refUrl);
   return refUrl;
 
 }
@@ -1061,17 +1070,18 @@ _.getExportEntry = function (cmlType, context, entry = []) {
  */
 _.getPureEntryName = function (cmlFilePath, cmlType, context) {
   let entryPath = _.getEntryPath(cmlFilePath, context);
-  let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`);
-  if (cmlType === 'wx') {
-    entryPath = entryPath.replace(/\.wxml/g, '');
-  }
-  if (cmlType === 'alipay') {
-    entryPath = entryPath.replace(/\.axml/g, '');
-  }
-  if (cmlType === 'baidu') {
-    entryPath = entryPath.replace(/\.swan/g, '');
-  }
-  return entryPath.replace(cmlExtReg, '');
+  // let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`);
+  // if (cmlType === 'wx') {
+  //   entryPath = entryPath.replace(/\.wxml/g, '');
+  // }
+  // if (cmlType === 'alipay') {
+  //   entryPath = entryPath.replace(/\.axml/g, '');
+  // }
+  // if (cmlType === 'baidu') {
+  //   entryPath = entryPath.replace(/\.swan/g, '');
+  // }
+  return _.deleteExt(entryPath);
+  // return entryPath.replace(cmlExtReg, '');
 }
 
 /**
