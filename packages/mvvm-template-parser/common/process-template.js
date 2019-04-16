@@ -18,7 +18,7 @@ _.vueToCml = function(source,options = {}) {
   // 模板中所有的 @click="handleClick"  => c-bind:click="handleClick"
   source = _.preParseVueEvent(source);
   // 模板通过 @babel/parser进行解析
-  source = _.compileTemplate(source,options);
+  source = _.compileTemplate(source, options);
   return {
     source,
     usedBuildInTagMap: options.usedBuildInTagMap || {}

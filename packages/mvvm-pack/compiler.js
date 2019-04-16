@@ -3,6 +3,7 @@ const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
+const parser = require('mvvm-babel-parser')
 class Compiler {
   constructor(webpackCompiler) {
     this.moduleRule = [ // 文件后缀对应module信息
@@ -54,6 +55,10 @@ class Compiler {
   emit(eventName, ...params) {
     this.log.debug('emit log:' + eventName + 'params:' + params)
     this.event.emit(eventName, ...params);
+  }
+
+  hook(eventName, cb) {
+    this.event.on(eventName, cb);
   }
 
 
@@ -128,8 +133,8 @@ class Compiler {
     options.realPath = module.resource;
     options.ext = path.extname(module.resource);
     options.nodeType = module._nodeType || 'module';
-    options.identifier = module.rawRequest;
-    options.modId = module.rawRequest; // 模块化的id 这里可以优化成hash
+    options.identifier = module.request;
+    options.modId = module.request; // 模块化的id 这里可以优化成hash
     if (options.nodeType === 'module') {
       // loader中设置
       if (module._moduleType) {
@@ -152,6 +157,19 @@ class Compiler {
       options.source = module._source && module._source._value;
     }
 
+    if (options.moduleType === 'template') {
+      options.convert = parser.parse(options.source, {
+        plugins: ['jsx']
+      });
+      options.extra = {
+        nativeComponents: module._nativeComponents,
+        currentUsedBuildInTagMap: module._currentUsedBuildInTagMap
+      }
+    }
+
+    if (options.moduleType === 'json') {
+      options.convert = JSON.parse(options.source);
+    }
     return new CMLNode(options)
   }
 

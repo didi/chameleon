@@ -3,7 +3,7 @@ const loaderUtils = require('loader-utils')
 const helper = require('./helper.js');
 const cmlUtils = require('chameleon-tool-utils');
 const path = require('path');
-const templateParse = require('mvvm-template-parser/process-template.js');
+const {vueToCml: templateParse} = require('mvvm-template-parser/common/process-template.js');
 const {prepareParseUsingComponents} = require('chameleon-loader/src/loaderMethods.js');
 module.exports = function(source) {
   this._module._cmlSource = source;
@@ -37,15 +37,9 @@ module.exports = function(source) {
     var style = require('${helper.getPartLoaders({selectorOptions, partType: 'style', lang, loaders, resourcePath})}');
     `
   }
-  output += `
-      var template = require('${helper.getPartLoaders({selectorOptions, partType: 'template', loaders, resourcePath})}');
-  `
-  output += `
-      var json = require('${helper.getPartLoaders({selectorOptions, partType: 'json', loaders, resourcePath})}');
-  `
-  output += `
-      var script = require('${helper.getPartLoaders({selectorOptions, partType: 'script', loaders, resourcePath})}');
-  `
+  output += `var template = require('${helper.getPartLoaders({selectorOptions, partType: 'template', loaders, resourcePath})}');\n`
+  output += `var json = require('${helper.getPartLoaders({selectorOptions, partType: 'json', loaders, resourcePath})}');\n`
+  output += `var script = require('${helper.getPartLoaders({selectorOptions, partType: 'script', loaders, resourcePath})}');\n`
   this._module._nodeType = fileType;
   // app添加page依赖
   if (fileType === 'app') {
@@ -58,13 +52,28 @@ module.exports = function(source) {
         output += ` require("$PROJECT/src${item.path}.cml").default`
       })
     }
+
+    // subProject 中的页面
+    let subProject = cml.config.get().subProject;
+    if (subProject && subProject.length > 0) {
+      subProject.forEach(function(npmName) {
+        let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
+        npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+          let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
+          output += `require("${cmlFilePath}").default`;
+        })
+      })
+    }
   }
 
   let jsonObject = cmlUtils.getJsonFileContent(resourcePath, cmlType);
   let coms = jsonObject.usingComponents = jsonObject.usingComponents || {};
   let customComKeys = Object.keys(coms); // 用户自定义组件key
   let usingComponentsAndFilePath = {}; // 记录文件依赖的组件名称及文件位置
-  let isNativeComponents = prepareParseUsingComponents(coms);
+  let nativeComponents = prepareParseUsingComponents({self, context, originObj: coms, cmlType});
+  nativeComponents = nativeComponents.filter(item => {
+    return item.isNative; 
+  })
 
 
   const isBuildInFile = cmlUtils.isBuildIn(self.resourcePath);
@@ -78,7 +87,7 @@ module.exports = function(source) {
 
   let {source: compiledTemplate, usedBuildInTagMap} = templateParse(templateContent, {
     buildInComponents, // 对内置组件做替换 并返回用了哪个内置组件
-    usingComponents: isNativeComponents // 判断是否是原生组件
+    usingComponents: nativeComponents // 判断是否是原生组件
   });
   const currentUsedBuildInTagMap = {};
 
@@ -110,8 +119,7 @@ module.exports = function(source) {
     if (item.isBuiltin) {
       return !!currentUsedBuildInTagMap[item.name];
       // 如果是其他的npm库组件 选择与用户自定义名称不同的组件
-    } else if (!~customComKeys.indexOf(item.name))
-    {
+    } else if (!~customComKeys.indexOf(item.name)) {
       return true;
     }
   })
@@ -132,6 +140,8 @@ module.exports = function(source) {
 
   this._compiler._mvvmCmlInfo[self.resourcePath] = {
     compiledTemplate,
+    nativeComponents,
+    currentUsedBuildInTagMap,
     compiledJson: jsonObject,
     componentFiles: usingComponentsAndFilePath
   }

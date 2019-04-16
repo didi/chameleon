@@ -22,6 +22,7 @@ class mvvmGraphPlugin {
     })
     plugin.register(mvvmCompiler);
     compiler.plugin('should-emit', function(compilation) {
+      debugger
       mvvmCompiler.run(compilation.modules);
       // 返回false 不进入emit阶段
       return false;      

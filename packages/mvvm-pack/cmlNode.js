@@ -12,6 +12,7 @@ class CMLNode {
     this.output; // 模块输出  各种过程操作该字段
     this.identifier; // 节点唯一标识
     this.modId; // 模块化的id
+    this.extra;
     Object.keys(options).forEach(key => {
       this[key] = options[key];
     })

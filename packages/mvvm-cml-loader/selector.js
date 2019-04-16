@@ -33,6 +33,7 @@ module.exports = function(source) {
             content
           }
           this.compiler._mvvmCompiler.emit('insert-script', {  // 触发用户插入
+            nodeType: fileType,
             resourcePath,
             componentFiles: cmlInfo.componentFiles,
             compiledJson: cmlInfo.compiledJson || {}
@@ -43,6 +44,9 @@ module.exports = function(source) {
       break;
     case 'template':
       this._module._cmlSource = cmlInfo.compiledTemplate || '';
+      this._module._nativeComponents = cmlInfo.nativeComponents || [];
+      this._module._currentUsedBuildInTagMap = cmlInfo.currentUsedBuildInTagMap || [];
+      
       output = `module.exports = ''`;
 
       break;
