@@ -68,7 +68,8 @@ _.compileTemplate = function(source,options) {
   });
   traverse(ast, {
     enter(path) {
-      _.parseAllAttributes(path);
+      //所有的入口都以JSXElement为入口解析；
+      _.parseAllAttributes(path,options);
       _.parseBuildTag(path,options);
     }
   });
@@ -76,7 +77,15 @@ _.compileTemplate = function(source,options) {
   return generate(ast).code;
 
 }
-
+_.isOriginTagOrNativeComp = function(tagName,options){
+  let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
+  let isNative = usedComponentInfo && usedComponentInfo.isNative;
+  let isOrigin = (tagName && typeof tagName === 'string' && tagName.indexOf('origin-') === 0);
+  if (isOrigin || isNative) {
+    return true
+  }
+  return false;
+}
 /*
 以标签为基础，解析attruibutes即可
    1 v-bind:id="value" ==> id="{{value}}"
@@ -86,9 +95,13 @@ _.compileTemplate = function(source,options) {
 
 */
 
-_.parseAllAttributes = function(path) {
+_.parseAllAttributes = function(path,options) {
   let node = path.node;
   if (t.isJSXElement(node)) {
+    let tagName = node.openingElement.name.name
+    if(_.isOriginTagOrNativeComp(tagName,options)){
+      return //原生标签和原生组件直接不解析
+    }
     let attributes = node.openingElement.attributes;
     let directives = ['v-if', 'v-else-if', 'v-else', 'v-model', 'v-show', 'v-text', 'v-for'];
     let specialJSXNameSapce = ['c-bind', 'c-catch'];
