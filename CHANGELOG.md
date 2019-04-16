@@ -1,3 +1,9 @@
+## [0.3.0-alpha.6](https://github.com/didi/chameleon/compare/v0.3.0-alpha.5...v0.3.0-alpha.6)
+
+###  Bug Fixes
+* 修复 cml wx build执行后报错
+
+
 ## [0.3.0-alpha.5](https://github.com/didi/chameleon/compare/v0.3.0-alpha.4...v0.3.0-alpha.5)
 
 ###  Bug Fixes
