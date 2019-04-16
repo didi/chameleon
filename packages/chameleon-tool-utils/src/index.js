@@ -590,7 +590,7 @@ _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
   
 }
 
-// 通过单个packages
+// 通过单个packages  寻找npm包中的interface入口的组件 单独的cml文件不会找到
 _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context) {
   let components = [];
   if (_.isFile(packageFilePath)) {
@@ -1189,4 +1189,14 @@ _.isInline = function(filePath) {
     return true;
   }
   return false;
+}
+
+// 删除cml文件的后缀 因为有了script src语法之后  .cmlType.cml的语法已经
+_.deleteExt = function(filePath) {
+  let basename = path.basename(filePath);
+  let dirname = path.dirname(filePath);
+  basename = basename.split('.')[0];
+  let result = path.join(dirname, basename);
+  result = _.handleWinPath(result);
+  return result;
 }

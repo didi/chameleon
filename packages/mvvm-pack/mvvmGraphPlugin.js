@@ -12,6 +12,7 @@ class mvvmGraphPlugin {
     let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
     let plugin = new PlatformPlugin(this.options);
     let mvvmCompiler = new MvvmCompiler(compiler);
+    compiler._mvvmCompiler = mvvmCompiler;
     // 监听cml中查找组件
     cml.event.on('find-component', function({context, cmlFilePath, comPath, cmlType}, result) {
       // 如果是当前端 则触发用户的查找事件

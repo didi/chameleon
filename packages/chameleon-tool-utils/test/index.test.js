@@ -649,5 +649,14 @@ describe('index.js', function () {
     expect(obj).to.has.property('usingComponents');
 
   })
-  
+
+  it(`deleteExt`, function () {
+    let path1 = '/src/pages/name.web.cml';
+    let path2 = '/src/pages/name.cml';
+    let result1 = _.deleteExt(path1);
+    let result2 = _.deleteExt(path2);
+    expect(result1).to.be.equal('/src/pages/name');
+    expect(result2).to.be.equal('/src/pages/name');
+
+  })
 })

@@ -9,7 +9,9 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "dependencies": {
-    "chameleon-tool-utils": "^0.3.0-alpha.2",
+    "mvvm-template-parser": "0.3.0-alpha.2",
+    "chameleon-tool-utils": "0.3.0-alpha.2",
+    "chameleon-loader": "0.3.0-alpha.2",
     "loader-utils": "^1.2.3"
   }
 }
