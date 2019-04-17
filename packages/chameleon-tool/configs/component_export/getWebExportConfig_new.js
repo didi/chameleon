@@ -14,7 +14,8 @@ module.exports = function(options) {
     media,
     root,
     disableExtract,
-    mode = 'production'
+    mode = 'production',
+    externals
   } = options;
 
   function getstaticPath(filetype) {
@@ -174,6 +175,10 @@ module.exports = function(options) {
         allChunks: true
       })
     )
+  }
+
+  if (externals) {
+    exportConfig.externals = externals;
   }
 
   return merge.smart(getWebCommonConfig(options), exportConfig);
