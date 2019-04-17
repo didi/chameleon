@@ -1,3 +1,14 @@
+## [0.3.0-alpha.7](https://github.com/didi/chameleon/compare/v0.3.0-alpha.6...v0.3.0-alpha.7)
+
+###  Bug Fixes
+* 修复 build 模式autoprefixer被删除
+* 修复 chameleon.config.js 中的base配置优先级bug
+
+
+### Features
+* 增加了cmss.enableAutoPrefix 参数控制是否添加css的autoprefix
+
+
 ## [0.3.0-alpha.6](https://github.com/didi/chameleon/compare/v0.3.0-alpha.5...v0.3.0-alpha.6)
 
 ###  Bug Fixes
