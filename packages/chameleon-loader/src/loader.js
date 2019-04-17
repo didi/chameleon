@@ -236,6 +236,7 @@ module.exports = function (content) {
     })
 
     usingComponents = prepareParseUsingComponents(usingComponents);
+    
     //cml 编译出wxml模板
     if (type !== 'app') {
       let parseTemplate = parts.template && parts.template[0];
@@ -268,9 +269,14 @@ module.exports = function (content) {
     Object.keys(newJsonObj.usingComponents).forEach(key=>{
       newJsonObj.usingComponents[key] = cmlUtils.handleSpecialChar(newJsonObj.usingComponents[key])
     });
+    //处理tabbar中配置的icon路径
+    if(type == 'app'){
+      debugger;
+      miniAppScript.handleApptabbar(newJsonObj,self,filePath,context,cmlType)
+    }
     let jsonResult = JSON.stringify(newJsonObj, '', 4);
     self.emitFile(emitJsonPath, jsonResult);
-
+    
     //cml
     parts.styles.forEach(function (style, i) {
       //微信小程序在使用组件的时候 不支持属性选择器

@@ -5,6 +5,7 @@ const babylon = require('@babel/parser');
 const traverse = require('babel-traverse')["default"];
 const t = require('@babel/types')
 const cmlUtils = require('chameleon-tool-utils');
+const fse = require('fs-extra');
 
 /** *
  * @param:loaderContext  webpack loader的上下文
@@ -163,5 +164,82 @@ _.commonParseScript = function(source, callback) {
     enter(path) {
       callback(path)
     }
+  })
+}
+_.handleApptabbar = function(newJsonObj, loaderContext, filePath, context, type) {
+  debugger
+  let tabbarIconPaths = _.getTabbarIconPaths(newJsonObj.tabBar, type);
+  if (tabbarIconPaths.length) {
+    tabbarIconPaths.forEach((item) => {
+      let rootDir = path.resolve(cml.projectRoot, `dist/${type}`);
+
+      let destIconPath = path.resolve(rootDir, item.finalPath); // 获取到要将icon拷贝的目录
+      let iconDir = path.dirname(destIconPath);
+      let sourceIconPath = path.resolve(filePath, item.originPath)
+      _.emitIcon(sourceIconPath, destIconPath, iconDir);
+    });
+  }
+}
+_.getRelativeIconPath = function(p) {
+  let fileName = path.parse(p).base;
+  return path.join('./icon', fileName)
+}
+_.getTabbarIconPaths = function(tabbar, type) {
+  let iconPaths = [];
+  debugger;
+  if (tabbar && (type === 'baidu' || type === 'wx')) {
+    (tabbar.list || []).forEach((item) => {
+      if (item.iconPath) {
+        let iconInfo = {};
+        iconInfo.originPath = item.iconPath;
+        item.iconPath = _.getRelativeIconPath(item.iconPath);
+        iconInfo.finalPath = item.iconPath;
+
+        iconPaths.push(iconInfo);
+      }
+      if (item.selectedIconPath) {
+        let iconInfo = {};
+        iconInfo.originPath = item.selectedIconPath;
+        item.selectedIconPath = _.getRelativeIconPath(item.selectedIconPath);
+        iconInfo.finalPath = item.selectedIconPath;
+
+        iconPaths.push(iconInfo);
+      }
+    })
+  }
+  if (tabbar && type === 'alipay') {
+    (tabbar.items || []).forEach((item) => {
+      if (item.icon) {
+        let iconInfo = {};
+        iconInfo.originPath = item.icon;
+        item.icon = _.getRelativeIconPath(item.icon);
+        iconInfo.finalPath = item.icon;
+
+        iconPaths.push(iconInfo);
+      }
+      if (item.activeIcon) {
+        let iconInfo = {};
+        iconInfo.originPath = item.activeIcon;
+        item.activeIcon = _.getRelativeIconPath(item.activeIcon);
+        iconInfo.finalPath = item.activeIcon;
+
+        iconPaths.push(iconInfo);
+      }
+    })
+  }
+  return iconPaths;
+}
+_.emitIcon = function(sourceFile, destIconPaht, dir) {
+  fse.ensureDir(dir).then(() => {
+    console.log('创建目录成功');
+    fse.copySync(sourceFile, destIconPaht)
+    .then(() => {
+      console.log('success!')
+    })
+    ["catch"](err => {
+      // console.error(err)
+    })
+  })["catch"]((err) => {
+    console.log('error')
   })
 }
