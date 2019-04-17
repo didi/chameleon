@@ -20,7 +20,7 @@ exports.PipelineBareFunction = PipelineBareFunction;
 exports.PipelinePrimaryTopicReference = PipelinePrimaryTopicReference;
 
 function t() {
-  const data = _interopRequireWildcard(require("@babel/types"));
+  const data = _interopRequireWildcard(require("../../node_modules/@babel/types/lib"));
 
   t = function () {
     return data;
@@ -30,7 +30,7 @@ function t() {
 }
 
 function _jsesc() {
-  const data = _interopRequireDefault(require("jsesc"));
+  const data = _interopRequireDefault(require("../../node_modules/jsesc/jsesc"));
 
   _jsesc = function () {
     return data;

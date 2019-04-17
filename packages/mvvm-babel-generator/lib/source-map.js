@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 function _sourceMap() {
-  const data = _interopRequireDefault(require("source-map"));
+  const data = _interopRequireDefault(require("../node_modules/source-map/source-map"));
 
   _sourceMap = function () {
     return data;

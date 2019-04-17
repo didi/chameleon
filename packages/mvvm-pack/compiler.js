@@ -3,7 +3,7 @@ const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
-const parser = require('mvvm-babel-parser');
+const parser = require('../mvvm-babel-parser/lib');
 class Compiler {
   constructor(webpackCompiler) {
     this.moduleRule = [ // 文件后缀对应module信息

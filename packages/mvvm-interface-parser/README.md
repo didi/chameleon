@@ -1,1 +1,2 @@
-####  mvvm协议标准中处理interface文件
+####  使用
+chameleon-loader和interface-loader中获取interface文件内容时使用

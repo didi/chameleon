@@ -23,7 +23,7 @@ let source = `<template>
     <view  :class="true ? 'cls4' : 'cls5'"></view>
     <button></button>
     <third-comp1 v-on:click="click1"></third-comp1>
-    <origin-checkbox :class="click1" class="cls1"></origin-checkbox>
+    <origin-checkbox v-on:click="click1" :name="13"  :class="clas2" class="cls1"></origin-checkbox>
 </view>
 </template>`
 let options = {lang: 'cml',

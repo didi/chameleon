@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 function _trimRight() {
-  const data = _interopRequireDefault(require("trim-right"));
+  const data = _interopRequireDefault(require("../node_modules/trim-right"));
 
   _trimRight = function () {
     return data;

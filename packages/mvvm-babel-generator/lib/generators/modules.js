@@ -15,7 +15,7 @@ exports.ImportDeclaration = ImportDeclaration;
 exports.ImportNamespaceSpecifier = ImportNamespaceSpecifier;
 
 function t() {
-  const data = _interopRequireWildcard(require("@babel/types"));
+  const data = _interopRequireWildcard(require("../../node_modules/@babel/types/lib"));
 
   t = function () {
     return data;

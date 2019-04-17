@@ -211,7 +211,6 @@ exports.updateEntry = function (updateEntryConfig) {
           source = parts.template[0].content;
           options = analyzeTemplate(source, options)
         }
-
       }
     });
     let usedBuildInTagMap = options.usedBuildInTagMap;

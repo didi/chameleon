@@ -1,8 +1,13 @@
-const standardParser = require('./lib/standardParser');
-const generator = require('@babel/generator');
+const {vueToCml} = require('./common/process-template.js');
+const parser = require('mvvm-babel-parser');
+const generator = require('mvvm-babel-generator/lib')
+
 const types = require('@babel/types');
 const traverse = require('@babel/traverse');
-exports.standardParser = standardParser;
+
+
+exports.vueToCml = vueToCml;
+exports.parser = parser;
 exports.generator = generator["default"];
 exports.types = types;
 exports.traverse = traverse["default"];

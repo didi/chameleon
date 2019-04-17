@@ -19,7 +19,7 @@ exports.VariableDeclarator = VariableDeclarator;
 exports.ThrowStatement = exports.BreakStatement = exports.ReturnStatement = exports.ContinueStatement = exports.ForOfStatement = exports.ForInStatement = void 0;
 
 function t() {
-  const data = _interopRequireWildcard(require("@babel/types"));
+  const data = _interopRequireWildcard(require("../../node_modules/@babel/types/lib"));
 
   t = function () {
     return data;
