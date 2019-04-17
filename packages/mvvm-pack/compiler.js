@@ -3,7 +3,7 @@ const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
-const parser = require('mvvm-babel-parser')
+const parser = require('mvvm-babel-parser');
 class Compiler {
   constructor(webpackCompiler) {
     this.moduleRule = [ // 文件后缀对应module信息
@@ -190,7 +190,11 @@ class Compiler {
     }
 
     if (options.moduleType === 'json') {
-      options.convert = JSON.parse(options.source);
+      // cml文件中的json部分
+      if (module.parent) {
+        options.convert = JSON.parse(options.source);
+      } 
+      // 其他json文件不处理 例如router.config.json
     }
     return new CMLNode(options)
   }

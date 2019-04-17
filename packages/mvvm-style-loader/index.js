@@ -6,7 +6,6 @@ const {assets} = require('./lib.js');
  * 2.处理css中的静态资源 css中改成绝对路径 loader过后进行替换publicPath
  */
 module.exports = function(content) {
-  debugger
   this._module._nodeType = 'module';
   this._module._moduleType = 'style';
   let {source, deps} = assets({source: content,loaderContext: this});

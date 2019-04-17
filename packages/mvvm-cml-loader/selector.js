@@ -39,6 +39,7 @@ module.exports = function(source) {
             compiledJson: cmlInfo.compiledJson || {}
           }, result);
           result.content = getScriptCode(self, cmlType, result.content, media, check);
+          output = result.content;
         }
       })
       break;
@@ -46,13 +47,12 @@ module.exports = function(source) {
       this._module._cmlSource = cmlInfo.compiledTemplate || '';
       this._module._nativeComponents = cmlInfo.nativeComponents || [];
       this._module._currentUsedBuildInTagMap = cmlInfo.currentUsedBuildInTagMap || [];
-      
       output = `module.exports = ${JSON.stringify(cmlInfo.compiledTemplate)}`;
 
       break;
     case 'json':
       this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {});
-      output = `module.exports = ${JSON.stringify(cmlInfo.compiledJson)}`;
+      output = `module.exports = ${cmlInfo.compiledJson}`;
       break;
     default:
       break;

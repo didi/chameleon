@@ -1,7 +1,6 @@
 
 const path = require('path');
 const MvvmCompiler = require('./compiler.js');
-
 class mvvmGraphPlugin {
   constructor(options = {}) {
     this.options = options;
