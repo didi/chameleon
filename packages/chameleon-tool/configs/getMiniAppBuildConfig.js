@@ -28,7 +28,7 @@ module.exports = function (options) {
     buildConfig.plugins = [
       new OptimizeCSSPlugin({
         assetNameRegExp: targetObj.cssReg,
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } }
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
       })
     ]
   }
