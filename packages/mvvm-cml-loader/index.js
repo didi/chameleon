@@ -70,7 +70,7 @@ module.exports = function(source) {
   let coms = jsonObject.usingComponents = jsonObject.usingComponents || {};
   let customComKeys = Object.keys(coms); // 用户自定义组件key
   let usingComponentsAndFilePath = {}; // 记录文件依赖的组件名称及文件位置
-  let nativeComponents = prepareParseUsingComponents({self, context, originObj: coms, cmlType});
+  let nativeComponents = prepareParseUsingComponents({loaderContext: self, context, originObj: coms, cmlType});
   nativeComponents = nativeComponents.filter(item => {
     return item.isNative; 
   })

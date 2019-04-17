@@ -65,6 +65,10 @@ class Compiler {
   // 处理webpack modules
   module2Node(modules) {
     let appModule;
+    let styleModule = [];
+    // 资源的publicPath map对象
+    let assetPublicMap = {};
+
     for (let i = 0; i < modules.length; i++) {
       let item = modules[i];
       if (item._nodeType === 'app') {
@@ -72,11 +76,29 @@ class Compiler {
       }
       // 静态资源的写入
       if (item._nodeType === 'module' && item._moduleType === 'asset') {
+        // 写入资源文件
         if (item._cmlSource && item._outputPath) {
           this.writeFile(item._outputPath, item._cmlSource);
         }
+        assetPublicMap[item.rawRequest] = item._publicPath;
+      }
+
+      if (item._nodeType === 'module' && item._moduleType === 'style') {
+        styleModule.push(item);
       }
     }
+
+    // style模块中静态资源路径的处理
+    styleModule.forEach(item => {
+      item._cmlSource = item._cmlSource.replace(/__cml(.*?)__lmc/g, function(all, $1) {
+        if (assetPublicMap[$1]) {
+          return `url ("${assetPublicMap[$1]}")`
+        } else {
+          throw new Error(`not find asset module ${$1}`);
+        }
+      })
+    })
+
 
     if (!appModule) {
       throw new Error('not find app.cml node!')
@@ -134,7 +156,7 @@ class Compiler {
     options.ext = path.extname(module.resource);
     options.nodeType = module._nodeType || 'module';
     options.identifier = module.request;
-    options.modId = module.request; // 模块化的id 这里可以优化成hash
+    options.modId = module.request; // 模块化的id 带有loader的request 这里可以优化成hash  rawRequest和resource 是不带loader 带query的绝对路径
     if (options.nodeType === 'module') {
       // loader中设置
       if (module._moduleType) {

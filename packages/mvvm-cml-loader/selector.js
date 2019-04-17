@@ -32,7 +32,7 @@ module.exports = function(source) {
           let result = {
             content
           }
-          this.compiler._mvvmCompiler.emit('insert-script', {  // 触发用户插入
+          this._compiler._mvvmCompiler.emit('insert-script', {  // 触发用户插入
             nodeType: fileType,
             resourcePath,
             componentFiles: cmlInfo.componentFiles,
@@ -47,12 +47,12 @@ module.exports = function(source) {
       this._module._nativeComponents = cmlInfo.nativeComponents || [];
       this._module._currentUsedBuildInTagMap = cmlInfo.currentUsedBuildInTagMap || [];
       
-      output = `module.exports = ''`;
+      output = `module.exports = ${JSON.stringify(cmlInfo.compiledTemplate)}`;
 
       break;
     case 'json':
-      this._module._cmlSource = cmlInfo.compiledJson || {};
-      output = `module.exports = ''`;
+      this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {});
+      output = `module.exports = ${JSON.stringify(cmlInfo.compiledJson)}`;
       break;
     default:
       break;

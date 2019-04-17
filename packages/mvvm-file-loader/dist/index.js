@@ -56,7 +56,12 @@ function loader(content) {
     if (typeof content === 'string') {
       content = Buffer.from(content);
     }
-    return `module.exports = ${JSON.stringify(`data:${mimetype || ''};base64,${content.toString('base64')}`)}`;
+    this._module._nodeType = 'module';
+    this._module._moduleType = 'asset';
+    this._module._cmlSource = content;
+    let base64 = `data:${mimetype || ''};base64,${content.toString('base64')}`
+    this._module._publicPath = base64;
+    return `module.exports = ${JSON.stringify(base64)}`;
   } else {
     var url = _loaderUtils2.default.interpolateName(this, options.name, {
       context,
@@ -85,6 +90,8 @@ function loader(content) {
     this._module._moduleType = 'asset';
     this._module._cmlSource = content;
     this._module._outputPath = outputPath;
+    this._module._publicPath = publicPath;
+    debugger
     return `module.exports = "${publicPath}";`;
 
   }  

@@ -5736,6 +5736,11 @@
       "resolved": "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.7.tgz",
       "integrity": "sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s="
     },
+    "mvvm-style-loader": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/mvvm-style-loader/-/mvvm-style-loader-0.0.1.tgz",
+      "integrity": "sha512-mOW/eL8f/rxsU1b94Vg36RDE+ypHq62BdyZSV39rG2by7R36bdx5PdXN1O6JbAjwQpODcwOE0Fw6pQuUntX4qQ=="
+    },
     "nan": {
       "version": "2.13.2",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.13.2.tgz",

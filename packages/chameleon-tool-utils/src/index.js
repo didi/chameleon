@@ -46,7 +46,7 @@ _.setBuiltinNpmName = function(npmName) {
 }
 
 // include 和script的src不支持别名查找
-_.resolveAsync = function(filepath, requirePath) {
+_.resolveSync = function(filepath, requirePath) {
   let fromCwd
   try {
     fromCwd = resolve.sync(requirePath, { basedir: path.dirname(filepath)})
@@ -844,7 +844,7 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
     }
     // interface文件中script src 指定
     if (targetScript && targetScript.attrs && targetScript.attrs.src) {
-      let cmlFilePath = _.resolveAsync(interfacePath, targetScript.attrs.src);
+      let cmlFilePath = _.resolveSync(interfacePath, targetScript.attrs.src);
       let reg = new RegExp(`\\.cml$`); // 只要是.cml文件就可以 不限制多态文件名称
       // let reg = new RegExp(`\\.${cmlType}\\.cml$`);
       // 获取npm包中的组件时 只能够根据interface文件去查找 无法区分是多态组件还是接口 如果找到了组件就返回 找不到就返回空
@@ -860,7 +860,7 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
     }
     // include中查找
     if (include && include.attrs && include.attrs.src) {
-      let includeFilePath = _.resolveAsync(interfacePath, include.attrs.src);
+      let includeFilePath = _.resolveSync(interfacePath, include.attrs.src);
       if (!_.isFile) {
         throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
       }

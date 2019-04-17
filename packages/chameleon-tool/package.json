@@ -77,6 +77,7 @@
     "mvvm-cml-loader": "0.0.1",
     "mvvm-file-loader": "0.0.1",
     "mvvm-pack": "0.3.0-alpha.2",
+    "mvvm-style-loader": "0.0.1",
     "node-phpcgi": "0.3.7",
     "node-watch": "^0.5.9",
     "opn": "5.3.0",

@@ -41,7 +41,7 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
       if (!include.attrs.src) {
         throw new Error(`not define src attribute: ${filePath}`)
       }
-      let newFilePath = cmlUtils.resolveAsync(filePath, include.attrs.src);
+      let newFilePath = cmlUtils.resolveSync(filePath, include.attrs.src);
       if (!cmlUtils.isFile(newFilePath)) {
         throw new Error(`not find file: ${newFilePath}`)
       }
@@ -61,7 +61,7 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
       let {part, filePath} = result;
       // script 有src属性的
       if (part.attrs && part.attrs.src) {
-        let newFilePath = cmlUtils.resolveAsync(filePath, part.attrs.src);
+        let newFilePath = cmlUtils.resolveSync(filePath, part.attrs.src);
         if (!cmlUtils.isFile(newFilePath)) {
           throw new Error(`not find file: ${newFilePath}`)
         }

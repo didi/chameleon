@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
-const styleWrapperLoader = path.join(__dirname, './mvvm/styleWrapLoader.js');
 
 exports.getPostcssrcPath = function (type) {
   return path.join(__dirname, `./postcss/${type}/.postcssrc.js`);
@@ -69,7 +68,7 @@ exports.cssLoaders = function (options) {
     if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(options.type)) {
       let extLoaders = [
         {
-          loader: styleWrapperLoader
+          loader: 'mvvm-style-loader'
         },
         getPostCssLoader('extend'),
         {

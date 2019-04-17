@@ -73,7 +73,6 @@ _.compileTemplate = function(source,options) {
       _.parseBuildTag(path,options);
     }
   });
-  debugger;
   return generate(ast).code;
 
 }
@@ -112,7 +111,6 @@ _.parseAllAttributes = function(path,options) {
     let dynamicClassAttr = attributes.find((attr) => (t.isJSXNamespacedName(attr.name) && attr.name.name.name === 'class'));
     // 将class  :class节点进行融合
     if (staticClassAttr || dynamicClassAttr) {
-      debugger;
       let classNodeValue = '';
       if (staticClassAttr) {
         classNodeValue = `${classNodeValue} ${staticClassAttr.value.value}`
