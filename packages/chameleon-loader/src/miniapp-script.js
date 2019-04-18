@@ -167,16 +167,19 @@ _.commonParseScript = function(source, callback) {
   })
 }
 _.handleApptabbar = function(newJsonObj, loaderContext, filePath, context, type) {
-  debugger
   let tabbarIconPaths = _.getTabbarIconPaths(newJsonObj.tabBar, type);
   if (tabbarIconPaths.length) {
     tabbarIconPaths.forEach((item) => {
       let rootDir = path.resolve(cml.projectRoot, `dist/${type}`);
 
-      let destIconPath = path.resolve(rootDir, item.finalPath); // 获取到要将icon拷贝的目录
-      let iconDir = path.dirname(destIconPath);
-      let sourceIconPath = path.resolve(filePath, item.originPath)
-      _.emitIcon(sourceIconPath, destIconPath, iconDir);
+      let destIconPath = path.resolve(rootDir, item.finalPath); // 获取到要将icon拷贝的路径
+      let sourceIconPath = path.resolve(filePath, item.originPath) // 获取到原来的icon的路径
+      if (cmlUtils.isFile(sourceIconPath)) {
+        fse.copySync(sourceIconPath, destIconPath)
+      } else {
+        cmlUtils.log.warn(`${sourceIconPath} is not exsit`)
+      }
+
     });
   }
 }
@@ -186,7 +189,6 @@ _.getRelativeIconPath = function(p) {
 }
 _.getTabbarIconPaths = function(tabbar, type) {
   let iconPaths = [];
-  debugger;
   if (tabbar && (type === 'baidu' || type === 'wx')) {
     (tabbar.list || []).forEach((item) => {
       if (item.iconPath) {
@@ -229,17 +231,4 @@ _.getTabbarIconPaths = function(tabbar, type) {
   }
   return iconPaths;
 }
-_.emitIcon = function(sourceFile, destIconPaht, dir) {
-  fse.ensureDir(dir).then(() => {
-    console.log('创建目录成功');
-    fse.copySync(sourceFile, destIconPaht)
-    .then(() => {
-      console.log('success!')
-    })
-    ["catch"](err => {
-      // console.error(err)
-    })
-  })["catch"]((err) => {
-    console.log('error')
-  })
-}
+
