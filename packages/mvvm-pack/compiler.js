@@ -4,22 +4,14 @@ const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
 const parser = require('../mvvm-babel-parser/lib');
+const merge = require('webpack-merge');
+
 class Compiler {
-  constructor(webpackCompiler) {
+  constructor(webpackCompiler, plugin) {
     this.moduleRule = [ // 文件后缀对应module信息
       {
-        test: /\.css|\.less$/,
-        moduleType: 'style',
-        attrs: {
-          lang: 'less'
-        }
-      },
-      {
-        test: /\.stylus|\.styls$/,
-        moduleType: 'style',
-        attrs: {
-          lang: 'stylus'
-        }
+        test: /\.css|\.less|\.stylus|\.styls$/,
+        moduleType: 'style'
       },
       {
         test: /\.js|\.interface$/,
@@ -39,6 +31,13 @@ class Compiler {
     this.log = new Log();
     this.event = new EventEmitter();
     this.webpackCompiler = webpackCompiler;
+
+    // 用户扩展文件类型
+    if (plugin.moduleRule && plugin.moduleRule instanceof Array) {
+      this.moduleRule = this.moduleRule.concat(plugin.moduleRule);
+    }
+
+
   }
 
   run(modules) {
@@ -152,7 +151,10 @@ class Compiler {
   // 创建单个节点
   createNode(module) {
     let options = {};
-    options.realPath = module.resource;
+    if (~module.resource.indexOf('images/chameleon.png')) {
+      debugger
+    }
+    options.realPath = module.resource; // 会带参数
     options.ext = path.extname(module.resource);
     options.nodeType = module._nodeType || 'module';
     options.identifier = module.request;

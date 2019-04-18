@@ -3,8 +3,17 @@ const path = require('path');
 const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
+
+
 module.exports = function(options) {
   let {type, media} = options;
+  let npmName = cml.config.get().extPlatform[type];
+  let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
+  // 用户端扩展插件
+  let platformPlugin = new PlatformPlugin({
+    cmlType: type,
+    media
+  });
   let extendConfig = {
     entry: {
       app: path.join(cml.projectRoot, 'src/app/app.cml')
@@ -33,7 +42,7 @@ module.exports = function(options) {
       new MvvmGraphPlugin({
         cmlType: type,
         media
-      })
+      }, platformPlugin)
     ]
   };
   // options.moduleIdType = 'hash';
@@ -44,6 +53,16 @@ module.exports = function(options) {
       item.options.publicPath = commonConfig.output.publicPath
     }
   })
+
+  // 用户可以扩展webpack的rules用于处理特有文件后缀
+  if (platformPlugin.webpackRules && platformPlugin.webpackRules instanceof Array) {
+    extendConfig = merge(extendConfig, {
+      module: {
+        rules: platformPlugin.webpackRules
+      }
+    })
+  }
+
   return merge(commonConfig, extendConfig);
 
 }

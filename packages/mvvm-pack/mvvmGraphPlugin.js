@@ -1,16 +1,13 @@
 
-const path = require('path');
 const MvvmCompiler = require('./compiler.js');
 class mvvmGraphPlugin {
-  constructor(options = {}) {
+  constructor(options = {}, platformPlugin) {
     this.options = options;
+    this.platformPlugin = platformPlugin;
   }
   apply(compiler) {
     let self = this;
-    let npmName = cml.config.get().extPlatform[this.options.cmlType];
-    let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
-    let plugin = new PlatformPlugin(this.options);
-    let mvvmCompiler = new MvvmCompiler(compiler);
+    let mvvmCompiler = new MvvmCompiler(compiler, self.platformPlugin);
     compiler._mvvmCompiler = mvvmCompiler;
     // 监听cml中查找组件
     cml.event.on('find-component', function({context, cmlFilePath, comPath, cmlType}, result) {
@@ -19,7 +16,7 @@ class mvvmGraphPlugin {
         mvvmCompiler.emit('find-component', {context, cmlFilePath, comPath, cmlType}, result);
       }
     })
-    plugin.register(mvvmCompiler);
+    self.platformPlugin.register(mvvmCompiler);
     compiler.plugin('should-emit', function(compilation) {
       debugger
       

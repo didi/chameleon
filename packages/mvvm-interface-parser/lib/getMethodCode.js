@@ -1,6 +1,5 @@
 const cmlUtils = require('chameleon-tool-utils');
 const fs = require('fs');
-const path = require('path');
 const {resolveRequire} = require('./resolveRequire.js');
 
 
@@ -25,7 +24,7 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
     }
     let methodScript = null;
     for (let i = 0;i < parts.script.length;i++) {
-      if (parts.script[i].cmlType === cmlType) {
+      if (~parts.script[i].cmlType.split(',').indexOf(cmlType)) {
         methodScript = parts.script[i];
       }
     }

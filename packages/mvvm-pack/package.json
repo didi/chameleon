@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chameleon-tool-utils": "0.3.0-alpha.2",
-    "mvvm-babel-parser": "0.3.0-alpha.2"
+    "mvvm-babel-parser": "0.3.0-alpha.2",
+    "webpack-merge": "^4.2.1"
   }
 }

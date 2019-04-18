@@ -838,7 +838,7 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
     }
     let targetScript = null;
     for (let i = 0;i < parts.script.length;i++) {
-      if (parts.script[i].cmlType === cmlType) {
+      if (~parts.script[i].cmlType.split(',').indexOf(cmlType)) {
         targetScript = parts.script[i];
       }
     }
