@@ -166,7 +166,7 @@ _.commonParseScript = function(source, callback) {
     }
   })
 }
-_.handleApptabbar = function(newJsonObj, loaderContext, filePath, context, type) {
+_.handleApptabbar = function(newJsonObj, filePath, type) {
   let tabbarIconPaths = _.getTabbarIconPaths(newJsonObj.tabBar, type);
   if (tabbarIconPaths.length) {
     tabbarIconPaths.forEach((item) => {

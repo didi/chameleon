@@ -271,8 +271,7 @@ module.exports = function (content) {
     });
     //处理tabbar中配置的icon路径
     if(type == 'app'){
-      debugger;
-      miniAppScript.handleApptabbar(newJsonObj,self,filePath,context,cmlType)
+      miniAppScript.handleApptabbar(newJsonObj,filePath,cmlType)
     }
     let jsonResult = JSON.stringify(newJsonObj, '', 4);
     self.emitFile(emitJsonPath, jsonResult);
