@@ -12,6 +12,7 @@
     "chameleon-runtime": "^0.1.0",
     "chameleon-store": "0.0.3",
     "chameleon-ui-builtin": "0.0.7-alpha",
-    "cml-ui": "0.0.7-alpha"
+    "fcml-ui": "^0.0.1",
+    "fs-base-chameleon": "^1.0.7"
   }
 }

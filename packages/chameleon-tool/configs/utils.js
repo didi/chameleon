@@ -496,7 +496,8 @@ let babelNpm = [
   'webpack-check-plugin',
   'webpack-liveload-middleware',
   'chameleon-weex-vue-loader',
-  'babel-plugin-chameleon-import'
+  'babel-plugin-chameleon-import',
+  'fcml-ui'
 ];
 
 exports.getBabelPath = function () {
