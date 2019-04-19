@@ -1,3 +1,9 @@
+## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
+
+###  Bug Fixes
+* 修复 全局安装chameleon-tool时的npm warn
+
+
 ## [0.3.0-alpha.7](https://github.com/didi/chameleon/compare/v0.3.0-alpha.6...v0.3.0-alpha.7)
 
 ###  Bug Fixes
