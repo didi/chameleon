@@ -313,7 +313,8 @@ function sortStyleModule(extractedChunk) {
           modules[j] = temp;
           j--;
           break;
-
+        } else {
+          j--;
         }
       }
     }

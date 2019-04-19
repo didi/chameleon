@@ -1,3 +1,23 @@
+## [0.2.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.2.1)
+
+### Bug Fixes
+
+- 修复 cml weex build 构建出的config.json不符合规范
+
+
+## [0.2.0](https://github.com/didi/chameleon/compare/v0.2.0-alpha.1...v0.2.0)
+
+### Bug Fixes
+
+- 默认开启全局变量校验，升级初始化项目中依赖符合全局变量校验
+- linter校验支持component is的校验
+
+## [0.2.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0-alpha.0...v0.2.0-alpha.1)
+
+### Bug Fixes
+
+- 修复 js中import css文件导致构建停滞的bug
+
 ## [0.2.0-alpha.0](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.2.0-alpha.0)
 
 ### Features

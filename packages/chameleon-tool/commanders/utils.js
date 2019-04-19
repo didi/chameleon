@@ -165,6 +165,8 @@ exports.startReleaseOne = async function(media, type) {
       await build.then(res => {
         exports.getWebBuildPromise(media, false);
       })
+    } else {
+      await build;
     }
   }
   if (media === 'build') {
