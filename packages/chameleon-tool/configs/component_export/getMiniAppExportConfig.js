@@ -7,7 +7,7 @@ var path = require('path');
 
 module.exports = function (options) {
   let { type, root } = options;
-  let outputPath = options.outputPath || path.resolve(root, `dist/export/${type}`);
+  let outputPath = path.resolve(root, `dist/export/${type}`);
   return merge(getMiniAppCommonConfig(options), {
     output: {
       path: outputPath

@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { getBabelPath, getGlobalCheckWhiteList, styleLoaders, getWebEntry } = require('../utils');
-var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
@@ -41,7 +41,7 @@ module.exports = function (options) {
   publicPath = options.publicPath || '/';
 
   var cmlLoaders = [{
-    loader: 'cml-vue-loader',
+    loader: 'vue-loader',
     options: Object.assign(getCmlLoaderConfig({ type: 'web', disableExtract, media, mode }), {
       postcss: {
         config: {
@@ -131,7 +131,7 @@ module.exports = function (options) {
               loader: 'chameleon-url-loader',
               options: {
                 name: getstaticPath('img'),
-                fallback: mode === 'production' ? undefined : path.resolve(__dirname, './export-loader.js'),
+                fallback: mode === 'production' ? undefined :path.resolve(__dirname, './export-loader.js'),
                 fileType: 'assets',
                 mode
               }
@@ -143,7 +143,7 @@ module.exports = function (options) {
           loader: 'file-loader',
           options: {
             name: getstaticPath('media'),
-            useRelativePath: mode !== 'production',
+            useRelativePath: mode === 'production' ? false : true,
             outputPath: function(url) {
               return mode === 'production' ? url : url + '?__export';
             }
@@ -154,7 +154,7 @@ module.exports = function (options) {
           loader: 'file-loader',
           options: {
             name: getstaticPath('fonts'),
-            useRelativePath: mode !== 'production',
+            useRelativePath: mode === 'production' ? false : true,
             outputPath: function(url) {
               return mode === 'production' ? url : url + '?__export';
             }
@@ -192,7 +192,7 @@ module.exports = function (options) {
         {
           test: /\.vue$/,
           use: [{
-            loader: 'cml-vue-loader',
+            loader: 'vue-loader',
             options: Object.assign(getCmlLoaderConfig({ type: 'web', disableExtract }), {
               postcss: {
                 config: {

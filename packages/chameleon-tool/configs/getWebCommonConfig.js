@@ -1,4 +1,4 @@
-var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var utils = require('./utils.js');
 var getCmlLoaderConfig = require('./cml-loader.conf');
 var path = require('path');
@@ -22,7 +22,7 @@ module.exports = function (options) {
   let {entry, htmlPlugins} = utils.getWebEntry(options);
 
   var cmlLoaders = [{
-    loader: 'cml-vue-loader',
+    loader: 'vue-loader',
     options: Object.assign(getCmlLoaderConfig({type: 'web', hot: options.hot, disableExtract}), {
       postcss: {
         config: {
@@ -70,7 +70,7 @@ module.exports = function (options) {
         {
           test: /\.vue$/,
           use: [{
-            loader: 'cml-vue-loader',
+            loader: 'vue-loader',
             options: Object.assign(getCmlLoaderConfig({type: 'web', hot: options.hot, disableExtract}), {
               postcss: {
                 config: {

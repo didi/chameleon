@@ -9,7 +9,7 @@ const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
 const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
-const fs = require('fs');
+
 module.exports = function (options) {
   let {
     type,
@@ -38,7 +38,8 @@ module.exports = function (options) {
   let commonConfig = {
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
     output: {
-      publicPath: publicPath
+      publicPath: publicPath,
+      filename:'[name]_[hash:7].[ext]'
     },
     resolve: {
       symlinks: false,
@@ -63,7 +64,10 @@ module.exports = function (options) {
     module: {
       rules: [{
         test: path.resolve(root, 'node_modules/chameleon-runtime/.temp/router.js'),
-        loader: path.join(__dirname, 'routerLoader.js')
+        loader: path.join(__dirname, 'routerLoader.js'),
+        options: {
+          cmlType: type,
+        }
       },
       {
         test: /\.js$/,
@@ -84,19 +88,14 @@ module.exports = function (options) {
         loader: 'chameleon-url-loader',
         options: {
           limit: false, // 不做limit的base64转换，需要添加?inline参数
-          name: getstaticPath('img'),
-          outputPath: function(output) {
-            // 处理图片中的@符号 改成_ 解决在支付宝小程序中上传失败的问题
-            output = cml.utils.handleSpecialChar(output)
-            return output;
-          }
+          name: getstaticPath('img')
         }
       }, {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'file-loader',
         options: {
           name: getstaticPath('media')
-         
+
         }
       },
       {
@@ -156,43 +155,41 @@ module.exports = function (options) {
   if (options.analysis) {
     commonConfig.plugins.push(new BundleAnalyzerPlugin())
   }
-
   let devApiPrefix = `http://${config.ip}:${webServerPort}`
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
   // 新版api 优先读取domainMap
-  // 浅拷贝不影响config中的domain
-  let domain = {};
-  if (options.domain) {
-    domain = {
-      ...options.domain
+  let domainMap = {
+    '':''
+  };
+  let defaultDomainKey = cml.config.get().defaultDomainKey || 'apiPrefix';
+    if (options.media === 'dev') {
+        // dev模式默认apiPrefix
+        commonConfig.plugins.push(new webpack.DefinePlugin({
+            'process.env.devApiPrefix': JSON.stringify(apiPrefix)
+        }))
+    } else {
+        commonConfig.plugins.push(new webpack.DefinePlugin({
+            'process.env.devApiPrefix': JSON.stringify('')
+        }))
     }
-  }
-
-
-  if (options.media === 'dev') {
-    // dev模式添加domainKey参数
-    Object.keys(domain).forEach(key => {
-      if (domain[key].toLowerCase() === 'localhost') {
-        domain[key] = devApiPrefix;
-      }
-      domain[key] = domain[key] + '__DEV_SPLIT__' + key;
-    })
-  }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
     'process.env.cmlApiPrefix': JSON.stringify(apiPrefix)
   }))
-  Object.keys(domain).forEach(key => {
-    commonConfig.plugins.push(new webpack.DefinePlugin({
-      ['process.env.domain.' + key]: JSON.stringify(domain[key])
-    }))
-  })
-
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.domainMap': JSON.stringify(domainMap)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.defaultDomainKey': JSON.stringify('')
+  }))
   commonConfig.plugins.push(new webpack.DefinePlugin({
     'process.env.media': JSON.stringify(options.media)
   }))
-
+  let i18n = cml.config.get().i18n || 'zh-cn';
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+      'process.env.i18n': JSON.stringify(i18n)
+  }))
   if (options.minimize) {
     commonConfig.plugins = commonConfig.plugins.concat([
       new OptimizeCSSPlugin({
@@ -212,22 +209,6 @@ module.exports = function (options) {
   if (moduleIdType && moduleIdMap[moduleIdType]) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
-
-  let cmlPages = cml.config.get().cmlPages;
-  if (cmlPages && cmlPages.length > 0) {
-    cmlPages.forEach(npmName => {
-      let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'),{encoding:'utf-8'}));
-      let cmlConfig = packageJSON.cml || {};
-      let definePlugin = cmlConfig.definePlugin;
-      if (definePlugin) {
-        Object.keys(definePlugin).forEach(key => {
-          definePlugin[key] = JSON.stringify(definePlugin[key])
-        })
-        commonConfig.plugins.push(new webpack.DefinePlugin(definePlugin))
-      }
-    })
-  }
-
 
   return commonConfig;
 }
