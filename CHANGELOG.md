@@ -1,3 +1,9 @@
+## [0.3.0-alpha.9](https://github.com/didi/chameleon/compare/v0.3.0-alpha.8...v0.3.0-alpha.9)
+
+###  Bug Fixes
+* 修复 cml build 命令 不配置web端也会进行web端构建的bug
+
+
 ## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
 
 ###  Bug Fixes

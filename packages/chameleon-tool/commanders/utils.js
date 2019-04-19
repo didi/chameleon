@@ -118,7 +118,11 @@ exports.getWebBuildPromise = async function (media, isCompile) {
     }
     return devServer({webpackConfig, options, compiler});
   } else {
-    return exports.getBuildPromise(media, 'web');
+    if (isCompile) {
+      return exports.getBuildPromise(media, 'web');
+    } else {
+      return Promise.resolve();
+    }
   }
 }
 
