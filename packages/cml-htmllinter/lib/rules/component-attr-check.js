@@ -48,26 +48,35 @@ module.exports.lint = function (element, opts) {
     let requiredProps = matchComponent.props.filter((node) => node.required).map((node) => node.name);
     let events = matchComponent.events.map((method) => method.name);
 
-    Object.entries(element.attribs).filter((attrib) => {
-      if (knife.isCommonAttr(attrib[0]) || knife.isCmlDirective(attrib[0])) {
-        return false;
-      }
+    Object.entries(element.attribs).filter((attrib) => {     
+      // verify events
       if (eventRegex && eventRegex.test(attrib[0])) {
         let eventName = eventRegex.exec(attrib[0])[1];
         if (knife.isCommonEvent(eventName)) {
           return false;
         }
         return !~events.indexOf(eventName);
-      }
-      if (propRegex && propRegex.test(attrib[0])) {
-        return !~propNames.indexOf(toCamelcase(propRegex.exec(attrib[0])[1]));
-      }
-      if (!propRegex && propNames.indexOf(toCamelcase(attrib[0])) > -1) {
-        return false;
-      }
+      }      
+
       if (!eventRegex && events.indexOf(attrib[0]) > -1) {
         return false;
       }
+
+      // verify normal attributes
+      let attribProp = attrib[0];
+
+      if (propRegex && propRegex.test(attribProp)) {
+        attribProp = propRegex.exec(attribProp)[1];
+      }
+
+      if (knife.isCommonAttr(attribProp) || knife.isCmlDirective(attribProp)) {
+        return false;
+      }
+
+      if (propNames.indexOf(toCamelcase(attribProp)) > -1) {
+        return false;
+      } 
+
       return true;
     })
     .forEach(attrib => {
@@ -78,7 +87,14 @@ module.exports.lint = function (element, opts) {
     });
 
     if (requiredProps.length) {
-      let attrKeys = Object.keys(element.attribs);
+      let attrKeys = Object.keys(element.attribs); 
+      attrKeys = attrKeys.map(attr => {
+        if (propRegex && propRegex.exec(attr))  {
+          return propRegex.exec(attr)[1];
+        } else {
+          return attr;
+        }
+      });
       requiredProps.forEach((propName) => {
         if (!~attrKeys.indexOf(toDash(propName))) {
           issues.push(new Issue('E073', element.openLineCol, {
