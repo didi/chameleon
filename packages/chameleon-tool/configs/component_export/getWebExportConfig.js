@@ -244,7 +244,7 @@ module.exports = function (options) {
     commonConfig.plugins = commonConfig.plugins.concat([
       new OptimizeCSSPlugin({
         assetNameRegExp: /\.css$/,
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } }
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
       }),
       new UglifyJsPlugin({})
     ])
