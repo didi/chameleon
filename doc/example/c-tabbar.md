@@ -90,8 +90,6 @@ export default new Index();
 
 假如从 `comp1`中先跳转到 `pages/index/index2.cml`
 
-`path/to/comp1.cml`
-
 ```html
 <template>
   <view>
