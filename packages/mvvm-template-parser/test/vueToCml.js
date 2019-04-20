@@ -1,4 +1,4 @@
-const processTemplate = require('./process-template.js');
+const {vueToCml, cmlparse} = require('../index.js');
 let source = `<template>
 <view>
 <!-- 事件 -->
@@ -41,5 +41,8 @@ let options = {lang: 'cml',
   }]
 };
 // let source = `<view style="{{item.id}}">{{item.id}}{{item[11]}}</view>`
-let result = processTemplate.vueToCml(source,options);
-console.log('sss', result)
+let result = vueToCml(source, options);
+
+let ast = cmlparse(result.source);
+debugger
+console.log(ast)

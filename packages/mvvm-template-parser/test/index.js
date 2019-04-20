@@ -10,7 +10,6 @@ const {ast} = standardParser({
   source: template,
   lang: 'cml'
 })
-debugger
 traverse(ast, {
   enter: (path) => {
     let node = path.node;
