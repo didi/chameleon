@@ -1,4 +1,4 @@
-const cmlUtils = require('chameleon-tool-utils');
+const cmlUtils = require('../../mvvm-script-parser/node_modules/chameleon-tool-utils/src');
 const fs = require('fs');
 
 module.exports = function({interfacePath, content}) {

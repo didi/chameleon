@@ -1,1 +1,1 @@
-####  mvvm协议标准中处理cml文件template部分
+####  扩展新端中处理cml文件template部分

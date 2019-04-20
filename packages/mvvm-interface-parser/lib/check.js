@@ -1,9 +1,9 @@
-const parser = require('@babel/parser');
+const parser = require('../../mvvm-script-parser/node_modules/@babel/parser/typings/babel-parser');
 const traverse = require('@babel/traverse');
-const generate = require("@babel/generator");
-const {getDefines, parsePlugins} = require('runtime-check');
+const generate = require("../../mvvm-script-parser/node_modules/@babel/generator/lib");
+const {getDefines, parsePlugins} = require('../../mvvm-script-parser/node_modules/runtime-check');
 const path = require('path');
-const cmlUtils = require('chameleon-tool-utils');
+const cmlUtils = require('../../mvvm-script-parser/node_modules/chameleon-tool-utils/src');
 
 /**
  * 处理ast导出表达式
