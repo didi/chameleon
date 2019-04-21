@@ -1,6 +1,6 @@
 {
   "name": "mvvm-pack",
-  "version": "0.3.0-alpha.2",
+  "version": "0.4.0-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chameleon-tool-utils": "0.3.0-alpha.2",
-    "mvvm-babel-parser": "0.3.0-alpha.2",
+    "chameleon-tool-utils": "0.4.0-alpha.0",
+    "mvvm-babel-parser": "0.4.0-alpha.0",
     "webpack-merge": "^4.2.1"
   }
 }

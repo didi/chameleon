@@ -8,7 +8,7 @@ const amd = require('./lib/amd.js');
 
 class Compiler {
   constructor(webpackCompiler, plugin) {
-    this.moduleRule = [ // 文件后缀对应module信息
+    this.moduleRules = [ // 文件后缀对应module信息
       {
         test: /\.css|\.less|\.stylus|\.styls$/,
         moduleType: 'style'
@@ -33,8 +33,8 @@ class Compiler {
     this.webpackCompiler = webpackCompiler;
 
     // 用户扩展文件类型
-    if (plugin.moduleRule && plugin.moduleRule instanceof Array) {
-      this.moduleRule = this.moduleRule.concat(plugin.moduleRule);
+    if (plugin.moduleRules && plugin.moduleRules instanceof Array) {
+      this.moduleRules = this.moduleRules.concat(plugin.moduleRules);
     }
 
     this.amd = amd; // amd的工具方法
@@ -153,9 +153,6 @@ class Compiler {
   // 创建单个节点
   createNode(module) {
     let options = {};
-    if (~module.resource.indexOf('images/chameleon.png')) {
-      debugger
-    }
     options.realPath = module.resource; // 会带参数
     options.ext = path.extname(module.resource);
     options.nodeType = module._nodeType || 'module';
@@ -167,7 +164,7 @@ class Compiler {
         options.moduleType = module._moduleType;
       } else {
         // 根据后缀
-        this.moduleRule.forEach(rule => {
+        this.moduleRules.forEach(rule => {
           if (rule.test.test(module.resource)) {
             options.moduleType = rule.moduleType;
           }
@@ -197,7 +194,7 @@ class Compiler {
       // cml文件中的json部分
       if (module.parent) {
         options.convert = JSON.parse(options.source);
-      } 
+      }
       // 其他json文件不处理 例如router.config.json
     }
     return new CMLNode(options)
