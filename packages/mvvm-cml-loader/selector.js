@@ -52,7 +52,7 @@ module.exports = function(source) {
       break;
     case 'json':
       this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {});
-      output = `module.exports = ${cmlInfo.compiledJson}`;
+      output = `module.exports = ${this._module._cmlSource}`;
       break;
     default:
       break;
