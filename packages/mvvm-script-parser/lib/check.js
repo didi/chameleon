@@ -7,11 +7,11 @@
  * 3 拼接代码
  */
 const path = require('path');
-const parser = require('../node_modules/@babel/parser/typings/babel-parser');
-const traverse = require('../node_modules/@babel/traverse/lib');
-const generate = require("../node_modules/@babel/generator/lib");
-const {getDefines, parsePlugins} = require('../node_modules/runtime-check');
-const cmlUtils = require('../node_modules/chameleon-tool-utils/src');
+const parser = require('@babel/parser');
+const traverse = require('@babel/traverse');
+const generate = require("@babel/generator");
+const {getDefines, parsePlugins} = require('runtime-check');
+const cmlUtils = require('chameleon-tool-utils');
 
 /**
  * 处理对象的函数

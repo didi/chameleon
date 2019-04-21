@@ -1,9 +1,9 @@
-const parser = require('../../mvvm-script-parser/node_modules/@babel/parser/typings/babel-parser');
+const parser = require('@babel/parser');
 const traverse = require('@babel/traverse');
 const t = require('@babel/types');
-const generator = require("../../mvvm-script-parser/node_modules/@babel/generator/lib");
-const {parsePlugins} = require('../../mvvm-script-parser/node_modules/runtime-check');
-const cmlUtils = require('../../mvvm-script-parser/node_modules/chameleon-tool-utils/src');
+const generator = require("@babel/generator");
+const {parsePlugins} = require('runtime-check');
+const cmlUtils = require('chameleon-tool-utils');
 
 // resolve 解析路径的方法
 exports.resolveRequire = function({content, filePath, resolve}) {

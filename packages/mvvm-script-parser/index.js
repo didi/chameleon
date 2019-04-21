@@ -3,16 +3,16 @@
  * */
 'use strict';
 
-const {parsePlugins} = require('./node_modules/runtime-check');
-const parser = require('./node_modules/@babel/parser/typings/babel-parser');
-const babel = require('./node_modules/@babel/core/lib');
-const traverse = require('./node_modules/@babel/traverse/lib');
-const t = require('./node_modules/@babel/types/lib');
-const cmlUtils = require('./node_modules/chameleon-tool-utils/src');
+const {parsePlugins} = require('runtime-check');
+const parser = require('@babel/parser');
+const babel = require('@babel/core');
+const traverse = require('@babel/traverse');
+const t = require('@babel/types');
+const cmlUtils = require('chameleon-tool-utils');
 const {getCheckCode} = require('./lib/check');
-const interfaceParser = require('./node_modules/mvvm-interface-parser');
-const getInterfaceCode = require('./node_modules/mvvm-interface-parser/lib/getInterfaceCode.js.js');
-const generator = require("./node_modules/@babel/generator/lib");
+const interfaceParser = require('mvvm-interface-parser');
+const getInterfaceCode = require('mvvm-interface-parser/lib/getInterfaceCode.js');
+const generator = require("@babel/generator");
 const path = require('path');
 
 const defaultResolve = function(filePath, relativePath) {
