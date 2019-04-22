@@ -652,7 +652,7 @@ describe('index.js', function () {
 
   })
 
-  it(`deleteExt`, function () {
+  it(`getSubProjectRouter`, function () {
     global.cml = {};
     _.setCli(true);
     cml.projectRoot = path.join(__dirname, './testlib/demo-project');
@@ -682,7 +682,7 @@ describe('index.js', function () {
     let result3 = _.deleteExt(path3);
     expect(result1).to.be.equal('/src/pages/name');
     expect(result2).to.be.equal('/src/pages/name');
-    expect(result3).to.be.equal('./name');
+    expect(result3).to.be.equal('name');
 
   })
 })

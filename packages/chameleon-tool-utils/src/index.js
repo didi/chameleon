@@ -616,7 +616,6 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
     // let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`)
     // npm包中的多态组件也是以interface文件为入口进行查找，多态api无法找到对应cml文件
     let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.interface');
-
     glob.sync(globPath).forEach(interfacePath => {
       // 其他端的多态cml组件排除在外
       let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
@@ -1216,10 +1215,11 @@ _.isInline = function(filePath) {
 // 删除cml文件的后缀 因为有了script src语法之后  .cmlType.cml的语法已经无法穷举，
 // 处理的文件分隔符为 /
 _.deleteExt = function(filePath) {
-  let basename = path.basename(filePath);
-  let dirname = path.dirname(filePath);
+  let splitArray = filePath.split(/\/|\\/);
+
+  let basename = splitArray.pop();
   basename = basename.split('.')[0];
-  let result = dirname + '/' + basename;
-  result = _.handleWinPath(result);
+  splitArray.push(basename);
+  let result = splitArray.join('/')
   return result;
 }
