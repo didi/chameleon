@@ -204,7 +204,6 @@ class Compiler {
       options.source = replaceJsModId(options.source, module);
 
     }
-    console.log(options.modId);
     return new CMLNode(options)
   }
 

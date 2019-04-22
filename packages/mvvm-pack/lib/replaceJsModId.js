@@ -56,8 +56,6 @@ module.exports.replaceJsModId = function(source, module) {
 } 
 
 module.exports.chameleonIdHandle = function(id) {
-  // console.log(`before:${id}`)
   let result = chameleonHandle(id, 'chameleon-tool');
-  // console.log(`after:${result}`)
   return result
 }
