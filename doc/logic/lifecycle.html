@@ -2873,6 +2873,32 @@
             
         </li>
     
+        <li class="chapter " data-level="5.1.1.3" data-path="../framework/polymorphism/api_extend.html" data-part="example">
+            
+                <a href="../framework/polymorphism/api_extend.html">
+            
+                    
+                    接口多态扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.1.4" data-path="../framework/polymorphism/component_extend.html" data-part="example">
+            
+                <a href="../framework/polymorphism/component_extend.html">
+            
+                    
+                    组件多态扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -3566,6 +3592,19 @@
             
         </li>
     
+        <li class="chapter " data-level="5.1.6" data-path="../mvvm/start.html" data-part="example">
+            
+                <a href="../mvvm/start.html">
+            
+                    
+                    定制扩展端指南
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -4251,12 +4290,12 @@
   <tr>
     <td>created</td>
     <td>&#x6570;&#x636E;&#x53CA;&#x65B9;&#x6CD5;&#x6302;&#x8F7D;&#x5B8C;&#x6210;</td>
-    <td></td>
+    <td>&#x5728;&#x8BE5;&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x4F1A;&#x8FD4;&#x56DE;&#x4F20;&#x5165;&#x5F53;&#x524D;&#x9875;&#x9762;&#x7684;&#x53C2;&#x6570;&#x5BF9;&#x8C61;</td>
   </tr>
   <tr>
     <td>beforeMount</td>
     <td>&#x5F00;&#x59CB;&#x6302;&#x8F7D;&#x5DF2;&#x7ECF;&#x7F16;&#x8BD1;&#x5B8C;&#x6210;&#x7684;cml&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x8282;&#x70B9;&#x65F6;</td>
-    <td></td>
+    <td>&#x5728;&#x8BE5;&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x4F1A;&#x8FD4;&#x56DE;&#x4F20;&#x5165;&#x5F53;&#x524D;&#x9875;&#x9762;&#x7684;&#x53C2;&#x6570;&#x5BF9;&#x8C61;</td>
   </tr>
   <tr>
     <td>mounted</td>
@@ -4277,6 +4316,50 @@
 
 <h4 id="&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;"><a name="&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;" class="plugin-anchor" href="#&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;</h4>
 <h5 id="beforecreateobject-res"><a name="beforecreateobject-res" class="anchor-navigation-ex-anchor" href="#beforecreateobject-res"><i class="fa fa-link" aria-hidden="true"></i></a><a name="beforecreateobject-res" class="plugin-anchor" href="#beforecreateobject-res"><i class="fa fa-link" aria-hidden="true"></i></a>beforeCreate(Object res)</h5>
+<p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
+<table>
+  <tr>
+    <th>&#x540D;&#x79F0;</th>
+    <th>&#x7C7B;&#x578B;</th>
+    <th>&#x8BF4;&#x660E;</th>
+  </tr>
+  <tr>
+    <td>res</td>
+    <td>Object</td>
+    <td>
+      &#x5728;&#x8BE5;&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x4F1A;
+      <br>
+      &#x8FD4;&#x56DE;&#x5BF9;&#x8C61;res:
+      <br>
+      res = { query }
+      query &#x662F;&#x6253;&#x5F00;&#x5F53;&#x524D;&#x9875;&#x9762;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;
+    </td>
+  </tr>
+</table>
+
+<h5 id="createdobject-res"><a name="createdobject-res" class="anchor-navigation-ex-anchor" href="#createdobject-res"><i class="fa fa-link" aria-hidden="true"></i></a><a name="createdobject-res" class="plugin-anchor" href="#createdobject-res"><i class="fa fa-link" aria-hidden="true"></i></a>created(Object res)</h5>
+<p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
+<table>
+  <tr>
+    <th>&#x540D;&#x79F0;</th>
+    <th>&#x7C7B;&#x578B;</th>
+    <th>&#x8BF4;&#x660E;</th>
+  </tr>
+  <tr>
+    <td>res</td>
+    <td>Object</td>
+    <td>
+      &#x5728;&#x8BE5;&#x751F;&#x547D;&#x5468;&#x671F;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x4F1A;
+      <br>
+      &#x8FD4;&#x56DE;&#x5BF9;&#x8C61;res:
+      <br>
+      res = { query }
+      query &#x662F;&#x6253;&#x5F00;&#x5F53;&#x524D;&#x9875;&#x9762;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;
+    </td>
+  </tr>
+</table>
+
+<h5 id="beforemountobject-res"><a name="beforemountobject-res" class="anchor-navigation-ex-anchor" href="#beforemountobject-res"><i class="fa fa-link" aria-hidden="true"></i></a><a name="beforemountobject-res" class="plugin-anchor" href="#beforemountobject-res"><i class="fa fa-link" aria-hidden="true"></i></a>beforeMount(Object res)</h5>
 <p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
 <table>
   <tr>
@@ -4461,7 +4544,7 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"生命周期","level":"2.1.4.2","depth":3,"next":{"title":"计算属性 computed","level":"2.1.4.3","depth":3,"path":"logic/computed.md","ref":"logic/computed.md","articles":[]},"previous":{"title":"响应式数据绑定系统","level":"2.1.4.1","depth":3,"path":"logic/data_bind.md","ref":"logic/data_bind.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"logic/lifecycle.md","mtime":"2019-04-01T07:52:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-19T07:05:26.289Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"生命周期","level":"2.1.4.2","depth":3,"next":{"title":"计算属性 computed","level":"2.1.4.3","depth":3,"path":"logic/computed.md","ref":"logic/computed.md","articles":[]},"previous":{"title":"响应式数据绑定系统","level":"2.1.4.1","depth":3,"path":"logic/data_bind.md","ref":"logic/data_bind.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"logic/lifecycle.md","mtime":"2019-04-22T12:28:58.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-22T13:23:24.477Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
