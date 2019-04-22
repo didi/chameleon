@@ -1,3 +1,11 @@
+## [0.4.0-mvvm.1]
+### Features
+* 增加 扩展新端功能
+* 增加 web端组件导出支持externals参数进行运行时分离
+* 增加 支持小程序配置原生tabbar
+
+
+
 ## [0.3.0-alpha.9](https://github.com/didi/chameleon/compare/v0.3.0-alpha.8...v0.3.0-alpha.9)
 
 ###  Bug Fixes
