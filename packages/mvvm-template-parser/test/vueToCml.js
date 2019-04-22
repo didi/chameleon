@@ -44,5 +44,4 @@ let options = {lang: 'cml',
 let result = vueToCml(source, options);
 
 let ast = cmlparse(result.source);
-debugger
 console.log(ast)

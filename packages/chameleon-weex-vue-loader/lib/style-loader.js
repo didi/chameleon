@@ -26,7 +26,6 @@ function convertLength (k, v) {
 }
 
 function genStyleString (input, loader) {
-  debugger
   var output = '{}'
   styler.parse(input, function (err, obj) {
     if (err) {

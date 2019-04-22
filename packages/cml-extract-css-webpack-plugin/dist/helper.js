@@ -1,7 +1,6 @@
 
 // 根据依赖的map 生成顺序的数组
 exports.getAllFileSort = function (depsMap) {
-  debugger
   let result = [];
   let currentStack = []; //记录当前处理的文件 防止循环依赖
   let allKeys = Object.keys(depsMap);
@@ -43,7 +42,6 @@ exports.getAllFileSort = function (depsMap) {
 } 
 
 exports.sortChunk = function(extractedChunk, allFileSort) {
-  debugger
   let modules = Array.from(extractedChunk._modules);
 
   let cssmodule = []; // 普通css 就是按照引用顺序 先引用的放在前面 css的module放前面 只有web端会引用

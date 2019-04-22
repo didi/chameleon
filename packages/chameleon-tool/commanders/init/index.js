@@ -163,7 +163,6 @@ exports.register = function (commander) {
       let projectTpl = projectMap[cmdOptions.demo];
 
       fse.copySync(projectTpl, pagedir);
-      debugger;
       // package.json文件中的name需要更改
       var packagePath = path.join(pagedir, 'package.json');
       let packageContent = JSON.parse(fs.readFileSync(packagePath, 'utf-8'));
@@ -184,7 +183,6 @@ exports.register = function (commander) {
       fs.writeFileSync(configFile, content);
 
       var npmignore = path.join(pagedir, '.npmignore');
-        debugger;
       // npm包中的.gitignore变成了.npmignore
       if (cml.utils.isFile(npmignore)) {
         fse.moveSync(npmignore, path.join(pagedir, '.gitignore'));

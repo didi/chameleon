@@ -4,7 +4,6 @@ module.exports = function(content) {
   this._module._nodeType = 'module';
   this._module._moduleType = 'style';
   this._module._cmlSource = content;
-  debugger
   return `module.exports = ${JSON.stringify(content)}`
 }
 const postcss = require('postcss');

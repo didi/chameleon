@@ -44,7 +44,6 @@ class Compiler {
   }
 
   run(modules) {
-    debugger
     this.projectGraph = null;
     this.outputFiles = {};
     this.module2Node(modules);
@@ -122,7 +121,6 @@ class Compiler {
       if (item.module) {
         // 如果已经创建了节点
         if (moduleNodeMap.has(item.module)) {
-          debugger
           let subNode = moduleNodeMap.get(item.module);
           // 如果 子节点的文件路径和父节点相同 ze是CML文件 放入childrens
           if (subNode.realPath === currentNode.realPath) {

@@ -17,9 +17,7 @@ class mvvmGraphPlugin {
       }
     })
     self.platformPlugin.register(mvvmCompiler);
-    compiler.plugin('should-emit', function(compilation) {
-      debugger
-      
+    compiler.plugin('should-emit', function(compilation) {      
       mvvmCompiler.run(compilation.modules);
       // 返回false 不进入emit阶段
       return false;      

@@ -8,4 +8,3 @@ let result1 = getMethodCode({interfacePath, content, cmlType: 'web', resolve: fu
   return path.resolve(path.dirname(filePath), relativePath)
 }});
 console.log(result1.devDeps)
-debugger

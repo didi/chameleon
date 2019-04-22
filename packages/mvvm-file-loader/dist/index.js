@@ -91,7 +91,6 @@ function loader(content) {
     this._module._cmlSource = content;
     this._module._outputPath = outputPath;
     this._module._publicPath = publicPath;
-    debugger
     return `module.exports = "${publicPath}";`;
 
   }  
