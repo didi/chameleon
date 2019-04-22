@@ -76,14 +76,7 @@ exports.getBuildPromise = async function (media, type) {
  * @param {*} type  wx web weex
  */
 exports.getOptions = function (media, type) {
-  if (!~['web','weex','alipay','baidu','wx'].indexOf(type)) {
-    return {
-      type: type,
-      media,
-      root: cml.projectRoot
-    };
-  }
-  let chameleonConfig = cml.config.get()[type][media];
+  let chameleonConfig = (cml.config.get() && cml.config.get()[type] && cml.config.get()[type][media]) || {};
 
   if (!chameleonConfig) {
     cml.log.error(`在chameleon的config中未找到 ${media}的配置参数`);
@@ -219,6 +212,7 @@ exports.createConfigJson = function() {
   let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
+  
   if (cml.utils.isFile(weexjsPath)) {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
