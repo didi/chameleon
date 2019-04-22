@@ -1,6 +1,6 @@
 {
   "name": "mvvm-babel-generator",
-  "version": "0.4.0-mvvm.0",
+  "version": "0.4.0-mvvm.2",
   "description": "Turns an AST into code.",
   "author": "Sebastian McKenzie <sebmck@gmail.com>",
   "homepage": "https://babeljs.io/",
