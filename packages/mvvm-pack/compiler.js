@@ -5,6 +5,7 @@ const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
 const parser = require('../mvvm-babel-parser/lib');
 const amd = require('./lib/amd.js');
+const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
 
 class Compiler {
   constructor(webpackCompiler, plugin) {
@@ -43,14 +44,12 @@ class Compiler {
   }
 
   run(modules) {
-    debugger
     this.projectGraph = null;
     this.outputFiles = {};
     this.module2Node(modules);
     this.customCompile();
     this.emit('pack', this.projectGraph);
     this.emitFiles();
-
   }
 
   emit(eventName, ...params) {
@@ -122,7 +121,7 @@ class Compiler {
       if (item.module) {
         // 如果已经创建了节点
         if (moduleNodeMap.has(item.module)) {
-
+          debugger
           let subNode = moduleNodeMap.get(item.module);
           // 如果 子节点的文件路径和父节点相同 ze是CML文件 放入childrens
           if (subNode.realPath === currentNode.realPath) {
@@ -153,11 +152,13 @@ class Compiler {
   // 创建单个节点
   createNode(module) {
     let options = {};
-    options.realPath = module.resource; // 会带参数
+    options.realPath = module.resource; // 会带参数  资源绝对路径
     options.ext = path.extname(module.resource);
     options.nodeType = module._nodeType || 'module';
-    options.identifier = module.request;
-    options.modId = module.request; // 模块化的id 带有loader的request 这里可以优化成hash  rawRequest和resource 是不带loader 带query的绝对路径
+    // 新的modId
+    let modId = chameleonIdHandle(module.id);
+    options.identifier = modId;
+    options.modId = modId; // 模块化的id todo优化hash
     if (options.nodeType === 'module') {
       // loader中设置
       if (module._moduleType) {
@@ -197,6 +198,13 @@ class Compiler {
       }
       // 其他json文件不处理 例如router.config.json
     }
+
+    if (options.moduleType === 'script') {
+      // 要做js中require模块的处理 替换modId
+      options.source = replaceJsModId(options.source, module);
+
+    }
+    console.log(options.modId);
     return new CMLNode(options)
   }
 

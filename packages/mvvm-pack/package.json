@@ -11,6 +11,13 @@
   "dependencies": {
     "chameleon-tool-utils": "0.4.0-alpha.0",
     "mvvm-babel-parser": "0.4.0-alpha.0",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "chameleon-webpack-plugin": "0.4.0-alpha.0",
+    "runtime-check": "0.4.0-alpha.0",
+    "@babel/core": "^7.3.4",
+    "@babel/generator": "^7.4.0",
+    "@babel/parser": "^7.3.4",
+    "@babel/traverse": "^7.3.4",
+    "@babel/types": "^7.3.4"
   }
 }
