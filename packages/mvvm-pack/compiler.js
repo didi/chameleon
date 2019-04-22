@@ -44,6 +44,7 @@ class Compiler {
   }
 
   run(modules) {
+    debugger
     this.projectGraph = null;
     this.outputFiles = {};
     this.module2Node(modules);
@@ -156,7 +157,7 @@ class Compiler {
     options.ext = path.extname(module.resource);
     options.nodeType = module._nodeType || 'module';
     // 新的modId
-    let modId = chameleonIdHandle(module.id);
+    let modId = chameleonIdHandle(module.id + '');
     options.identifier = modId;
     options.modId = modId; // 模块化的id todo优化hash
     if (options.nodeType === 'module') {

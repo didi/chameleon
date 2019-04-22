@@ -43,7 +43,7 @@ module.exports.replaceJsModId = function(source, module) {
       let dep = deps[i];
       if (rawRequest === dep.request) {
         if (dep.module && dep.module.request) {
-          return exports.chameleonIdHandle(dep.module.id)
+          return exports.chameleonIdHandle(dep.module.id + '')
         }
       }
     }
