@@ -383,6 +383,18 @@ _.getRouterConfig = function() {
   };
 }
 
+// 获取子项目的路由配置
+_.getSubProjectRouter = function() {
+  let subProject = cml.config.get().subProject;
+  let subProjectMap = {};
+  if (subProject && subProject.length > 0) {
+    subProject.forEach(function(npmName) {
+      let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
+      subProjectMap[npmName] = npmRouterConfig;
+    })
+  }
+  return subProjectMap;
+}
 
 // 分离文件
 _.splitParts = function ({
@@ -887,7 +899,7 @@ _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
       // if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
       //   result.isCml = true;
       // }
-      if (!_.RecordCml2Interface[result.filePath]) {
+      if (/\.cml$/.test(result.filePath) && !_.RecordCml2Interface[result.filePath]) {
         result.isCml = true;
       }
       return result;
@@ -1201,12 +1213,13 @@ _.isInline = function(filePath) {
   return false;
 }
 
-// 删除cml文件的后缀 因为有了script src语法之后  .cmlType.cml的语法已经
+// 删除cml文件的后缀 因为有了script src语法之后  .cmlType.cml的语法已经无法穷举，
+// 处理的文件分隔符为 /
 _.deleteExt = function(filePath) {
   let basename = path.basename(filePath);
   let dirname = path.dirname(filePath);
   basename = basename.split('.')[0];
-  let result = path.join(dirname, basename);
+  let result = dirname + '/' + basename;
   result = _.handleWinPath(result);
   return result;
 }

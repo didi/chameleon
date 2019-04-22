@@ -159,7 +159,6 @@ describe('index.js', function () {
     let result = _.splitParts({
       content: cmlFileContent
     });
-    debugger
     expect(result.template.length).to.equal(1);
     expect(result.script.length).to.equal(2);
     expect(result.style.length).to.equal(1);
@@ -341,7 +340,6 @@ describe('index.js', function () {
         path.join(cml.projectRoot, 'index.cml'),
         `../${item.key}/${item.key}`,
       ]
-
       let result = _.lintHandleComponentUrl(...params);
       expect(result.filePath).to.equal(path.join(__dirname, `./testlib/${item.key}/${item.key}.${item.name}`));
       expect(result.isCml).to.equal(undefined);
@@ -380,7 +378,7 @@ describe('index.js', function () {
     var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/page1/page1.cml');
     var comrefPath = 'vant-weapp/test'
 
-
+    debugger
     let result = _.handleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath, 'wx');
     expect(result.refUrl).to.equal('./../../npm/vant-weapp/test');
   })
@@ -650,8 +648,25 @@ describe('index.js', function () {
     cml.utils = _;
     var obj = {};
     _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
-    console.log(obj)
     expect(obj).to.has.property('usingComponents');
+
+  })
+
+  it(`deleteExt`, function () {
+    global.cml = {};
+    _.setCli(true);
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          subProject: ['cml-subproject']
+        }
+      }
+    }
+
+    let result = _.getSubProjectRouter();
+
+    expect(Object.keys(result).length).to.be.equal(1);
 
   })
 
@@ -667,7 +682,7 @@ describe('index.js', function () {
     let result3 = _.deleteExt(path3);
     expect(result1).to.be.equal('/src/pages/name');
     expect(result2).to.be.equal('/src/pages/name');
-    expect(result3).to.be.equal('name');
+    expect(result3).to.be.equal('./name');
 
   })
 })
