@@ -1,6 +1,6 @@
 {
   "name": "chameleon-tool",
-  "version": "0.4.0-mvvm.2",
+  "version": "0.4.0-mvvm.3",
   "description": "chameleon 脚手架工具",
   "main": "chameleon.js",
   "scripts": {
@@ -76,7 +76,7 @@
     "minimist": "1.2.0",
     "mvvm-cml-loader": "^0.4.0-mvvm.2",
     "mvvm-file-loader": "^0.4.0-mvvm.2",
-    "mvvm-pack": "^0.4.0-mvvm.2",
+    "mvvm-pack": "^0.4.0-mvvm.3",
     "mvvm-style-loader": "^0.4.0-mvvm.2",
     "node-phpcgi": "0.3.7",
     "node-watch": "^0.5.9",

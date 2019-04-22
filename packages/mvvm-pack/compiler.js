@@ -3,9 +3,10 @@ const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
-const parser = require('../mvvm-babel-parser/lib');
+const parser = require('mvvm-babel-parser/lib');
 const amd = require('./lib/amd.js');
 const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
+
 
 class Compiler {
   constructor(webpackCompiler, plugin) {

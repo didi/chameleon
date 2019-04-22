@@ -1,6 +1,6 @@
 {
   "name": "chameleon-tool",
-  "version": "0.4.0-mvvm.2",
+  "version": "0.4.0-mvvm.3",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -7725,6 +7725,16 @@
       "resolved": "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.7.tgz",
       "integrity": "sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s="
     },
+    "mvvm-babel-parser": {
+      "version": "0.4.0-mvvm.2",
+      "resolved": "https://registry.npmjs.org/mvvm-babel-parser/-/mvvm-babel-parser-0.4.0-mvvm.2.tgz",
+      "integrity": "sha512-VUTTkgm34dLCXyqT3c5szzaLBC3K4V+l2ZhaKE9QEKzBkwiC5uL/47V9rP3Re65pfRe4pDE/esgT2s6vd0dxFw==",
+      "requires": {
+        "babel-generator": "6.26.1",
+        "babel-traverse": "6.26.0",
+        "babel-types": "6.26.0"
+      }
+    },
     "mvvm-cml-loader": {
       "version": "0.4.0-mvvm.2",
       "resolved": "https://registry.npmjs.org/mvvm-cml-loader/-/mvvm-cml-loader-0.4.0-mvvm.2.tgz",
@@ -7877,9 +7887,9 @@
       }
     },
     "mvvm-pack": {
-      "version": "0.4.0-mvvm.2",
-      "resolved": "https://registry.npmjs.org/mvvm-pack/-/mvvm-pack-0.4.0-mvvm.2.tgz",
-      "integrity": "sha512-dIUDitrWD+F5Vo/lm8ZE7H1Uk0yaaZz7snfNMsmZPIxWqj7LGHy5XoDnlLgUeE1N8JA/Y9D1WGGwAV2dDMaokg==",
+      "version": "0.4.0-mvvm.3",
+      "resolved": "https://registry.npmjs.org/mvvm-pack/-/mvvm-pack-0.4.0-mvvm.3.tgz",
+      "integrity": "sha512-ELGGI7L+XEOagD2Z5xAmBtIwlFBoNDt8Nf9Skla7HHZNRzX8Nlh6QorqQqGDSuaR38J6BlYwyMag7UwJM7fVPg==",
       "requires": {
         "@babel/core": "7.4.3",
         "@babel/generator": "7.4.0",
@@ -7966,33 +7976,6 @@
           "version": "2.1.1",
           "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.1.tgz",
           "integrity": "sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg=="
-        },
-        "mvvm-babel-parser": {
-          "version": "0.4.0-mvvm.2",
-          "resolved": "https://registry.npmjs.org/mvvm-babel-parser/-/mvvm-babel-parser-0.4.0-mvvm.2.tgz",
-          "integrity": "sha512-VUTTkgm34dLCXyqT3c5szzaLBC3K4V+l2ZhaKE9QEKzBkwiC5uL/47V9rP3Re65pfRe4pDE/esgT2s6vd0dxFw==",
-          "requires": {
-            "babel-generator": "6.26.1",
-            "babel-traverse": "6.26.0",
-            "babel-types": "6.26.0"
-          }
-        },
-        "runtime-check": {
-          "version": "0.4.0-mvvm.2",
-          "resolved": "https://registry.npmjs.org/runtime-check/-/runtime-check-0.4.0-mvvm.2.tgz",
-          "integrity": "sha512-MofIVN38Iwe8lW7zFbjjkbJiXpGHPRmyeYkYQmVZlGLN0vCu13doMhh8k/fwJGNKd8ztz15dSnF1Ju90GLTnfg==",
-          "requires": {
-            "@babel/parser": "7.1.0",
-            "babel-generator": "6.26.1",
-            "babel-traverse": "6.26.0"
-          },
-          "dependencies": {
-            "@babel/parser": {
-              "version": "7.1.0",
-              "resolved": "https://registry.npmjs.org/@babel/parser/-/parser-7.1.0.tgz",
-              "integrity": "sha512-SmjnXCuPAlai75AFtzv+KCBcJ3sDDWbIn+WytKw1k+wAtEy6phqI2RqKh/zAnw53i1NR8su3Ep/UoqaKcimuLg=="
-            }
-          }
         },
         "source-map": {
           "version": "0.5.7",
@@ -12844,6 +12827,23 @@
       "integrity": "sha1-6Eg5bwV9Ij8kOGkkYY4laUFh7Ec=",
       "requires": {
         "aproba": "1.2.0"
+      }
+    },
+    "runtime-check": {
+      "version": "0.4.0-mvvm.2",
+      "resolved": "https://registry.npmjs.org/runtime-check/-/runtime-check-0.4.0-mvvm.2.tgz",
+      "integrity": "sha512-MofIVN38Iwe8lW7zFbjjkbJiXpGHPRmyeYkYQmVZlGLN0vCu13doMhh8k/fwJGNKd8ztz15dSnF1Ju90GLTnfg==",
+      "requires": {
+        "@babel/parser": "7.1.0",
+        "babel-generator": "6.26.1",
+        "babel-traverse": "6.26.0"
+      },
+      "dependencies": {
+        "@babel/parser": {
+          "version": "7.1.0",
+          "resolved": "https://registry.npmjs.org/@babel/parser/-/parser-7.1.0.tgz",
+          "integrity": "sha512-SmjnXCuPAlai75AFtzv+KCBcJ3sDDWbIn+WytKw1k+wAtEy6phqI2RqKh/zAnw53i1NR8su3Ep/UoqaKcimuLg=="
+        }
       }
     },
     "rxjs": {
