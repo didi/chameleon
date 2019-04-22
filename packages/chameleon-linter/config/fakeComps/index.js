@@ -5,10 +5,10 @@ const list = [{
     methods: [],
     props: [{
       name: 'store',
-      required: true
+      required: false
     }, {
       name: 'routerConfig',
-      required: true
+      required: false
     }],
     events: []
   }
