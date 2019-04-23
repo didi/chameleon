@@ -1,3 +1,8 @@
+## [0.3.0]
+
+###  0.3.0-alpha.8 灰度完成发布0.3.0版本
+
+
 ## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
 
 ###  Bug Fixes
