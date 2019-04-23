@@ -1,3 +1,62 @@
+## [0.3.0]
+
+###  0.3.0-alpha.8 灰度完成发布0.3.0版本
+
+
+## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
+
+###  Bug Fixes
+* 修复 全局安装chameleon-tool时的npm warn
+
+
+## [0.3.0-alpha.7](https://github.com/didi/chameleon/compare/v0.3.0-alpha.6...v0.3.0-alpha.7)
+
+###  Bug Fixes
+* 修复 build 模式autoprefixer被删除
+* 修复 chameleon.config.js 中的base配置优先级bug
+
+
+### Features
+* 增加了cmss.enableAutoPrefix 参数控制是否添加css的autoprefix
+
+
+## [0.3.0-alpha.6](https://github.com/didi/chameleon/compare/v0.3.0-alpha.5...v0.3.0-alpha.6)
+
+###  Bug Fixes
+* 修复 cml wx build执行后报错
+
+
+## [0.3.0-alpha.5](https://github.com/didi/chameleon/compare/v0.3.0-alpha.4...v0.3.0-alpha.5)
+
+###  Bug Fixes
+* 修复 cml weex build生成config.json 格式不正确
+
+
+## [0.3.0-alpha.4](https://github.com/didi/chameleon/compare/v0.3.0-alpha.3...v0.3.0-alpha.4)
+
+###  Bug Fixes
+* 回退模板的chameleon-ui-builtin@0.2.1 到chameleon-ui-builtin@0.2.0， 因为image组件不兼容样式设置
+
+
+
+## [0.3.0-alpha.3](https://github.com/didi/chameleon/compare/v0.3.0-alpha.2...v0.3.0-alpha.3)
+
+### Features
+* 升级初始化项目运行时依赖
+* weex config.json中增加md5字段
+
+### Bug Fixes
+* 组件间css优先级问题
+
+## [0.3.0-alpha.2](https://github.com/didi/chameleon/compare/v0.3.0-alpha.1...v0.3.0-alpha.2)
+
+### Features
+* 支持微信wxs 支付宝sjs 百度.filter.js的文件引用  [issues/67](https://github.com/didi/chameleon/issues/67)
+
+### Bug Fixes
+* 修复 小程序组件导出 样式文件压缩
+* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
+
 ## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
 
 ### Bug Fixes

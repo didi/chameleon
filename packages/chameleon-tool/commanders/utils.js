@@ -8,6 +8,7 @@ const watch = require('glob-watcher');
 const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -171,6 +172,8 @@ exports.startReleaseOne = async function(media, type) {
       await build.then(res => {
         exports.getWebBuildPromise(media, false);
       })
+    } else {
+      await build;
     }
   }
   if (media === 'build') {
@@ -200,6 +203,15 @@ exports.createConfigJson = function() {
   };
   // 获取weex jsbundle地址
   let weexjs = configObj.weexjs || '';
+  let md5str = '';
+  const weexjsName = weexjs.split('/').pop();
+  const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
+  if (cml.utils.isFile(weexjsPath)) {
+    const md5sum = crypto.createHash('md5');
+    const buffer = fs.readFileSync(weexjsPath);
+    md5sum.update(buffer); 
+    md5str = md5sum.digest('hex').toUpperCase();
+  }
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
@@ -241,6 +253,7 @@ exports.createConfigJson = function() {
         },
         weex: {
           url: weexjs,
+          md5: md5str,
           query: {
             path: item.path
           }

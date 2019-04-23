@@ -16,9 +16,17 @@ const { getScriptCode } = require('./interface-check/getScriptCode.js');
 const cmlUtils = require('chameleon-tool-utils');
 const prehandle = require('./utils/prehandle.js');
 const loaderMethods = require('./loaderMethods');
+const miniAppScript = require('./miniapp-script.js');
 let jsonObject = {};
 
 module.exports = function (content) {
+  // 记录cml组件依赖 用于extract-css 优先级排序
+  if(!this._compiler._cmlDepsMap) {
+    this._compiler._cmlDepsMap = {};
+  }
+  const componentDeps = [];
+  this._compiler._cmlDepsMap[this.resourcePath] = componentDeps;
+
   const self = this;
   const filePath = this.resourcePath;
   
@@ -183,6 +191,7 @@ module.exports = function (content) {
 
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
+    
     if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan')) {
       //生成json文件
       let jsonFile = filePath.replace(miniTplExtReg,'.json');
@@ -194,7 +203,7 @@ module.exports = function (content) {
 
       //wxml不处理直接生成
       self.emitFile(entryPath, content);
-
+      miniAppScript.addMiniAppScript(self,filePath,context,cmlType)
       var styleString = getWxmlRequest('styles');
       var scriptString = getWxmlRequest('script');
       output += `var __cml__style = ${styleString};\n`
@@ -209,8 +218,13 @@ module.exports = function (content) {
 
 
   function miniAppHandler() {
+    // 记录依赖
+    let npmComponents = cmlUtils.getTargetInsertComponents(self.resourcePath, cmlType, context) || [];
+    npmComponents.forEach(item=>{
+      componentDeps.push(item.filePath);
+    })
 
-    let newJsonObj = jsonHandler(self, jsonObject, cmlType) || {};
+    let newJsonObj = jsonHandler(self, jsonObject, cmlType, componentDeps) || {};
     newJsonObj.usingComponents = newJsonObj.usingComponents || {};
     let usingComponents ={} ;
 
@@ -392,7 +406,7 @@ module.exports = function (content) {
     let componetsStr = '';
     let coms = jsonObject.usingComponents || {};
     let customComKeys = Object.keys(coms);
-    let npmComponents = cmlUtils.getTargetInsertComponents(self.resourcePath, cmlType, context, currentUsedBuildInTagMap) || [];
+    let npmComponents = cmlUtils.getTargetInsertComponents(self.resourcePath, cmlType, context) || [];
     // 内置组件按需加载
     npmComponents = npmComponents.filter(item=>{
       // 如果是内置组件 选择模板中使用了的组件
@@ -413,6 +427,7 @@ module.exports = function (content) {
 
     //node_modules 中的组件引入
     npmComponents.forEach(item => {
+      componentDeps.push(item.filePath);
       defineComponets += `import ${toUpperCase(item.name)} from "${cmlUtils.handleRelativePath(self.resourcePath, item.filePath)}" \n`
     })
 
@@ -420,6 +435,7 @@ module.exports = function (content) {
       let comPath = coms[comKey];
       let { filePath } = cmlUtils.handleComponentUrl(context, self.resourcePath, comPath, cmlType);
       if(filePath) {
+        componentDeps.push(filePath);
         defineComponets += `import ${toUpperCase(comKey)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}" \n`
       } else {
         cmlUtils.log.error(`can't find component:${comPath} in ${self.resourcePath} `);

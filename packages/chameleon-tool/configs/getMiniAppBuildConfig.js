@@ -1,6 +1,5 @@
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var webpack = require('webpack');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var getMiniAppCommonConfig = require('./getMiniAppCommonConfig.js');
 var merge = require('webpack-merge')
 var getMiniAppExportConfig = require("./component_export/getMiniAppExportConfig");
@@ -29,9 +28,8 @@ module.exports = function (options) {
     buildConfig.plugins = [
       new OptimizeCSSPlugin({
         assetNameRegExp: targetObj.cssReg,
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } }
-      }),
-      new UglifyJsPlugin({})
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
+      })
     ]
   }
   if (media === 'export') {
