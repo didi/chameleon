@@ -1,11 +1,11 @@
 var path = require('path')
-var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+var ExtractTextPlugin = require('./node_modules/cml-extract-css-webpack-plugin')
 var fs = require('fs');
-const fse = require('fs-extra');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const fse = require('./node_modules/fs-extra');
+const HtmlWebpackPlugin = require('./node_modules/html-webpack-plugin')
 let webpostcssLoader = 'postcss-loader';
-const portfinder = require('portfinder');
-const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
+const portfinder = require('./node_modules/portfinder');
+const analyzeTemplate = require('./node_modules/chameleon-template-parse').analyzeTemplate;
 
 exports.getPostcssrcPath = function (type) {
   return path.join(__dirname, `./postcss/${type}/.postcssrc.js`);
