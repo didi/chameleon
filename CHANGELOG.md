@@ -1,5 +1,13 @@
 ## [0.3.0]
 
+###  0.3.1 (https://github.com/didi/chameleon/compare/v0.3.0...v0.3.1)
+
+###  Bug Fixes
+* 修复 web端模板错误
+
+
+## [0.3.0]
+
 ###  0.3.0-alpha.8 灰度完成发布0.3.0版本
 
 
