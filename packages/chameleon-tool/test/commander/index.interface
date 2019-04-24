@@ -1,0 +1,61 @@
+<script cml-type="interface">
+interface ReplaceInterface {
+  getMsg(msg: String): String;
+}
+
+</script>
+
+<script cml-type="web">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'web:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="weex">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'weex:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'wx:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="alipay">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'alipay:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="baidu">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'baidu:' + msg;
+  }
+}
+
+export default new Method();
+</script>
