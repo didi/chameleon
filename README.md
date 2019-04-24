@@ -12,9 +12,20 @@
 * [快速上手](https://CMLJS.org/doc/quick_start/quick_start.html)
 * [API文档](https://CMLJS.org/doc/api/api.html)
 * [组件文档](https://CMLJS.org/doc/component/component.html)
-* [资源汇总](https://github.com/chameleon-team/awesome-cml)：依赖库、demo示例、学习资源
+* [资源汇总💰](https://github.com/chameleon-team/awesome-cml)：依赖库、demo、完整应用示例、学习资源
 * [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 
+## 仓库更新说明
+本仓库仅包含编译时代码，全部开源代码参见：https://github.com/chameleon-team
+
+本仓库分支说明
+- master分支为稳定功能分支
+- v0.0.x分支为0.0.x版本代码
+- v0.1.x分支为0.1.x版本代码
+
+为了稳定性可控，不会频繁提交master更新。
+除了紧急bug修复，每份代码提交都有很严格的发布流程规范，会先在分支经历一段时间灰度期，确认稳定可用后才会合并到master，
+[进行中的项目分支介绍](https://github.com/didi/chameleon/wiki/%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE)
 
 ## CML 即 多端
 
@@ -33,10 +44,9 @@
 | <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/web-1.jpg" width="200px"/> </a>|  <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/wx-1.jpg" width="200px"/></a>| <a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/weex-1.jpg" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/baidu-1.png" width="200px"/> </a>|<a href="https://github.com/beatles-chameleon/cml-demo"><img src="https://cmljs.org/cml-demo/preview/alipay-1.png" width="200px"/></a> |
 
 
-
 ## 背景
 研发同学在端内既追求h5的灵活性，也要追求性能趋近于原生。
-面对入口扩张，主端、独立端、微信小程序、支付宝小程序、百度小程序、Android厂商联盟快应用，单一功能在各平台都要重复实现，开发和维护成本成倍增加。迫切需要维护一套代码可以构建多入口的解决方案，历经近20个月打磨，滴滴跨端解决方案Chameleon终于发布。真正专注于让一套代码运行多端。
+面对入口扩张，主端、独立端、微信小程序、支付宝小程序、百度小程序、Android厂商联盟快应用，单一功能在各平台都要重复实现，开发和维护成本成倍增加。迫切需要维护一套代码可以构建多入口的解决方案，滴滴跨端解决方案Chameleon终于发布。真正专注于让一套代码运行多端。
 
 
 ## 设计理念
@@ -69,6 +79,8 @@
 
 <b>通过以上对于开发语言的介绍，相信你看到只要是有过网页编程知识的人都可以快速的上手chameleon的开发</b>。
 
+## 多端高度一致
+深入到编程语言维度保障一致性，包括框架、生命周期、内置组件、事件通信、路由、界面布局、界面单位、组件作用域、组件通信等高度统一
 
 ## 丰富的组件
 在用CML写页面时，chameleon提供了[丰富的组件](https://CMLJS.org/doc/component/component.html)供开发者使用，内置的有`button switch radio checkbox`等组件，扩展的有`c-picker c-dialog c-loading`等等,覆盖了开发工作中常用的组件。
@@ -78,11 +90,14 @@
 为了方便开发者的高效开发，chameleon提供了[丰富的API库](https://CMLJS.org/doc/api/api.html),发布为npm包`chameleon-api`，里面包括了网络请求、数据存储、地理位置、系统信息、动画等方法。
 ## 自由定制API和组件
 基于强大的[多态协议](https://CMLJS.org/doc/framework/polymorphism/intro.html)，可自由扩展任意API和组件，不强依赖框架的更新。各端原始项目中已积累大量组件，也能直接引入到跨端项目中使用。
+
+基于强大的[多态协议](https://CMLJS.org/doc/framework/polymorphism/intro.html)，充分隔离各端差异化实现，轻松维护一套代码实现跨多端
+
 ## <a href="https://CMLJS.org/doc/framework/polymorphism/check.html">智能规范校验</a>
 代码规范校验，当出现不符合规范要求的代码时，编辑器会展示智能提示，不用挨个调试各端代码，同时命令行启动窗口也会提示代码的错误位置。
 
 ## <a href="https://CMLJS.org/doc/framework/progressive.html">渐进式跨端</a>
-既想一套代码运行多端，又不用大刀阔斧的重构项目，可以将多端重用组件用Chameleon开发，直接在原有项目里面调用。
+既想一套代码运行多端，又不用大刀阔斧的重构项目？不仅可以用cml开发页面，也可以将多端重用组件用cml开发，直接在原有项目里面调用。
 
 ## <a href="https://CMLJS.org/doc/framework/framework.html">先进前端开发体验</a>
 
@@ -91,6 +106,15 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 ## 联系我们
 
 [ChameleonCore@didiglobal.com](mailto:ChameleonCore@didiglobal.com)
+
+## [Beatles Chameleon 团队](https://github.com/chameleon-team)
+
+负责人：Conan
+
+内部成员：透心凉、Sgoddon、动机不纯、Jalon、Jack、卡尺哈哈、change、Observer、Kevin、guoqingSmile、Mr.MY、JiM、lzc、名字待定
+
+贡献者：
+期待你加入
 
 ##  微信 & QQ交流群
 
