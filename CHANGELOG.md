@@ -5,12 +5,23 @@
 * 增加 web端组件导出支持externals参数进行运行时分离
 * 增加 支持小程序配置原生tabbar
 
+## [0.3.2]
 
+###  Bug Fixes
+* 修复 web端模板错误
+
+## [0.3.1] 
+有bug
+
+## [0.3.0]
+0.3.0-alpha.9 灰度为正式版本
 
 ## [0.3.0-alpha.9](https://github.com/didi/chameleon/compare/v0.3.0-alpha.8...v0.3.0-alpha.9)
 
 ###  Bug Fixes
 * 修复 cml build 命令 不配置web端也会进行web端构建的bug
+
+###  0.3.0-alpha.8 灰度完成发布0.3.0版本
 
 
 ## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
@@ -48,7 +59,6 @@
 * 回退模板的chameleon-ui-builtin@0.2.1 到chameleon-ui-builtin@0.2.0， 因为image组件不兼容样式设置
 
 
-
 ## [0.3.0-alpha.3](https://github.com/didi/chameleon/compare/v0.3.0-alpha.2...v0.3.0-alpha.3)
 
 ### Features
@@ -63,9 +73,6 @@
 ### Features
 * 支持微信wxs 支付宝sjs 百度.filter.js的文件引用  [issues/67](https://github.com/didi/chameleon/issues/67)
 
-### Bug Fixes
-* 修复 小程序组件导出 样式文件压缩
-* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
 
 ## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
 
@@ -113,6 +120,14 @@
 
 - 修复 组件间css优先级 使父组件可覆盖子组件样式
 
+## [0.1.1](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.1.1)
+
+### Features
+
+- init component命令提示文案
+- init 多态组件中的json部分优化
+
+
 ## [0.1.0-alpha.4](https://github.com/didi/chameleon/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
 
 ### Features
@@ -152,7 +167,11 @@
 - 支持百度小程序和支付宝小程序
 - 支持mock多域名请求
 
+## [0.0.16](https://github.com/didi/chameleon/compare/v0.0.15...v0.0.16)
 
+### Bug Fixes
+* 修复 小程序组件导出 样式文件压缩
+* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
 
 ## [0.0.13](https://github.com/didi/chameleon/compare/b2aa4b...6dc5ff9#diff-b21d2ccb648a84e2a7348250c471cc2aL32)
 

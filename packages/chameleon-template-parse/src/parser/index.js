@@ -84,7 +84,6 @@ exports.parseTagForSlider = function(path, type, options) {
     }
   }
 }
-
 exports.parseRefStatement = function parseRefStatement(path, type, options) {
   let node = path.node;
   let lang = options.lang;

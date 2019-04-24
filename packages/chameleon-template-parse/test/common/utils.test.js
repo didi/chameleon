@@ -6,16 +6,30 @@ describe('utils', function() {
       expect(utils.trimCurly(`{{name}}`)).to.equal(`name`)
     })
   });
-  //驼峰化
+  // 驼峰化
   describe('camelize', function() {
-    it('transform ab-c to abC' , function() {
+    it('transform ab-c to abC', function() {
       expect(utils.camelize(`abc-de-f`)).to.equal(`abcDeF`)
     })
   });
-  //中划线化
+  // 中划线化
   describe('dasherise', function() {
-    it('transform  abcDeF to abc-de-f' , function() {
+    it('transform  abcDeF to abc-de-f', function() {
       expect(utils.dasherise(`abcDeF`)).to.equal(`abc-de-f`)
+    })
+  });
+  describe('analysisFor', function() {
+    it('transform  analysisFor ', function() {
+      expect(utils.analysisFor(`(item,index) in items`)).to.includes.keys(`item`)
+      expect(utils.analysisFor(`(item,index) in items`)).to.includes.keys(`index`)
+      expect(utils.analysisFor(`(item,index) in items`)).to.includes.keys(`list`)
+    })
+  });
+  describe('analysisFor', function() {
+    it('transform  analysisFor ', function() {
+      expect(utils.analysisFor(`item in items`)).to.includes.keys(`item`)
+      expect(utils.analysisFor(`item in items`)).to.includes.keys(`index`)
+      expect(utils.analysisFor(`item in items`)).to.includes.keys(`list`)
     })
   });
   describe('getModelKey', function() {
@@ -82,12 +96,6 @@ describe('utils', function() {
     it('getStaticValueFromMixinValue for cml', function() {
       let result = utils.getStaticValueFromMixinValue(`a b{{true? 'cls1':'cls2'}} {{variable}}b c `);
       expect(result).to.equal(`a b   b c `);
-    })
-  });
-  describe('getDynamicValuefromMixinValue', function() {
-    it('getDynamicValuefromMixinValue for cml', function() {
-      let result = utils.getDynamicValuefromMixinValue(`a b{{true? 'cls1':'cls2'}} {{variable}}b c `);
-      expect(result).to.equal(`{{true? 'cls1':'cls2'}}{{variable}}`);
     })
   });
   describe('transformWxDynamicStyleCpxToRpx', function() {

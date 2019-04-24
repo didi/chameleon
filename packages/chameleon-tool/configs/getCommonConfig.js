@@ -170,7 +170,6 @@ module.exports = function (options) {
   if (options.analysis) {
     commonConfig.plugins.push(new BundleAnalyzerPlugin())
   }
-
   let devApiPrefix = `http://${config.ip}:${webServerPort}`
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
