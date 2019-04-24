@@ -142,16 +142,7 @@ _.getStaticValueFromMixinValue = function(value) {
   let reg = /[{]{2}[^{}]*?[}]{2}/g;
   return value.replace(reg, ' ');
 }
-// 注意如果匹配不到则会返回null;
-_.getDynamicValuefromMixinValue = function(value) {
-  let reg = /[{]{2}[^{}]*?[}]{2}/g;
-  let matches = value.match(reg);
-  if (matches) {
-    return matches.join('');
-  } else {
-    return value;
-  }
-}
+
 
 /**
  * @params:

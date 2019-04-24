@@ -133,9 +133,6 @@ parseClass.tap('weex-vue', (args) => {
 })
 parseClass.tap('wx-alipay-baidu-vue', (args) => {
   let { node, type, options: {lang, filePath, usingComponents} } = args;
-  if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
-    let tagName = node.openingElement.name.name;
-    let attributes = node.openingElement.attributes;
     let classNodes = attributes.filter((attr) => // 如果没有符合条件的classNodes则返回一个空数组
       attr.name.name === 'class' || attr.name.name.name === 'class'
     );

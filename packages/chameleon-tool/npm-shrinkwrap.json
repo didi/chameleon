@@ -2253,11 +2253,6 @@
       "resolved": "https://registry.npmjs.org/chameleon-errors-webpack-plugin/-/chameleon-errors-webpack-plugin-0.3.0-alpha.3.tgz",
       "integrity": "sha512-FOnIafps0i3332dXg5Q7bm7T9ix/V+pvvxFUAzJ8nKmsgC/7epU3o8pEkoSQEo3Iy3O9+Qpb3ZDGBukHyA368w==",
       "requires": {
-        "chalk": "1.1.3",
-        "error-stack-parser": "2.0.2",
-        "string-width": "2.1.1"
-      },
-      "dependencies": {
         "ansi-styles": {
           "version": "2.2.1",
           "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-2.2.1.tgz",

@@ -84,12 +84,6 @@ describe('utils', function() {
       expect(result).to.equal(`a b   b c `);
     })
   });
-  describe('getDynamicValuefromMixinValue', function() {
-    it('getDynamicValuefromMixinValue for cml', function() {
-      let result = utils.getDynamicValuefromMixinValue(`a b{{true? 'cls1':'cls2'}} {{variable}}b c `);
-      expect(result).to.equal(`{{true? 'cls1':'cls2'}}{{variable}}`);
-    })
-  });
   describe('transformWxDynamicStyleCpxToRpx', function() {
     it('cml-syanx:transformWxDynamicStyleCpxToRpx for wx dynamic style', function() {
       let result = utils.transformWxDynamicStyleCpxToRpx(`height:100cpx;{{'width:'+cpx+'cpx;'+'height:'+cpx2+'cpx;background-color:red;'}}height:200cpx;width:100cpx;`);
