@@ -245,10 +245,10 @@ describe('parse-template-cml-all', function() {
   describe('parse-ref-transform-dynamic', function() {
     let source = `<view ref='{{ refVlaue }}'></view>`;
     it('test-ref-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div id="value" v-bind:ref="( refVlaue )" class=" cml-base cml-view"></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div v-bind:ref="( refVlaue )" class=" cml-base cml-view"></div>`);
     });
     it('test-ref-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div id="value" v-bind:ref="( refVlaue )" class=" cml-base cml-view"></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div v-bind:ref="( refVlaue )" class=" cml-base cml-view"></div>`);
     });
     it('test-ref-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id="{{ refVlaue }}"></view>`);
@@ -264,13 +264,13 @@ describe('parse-template-cml-all', function() {
   describe('parse-ref-transform-static', function() {
     let source = `<view ref=' refVlaue '></view>`;
     it('test-ref-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div id="value" ref=" refVlaue " class=" cml-base cml-view"></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div ref=" refVlaue " class=" cml-base cml-view"></div>`);
     });
     it('test-ref-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div id="value" ref=" refVlaue " class=" cml-base cml-view"></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div ref=" refVlaue " class=" cml-base cml-view"></div>`);
     });
     it('test-ref-transform-wx', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view id=" refVlaue " class=" cml-base cml-view  _cml_ref_lmc_"></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id=" refVlaue "></view>`);
     });
     it('test-ref-transform-wx', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view  _cml_ref_lmc_" id=" refVlaue "></view>`);

@@ -222,7 +222,7 @@ describe('parse-template-vue-all', function() {
     });
     // wx baidu alipay
     it('parse-class-miniapp', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="{{true ? \'cls2\':\'cls3\'}} cls1  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-view cml-thirdComp1"></thirdComp1></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class="{{true ? 'cls2':'cls3'}} cls1  cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4  cml-view cml-thirdComp1"></thirdComp1><view class="{{computedCls}}  cml-base cml-view"></view></view>`);
     });
   });
   // style 以及 miniappp端cpx动态测试
