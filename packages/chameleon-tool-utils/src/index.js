@@ -1040,55 +1040,40 @@ function getPluginKey(type, key) {
 // 获取export模式的入口cml文件
 _.getExportEntry = function (cmlType, context, entry = []) {
   let exportFiles = [];
+  function addExport(filePath) {
+    if (_.isFile(filePath) && !~exportFiles.indexOf(filePath)) {
+      exportFiles.push(filePath);
+    }
+  }
   if (entry && entry.length > 0) {
     entry.forEach(item => {
       let filePath = path.join(context, item);
+      // cml文件插入
       if (_.isFile(filePath)) {
-        exportFiles.push(filePath);
+        if (path.extname(filePath) === '.cml') {
+          exportFiles.push(filePath);
+        } else if (path.extname(filePath) === '.interface') {
+          let content = fs.readFileSync(filePath, {encoding: 'utf-8'});
+          let cmlFilePath = _.findPolymorphicComponent(filePath, content, cmlType);
+          addExport(cmlFilePath);
+        }
       } else if (_.isDirectory(filePath)) {
         let cmlFilePath = path.join(filePath, '**/*.cml');
         let interfaceFilePath = path.join(filePath, '**/*.interface');
-        // 需要忽略掉的组件
-        // let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu'];
-        // if (~ignoreComponents.indexOf(cmlType)) {
-        //   ignoreComponents.splice(ignoreComponents.indexOf(cmlType), 1);
-        // }
-        // ignoreComponents = ignoreComponents.map(item => `\\.${item}\\.cml`);
-
-        // let ignoreReg = new RegExp(`(${ignoreComponents.join('|')})`);
-
-        // glob.sync(filePath).forEach(cmlPath => {
-        //   // 其他端的多态cml组件排除在外
-        //   if (!ignoreReg.test(cmlPath)) {
-        //     exportFiles.push(cmlPath);
-        //   }
-        // })
-        // 多态组件有了include语法之后不能采用上面的方法
         // 1 先找interface指定的多态组件
-        // 2 再找cml文件 不能根据文件名称区分端，如果所有cml文件 也会把其他端多态组件引入，所以取只有一个逗号的cml文件
-        // todo
+        // 2 再找cml文件 不能根据文件名称区分端，如果所有cml文件 也会把其他端多态组件引入，所以取只有一个逗号的cml文件为非多态组件
+        // 获取重复添加入口时有校验
         glob.sync(interfaceFilePath).forEach(interfacePath => {
           // 其他端的多态cml组件排除在外
           let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
           let cmlFilePath = _.findPolymorphicComponent(interfacePath, content, cmlType);
-
-          if (_.isFile(cmlFilePath)) {
-            // 组件的名称是interface文件的名称
-            if (!~exportFiles.indexOf(cmlFilePath)) {
-              exportFiles.push(cmlFilePath);
-            }
-          }
+          addExport(cmlFilePath);
         })
 
         glob.sync(cmlFilePath).forEach(item => {
-          if (_.isFile(item)) {
-            let basename = path.basename(item);
-            if (basename.split('.').length === 2) {
-              // 组件的名称是interface文件的名称
-              if (!~exportFiles.indexOf(cmlFilePath)) {
-                exportFiles.push(cmlFilePath);
-              }
-            }
+          let basename = path.basename(item);
+          if (basename.split('.').length === 2) {
+            addExport(item);
           }
         })
       }

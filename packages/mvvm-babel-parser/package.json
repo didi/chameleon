@@ -10,7 +10,8 @@
   "dependencies": {
     "babel-generator": "6.26.1",
     "babel-traverse": "6.26.0",
-    "babel-types": "6.26.0"
+    "babel-types": "6.26.0",
+    "chai": "^4.2.0"
   },
   "scripts": {
     "test": "mocha"

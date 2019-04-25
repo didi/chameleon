@@ -378,7 +378,6 @@ describe('index.js', function () {
     var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/page1/page1.cml');
     var comrefPath = 'vant-weapp/test'
 
-    debugger
     let result = _.handleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath, 'wx');
     expect(result.refUrl).to.equal('./../../npm/vant-weapp/test');
   })
@@ -685,4 +684,20 @@ describe('index.js', function () {
     expect(result3).to.be.equal('name');
 
   })
+
+  it(`getExportEntry`, function () {
+    global.cml = {};
+    _.setCli(true);  
+    global.cml.event = new EventEmitter();
+    global.cml.utils = _;
+    global.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    let result = _.getExportEntry('web',global.projectRoot, [
+      'src/components',
+      'src/notfinr.cml',
+      'src/components/com2/com2.interface'
+    ]);
+    console.log(result)
+    expect(result.length).to.be.equal(2);
+  })
+   
 })
