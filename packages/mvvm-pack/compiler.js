@@ -30,7 +30,9 @@ class Compiler {
     ]
     this.outputFiles = {}; // 输出文件 key为文件路径 value为输出文件内容
     this.projectGraph = null;
-    this.log = new Log();
+    this.log = new Log({
+      level: plugin.logLevel || 2
+    });
     this.event = new EventEmitter();
     this.webpackCompiler = webpackCompiler;
 
