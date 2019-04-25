@@ -9,11 +9,20 @@ class mvvmGraphPlugin {
     let self = this;
     let mvvmCompiler = new MvvmCompiler(compiler, self.platformPlugin);
     compiler._mvvmCompiler = mvvmCompiler;
+    compiler._platformPlugin = self.platformPlugin;
     // 监听cml中查找组件
-    cml.event.on('find-component', function({context, cmlFilePath, comPath, cmlType}, result) {
-      // 如果是当前端 则触发用户的查找事件
+    cml.event.on('find-component', function(result) {
+      let {cmlType, filePath} = result;
+      // 如果是当前端 则进行原生组件查找
       if (cmlType === self.options.cmlType) {
-        mvvmCompiler.emit('find-component', {context, cmlFilePath, comPath, cmlType}, result);
+        let extList = self.platformPlugin.originComponentExtList;
+        for (let i = 0; i < extList.length; i++) {
+          let extFilePath = filePath + extList[i];
+          if (cml.utils.isFile(extFilePath)) {
+            result.extPath = extFilePath;
+            break;
+          }
+        }
       }
     })
     self.platformPlugin.register(mvvmCompiler);

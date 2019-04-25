@@ -3,12 +3,14 @@ const path = require('path');
 const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
+const resolve = require('resolve');
 
 
 module.exports = function(options) {
   let {type, media} = options;
   let npmName = cml.config.get().extPlatform[type];
-  let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
+  // let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
+  let PlatformPlugin = require(resolve.sync(npmName, { basedir: cml.projectRoot }));
   // 用户端扩展插件
   let platformPlugin = new PlatformPlugin({
     cmlType: type,

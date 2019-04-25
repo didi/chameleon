@@ -722,7 +722,6 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
         filePath: '',
         refUrl
       };
-      cml.event.emit('find-component', {context, cmlFilePath, comPath, cmlType}, result);
       // 通过扩展找到文件
       if (result.filePath && _.isFile(result.filePath)) {
         return result;
@@ -743,17 +742,6 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
   }
 
-  // refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
-  // if (cmlType === 'wx') {
-  //   refUrl = refUrl.replace(/\.wxml$/g, '');
-  // }
-  // if (cmlType === 'alipay') {
-  //   refUrl = refUrl.replace(/\.axml$/g, '');
-  // }
-
-  // if (cmlType === 'baidu') {
-  //   refUrl = refUrl.replace(/\.swan$/g, '');
-  // }
   refUrl = _.deleteExt(refUrl);
 
   return {
@@ -828,6 +816,16 @@ _.findComponent = function (filePath, cmlType) {
     }
   }
 
+  let result = {
+    cmlType,
+    filePath,
+    extPath: ''
+  }
+  // 4 扩展端原生组件
+  cml.event.emit('find-component', result);
+  if (result.extPath) {
+    return result.extPath;
+  }
 
   return false;
 }
