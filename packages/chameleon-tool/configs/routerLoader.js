@@ -23,6 +23,24 @@ module.exports = function(content) {
       `
     })
 
+    // subProject 中的页面
+    let subProject = cml.config.get().subProject;
+    if (subProject && subProject.length > 0) {
+      subProject.forEach(function(npmName) {
+        let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
+        npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+          let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
+          routerList += `
+            {
+              path: "${item.url}",
+              name: "${item.name}",
+              component: require("${cmlFilePath}").default
+            },
+            `
+        })
+      })
+    }
+
     let routerTemplate = `
     //根据配置生成路由
     {

@@ -1,9 +1,13 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
-module.exports = {
+
+let result = {
   "plugins": {
     // to edit target browsers: use "browserslist" field in package.json
-    "postcss-import": {},
-    "autoprefixer": cml.config.get().cmss.autoprefixOptions
-
+    "postcss-import": {}
   }
 }
+if(cml.config.get().cmss.enableAutoPrefix === true) {
+  result.plugins.autoprefixer = cml.config.get().cmss.autoprefixOptions
+}
+
+module.exports = result;

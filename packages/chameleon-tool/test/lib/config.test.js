@@ -26,6 +26,25 @@ describe('config', function () {
 
   it('config assign', function () {
     let obj = {
+      base: {
+        dev: {
+          base: true
+        },
+        build: {
+          base: true
+        }
+      }
+    }
+    config.merge(obj);
+
+    let newresult = config.get();
+
+    expect(newresult.wx.dev.base).to.equal(true);
+    expect(newresult.web.dev.base).to.equal(true);
+  })
+
+  it('config assign', function () {
+    let obj = {
       templateType: 'test', // 直接覆盖
       check: { // merge
         enableTypes: ['test'] // 直接覆盖

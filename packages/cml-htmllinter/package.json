@@ -1,6 +1,6 @@
 {
   "name": "cml-htmllint",
-  "version": "0.1.1",
+  "version": "0.3.0-alpha.3",
   "description": "An chameleon template linter.",
   "keywords": [
     "html",
@@ -10,7 +10,9 @@
   ],
   "author": "Chameleon-Team",
   "main": "lib/index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "nyc ./node_modules/mocha/bin/mocha ./test/**/*.test.js --timeout=3000"
+  },
   "mail": "ChameleonCore@didiglobal.com",
   "license": "Apache",
   "devDependencies": {

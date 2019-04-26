@@ -14,10 +14,15 @@ parseEvent.tap('web-weex', (args) => {
   if (type === 'web' || type === 'weex') {
     let container = path.container;
     let value = container.value;
+    let isStopBubble = false;// 默认都是冒泡的
     if (node.namespace.name === 'c-catch') {
-      node.namespace.name = `${node.name.name}.stop`;
+      node.name.name === 'tap' && (node.name.name = 'click');
+      isStopBubble = true;
+      // node.name.name = `${node.name.name}.stop`;
+    } else {
+      node.name.name === 'tap' && (node.name.name = 'click');
+      isStopBubble = false;
     }
-    node.name.name === 'tap' && (node.name.name = 'click');
     node.namespace.name = 'v-on';
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     let jsxElementNodePath = path.findParent((path) => t.isJSXElement(path.node));
@@ -36,17 +41,17 @@ parseEvent.tap('web-weex', (args) => {
     let match = utils.isInlineStatementFn(handler);
     if (!match) {
       // 不是内联函数执行语句 handler => "handleClick"
-      value.value = `${eventProxy.eventProxyName}($event,'${handler}')`;
+      value.value = `${eventProxy.eventProxyName}($event,'${handler}',${isStopBubble})`;
     } else {
       // handler ==> handleClick() handleClick(item,1,2) ..
       // 如果是 handleClick()  handleClick(item,name,1,2,"item","1",'2',true,"true")两种情况
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       if (!utils.trim(match[1])) { // 对应handleClick(   ) 中的括号中的值；
-        value.value = `${eventProxy.inlineStatementEventProxy}('${handler}')`
+        value.value = `${eventProxy.inlineStatementEventProxy}('${handler}',${isStopBubble})`
       } else { // handleClick(item,name,1,2,"item","1",'2',true,"true")
         let args = match && utils.doublequot2singlequot(match[1]);
-        value.value = `${eventProxy.inlineStatementEventProxy}('${handler}',${args})`
+        value.value = `${eventProxy.inlineStatementEventProxy}('${handler}',${isStopBubble},${args})`
       }
 
     }
@@ -60,6 +65,7 @@ parseEvent.tap('wx-baidu', (args) => {
     let value = container.value;
     let parentPath = path.parentPath;
     let name = node.name.name === 'click' ? 'tap' : node.name.name;
+    name = utils.dasherise(name);
     let wxName = node.name.name === 'click' ? 'tap' : node.name.name;
     let handler = value.value && utils.trim(value.value);
     let match = utils.isInlineStatementFn(handler);
@@ -87,7 +93,7 @@ parseEvent.tap('wx-baidu', (args) => {
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       value.value = `${eventProxy.inlineStatementEventProxy}`;
-      let args = match && utils.doublequot2singlequot(match[1]);
+      let args = match && utils.doublequot2singlequot(match[1]).trim();
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-args`), t.stringLiteral(args)))
       if (args) {
@@ -142,7 +148,7 @@ parseEvent.tap('alipay', (args) => {
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       value.value = `${eventProxy.inlineStatementEventProxy}`;
-      let args = match && utils.doublequot2singlequot(match[1]);
+      let args = match && utils.doublequot2singlequot(match[1]).trim();
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
       parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-args`), t.stringLiteral(args)))
       if (args) {

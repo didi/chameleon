@@ -365,6 +365,22 @@ describe('index.js', function () {
     expect(result.isCml).to.equal(true);
   })
 
+  it('handleComponentUrl isCml true wxml', function() {
+    global.cml = {};
+    _.setCli(true);
+    cml.config = require('./testlib/cli/config.js');
+    cml.utils = require('../src/index.js');
+    cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    cml.config.merge({
+    })
+    var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/page1/page1.cml');
+    var comrefPath = 'vant-weapp/test'
+
+
+    let result = _.handleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath, 'wx');
+    expect(result.refUrl).to.equal('./../../npm/vant-weapp/test');
+  })
+
   it('findInterfaceFile', function() {
     global.cml = {};
     _.setCli(true);
@@ -495,23 +511,9 @@ describe('index.js', function () {
 
   })
 
-  it(`addNpmComponents`, function () {
-    global.cml = {};
-    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
-    cml.config = {
-      get() {
-        return {
-          cmlComponents: ['npm-components']
-        }
-      }
-    }
-    _.setCli(true);
-    cml.utils = _;
-    var obj = {};
-    _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
-    console.log(obj)
-    expect(obj).to.has.property('usingComponents');
-
+  it('handleSpecialChar', function() {
+    let result = _.handleSpecialChar('npm/@didi/name');
+    expect(result).to.be.equal('npm/_didi/name')
   })
 
   it(`getJsonFileContent cli app`, function () {
@@ -552,4 +554,100 @@ describe('index.js', function () {
     let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/components/com1/com1.cml'), 'wx');
     expect(typeof result).to.equal('object');
   })
+
+  it(`mkdir`, function () {
+    let pathdir = path.join(__dirname, 'temp')
+    _.mkdir(pathdir)
+    expect(_.isDir(pathdir)).to.be.equal(true)
+  })
+
+  it(`copyNpm and subProject`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          subProject: ['cml-pages'],
+          copyNpm: {
+            wx: ['copy-npm']
+          }
+        }
+      }
+    }
+    _.setCli(true);
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/app/app.cml'), 'wx');
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`getNpmComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    let result = _.getNpmComponents('wx', cml.projectRoot);
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`getBuildinComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    let result = _.getBuildinComponents('wx', cml.projectRoot);
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`getTargetInsertComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    let result = _.getTargetInsertComponents(path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    expect(typeof result).to.equal('object');
+
+  })
+
+  it(`addNpmComponents`, function () {
+    global.cml = {};
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          cmlComponents: ['npm-components']
+        }
+      }
+    }
+    _.setCli(true);
+    cml.utils = _;
+    var obj = {};
+    _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    console.log(obj)
+    expect(obj).to.has.property('usingComponents');
+
+  })
+  
 })

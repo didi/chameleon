@@ -5,15 +5,15 @@ const utils = require('./utils');
 const config = require('./config');
 const chalk = require('chalk');
 
-process.on('uncaughtException', function (err) {
-  console.log(err);
-});
+// process.on('uncaughtException', function (err) {
+//   console.log(err);
+// });
 
 
-process.on('unhandledRejection', error => {
-  // Will print "unhandledRejection err is not defined"
-  console.log('unhandledRejection', error.message);
-});
+// process.on('unhandledRejection', error => {
+//   // Will print "unhandledRejection err is not defined"
+//   console.log('unhandledRejection', error.message);
+// });
 
 /**
  * 获取cml文件列表

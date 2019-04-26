@@ -44,15 +44,6 @@ describe('process-template', function() {
     it('test alipay component wraped', function() {
       let source = `<view><input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
       expect(processTemplate.preParseAliComponent(source, 'alipay', options)).to.equal(`<view  ><input  class="cls1" style="width:100cpx" /><view  class=\'btn\' ><button  class=\'btn\' /></view>你好</view>`)
-    });
-    // 不传options
-    it('test alipay component wraped', function() {
-      let source = `<view><input class="cls1" style="width:100cpx" /><button class='btn' />你好</view>`
-      expect(processTemplate.preParseAliComponent(source, 'alipay', {})).to.equal(`<view  ><input  class="cls1" style="width:100cpx" /><button  class=\'btn\' />你好</view>`)
-    });
-    it('test alipay component wraped', function() {
-      let source = `<view><input class="cls1" style="width:100cpx" />'<textarea>faf<textarea>'<button class='btn' />你好</textarea>`
-      expect(processTemplate.preParseAliComponent(source, 'alipay', {})).to.equal(`<view  ><input  class="cls1" style="width:100cpx" />\'<textarea  >faf<textarea  >\'<button  class=\'btn\' />你好</textarea>`)
     })
   });
   describe('preParseBindAttr', function() {

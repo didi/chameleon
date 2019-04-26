@@ -131,7 +131,16 @@ module.exports = (result) => {
 
     root.walkDecls((decl) => {
       Object.keys(RULER_MAP).forEach(key => {
-        if (RULER_MAP[key].rule(decl, platform)) {
+        let stylePolymorphic = false;
+        let media = decl.parent && decl.parent.parent;
+
+        if (media && media.name == 'media') {
+          if (new RegExp(/cml\-type\s*\(\s*[\S]+\s*\)/g).test(media.params)) {
+            stylePolymorphic = true;
+          }
+        }
+
+        if (!stylePolymorphic && RULER_MAP[key].rule(decl, platform)) {
           result.style.messages.push({
             line: decl.source.start.line,
             column: decl.source.start.column,

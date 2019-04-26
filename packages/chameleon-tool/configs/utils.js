@@ -1,9 +1,9 @@
 var path = require('path')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var fs = require('fs');
 const fse = require('fs-extra');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-let webpostcssLoader;
+let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
 
@@ -213,10 +213,12 @@ exports.getMiniAppEntryFunc = function (cmlType) {
 }
 
 exports.getMiniAppEntry = function (cmlType) {
-  var root = cml.projectRoot;
-  var entry = {};
-  entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`]
-  var projectPath = path.resolve(root, 'src');
+  let options = cml.config.get()[cmlType][cml.media];
+
+  let root = cml.projectRoot;
+  let entry = {};
+  entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`];
+  let projectPath = path.resolve(root, 'src');
 
   // 记录已经添加的入口，防止重复循环添加
   let hasEntryedPath = [];
@@ -228,6 +230,9 @@ exports.getMiniAppEntry = function (cmlType) {
       addEntry(item);
     })
   } else {
+    if (options.babelPolyfill === true) {
+      entry.common.unshift(path.join(__dirname, 'default/miniappPolyfill.js'));
+    }
     entry.app = path.join(projectPath, 'app/app.cml');
     let appjson = cml.utils.getJsonFileContent(path.resolve(cml.projectRoot, 'src/app/app.cml'), cmlType)
     appjson.pages && appjson.pages.forEach(item => {
@@ -244,6 +249,24 @@ exports.getMiniAppEntry = function (cmlType) {
     npmComponents.forEach(item => {
       addEntry(item.filePath)
     })
+
+    // subProject的入口
+    let subProject = cml.config.get().subProject;
+    if (subProject && subProject.length > 0) {
+      subProject.forEach(function(npmName) {
+        let npmRouterConfig = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}));
+        npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+          let routePath = item.path;
+          let cmlFilePath = path.join(root, 'node_modules', npmName, 'src', routePath + '.cml');
+          if (cml.utils.isFile(cmlFilePath)) {
+            addEntry(cmlFilePath);
+          } else {
+            cml.log.error(`${cmlFilePath} is not find!`);
+          }
+        })
+
+      })
+    }
   }
   exports.updateEntry({ entry, cmlType, root, addEntry });
 
@@ -254,11 +277,16 @@ exports.getMiniAppEntry = function (cmlType) {
     if (!chameleonFilePath) {
       return;
     }
+    if (!cml.utils.isFile(chameleonFilePath)) {
+      return;
+    }
     if (~hasEntryedPath.indexOf(chameleonFilePath)) {
       return;
     }
     hasEntryedPath.push(chameleonFilePath);
     let entryName = cml.utils.getPureEntryName(chameleonFilePath, cmlType, root);
+    // 小程序中有文件夹有@符号无法上传  决定生成样式文件路径
+    entryName = cml.utils.handleSpecialChar(entryName);
     entry[entryName] = chameleonFilePath;
 
     // 处理json文件中引用的组件作为入口,wxml文件
@@ -406,6 +434,9 @@ exports.getWeexEntry = function (options) {
   if (options.media === 'dev') {
     entryFile.push(path.join(cml.root, 'configs/weex_liveload/liveLoad.js'))
   }
+  if (options.babelPolyfill === true) {
+    entryFile.unshift('@babel/polyfill');
+  }
   var entryName = exports.getEntryName();
   entry[entryName] = entryFile;
   return entry;
@@ -485,7 +516,8 @@ exports.getBabelPath = function () {
     babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
     babelPath.push(path.join(cml.root, 'node_modules', item))
   })
-  return babelPath;
+  let configBabelPath = cml.config.get().babelPath || [];
+  return configBabelPath.concat(babelPath);
 }
 exports.getExcludeBabelPath = function() {
   let excludeBablePath = [/(\.min\.js)/, /node_modules\/core-js/];
@@ -495,8 +527,7 @@ exports.getExcludeBabelPath = function() {
 
 exports.getGlobalCheckWhiteList = function () {
   return [
-    'node_modules/vuex/dist/vuex.esm.js',
-    "commonlogin.min.js"
+    /node_modules[\/\\](mobx|vuex)/
   ].concat(cml.config.get().globalCheckWhiteList)
 }
 

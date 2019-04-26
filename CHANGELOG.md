@@ -1,3 +1,111 @@
+## [0.3.2]
+
+###  Bug Fixes
+* 修复 web端模板错误
+
+## [0.3.1] 有bug
+
+## [0.3.0]
+
+###  0.3.0-alpha.8 灰度完成发布0.3.0版本
+
+
+## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
+
+###  Bug Fixes
+* 修复 全局安装chameleon-tool时的npm warn
+
+
+## [0.3.0-alpha.7](https://github.com/didi/chameleon/compare/v0.3.0-alpha.6...v0.3.0-alpha.7)
+
+###  Bug Fixes
+* 修复 build 模式autoprefixer被删除
+* 修复 chameleon.config.js 中的base配置优先级bug
+
+
+### Features
+* 增加了cmss.enableAutoPrefix 参数控制是否添加css的autoprefix
+
+
+## [0.3.0-alpha.6](https://github.com/didi/chameleon/compare/v0.3.0-alpha.5...v0.3.0-alpha.6)
+
+###  Bug Fixes
+* 修复 cml wx build执行后报错
+
+
+## [0.3.0-alpha.5](https://github.com/didi/chameleon/compare/v0.3.0-alpha.4...v0.3.0-alpha.5)
+
+###  Bug Fixes
+* 修复 cml weex build生成config.json 格式不正确
+
+
+## [0.3.0-alpha.4](https://github.com/didi/chameleon/compare/v0.3.0-alpha.3...v0.3.0-alpha.4)
+
+###  Bug Fixes
+* 回退模板的chameleon-ui-builtin@0.2.1 到chameleon-ui-builtin@0.2.0， 因为image组件不兼容样式设置
+
+
+## [0.3.0-alpha.3](https://github.com/didi/chameleon/compare/v0.3.0-alpha.2...v0.3.0-alpha.3)
+
+### Features
+* 升级初始化项目运行时依赖
+* weex config.json中增加md5字段
+
+### Bug Fixes
+* 组件间css优先级问题
+
+## [0.3.0-alpha.2](https://github.com/didi/chameleon/compare/v0.3.0-alpha.1...v0.3.0-alpha.2)
+
+### Features
+* 支持微信wxs 支付宝sjs 百度.filter.js的文件引用  [issues/67](https://github.com/didi/chameleon/issues/67)
+
+
+## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
+
+### Bug Fixes
+* preview页面iframe未撑开修复
+* weex的 build模式jsbundle中存在本地路径
+
+### Features
+* 小程序的图片地址本地图片改网络图片
+* 解决父级目录babel-loader问题
+* build模式config.json的生成
+* web端weex端 多态组件支持js格式的vue组件
+* 小程序和weex也添加babelPolyfill的选项
+* 校验不支持Promise类型定义
+* 默认添加/components 别名
+* 校验添加生命周期函数白名单
+## [0.2.0](https://github.com/didi/chameleon/compare/v0.2.0-alpha.1...v0.2.0)
+
+### Bug Fixes
+
+- 默认开启全局变量校验，升级初始化项目中依赖符合全局变量校验
+- linter校验支持component is的校验
+
+## [0.2.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0-alpha.0...v0.2.0-alpha.1)
+
+### Bug Fixes
+
+- 修复 js中import css文件导致构建停滞的bug
+
+## [0.2.0-alpha.0](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.2.0-alpha.0)
+
+### Features
+
+- 优化api多域名mock方式
+- 组件间css优先级修复
+- chameleon.config.js支持base配置
+- cml和vue的语法支持事件冒泡
+- vue语法下扩展了 v-on:click.stop="handleClick" 的形式来阻止冒泡
+- wx端用户自定义组件不添加 cml-base class
+- component is支持事件绑定以及component is上的属性解析
+- 支持cml子项目放入node_module中引入
+- 支持拷贝node_modules中的小程序子项目
+
+### Bug Fixes
+
+- 修复 组件间css优先级 使父组件可覆盖子组件样式
+
 ## [0.1.1](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.1.1)
 
 ### Features
@@ -48,42 +156,8 @@
 ## [0.0.16](https://github.com/didi/chameleon/compare/v0.0.15...v0.0.16)
 
 ### Bug Fixes
-- **chameleon-tool** 修复 window上删除小程序文件夹失败([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
-- **chameleon-tool** 修复 css中h5/wx/img.png 替换成 h5/px/img.png的bug([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
-- **chameleon-tool** 修复 preview在ie内核浏览器展示失败bug([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
-- **chameleon-css-loader** 修复 text样式中的lines属性不一致([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
-- **chameleon-template-parse** 修复 模板编译c-animationbug与单元测试增加([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
-- **babel-plugin-chameleon-import** 修复 cml[get]方式调用api失败的bug([5a3ba5](https://github.com/didi/chameleon/commit/5a3ba58a2603abe5b6cbdeb6e76cc0cf6b6b3bb7))
-
-## [0.0.15](https://github.com/didi/chameleon/compare/v0.0.14...v0.0.15)
-
-### Features
-
-- **chameleon-tool** 增加web端可以配置是否添加babel polyfill 默认不添加([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-
-### Bug Fixes
-- **chameleon-template-parse** 修复 c-show、component动态组件([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-- **chameleon-template-parse** 修复 c-model fix [#38](https://github.com/didi/chameleon/issues/38)([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-- **chameleon-template-parse** 修复window系统上不能出现数字和x开头的目录 fix [#37](https://github.com/didi/chameleon/issues/37)([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-
-## [0.0.15](https://github.com/didi/chameleon/compare/v0.0.14...v0.0.15)
-
-### Features
-
-- **chameleon-tool** 增加web端可以配置是否添加babel polyfill 默认不添加([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-
-### Bug Fixes
-- **chameleon-template-parse** 修复 c-show、component动态组件([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-- **chameleon-template-parse** 修复 c-model fix [#38](https://github.com/didi/chameleon/issues/38)([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-- **chameleon-template-parse** 修复window系统上不能出现数字和x开头的目录 fix [#37](https://github.com/didi/chameleon/issues/37)([ec807a0](https://github.com/didi/chameleon/commit/ec807a0082905dda91dd1c91a9abf5635e249734))
-
-
-## [0.0.14](https://github.com/didi/chameleon/compare/v0.0.13...v0.0.14)
-
-### Features
-
-- **chameleon-tool** 更新README.md
-
+* 修复 小程序组件导出 样式文件压缩
+* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
 
 ## [0.0.13](https://github.com/didi/chameleon/compare/b2aa4b...6dc5ff9#diff-b21d2ccb648a84e2a7348250c471cc2aL32)
 

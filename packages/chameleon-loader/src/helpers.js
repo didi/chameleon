@@ -1,7 +1,6 @@
 const querystring = require('querystring')
 const loaderUtils = require('loader-utils')
 const normalize = require('./utils/normalize')
-const tryRequire = require('./utils/try-require')
 
 
 const selectorPath = normalize.lib('selector')
@@ -11,8 +10,8 @@ const wxmlSelectorPath = normalize.lib('cml-compile/wxml-selector')
 const styleLoaderPath = normalize.dep('vue-style-loader')
 
 // check whether default js loader exists
-const hasBabel = !!tryRequire('babel-loader')
-const hasBuble = !!tryRequire('buble-loader')
+const hasBabel = true
+const hasBuble = false
 
 const rewriterInjectRE = /\b(css(?:-loader)?(?:\?[^!]+)?)(?:!|$)/
 
@@ -91,39 +90,13 @@ function resolveLoaders (
 
 
   const defaultLoaders = {
-    css: options.extractCSS
-      ? getCSSExtractLoader(null, options, cssLoaderOptions)
-      : styleLoaderPath + '!' + 'css-loader' + cssLoaderOptions,
-    js: hasBuble
-      ? 'buble-loader' + bubleOptions
-      : hasBabel ? 'babel-loader' : ''
+    css: styleLoaderPath + '!' + 'css-loader' + cssLoaderOptions,
+    js: 'babel-loader'
   }
 
-  function getCSSExtractLoader (lang, options, cssLoaderOptions) {
-    let extractor
-    const op = options.extractCSS
-    // extractCSS option is an instance of ExtractTextPlugin
-    if (typeof op.extract === 'function') {
-      extractor = op
-    } else {
-      extractor = tryRequire('extract-text-webpack-plugin')
-      if (!extractor) {
-        throw new Error(
-          '[vue-loader] extractCSS: true requires extract-text-webpack-plugin ' +
-            'as a peer dependency.'
-        )
-      }
-    }
-    const langLoader = lang ? ensureBang(ensureLoader(lang)) : ''
-    return extractor.extract({
-      use: 'css-loader' + cssLoaderOptions + '!' + langLoader,
-      fallback: 'vue-style-loader'
-    })
-  }
 
   return {
     defaultLoaders,
-    getCSSExtractLoader,
     loaders: Object.assign({}, defaultLoaders, options.loaders),
     preLoaders: options.preLoaders || {},
     postLoaders: options.postLoaders || {}
@@ -147,7 +120,6 @@ module.exports = function createHelpers (
 
   const {
     defaultLoaders,
-    getCSSExtractLoader,
     loaders,
     preLoaders,
     postLoaders
@@ -343,10 +315,7 @@ module.exports = function createHelpers (
       }
     }
 
-    let loader =
-      options.extractCSS && type === 'styles'
-        ? loaders[lang] || getCSSExtractLoader(lang)
-        : loaders[lang]
+    let loader = loaders[lang]
 
     if (loader != null) {
       if (Array.isArray(loader)) {

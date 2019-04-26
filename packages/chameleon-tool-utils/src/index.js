@@ -274,11 +274,11 @@ _.getJsonFileContent = function (filePath, confType) {
   if (_.isCli()) {
     let fileType = _.getCmlFileType(filePath, cml.projectRoot, confType);
     if (fileType === 'app') {
+      targetObject.pages = targetObject.pages || [];
       // 有配置路由文件，给app.json添加pages
       let {routerConfig, hasError} = _.getRouterConfig();
       if (!hasError) {
         if (routerConfig.routes) {
-          targetObject.pages = targetObject.pages || [];
           routerConfig.routes.forEach(item => {
             if (!~targetObject.pages.indexOf(item.path)) {
               let itemPath = item.path;
@@ -291,6 +291,45 @@ _.getJsonFileContent = function (filePath, confType) {
           })
         }
       }
+      // 处理copyNpm 直接拷贝的pages
+      let copyNpm = cml.config.get().copyNpm && cml.config.get().copyNpm[confType];
+      if (copyNpm && copyNpm.length > 0) {
+        copyNpm.forEach(function(npmName) {
+          let packageJson = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
+          let cmlConfig = packageJson.cml && packageJson.cml[confType]; 
+          if (cmlConfig && cmlConfig.pages && cmlConfig.pages.length > 0) {
+            cmlConfig.pages.forEach(item => {
+              if (!~targetObject.pages.indexOf(item)) {
+                targetObject.pages.push(item);
+              } else {
+                cml.log.error(`page ${item} in ${npmName} is conflict in project!`)
+              }
+            })
+          }
+        })
+      }
+      // 处理subProject配置的npm包中cml项目的页面
+      let subProject = cml.config.get().subProject;
+      if (subProject && subProject.length > 0) {
+        subProject.forEach(function(npmName) {
+          let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
+          npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
+            let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
+            let routePath = _.getPureEntryName(cmlFilePath, confType, cml.projectRoot);
+            routePath = _.handleSpecialChar(routePath);
+            if (routePath[0] === '/') {
+              routePath = routePath.slice(1);
+            }
+            if (!~targetObject.pages.indexOf(routePath)) {
+              targetObject.pages.push(routePath);
+            } else {
+              cml.log.error(`page ${routePath} in ${npmName} is conflict in project!`)
+            }
+          })
+
+        })
+      }
+
     } else if (fileType === 'component') {
       targetObject.component = true;
     } else {
@@ -639,7 +678,6 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
       refUrl
     }
   }
-
   if (~filePath.indexOf('node_modules')) {
     refUrl = _.npmComponentRefPath(filePath, context);
     // 改为相对路径
@@ -648,18 +686,18 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   } else {
     // 改成相对路径
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
+  }
 
-    refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
-    if (cmlType === 'wx') {
-      refUrl = refUrl.replace(/\.wxml/g, '');
-    }
-    if (cmlType === 'alipay') {
-      refUrl = refUrl.replace(/\.axml/g, '');
-    }
+  refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
+  if (cmlType === 'wx') {
+    refUrl = refUrl.replace(/\.wxml$/g, '');
+  }
+  if (cmlType === 'alipay') {
+    refUrl = refUrl.replace(/\.axml$/g, '');
+  }
 
-    if (cmlType === 'baidu') {
-      refUrl = refUrl.replace(/\.swan/g, '');
-    }
+  if (cmlType === 'baidu') {
+    refUrl = refUrl.replace(/\.swan$/g, '');
   }
 
   return {
@@ -691,17 +729,22 @@ _.findComponent = function (filePath, cmlType) {
     }
   }
   let fileExtMap = {
-    weex: '.vue',
-    web: '.vue',
+    weex: ['.vue', '.js'],
+    web: ['.vue', '.js'],
     wx: '.wxml',
     baidu: '.swan',
     alipay: '.axml'
   }
 
   let ext = fileExtMap[cmlType];
-  let extFilePath = filePath + ext;
-  if (_.isFile(extFilePath)) {
-    return extFilePath;
+  if (typeof ext === 'string') {
+    ext = [ext];
+  }
+  for (let i = 0; i < ext.length; i++) {
+    let extFilePath = filePath + ext[i];
+    if (_.isFile(extFilePath)) {
+      return extFilePath;
+    }
   }
   return false;
 }
@@ -945,27 +988,61 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
     if (entryName === 'app/app') {
       type = 'app';
     } else {
-      let {routerConfig, hasError} = _.getRouterConfig();
-      if (!hasError) {
-        let routes = routerConfig.routes;
-        // 删除/
-        let pageNames = routes.map(item => {
-          if (item.path && item.path[0] == '/') {
-            return item.path.slice(1);
-          } else {
-            return '';
-          }
+      let subProject = cml.config.get().subProject || [];
+      let npmNames = subProject.map(item => 'node_modules/' + item);
+      let subProjectIndex = -1;
+      for (let i = 0; i < npmNames.length; i++) {
+        if (~cmlFilePath.indexOf(npmNames[i])) {
+          subProjectIndex = i;
+          break;
+        }
+      }
+      // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
+      if (subProjectIndex != -1) {
+        let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex]);
+        let pageFiles = routerConfig.routes.map(item => {
+          return path.join(context, 'node_modules', subProject[subProjectIndex], 'src', item.path + '.cml');
         })
         // 如果是配置的路由则是page
-        if (~pageNames.indexOf(entryName)) {
+        if (~pageFiles.indexOf(cmlFilePath)) {
           type = 'page';
         } else {
           type = 'component';
         }
+      } else {
+        // 不是subProject 中的cml文件走正常判断
+        let {routerConfig, hasError} = _.getRouterConfig();
+        if (!hasError) {
+          let routes = routerConfig.routes;
+          // 删除/
+          let pageNames = routes.map(item => {
+            if (item.path && item.path[0] == '/') {
+              return item.path.slice(1);
+            } else {
+              return '';
+            }
+          })
+          // 如果是配置的路由则是page
+          if (~pageNames.indexOf(entryName)) {
+            type = 'page';
+          } else {
+            type = 'component';
+          }
+        }
       }
+
     }
   }
   return type;
 
+}
 
+// 小程序中有文件夹有@符号无法上传
+_.handleSpecialChar = function (str) {
+  let result = str.replace(/\@/g, '_')
+  return result
+}
+
+_.readsubProjectRouterConfig = function(context, npmName) {
+  return JSON.parse(fs.readFileSync(path.join(context, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}))
 }

@@ -1,4 +1,4 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var utils = require('./utils.js');
 var getCmlLoaderConfig = require('./cml-loader.conf');
 var path = require('path');
@@ -22,7 +22,7 @@ module.exports = function (options) {
   let {entry, htmlPlugins} = utils.getWebEntry(options);
 
   var cmlLoaders = [{
-    loader: 'vue-loader',
+    loader: 'cml-vue-loader',
     options: Object.assign(getCmlLoaderConfig({type: 'web', hot: options.hot, disableExtract}), {
       postcss: {
         config: {
@@ -59,6 +59,11 @@ module.exports = function (options) {
     output: {
       filename: getJsPath()
     },
+    resolve: {
+      alias: {
+        '$ROUTER': path.resolve(root, 'node_modules/chameleon-runtime/.temp/router.js')
+      }
+    },
     module: {
       rules: [
         ...utils.styleLoaders({type: 'web', extract: !hot && !disableExtract}),
@@ -70,7 +75,7 @@ module.exports = function (options) {
         {
           test: /\.vue$/,
           use: [{
-            loader: 'vue-loader',
+            loader: 'cml-vue-loader',
             options: Object.assign(getCmlLoaderConfig({type: 'web', hot: options.hot, disableExtract}), {
               postcss: {
                 config: {
