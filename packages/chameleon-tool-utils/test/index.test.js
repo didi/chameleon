@@ -370,6 +370,7 @@ describe('index.js', function () {
   it('handleComponentUrl isCml true wxml', function() {
     global.cml = {};
     _.setCli(true);
+    cml.event = new EventEmitter();
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
@@ -419,6 +420,7 @@ describe('index.js', function () {
   it(`findComponent false`, function () {
     global.cml = {};
     _.setCli(true);
+    cml.event = new EventEmitter();
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
@@ -434,6 +436,7 @@ describe('index.js', function () {
   it(`convertToRelativeRef`, function () {
     global.cml = {};
     _.setCli(true);
+    cml.event = new EventEmitter();
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
