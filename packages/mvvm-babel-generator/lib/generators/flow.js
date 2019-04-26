@@ -67,7 +67,7 @@ Object.defineProperty(exports, "StringLiteralTypeAnnotation", {
 });
 
 function t() {
-  const data = _interopRequireWildcard(require("../../node_modules/@babel/types/lib"));
+  const data = _interopRequireWildcard(require("@babel/types/lib"));
 
   t = function () {
     return data;

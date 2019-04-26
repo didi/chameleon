@@ -28,7 +28,7 @@ exports.PrivateName = PrivateName;
 exports.AwaitExpression = exports.YieldExpression = void 0;
 
 function t() {
-  const data = _interopRequireWildcard(require("../../node_modules/@babel/types/lib"));
+  const data = _interopRequireWildcard(require("@babel/types/lib"));
 
   t = function () {
     return data;
