@@ -19,6 +19,13 @@ _.vueToCml = function(source,options = {}) {
   source = _.preParseVueEvent(source);
   // 模板通过 @babel/parser进行解析
   source = _.compileTemplate(source, options);
+  // 后置处理：用于处理 \u ，便于解析unicode 中文
+  source =  _.postParseUnicode(source);
+
+  if (/;$/.test(source)) { // 这里有个坑，jsx解析语法的时候，默认解析的是js语法，所以会在最后多了一个 ; 字符串；但是在 html中 ; 是无法解析的；
+    source = source.slice(0, -1);
+  }
+  
   return {
     source,
     usedBuildInTagMap: options.usedBuildInTagMap || {}
@@ -216,3 +223,10 @@ _.parseBuildTag = function (path, options) {
     }
   }
 }
+
+// 后置处理：用于处理 \u ，便于解析unicode 中文
+_.postParseUnicode = function(content) {
+  let reg = /\\u/g;
+  return unescape(content.replace(reg, '%u'));
+}
+

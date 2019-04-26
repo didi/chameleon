@@ -37,6 +37,9 @@ module.exports = function(source) {
             component: 'createComponent',
           }
           let runtimeScript = '';
+          runtimeScript += `
+          import ${helper.toUpperCase(runtimeNpmName)} from '${runtimeNpmName}';\n
+          `
           // runtime方法需要组件
           if (runtimeNeedComponents) {
             let {componentFiles} = cmlInfo;
@@ -54,12 +57,12 @@ module.exports = function(source) {
 
             components.push('}');
 
-            runtimeScript = `
-            ${runtimeNpmName}.${insertMethodMap[fileType]}(exports.default, ${components.join('')})
+            runtimeScript += `
+            ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default, ${components.join('')});\n
             `
           } else {
-            runtimeScript = `
-            ${runtimeNpmName}.${insertMethodMap[fileType]}(exports.default)
+            runtimeScript += `
+            ${runtimeNpmName}.${insertMethodMap[fileType]}(exports.default);\n
             `
           }
 
@@ -77,7 +80,7 @@ module.exports = function(source) {
 
       break;
     case 'json':
-      this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {});
+      this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {}, '', 4);
       output = `module.exports = ${this._module._cmlSource}`;
       break;
     default:

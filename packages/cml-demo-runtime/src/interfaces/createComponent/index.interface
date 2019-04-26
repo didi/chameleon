@@ -1,0 +1,11 @@
+<include src="chameleon-runtime/src/interfaces/createComponent/index.interface"></include>
+<script cml-type="demo">
+  class Method implements createComponentInterface {
+    createComponent(options) {
+      return options;
+    }
+  }
+
+  
+  export default new Method();
+</script>

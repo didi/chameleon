@@ -42,6 +42,6 @@ let options = {lang: 'cml',
 };
 // let source = `<view style="{{item.id}}">{{item.id}}{{item[11]}}</view>`
 let result = vueToCml(source, options);
-
+console.log(result);
 let ast = cmlparse(result.source);
-console.log(ast)
+// console.log(ast)

@@ -1,0 +1,10 @@
+<include src="chameleon-runtime/src/interfaces/createPage/index.interface"></include>
+<script cml-type="demo">
+  class Method implements createPageInterface {
+    createPage(options) {
+      return options;
+    }
+  }
+
+  export default new Method();
+</script>

@@ -12,6 +12,7 @@ class Compiler {
   constructor(webpackCompiler, plugin) {
     this.moduleRules = [ // 文件后缀对应module信息
       {
+        
         test: /\.css|\.less|\.stylus|\.styls$/,
         moduleType: 'style'
       },
@@ -42,6 +43,7 @@ class Compiler {
     }
 
     this.amd = amd; // amd的工具方法
+    this.hasCompiledNode = []; // 记录已经编译的模块 避免重复编译
 
 
   }
@@ -49,6 +51,7 @@ class Compiler {
   run(modules) {
     this.projectGraph = null;
     this.outputFiles = {};
+    this.hasCompiledNode = [];
     this.module2Node(modules);
     this.customCompile();
     this.emit('pack', this.projectGraph);
@@ -214,11 +217,15 @@ class Compiler {
   customCompile() {
     // 队列串行编译
     //  递归编译
+
     this.customCompileNode(this.projectGraph);
   }
 
   customCompileNode(currentNode) {
-
+    if (~this.hasCompiledNode.indexOf(currentNode)) {
+      return;
+    }
+    this.hasCompiledNode.push(currentNode);
     if (~['app', 'page', 'component'].indexOf(currentNode.nodeType)) {
       this.emit(`compile-preCML`, currentNode, currentNode.nodeType);
     } else {

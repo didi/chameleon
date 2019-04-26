@@ -30,7 +30,7 @@
     };
 
     var ret = (typeof factory == 'function')
-      ? factory.apply(mod, [require, mod.exports, mod])
+      ? factory.apply(mod, [cmlglobal.cmlrequire, mod.exports, mod])
       : factory;
 
     if (ret) {

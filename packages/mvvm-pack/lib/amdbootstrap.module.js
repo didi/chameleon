@@ -8,7 +8,9 @@
 
   var modulesMap = {};
   var cmldefine = function(id, factory) {
-    factoryMap[id] = factory;
+    if (!factoryMap[id]) {
+      factoryMap[id] = factory;
+    }
   };
 
   var cmlrequire = function(id) {
@@ -27,7 +29,7 @@
     };
 
     var ret = (typeof factory == 'function')
-      ? factory.apply(mod, [require, mod.exports, mod])
+      ? factory.apply(mod, [cmlrequire, mod.exports, mod])
       : factory;
 
     if (ret) {

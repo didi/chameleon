@@ -1,0 +1,324 @@
+<template>
+  <button 
+    class="{{btnClasses}}"
+    style="{{mrBtnStyle}}"
+    c-bind:tap="onclick"
+    c-bind:touchstart="touchstart"
+    c-bind:touchend="touchend"
+    open-type="{{openType}}"
+    lang="{{lang}}"
+    session-from="{{sessionFrom}}"
+    send-message-title="{{sendMessageTitle}}"
+    send-message-path="{{sendMessagePath}}"
+    send-message-img="{{sendMessageImg}}"
+    show-message-card="{{showMessageCard}}"
+    app-parameter="{{appParameter}}"
+    c-bind:getuserinfo="getuserinfo"
+    c-bind:contact="contact"
+    c-bind:getphonenumber="getphonenumber"
+    c-bind:error="error"
+    c-bind:opensetting="opensetting"
+    >
+    <text c-if="{{text}}" class="{{textClasses}}" style="{{mrTextStyle}}">{{text}}</text>
+    <slot c-else></slot>
+  </button>
+</template>
+
+<script>
+import { transCls } from './util'
+
+ class Button implements ButtonInterface {
+    props = {
+      text: {
+        type: String,
+        default: ""
+      },
+      size: {
+        type: String,
+        default: "stretch"
+      },
+      width: {
+        type: Number,
+        default: -1
+      },
+      type: {
+        type: String,
+        default: "blue"
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      btnStyle: {
+        type: String,
+        default: ""
+      },
+      textStyle: {
+        type: String,
+        default: ""
+      },
+      textStyleDisabled: {
+        type: String,
+        default: ""
+      },
+      disabledStyle: {
+        type: String,
+        default: ""
+      },
+      btnHoverStyle: {
+        type: String,
+        default: ''
+      },
+      textHoverStyle: {
+        type: String,
+        default: ''
+      },
+      openType: {
+        type: String,
+        default: ""
+      },
+      lang: {
+        type: String,
+        default: "en"
+      },
+      sessionFrom: {
+        type: String,
+        default: ""
+      },
+      sendMessageTitle: {
+        type: String,
+        default: "当前标题"
+      },
+      sendMessagePath: {
+        type: String,
+        default: "当前分享路径"
+      },
+      sendMessageImg: {
+        type: String,
+        default: "截图"
+      },
+      showMessageCard: {
+        type: Boolean,
+        default: false
+      },
+      appParameter: {
+        type: String,
+        default: ""
+      }
+    }
+    data = {
+      hover: false
+    }
+    computed ={
+      hasWidth() {
+        return this.width !== -1
+      },
+      btnClasses() {
+        return transCls('cml-view cml-btn', this)
+      },
+      textClasses() {
+        return transCls('btn-text', this)
+      },
+      mrBtnStyle() {
+        const { disabled, btnStyle, disabledStyle, hover, btnHoverStyle, hasWidth, width } = this;
+        
+        let style = disabled
+              ? `${btnStyle};${disabledStyle}`
+              : hover
+              ? `${btnStyle};${btnHoverStyle}`
+              : btnStyle
+        
+        if (hasWidth) {
+          style = `width:${width}cpx;${style}`
+        }
+        return style
+      },
+      mrTextStyle() {
+        const { disabled, textStyle, textStyleDisabled, hover, textHoverStyle } = this;
+        return disabled
+              ? `${textStyle};${textStyleDisabled}`
+              : hover
+              ? `${textStyle};${textHoverStyle}`
+              : textStyle
+      }
+    }
+    methods = {
+      onclick(e) {
+
+        const { type, disabled } = this
+        if (disabled) return;
+        this.$cmlEmit('onclick', {
+          type,
+          disabled
+        });
+      },
+      touchstart(e) {
+        this.hover = true
+      },
+      touchend(e) {
+        this.hover = false
+      },
+      getuserinfo(e){
+        this.$cmlEmit('getuserinfo',e.detail);
+      },
+      contact(e){
+        this.$cmlEmit('contact');
+      },
+      getphonenumber(e){
+        this.$cmlEmit('getphonenumber',{
+          errMsg: e.detail.errMsg,
+          encryptedData: e.detail.encryptedData || '',
+          //包括敏感数据在内的完整用户信息的加密数据
+          iv: e.detail.iv || ''
+          //加密算法的初始向量
+        });
+      },
+      error(e){
+        this.$cmlEmit('error',{
+          errMsg: e.detail.errMsg
+        });
+      },
+      opensetting(e){
+        this.$cmlEmit('opensetting');
+      }
+    }                       
+  }
+  export default new Button();
+</script>
+<style scoped lang="less">
+@import "../../assets/css/var.less";
+.cml-btn {
+  display: flex;
+  padding: 0 30cpx;
+  height: 88cpx;
+  line-height: 88cpx;
+  background: @color-regular-blue;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4cpx;
+  font-size: 32cpx;
+  color: #fff;
+  &-active {
+    background: #444654;
+  }
+  &:after {
+    border: none;
+  }
+}
+
+.cml-btn-orange {
+  background: @color-orange;
+
+  &-active {
+    background: @color-background-grew;
+  }
+}
+
+.cml-btn-green {
+  background: #50a050;
+
+  &-active {
+    background: #57a957;
+  }
+}
+
+.cml-btn-red {
+  background: #db2a36;
+
+  &-active {
+    background: #ea2e3b;
+  }
+}
+
+.cml-btn-disable {
+  background: @color-light-grey-s;
+  &:active {
+    background: @color-light-grey-s;
+  }
+}
+
+.cml-btn-white {
+  color: #666;
+  background: #FFFFFF;
+  border: 1cpx solid #A5A5A5;
+  
+  &-active {
+    background: #e8e8e8;
+  }
+    
+  &-disable, &:disabled {
+    color: @color-white;
+    background: @color-light-grey-s;
+    border: 0;
+    &:active {
+      background: @color-light-grey-s;
+    }
+  }
+}
+
+.cml-btn-full {
+  width: 702cpx;
+  height: 88cpx;
+}
+
+.cml-btn-big {
+  width: 339cpx;
+  height: 70cpx;
+}
+
+.cml-btn-medium {
+  width: 218cpx;
+  height: 60cpx;
+}
+
+.cml-btn-small {
+  width: 157cpx;
+  height: 44cpx;
+}
+
+.cml-btn-stretch {
+  align-self: stretch;
+}
+
+.cml-btn-auto {
+  align-self: flex-start;
+}
+
+.btn-text {
+  text-align: center;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+  font-size: 36cpx;
+  color: #ffffff;
+}
+
+.btn-text-white {
+  color: #666;
+}
+
+.btn-text-white-disable {
+  color: @color-white;
+}
+
+.btn-text-full {
+  font-size: 36cpx;
+}
+
+.btn-text-big {
+  font-size: 32cpx;
+}
+
+.btn-text-medium {
+  font-size: 28cpx;
+}
+
+.btn-text-small {
+  font-size: 24cpx;
+}
+</style>
+<script cml-type="json">
+{
+}
+</script>

@@ -51,8 +51,6 @@ module.exports.replaceJsModId = function(source, module) {
   }
 
   return generator["default"](ast).code;
-
-
 } 
 
 module.exports.chameleonIdHandle = function(id) {
