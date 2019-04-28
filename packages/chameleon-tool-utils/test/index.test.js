@@ -702,5 +702,36 @@ describe('index.js', function () {
     console.log(result)
     expect(result.length).to.be.equal(2);
   })
+
+  it(`creatMD5`, function () {
+    let source ='12345678';
+    let result = _.createMd5(source);
+    expect(result).to.be.equal('25d55ad283aa400af464c76d713c07ad');
+  })
+
+  it(`delQueryPath`, function () {
+    let filePath ='/user/cml/name.png?__inline';
+    let result = _.delQueryPath(filePath);
+    expect(result).to.be.equal('/user/cml/name.png');
+  })
+
+
+  it(`splitFileName`, function () {
+    let filePath = '/user/cml/name.web.cml?__inline';
+    let result = _.splitFileName(filePath);
+    expect(!!~result.indexOf('name')).to.be.equal(true);
+    expect(!!~result.indexOf('web')).to.be.equal(true);
+    expect(!!~result.indexOf('cml')).to.be.equal(true);
+  })
+
+  it(`isInline`, function () {
+    let filePath = '/user/cml/name.web.cml?__inline';
+    let result = _.isInline(filePath);
+    let filePath2 = '/user/cml/name.web.cml';
+    let result2 = _.isInline(filePath2);
+    expect(result).to.be.equal(true);
+    expect(result2).to.be.equal(false);
+
+  })
    
 })
