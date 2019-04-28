@@ -1,6 +1,6 @@
 {
   "name": "mvvm-style-loader",
-  "version": "0.4.0-mvvm.4",
+  "version": "0.4.0-mvvm.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,6 @@
   "license": "Apache",
   "dependencies": {
     "postcss": "7.0.14",
-    "chameleon-tool-utils": "0.4.0-mvvm.4"
+    "chameleon-tool-utils": "0.4.0-mvvm.5"
   }
 }
