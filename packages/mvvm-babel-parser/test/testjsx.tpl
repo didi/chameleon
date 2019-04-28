@@ -1,0 +1,1 @@
+<template name="{{s+'234'}}">{{ss+"123"}}22</template>

@@ -1,34 +1,8 @@
 {
   "packages": [
-    "packages/chameleon-tool",
-    "packages/easy-chameleon",
-    "packages/babel-plugin-chameleon-import",
-    "packages/chameleon-css-loader",
-    "packages/chameleon-dev-proxy",
-    "packages/chameleon-errors-webpack-plugin",
-    "packages/chameleon-linter",
-    "packages/chameleon-loader",
-    "packages/chameleon-miniapp-target",
-    "packages/chameleon-mixins",
-    "packages/chameleon-template-parse",
-    "packages/chameleon-templates",
-    "packages/chameleon-tool-utils",
-    "packages/chameleon-vue-precompiler",
-    "packages/chameleon-webpack-plugin",
-    "packages/chameleon-weex-vue-loader",
-    "packages/cml-component-parser",
-    "packages/cml-htmllinter",
-    "packages/cml-interface-parser",
-    "packages/cml-js-parser",
-    "packages/interface-loader",
-    "packages/runtime-check",
-    "packages/url-loader",
-    "packages/webpack-check-plugin",
-    "packages/webpack-liveload-middleware",
-    "packages/cml-vue-loader",
-    "packages/cml-extract-css-webpack-plugin"
+    "packages/*"
   ],
-  "version": "0.3.0-alpha.3",
+  "version": "0.4.0-mvvm.2",
   "command": {
     "publish": {
       "allowBranch": "master",

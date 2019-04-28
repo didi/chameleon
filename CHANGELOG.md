@@ -1,11 +1,25 @@
+
+## [0.4.0-mvvm.1-0.4.0-mvvm.3]
+### Features
+* 增加 扩展新端功能
+* 增加 web端组件导出支持externals参数进行运行时分离
+* 增加 支持小程序配置原生tabbar
+
 ## [0.3.2]
 
 ###  Bug Fixes
 * 修复 web端模板错误
 
-## [0.3.1] 有bug
+## [0.3.1] 
+有bug
 
 ## [0.3.0]
+0.3.0-alpha.9 灰度为正式版本
+
+## [0.3.0-alpha.9](https://github.com/didi/chameleon/compare/v0.3.0-alpha.8...v0.3.0-alpha.9)
+
+###  Bug Fixes
+* 修复 cml build 命令 不配置web端也会进行web端构建的bug
 
 ###  0.3.0-alpha.8 灰度完成发布0.3.0版本
 

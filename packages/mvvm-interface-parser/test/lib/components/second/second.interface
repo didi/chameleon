@@ -1,0 +1,25 @@
+
+<include src="../first/first.interface"></include>
+
+<script cml-type="weex">
+
+class Method implements SecondInterface {
+  getMsg(msg) {
+    return 'second weex:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+
+class Method implements SecondInterface {
+  getMsg(msg) {
+    return 'second wx:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+

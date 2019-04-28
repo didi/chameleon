@@ -1,0 +1,38 @@
+<template>
+  <view>
+    <text>weex端自定义组件</text>
+    <text>props:{{name}}</text>
+  </view>
+</template>
+
+<script>
+
+class Com1 implements Com1Interface {
+  props = {
+    name: {
+      type: String,
+      default: '默认值'
+    }
+  }
+
+  mounted() {
+    this.$cmlEmit('onshow',{
+      value: this.name
+    })
+  }
+}
+
+export default new Com1();
+</script>
+
+<style >
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {}
+  }
+}
+</script>

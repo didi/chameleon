@@ -262,7 +262,6 @@ var ExtractTextPlugin = function () {
                 }
                 return (0, _helpers.getOrder)(a, b);
               });
-              debugger
               var chunk = extractedChunk.originalChunk;
 
               //重新排列vue和cml文件中的css顺序
