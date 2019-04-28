@@ -75,5 +75,3 @@ describe('miniapp-script', function() {
   });
 
 })
-
-
