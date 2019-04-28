@@ -5,9 +5,6 @@
 <script>
 
 class App {
-  data = {}
-  created(res) {
-  }
 }
 
 export default new App();
@@ -20,6 +17,14 @@ export default new App();
 <script cml-type="json">
 {
   "wx": {
+    "window": {
+      "backgroundTextStyle":"light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "Chameleon",
+      "navigationBarTextStyle":"black"
+    }
+  },
+  "demo": {
     "window": {
       "backgroundTextStyle":"light",
       "navigationBarBackgroundColor": "#fff",

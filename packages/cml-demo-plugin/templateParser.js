@@ -10,10 +10,10 @@ module.exports = function(content) {
         let attributes = node.openingElement.attributes;
         attributes.forEach(attr=>{
           if(t.isJSXIdentifier(attr.name) && attr.name.name === 'c-for') {
-            attr.name.name = 'tt:for'
+            attr.name.name = 'wx:for'
           }
           if(t.isJSXIdentifier(attr.name) && attr.name.name === 'c-if') {
-            attr.name.name = 'tt:if'
+            attr.name.name = 'wx:if'
           }
         })
         let tagName = node.openingElement.name.name;

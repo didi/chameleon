@@ -2,7 +2,8 @@
 <script cml-type="demo">
   class Method implements createComponentInterface {
     createComponent(options) {
-      return options;
+      Component(options);
+      return {};
     }
   }
 

@@ -1,54 +1,13 @@
 <template>
   <view class="demo-com">
-    <text class="title">{{title}}</text>
-    <image src="{{imageSrc}}" class="logo"></image>  
+    <text class="title">demo-com</text>
   </view>
 </template>
 
 <script>
 
-class DemoCom {
-  props = {
-    title: {
-      type: String,
-      default: ''
-    },
-    imageSrc: {
-      type: String,
-      default: ''
-    },
-  }
+class DemoCom {}
 
-  data = {
-  }
-
-  computed = {
-  }
-
-  watch  = {
-  }
-
-  methods = {
-  }
-
-  beforeCreate() {
-  }
-
-  created() {
-  }
-
-  beforeMount() {
-  }
-
-  mounted() {
-  }
-
-  beforeDestroy() {
-  }
-
-  destroyed() {
-  }
-}
 
 export default new DemoCom();
 </script>

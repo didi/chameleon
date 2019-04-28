@@ -62,7 +62,7 @@ module.exports = function(source) {
             `
           } else {
             runtimeScript += `
-            ${runtimeNpmName}.${insertMethodMap[fileType]}(exports.default);\n
+            ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default);\n
             `
           }
 

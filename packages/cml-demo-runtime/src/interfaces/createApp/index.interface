@@ -2,7 +2,8 @@
 <script cml-type="demo">
   class Method implements createAppInterface {
     createApp(options) {
-      return options;
+      App(options);
+      return {}
     }
   }
 

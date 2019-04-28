@@ -96,7 +96,7 @@ register(compiler) {
 
       let bootstrapCode = compiler.amd.getModuleBootstrap();
       compiler.writeFile('/static/js/manifest.js', bootstrapCode);
-      let commonjsContent = `let {cmldefine} = require('./common.js')`;
+      let commonjsContent = `let {cmldefine} = require('./manifest.js')`;
       // 遍历节点
       outputNode(projectGraph);
       compiler.writeFile('/static/js/common.js', commonjsContent);
@@ -114,8 +114,9 @@ register(compiler) {
             } else if(item.moduleType === 'style') {
               compiler.writeFile('/app.wxss', item.output)
             } else if(item.moduleType === 'script') {
-              let jsContent = `let {cmldefine, cmlrequire} = require('./static/js/manifest.js');\n` +
-              `cmlrequire('${item.modId}')`;
+              let jsContent = `let {cmldefine, cmlrequire} = require('./static/js/manifest.js');\n`;
+              jsContent += `require('./static/js/common.js');\n`;
+              jsContent += `cmlrequire('${item.modId}')\n`;
               let jsPath = '/app.js';
               compiler.writeFile(jsPath, jsContent);
 

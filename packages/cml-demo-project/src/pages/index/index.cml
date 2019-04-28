@@ -1,25 +1,17 @@
 <template>
-  <page title="chameleon">
-      <scroller height="{{-1}}">
-        <view c-if="{{true}}" class="scroller-wrap">
-          <demo-com title="{{title}}" image-src="{{chameleonSrc}}"></demo-com>
-          <text>ss</text>
-          
-        </view>
-      </scroller>
-  </page>
+
+  <view c-if="{{true}}" class="scroller-wrap">
+    <text>ss</text>
+    <demo-com></demo-com>
+  </view>
+
 </template>
 
 
 
 <script>
 
-class Index  {
-  data = {
-    title: "chameleon",
-    chameleonSrc: require('../../assets/images/chameleon.png')
-  }
-}
+class Index  {}
 
 export default new Index();
 
