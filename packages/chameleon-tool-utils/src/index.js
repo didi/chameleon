@@ -1213,7 +1213,7 @@ _.delQueryPath = function(filePath) {
 }
 
 _.splitFileName = function(filePath) {
-  let basename = path.basename(_.split('?')[0]);
+  let basename = path.basename(filePath.split('?')[0]);
   return basename.split('.');
 }
 

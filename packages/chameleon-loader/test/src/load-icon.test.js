@@ -25,7 +25,9 @@ describe('load-icon', function() {
       }
     }
     let filePath = path.resolve(__dirname);
-    let result = loadIcon.handleApptabbar(newJsonObj, filePath, 'wx')
+    global.cml = {projectRoot: path.resolve(__dirname)}
+
+    let result = loadIcon.handleApptabbar(newJsonObj, filePath, 'wx');
     expect(result).to.not.be.ok;
   })
   it('getRelativeIconPath', function() {
