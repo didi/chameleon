@@ -18,7 +18,7 @@ exports.getBuildPromise = async function (media, type) {
 
   let options = exports.getOptions(media, type);
   let webpackConfig = await getConfig(options);
-  if (~['wx', 'baidu', 'alipay'].indexOf(type)) {
+  if (!~['web', 'weex'].indexOf(type)) {
     // 异步删除output目录
     var outputpath = webpackConfig.output.path;
     if (outputpath) {

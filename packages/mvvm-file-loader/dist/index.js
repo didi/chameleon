@@ -58,7 +58,7 @@ function loader(content) {
     }
     this._module._nodeType = 'module';
     this._module._moduleType = 'asset';
-    this._module._cmlSource = content;
+    this._module._cmlSource = `module.exports = ${JSON.stringify(base64)}`;
     let base64 = `data:${mimetype || ''};base64,${content.toString('base64')}`
     this._module._publicPath = base64;
     return `module.exports = ${JSON.stringify(base64)}`;
@@ -88,7 +88,8 @@ function loader(content) {
     }
     this._module._nodeType = 'module';
     this._module._moduleType = 'asset';
-    this._module._cmlSource = content;
+    this._module._cmlSource = `module.exports = "${publicPath}";`;
+    this._module._bufferSource = content;
     this._module._outputPath = outputPath;
     this._module._publicPath = publicPath;
     return `module.exports = "${publicPath}";`;

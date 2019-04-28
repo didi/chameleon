@@ -47,7 +47,7 @@ module.exports.replaceJsModId = function(source, module) {
         }
       }
     }
-    throw new Error('not find modId for' + rawRequest);
+    cml.log.error('not find modId for' + rawRequest);
   }
 
   return generator["default"](ast).code;

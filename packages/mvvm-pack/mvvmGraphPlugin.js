@@ -31,7 +31,11 @@ class mvvmGraphPlugin {
       // 返回false 不进入emit阶段
       return false;      
     })
-    
+
+   // 捕获错误
+    process.on('uncaughtException', function (err) {
+      cml.log.error(err);
+    });
   }
 }
 

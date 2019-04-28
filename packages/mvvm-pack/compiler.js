@@ -44,8 +44,6 @@ class Compiler {
 
     this.amd = amd; // amd的工具方法
     this.hasCompiledNode = []; // 记录已经编译的模块 避免重复编译
-
-
   }
 
   run(modules) {
@@ -55,6 +53,7 @@ class Compiler {
     this.module2Node(modules);
     this.customCompile();
     this.emit('pack', this.projectGraph);
+
     this.emitFiles();
   }
 
@@ -83,10 +82,10 @@ class Compiler {
       // 静态资源的写入
       if (item._nodeType === 'module' && item._moduleType === 'asset') {
         // 写入资源文件
-        if (item._cmlSource && item._outputPath) {
-          this.writeFile(item._outputPath, item._cmlSource);
+        if (item._bufferSource && item._outputPath) {
+          this.writeFile(item._outputPath, item._bufferSource);
         }
-        assetPublicMap[item.rawRequest] = item._publicPath;
+        assetPublicMap[item.resource] = item._publicPath;
       }
 
       if (item._nodeType === 'module' && item._moduleType === 'style') {
@@ -96,13 +95,15 @@ class Compiler {
 
     // style模块中静态资源路径的处理
     styleModule.forEach(item => {
-      item._cmlSource = item._cmlSource.replace(/__cml(.*?)__lmc/g, function(all, $1) {
-        if (assetPublicMap[$1]) {
-          return `url ("${assetPublicMap[$1]}")`
-        } else {
-          throw new Error(`not find asset module ${$1}`);
-        }
-      })
+      if (item._cmlSource) {
+        item._cmlSource = item._cmlSource.replace(/__cml(.*?)__lmc/g, function(all, $1) {
+          if (assetPublicMap[$1]) {
+            return `url("${assetPublicMap[$1]}")`
+          } else {
+            cml.log.error(`not find asset module ${$1}`);
+          }
+        })
+      }
     })
 
 
