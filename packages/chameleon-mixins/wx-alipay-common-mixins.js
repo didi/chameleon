@@ -2,7 +2,7 @@
 
 const common = require('./common.js');
 const wxStyleHandle = require('chameleon-css-loader/proxy/proxyMiniapp.js')
-
+const utils = require('./utils.js')
 const deepClone = function(obj) {
   if (obj.toString().slice(8, -1) !== "Object") {
     return obj;
@@ -23,6 +23,8 @@ _.mixins = {
     // 支持事件传参
     [_.inlineStatementEventProxy](e) {
       let { dataset } = e.currentTarget;
+      // 支付宝的e.type = 'touchStart',需要改为小写，否则找不到函数
+      e.type = utils.handleEventType(e.type);
       let originFuncName = dataset && dataset[`event${e.type}`];
       let argsStr = dataset && dataset.args;
       let argsArr = [];
@@ -58,6 +60,8 @@ _.mixins = {
     },
     [_.eventProxyName](e) {
       let { dataset } = e.currentTarget;
+      // 支付宝的e.type = 'touchStart',需要改为小写，否则找不到函数
+      e.type = utils.handleEventType(e.type);
       let originFuncName = dataset && dataset[`event${e.type}`]
       if (originFuncName && this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
         let newEvent = getNewEvent(e);

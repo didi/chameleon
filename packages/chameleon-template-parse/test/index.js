@@ -1,5 +1,9 @@
 const compileTemplate = require('../src/index.js');
-const source = `<view c-bind:click="handleClick(  )">事件测试-内联事件</view>`
+const source = `<view class="demo-com">
+<view c-bind:touchstart="handleIndexTouchStart">index-handleTouchStart</view>
+<view c-bind:userEvent="handleIndexTap">index-handletap</view>
+<view c-bind:userevent="handleIndexTap">index-handletap</view>
+</view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
 //
@@ -35,11 +39,11 @@ let options = {lang: 'cml',
 console.log('before-compile', source);
 // let result_web = compileTemplate(source, 'web', options);
 // let result_weex = compileTemplate(source, 'weex', options);
-let result_wx = compileTemplate(source, 'wx', options);
-let result_baidu = compileTemplate(source, 'baidu', options);
+// let result_wx = compileTemplate(source, 'wx', options);
+// let result_baidu = compileTemplate(source, 'baidu', options);
 let result_alipay = compileTemplate(source, 'alipay', options);
 // console.log('result_web', result_web)
 // console.log('result_weex', result_weex)
-console.log('result_wx', result_wx)
-console.log('result_baidu', result_baidu)
+// console.log('result_wx', result_wx)
+// console.log('result_baidu', result_baidu)
 console.log('result_alipay', result_alipay)
