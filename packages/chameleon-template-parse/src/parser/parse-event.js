@@ -65,7 +65,7 @@ parseEvent.tap('wx-baidu', (args) => {
     let value = container.value;
     let parentPath = path.parentPath;
     let name = node.name.name === 'click' ? 'tap' : node.name.name;
-    name = utils.dasherise(name);
+    let eventKey = name.toLowerCase();
     let wxName = node.name.name === 'click' ? 'tap' : node.name.name;
     let handler = value.value && utils.trim(value.value);
     let match = utils.isInlineStatementFn(handler);
@@ -87,29 +87,18 @@ parseEvent.tap('wx-baidu', (args) => {
     }
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     if (!match) {
-      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
+      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${eventKey}`), t.stringLiteral(`{{['${handler}']}}`)))
       value.value = `${wxEventProxy.eventProxyName}`;
     } else {
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       value.value = `${eventProxy.inlineStatementEventProxy}`;
       let args = match && utils.doublequot2singlequot(match[1]).trim();
-      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
-      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-args`), t.stringLiteral(args)))
-      if (args) {
-        args.split(',').forEach((arg, index) => {
-          arg = utils.trim(arg);
-          let argMatch = utils.isReactive(arg);
-          if (!argMatch) {
-            if (arg === "$event") {
-              parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-arg${index}`), t.stringLiteral(arg)));
-            } else {
-              parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-arg${index}`), t.stringLiteral(`{{${arg}}}`)))
-            }
-          } else { // 字符串形式
-            parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-arg${index}`), t.stringLiteral(argMatch[1])))
-          }
-        })
+      if (args) { // 内联函数传参
+        let inlineArgs = utils.getInlineStatementArgs(args);
+        parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${eventKey}`), t.stringLiteral(`{{['${handler}',${inlineArgs}]}}`)))
+      } else { // 内联函数不传参
+        parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${eventKey}`), t.stringLiteral(`{{['${handler}']}}`)))
       }
     }
   }
@@ -121,7 +110,9 @@ parseEvent.tap('alipay', (args) => {
     let container = path.container;
     let value = container.value;
     let parentPath = path.parentPath;
-    let name = node.name && (node.name.name === 'click' ? 'tap' : node.name.name);// alipay需要将事件名称转化成大写；
+    let name = node.name && (node.name.name === 'click' ? 'tap' : node.name.name);
+    let eventKey = name.toLowerCase();
+    // alipay需要将事件名称转化成大写；
     let aliName = utils.titleLize(eventMap[name] || name);
     let handler = value.value && utils.trim(value.value);
     let match = utils.isInlineStatementFn(handler);
@@ -142,29 +133,18 @@ parseEvent.tap('alipay', (args) => {
     }
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     if (!match) {
-      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
+      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${eventKey}`), t.stringLiteral(`{{['${handler}']}}`)))
       value.value = `${wxEventProxy.eventProxyName}`;
     } else {
       let index = handler.indexOf('(');
       index > 0 && (handler = utils.trim(handler.slice(0, index)));
       value.value = `${eventProxy.inlineStatementEventProxy}`;
       let args = match && utils.doublequot2singlequot(match[1]).trim();
-      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${name}`), t.stringLiteral(handler)))
-      parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-args`), t.stringLiteral(args)))
-      if (args) {
-        args.split(',').forEach((arg, index) => {
-          arg = utils.trim(arg);
-          let argMatch = utils.isReactive(arg);
-          if (!argMatch) {
-            if (arg === "$event") {
-              parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-arg${index}`), t.stringLiteral(arg)));
-            } else {
-              parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-arg${index}`), t.stringLiteral(`{{${arg}}}`)))
-            }
-          } else { // 字符串形式
-            parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-arg${index}`), t.stringLiteral(argMatch[1])))
-          }
-        })
+      if (args) { // 内联函数传参
+        let inlineArgs = utils.getInlineStatementArgs(args);
+        parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${eventKey}`), t.stringLiteral(`{{['${handler}',${inlineArgs}]}}`)))
+      } else { // 内联函数不传参
+        parentPath.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-event${eventKey}`), t.stringLiteral(`{{['${handler}']}}`)))
       }
     }
   }

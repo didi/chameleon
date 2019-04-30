@@ -31,6 +31,13 @@ let options = {lang: 'cml',
   }]
 };
 describe('parse-template-cml-all', function() {
+  // parse-no-source
+  describe('parse-no-source', function() {
+    let source = ``;
+    it('parse-no-source', function() {
+      expect(compileTemplate(source, 'web', options).source).to.equal(source);
+    });
+  });
   // parseTag
   describe('parse-tag-transform', function() {
     let source = `<view><button></button><thirdComp1></thirdComp1><thirdComp2></thirdComp2></view>`;
@@ -176,21 +183,21 @@ describe('parse-template-cml-all', function() {
   });
   // parseEvent
   describe('parse-event-transform', function() {
-    let source = `<view><origin-tag c-bind:tap="handleClick"></origin-tag><thirdComp1 c-bind:tap="handleClick(1,item,'str')"></thirdComp1><thirdComp2 c-bind:tap="handleClick(1,item,'str')"></thirdComp2></view>`;
+    let source = `<view><origin-tag c-bind:tap="handleClick"></origin-tag><thirdComp1 c-bind:tap="handleClick(1,item,'str')"></thirdComp1><thirdComp2 c-bind:touchstart="handleClick(1,item,'str',$event)"></thirdComp2><view c-bind:touchend="handleClick()" c-bind:touchmove="handleClick"></view></view>`;
     it('test-event-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:touchstart="_cmlInlineStatementEventProxy('handleClick',false,1,item,'str',$event)" class=" cml-base cml-thirdComp2"></thirdComp2><div v-on:touchend="_cmlInlineStatementEventProxy('handleClick',false)" v-on:touchmove="_cmlEventProxy($event,'handleClick',false)" class=" cml-base cml-view"></div></div>`);
     });
     it('test-event-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:touchstart="_cmlInlineStatementEventProxy('handleClick',false,1,item,'str',$event)" class=" cml-base cml-thirdComp2"></thirdComp2><div v-on:touchend="_cmlInlineStatementEventProxy('handleClick',false)" v-on:touchmove="_cmlEventProxy($event,'handleClick',false)" class=" cml-base cml-view"></div></div>`);
     });
     it('test-event-transform-wx', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,\'str\')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 bindtouchstart="_cmlInlineStatementEventProxy" data-eventtouchstart="{{['handleClick',1,item,'str','$event']}}" class=" cml-view cml-thirdComp2"></thirdComp2><view bindtouchend="_cmlInlineStatementEventProxy" data-eventtouchend="{{['handleClick']}}" bindtouchmove="_cmlEventProxy" data-eventtouchmove="{{['handleClick']}}" class=" cml-base cml-view"></view></view>`);
     });
     it('test-event-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag onTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 onTap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 onTap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag onTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 onTap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 onTouchStart="_cmlInlineStatementEventProxy" data-eventtouchstart="{{['handleClick',1,item,'str','$event']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view><view onTouchEnd="_cmlInlineStatementEventProxy" data-eventtouchend="{{['handleClick']}}" onTouchMove="_cmlEventProxy" data-eventtouchmove="{{['handleClick']}}" class=" cml-base cml-view cml-5766bf8a"></view></view>`);
     });
     it('test-event-transform-baidu', function() {
-      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 bindtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,'str'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
+      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag bindtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 bindtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 bindtouchstart="_cmlInlineStatementEventProxy" data-eventtouchstart="{{['handleClick',1,item,'str','$event']}}" class=" cml-view cml-thirdComp2"></thirdComp2><view bindtouchend="_cmlInlineStatementEventProxy" data-eventtouchend="{{['handleClick']}}" bindtouchmove="_cmlEventProxy" data-eventtouchmove="{{['handleClick']}}" class=" cml-base cml-view"></view></view>`);
     });
   });
   // parseEvent-stop
@@ -203,13 +210,13 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',true,1,item,\'str\')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
     it('test-event-transform-wx-stop', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,\'str\')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInlineStatementEventProxy" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
     });
     it('test-event-transform-baidu-stop', function() {
-      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,'str'" data-eventtap="handleClick" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
+      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInlineStatementEventProxy" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
     });
     it('test-event-transform-alipay-stop', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag catchTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 catchTap="handleClick(1,item,\'str\')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInlineStatementEventProxy" data-arg2="str" data-arg1="{{item}}" data-arg0="{{1}}" data-args="1,item,\'str\'" data-eventtap="handleClick" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag catchTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 catchTap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInlineStatementEventProxy" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
     });
 
   });
@@ -281,21 +288,21 @@ describe('parse-template-cml-all', function() {
   });
   // component is
   describe('parse-component-is-transform', function() {
-    let source = `<component is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" c-bind:click="handleClick"></component>`;
+    let source = `<component is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" c-bind:click="handleClick()" c-bind:userEvent="handleUserEvent" c-bind:lowerevent="handleLowerEvent(1,$event)"></component>`;
     it('test-component-is-transform-web', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<component v-bind:is="(currentComp)" shrinkcomponents="comp1,comp2" v-bind:image-src="(chameleonSrc)" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\',false)" class=" cml-base cml-component"></component>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<component v-bind:is="(currentComp)" shrinkcomponents="comp1,comp2" v-bind:image-src="(chameleonSrc)" title="this is title" v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false)" v-on:userEvent="_cmlEventProxy($event,\'handleUserEvent\',false)" v-on:lowerevent="_cmlInlineStatementEventProxy(\'handleLowerEvent\',false,1,$event)" class=" cml-base cml-component"></component>`);
     });
     it('test-component-is-transform-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<component v-bind:is="(currentComp)" shrinkcomponents="comp1,comp2" v-bind:image-src="(chameleonSrc)" title="this is title" v-on:click="_cmlEventProxy($event,\'handleClick\',false)" class=" cml-base cml-component"></component>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<component v-bind:is="(currentComp)" shrinkcomponents="comp1,comp2" v-bind:image-src="(chameleonSrc)" title="this is title" v-on:click="_cmlInlineStatementEventProxy(\'handleClick\',false)" v-on:userEvent="_cmlEventProxy($event,\'handleUserEvent\',false)" v-on:lowerevent="_cmlInlineStatementEventProxy(\'handleLowerEvent\',false,1,$event)" class=" cml-base cml-component"></component>`);
     });
     it('test-component-is-transform-wx', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<comp2 wx:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 wx:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<comp2 wx:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlInlineStatementEventProxy" data-eventtap="{{[\'handleClick\']}}" binduserEvent="_cmlEventProxy" data-eventuserevent="{{[\'handleUserEvent\']}}" bindlowerevent="_cmlInlineStatementEventProxy" data-eventlowerevent="{{[\'handleLowerEvent\',1,\'$event\']}}" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 wx:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlInlineStatementEventProxy" data-eventtap="{{[\'handleClick\']}}" binduserEvent="_cmlEventProxy" data-eventuserevent="{{[\'handleUserEvent\']}}" bindlowerevent="_cmlInlineStatementEventProxy" data-eventlowerevent="{{[\'handleLowerEvent\',1,\'$event\']}}" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
     });
     it('test-component-is-transform-baidu', function() {
-      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<comp2 s-if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 s-if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
+      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<comp2 s-if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlInlineStatementEventProxy" data-eventtap="{{[\'handleClick\']}}" binduserEvent="_cmlEventProxy" data-eventuserevent="{{[\'handleUserEvent\']}}" bindlowerevent="_cmlInlineStatementEventProxy" data-eventlowerevent="{{[\'handleLowerEvent\',1,\'$event\']}}" class=" cml-base cml-component  cml-base cml-comp2"></comp2>;\n<comp1 s-if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" bindtap="_cmlInlineStatementEventProxy" data-eventtap="{{[\'handleClick\']}}" binduserEvent="_cmlEventProxy" data-eventuserevent="{{[\'handleUserEvent\']}}" bindlowerevent="_cmlInlineStatementEventProxy" data-eventlowerevent="{{[\'handleLowerEvent\',1,\'$event\']}}" class=" cml-base cml-component  cml-base cml-comp1"></comp1>`);
     });
     it('test-component-is-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<comp2 a:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" onTap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp2>;\n<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" onTap="_cmlEventProxy" data-eventtap="handleClick" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a"></comp1>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<comp2 a:if="{{currentComp === \'comp2\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" onTap="_cmlInlineStatementEventProxy" data-eventtap="{{[\'handleClick\']}}" onUserEvent="_cmlEventProxy" data-eventuserevent="{{[\'handleUserEvent\']}}" onLowerevent="_cmlInlineStatementEventProxy" data-eventlowerevent="{{[\'handleLowerEvent\',1,\'$event\']}}" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp2 cml-5766bf8a"></comp2>;\n<comp1 a:if="{{currentComp === \'comp1\'}}" is="{{currentComp}}" shrinkcomponents="comp1,comp2" image-src="{{chameleonSrc}}" title="this is title" onTap="_cmlInlineStatementEventProxy" data-eventtap="{{[\'handleClick\']}}" onUserEvent="_cmlEventProxy" data-eventuserevent="{{[\'handleUserEvent\']}}" onLowerevent="_cmlInlineStatementEventProxy" data-eventlowerevent="{{[\'handleLowerEvent\',1,\'$event\']}}" class=" cml-base cml-component cml-5766bf8a  cml-base cml-comp1 cml-5766bf8a"></comp1>`);
     });
   });
 
@@ -309,13 +316,13 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div v-animation=" animationData " class=" cml-base cml-view"></div>`);
     });
     it('test-c-animation-transform-wx', function() {
-      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view animation="{{ animationData }}" bindtransitionend="_cmlInlineStatementEventProxy" data-arg1="$event" data-arg0="animationData" data-args="\'animationData\',$event" data-eventtransitionend="_animationCb" class=" cml-base cml-view"></view>`);
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view animation="{{ animationData }}" bindtransitionend="_cmlInlineStatementEventProxy" data-eventtransitionend="{{['_animationCb','animationData','$event']}}" class=" cml-base cml-view"></view>`);
     });
     it('test-c-animation-transform-baidu', function() {
-      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view animation="{{ animationData }}" bindtransitionend="_cmlInlineStatementEventProxy" data-arg1="$event" data-arg0="animationData" data-args="\'animationData\',$event" data-eventtransitionend="_animationCb" class=" cml-base cml-view"></view>`);
+      expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view animation="{{ animationData }}" bindtransitionend="_cmlInlineStatementEventProxy" data-eventtransitionend="{{['_animationCb','animationData','$event']}}" class=" cml-base cml-view"></view>`);
     });
     it('test-c-animation-transform-alipay', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view animation="{{( animationData ).actions}}" onTransitionend="_cmlInlineStatementEventProxy" data-arg1="$event" data-arg0="animationData" data-args="\'animationData\',$event" data-eventtransitionend="_animationCb" class=" cml-base cml-view cml-5766bf8a"></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view animation="{{( animationData ).actions}}" onTransitionend="_cmlInlineStatementEventProxy" data-eventtransitionend="{{['_animationCb','animationData','$event']}}" class=" cml-base cml-view cml-5766bf8a"></view>`);
     });
   });
   // attribute

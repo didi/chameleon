@@ -25,23 +25,20 @@ _.mixins = {
       let { dataset } = e.currentTarget;
       // 支付宝的e.type = 'touchStart',需要改为小写，否则找不到函数
       e.type = utils.handleEventType(e.type);
-      let originFuncName = dataset && dataset[`event${e.type}`];
-      let argsStr = dataset && dataset.args;
+      let eventKey = e.type.toLowerCase();
+      let originFuncName = dataset && dataset[`event${eventKey}`] && dataset[`event${eventKey}`][0];
+      let inlineArgs = dataset && dataset[`event${eventKey}`] && dataset[`event${eventKey}`].slice(1);
       let argsArr = [];
       // 由于百度对于 data-arg="" 在dataset.arg = true 值和微信端不一样所以需要重新处理下这部分逻辑
-      if (argsStr && typeof argsStr === 'string') {
-        argsArr = argsStr.split(',').reduce((result, item, index) => {
-          let arg = dataset[`arg${index}`];
+      if (inlineArgs) {
+        argsArr = inlineArgs.reduce((result, arg, index) => {
           if (arg === "$event") {
             let newEvent = getNewEvent(e);
             result.push(newEvent);
           } else {
-            // 这里的值微信已经计算好了；到dateset的时候已经是计算的结果 比如msg = 'sss' data-arg1="{{msg + 1}}"
-            // dataset[arg1] = 'sss1'
-            result.push(dataset[`arg${index}`])
+            result.push(arg)
           }
           return result;
-
         }, []);
       }
       if (originFuncName && this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
@@ -62,7 +59,8 @@ _.mixins = {
       let { dataset } = e.currentTarget;
       // 支付宝的e.type = 'touchStart',需要改为小写，否则找不到函数
       e.type = utils.handleEventType(e.type);
-      let originFuncName = dataset && dataset[`event${e.type}`]
+      let eventKey = e.type.toLowerCase();
+      let originFuncName = dataset && dataset[`event${eventKey}`] && dataset[`event${eventKey}`][0];
       if (originFuncName && this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
         let newEvent = getNewEvent(e);
         this[originFuncName](newEvent)
