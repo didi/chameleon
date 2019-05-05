@@ -806,13 +806,15 @@ _.findComponent = function (filePath, cmlType) {
   }
 
   let ext = fileExtMap[cmlType];
-  if (typeof ext === 'string') {
-    ext = [ext];
-  }
-  for (let i = 0; i < ext.length; i++) {
-    let extFilePath = filePath + ext[i];
-    if (_.isFile(extFilePath)) {
-      return extFilePath;
+  if (ext) {
+    if (typeof ext === 'string') {
+      ext = [ext];
+    }
+    for (let i = 0; i < ext.length; i++) {
+      let extFilePath = filePath + ext[i];
+      if (_.isFile(extFilePath)) {
+        return extFilePath;
+      }
     }
   }
 

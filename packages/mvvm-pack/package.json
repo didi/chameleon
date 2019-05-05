@@ -6,18 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Chameleon-Team",
+  "license": "Apache",
   "dependencies": {
-    "chameleon-tool-utils": "0.4.0-mvvm.5",
-    "mvvm-babel-parser": "0.4.0-mvvm.5",
-    "webpack-merge": "^4.2.1",
-    "chameleon-webpack-plugin": "0.4.0-mvvm.5",
-    "runtime-check": "0.4.0-mvvm.5",
     "@babel/core": "^7.3.4",
     "@babel/generator": "^7.4.0",
     "@babel/parser": "^7.3.4",
     "@babel/traverse": "^7.3.4",
-    "@babel/types": "^7.3.4"
+    "@babel/types": "^7.3.4",
+    "chameleon-tool-utils": "0.4.0-mvvm.5",
+    "chameleon-webpack-plugin": "0.4.0-mvvm.5",
+    "mvvm-babel-parser": "0.4.0-mvvm.5",
+    "mvvm-template-parser": "^0.4.0-mvvm.5",
+    "runtime-check": "0.4.0-mvvm.5",
+    "webpack-merge": "^4.2.1"
   }
 }

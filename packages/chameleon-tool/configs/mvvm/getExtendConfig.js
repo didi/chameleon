@@ -5,7 +5,6 @@ const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
 const resolve = require('resolve');
 
-
 module.exports = function(options) {
   let {type, media} = options;
   let npmName = cml.config.get().extPlatform[type];
@@ -34,7 +33,7 @@ module.exports = function(options) {
               loaders: utils.cssLoaders({type, media}),
               cmlType: type,
               media,
-              check: cml.config.get().check,
+              check: cml.config.get().check
             }
           }]
         }
@@ -65,6 +64,26 @@ module.exports = function(options) {
     })
   }
 
-  return merge(commonConfig, extendConfig);
+  if (platformPlugin.miniappExt && platformPlugin.miniappExt.rule) {
+    extendConfig = merge(extendConfig, {
+      module: {
+        rules: [
+          {
+            test: platformPlugin.miniappExt.rule,
+            use: [{
+              loader: 'mvvm-miniapp-loader',
+              options: {
+                loaders: utils.cssLoaders({type, media}),
+                cmlType: type,
+                media,
+                mapping: platformPlugin.miniappExt.mapping
+              }
+            }]
+          }
+        ]
+      }
+    })
+  }
 
+  return merge(commonConfig, extendConfig);
 }
