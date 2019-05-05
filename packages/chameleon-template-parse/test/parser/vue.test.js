@@ -208,8 +208,16 @@ describe('parse-template-vue-all', function() {
       expect(compileTemplate(source, 'baidu', options).source).to.equal(`<view class=" cml-base cml-view"><tag catchtap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 catchtap="handleClick(1,item,'str')" class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 catchtap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-view cml-thirdComp2"></thirdComp2></view>`);
     });
     it('test-event-transform-alipay-stop', function() {
-      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag catchTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view class=" cml-base cml-view cml-5766bf8a"><thirdComp1 catchTap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag catchTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp1 catchTap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
     });
+  });
+  // 非原生组件外面包的view要添加原生事件
+  describe('parse-event-transform-alicomponent', function() {
+    let source = `<view><thirdComp2 @tap.stop="handleClick(1,item,'str')" data-args="1" v-on:touchstart.stop="handleClick(1,item,'str')"></thirdComp2></view>`;
+    it('test-event-transform-alipay-alicomponent', function() {
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" data-args="1" catchTouchStart="_cmlInline" data-eventtouchstart="{{['handleClick',1,item,'str']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" data-args="1" catchTouchStart="_cmlInline" data-eventtouchstart="{{['handleClick',1,item,'str']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
+    });
+
   });
   // class
   describe('parse-class-transform', function() {
