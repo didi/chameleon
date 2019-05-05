@@ -19,18 +19,18 @@ module.exports = function (options) {
     },
     plugins: [
       new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
-      new AssetsPlugin({
-        filename: '/dist/config.json',
-        processOutput: function (assets) {
-          let config = cml.config.get();
-
-          let weexjs = assets[config.projectName].js;
-          return JSON.stringify({
-            weexjs
-          }, '', 4);
-
-        }
-      }),
+      // new AssetsPlugin({
+      //   filename: '/dist/config.json',
+      //   processOutput: function (assets) {
+      //     let config = cml.config.get();
+      //
+      //     let weexjs = assets[config.projectName].js;
+      //     return JSON.stringify({
+      //       weexjs
+      //     }, '', 4);
+      //
+      //   }
+      // }),
       new ZipPlugin({
           filename: 'bundle.zip',
       })
@@ -49,5 +49,5 @@ module.exports = function (options) {
       }
   })
 
-  return merge(getWeexCommonConfig(options), buildConfig)
+  return merge(weexCommonConfig, buildConfig)
 }

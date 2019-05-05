@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
+const glob = require('glob');
 
 exports.getPostcssrcPath = function (type) {
   return path.join(__dirname, `./postcss/${type}/.postcssrc.js`);
@@ -413,24 +414,43 @@ exports.getWeexEntry = function (options) {
   if (options.media === 'export') {
     return exports.getWeexExportEntry(options);
   }
-  exports.copyDefaultFile(options.root, 'weex', options.media);
   var entry = {};
-  var entryFile = [];
-  let entryConfig = cml.config.get().entry;
-  if (entryConfig && entryConfig.weex) {
-    if (cml.utils.isFile(entryConfig.weex)) {
-      entryFile.push(entryConfig.weex)
+  let singlePage = cml.config.get().singlePage;
+  if (singlePage) {
+    exports.copyDefaultFile(options.root, 'weex', options.media);
+    var entryFile = [];
+    let entryConfig = cml.config.get().entry;
+    if (entryConfig && entryConfig.weex) {
+      if (cml.utils.isFile(entryConfig.weex)) {
+        entryFile.push(entryConfig.weex)
+      } else {
+        throw new Error('no such file: ' + entryConfig.weex);
+      }
     } else {
-      throw new Error('no such file: ' + entryConfig.weex);
+      entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'));
     }
+    if (options.media === 'dev') {
+      entryFile.push(path.join(cml.root, 'configs/weex_liveload/liveLoad.js'))
+    }
+    var entryName = exports.getEntryName();
+    entry[entryName] = entryFile;
   } else {
-    entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'));
+    const entries = glob.sync('./src/pages/**/*.cml');
+
+    entries.forEach(item => {
+      let name = path.basename(item);
+      let entryStr = fs.readFileSync(path.resolve(__dirname, './default/single_page_entry.js'), {encoding: 'utf-8'});
+      entryStr = entryStr.replace('${PAGE_PATH}', item);
+      try {
+          fs.accessSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp`));
+      } catch (err) {
+          fs.mkdirSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp`))
+      }
+      fs.writeFileSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp/${name}.js`), entryStr);
+      entry[name] = path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp/${name}.js`)
+    })
   }
-  if (options.media === 'dev') {
-    entryFile.push(path.join(cml.root, 'configs/weex_liveload/liveLoad.js'))
-  }
-  var entryName = exports.getEntryName();
-  entry[entryName] = entryFile;
+
   return entry;
 }
 
