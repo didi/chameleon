@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 function _isInteger() {
-  const data = _interopRequireDefault(require("../node_modules/lodash/isInteger"));
+  const data = _interopRequireDefault(require("lodash/isInteger"));
 
   _isInteger = function () {
     return data;
@@ -16,7 +16,7 @@ function _isInteger() {
 }
 
 function _repeat() {
-  const data = _interopRequireDefault(require("../node_modules/lodash/repeat"));
+  const data = _interopRequireDefault(require("lodash/repeat"));
 
   _repeat = function () {
     return data;
@@ -30,7 +30,8 @@ var _buffer = _interopRequireDefault(require("./buffer"));
 var n = _interopRequireWildcard(require("./node"));
 
 function t() {
-  const data = _interopRequireWildcard(require("../node_modules/@babel/types/lib"));
+  const data = _interopRequireWildcard(require("@babel/types/lib"));
+
 
   t = function () {
     return data;
