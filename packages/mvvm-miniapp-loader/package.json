@@ -1,5 +1,5 @@
 {
-  "name": "mvvm-cml-loader",
+  "name": "mvvm-miniapp-loader",
   "version": "0.4.0-mvvm.5",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,6 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "dependencies": {
-    "mvvm-template-parser": "0.4.0-mvvm.5",
-    "chameleon-tool-utils": "0.4.0-mvvm.5",
-    "chameleon-loader": "0.4.0-mvvm.5",
     "loader-utils": "^1.2.3"
   }
 }

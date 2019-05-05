@@ -30,7 +30,7 @@ function t() {
 }
 
 function _jsesc() {
-  const data = _interopRequireDefault(require("../../node_modules/jsesc/jsesc"));
+  const data = _interopRequireDefault(require("jsesc/jsesc"));
 
   _jsesc = function () {
     return data;

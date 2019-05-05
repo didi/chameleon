@@ -1,9 +1,8 @@
-const {vueToCml} = require('./lib/process-template.js');
+const {vueToCml, preDisappearAnnotation} = require('./lib/process-template.js');
 const parser = require('mvvm-babel-parser');
 const generator = require('mvvm-babel-generator/lib')
 const types = require('@babel/types');
 const traverse = require('@babel/traverse');
-
 exports.parser = parser;
 exports.generator = function(...args) {
   let result =  generator["default"].apply(this, args);
@@ -18,6 +17,7 @@ exports.traverse = traverse["default"];
 exports.vueToCml = vueToCml;
 
 exports.cmlparse = function(content) {
+  content = preDisappearAnnotation(content);
   return parser.parse(content, {
     plugins: ['jsx']
   })
