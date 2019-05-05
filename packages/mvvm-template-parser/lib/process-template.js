@@ -15,7 +15,7 @@ _.vueToCml = function(source,options = {}) {
   source = _.preDisappearAnnotation(source);
   // 模板中所有的  :id="value" ==>  v-bind:id="value"
   source = _.preParseBindAttr(source);
-  // // 模板中所有的 @click="handleClick"  => c-bind:click="handleClick"
+  // 模板中所有的 @click="handleClick"  => c-bind:click="handleClick"
   source = _.preParseVueEvent(source);
   // 模板通过 @babel/parser进行解析
   source = _.compileTemplate(source, options);
