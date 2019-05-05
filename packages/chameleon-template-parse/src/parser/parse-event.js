@@ -14,24 +14,34 @@ parseEvent.tap('web-weex', (args) => {
   if (type === 'web' || type === 'weex') {
     let container = path.container;
     let value = container.value;
-    let isStopBubble = false;// 默认都是冒泡的
+    let isStopBubble = false;// 默认都是冒泡
     if (node.namespace.name === 'c-catch') {
-      node.name.name === 'tap' && (node.name.name = 'click');
       isStopBubble = true;
-      // node.name.name = `${node.name.name}.stop`;
     } else {
-      node.name.name === 'tap' && (node.name.name = 'click');
       isStopBubble = false;
     }
     node.namespace.name = 'v-on';
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     let jsxElementNodePath = path.findParent((path) => t.isJSXElement(path.node));
     let jsxElementNode = jsxElementNodePath.node;
-    let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === jsxElementNode.openingElement.name.name)
-    let isNative = usedComponentInfo && usedComponentInfo.isNative;
-    let isOrigin = (jsxElementNode.openingElement.name && typeof jsxElementNode.openingElement.name.name === 'string' && jsxElementNode.openingElement.name.name.indexOf('origin-') === 0);
-    if (isOrigin || isNative) {
-      return;
+    let tagName = jsxElementNode.openingElement.name.name;
+    let isOriginOrNative = utils.isOriginTagOrNativeComp(tagName, options);
+    let isNotNativeComp = utils.isNotNativeComponent(tagName, options)
+    let originEvents = ['click', 'touchstart', 'touchmove', 'touchend', 'touchcancel'];
+    if (type === 'web') { // web端tap和click区分
+      if (isNotNativeComp) { // 对于不是原生组件才进行原生事件的 .native的处理,非原生组件上如果写了tap事件，需要转化为click事件，因为 .native 语法对tap事件不生效
+        node.name.name === 'tap' && (node.name.name = 'click');
+        originEvents.includes(node.name.name) && (node.name.name = `${node.name.name}__CML_NATIVE_EVENTS__`);
+      }
+    }
+    if (type === 'weex') { // weex端 tap和click都处理成click
+      node.name.name === 'tap' && (node.name.name = 'click');
+      if (isNotNativeComp) {
+        originEvents.includes(node.name.name) && (node.name.name = `${node.name.name}__CML_NATIVE_EVENTS__`);
+      }
+    }
+    if (isOriginOrNative) {
+      return // 原生标签和原生组件直接不解析
     }
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
 
@@ -78,12 +88,9 @@ parseEvent.tap('wx-baidu', (args) => {
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     let jsxElementNodePath = path.findParent((path) => t.isJSXElement(path.node));
     let jsxElementNode = jsxElementNodePath.node;
-    let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === jsxElementNode.openingElement.name.name)
-
-    let isNative = usedComponentInfo && usedComponentInfo.isNative;
-    let isOrigin = (jsxElementNode.openingElement.name && typeof jsxElementNode.openingElement.name.name === 'string' && jsxElementNode.openingElement.name.name.indexOf('origin-') === 0);
-    if (isOrigin || isNative) {
-      return;
+    let tagName = jsxElementNode.openingElement.name.name
+    if (utils.isOriginTagOrNativeComp(tagName, options)) {
+      return // 原生标签和原生组件直接不解析
     }
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     if (!match) {
@@ -125,11 +132,9 @@ parseEvent.tap('alipay', (args) => {
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     let jsxElementNodePath = path.findParent((path) => t.isJSXElement(path.node));
     let jsxElementNode = jsxElementNodePath.node;
-    let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === jsxElementNode.openingElement.name.name)
-    let isNative = usedComponentInfo && usedComponentInfo.isNative;
-    let isOrigin = (jsxElementNode.openingElement.name && typeof jsxElementNode.openingElement.name.name === 'string' && jsxElementNode.openingElement.name.name.indexOf('origin-') === 0);
-    if (isOrigin || isNative) {
-      return;
+    let tagName = jsxElementNode.openingElement.name.name
+    if (utils.isOriginTagOrNativeComp(tagName, options)) {
+      return // 原生标签和原生组件直接不解析
     }
     // ====这里作用是阻止对 origin-tag标签的事件进行代理
     if (!match) {

@@ -257,10 +257,8 @@ exports.preParseVueEvent = function (content) {
   content = content.replace(reg, (m, $1) => {
     if (typeof $1 === "string" && $1.endsWith('.stop')) {
       $1 = $1.replace('.stop', '');
-      $1 = $1 === 'click' ? 'tap' : $1;
       return `c-catch:${$1}=`;
     } else {
-      $1 = $1 === 'click' ? 'tap' : $1;
       return `c-bind:${$1}=`
     }
   });
@@ -533,4 +531,8 @@ exports._deOperationGtLt = function(content) {
     }
     return match;
   })
+}
+exports.transformNativeEvent = function(source) {
+  let reg = /__CML_NATIVE_EVENTS__/g;
+  return source.replace(reg, '.native');
 }

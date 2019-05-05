@@ -53,7 +53,7 @@ describe('process-template', function() {
   });
   describe('preParseVueEvent', function() {
     it('support @ v-on', function() {
-      expect(processTemplate.preParseVueEvent(`<view v-on:touch="handle1" @click="handle2"></view>`)).to.equal(`<view c-bind:touch="handle1" c-bind:tap="handle2"></view>`)
+      expect(processTemplate.preParseVueEvent(`<view v-on:touch="handle1" @tap="handle2"></view>`)).to.equal(`<view c-bind:touch="handle1" c-bind:tap="handle2"></view>`)
     })
   });
   describe('preParseGtLt', function() {
