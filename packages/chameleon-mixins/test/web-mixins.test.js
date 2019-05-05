@@ -30,14 +30,14 @@ let e = {
   }]
 }
 describe('web-mixins.js', function() {
-  it('test _cmlInlineStatementEventProxy', function() {
+  it('test _cmlInline', function() {
     global.Event = eventEmittter
     let thisArg = {
       handleTouchStart: function() {
 
       }
     }
-    expect(mixins._cmlInlineStatementEventProxy.call(thisArg, 'handleTouchStart', true, e)).to.be.not.ok
+    expect(mixins._cmlInline.call(thisArg, 'handleTouchStart', true, e)).to.be.not.ok
   });
   it('test _cmlModelEventProxy', function() {
     let thisArg = {

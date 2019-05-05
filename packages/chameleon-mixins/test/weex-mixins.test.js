@@ -2,7 +2,7 @@ const mixins = require('../weex-mixins.js').mixins.methods;
 const {expect} = require('chai');
 
 describe('weex-mixins.js', function() {
-  it('test _cmlInlineStatementEventProxy', function() {
+  it('test _cmlInline', function() {
     let e = {
       type: 'touchstart',
       target: {
@@ -36,7 +36,7 @@ describe('weex-mixins.js', function() {
 
       }
     }
-    expect(mixins._cmlInlineStatementEventProxy.call(thisArg, 'handleTouchStart', true, 1, e)).to.be.not.ok
+    expect(mixins._cmlInline.call(thisArg, 'handleTouchStart', true, 1, e)).to.be.not.ok
   });
   it('test _cmlModelEventProxy', function() {
     let e = {
