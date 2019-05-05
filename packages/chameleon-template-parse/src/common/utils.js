@@ -293,3 +293,17 @@ _.miniappVUEClassNodes = function (options) {
 
   }
 }
+// 转换 $event参数
+_.getInlineStatementArgs = function(argsStr) {
+  // argsStr:"1,'index'+1,$event,'item',index+1,item"
+  const result = argsStr.split(',').reduce((result, current, index) => {
+    if (current === '$event') {
+      result.push("'$event'");
+    } else {
+      result.push(current)
+    }
+    return result
+  }, []);
+  return result.join();// "1,'index'+1,'$event','item',index+1,item"
+
+}

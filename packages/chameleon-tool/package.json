@@ -76,6 +76,7 @@
     "minimist": "1.2.0",
     "mvvm-cml-loader": "^0.4.0-mvvm.5",
     "mvvm-file-loader": "^0.4.0-mvvm.5",
+    "mvvm-miniapp-loader": "^0.4.0-mvvm.5",
     "mvvm-pack": "^0.4.0-mvvm.5",
     "mvvm-style-loader": "^0.4.0-mvvm.5",
     "node-phpcgi": "0.3.7",

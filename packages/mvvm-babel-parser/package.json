@@ -16,6 +16,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Chameleon-Team",
+  "license": "Apache"
 }

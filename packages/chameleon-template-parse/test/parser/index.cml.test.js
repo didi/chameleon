@@ -164,10 +164,10 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-event-transform', function() {
-      expect(result).to.equal(`<view><view bindtap="_cmlEventProxy" data-eventtap="tapHandle"></view></view>`)
+      expect(result).to.equal(`<view><view bindtap="_cmlEventProxy" data-eventtap="{{['tapHandle']}}"></view></view>`)
     });
     it('test-origin-tag-event-transform', function() {
-      expect(compileTemplate(originSource, 'wx', options, callback)).to.equal(`<view><origin-tag bindtap="handleClick"></origin-tag><thirdComp1 bindtap="handleClick"></thirdComp1><thirdComp2 bindtap="_cmlEventProxy" data-eventtap="handleClick"></thirdComp2></view>`)
+      expect(compileTemplate(originSource, 'wx', options, callback)).to.equal(`<view><origin-tag bindtap="handleClick"></origin-tag><thirdComp1 bindtap="handleClick"></thirdComp1><thirdComp2 bindtap="_cmlEventProxy" data-eventtap="{{['handleClick']}}"></thirdComp2></view>`)
     });
   });
   describe('parseEventListener-alipay', function() {
@@ -177,10 +177,10 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'alipay', options, callback);
     it('test-event-transform', function() {
-      expect(result).to.equal(`<view><view onTap="_cmlEventProxy" data-eventtap="tapHandle"></view></view>`)
+      expect(result).to.equal(`<view><view onTap="_cmlEventProxy" data-eventtap="{{['tapHandle']}}"></view></view>`)
     });
     it('test-origin-tag-event-transform', function() {
-      expect(compileTemplate(originSource, 'alipay', options, callback)).to.equal(`<view><origin-tag onTap="handleClick"></origin-tag><thirdComp1 onTap="handleClick"></thirdComp1><thirdComp2 onTap="_cmlEventProxy" data-eventtap="handleClick"></thirdComp2></view>`)
+      expect(compileTemplate(originSource, 'alipay', options, callback)).to.equal(`<view><origin-tag onTap="handleClick"></origin-tag><thirdComp1 onTap="handleClick"></thirdComp1><thirdComp2 onTap="_cmlEventProxy" data-eventtap="{{['handleClick']}}"></thirdComp2></view>`)
     });
   });
   // parseIterationStatement

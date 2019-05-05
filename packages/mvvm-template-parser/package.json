@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cover": "istanbul cover --report lcov _mocha -- -R spec --recursive",
+    "test": "mocha --recursive --reporter spec"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Chameleon-Team",
+  "license": "Apache",
   "dependencies": {
     "@babel/traverse": "^7.3.4",
     "@babel/types": "^7.3.4",

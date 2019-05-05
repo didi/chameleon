@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cover": "istanbul cover --report lcov _mocha -- -R spec --recursive",
+    "test": "mocha --recursive --reporter spec"
   },
   "author": "Chameleon-Team",
   "license": "Apache",

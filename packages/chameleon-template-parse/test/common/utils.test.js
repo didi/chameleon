@@ -110,5 +110,11 @@ describe('utils', function() {
       expect(result).to.equal(`{{'width:' + cpx + 'rpx;' + 'height:' + cpx2 + 'rpx;background-color:red'}}`);
     })
   });
-
+  // getInlineStatementArgs
+  describe('getInlineStatementArgs', function() {
+    it('getInlineStatementArgs', function() {
+      let result = utils.getInlineStatementArgs("1,'index'+1,$event,'item',index+1,item");
+      expect(result).to.equal(`1,'index'+1,'$event','item',index+1,item`);
+    })
+  });
 })
