@@ -41,7 +41,6 @@ _.preDisappearAnnotation = function (content) {
 _.preParseTemplate = function(source) {
   let callbacks = {startCallback: _.startCallback};
   let htmlArr = _.preParseHTMLtoArray(source, callbacks);
-  console.log('htmlArr', htmlArr)
   let newHtmlArr = [];
   htmlArr.forEach((item) => {
     if (item.type === 'tagContent') { // 标签内置直接push内容
