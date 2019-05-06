@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cover": "istanbul cover --report lcov  node_modules/mocha/bin/_mocha -- -R spec --recursive",
+    "test": "mocha --recursive --reporter spec"
   },
   "author": "Chameleon-Team",
   "license": "Apache",
@@ -16,9 +17,17 @@
     "@babel/types": "^7.3.4",
     "chameleon-tool-utils": "0.4.0-mvvm.6",
     "chameleon-webpack-plugin": "0.4.0-mvvm.6",
+    "csso": "^3.5.1",
     "mvvm-babel-parser": "0.4.0-mvvm.6",
     "mvvm-template-parser": "0.4.0-mvvm.6",
     "runtime-check": "0.4.0-mvvm.6",
+    "uglify-js": "^3.5.10",
     "webpack-merge": "^4.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }
