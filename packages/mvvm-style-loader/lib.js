@@ -19,7 +19,7 @@ exports.assets = function({source, loaderContext}) {
               deps.push(realDependPath);
               return `__cml${realDependPath}__lmc`;
             } else {
-              return $1;
+              return `url("${$1}")`;
             }
           })
         }

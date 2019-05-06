@@ -3,7 +3,7 @@ const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
-const parser = require('mvvm-babel-parser/lib');
+const {cmlparse} = require('mvvm-template-parser');
 const amd = require('./lib/amd.js');
 const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
 
@@ -188,9 +188,7 @@ class Compiler {
     }
 
     if (options.moduleType === 'template') {
-      options.convert = parser.parse(options.source, {
-        plugins: ['jsx']
-      });
+      options.convert = cmlparse(options.source);
       options.extra = {
         nativeComponents: module._nativeComponents,
         currentUsedBuildInTagMap: module._currentUsedBuildInTagMap
@@ -199,7 +197,8 @@ class Compiler {
 
     if (options.moduleType === 'json') {
       // cml文件中的json部分
-      if (module.parent) {
+      // todo 这里进不来
+      if (/^\{[\s\S]*\}$/.test(options.source)) {
         options.convert = JSON.parse(options.source);
       }
       // 其他json文件不处理 例如router.config.json
