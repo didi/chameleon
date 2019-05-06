@@ -79,9 +79,16 @@ describe('process-template', function() {
   });
   // 单属性
   describe('vueToCml', function() {
-    it('test-vueToCml-isunary', function() {
+    it('test-vueToCml-singleAttr', function() {
       let source = `<div disabled><input disabled :id="value" v-bind:id="value" @click="handleClick" v-on:click="handleClick" /><input style="width:100px" class="cls1" :class="true ? 'cls2':'cls3'" /></div>`
       expect(processTemplate.vueToCml(source).source).to.equal(`<div disabled><input disabled id="{{value}}" id="{{value}}" c-bind:tap="handleClick" c-bind:tap="handleClick" /><input class=" cls1 {{true ? 'cls2':'cls3'}}" style="width:100px" /></div>`);
+    });
+  });
+  // 汉字
+  describe('vueToCml', function() {
+    it('test-vueToCml-isunary', function() {
+      let source = `<div disabled><p title="滴滴">{{出行}}</p></div>`
+      expect(processTemplate.vueToCml(source).source).to.equal(`<div disabled><p title="滴滴">{{出行}}</p></div>`);
     });
   });
   describe('preDisappearAnnotation', function() {
