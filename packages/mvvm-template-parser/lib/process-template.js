@@ -10,7 +10,7 @@ const _ = module.exports = {};
 2 @click="handleClick" => c-bind:click="handleClick" 或者c-catch
 */
 
-_.vueToCml = function(source,options = {}) {
+_.vueToCml = function(source, options = {}) {
   // 去掉模板中的注释
   source = _.preDisappearAnnotation(source);
   // 模板中所有的  :id="value" ==>  v-bind:id="value"
@@ -20,12 +20,12 @@ _.vueToCml = function(source,options = {}) {
   // 模板通过 @babel/parser进行解析
   source = _.compileTemplate(source, options);
   // 后置处理：用于处理 \u ，便于解析unicode 中文
-  source =  _.postParseUnicode(source);
+  source = _.postParseUnicode(source);
 
   if (/;$/.test(source)) { // 这里有个坑，jsx解析语法的时候，默认解析的是js语法，所以会在最后多了一个 ; 字符串；但是在 html中 ; 是无法解析的；
     source = source.slice(0, -1);
   }
-  
+
   return {
     source,
     usedBuildInTagMap: options.usedBuildInTagMap || {}
@@ -69,21 +69,21 @@ _.preParseVueEvent = function (content) {
   });
   return content;
 }
-_.compileTemplate = function(source,options) {
+_.compileTemplate = function(source, options) {
   const ast = parser.parse(source, {
     plugins: ['jsx']
   });
   traverse(ast, {
     enter(path) {
-      //所有的入口都以JSXElement为入口解析；
-      _.parseAllAttributes(path,options);
-      _.parseBuildTag(path,options);
+      // 所有的入口都以JSXElement为入口解析；
+      _.parseAllAttributes(path, options);
+      _.parseBuildTag(path, options);
     }
   });
   return generate(ast).code;
 
 }
-_.isOriginTagOrNativeComp = function(tagName,options){
+_.isOriginTagOrNativeComp = function(tagName, options) {
   let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
   let isNative = usedComponentInfo && usedComponentInfo.isNative;
   let isOrigin = (tagName && typeof tagName === 'string' && tagName.indexOf('origin-') === 0);
@@ -92,6 +92,7 @@ _.isOriginTagOrNativeComp = function(tagName,options){
   }
   return false;
 }
+
 /*
 以标签为基础，解析attruibutes即可
    1 v-bind:id="value" ==> id="{{value}}"
@@ -101,12 +102,12 @@ _.isOriginTagOrNativeComp = function(tagName,options){
 
 */
 
-_.parseAllAttributes = function(path,options) {
+_.parseAllAttributes = function(path, options) {
   let node = path.node;
   if (t.isJSXElement(node)) {
     let tagName = node.openingElement.name.name
-    if(_.isOriginTagOrNativeComp(tagName,options)){
-      return //原生标签和原生组件直接不解析
+    if (_.isOriginTagOrNativeComp(tagName, options)) {
+      return // 原生标签和原生组件直接不解析
     }
     let attributes = node.openingElement.attributes;
     let directives = ['v-if', 'v-else-if', 'v-else', 'v-model', 'v-show', 'v-text', 'v-for'];

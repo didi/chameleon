@@ -316,13 +316,14 @@ _.isOriginTagOrNativeComp = function(tagName, options) {
   }
   return false;
 }
-// 判断是否是组件，不包括原生组件
+// 判断是否是组件，不包括原生组件,内置组件 已经做了替换
+// {button: "cml-buildin-button"},
 _.isNotNativeComponent = function(tagName, options) {
   let usingComponents = options.usingComponents || [];
   let buildInComponents = options.buildInComponents || {};
   let isComponent = usingComponents.find((comp) =>
     ((comp.tagName === tagName) && !comp.isNative)
-  ) || Object.keys(buildInComponents).includes(tagName);
+  ) || Object.values(buildInComponents).includes(tagName);
   return isComponent
 }
 

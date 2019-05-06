@@ -1,6 +1,7 @@
 const compileTemplate = require('../src/index.js');
 const source = `<view class="demo-com">
 <thirdComp2 c-bind:tap="handleIndexTouchStart">index-handleTouchStart</thirdComp2>
+<button c-bind:tap="handleIndexTouchStart" c-bind:userevent="handleEvent">index-handleTouchStart</button>
 </view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>

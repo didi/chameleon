@@ -131,4 +131,9 @@ describe('process-template', function() {
       expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
     })
   });
+  describe('transformNativeEvent', function() {
+    it('transform transformNativeEvent', function() {
+      expect(processTemplate.transformNativeEvent(`<view v-on:click__CML_NATIVE_EVENTS__="handleClick"=></view>`)).to.equal(`<view v-on:click.native="handleClick"=></view>`)
+    })
+  });
 })
