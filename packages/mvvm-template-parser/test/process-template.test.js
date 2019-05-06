@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const processTemplate = require('./lib/process-template.js');
+const processTemplate = require('../lib/process-template.js');
 let options = {
   lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
