@@ -415,7 +415,7 @@ exports.getWeexEntry = function (options) {
     return exports.getWeexExportEntry(options);
   }
   var entry = {};
-  let singlePage = cml.config.get().singlePage;
+  let singlePage = cml.config.get().weex[options.media].singlePage;
   if (singlePage) {
     exports.copyDefaultFile(options.root, 'weex', options.media);
     var entryFile = [];
@@ -435,20 +435,21 @@ exports.getWeexEntry = function (options) {
     var entryName = exports.getEntryName();
     entry[entryName] = entryFile;
   } else {
-    const entries = glob.sync('./src/pages/**/*.cml');
-
-    entries.forEach(item => {
-      let name = path.basename(item);
-      let entryStr = fs.readFileSync(path.resolve(__dirname, './default/single_page_entry.js'), {encoding: 'utf-8'});
-      entryStr = entryStr.replace('${PAGE_PATH}', item);
-      try {
+    let {routerConfig, hasError} = cml.utils.getRouterConfig();
+    if (!hasError) {
+      routerConfig.routes.forEach(item => {
+        let name = item.name
+        let entryStr = fs.readFileSync(path.resolve(__dirname, './default/single_page_entry.js'), {encoding: 'utf-8'});
+        entryStr = entryStr.replace('${PAGE_PATH}', `src/${item.path}.cml`);
+        try {
           fs.accessSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp`));
-      } catch (err) {
+        } catch (err) {
           fs.mkdirSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp`))
-      }
-      fs.writeFileSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp/${name}.js`), entryStr);
-      entry[name] = path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp/${name}.js`)
-    })
+        }
+        fs.writeFileSync(path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp/${name}.js`), entryStr);
+        entry[name] = path.join(cml.projectRoot, `node_modules/chameleon-runtime/.temp/${name}.js`)
+      })
+    }
   }
 
   return entry;

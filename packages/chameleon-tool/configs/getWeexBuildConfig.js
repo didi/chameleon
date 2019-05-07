@@ -1,4 +1,5 @@
 var path = require('path');
+const utils = require('./utils.js');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin')
 var getWeexCommonConfig = require('./getWeexCommonConfig.js');
@@ -12,42 +13,38 @@ module.exports = function (options) {
   if (options.media === 'export') {
     return getWeexExportConfig(options);
   }
+  let entry = utils.getWeexEntry(options);
   var outputPath = path.resolve(options.root, 'dist/weex');
-  var buildConfig = {
-    output: {
-      path: outputPath
-    },
-    plugins: [
-      new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
-      // new AssetsPlugin({
-      //   filename: '/dist/config.json',
-      //   processOutput: function (assets) {
-      //     let config = cml.config.get();
-      //
-      //     let weexjs = assets[config.projectName].js;
-      //     return JSON.stringify({
-      //       weexjs
-      //     }, '', 4);
-      //
-      //   }
-      // }),
-      new ZipPlugin({
-          filename: 'bundle.zip',
-      })
-    ]
-  }
-  const weexCommonConfig = getWeexCommonConfig(options);
 
-  weexCommonConfig.module.rules.forEach((e,index) => {
-      if(index === 2){
-          e.options = {
-              limit: false, // 不做limit的base64转换，需要添加?inline参数
-              publicPath: cml.config.get().weex.publicPath,
-              outputPath:`${cml.config.get().staticPath}`,
-              name: '[name]_[hash:7].[ext]'
-          }
+  const weexCommonConfig = getWeexCommonConfig(options);
+  const configArr = []
+  Object.keys(entry).forEach(key => {
+    var buildConfig = {
+      output: {
+        path: `${outputPath}/${key}`,
+        filename: '[name]_[hash:7].js'
+      },
+      plugins: [
+        new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
+        new ZipPlugin({
+          filename: `${key}.zip`
+        })
+      ]
+    }
+    buildConfig.entry = {};
+    buildConfig.entry[key] = entry[key]
+    weexCommonConfig.module.rules.forEach((e, index) => {
+      if (index === 2) {
+        e.options = {
+          limit: false, // 不做limit的base64转换，需要添加?inline参数
+          publicPath: cml.config.get().weex.publicPath,
+          name: `${cml.config.get().staticPath}/[name]_[hash:7].[ext]`
+        }
       }
+    })
+    configArr.push(merge(weexCommonConfig, buildConfig))
   })
 
-  return merge(weexCommonConfig, buildConfig)
+
+  return configArr;
 }

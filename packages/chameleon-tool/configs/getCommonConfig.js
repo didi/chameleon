@@ -199,6 +199,16 @@ module.exports = function (options) {
   commonConfig.plugins.push(new webpack.DefinePlugin({
       'process.env.i18n': JSON.stringify(i18n)
   }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.publicPath': JSON.stringify(publicPath)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.singlePage': JSON.stringify(options.singlePage === false ? 'false' : 'true')
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.devServer': JSON.stringify(devApiPrefix)
+  }))
+
   if (options.minimize) {
     commonConfig.plugins = commonConfig.plugins.concat([
       new OptimizeCSSPlugin({

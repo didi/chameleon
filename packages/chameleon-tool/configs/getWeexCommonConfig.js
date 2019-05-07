@@ -11,7 +11,6 @@ module.exports = function (options) {
     root
   } = options;
 
-  let entry = utils.getWeexEntry(options);
   let outputPath = path.join(utils.getDevServerPath(), 'weex');
   let cmlLoaders = [{
     loader: 'chameleon-weex-vue-loader',
@@ -33,7 +32,6 @@ module.exports = function (options) {
   let commonConfig =
   {
     context: path.resolve(root),
-    entry,
     output: {
       path: outputPath,
       filename: options.hash ? '[name]_[chunkhash].js' : '[name].js'
