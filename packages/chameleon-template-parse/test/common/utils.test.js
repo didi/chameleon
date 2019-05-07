@@ -163,6 +163,24 @@ describe('utils', function() {
       expect(result).to.be.not.ok;
     });
   });
+  describe('isNativeComp', function() {
+    it('isOriginTagOrNativeComp-nativecomp', function() {
+      let result = utils.isOriginTagOrNativeComp('thirdComp1', options);
+      expect(result).to.be.ok;
+    });
+    it('isOriginTagOrNativeComp-origin-tag', function() {
+      let result = utils.isNativeComp('origin-tag', options);
+      expect(result).to.be.not.ok;
+    });
+    it('isOriginTagOrNativeComp-not-nativecomp', function() {
+      let result = utils.isNativeComp('thirdComp2', options);
+      expect(result).to.be.not.not.ok;
+    });
+    it('isusualComp', function() {
+      let result = utils.isNativeComp('view', options);
+      expect(result).to.be.not.ok;
+    });
+  });
   // 不是对应端的原生组件
   describe('isNotNativeComponent', function() {
     it('isNotNativeComponent-nativecomp', function() {
