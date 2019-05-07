@@ -163,7 +163,7 @@ describe('utils', function() {
       expect(result).to.be.not.ok;
     });
   });
-  // 内置组件或者用户组件，不是对应端的原生组件
+  // 不是对应端的原生组件
   describe('isNotNativeComponent', function() {
     it('isNotNativeComponent-nativecomp', function() {
       let result = utils.isNotNativeComponent('cml-buildin-button', options);
@@ -176,6 +176,11 @@ describe('utils', function() {
     it('isNotNativeComponent', function() {
       let result = utils.isNotNativeComponent('thirdComp2', options);
       expect(result).to.be.ok;
+    });
+    it('isNotNativeComponent', function() {
+      let result = utils.isNotNativeComponent('view', options);
+      console.log('result-isNotNativeComponent', result)
+      expect(result).to.be.not.ok;
     });
   });
 })

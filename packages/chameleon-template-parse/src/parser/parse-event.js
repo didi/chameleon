@@ -26,12 +26,19 @@ parseEvent.tap('web-weex', (args) => {
     let jsxElementNode = jsxElementNodePath.node;
     let tagName = jsxElementNode.openingElement.name.name;
     let isOriginOrNative = utils.isOriginTagOrNativeComp(tagName, options);
-    let isNotNativeComp = utils.isNotNativeComponent(tagName, options)
+    let isNotNativeComp = utils.isNotNativeComponent(tagName, options);
+    let isNativeComp = utils.isNativeComp(tagName, options);
     let originEvents = ['click', 'touchstart', 'touchmove', 'touchend', 'touchcancel'];
-    if (type === 'web') { // web端tap和click区分
-      if (isNotNativeComp) { // 对于不是原生组件才进行原生事件的 .native的处理,非原生组件上如果写了tap事件，需要转化为click事件，因为 .native 语法对tap事件不生效
+    debugger;
+    if (type === 'web') { // cml标签或者cml组件
+      // web端非第三方UI库的上的tap和click都处理成tap;
+      if (isNotNativeComp) { // cml组件上的tap和click都处理成 click.native
         node.name.name === 'tap' && (node.name.name = 'click');
         originEvents.includes(node.name.name) && (node.name.name = `${node.name.name}__CML_NATIVE_EVENTS__`);
+      } else if (isNativeComp) {
+        // native组件不处理名字
+      } else { // 普通标签
+        node.name.name === 'click' && (node.name.name = 'tap');
       }
     }
     if (type === 'weex') { // weex端 tap和click都处理成click

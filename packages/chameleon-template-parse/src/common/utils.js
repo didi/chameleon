@@ -316,7 +316,13 @@ _.isOriginTagOrNativeComp = function(tagName, options) {
   }
   return false;
 }
-// 判断是否是组件，不包括原生组件,内置组件 已经做了替换
+// 判断是否是原生组件
+_.isNativeComp = function(tagName, options) {
+  let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
+  let isNative = usedComponentInfo && usedComponentInfo.isNative;
+  return isNative
+}
+// 判断是否是组件，不包括第三方原生组件
 // {button: "cml-buildin-button"},
 _.isNotNativeComponent = function(tagName, options) {
   let usingComponents = options.usingComponents || [];
