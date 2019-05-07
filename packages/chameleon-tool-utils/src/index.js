@@ -1210,6 +1210,20 @@ _.createMd5 = function(content) {
   return md5.digest('hex');
 }
 
+// 给文件添加hash值
+_.addHashName = function(filePath, hashValue) {
+  let dirname = path.dirname(filePath);
+  let basename = path.basename(filePath);
+  let nameArray = basename.split('.');
+  if (nameArray.length > 1) {
+    nameArray[nameArray.length - 2] = nameArray[nameArray.length - 2] + '_' + hashValue;
+  } else {
+    nameArray[0] = nameArray[0] + '_' + hashValue;
+  }
+  basename = nameArray.join('.');
+  return path.join(dirname, basename);
+}
+
 _.delQueryPath = function(filePath) {
   return filePath.split('?')[0];
 }
