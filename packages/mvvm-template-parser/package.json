@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cover": "istanbul cover --report lcov _mocha -- -R spec --recursive",
-    "test": "mocha --recursive --reporter spec"
+    "eslint": "eslint ./lib",
+    "lint": "eslint --ext .js  lib --fix",
+    "test": "mocha --recursive --reporter spec",
+    "cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- -R spec --recursive"
   },
   "author": "Chameleon-Team",
   "license": "Apache",
@@ -14,6 +16,13 @@
     "@babel/types": "^7.3.4",
     "mvvm-babel-generator": "0.4.0-mvvm.6",
     "mvvm-babel-parser": "0.4.0-mvvm.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^5.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   },
   "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
 }
