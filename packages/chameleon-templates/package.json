@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" ",
-    "postpublish": "git push"
+    "test": "echo \"Error: no test specified\" "
   },
   "author": "Chameleon-Team",
   "license": "Apache",
