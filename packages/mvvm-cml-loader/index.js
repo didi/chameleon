@@ -108,8 +108,10 @@ module.exports = function(source) {
         import ${helper.toUpperCase(key)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}"\n`;
 
     } else {
-      delete coms[key];
-      cmlUtils.log.error(`can't find component:${coms[key]} in ${self.resourcePath}`);
+      if (coms[key].indexOf('plugin://') !== 0) {
+        delete coms[key];
+        cmlUtils.log.error(`can't find component:${coms[key]} in ${self.resourcePath}`);
+      }
     }
   })
 
