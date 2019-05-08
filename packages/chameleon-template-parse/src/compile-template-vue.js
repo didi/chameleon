@@ -53,6 +53,8 @@ exports.compileTemplateForVue = function (source, type, options) {
   source = processTemplate.postParseMustache(source)
   // 后置处理：用于处理 \u ，便于解析unicode 中文
   source = processTemplate.postParseUnicode(source);
+  // 后置处理，所有的 __CML_NATIVE_EVENTS__ ==> .native
+  source = processTemplate.transformNativeEvent(source)
   return {
     source,
     usedBuildInTagMap: options.usedBuildInTagMap
