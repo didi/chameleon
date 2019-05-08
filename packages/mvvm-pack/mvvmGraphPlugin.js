@@ -7,7 +7,7 @@ class mvvmGraphPlugin {
   }
   apply(compiler) {
     let self = this;
-    let mvvmCompiler = new MvvmCompiler(compiler, self.platformPlugin);
+    let mvvmCompiler = new MvvmCompiler(compiler, self.platformPlugin, self.options);
     compiler._mvvmCompiler = mvvmCompiler;
     compiler._platformPlugin = self.platformPlugin;
     // 监听cml中查找组件

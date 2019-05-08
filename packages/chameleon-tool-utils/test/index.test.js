@@ -733,5 +733,25 @@ describe('index.js', function () {
     expect(result2).to.be.equal(false);
 
   })
+
+  it(`addHashName has ext`, function () {
+    let filePath = '/user/cml/name.web.cml';
+    let result = _.addHashName(filePath, '3123123123123sd');
+    expect(result).to.be.equal('/user/cml/name.web_3123123123123sd.cml');
+
+  })
+
+  it(`addHashName no ext`, function () {
+    let filePath = '/user/cml/name';
+    let result = _.addHashName(filePath, '3123123123123sd');
+    expect(result).to.be.equal('/user/cml/name_3123123123123sd');
+
+  })
+  it(`addHashName multi .`, function () {
+    let filePath = '/user/cml/name.web.cml';
+    let result = _.addHashName(filePath, '3123123123123sd');
+    expect(result).to.be.equal('/user/cml/name.web_3123123123123sd.cml');
+
+  })
    
 })

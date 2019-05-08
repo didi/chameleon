@@ -806,13 +806,15 @@ _.findComponent = function (filePath, cmlType) {
   }
 
   let ext = fileExtMap[cmlType];
-  if (typeof ext === 'string') {
-    ext = [ext];
-  }
-  for (let i = 0; i < ext.length; i++) {
-    let extFilePath = filePath + ext[i];
-    if (_.isFile(extFilePath)) {
-      return extFilePath;
+  if (ext) {
+    if (typeof ext === 'string') {
+      ext = [ext];
+    }
+    for (let i = 0; i < ext.length; i++) {
+      let extFilePath = filePath + ext[i];
+      if (_.isFile(extFilePath)) {
+        return extFilePath;
+      }
     }
   }
 
@@ -1206,6 +1208,20 @@ _.createMd5 = function(content) {
   let md5 = crypto.createHash('md5');
   md5.update(content);
   return md5.digest('hex');
+}
+
+// 给文件添加hash值
+_.addHashName = function(filePath, hashValue) {
+  let dirname = path.dirname(filePath);
+  let basename = path.basename(filePath);
+  let nameArray = basename.split('.');
+  if (nameArray.length > 1) {
+    nameArray[nameArray.length - 2] = nameArray[nameArray.length - 2] + '_' + hashValue;
+  } else {
+    nameArray[0] = nameArray[0] + '_' + hashValue;
+  }
+  basename = nameArray.join('.');
+  return path.join(dirname, basename);
 }
 
 _.delQueryPath = function(filePath) {
