@@ -9,6 +9,7 @@ const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const childProcess = require('child_process');
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -144,6 +145,25 @@ exports.startReleaseAll = async function (media) {
     }
   }
 
+  let count = 0
+  // let isInclude
+  for (let i = 0, j = activePlatform.length; i < j; i++) {
+    let platform = activePlatform[i];
+    if (platform !== 'web') {
+      let child = childProcess.fork(path.resolve(__dirname, '../chameleon.js'), [platform, media]);
+      child.on('message', (msg) => {
+        console.log(msg)
+        if (msg === 'compiled success') {
+          count++;
+        }
+        if (count === activePlatform.length - 1) {
+          exports.getWebBuildPromise(media, false);
+        }
+      })
+    }
+  }
+
+  return;
   // 是否编译web端
   let isCompile = !!~activePlatform.indexOf('web');
   // 给preview使用
@@ -175,9 +195,11 @@ exports.startReleaseOne = async function(media, type) {
     let build = exports.getBuildPromise(media, type);
     // 如果dev模式再启动web服务
     if (media === 'dev') {
-      await build.then(res => {
-        exports.getWebBuildPromise(media, false);
-      })
+      // await build.then(res => {
+      //   console.log('哈哈', res)
+      //   exports.getWebBuildPromise(media, false);
+      // })
+      await build
     } else {
       await build;
     }

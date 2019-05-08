@@ -98,6 +98,8 @@ class FriendlyErrorsWebpackPlugin {
   displaySuccess(stats) {
     const time = getCompileTime(stats);
     cml.log.notice(this.cmlType + ' Compiled successfully in ' + time + 'ms')
+    // 工作进程编译完成通知主进程
+    process.send('compiled success')
 
     if (this.compilationSuccessInfo.messages) {
       this.compilationSuccessInfo.messages.forEach(message => output.info(message));
