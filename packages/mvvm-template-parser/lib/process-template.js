@@ -72,7 +72,6 @@ _.preParseHTMLtoArray = function(html, callbacks) {
   const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`)
   let index = 0;
   while (html) {
-    last = html;
     let textEnd = html.indexOf('<')
     // 解析标签内容，包括开始标签以及结束标签
     if (textEnd === 0) { // 以 < 开头的html
