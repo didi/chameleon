@@ -3,7 +3,8 @@
   "version": "0.4.0-mvvm.6",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cover": "istanbul cover --report lcov _mocha -- -R spec --recursive",
+    "test": "mocha --recursive --reporter spec"
   },
   "author": "Chameleon-Team",
   "license": "Apache",
@@ -15,5 +16,11 @@
     "@babel/types": "^7.3.4",
     "chameleon-tool-utils": "0.4.0-mvvm.6",
     "runtime-check": "0.4.0-mvvm.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }
