@@ -9,6 +9,10 @@ const _ = module.exports = {};
 1 :id="value"  => v-bind:id="value"
 2 @click="handleClick" => c-bind:click="handleClick" 或者c-catch
 */
+_.trim = function (value) {
+  return value.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+};
+
 _.vueToCml = function(source, options = {}) {
   // 去掉模板中的注释
   source = _.preDisappearAnnotation(source);
