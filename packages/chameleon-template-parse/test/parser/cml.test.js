@@ -358,6 +358,12 @@ describe('parse-template-cml-all', function() {
     it('test-gtlt-transform-miniapp', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><view prop="{{dynamic}}" id="{{5 < 6 ? \'5\':\'6\'}}" class=" cml-base cml-view">{{5 > 6 ? \'this is 5\' : \'this is 6\'}}</view><view name="{{5 < 6?\'7\':\'8\'}}" class=" cml-base cml-view"></view></view>`);
     });
+  });
+  describe('test-alipaycomponent-wraped-cml', function() {
+    let source = `<view><thirdComp2 c-bind:click="handleClick" data-a="a" c-catch:touchstart="handleStart" ></thirdComp2></view>`;
+    it('test-alipaycomponent-wraped', function() {
+      expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view onTap="_cmlEventProxy" data-eventtap="{{['handleClick']}}" data-a="a" catchTouchStart="_cmlEventProxy" data-eventtouchstart="{{['handleStart']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp2 onTap="_cmlEventProxy" data-eventtap="{{['handleClick']}}" data-a="a" catchTouchStart="_cmlEventProxy" data-eventtouchstart="{{['handleStart']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
+    });
   })
 
 })
