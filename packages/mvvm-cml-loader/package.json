@@ -1,6 +1,6 @@
 {
   "name": "mvvm-cml-loader",
-  "version": "0.4.0-mvvm.6",
+  "version": "0.4.0-mvvm.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,9 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "dependencies": {
-    "mvvm-template-parser": "0.4.0-mvvm.6",
-    "chameleon-tool-utils": "0.4.0-mvvm.6",
-    "chameleon-loader": "0.4.0-mvvm.6",
+    "mvvm-template-parser": "0.4.0-mvvm.7",
+    "chameleon-tool-utils": "0.4.0-mvvm.7",
+    "chameleon-loader": "0.4.0-mvvm.7",
     "loader-utils": "^1.2.3"
   }
 }
