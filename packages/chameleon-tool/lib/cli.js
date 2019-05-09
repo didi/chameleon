@@ -12,7 +12,6 @@ module.exports.run = function () {
     version();
   } else {
     const extPlatform = require('../commanders/extPlatform.js');
-
     if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(first)) {
       extPlatform({type: first, media: argv[3]});
     } else {
