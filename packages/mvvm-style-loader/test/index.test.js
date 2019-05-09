@@ -17,7 +17,7 @@ describe('mvvm-style-loader', function() {
       }
     `
     let output = _.call(loaderContext, content);
-    expect(!!~output.indexOf(path.join(__dirname,'1.png'))).to.be.equal(true);
+    expect(!!~output.indexOf('1.png')).to.be.equal(true);
     expect(loaderContext._module._nodeType).to.be.equal('module');
     expect(loaderContext._module._moduleType).to.be.equal('style');
     expect(!!~loaderContext._module._cmlSource.indexOf(`__cml${path.join(__dirname,'1.png')}__lmc`)).to.be.equal(true);
@@ -40,7 +40,7 @@ describe('mvvm-style-loader', function() {
     let output = _.call(loaderContext, content);
     console.log(output)
     console.log(loaderContext._module)
-    expect(!!~output.indexOf(path.join(__dirname,'1.png'))).to.be.equal(true);
+    expect(!!~output.indexOf('1.png')).to.be.equal(true);
     expect(loaderContext._module._nodeType).to.be.equal('module');
     expect(loaderContext._module._moduleType).to.be.equal('style');
     expect(!!~loaderContext._module._cmlSource.indexOf(`__cml${path.join(__dirname,'1.png?__inline')}__lmc`)).to.be.equal(true);
