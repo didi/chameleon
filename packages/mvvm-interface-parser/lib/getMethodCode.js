@@ -3,7 +3,7 @@ const fs = require('fs');
 const {resolveRequire} = require('./resolveRequire.js');
 
 
-module.exports = function({interfacePath, content, cmlType, resolve}) {
+module.exports = function({interfacePath, content, cmlType}) {
 
   let devDeps = [];
 
@@ -87,7 +87,7 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
 
   // 需要对原有content中的所有引用路径做解析 解析为绝对路径。
   return {
-    content: resolveRequire({content: newContent, filePath: contentFilePath, resolve}),
+    content: resolveRequire({content: newContent, oldFilePath: contentFilePath, newFilePath: interfacePath}),
     devDeps,
     contentFilePath
   }

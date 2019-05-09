@@ -772,4 +772,28 @@ describe('index.js', function () {
 
   })
 
+  it(`resolveInterfaceRequire npmPath`, function () {
+    let oldFilePath = path.join(__dirname, 'index.test.js');
+    let relativePath = 'glob';
+    let result = _.resolveInterfaceRequire(oldFilePath, '', relativePath);
+    expect(result).to.be.equal(relativePath);
+  })
+
+  it(`resolveInterfaceRequire relativePath1`, function () {
+    let oldFilePath = path.join(__dirname, 'index.test.js');
+    let newFilePath = path.join(__dirname, '../index.test.js');
+    let relativePath = './glob';
+    let result = _.resolveInterfaceRequire(oldFilePath, newFilePath, relativePath);
+    expect(result).to.be.equal('./test/glob');
+  })
+
+  it(`resolveInterfaceRequire relativePath2`, function () {
+    let oldFilePath = path.join(__dirname, 'index.test.js');
+    let newFilePath = path.join(__dirname, 'temp/index.test.js');
+    let relativePath = './glob';
+    let result = _.resolveInterfaceRequire(oldFilePath, newFilePath, relativePath);
+    expect(result).to.be.equal('../glob');
+  })
+
+
 })

@@ -5,9 +5,9 @@ const getInterfaceCode = require('./lib/getInterfaceCode.js');
 const getMethodCode = require('./lib/getMethodCode.js');
 
 // resolve 用于处理interface中include文件中的引用
-module.exports = function({cmlType, media, source, filePath, check, resolve = cmlUtils.resolveSync }) {
+module.exports = function({cmlType, media, source, filePath, check }) {
   let interfaceResut = getInterfaceCode({interfacePath: filePath, content: source})
-  let methodResult = getMethodCode({interfacePath: filePath, content: source, cmlType, resolve})
+  let methodResult = getMethodCode({interfacePath: filePath, content: source, cmlType})
 
   let {content: interfaceContent, devDeps: interfacedevDeps} = interfaceResut;
   let {content: methodContent, devDeps: methoddevDeps} = methodResult;
