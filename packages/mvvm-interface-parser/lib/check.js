@@ -43,6 +43,7 @@ const handlExport = function (ast) {
  * @param  {Object} obj 需要处理的对象
  * @return {Object}     对象
  */
+/* istanbul ignore next */
 const wrapper = function (obj) {
   const className = obj.constructor.name;
   /* eslint-disable no-undef */

@@ -6,13 +6,12 @@ const cmlUtils = require('chameleon-tool-utils');
 const {cmlparse} = require('mvvm-template-parser');
 const amd = require('./lib/amd.js');
 const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
-
-
+const UglifyJs = require('./minimize/uglifyjs.js');
+const UglifyCSS = require('./minimize/uglifycss.js');
 class Compiler {
-  constructor(webpackCompiler, plugin) {
+  constructor(webpackCompiler, plugin, options) {
     this.moduleRules = [ // 文件后缀对应module信息
-      {
-        
+      { 
         test: /\.css|\.less|\.stylus|\.styls$/,
         moduleType: 'style'
       },
@@ -44,6 +43,9 @@ class Compiler {
 
     this.amd = amd; // amd的工具方法
     this.hasCompiledNode = []; // 记录已经编译的模块 避免重复编译
+    this.cmlType = options.cmlType;
+    this.media = options.media;
+    this.userPlugin = plugin;
   }
 
   run(modules) {
@@ -256,10 +258,47 @@ class Compiler {
   }
 
   emitFiles() {
+    let self = this;
+    let config = (cml.config.get()[self.cmlType] && cml.config.get()[self.cmlType][self.media]) || {};
+    let {hash, minimize} = config;
+    let minimizeExt = this.userPlugin.minimizeExt;
+    let minimizeExtMap = {};
+    if (minimizeExt) {
+      Object.keys(minimizeExt).forEach(key => {
+        minimizeExt[key].forEach(ext => {
+          minimizeExtMap[ext] = key;
+        })
+      })
+    }
+
     let outputPath = this.webpackCompiler.options.output.path;
     for (let key in this.outputFiles) {
       if (this.outputFiles.hasOwnProperty(key)) {
         let outFilePath = path.join(outputPath, key);
+        if (minimize === true && minimizeExt) {
+          let ext = path.extname(outFilePath);
+          let miniType = minimizeExtMap[ext]; // js or css
+          if (miniType === 'js') {
+            let result = UglifyJs(this.outputFiles[key], outFilePath);
+            if (result === undefined) {
+              throw new Error(`uglifyjs error from ${outFilePath}`);
+            } else {
+              this.outputFiles[key] = result;
+            }
+          }
+
+          if (miniType === 'css') {
+            let result = UglifyCSS(this.outputFiles[key], outFilePath);
+            if (result === undefined) {
+              throw new Error(`uglifycss error from ${outFilePath}`);
+            } else {
+              this.outputFiles[key] = result;
+            }
+          }
+        }
+        if (hash === true) {
+          outFilePath = cmlUtils.addHashName(outFilePath, cmlUtils.createMd5(this.outputFiles[key]))
+        }
         if (typeof this.outputFiles[key] === 'string') {
           cmlUtils.fse.outputFileSync(outFilePath, this.outputFiles[key])
         } else {

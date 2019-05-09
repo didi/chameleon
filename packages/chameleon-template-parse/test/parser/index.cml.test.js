@@ -150,11 +150,11 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-event-transform', function() {
-      expect(result).to.equal(`<view><view v-on:click="_cmlEventProxy($event,\'tapHandle\',false)"></view></view>`)
+      expect(result).to.equal(`<view><view v-on:tap="_cmlEventProxy($event,'tapHandle',false)"></view></view>`)
     });
     // 原生组件事件不进行代理
     it('test-origin-tag-event-transform', function() {
-      expect(compileTemplate(originSource, 'web', options, callback)).to.equal(`<view><origin-tag v-on:click="handleClick"></origin-tag><thirdComp1 v-on:click="handleClick"></thirdComp1><thirdComp2 v-on:click="_cmlEventProxy($event,\'handleClick\',false)"></thirdComp2></view>`)
+      expect(compileTemplate(originSource, 'web', options, callback)).to.equal(`<view><origin-tag v-on:tap="handleClick"></origin-tag><thirdComp1 v-on:click="handleClick"></thirdComp1><thirdComp2 v-on:click__CML_NATIVE_EVENTS__="_cmlEventProxy($event,'handleClick',false)"></thirdComp2></view>`)
     });
   });
   describe('parseEventListener-wx-baidu', function() {
