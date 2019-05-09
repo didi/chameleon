@@ -1,5 +1,5 @@
 const path = require('path');
-
+const loaderUtils = require('loader-utils');
 exports.stringifyLoaders = function (loaders) {
   return loaders
     .map(
@@ -16,7 +16,7 @@ exports.getSelector = function() {
   return path.resolve(__dirname, './selector.js')
 }
 
-exports.getPartLoaders = function({selectorOptions, partType, lang, loaders, resourcePath}) {
+exports.getPartLoaders = function({loaderContext, selectorOptions, partType, lang, loaders, resourcePath}) {
   selectorOptions.partType = partType;
 
   let resultLoaders = [
@@ -44,7 +44,11 @@ exports.getPartLoaders = function({selectorOptions, partType, lang, loaders, res
       break;
   }
   let stringLoaders = exports.stringifyLoaders(resultLoaders);
-  return '!' + stringLoaders + '!' + resourcePath;
+  let loaderString = '!!' + stringLoaders + '!' + resourcePath;
+  return loaderUtils.stringifyRequest(
+    loaderContext,
+    loaderString
+  )
 }
 
 exports.toUpperCase = function (content) {
