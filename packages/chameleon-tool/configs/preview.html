@@ -524,7 +524,7 @@
                 </p>
               </div>
             </div>
-            <div class="qrcode-item">
+            <div class="qrcode-item" style="display: none">
               <div class="qrcode-title">
                 <img src="./preview-assets/cml-weex.png" alt="">
                 <span> Weex Playground App 效果预览</span>
@@ -632,6 +632,7 @@
     (function () {
       var subpath = '';
       var jsbundle = '';
+      var singlePage= true;
       var routerConfig  = {
         mode: 'history',
         routes:[]
@@ -643,6 +644,7 @@
       var wrapContent = document.getElementById('wrap-content');
       //初始化全局参数值
       function initParams(params){
+        singlePage = params.singlePage;
         subpath = params.subpath;
         jsbundle = params.jsbundle;
       }
@@ -697,12 +699,12 @@
         var beatlesUrl = pageUrl + '?wx_addr=' +
           encodeURIComponent(url + '?t=' + Date.now());
 
-        if (path) {
-          beatlesUrl += '&path=' + encodeURIComponent(path);
-        }
-        if(routerConfig.mode === 'hash') {
-          beatlesUrl += subpath
-        }
+        // if (path) {
+        //   beatlesUrl += '&path=' + encodeURIComponent(path);
+        // }
+        // if(routerConfig.mode === 'hash') {
+        //   beatlesUrl += subpath
+        // }
         $QR.setAttribute('href', beatlesUrl)
         QR.addData(beatlesUrl)
         QR.make()
@@ -771,6 +773,7 @@
           fragment.appendChild(routeListDom)
           routesContainer.appendChild(fragment);
           var  handlClick = function (e) {
+
             if (e.target.tagName.toLowerCase() === 'span') {
               selectInput.innerText = e.target.innerText;
               selectInput.setAttribute('title', e.target.innerText);
@@ -781,6 +784,9 @@
                 subpath = routes[index].url;
               } else if (routerConfig.mode === 'hash') {
                 subpath = '#' + routes[index].url;
+              }
+              if(!singlePage){
+                bundleurl = location.origin + '/'+'weex/'+routes[index].name+'.js'
               }
               setRouteSelected(index,routeListDom);
               setPageUrl(subpath);

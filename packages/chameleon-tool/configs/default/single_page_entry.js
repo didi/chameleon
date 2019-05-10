@@ -1,7 +1,5 @@
 import instance from '$PROJECT/${PAGE_PATH}';
 
-
-
 const filter = require('$PROJECT/src/filter')["default"] || [];
 let promise;
 filter.forEach(e => {
@@ -13,11 +11,16 @@ filter.forEach(e => {
     }
   }
 })
-
+Vue.prototype.$router = {
+  history: {
+    index: 0
+  }
+}
 if (promise instanceof Promise) {
   promise.then(() => {
     instance.el = '#root';
     new Vue(instance);
+
   });
 } else {
   instance.el = '#root';
