@@ -148,12 +148,14 @@ exports.startReleaseAll = async function (media) {
   }
   // 给preview使用
   cml.activePlatform = activePlatform;
-  // 用户选择多端编译
-  if (cml.isParallel) {
+  let activePlatformLen = activePlatform.length;
+  // 项目编译需要多端且用户选择多端编译
+  if (activePlatformLen > 1 && cml.isParallel) {
     await configUtils.setFreePort()
+    // 获取一个可用端口号
     let port = configUtils.getFreePort().webServerPort
     // 开工作进程并行编译多端
-    for (let i = 0, j = activePlatform.length; i < j; i++) {
+    for (let i = 0; i < activePlatformLen; i++) {
       let platform = activePlatform[i];
       if (platform !== 'web') {
         cluster.setupMaster({
@@ -165,7 +167,7 @@ exports.startReleaseAll = async function (media) {
     }
     let finishedCount = 0; // 完成编译的进程数量
     let isIncludeWeb = activePlatform.includes('web');
-    let lenExceptWeb = isIncludeWeb ? activePlatform.length - 1 : activePlatform.length;
+    let lenExceptWeb = isIncludeWeb ? activePlatformLen - 1 : activePlatformLen;
     // 监听工作进程消息
     cluster.on('message', (worker, msg, handle) => {
       console.log(msg)
