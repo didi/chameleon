@@ -9,7 +9,9 @@ const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
-const childProcess = require('child_process');
+const cluster = require('cluster');
+const configUtils = require('../configs/utils')
+
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -144,30 +146,44 @@ exports.startReleaseAll = async function (media) {
       activePlatform.push(platform)
     }
   }
-
-  let count = 0
-  // let isInclude
-  for (let i = 0, j = activePlatform.length; i < j; i++) {
-    let platform = activePlatform[i];
-    if (platform !== 'web') {
-      let child = childProcess.fork(path.resolve(__dirname, '../chameleon.js'), [platform, media]);
-      child.on('message', (msg) => {
-        console.log(msg)
-        if (msg === 'compiled success') {
-          count++;
-        }
-        if (count === activePlatform.length - 1) {
-          exports.getWebBuildPromise(media, false);
-        }
-      })
-    }
-  }
-
-  return;
-  // 是否编译web端
-  let isCompile = !!~activePlatform.indexOf('web');
   // 给preview使用
   cml.activePlatform = activePlatform;
+  // 用户选择多端编译
+  if (cml.isParallel) {
+    await configUtils.setFreePort()
+    let port = configUtils.getFreePort().webServerPort
+    // 开工作进程并行编译多端
+    for (let i = 0, j = activePlatform.length; i < j; i++) {
+      let platform = activePlatform[i];
+      if (platform !== 'web') {
+        cluster.setupMaster({
+          exec: path.resolve(__dirname, '../chameleon.js'),
+          args: [platform, media, '-p', port]
+        })
+        cluster.fork()
+      }
+    }
+    let finishedCount = 0; // 完成编译的进程数量
+    let isIncludeWeb = activePlatform.includes('web');
+    let lenExceptWeb = isIncludeWeb ? activePlatform.length - 1 : activePlatform.length;
+    // 监听工作进程消息
+    cluster.on('message', (worker, msg, handle) => {
+      console.log(msg)
+      if (msg === 'COMPILED SUCCESS') {
+        finishedCount++;
+      }
+      if (finishedCount === lenExceptWeb) { // 所有工作进程均编译完成
+        exports.getWebBuildPromise(media, !!isIncludeWeb);
+        if (media === 'build') {
+          exports.createConfigJson()
+        }
+        startCmlLinter(media);
+      }
+    })
+    return;
+  }
+  // 是否编译web端
+  let isCompile = !!~activePlatform.indexOf('web');
 
   for (let i = 0, j = activePlatform.length; i < j; i++) {
     let platform = activePlatform[i];
@@ -193,21 +209,22 @@ exports.startReleaseOne = async function(media, type) {
     await exports.getWebBuildPromise(media, true);
   } else {
     let build = exports.getBuildPromise(media, type);
-    // 如果dev模式再启动web服务
+    // 如果dev模式再启动web服（多端并行编译时，子进程不启动web服务）
     if (media === 'dev') {
-      // await build.then(res => {
-      //   console.log('哈哈', res)
-      //   exports.getWebBuildPromise(media, false);
-      // })
-      await build
+      await build.then(cluster.isMaster ? res => {
+        exports.getWebBuildPromise(media, false);
+      } : null)
     } else {
       await build;
     }
   }
-  if (media === 'build') {
-    exports.createConfigJson()
+  // 多端并行编译时，子进程不执行以下操作
+  if (cluster.isMaster) {
+    if (media === 'build') {
+      exports.createConfigJson()
+    }
+    startCmlLinter(media);
   }
-  startCmlLinter(media);
 
 }
 
@@ -228,17 +245,17 @@ exports.createConfigJson = function() {
   let configObj = {};
   if (cml.utils.isFile(configJsonPath)) {
     configObj = JSON.parse(fs.readFileSync(configJsonPath, {encoding: 'utf-8'}))
-  };
+  }
   // 获取weex jsbundle地址
   let weexjs = configObj.weexjs || '';
   let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
-  
+
   if (cml.utils.isFile(weexjsPath)) {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
-    md5sum.update(buffer); 
+    md5sum.update(buffer);
     md5str = md5sum.digest('hex').toUpperCase();
   }
 

@@ -30,6 +30,8 @@ module.exports.run = function () {
           commander
             .command(cmd.name)
             .option('-l, --log [debug]', 'logLevel')
+            .option('-p, --port [port]', 'server port') // 指定端口号
+            .option('-P, --parallel', 'parallel compilation') // 是否多端编译
             .usage(cmd.usage)
             .description(cmd.desc)
         );

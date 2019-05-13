@@ -7,6 +7,7 @@ const transformErrors = require('./core/transformErrors');
 const formatErrors = require('./core/formatErrors');
 const output = require('./output');
 const utils = require('./utils');
+const cluster = require('cluster');
 
 const concat = utils.concat;
 const uniqueBy = utils.uniqueBy;
@@ -99,7 +100,9 @@ class FriendlyErrorsWebpackPlugin {
     const time = getCompileTime(stats);
     cml.log.notice(this.cmlType + ' Compiled successfully in ' + time + 'ms')
     // 工作进程编译完成通知主进程
-    process.send('compiled success')
+    if (!cluster.isMaster) {
+      process.send('COMPILED SUCCESS')
+    } 
 
     if (this.compilationSuccessInfo.messages) {
       this.compilationSuccessInfo.messages.forEach(message => output.info(message));

@@ -573,7 +573,11 @@ exports.setFreePort = async function () {
   if (webServerPort && weexLiveLoadPort) {
     return;
   }
-  if (cml.utils.is(cml.config.get().devPort, 'Number')) {
+  console.log('cml.runPort', cml.runPort)
+  // 命令行指定端口优先级更高
+  if (cml.runPort) {
+    webServerPort = Number(cml.runPort);
+  } else if (cml.utils.is(cml.config.get().devPort, 'Number')) {
     webServerPort = cml.config.get().devPort;
   } else {
     await portfinder.getPortPromise({
@@ -600,6 +604,7 @@ exports.setFreePort = async function () {
 
 exports.getFreePort = function () {
   if (webServerPort && weexLiveLoadPort) {
+    console.log('webServerPort', webServerPort)
     return {
       webServerPort,
       weexLiveLoadPort

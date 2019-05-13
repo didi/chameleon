@@ -21,6 +21,8 @@ cml.utils.setCli(true); // 标识当前在chameleon-cli环境中
 // cml.platform = ['wx', 'weex', 'web'];  // cml 当前支持的所有平台  决定打包的执行顺序web端放到最后
 cml.logLevel = argv.log || 'none'; // 日志输入等级   none  debug
 cml.log.setLogLevel(cml.logLevel);
+cml.runPort = argv.p || argv.port || ''; // 指定运行的端口号
+cml.isParallel = argv.P || argv.parallel || false; // 是否多端使用并行编译
 
 // 设置projectName为项目根目录文件名称
 cml.config.get().projectName = path.basename(cml.projectRoot)
