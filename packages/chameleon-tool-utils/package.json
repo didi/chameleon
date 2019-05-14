@@ -31,7 +31,7 @@
   "main": "src/index.js",
   "name": "chameleon-tool-utils",
   "scripts": {
-    "cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- -R spec --recursive",
+    "cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- test/*.test.js test/**/*.test.js",
     "eslint": "eslint ./src",
     "test": "mocha --recursive --reporter spec",
     "break-test": "./node_modules/.bin/mocha  --inspect-brk --recursive --reporter spec"
