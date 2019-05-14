@@ -60,7 +60,9 @@ utils.setTempRoot = function (tmp) {
   }
   utils.openPreviewUrl = function() {
     cml.log.notice('Listening at ' + previewUrl);
-    opn(previewUrl);
+    if (cml.config.get().autoOpenPreview) {
+      opn(previewUrl);
+    }
   }
 })();
 // 生成config.json文件
