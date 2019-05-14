@@ -18,7 +18,6 @@ cml.cli = cli;
 cml.log = log;
 cml.event = new EventEmitter();
 cml.utils.setCli(true); // 标识当前在chameleon-cli环境中
-// cml.platform = ['wx', 'weex', 'web'];  // cml 当前支持的所有平台  决定打包的执行顺序web端放到最后
 cml.logLevel = argv.log || 'none'; // 日志输入等级   none  debug
 cml.log.setLogLevel(cml.logLevel);
 
