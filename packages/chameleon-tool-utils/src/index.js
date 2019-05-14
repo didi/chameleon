@@ -530,8 +530,12 @@ _.getBuildinComponents = function (cmlType, context) {
   if (cacheBuildIn[cmlType]) {
     return cacheBuildIn[cmlType];
   }
-  let packageFilePath = path.join(context, 'node_modules', builtinNpmName, 'package.json');
-  let result = _.getOnePackageComponents(builtinNpmName, packageFilePath, cmlType, context);
+  let newNpmName = builtinNpmName;
+  if (_.isCli() && cml.extPlatformPlugin[cmlType]) {
+    newNpmName = cml.extPlatformPlugin[cmlType].builtinUINpmName || newNpmName;
+  }
+  let packageFilePath = path.join(context, 'node_modules', newNpmName, 'package.json');
+  let result = _.getOnePackageComponents(newNpmName, packageFilePath, cmlType, context);
   let compileTagMap = {};
   // 内置组件的componet name需要特殊处理，并且挂在cml上给模板编译做处理
   result.forEach(item => {

@@ -34,5 +34,5 @@ if (cml.utils.isFile(configPath)) {
 }
 // 设置内置组件库名称
 cml.utils.setBuiltinNpmName(cml.config.get().builtinNpmName);
-
+cml.extPlatformPlugin = {}; // 扩展端的插件对象
 cml.cli.run();
