@@ -153,7 +153,9 @@ exports.startReleaseAll = async function (media) {
   if (activePlatformLen > 1 && cml.isParallel) {
     await configUtils.setFreePort()
     // 获取一个可用端口号
-    let port = configUtils.getFreePort().webServerPort
+    let port = configUtils.getFreePort().webServerPort;
+    let finishedCount = 0; // 完成编译的进程数量
+    let isIncludeWeb = activePlatform.includes('web');
     // 开工作进程并行编译多端
     for (let i = 0; i < activePlatformLen; i++) {
       let platform = activePlatform[i];
@@ -165,23 +167,32 @@ exports.startReleaseAll = async function (media) {
         cluster.fork()
       }
     }
-    let finishedCount = 0; // 完成编译的进程数量
-    let isIncludeWeb = activePlatform.includes('web');
-    let lenExceptWeb = isIncludeWeb ? activePlatformLen - 1 : activePlatformLen;
-    // 监听工作进程消息
-    cluster.on('message', (worker, msg, handle) => {
-      console.log(msg)
-      if (msg === 'COMPILED SUCCESS') {
-        finishedCount++;
+    exports.getWebBuildPromise(media, isIncludeWeb).then(() => {
+      if (isIncludeWeb) {
+        addCount();
       }
-      if (finishedCount === lenExceptWeb) { // 所有工作进程均编译完成
-        exports.getWebBuildPromise(media, !!isIncludeWeb);
+    });
+
+    /* eslint-disable */
+    function addCount() {
+      if (++finishedCount === activePlatformLen) { // 所有工作进程均编译完成
+        cml.utils.openPreviewUrl(); // 打开预览页面
         if (media === 'build') {
           exports.createConfigJson()
         }
         startCmlLinter(media);
       }
+    }   
+    
+    // 监听工作进程消息
+    cluster.on('message', (worker, msg, handle) => {
+      console.log(msg)
+      if (msg === 'COMPILED SUCCESS') {
+        addCount();
+      }
     })
+
+
     return;
   }
   // 是否编译web端
@@ -209,13 +220,17 @@ exports.startReleaseOne = async function(media, type) {
   cml.activePlatform = [type];
   if (type === 'web') {
     await exports.getWebBuildPromise(media, true);
+    // 打开预览页面
+    cml.utils.openPreviewUrl();
   } else {
     let build = exports.getBuildPromise(media, type);
     // 如果dev模式再启动web服（多端并行编译时，子进程不启动web服务）
-    if (media === 'dev') {
-      await build.then(cluster.isMaster ? res => {
+    if (media === 'dev' && cluster.isMaster) {
+      await build.then(res => {
         exports.getWebBuildPromise(media, false);
-      } : null)
+      });
+      // 打开预览页面
+      cml.utils.openPreviewUrl();
     } else {
       await build;
     }
