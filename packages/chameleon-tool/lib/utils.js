@@ -56,11 +56,13 @@ utils.setTempRoot = function (tmp) {
   let previewUrl = '';
   // 设置打开预览页面Url
   utils.setPreviewUrl = function(url) {
+    cml.log.debug('setPreviewUrl:' + url)
     previewUrl = url;
   }
   utils.openPreviewUrl = function() {
     cml.log.notice('Listening at ' + previewUrl);
     if (cml.config.get().autoOpenPreview) {
+      cml.log.debug('openPreviewUrl:' + previewUrl)
       opn(previewUrl);
     }
   }

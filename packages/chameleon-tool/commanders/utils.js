@@ -176,14 +176,20 @@ exports.startReleaseAll = async function (media) {
     /* eslint-disable */
     function addCount() {
       if (++finishedCount === activePlatformLen) { // 所有工作进程均编译完成
-        cml.utils.openPreviewUrl(); // 打开预览页面
+        if(media === 'dev') {
+          cml.utils.openPreviewUrl(); // 打开预览页面
+        }
         if (media === 'build') {
-          exports.createConfigJson()
+          exports.createConfigJson();
+        } 
+        // 不是dev就退出
+        if(media !== 'dev') {
+          process.exit(0);
         }
         startCmlLinter(media);
       }
     }   
-    
+
     // 监听工作进程消息
     cluster.on('message', (worker, msg, handle) => {
       console.log(msg)
@@ -206,6 +212,10 @@ exports.startReleaseAll = async function (media) {
   }
 
   await exports.getWebBuildPromise(media, isCompile);
+  if(media === 'dev') {
+    // 打开预览页面
+    cml.utils.openPreviewUrl();
+  }
   if (media === 'build') {
     exports.createConfigJson()
   }
@@ -221,13 +231,15 @@ exports.startReleaseOne = async function(media, type) {
   if (type === 'web') {
     await exports.getWebBuildPromise(media, true);
     // 打开预览页面
-    cml.utils.openPreviewUrl();
+    if(media === 'dev') {
+      cml.utils.openPreviewUrl();
+    }
   } else {
     let build = exports.getBuildPromise(media, type);
     // 如果dev模式再启动web服（多端并行编译时，子进程不启动web服务）
     if (media === 'dev' && cluster.isMaster) {
       await build.then(res => {
-        exports.getWebBuildPromise(media, false);
+        return exports.getWebBuildPromise(media, false);
       });
       // 打开预览页面
       cml.utils.openPreviewUrl();
