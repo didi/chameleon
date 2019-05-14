@@ -16,10 +16,10 @@ exports.assets = function({source, loaderContext}) {
               if(splitUrl[1]) {
                 realDependPath = realDependPath + '?' + splitUrl[1];
               }
-              deps.push(realDependPath);
+              deps.push($1);
               return `__cml${realDependPath}__lmc`;
             } else {
-              return $1;
+              return `url("${$1}")`;
             }
           })
         }

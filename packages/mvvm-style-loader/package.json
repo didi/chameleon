@@ -1,15 +1,22 @@
 {
   "name": "mvvm-style-loader",
-  "version": "0.4.0-mvvm.2",
+  "version": "0.4.0-mvvm.7",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cover": "istanbul cover --report lcov _mocha -- -R spec --recursive",
+    "test": "mocha --recursive --reporter spec"
   },
   "author": "Chameleon-Team",
   "license": "Apache",
   "dependencies": {
     "postcss": "7.0.14",
-    "chameleon-tool-utils": "0.4.0-mvvm.2"
+    "chameleon-tool-utils": "0.4.0-mvvm.7"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }

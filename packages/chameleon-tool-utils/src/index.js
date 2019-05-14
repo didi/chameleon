@@ -45,7 +45,7 @@ _.setBuiltinNpmName = function(npmName) {
   return builtinNpmName;
 }
 
-// include 和script的src不支持别名查找
+// include 和script的src不支持别名查找 并且必须有后缀 window上不会加后缀
 _.resolveSync = function(filepath, requirePath) {
   let fromCwd
   try {
@@ -54,7 +54,27 @@ _.resolveSync = function(filepath, requirePath) {
   return fromCwd
 }
 
+/**
+ * @param oldFilePath 旧文件路径
+ * @param interfaceFilePath 新文件路径
+ * @param requirePath require的路径
+ */
+_.resolveInterfaceRequire = function(oldFilePath, newFilePath, requirePath) {
+  // 非相对路径不处理
+  if (requirePath[0] !== '.') {
+    return requirePath;
+  } else {
+    // 处理相对路径
+    const absPath = path.join(path.dirname(oldFilePath), requirePath);
+    let result = path.relative(path.dirname(newFilePath), absPath);
+    result = _.handleWinPath(result);
+    if (result[0] !== '.') {
+      result = './' + result;
+    }
+    return result;
+  }
 
+}
 /**
  * 对象枚举元素遍历，若merge为true则进行_.assign(obj, callback)，若为false则回调元素的key value index
  * @param  {Object}   obj      源对象
@@ -806,13 +826,15 @@ _.findComponent = function (filePath, cmlType) {
   }
 
   let ext = fileExtMap[cmlType];
-  if (typeof ext === 'string') {
-    ext = [ext];
-  }
-  for (let i = 0; i < ext.length; i++) {
-    let extFilePath = filePath + ext[i];
-    if (_.isFile(extFilePath)) {
-      return extFilePath;
+  if (ext) {
+    if (typeof ext === 'string') {
+      ext = [ext];
+    }
+    for (let i = 0; i < ext.length; i++) {
+      let extFilePath = filePath + ext[i];
+      if (_.isFile(extFilePath)) {
+        return extFilePath;
+      }
     }
   }
 
@@ -1206,6 +1228,20 @@ _.createMd5 = function(content) {
   let md5 = crypto.createHash('md5');
   md5.update(content);
   return md5.digest('hex');
+}
+
+// 给文件添加hash值
+_.addHashName = function(filePath, hashValue) {
+  let dirname = path.dirname(filePath);
+  let basename = path.basename(filePath);
+  let nameArray = basename.split('.');
+  if (nameArray.length > 1) {
+    nameArray[nameArray.length - 2] = nameArray[nameArray.length - 2] + '_' + hashValue;
+  } else {
+    nameArray[0] = nameArray[0] + '_' + hashValue;
+  }
+  basename = nameArray.join('.');
+  return path.join(dirname, basename);
 }
 
 _.delQueryPath = function(filePath) {

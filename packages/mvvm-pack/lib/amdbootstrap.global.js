@@ -22,7 +22,7 @@
 
     var factory = factoryMap[id];
     if (!factory) {
-      throw new Error('[ModJS] Cannot find module `' + id + '`');
+      throw new Error('[ModJS] Cannot find module "' + id + '"');
     }
 
     mod = modulesMap[id] = {

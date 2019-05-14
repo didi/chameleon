@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.4.0-mvvm.2",
+  "version": "0.4.0-mvvm.7",
   "command": {
     "publish": {
       "allowBranch": "master",

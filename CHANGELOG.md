@@ -1,4 +1,15 @@
 
+
+
+## [0.4.0-mvvm.7]
+### Features
+* 支持扩展新端支持文件指纹与js和css压缩
+* 对齐百度和微信小程序能力，支持 支付宝 web weex 在自定义组件上使用 tap touchstart touchend touchcancel原生事件直接触发
+
+## [0.4.0-mvvm.6]
+### Features
+* 支持扩展新端对小程序原生组件支持
+
 ## [0.4.0-mvvm.1-0.4.0-mvvm.3]
 ### Features
 * 增加 扩展新端功能

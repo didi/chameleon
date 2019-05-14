@@ -50,9 +50,9 @@
       }
     },
     "chameleon-ui-builtin": {
-      "version": "0.4.0-mvvm.1",
-      "resolved": "https://registry.npmjs.org/chameleon-ui-builtin/-/chameleon-ui-builtin-0.4.0-mvvm.1.tgz",
-      "integrity": "sha512-YoxOwWL6Zpuz4nqPh3Z8EqYpHotom9qX/oFMBCqr2YM1VNMaY7W32ayoAWvuLazRxdXBjtUCiOVtEj/lBaPrxg==",
+      "version": "0.4.0-mvvm.3",
+      "resolved": "https://registry.npmjs.org/chameleon-ui-builtin/-/chameleon-ui-builtin-0.4.0-mvvm.3.tgz",
+      "integrity": "sha512-91WvboM5p1y8McD2EsWt5QNHPHjBvZhkHQuCymKoAFNH70yHR+W2duVcqhWJSKZLItSOTsD8tXTL9KfyZQgW8g==",
       "requires": {
         "chameleon-scroll": "0.0.3"
       }
@@ -63,9 +63,9 @@
       "integrity": "sha1-sffn/HPSXn/R1FWtyU4UODAYK1o="
     },
     "cml-ui": {
-      "version": "0.1.7",
-      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.1.7.tgz",
-      "integrity": "sha512-oxzAHXzi4D2nxnoEk0XylAbuBwSDZhR/G43UmjePOfGnDJBNhgIMB3UnDGjIpEmJVS5S0t1pEGPNCjFrzJ+LnQ=="
+      "version": "0.2.0-mvvm.1",
+      "resolved": "https://registry.npmjs.org/cml-ui/-/cml-ui-0.2.0-mvvm.1.tgz",
+      "integrity": "sha512-0471MJ5sP/w4fKJyEHve/yrjhTgTPedSu2S7AKDWR25YxZOHcPfdUwjTLZ2pfH6hrMuFmnog2g9p1iIJCfiW6g=="
     },
     "fetch-detector": {
       "version": "1.0.1",
