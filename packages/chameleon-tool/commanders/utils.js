@@ -192,7 +192,7 @@ exports.startReleaseAll = async function (media) {
 
     // 监听工作进程消息
     cluster.on('message', (worker, msg, handle) => {
-      console.log(msg)
+      cml.log.debug(`cluster message ${msg}`)
       if (msg === 'COMPILED SUCCESS') {
         addCount();
       }
