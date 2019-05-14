@@ -1,6 +1,9 @@
 
 
 
+## [0.4.0-mvvm.8]
+### Bug Fixes
+* 修复扩展新端在window上构建报错
 ## [0.4.0-mvvm.7]
 ### Features
 * 支持扩展新端支持文件指纹与js和css压缩
