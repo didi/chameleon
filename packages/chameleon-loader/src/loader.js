@@ -17,6 +17,7 @@ const cmlUtils = require('chameleon-tool-utils');
 const prehandle = require('./utils/prehandle.js');
 const loaderMethods = require('./loaderMethods');
 const miniAppScript = require('./miniapp-script.js');
+const loadIcon = require('./load-icon.js');
 let jsonObject = {};
 
 module.exports = function (content) {
@@ -273,7 +274,7 @@ module.exports = function (content) {
     });
     //处理tabbar中配置的icon路径
     if(type == 'app'){
-      miniAppScript.handleApptabbar(newJsonObj,filePath,cmlType)
+      loadIcon.handleApptabbar(newJsonObj,filePath,cmlType)
     }
     let jsonResult = JSON.stringify(newJsonObj, '', 4);
     self.emitFile(emitJsonPath, jsonResult);

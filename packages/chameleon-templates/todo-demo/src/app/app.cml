@@ -1,10 +1,14 @@
 <template>
-  <app></app>
+  <app router-config="{{routerConfig}}"></app>
 </template>
 
 <script>
+import routerConfig from '../router.config.json';
+
 class App {
-  data = {}
+  data = {
+    routerConfig
+  }
   created(res) {
   }
 }

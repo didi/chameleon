@@ -1,5 +1,33 @@
 const utils = require('../../src/common/utils');
 var expect = require('chai').expect;
+let options = {lang: 'cml',
+  buildInComponents: {button: "cml-buildin-button", 'c-tab-item': 'cml-buildin-tab'},
+  filePath: '/User/Jim-W/didi/component/button.cml',
+  cmss: {
+    rem: true,
+    scale: 0.5,
+    remOptions: {
+    // base on 750px standard.
+      rootValue: 75,
+      // to leave 1px alone.
+      minPixelValue: 1.01
+    },
+    autoprefixOptions: {
+      browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
+    }
+  },
+  usingComponents: [{
+    tagName: 'thirdComp1',
+    refUrl: '/path/to/ref1',
+    filePath: 'path/to/real1',
+    isNative: true
+  }, {
+    tagName: 'thirdComp2',
+    refUrl: '/path/to/ref2',
+    filePath: 'path/to/real2',
+    isNative: false
+  }]
+};
 describe('utils', function() {
   describe('trimCurly', function() {
     it('trim {{variable}} to variable', function() {
@@ -116,5 +144,61 @@ describe('utils', function() {
       let result = utils.getInlineStatementArgs("1,'index'+1,$event,'item',index+1,item");
       expect(result).to.equal(`1,'index'+1,'$event','item',index+1,item`);
     })
+  });
+  describe('isOriginTagOrNativeComp', function() {
+    it('isOriginTagOrNativeComp-nativecomp', function() {
+      let result = utils.isOriginTagOrNativeComp('thirdComp1', options);
+      expect(result).to.be.ok;
+    });
+    it('isOriginTagOrNativeComp-origin-tag', function() {
+      let result = utils.isOriginTagOrNativeComp('origin-tag', options);
+      expect(result).to.be.ok;
+    });
+    it('isOriginTagOrNativeComp-not-nativecomp', function() {
+      let result = utils.isOriginTagOrNativeComp('thirdComp2', options);
+      expect(result).to.be.not.ok;
+    });
+    it('isusualComp', function() {
+      let result = utils.isOriginTagOrNativeComp('view', options);
+      expect(result).to.be.not.ok;
+    });
+  });
+  describe('isNativeComp', function() {
+    it('isOriginTagOrNativeComp-nativecomp', function() {
+      let result = utils.isOriginTagOrNativeComp('thirdComp1', options);
+      expect(result).to.be.ok;
+    });
+    it('isOriginTagOrNativeComp-origin-tag', function() {
+      let result = utils.isNativeComp('origin-tag', options);
+      expect(result).to.be.not.ok;
+    });
+    it('isOriginTagOrNativeComp-not-nativecomp', function() {
+      let result = utils.isNativeComp('thirdComp2', options);
+      expect(result).to.be.not.not.ok;
+    });
+    it('isusualComp', function() {
+      let result = utils.isNativeComp('view', options);
+      expect(result).to.be.not.ok;
+    });
+  });
+  // 不是对应端的原生组件
+  describe('isNotNativeComponent', function() {
+    it('isNotNativeComponent-nativecomp', function() {
+      let result = utils.isNotNativeComponent('cml-buildin-button', options);
+      expect(result).to.be.ok;
+    });
+    it('isNotNativeComponent-not-nativecomp', function() {
+      let result = utils.isNotNativeComponent('thirdComp1', options);
+      expect(result).to.be.not.ok;
+    });
+    it('isNotNativeComponent', function() {
+      let result = utils.isNotNativeComponent('thirdComp2', options);
+      expect(result).to.be.ok;
+    });
+    it('isNotNativeComponent', function() {
+      let result = utils.isNotNativeComponent('view', options);
+      console.log('result-isNotNativeComponent', result)
+      expect(result).to.be.not.ok;
+    });
   });
 })

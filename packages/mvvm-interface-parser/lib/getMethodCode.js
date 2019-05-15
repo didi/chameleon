@@ -3,7 +3,7 @@ const fs = require('fs');
 const {resolveRequire} = require('./resolveRequire.js');
 
 
-module.exports = function({interfacePath, content, cmlType, resolve}) {
+module.exports = function({interfacePath, content, cmlType}) {
 
   let devDeps = [];
 
@@ -13,13 +13,10 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
     }
 
     let parts = cmlUtils.splitParts({content});
-    let include = null;
+    let include = [];
     for (let i = 0;i < parts.customBlocks.length;i++) {
       if (parts.customBlocks[i].type === 'include') {
-        if (include) {
-          throw new Error(`file just allow has only one <include></include>: ${filePath}`)
-        }
-        include = parts.customBlocks[i];
+        include.push(parts.customBlocks[i]);
       }
     }
     let methodScript = null;
@@ -36,21 +33,21 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
       }
     }
 
-    if (include) {
-      if (!include.attrs.src) {
-        throw new Error(`not define src attribute: ${filePath}`)
+    for (let i = include.length - 1; i >= 0; i--) {
+      let item = include[i];
+      if (item) {
+        if (!item.attrs.src) {
+          throw new Error(`not define include src attribute: ${filePath}`)
+        }
+        let newFilePath = cmlUtils.resolveSync(filePath, item.attrs.src);
+        if (!cmlUtils.isFile(newFilePath)) {
+          throw new Error(`not find file: ${newFilePath}`)
+        }
+        let newContent = fs.readFileSync(newFilePath, {encoding: 'utf-8'})
+        return getMethod(newFilePath, newContent);
       }
-      let newFilePath = cmlUtils.resolveSync(filePath, include.attrs.src);
-      if (!cmlUtils.isFile(newFilePath)) {
-        throw new Error(`not find file: ${newFilePath}`)
-      }
-      let newContent = fs.readFileSync(newFilePath, {encoding: 'utf-8'})
-      return getMethod(newFilePath, newContent);
     }
-
     return null;
-
-
   }
 
 
@@ -87,7 +84,7 @@ module.exports = function({interfacePath, content, cmlType, resolve}) {
 
   // 需要对原有content中的所有引用路径做解析 解析为绝对路径。
   return {
-    content: resolveRequire({content: newContent, filePath: contentFilePath, resolve}),
+    content: resolveRequire({content: newContent, oldFilePath: contentFilePath, newFilePath: interfacePath}),
     devDeps,
     contentFilePath
   }
