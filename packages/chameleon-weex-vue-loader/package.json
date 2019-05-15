@@ -1,6 +1,6 @@
 {
   "name": "chameleon-weex-vue-loader",
-  "version": "0.4.0-mvvm.7",
+  "version": "0.4.0-mvvm.8",
   "license": "Apache",
   "main": "index.js",
   "dependencies": {

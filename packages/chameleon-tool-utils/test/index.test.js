@@ -433,22 +433,6 @@ describe('index.js', function () {
 
   })
 
-  it(`convertToRelativeRef`, function () {
-    global.cml = {};
-    _.setCli(true);
-    cml.event = new EventEmitter();
-    cml.config = require('./testlib/cli/config.js');
-    cml.utils = require('../src/index.js');
-    cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
-    cml.config.merge({
-      cmlComponents: ['cml-ui']
-    })
-
-    let result = _.findComponent(__dirname, 'wx');
-    expect(result).to.equal(false);
-
-  })
-
   it('getDevServerPath', function() {
     process.env.HOME = __dirname;
     let devpath = cml.utils.getDevServerPath();
