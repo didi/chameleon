@@ -76,7 +76,6 @@ const lintCmlFile = async (parts) => {
  * @return {Promise}              promise
  */
 const checkFile = async (lintedResult, filepath) => {
-
   // 校验style
   checkers.style(lintedResult);
 
@@ -108,7 +107,6 @@ const checkFile = async (lintedResult, filepath) => {
  */
 const checkFileContent = async (filepath) => {
   let parts = utils.getCmlParts(filepath);
-
   let result = await lintCmlFile(parts);
   result = await checkFile(result, filepath);
 
@@ -128,7 +126,6 @@ const checkCMLFileSpecification = async (filepath) => {
       messages: []
     }
   };
-
   if (new RegExp('([^/]*?)\.(' + platforms.join('|') + ')\.cml$', 'g').test(filepath)) {
     let interfaceFile = filepath.replace(new RegExp('\.(' + platforms.join('|') + ')\.cml$', 'g'), '.interface');
     if (!fs.existsSync(interfaceFile)) {
@@ -153,10 +150,9 @@ const checkCMLFileSpecification = async (filepath) => {
  * @return {Promise}          promise
  */
 const checkInterfaceFileSpecification = async (filepath) => {
-  let parts = utils.getInterfaceParts(filepath);
+  let {parts} = utils.getInterfaceParts(filepath);
   let result = {};
   let keys = Object.keys(parts);
-
   if (keys.length > 1) {
 
     for (let key in parts) {
@@ -170,7 +166,6 @@ const checkInterfaceFileSpecification = async (filepath) => {
         result[key].platform = part.platformType;
       }
     }
-
     // 校验脚本
     checkers.script(result);
     return result;

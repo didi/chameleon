@@ -1,10 +1,12 @@
 const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 const groupBy = require('lodash.groupby');
 const filter = require('lodash.filter');
 const map = require('lodash.map');
 const cliUtils = require('chameleon-tool-utils');
 const config = require('./config');
+const Message = require('./classes/message');
 
 let isCmlComponent = (templatePath, usingPath) => {
   let currentWorkspace = config.getCurrentWorkspace();
@@ -111,25 +113,72 @@ let getCmlParts = filepath => {
 
 
 let getInterfaceParts = filepath => {
-  let content = fs.readFileSync(filepath, 'utf8');
-  let result = {};
-  let parts = cliUtils.splitParts({content});
+  let _result = {
+    parts: {},
+    messages: []
+  };
 
-  if (parts.script) {
-    parts.script.forEach(item => {
-      result[item.cmlType] = item;
+  _retrieveParts(filepath);
 
-      Object.assign(result[item.cmlType], {
-        params: {},
-        line: item.startLine,
-        file: filepath,
-        rawContent: item.tagContent,
-        platformType: item.cmlType
+  function _retrieveParts(interfaceFilePath) {
+    // terminate condition
+    if (!fs.existsSync(interfaceFilePath)) {
+      return;
+    }
+
+    const content = fs.readFileSync(interfaceFilePath, 'utf8');
+    const parts = cliUtils.splitParts({content});
+    // search parts.script array for interface defination and platform specific definations.
+    if (parts.script) {
+      parts.script.forEach(item => {
+        let extraPartInfo = {
+          params: {},
+          line: item.startLine,
+          file: interfaceFilePath,
+          rawContent: item.tagContent,
+          platformType: item.cmlType
+        };
+        // for interface portion we should keep the origin filepath
+        if (item.cmlType === 'interface') {
+          extraPartInfo.file = filepath;
+        }
+        // check src references for platform definations
+        if (item.cmlType != 'interface' && item.attrs && item.attrs.src) {
+          const targetScriptPath = path.resolve(path.dirname(interfaceFilePath), item.attrs.src);
+          if (!fs.existsSync(targetScriptPath)) {
+            _result.messages.push(new Message({
+              line: item.line,
+              column: item.tagContent.indexOf(item.attrs.src) + 1,
+              token: item.attrs.src,
+              msg: `The file ${item.attrs.src} specified with src attribute was not found`
+            }));
+          }
+          extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = fs.readFileSync(targetScriptPath, 'utf8');
+          extraPartInfo.file = targetScriptPath;
+        }
+        // previous cmlType defination has a higher priority.
+        if (!_result.parts[item.cmlType]) {
+          _result.parts[item.cmlType] = {...item, ...extraPartInfo};
+        }
       });
-    });
+    }
+    // search parts.customBlocks array for include defination which may contains another interface file.
+    let include = null;
+    if (parts.customBlocks) {
+      parts.customBlocks.forEach(item => {
+        if (item.type === 'include') {
+          include = item;
+        }
+      });
+    }
+    if (include && include.attrs && include.attrs.src) {
+      let newFilePath = path.resolve(path.dirname(interfaceFilePath), include.attrs.src);
+      return _retrieveParts(newFilePath);
+    }
+    return;
   }
 
-  return result;
+  return _result;
 }
 
 
@@ -165,7 +214,10 @@ let outputWarnings = (result) => {
 
         item.messages
           .sort((preMsg, nextMsg) => {
-            return preMsg.line - nextMsg.line;
+            if (preMsg.line == undefined || preMsg.column == undefined || nextMsg.line == undefined || nextMsg.column == undefined) {
+              return 0;
+            }
+            return (preMsg.line - nextMsg.line) * 10000 + (preMsg.column - nextMsg.column);
           })
           .forEach((message) => {
             if (message.line !== undefined && item.start !== undefined && message.column !== undefined) {
