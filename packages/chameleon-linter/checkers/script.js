@@ -159,13 +159,20 @@ const checkGlobal = function (ast, type = 'ALL') {
  * @return {Object}     分析结果
  */
 const getInterfaces = (ast) => {
-  let result = {};
+  let result = {
+    name: '',
+    properties: {}
+  };
   ast.program.body.forEach(function (node) {
     if (node.type == 'InterfaceDeclaration') {
       let interfaceName = node.id.name;
-      result[interfaceName] = {};
+      result.name = interfaceName;
+      result.loc = {
+        line: node.id.loc.start.line,
+        column: node.id.loc.start.column
+      };
       node.body.properties.map((property) => {
-        result[interfaceName][property.key.name] = {
+        result.properties[property.key.name] = {
           type: property.value.type.replace(/TypeAnnotation/g, ''),
           line: property.key.loc.start.line,
           column: property.key.loc.start.column
@@ -305,6 +312,9 @@ function getInterfacePortionClassDef(ast) {
 const checkScript = async (result) => {
   let validPlatforms = Object.keys(result)
     .filter(platform => {
+      return platform && (!~['json', 'template', 'style', 'script'].indexOf(platform));
+    })
+    .filter(platform => {
       return platform && (platform != 'interface');
     });
   // add a script type for multi-file components.
@@ -316,18 +326,22 @@ const checkScript = async (result) => {
     if (result['interface'] && result['interface'].ast && script && script.ast) {
       const interfaceDefine = getInterfaces(result['interface'].ast);
       const classDefines = getClass(script.ast, platform === 'script');
-
       classDefines.forEach(clazz => {
         clazz.interfaces.forEach(interfaceName => {
-          let define = interfaceDefine[interfaceName];
-
+          let define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
+          if (!define) {
+            result['interface'].messages.push({
+              msg: `The implement class name: "${interfaceName}" used in file: [${script.file}] doesn\'t match the name defined in it\'s interface file: [${result['interface'].file}]`
+            });
+            return;
+          }
           for (let key of Object.keys(define)) {
             if ((define[key] && define[key].type == 'Generic') && clazz.properties.indexOf(key) == -1) {
               result['interface'].messages.push({
                 line: define[key].line,
                 column: define[key].column,
                 token: key,
-                msg: `interface property [ ${key} ] is not defined for platform "${platform}" in file [ ${script.file} ]`
+                msg: `interface property "${key}" is not defined in file [ ${script.file} ]`
               });
             }
             else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
@@ -335,7 +349,7 @@ const checkScript = async (result) => {
                 line: define[key].line,
                 column: define[key].column,
                 token: key,
-                msg: `interface method [${key}] is not defined for platform "${platform}" in file [ ${script.file} ]`
+                msg: `interface method "${key}" is not defined in file [ ${script.file} ]`
               });
             }
           }

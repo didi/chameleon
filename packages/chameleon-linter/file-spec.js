@@ -150,11 +150,11 @@ const checkCMLFileSpecification = async (filepath) => {
  * @return {Promise}          promise
  */
 const checkInterfaceFileSpecification = async (filepath) => {
-  let {parts} = utils.getInterfaceParts(filepath);
+  let {parts, messages} = utils.getInterfaceParts(filepath);
   let result = {};
   let keys = Object.keys(parts);
-  if (keys.length > 1) {
 
+  if (messages.length == 0 && keys.length > 1) {
     for (let key in parts) {
       if (parts.hasOwnProperty(key)) {
         let part = parts[key];
@@ -171,7 +171,13 @@ const checkInterfaceFileSpecification = async (filepath) => {
     return result;
   }
   else {
-    return {};
+    return {
+      core: {
+        type: 'core',
+        messages,
+        file: filepath
+      }
+    };
   }
 }
 

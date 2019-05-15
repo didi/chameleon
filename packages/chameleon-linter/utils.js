@@ -131,6 +131,7 @@ let getInterfaceParts = filepath => {
     // search parts.script array for interface defination and platform specific definations.
     if (parts.script) {
       parts.script.forEach(item => {
+        let errMsg = null;
         let extraPartInfo = {
           params: {},
           line: item.startLine,
@@ -145,20 +146,55 @@ let getInterfaceParts = filepath => {
         // check src references for platform definations
         if (item.cmlType != 'interface' && item.attrs && item.attrs.src) {
           const targetScriptPath = path.resolve(path.dirname(interfaceFilePath), item.attrs.src);
-          if (!fs.existsSync(targetScriptPath)) {
-            _result.messages.push(new Message({
-              line: item.line,
-              column: item.tagContent.indexOf(item.attrs.src) + 1,
-              token: item.attrs.src,
-              msg: `The file ${item.attrs.src} specified with src attribute was not found`
-            }));
+          // the referenced source is a js file
+          if (/.js$/.test(item.attrs.src)) {
+            if (!fs.existsSync(targetScriptPath)) {
+              errMsg = new Message({
+                line: item.line,
+                column: item.tagContent.indexOf(item.attrs.src) + 1,
+                token: item.attrs.src,
+                msg: `The javascript file ${item.attrs.src} specified with attribute src was not found`
+              });
+            } else {
+              extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = fs.readFileSync(targetScriptPath, 'utf8');
+              extraPartInfo.file = targetScriptPath;
+            }
           }
-          extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = fs.readFileSync(targetScriptPath, 'utf8');
-          extraPartInfo.file = targetScriptPath;
+          // the referenced source is a cml file
+          if (/.cml$/.test(item.attrs.src)) {
+            if (!fs.existsSync(targetScriptPath)) {
+              errMsg = new Message({
+                line: item.line,
+                column: item.tagContent.indexOf(item.attrs.src) + 1,
+                token: item.attrs.src,
+                msg: `The cml file: "${targetScriptPath}" specified with attribute src was not found`
+              });
+            } else {
+              const cmlFileContent = fs.readFileSync(targetScriptPath, 'utf8');
+              const cmlParts = cliUtils.splitParts({content: cmlFileContent});
+              const scriptPart = cmlParts.script ? cmlParts.script.filter(part => {
+                return part.type === 'script';
+              }) : null;
+              if (scriptPart && scriptPart.length) {
+                extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = scriptPart[0].content;
+                extraPartInfo.file = targetScriptPath;
+              } else {
+                errMsg = new Message({
+                  line: item.line,
+                  column: item.tagContent.indexOf(item.attrs.src) + 1,
+                  token: item.attrs.src,
+                  msg: `The referenced file: "${targetScriptPath}" may not has a script portion`
+                });
+              }
+            }
+          }
         }
         // previous cmlType defination has a higher priority.
-        if (!_result.parts[item.cmlType]) {
+        if (!errMsg && !_result.parts[item.cmlType]) {
           _result.parts[item.cmlType] = {...item, ...extraPartInfo};
+        }
+        if (errMsg) {
+          _result.messages.push(errMsg);
         }
       });
     }
@@ -197,7 +233,6 @@ let outputWarnings = (result) => {
     flag = true;
     return true;
   });
-
   result = groupBy(result, 'file');
   for (let key of Object.keys(result)) {
     if (key !== 'undefined') {
@@ -224,7 +259,7 @@ let outputWarnings = (result) => {
               console.log('[' + chalk.cyan(message.line + item.start - 1) + ' (line), ' + chalk.cyan(message.column) + ' (column)]' + ' ' + message.msg);
             }
             else {
-              console.log(message);
+              console.log(message.msg);
             }
           });
       });
