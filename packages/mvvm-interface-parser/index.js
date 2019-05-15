@@ -3,6 +3,7 @@ const cmlUtils = require('chameleon-tool-utils');
 const {getCode} = require('./lib/check.js');
 const getInterfaceCode = require('./lib/getInterfaceCode.js');
 const getMethodCode = require('./lib/getMethodCode.js');
+const path = require('path');
 
 // resolve 用于处理interface中include文件中的引用
 module.exports = function({cmlType, media, source, filePath, check }) {
@@ -37,25 +38,10 @@ module.exports = function({cmlType, media, source, filePath, check }) {
   }
 
   // 将对象原型上的方法属性拷贝到对象上 解决...扩展运算符取不到值的问题
+  const copyProtoPath = path.join(__dirname, './runtime/copyProto.js');
   const copyProtoProperty = `
-  function copyProtoProperty(obj = {}) {
-    let EXPORT_OBJ = obj;
-    let EXPORT_PROTO = EXPORT_OBJ.__proto__;
-  
-    if (EXPORT_PROTO.constructor !== Object) {
-      Object.getOwnPropertyNames(EXPORT_PROTO).forEach(key => {
-        if (!/constructor|prototype|length/ig.test(key)) {
-          // 原型上有自身没有的属性 放到自身上
-          if (!EXPORT_OBJ.hasOwnProperty(key)) {
-            EXPORT_OBJ[key] = EXPORT_PROTO[key]
-          }
-        }
-      })
-    }
-  
-    return EXPORT_OBJ;
-  }
-  copyProtoProperty(exports.default)
+  var copyProtoProperty = require('${cmlUtils.handleRelativePath(filePath, copyProtoPath)}');
+  copyProtoProperty(exports.default);
   `
   result = `
     ${result}

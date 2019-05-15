@@ -530,8 +530,12 @@ _.getBuildinComponents = function (cmlType, context) {
   if (cacheBuildIn[cmlType]) {
     return cacheBuildIn[cmlType];
   }
-  let packageFilePath = path.join(context, 'node_modules', builtinNpmName, 'package.json');
-  let result = _.getOnePackageComponents(builtinNpmName, packageFilePath, cmlType, context);
+  let newNpmName = builtinNpmName;
+  if (_.isCli() && cml.extPlatformPlugin && cml.extPlatformPlugin[cmlType]) {
+    newNpmName = cml.extPlatformPlugin[cmlType].builtinUINpmName || newNpmName;
+  }
+  let packageFilePath = path.join(context, 'node_modules', newNpmName, 'package.json');
+  let result = _.getOnePackageComponents(newNpmName, packageFilePath, cmlType, context);
   let compileTagMap = {};
   // 内置组件的componet name需要特殊处理，并且挂在cml上给模板编译做处理
   result.forEach(item => {
@@ -858,13 +862,10 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
 
   function find(interfacePath, content, cmlType) {
     let parts = _.splitParts({content});
-    let include = null;
+    let include = [];
     for (let i = 0;i < parts.customBlocks.length;i++) {
       if (parts.customBlocks[i].type === 'include') {
-        if (include) {
-          throw new Error(`file just allow has only one <include></include>: ${interfacePath}`)
-        }
-        include = parts.customBlocks[i];
+        include.push(parts.customBlocks[i]);
       }
     }
     let targetScript = null;
@@ -890,13 +891,14 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
       return sameNamePath;
     }
     // include中查找
-    if (include && include.attrs && include.attrs.src) {
-      let includeFilePath = _.resolveSync(interfacePath, include.attrs.src);
-      if (!_.isFile) {
+    for (let i = include.length - 1; i >= 0; i--) {
+      let item = include[i];
+      let includeFilePath = _.resolveSync(interfacePath, item.attrs.src);
+      if (!_.isFile(includeFilePath)) {
         throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
       }
       let newContent = fs.readFileSync(includeFilePath, {encoding: 'utf-8'});
-      return find(includeFilePath, newContent, cmlType);
+      return find(includeFilePath, newContent, cmlType);  
     }
   }
 
@@ -972,26 +974,6 @@ _.npmComponentRefPath = function (componentAbsolutePath, context) {
   refUrl = _.deleteExt(refUrl);
   return refUrl;
 
-}
-
-// 已经弃用了 因为在handleComponentUrl 已经返回正确的相对路径
-// 将json文件中usingComponents中的组件引用路径从绝对路径改为相对路径，export导出模式要求相对路径
-// 如果是绝对路径 导出的组件只能放到项目根目录下，最后生成json文件的时候修改
-_.convertToRelativeRef = function (jsonFilePath, jsonObject) {
-  // if (jsonFilePath[0] !== '/') {
-  //   jsonFilePath = '/' + jsonFilePath;
-  // }
-  let components = jsonObject.usingComponents;
-  if (components) {
-    Object.keys(components).forEach(key => {
-      let absoluteRef = components[key];
-      // plugin:// 开头不处理
-      if (absoluteRef.indexOf('plugin://') !== 0) {
-        let relativePath = _.handleRelativePath(jsonFilePath, absoluteRef);
-        components[key] = relativePath;
-      }
-    })
-  }
 }
 
 /**
