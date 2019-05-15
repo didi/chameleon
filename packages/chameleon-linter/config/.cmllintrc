@@ -10,5 +10,5 @@
 
   'cpx-support': true,
   
-  'platforms': ['weex', 'wx', 'web', 'baidu', 'alipay']
+  'platforms': ['weex', 'wx', 'web', 'baidu', 'alipay', 'amap']
 }

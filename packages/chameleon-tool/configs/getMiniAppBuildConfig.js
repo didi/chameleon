@@ -21,7 +21,10 @@ module.exports = function (options) {
     },
     baidu: {
       cssReg: /\.css$/
-    }
+    },
+    amap: {
+      cssReg: /(\.acss|\.css)$/
+    },
   }
   const targetObj = miniMap[type];
   if (options.minimize) {

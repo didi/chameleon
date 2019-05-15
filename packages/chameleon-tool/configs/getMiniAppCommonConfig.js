@@ -26,6 +26,10 @@ module.exports = function (options) {
     baidu: {
       css: 'css',
       templateReg: /.swan/
+    },
+    amap: {
+      css: 'acss',
+      templateReg: /.axml/
     }
   }
 

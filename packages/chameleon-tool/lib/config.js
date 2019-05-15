@@ -34,7 +34,7 @@ var miniappConfig = {
 };
 
 var chameleonConfig = {
-  platforms: ['web', 'weex', 'wx', 'baidu', 'alipay'],
+  platforms: ['web', 'weex', 'wx', 'baidu', 'alipay', 'amap'],
   // devPort: 8000,
   // projectName: undefined,
   templateType: 'html', // 模板类型 smarty or html，决定web页面的格式与dev web服务器的类型
@@ -53,7 +53,8 @@ var chameleonConfig = {
     web: true,
     weex: true,
     alipay: true,
-    baidu: true
+    baidu: true,
+    amap: true
   },
   proxy: {
     enable: false,
@@ -89,6 +90,7 @@ var chameleonConfig = {
   wx: miniappConfig,
   alipay: miniappConfig,
   baidu: miniappConfig,
+  amap: miniappConfig,
   web: {
     dev: {
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
@@ -159,7 +161,7 @@ module.exports = _;
 _.get = function() {
   if (chameleonConfig.base) {
     let baseConfig = chameleonConfig.base;
-    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex'];
+    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex', 'amap'];
     if (baseConfig) {
       platforms.forEach(platform => {
         if (chameleonConfig[platform]) {
