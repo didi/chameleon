@@ -94,8 +94,8 @@ module.exports = (result) => {
         }
       }
     }
-    
-    
+
+
     // 分平台
     if (result.json.platform) {
       platforms.forEach((item) => {
@@ -126,7 +126,7 @@ module.exports = (result) => {
           let componentInfo = cmlUtils.lintHandleComponentUrl(currentWorkspace, result.json.file, filePath);
 
           if (!componentInfo.filePath && componentInfo.refUrl) {
-            if (result.json.ast) {
+            if (componentInfo.refUrl.indexOf('plugin://') != 0 && result.json.ast) {
               result.json.messages.push(findTokens(result.json.ast, [item, 'usingComponents', key], 'component: [' + filePath + '] is not found'));
             }
           }

@@ -16,6 +16,9 @@ function getUsingComponents(jsonAst, filePath = '') {
           path: componentInfoPair[1]
         };
       })
+      .filter((infoPair) => {
+        return !(infoPair.path.indexOf('plugin://') === 0);
+      })
       .forEach((infoPair) => {
         let currentWorkspace = config.getCurrentWorkspace();
         // filePath: is a full absolute path of the target template file

@@ -33,10 +33,6 @@ function getCustimizedTags(jsonAst, {platform = '', templatePath = ''}) {
   }
 
   result = Object.entries(componentsObj)
-    .filter(infoPair => {
-    // ignore plugin:// configuration which is used to import a native plugin component.
-      return infoPair[0] != 'plugin://';
-    })
     .map((infoPair) => {
       let [name, basePath] = infoPair;
       return {

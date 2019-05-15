@@ -332,7 +332,7 @@ const checkScript = async (result) => {
           let define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
           if (!define) {
             result['interface'].messages.push({
-              msg: `The implement class name: "${interfaceName}" used in file: "${utils.toSrcPath(script.file)}] doesn\'t match the name defined in it\'s interface file: "${utils.toSrcPath(result['interface'].file)}"`
+              msg: `The implement class name: "${interfaceName}" used in file: "${utils.toSrcPath(script.file)}" doesn\'t match the name defined in it\'s interface file: "${utils.toSrcPath(result['interface'].file)}"`
             });
             return;
           }
