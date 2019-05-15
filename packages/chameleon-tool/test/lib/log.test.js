@@ -20,5 +20,13 @@ describe('log.js', function () {
     expect(log.debug('log.error')).to.equal(undefined);
   })
 
+  it('it startBuilding', function () {
+    expect(log.startBuilding('wx')).to.equal(undefined);
+  })
+
+  it('it startBuilding', function () {
+    expect(log.startBuilding()).to.equal(undefined);
+  })
+
 
 })
