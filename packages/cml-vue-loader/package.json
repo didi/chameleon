@@ -1,6 +1,6 @@
 {
   "name": "cml-vue-loader",
-  "version": "0.3.0-alpha.3",
+  "version": "0.4.0-mvvm.2",
   "dependencies": {
     "consolidate": "^0.14.0",
     "hash-sum": "^1.0.2",

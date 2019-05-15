@@ -117,7 +117,18 @@ describe('process-template', function() {
   describe('analyzeTemplate', function() {
     it('collect which build-in-tag is used in template', function() {
       let options = {buildInComponents: {button: "cml-buildin-button"}};
-      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap')
+      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap');
+      expect(processTemplate.analyzeTemplate(``, options)).to.include.keys('buildInComponents')
+    })
+  });
+  describe('_operationGtLt', function() {
+    it('transform _operationGtLt', function() {
+      expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
+    })
+  });
+  describe('_deOperationGtLt', function() {
+    it('transform _deOperationGtLt', function() {
+      expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
     })
   });
 })

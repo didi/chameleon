@@ -63,6 +63,25 @@ exports.cssLoaders = function (options) {
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
+
+    // 扩展流程
+    if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(options.type)) {
+      let extLoaders = [
+        {
+          loader: 'mvvm-style-loader'
+        },
+        getPostCssLoader('extend'),
+        {
+          loader: loader + '-loader',
+          options: Object.assign({}, loaderOptions, {
+            sourceMap: false
+          })
+        }
+      ]
+      addMediaLoader(extLoaders, options.type);
+      return extLoaders;
+    }
+
     var loaders = [cssLoader];
     let result = [];
 
@@ -192,7 +211,6 @@ exports.updateEntry = function (updateEntryConfig) {
           source = parts.template[0].content;
           options = analyzeTemplate(source, options)
         }
-
       }
     });
     let usedBuildInTagMap = options.usedBuildInTagMap;

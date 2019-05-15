@@ -2,7 +2,7 @@ var _ = require('../src/index.js');
 var expect = require('chai').expect;
 const path = require('path');
 const fs = require('fs');
-
+const EventEmitter = require('events');
 const cmlFileContent = fs.readFileSync(path.resolve(__dirname, './testlib/index.cml'), {
   encoding: 'utf-8'
 });
@@ -159,7 +159,6 @@ describe('index.js', function () {
     let result = _.splitParts({
       content: cmlFileContent
     });
-    debugger
     expect(result.template.length).to.equal(1);
     expect(result.script.length).to.equal(2);
     expect(result.style.length).to.equal(1);
@@ -329,6 +328,8 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    global.cml.event = new EventEmitter();
+
     cml.config.merge({
       cmlComponents: ['cml-ui']
     })
@@ -339,7 +340,6 @@ describe('index.js', function () {
         path.join(cml.projectRoot, 'index.cml'),
         `../${item.key}/${item.key}`,
       ]
-
       let result = _.lintHandleComponentUrl(...params);
       expect(result.filePath).to.equal(path.join(__dirname, `./testlib/${item.key}/${item.key}.${item.name}`));
       expect(result.isCml).to.equal(undefined);
@@ -353,6 +353,8 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    global.cml.event = new EventEmitter();
+
     cml.config.merge({
       cmlComponents: ['cml-ui']
     })
@@ -376,7 +378,7 @@ describe('index.js', function () {
     var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/page1/page1.cml');
     var comrefPath = 'vant-weapp/test'
 
-
+    debugger
     let result = _.handleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath, 'wx');
     expect(result.refUrl).to.equal('./../../npm/vant-weapp/test');
   })
@@ -641,13 +643,46 @@ describe('index.js', function () {
         }
       }
     }
+    cml.event = new EventEmitter();
     _.setCli(true);
     cml.utils = _;
     var obj = {};
     _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
-    console.log(obj)
     expect(obj).to.has.property('usingComponents');
 
   })
-  
+
+  it(`getSubProjectRouter`, function () {
+    global.cml = {};
+    _.setCli(true);
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          subProject: ['cml-subproject']
+        }
+      }
+    }
+
+    let result = _.getSubProjectRouter();
+
+    expect(Object.keys(result).length).to.be.equal(1);
+
+  })
+
+  it(`deleteExt`, function () {
+    global.cml = {};
+    _.setCli(true);  
+    global.cml.event = new EventEmitter();
+    let path1 = '/src/pages/name.web.cml';
+    let path2 = '/src/pages/name.cml';
+    let path3 = 'name.cml';
+    let result1 = _.deleteExt(path1);
+    let result2 = _.deleteExt(path2);
+    let result3 = _.deleteExt(path3);
+    expect(result1).to.be.equal('/src/pages/name');
+    expect(result2).to.be.equal('/src/pages/name');
+    expect(result3).to.be.equal('name');
+
+  })
 })
