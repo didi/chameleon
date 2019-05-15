@@ -13,10 +13,13 @@ module.exports = function({interfacePath, content, cmlType}) {
     }
 
     let parts = cmlUtils.splitParts({content});
-    let include = [];
+    let include = null;
     for (let i = 0;i < parts.customBlocks.length;i++) {
       if (parts.customBlocks[i].type === 'include') {
-        include.push(parts.customBlocks[i]);
+        if (include) {
+          throw new Error(`file just allow has only one <include></include>: ${filePath}`)
+        }
+        include = parts.customBlocks[i];
       }
     }
     let methodScript = null;
@@ -33,21 +36,21 @@ module.exports = function({interfacePath, content, cmlType}) {
       }
     }
 
-    for (let i = include.length - 1; i >= 0; i--) {
-      let item = include[i];
-      if (item) {
-        if (!item.attrs.src) {
-          throw new Error(`not define include src attribute: ${filePath}`)
-        }
-        let newFilePath = cmlUtils.resolveSync(filePath, item.attrs.src);
-        if (!cmlUtils.isFile(newFilePath)) {
-          throw new Error(`not find file: ${newFilePath}`)
-        }
-        let newContent = fs.readFileSync(newFilePath, {encoding: 'utf-8'})
-        return getMethod(newFilePath, newContent);
+    if (include) {
+      if (!include.attrs.src) {
+        throw new Error(`not define src attribute: ${filePath}`)
       }
+      let newFilePath = cmlUtils.resolveSync(filePath, include.attrs.src);
+      if (!cmlUtils.isFile(newFilePath)) {
+        throw new Error(`not find file: ${newFilePath}`)
+      }
+      let newContent = fs.readFileSync(newFilePath, {encoding: 'utf-8'})
+      return getMethod(newFilePath, newContent);
     }
+
     return null;
+
+
   }
 
 
