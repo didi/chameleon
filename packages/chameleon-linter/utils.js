@@ -15,6 +15,10 @@ let isCmlComponent = (templatePath, usingPath) => {
   return !!interfaceInfo.filePath || (componentInfo && componentInfo.isCml);
 }
 
+let toSrcPath = (filePath = '') => {
+  return (filePath && path.isAbsolute(filePath)) ? path.relative(config.getCurrentWorkspace(), filePath) : filePath;
+}
+
 /**
  * 转换成驼峰写法
  *
@@ -153,7 +157,7 @@ let getInterfaceParts = filepath => {
                 line: item.line,
                 column: item.tagContent.indexOf(item.attrs.src) + 1,
                 token: item.attrs.src,
-                msg: `The javascript file ${item.attrs.src} specified with attribute src was not found`
+                msg: `The javascript file: "${toSrcPath(targetScriptPath)}" specified with attribute src was not found`
               });
             } else {
               extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = fs.readFileSync(targetScriptPath, 'utf8');
@@ -167,7 +171,7 @@ let getInterfaceParts = filepath => {
                 line: item.line,
                 column: item.tagContent.indexOf(item.attrs.src) + 1,
                 token: item.attrs.src,
-                msg: `The cml file: "${targetScriptPath}" specified with attribute src was not found`
+                msg: `The cml file: "${toSrcPath(targetScriptPath)}" specified with attribute src was not found`
               });
             } else {
               const cmlFileContent = fs.readFileSync(targetScriptPath, 'utf8');
@@ -183,7 +187,7 @@ let getInterfaceParts = filepath => {
                   line: item.line,
                   column: item.tagContent.indexOf(item.attrs.src) + 1,
                   token: item.attrs.src,
-                  msg: `The referenced file: "${targetScriptPath}" may not has a script portion`
+                  msg: `The referenced file: "${toSrcPath(targetScriptPath)}" may not has a script portion`
                 });
               }
             }
@@ -274,5 +278,6 @@ module.exports = {
   getInterfaceParts,
   outputWarnings,
   toDash,
-  isCmlComponent
+  isCmlComponent,
+  toSrcPath
 };

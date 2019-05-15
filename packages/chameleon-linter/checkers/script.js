@@ -1,6 +1,7 @@
 const traverse = require('@babel/traverse')['default'];
 const deepTraverse = require('traverse');
 const uniq = require('lodash.uniq');
+const utils = require('../utils');
 
 const DEFAULT_TOKENS_MAP = {
   WEEX: ['weex', 'global'],
@@ -331,7 +332,7 @@ const checkScript = async (result) => {
           let define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
           if (!define) {
             result['interface'].messages.push({
-              msg: `The implement class name: "${interfaceName}" used in file: [${script.file}] doesn\'t match the name defined in it\'s interface file: [${result['interface'].file}]`
+              msg: `The implement class name: "${interfaceName}" used in file: "${utils.toSrcPath(script.file)}] doesn\'t match the name defined in it\'s interface file: "${utils.toSrcPath(result['interface'].file)}"`
             });
             return;
           }
@@ -341,7 +342,7 @@ const checkScript = async (result) => {
                 line: define[key].line,
                 column: define[key].column,
                 token: key,
-                msg: `interface property "${key}" is not defined in file [ ${script.file} ]`
+                msg: `interface property "${key}" is not defined in file "${utils.toSrcPath(script.file)}"`
               });
             }
             else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
@@ -349,7 +350,7 @@ const checkScript = async (result) => {
                 line: define[key].line,
                 column: define[key].column,
                 token: key,
-                msg: `interface method "${key}" is not defined in file [ ${script.file} ]`
+                msg: `interface method "${key}" is not defined in file "${utils.toSrcPath(script.file)}"`
               });
             }
           }
@@ -360,7 +361,7 @@ const checkScript = async (result) => {
                 line: event.line,
                 column: event.column,
                 token: event.event,
-                msg: 'event [' + event.event + '] is not defined in interface file [' + result['interface'].file + ']'
+                msg: 'event "' + event.event + '" is not defined in interface file "' + utils.toSrcPath(result['interface'].file) + '"'
               });
             }
           });
