@@ -5,14 +5,10 @@ const getInterfaceCode = require('./lib/getInterfaceCode.js');
 const getMethodCode = require('./lib/getMethodCode.js');
 const path = require('path');
 
-const defaultResolve = function(filePath, relativePath) {
-  return path.resolve(path.dirname(filePath), relativePath)
-}
-
 // resolve 用于处理interface中include文件中的引用
-module.exports = function({cmlType, media, source, filePath, check, resolve = defaultResolve }) {
+module.exports = function({cmlType, media, source, filePath, check }) {
   let interfaceResut = getInterfaceCode({interfacePath: filePath, content: source})
-  let methodResult = getMethodCode({interfacePath: filePath, content: source, cmlType, resolve})
+  let methodResult = getMethodCode({interfacePath: filePath, content: source, cmlType})
 
   let {content: interfaceContent, devDeps: interfacedevDeps} = interfaceResut;
   let {content: methodContent, devDeps: methoddevDeps} = methodResult;
@@ -42,25 +38,10 @@ module.exports = function({cmlType, media, source, filePath, check, resolve = de
   }
 
   // 将对象原型上的方法属性拷贝到对象上 解决...扩展运算符取不到值的问题
+  const copyProtoPath = path.join(__dirname, './runtime/copyProto.js');
   const copyProtoProperty = `
-  function copyProtoProperty(obj = {}) {
-    let EXPORT_OBJ = obj;
-    let EXPORT_PROTO = EXPORT_OBJ.__proto__;
-  
-    if (EXPORT_PROTO.constructor !== Object) {
-      Object.getOwnPropertyNames(EXPORT_PROTO).forEach(key => {
-        if (!/constructor|prototype|length/ig.test(key)) {
-          // 原型上有自身没有的属性 放到自身上
-          if (!EXPORT_OBJ.hasOwnProperty(key)) {
-            EXPORT_OBJ[key] = EXPORT_PROTO[key]
-          }
-        }
-      })
-    }
-  
-    return EXPORT_OBJ;
-  }
-  copyProtoProperty(exports.default)
+  var copyProtoProperty = require('${cmlUtils.handleRelativePath(filePath, copyProtoPath)}');
+  copyProtoProperty(exports.default);
   `
   result = `
     ${result}

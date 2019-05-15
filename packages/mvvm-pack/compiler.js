@@ -3,15 +3,15 @@ const path = require('path');
 const Log = require('./log.js');
 const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
-const parser = require('mvvm-babel-parser/lib');
+const {cmlparse} = require('mvvm-template-parser');
 const amd = require('./lib/amd.js');
 const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
-
-
+const UglifyJs = require('./minimize/uglifyjs.js');
+const UglifyCSS = require('./minimize/uglifycss.js');
 class Compiler {
-  constructor(webpackCompiler, plugin) {
+  constructor(webpackCompiler, plugin, options) {
     this.moduleRules = [ // 文件后缀对应module信息
-      {
+      { 
         test: /\.css|\.less|\.stylus|\.styls$/,
         moduleType: 'style'
       },
@@ -30,7 +30,9 @@ class Compiler {
     ]
     this.outputFiles = {}; // 输出文件 key为文件路径 value为输出文件内容
     this.projectGraph = null;
-    this.log = new Log();
+    this.log = new Log({
+      level: plugin.logLevel || 2
+    });
     this.event = new EventEmitter();
     this.webpackCompiler = webpackCompiler;
 
@@ -40,16 +42,20 @@ class Compiler {
     }
 
     this.amd = amd; // amd的工具方法
-
-
+    this.hasCompiledNode = []; // 记录已经编译的模块 避免重复编译
+    this.cmlType = options.cmlType;
+    this.media = options.media;
+    this.userPlugin = plugin;
   }
 
   run(modules) {
     this.projectGraph = null;
     this.outputFiles = {};
+    this.hasCompiledNode = [];
     this.module2Node(modules);
     this.customCompile();
     this.emit('pack', this.projectGraph);
+
     this.emitFiles();
   }
 
@@ -78,10 +84,10 @@ class Compiler {
       // 静态资源的写入
       if (item._nodeType === 'module' && item._moduleType === 'asset') {
         // 写入资源文件
-        if (item._cmlSource && item._outputPath) {
-          this.writeFile(item._outputPath, item._cmlSource);
+        if (item._bufferSource && item._outputPath) {
+          this.writeFile(item._outputPath, item._bufferSource);
         }
-        assetPublicMap[item.rawRequest] = item._publicPath;
+        assetPublicMap[item.resource] = item._publicPath;
       }
 
       if (item._nodeType === 'module' && item._moduleType === 'style') {
@@ -91,13 +97,15 @@ class Compiler {
 
     // style模块中静态资源路径的处理
     styleModule.forEach(item => {
-      item._cmlSource = item._cmlSource.replace(/__cml(.*?)__lmc/g, function(all, $1) {
-        if (assetPublicMap[$1]) {
-          return `url ("${assetPublicMap[$1]}")`
-        } else {
-          throw new Error(`not find asset module ${$1}`);
-        }
-      })
+      if (item._cmlSource) {
+        item._cmlSource = item._cmlSource.replace(/__cml(.*?)__lmc/g, function(all, $1) {
+          if (assetPublicMap[$1]) {
+            return `url("${assetPublicMap[$1]}")`
+          } else {
+            cml.log.error(`not find asset module ${$1}`);
+          }
+        })
+      }
     })
 
 
@@ -182,9 +190,7 @@ class Compiler {
     }
 
     if (options.moduleType === 'template') {
-      options.convert = parser.parse(options.source, {
-        plugins: ['jsx']
-      });
+      options.convert = cmlparse(options.source);
       options.extra = {
         nativeComponents: module._nativeComponents,
         currentUsedBuildInTagMap: module._currentUsedBuildInTagMap
@@ -193,7 +199,8 @@ class Compiler {
 
     if (options.moduleType === 'json') {
       // cml文件中的json部分
-      if (module.parent) {
+      // todo 这里进不来
+      if (/^\{[\s\S]*\}$/.test(options.source)) {
         options.convert = JSON.parse(options.source);
       }
       // 其他json文件不处理 例如router.config.json
@@ -212,11 +219,15 @@ class Compiler {
   customCompile() {
     // 队列串行编译
     //  递归编译
+
     this.customCompileNode(this.projectGraph);
   }
 
   customCompileNode(currentNode) {
-
+    if (~this.hasCompiledNode.indexOf(currentNode)) {
+      return;
+    }
+    this.hasCompiledNode.push(currentNode);
     if (~['app', 'page', 'component'].indexOf(currentNode.nodeType)) {
       this.emit(`compile-preCML`, currentNode, currentNode.nodeType);
     } else {
@@ -247,10 +258,47 @@ class Compiler {
   }
 
   emitFiles() {
+    let self = this;
+    let config = (cml.config.get()[self.cmlType] && cml.config.get()[self.cmlType][self.media]) || {};
+    let {hash, minimize} = config;
+    let minimizeExt = this.userPlugin.minimizeExt;
+    let minimizeExtMap = {};
+    if (minimizeExt) {
+      Object.keys(minimizeExt).forEach(key => {
+        minimizeExt[key].forEach(ext => {
+          minimizeExtMap[ext] = key;
+        })
+      })
+    }
+
     let outputPath = this.webpackCompiler.options.output.path;
     for (let key in this.outputFiles) {
       if (this.outputFiles.hasOwnProperty(key)) {
         let outFilePath = path.join(outputPath, key);
+        if (minimize === true && minimizeExt) {
+          let ext = path.extname(outFilePath);
+          let miniType = minimizeExtMap[ext]; // js or css
+          if (miniType === 'js') {
+            let result = UglifyJs(this.outputFiles[key], outFilePath);
+            if (result === undefined) {
+              throw new Error(`uglifyjs error from ${outFilePath}`);
+            } else {
+              this.outputFiles[key] = result;
+            }
+          }
+
+          if (miniType === 'css') {
+            let result = UglifyCSS(this.outputFiles[key], outFilePath);
+            if (result === undefined) {
+              throw new Error(`uglifycss error from ${outFilePath}`);
+            } else {
+              this.outputFiles[key] = result;
+            }
+          }
+        }
+        if (hash === true) {
+          outFilePath = cmlUtils.addHashName(outFilePath, cmlUtils.createMd5(this.outputFiles[key]))
+        }
         if (typeof this.outputFiles[key] === 'string') {
           cmlUtils.fse.outputFileSync(outFilePath, this.outputFiles[key])
         } else {

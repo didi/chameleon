@@ -8,7 +8,9 @@
 
   var modulesMap = {};
   var cmldefine = function(id, factory) {
-    factoryMap[id] = factory;
+    if (!factoryMap[id]) {
+      factoryMap[id] = factory;
+    }
   };
 
   var cmlrequire = function(id) {
@@ -19,7 +21,7 @@
 
     var factory = factoryMap[id];
     if (!factory) {
-      throw new Error('[ModJS] Cannot find module `' + id + '`');
+      throw new Error('[ModJS] Cannot find module "' + id + '"');
     }
 
     mod = modulesMap[id] = {
@@ -27,7 +29,7 @@
     };
 
     var ret = (typeof factory == 'function')
-      ? factory.apply(mod, [require, mod.exports, mod])
+      ? factory.apply(mod, [cmlrequire, mod.exports, mod])
       : factory;
 
     if (ret) {
@@ -37,8 +39,8 @@
   };
 
   module.exports = {
-    cmldefine,
-    cmlrequire
+    cmldefine: cmldefine,
+    cmlrequire: cmlrequire
   }
 })();
 

@@ -293,3 +293,43 @@ _.miniappVUEClassNodes = function (options) {
 
   }
 }
+// 转换 $event参数
+_.getInlineStatementArgs = function(argsStr) {
+  // argsStr:"1,'index'+1,$event,'item',index+1,item"
+  const result = argsStr.split(',').reduce((result, current, index) => {
+    if (current === '$event') {
+      result.push("'$event'");
+    } else {
+      result.push(current)
+    }
+    return result
+  }, []);
+  return result.join();// "1,'index'+1,'$event','item',index+1,item"
+
+}
+_.isOriginTagOrNativeComp = function(tagName, options) {
+  let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
+  let isNative = usedComponentInfo && usedComponentInfo.isNative;
+  let isOrigin = (tagName && typeof tagName === 'string' && tagName.indexOf('origin-') === 0);
+  if (isOrigin || isNative) {
+    return true
+  }
+  return false;
+}
+// 判断是否是原生组件
+_.isNativeComp = function(tagName, options) {
+  let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
+  let isNative = usedComponentInfo && usedComponentInfo.isNative;
+  return isNative
+}
+// 判断是否是组件，不包括第三方原生组件
+// {button: "cml-buildin-button"},
+_.isNotNativeComponent = function(tagName, options) {
+  let usingComponents = options.usingComponents || [];
+  let buildInComponents = options.buildInComponents || {};
+  let isComponent = usingComponents.find((comp) =>
+    ((comp.tagName === tagName) && !comp.isNative)
+  ) || Object.values(buildInComponents).includes(tagName);
+  return isComponent
+}
+

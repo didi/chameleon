@@ -1,1 +1,0 @@
-####  mvvm协议标准中处理cml文件script部分与js文件

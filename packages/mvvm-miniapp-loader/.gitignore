@@ -5,7 +5,6 @@
 *.ntvs*
 *.njsproj
 *.sln
-.vscode
 
 # Logs
 logs
@@ -64,6 +63,6 @@ typings/
 
 # dotenv environment variables file
 .env
-
+dist/
 # ///////////////////////////
 

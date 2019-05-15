@@ -34,12 +34,12 @@ module.exports = function(source) {
     let part = parts.style[0];
     let lang = part.attrs && part.attrs.lang || 'less';
     output += `
-    var style = require('${helper.getPartLoaders({selectorOptions, partType: 'style', lang, loaders, resourcePath})}');
+    var style = require(${helper.getPartLoaders({loaderContext: self, selectorOptions, partType: 'style', lang, loaders, resourcePath})});
     `
   }
-  output += `var template = require('${helper.getPartLoaders({selectorOptions, partType: 'template', loaders, resourcePath})}');\n`
-  output += `var json = require('${helper.getPartLoaders({selectorOptions, partType: 'json', loaders, resourcePath})}');\n`
-  output += `var script = require('${helper.getPartLoaders({selectorOptions, partType: 'script', loaders, resourcePath})}');\n`
+  output += `var template = require(${helper.getPartLoaders({loaderContext: self, selectorOptions, partType: 'template', loaders, resourcePath})});\n`
+  output += `var json = require(${helper.getPartLoaders({loaderContext: self, selectorOptions, partType: 'json', loaders, resourcePath})});\n`
+  output += `var script = require(${helper.getPartLoaders({loaderContext: self, selectorOptions, partType: 'script', loaders, resourcePath})});\n`
   this._module._nodeType = fileType;
   // app添加page依赖
   if (fileType === 'app') {
@@ -108,8 +108,10 @@ module.exports = function(source) {
         import ${helper.toUpperCase(key)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}"\n`;
 
     } else {
-      delete coms[key];
-      cmlUtils.log.error(`can't find component:${coms[key]} in ${self.resourcePath}`);
+      if (coms[key].indexOf('plugin://') !== 0) {
+        delete coms[key];
+        cmlUtils.log.error(`can't find component:${coms[key]} in ${self.resourcePath}`);
+      }
     }
   })
 

@@ -3,17 +3,18 @@ const path = require('path');
 const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
-
+const resolve = require('resolve');
 
 module.exports = function(options) {
   let {type, media} = options;
   let npmName = cml.config.get().extPlatform[type];
-  let PlatformPlugin = require(path.join(cml.projectRoot, 'node_modules', npmName)); // eslint-disable-line
+  let PlatformPlugin = require(resolve.sync(npmName, { basedir: cml.projectRoot }));
   // 用户端扩展插件
   let platformPlugin = new PlatformPlugin({
     cmlType: type,
     media
   });
+  cml.extPlatformPlugin[type] = platformPlugin;
   let extendConfig = {
     entry: {
       app: path.join(cml.projectRoot, 'src/app/app.cml')
@@ -32,7 +33,7 @@ module.exports = function(options) {
               loaders: utils.cssLoaders({type, media}),
               cmlType: type,
               media,
-              check: cml.config.get().check,
+              check: cml.config.get().check
             }
           }]
         }
@@ -63,6 +64,26 @@ module.exports = function(options) {
     })
   }
 
-  return merge(commonConfig, extendConfig);
+  if (platformPlugin.miniappExt && platformPlugin.miniappExt.rule) {
+    extendConfig = merge(extendConfig, {
+      module: {
+        rules: [
+          {
+            test: platformPlugin.miniappExt.rule,
+            use: [{
+              loader: 'mvvm-miniapp-loader',
+              options: {
+                loaders: utils.cssLoaders({type, media}),
+                cmlType: type,
+                media,
+                mapping: platformPlugin.miniappExt.mapping
+              }
+            }]
+          }
+        ]
+      }
+    })
+  }
 
+  return merge(commonConfig, extendConfig);
 }

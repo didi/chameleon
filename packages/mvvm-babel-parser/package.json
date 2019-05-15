@@ -1,6 +1,6 @@
 {
   "name": "mvvm-babel-parser",
-  "version": "0.4.0-mvvm.2",
+  "version": "0.4.0-mvvm.8",
   "description": "",
   "main": "lib/index.js",
   "directories": {
@@ -10,11 +10,12 @@
   "dependencies": {
     "babel-generator": "6.26.1",
     "babel-traverse": "6.26.0",
-    "babel-types": "6.26.0"
+    "babel-types": "6.26.0",
+    "chai": "^4.2.0"
   },
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Chameleon-Team",
+  "license": "Apache"
 }

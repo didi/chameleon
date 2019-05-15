@@ -3,7 +3,7 @@ const _ = module.exports = {};
 const utils = require('./utils.js')
 _.eventProxyName = '_cmlEventProxy';
 _.modelEventProxyName = '_cmlModelEventProxy';// c-model  v-model的事件代理
-_.inlineStatementEventProxy = '_cmlInlineStatementEventProxy';// 内联语句的事件代理
+_.inlineStatementEventProxy = '_cmlInline';// 内联语句的事件代理
 _.eventEmitName = '$cmlEmit'; // 触发事件的方法
 _.styleParseName = '$cmlStyle'; // 提供各端处理style属性的方法  weex中处理成对象，wx中处理成字符串，web中不处理
 _.styleProxyName = '_cmlStyleProxy'; // 提供代理 weex和web端处理style

@@ -13,7 +13,7 @@ var whitespace = _interopRequireWildcard(require("./whitespace"));
 var parens = _interopRequireWildcard(require("./parentheses"));
 
 function t() {
-  const data = _interopRequireWildcard(require("../../node_modules/@babel/types/lib"));
+  const data = _interopRequireWildcard(require("@babel/types/lib"));
 
   t = function () {
     return data;

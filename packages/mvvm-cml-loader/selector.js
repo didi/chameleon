@@ -1,6 +1,7 @@
 const loaderUtils = require('loader-utils')
 const cmlUtils = require('chameleon-tool-utils');
 const { getScriptCode } = require('chameleon-loader/src/interface-check/getScriptCode.js');
+const helper = require('./helper.js');
 
 
 module.exports = function(source) {
@@ -29,17 +30,45 @@ module.exports = function(source) {
       parts.script.forEach(item => {  // 交给后面loader
         if (item.cmlType !== 'json') {
           let content = item.content;
-          let result = {
-            content
+          let {runtimeNpmName, runtimeNeedComponents} = this._compiler._platformPlugin;
+          let insertMethodMap = {
+            app: 'createApp',
+            page: 'createPage',
+            component: 'createComponent',
           }
-          this._compiler._mvvmCompiler.emit('insert-script', {  // 触发用户插入
-            nodeType: fileType,
-            resourcePath,
-            componentFiles: cmlInfo.componentFiles,
-            compiledJson: cmlInfo.compiledJson || {}
-          }, result);
-          result.content = getScriptCode(self, cmlType, result.content, media, check);
-          output = result.content;
+          let runtimeScript = '';
+          runtimeScript += `
+          import ${helper.toUpperCase(runtimeNpmName)} from '${runtimeNpmName}';\n
+          `
+          // runtime方法需要组件
+          if (runtimeNeedComponents) {
+            let {componentFiles} = cmlInfo;
+            let components = ['{'];
+            let comKeys = Object.keys(componentFiles);
+            comKeys.forEach((comName, index) => {
+              content += `
+              import ${helper.toUpperCase(comName)} from "${cmlUtils.handleRelativePath(self.resourcePath, componentFiles[comName])}"\n`;
+              if (comKeys.length - 1 === index) {
+                components.push(`${helper.toUpperCase(comName)}`);
+              } else {
+                components.push(`${helper.toUpperCase(comName)},`);
+              }
+            })
+
+            components.push('}');
+
+            runtimeScript += `
+            ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default, ${components.join('')});\n
+            `
+          } else {
+            runtimeScript += `
+            ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default);\n
+            `
+          }
+
+          content += runtimeScript;
+          
+          output = getScriptCode(self, cmlType, content, media, check);
         }
       })
       break;
@@ -51,7 +80,7 @@ module.exports = function(source) {
 
       break;
     case 'json':
-      this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {});
+      this._module._cmlSource = JSON.stringify(cmlInfo.compiledJson || {}, '', 4);
       output = `module.exports = ${this._module._cmlSource}`;
       break;
     default:

@@ -1,7 +1,7 @@
 const commonMixins = require('./wx-alipay-common-mixins.js');
 
 var _ = module.exports = commonMixins.deepClone(commonMixins);
-
+const utils = require('./utils.js');
 commonMixins.merge(_.mixins.methods, {
   [_.eventEmitName]: function(eventKey, detail) {
     let dataset = {};
@@ -22,6 +22,8 @@ commonMixins.merge(_.mixins.methods, {
         return match.toUpperCase();
       })
     }
+    // 这里对于用户自定义事件，会将首字母大写，但是对于原生事件 touchstart 仅仅大写是不够的，还需要将 touchstart ==> TouchStart
+    eventKey = utils.handleCompEventType(eventKey);
     let callback = this.props['on' + titleLize(eventKey)];
     if (callback && _.isType(callback, 'Function')) {
       callback({

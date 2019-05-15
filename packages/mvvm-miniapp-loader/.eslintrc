@@ -1,8 +1,8 @@
 {
-  // 在配置文件里配置全局变量时，使用 globals 指出你要使用的全局变量。将变量设置为 true 将允许变量被重写，或 false 将不允许被重写
-  "globals": {
-      "cml": false
-  },
+    // 在配置文件里配置全局变量时，使用 globals 指出你要使用的全局变量。将变量设置为 true 将允许变量被重写，或 false 将不允许被重写
+    "globals": {
+        "cml": false
+    },
   // 环境定义了预定义的全局变量。
   "env": {
       //环境定义了预定义的全局变量。更多在官网查看
@@ -126,7 +126,7 @@
       // 强制把变量的使用限制在其定义的作用域范围内
       "block-scoped-var": 0,
       // 限制圈复杂度，也就是类似if else能连续接多少个
-      "complexity": [2, 20],
+      "complexity": [2, 40],
       // 要求 return 语句要么总是指定返回的值，要么不指定
       "consistent-return": 0,
       // 强制所有控制语句使用一致的括号风格
@@ -468,7 +468,7 @@
       // 要求对象字面量属性名称用引号括起来
       "quote-props": 0,
       // 强制使用一致的反勾号、双引号或单引号
-      // "quotes": [2, "single", "avoid-escape"],
+    //   "quotes": [2, "single","double", "avoid-escape"],
       // 要求使用 JSDoc 注释
       "require-jsdoc": 0,
       // 要求或禁止使用分号而不是 ASI（这个才是控制行尾部分号的，）

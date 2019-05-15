@@ -22,7 +22,7 @@
 
     var factory = factoryMap[id];
     if (!factory) {
-      throw new Error('[ModJS] Cannot find module `' + id + '`');
+      throw new Error('[ModJS] Cannot find module "' + id + '"');
     }
 
     mod = modulesMap[id] = {
@@ -30,7 +30,7 @@
     };
 
     var ret = (typeof factory == 'function')
-      ? factory.apply(mod, [require, mod.exports, mod])
+      ? factory.apply(mod, [cmlglobal.cmlrequire, mod.exports, mod])
       : factory;
 
     if (ret) {
