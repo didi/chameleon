@@ -111,13 +111,22 @@ module.exports = function (options) {
   // 非export模式
   if (cml.media !== 'export') {
     commonConfig.plugins = commonConfig.plugins.concat([
-      new webpack.optimize.CommonsChunkPlugin({
-        name: ['common', 'vender', 'manifest'],
-        filename: getJsPath(),
-        minChunks: 2
-      }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: ['common', 'vender', 'manifest'],
+      //   filename: getJsPath(),
+      //   minChunks: 2
+      // }),
       ...htmlPlugins
     ])
+
+    commonConfig.optimization = {
+      splitChunks: {
+        // include all types of chunks
+        chunks: 'all',
+        minChunks: 2
+      }
+    }
+
   }
 
 

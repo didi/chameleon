@@ -81,7 +81,7 @@ class FriendlyErrorsWebpackPlugin {
 
       compiler.hooks.done.tap(plugin, doneFn);
       compiler.hooks.invalid.tap(plugin, invalidFn);
-      compiler.hooks.beforeCompile.tap(plugin, beforeCompile);
+      compiler.hooks.beforeCompile.tapAsync(plugin, beforeCompile);
     } else {
       compiler.plugin('before-compile', beforeCompile);
       compiler.plugin('done', doneFn);

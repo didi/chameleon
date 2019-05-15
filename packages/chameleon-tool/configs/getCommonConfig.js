@@ -40,6 +40,7 @@ module.exports = function (options) {
 
 
   let commonConfig = {
+    mode: 'production',
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
     output: {
       publicPath: publicPath
@@ -212,8 +213,11 @@ module.exports = function (options) {
         assetNameRegExp: /\.css$/,
         cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false } 
       }),
-      new UglifyJsPlugin({})
+      // new UglifyJsPlugin({})
     ])
+    commonConfig.optimization = {
+      minimizer: [new UglifyJsPlugin()]
+    }
   }
 
   let moduleIdType = options.moduleIdType

@@ -14,7 +14,7 @@ class WebpackCheckPlugin {
 
     const options = this.options;
     if (compiler.hooks) {
-      compiler.hooks.emit.tap('chameleon-plugin', checkModule);
+      compiler.hooks.emit.tapAsync('chameleon-plugin', checkModule);
     } else {
       compiler.plugin('emit', checkModule);
     }
