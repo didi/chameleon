@@ -531,7 +531,7 @@ _.getBuildinComponents = function (cmlType, context) {
     return cacheBuildIn[cmlType];
   }
   let newNpmName = builtinNpmName;
-  if (_.isCli() && cml.extPlatformPlugin[cmlType]) {
+  if (_.isCli() && cml.extPlatformPlugin && cml.extPlatformPlugin[cmlType]) {
     newNpmName = cml.extPlatformPlugin[cmlType].builtinUINpmName || newNpmName;
   }
   let packageFilePath = path.join(context, 'node_modules', newNpmName, 'package.json');
