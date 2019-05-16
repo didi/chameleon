@@ -189,6 +189,10 @@ class Compiler {
       options.source = module._source && module._source._value;
     }
 
+    if (module._cmlOriginSource !== undefined) {
+      options.originSource = module._cmlOriginSource;
+    }
+
     if (options.moduleType === 'template') {
       options.convert = cmlparse(options.source);
       options.extra = {
