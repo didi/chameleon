@@ -1,0 +1,53 @@
+<script cml-type="interface">
+interface OnlyInterfaceInterface {
+  getMsg(msg: String): String;
+  setTitle(title: String): void;
+}
+
+</script>
+
+<script cml-type="web">
+
+class Method implements OnlyInterfaceInterface {
+  getMsg(msg) {
+    return 'web:' + msg;
+  }
+  setTitle(title) {
+    return true;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="weex">
+
+class Method implements OnlyInterfaceInterface {
+  getMsg(msg) {
+    return 'weex:' + msg;
+  }
+  setTitle(title) {
+    return true;
+  }  
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+
+class Method implements OnlyInterfaceInterface {
+  getMsg(msg) {
+    return 'wx:' + msg;
+  }
+  setTitle(title) {
+    return true;
+  }  
+}
+
+export default new Method();
+</script>
+
+
+
+
