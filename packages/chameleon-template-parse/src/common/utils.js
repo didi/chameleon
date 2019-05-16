@@ -29,7 +29,7 @@ _.analysisFor = function (nodeValue) {
   let reg1 = /\s*(.+?)\s+(?:in|of)\s+(.+)\s*/;
 
   // v-for="(item, index) in items"
-  let reg2 = /\s*\(([^\,\s]+?)\s*\,\s*([^\,\s]+?)\s*\)\s*(?:in|of)\s+(.+)\s*/
+  let reg2 = /\s*\(\s*([^\,\s]+?)\s*\,\s*([^\,\s]+?)\s*\)\s*(?:in|of)\s+(.+)\s*/
   let item, index, list;
   let matches1 = nodeValue.match(reg1);
   let matches2 = nodeValue.match(reg2);
