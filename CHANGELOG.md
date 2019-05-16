@@ -1,5 +1,8 @@
 
 
+## [0.4.0-mvvm.9]
+### Features
+* 支持script类型节点 originSource字段获取节点babel前代码
 
 ## [0.4.0-mvvm.8]
 ### Bug Fixes
