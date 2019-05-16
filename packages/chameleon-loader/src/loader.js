@@ -245,7 +245,8 @@ module.exports = function (content) {
       let compileResult = ASTcompileTemplate(templateContent, {
         lang,
         usingComponents,
-        filePath
+        filePath,
+        isInjectBaseStyle
       });
 
       let emitPath = entryPath.replace(miniCmlReg, `.${miniappTplExt[cmlType]}`)
@@ -379,7 +380,8 @@ module.exports = function (content) {
       return ASTcompileTemplate(before, {
         lang,
         usingComponents,
-        filePath
+        filePath,
+        isInjectBaseStyle
       });
 
     }

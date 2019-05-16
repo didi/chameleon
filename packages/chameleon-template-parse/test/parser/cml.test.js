@@ -5,6 +5,7 @@ const expect = require('chai').expect;
 let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
   filePath: '/User/Jim-W/didi/component/button.cml',
+  isInjectBaseStyle: true,
   cmss: {
     rem: true,
     scale: 0.5,
@@ -364,6 +365,27 @@ describe('parse-template-cml-all', function() {
     it('test-alipaycomponent-wraped', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><view onTap="_cmlEventProxy" data-eventtap="{{['handleClick']}}" data-a="a" catchTouchStart="_cmlEventProxy" data-eventtouchstart="{{['handleStart']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp2 onTap="_cmlEventProxy" data-eventtap="{{['handleClick']}}" data-a="a" catchTouchStart="_cmlEventProxy" data-eventtouchstart="{{['handleStart']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
     });
-  })
+  });
+  describe('test-class-noinjected', function() {
+    let source = `<view ><view class="cls1"><thirdComp2 class="cls2"></thirdComp2></view></view>`;
+    let cpOptions = JSON.parse(JSON.stringify(options));
+    cpOptions.isInjectBaseStyle = false;
+    it('test-class-noinjected-web', function() {
+      expect(compileTemplate(source, 'web', cpOptions).source).to.equal(`<div><div class="cls1 "><thirdComp2 class="cls2 "></thirdComp2></div></div>`);
+    });
+    it('test-class-noinjected-weex', function() {
+      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`<div><div v-bind:class="_weexClassProxy('cls1 ')"><thirdComp2 v-bind:class="_weexClassProxy('cls2 ')"></thirdComp2></div></div>`);
+    });
+    it('test-class-noinjected-alipay', function() {
+      expect(compileTemplate(source, 'alipay', cpOptions).source).to.equal(`<view class=" cml-5766bf8a"><view class="cls1  cml-5766bf8a"><view class="cls2  cml-5766bf8a"><thirdComp2 class="cls2  cml-5766bf8a"></thirdComp2></view></view></view>`);
+    });
+    it('test-class-noinjected-baidu', function() {
+      expect(compileTemplate(source, 'baidu', cpOptions).source).to.equal(`<view><view class="cls1 "><thirdComp2 class="cls2 "></thirdComp2></view></view>`);
+    });
+    it('test-class-noinjected-wx', function() {
+      expect(compileTemplate(source, 'wx', cpOptions).source).to.equal(`<view><view class="cls1 "><thirdComp2 class="cls2 "></thirdComp2></view></view>`);
+    });
+  });
+
 
 })

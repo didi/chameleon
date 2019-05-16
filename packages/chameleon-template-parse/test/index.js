@@ -10,6 +10,7 @@ const source = `<view class="demo-com" c-bind:click="handleClick" c-bind:tap="ha
 let options = {lang: 'cml',
   filePath: '/Users/didi/components.cml',
   buildInComponents: {button: "cml-buildin-button"},
+  isInjectBaseStyle: false,
   cmss: {
     rem: true,
     scale: 0.5,

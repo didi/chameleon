@@ -203,14 +203,11 @@ _.handleVUEClassNodes = function (options) {
 _.webVUEClassNodes = function (options) {
   let { classNodes, attributes, extraClass } = options;
   if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+    extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
     classNodes.forEach((itemNode) => {
       if (t.isJSXNamespacedName(itemNode.name)) { // 动态的
-        attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-        // itemNode.name.name = `:${itemNode.name.name}`
-        // let newClassNodeValue = utils.getReactiveValue(itemNode.value.value);
-        // itemNode.value.value = `${newClassNodeValue}`;
+        extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
       } else {// 静态的
         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
       }
@@ -218,9 +215,7 @@ _.webVUEClassNodes = function (options) {
   } else if (classNodes.length === 2) {
     classNodes.forEach((itemNode) => {
       if (t.isJSXNamespacedName(itemNode.name)) { // 动态的
-        // itemNode.name.name = `:${itemNode.name.name}`
-        // let newClassNodeValue = utils.getReactiveValue(itemNode.value.value);
-        // itemNode.value.value = `${newClassNodeValue}`;
+
       } else { // 静态的
         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
       }
@@ -230,13 +225,11 @@ _.webVUEClassNodes = function (options) {
 _.weexVUEClassNodes = function (options) {
   let { classNodes, attributes, extraClass } = options;
   if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+    extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
     classNodes.forEach((itemNode) => {
       if (t.isJSXNamespacedName(itemNode.name)) { // 动态的
-        attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-
-        // itemNode.value.value = `[${newClassNodeValue}]`;
+        extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)));
         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
         itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
       } else {// 静态的
@@ -259,8 +252,7 @@ _.weexVUEClassNodes = function (options) {
 _.miniappVUEClassNodes = function (options) {
   let { classNodes, attributes, extraClass } = options;
   if (classNodes.length === 0) {
-    // t.jsxAttribute(t.jsxIdentifier('data-cmlref'),t.stringLiteral(value))
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+    extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
     classNodes.forEach((itemNode) => {
       // itemNode.value.value = `${itemNode.value.value} ${extraClass}`

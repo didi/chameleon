@@ -10,6 +10,7 @@ const expect = require('chai').expect;
 let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
   filePath: '/User/Jim-W/didi/component/button.cml',
+  isInjectBaseStyle: true,
   cmss: {
     rem: true,
     scale: 0.5,
