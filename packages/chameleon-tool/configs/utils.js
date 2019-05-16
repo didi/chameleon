@@ -507,7 +507,6 @@ let babelNpm = [
   'chameleon-api',
   'chameleon-tool-utils',
   'chameleon-css-loader',
-  'chameleon-loader',
   'chameleon-miniapp-target',
   'chameleon-mixins',
   'chameleon-template-parse',
@@ -522,7 +521,8 @@ let babelNpm = [
   'webpack-liveload-middleware',
   'chameleon-weex-vue-loader',
   'babel-plugin-chameleon-import',
-  'mvvm-interface-parser'
+  /mvvm-interface-parser/,
+  /chameleon-loader/
 ];
 
 exports.getBabelPath = function () {
@@ -532,8 +532,12 @@ exports.getBabelPath = function () {
     path.join(cml.root, 'configs')
   ]
   babelNpm.forEach(item => {
-    babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
-    babelPath.push(path.join(cml.root, 'node_modules', item))
+    if (typeof item === 'string') {
+      babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
+      babelPath.push(path.join(cml.root, 'node_modules', item))
+    } else if (item instanceof RegExp) {
+      babelPath.push(item)
+    }
   })
   let configBabelPath = cml.config.get().babelPath || [];
   return configBabelPath.concat(babelPath);
