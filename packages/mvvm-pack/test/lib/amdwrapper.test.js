@@ -1,4 +1,4 @@
-let wrapper = require('../lib/amdwrapper');
+let wrapper = require('../../lib/amdwrapper');
 const expect = require('chai').expect;
 
 describe('amdwrapper', function() {
