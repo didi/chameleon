@@ -374,9 +374,16 @@ module.exports = function (content) {
       usingComponents = prepareParseUsingComponents(usingComponents);
       
       //有组件在weex.cml中的template写的根标签不是唯一的，进入jsx解析会报错
-      let before = '<template>\n' +
-                       templateContent + '\n' +
-                    '</template>'
+      let before = '';
+      if (type === 'component') { // 组件包裹div
+        before = '<template>\n<view class="__shadow_root__">' +
+        templateContent + '\n' +
+        '</view></template>'
+      } else { // 其他包裹template
+        before = '<template>\n' +
+        templateContent + '\n' +
+        '</template>'
+      }
       return ASTcompileTemplate(before, {
         lang,
         usingComponents,
