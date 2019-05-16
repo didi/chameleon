@@ -38,7 +38,6 @@ module.exports = function (options) {
     publicPath = `http://${config.ip}:${webServerPort}/${type}/`
   }
 
-
   let commonConfig = {
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
     output: {
@@ -79,9 +78,7 @@ module.exports = function (options) {
           options: {
             'filename': path.join(cml.root, 'chameleon.js')
           }
-        }
-
-        ]
+        }]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
