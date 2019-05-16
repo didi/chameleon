@@ -1,15 +1,12 @@
 let fs = require('fs');
 let path = require('path');
-let code = fs.readFileSync(path.join(__dirname,'../../lib/amdbootstrap.global.js'),{encoding: 'utf8'})
+let code = fs.readFileSync(path.join(__dirname, '../../lib/amdbootstrap.global.js'), {encoding: 'utf8'})
 const expect = require('chai').expect;
 
-
-
 describe('amdbootstrap.global.js', function() {
-  it('not has cmldefine', function() {
-    
+  it('global cmldefine', function() {
     code = `
-    ${code.replace('$GLOBAL','global')}
+    ${code.replace('$GLOBAL', 'global')}
     `
     eval(code)
     global.cmldefine('name', function(require, exports, module) {
