@@ -7,11 +7,8 @@ const utils = require('../utils');
 const fileSpec = require('../file-spec');
 const chai = require('chai');
 const assert = chai.assert;
-const should = chai.should;
 const expect = chai.expect;
 const path = require('path');
-
-
 
 describe('cml', function() {
 
@@ -128,9 +125,9 @@ describe('cml', function() {
       const result = await styleLinter(parts.style);
       expect(result.messages).to.deep.equal([
         {
-          "column": 3,
-          "line": 7,
-          "msg": "expected \"indent\", got \";\""
+          'column': 3,
+          'line': 7,
+          'msg': 'expected "indent", got ";"'
         }
       ]);
     });
@@ -186,14 +183,14 @@ describe('cml', function() {
       expect(result.messages).to.deep.equal(
         [
           {
-            "column": 5,
-            "line": 19,
-            "msg": "computed property \"hasApplyList\" cannot be used as an arrow function"
+            'column': 5,
+            'line': 19,
+            'msg': 'computed property "hasApplyList" cannot be used as an arrow function'
           },
           {
-            "column": 3,
-            "line": 30,
-            "msg": "lifecycle hook \"mounted\" cannot be used as an arrow function"
+            'column': 3,
+            'line': 30,
+            'msg': 'lifecycle hook "mounted" cannot be used as an arrow function'
           }
         ]
       );
@@ -343,13 +340,13 @@ describe('cml', function() {
 
       expect(result.script.messages).to.deep.equal([]);
     });
-    it('no-interface', async function () {
-      const cmlPath = path.resolve(__dirname, './checker/cml/script/nointerface/nonstandard.wx.cml');
-      const parts = utils.getCmlParts(cmlPath);
-      const result = await fileSpec.lintCmlFile(parts);
-      checkers.script(result);
-      assert.equal(result['interface'].messages.length, 1);
-    });
+    // it('no-interface', async function () {
+    //   const cmlPath = path.resolve(__dirname, './checker/cml/script/nointerface/nonstandard.wx.cml');
+    //   const parts = utils.getCmlParts(cmlPath);
+    //   const result = await fileSpec.lintCmlFile(parts);
+    //   checkers.script(result);
+    //   assert.equal(result['interface'].messages.length, 1);
+    // });
     it('global-variable', async function () {
       const cmlPath = path.resolve(__dirname, './checker/cml/script/global-variable/standard.wx.cml');
       const parts = utils.getCmlParts(cmlPath);

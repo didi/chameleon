@@ -3,7 +3,7 @@ const Tools = require('../../tools');
 const mustacheRegex = /{{(.*?)}}/g;
 
 module.exports = {
-  name: 'method-node',
+  name: 'mustache-node',
   on: ['cml', 'vue'],
   filter: {
     key: 'rawValue',
