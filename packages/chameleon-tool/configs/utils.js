@@ -326,16 +326,16 @@ exports.getWebEntry = function (options) {
   }
   exports.copyDefaultFile(options.root, 'web', options.media);
   var entry = {};
-  entry.vender = ['vue', 'vuex', 'vue-router', path.resolve(cml.root, 'configs/web_global.js')];
+  entry.vendor = ['vue', 'vuex', 'vue-router', path.resolve(cml.root, 'configs/web_global.js')];
   if (options.babelPolyfill === true) {
-    entry.vender.unshift('@babel/polyfill');
+    entry.vendor.unshift('@babel/polyfill');
   }
   // web端插入全局样式
   if (cml.config.get().baseStyle.web === true) {
-    entry.vender.push('chameleon-runtime/src/platform/web/style/index.css')
+    entry.vendor.push('chameleon-runtime/src/platform/web/style/index.css')
   }
   if (cml.config.get().cmss.rem === true) {
-    entry.vender.unshift(path.resolve(cml.root, 'configs/default/rem.js'));
+    entry.vendor.unshift(path.resolve(cml.root, 'configs/default/rem.js'));
   }
   var htmlPlugins = [];
   let entryConfig = cml.config.get().entry;
@@ -353,7 +353,7 @@ exports.getWebEntry = function (options) {
   }
   var entryName = exports.getEntryName();
   entry[entryName] = entryFile;
-  var chunksort = ['manifest', 'vender', 'common'];
+  var chunksort = ['manifest', 'vendor'];
   let filename = `${entryName}.html`;
   if (cml.config.get().templateType === 'smarty') {
     filename = `template/${entryName}.tpl`;
@@ -377,7 +377,7 @@ exports.getWebEntry = function (options) {
     template,
     inject: 'body',
     // hash: true,
-    chunks: ['manifest', 'vender', 'common', entryName],
+    chunks: ['manifest', 'vendor', entryName],
     chunksSortMode: function (a, b) {
       var aIndex = chunksort.indexOf(a.names[0]);
       var bIndex = chunksort.indexOf(b.names[0]);

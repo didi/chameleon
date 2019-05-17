@@ -21,11 +21,10 @@ class WebpackCheckPlugin {
 
     // check babel之后的每一个module
     function checkModule(compilation, callback) {
-
       var type = options.cmlType;
       compilation.modules.forEach(module => {
         // 项目内的文件做校验
-        if (module.resource && module.resource.indexOf(cml.projectRoot) === 0) {
+        if (module.type && module.type === 'javascript/auto' && module.resource && module.resource.indexOf(cml.projectRoot) === 0) {
           // 白名单内的文件不做校验
 
           let whiteListFileLength = options.whiteListFile.length;
@@ -64,6 +63,7 @@ class WebpackCheckPlugin {
                 })
               }
             } catch (e) {
+              console.log(source)
               console.log(e)
               // babel parse入会有报错的情况
             }

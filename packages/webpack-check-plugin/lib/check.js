@@ -53,6 +53,7 @@ const check = function (code, options) {
   // const TOKENS_ALL = uniq(TOKENS_MAP.WEB.concat(TOKENS_MAP.WEEX).concat(TOKENS_MAP.WX));
   // TOKENS_MAP.ALL = TOKENS_ALL;
   type = type.toUpperCase();
+  debugger
   const ast = parser.parse(code, {
     plugins: ['flow'],
     sourceType: 'module'

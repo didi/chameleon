@@ -67,7 +67,7 @@
     "glob": "7.1.2",
     "glob-watcher": "^5.0.3",
     "html-loader": "0.5.5",
-    "html-webpack-plugin": "2.30.1",
+    "html-webpack-plugin": "^3.2.0",
     "inquirer": "6.0.0",
     "interface-loader": "^0.4.0-mvvm.8",
     "ip": "1.1.5",

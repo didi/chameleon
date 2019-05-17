@@ -78,16 +78,29 @@ module.exports = function (options) {
         filename: `[name].${targetObj.css}`,
         allChunks: true
       }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: ['common', 'manifest'],
-        filename: 'static/js/[name].js',
-        minChunks: 2
-      }),
       new CopyNpmPlugin({
         cmlType: type,
         root: outputPath
       })
-    ]
+    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          manifest: {
+            name: "manifest"
+          },
+          common: {
+            chunks: "all",
+            minChunks: 2,
+            name: "common",
+            enforce: true
+          }
+        }
+      },
+      runtimeChunk: {
+        name: "manifest"
+      }
+    }
 
   }
 
