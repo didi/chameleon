@@ -23,7 +23,7 @@ module.exports = class DemoPlugin {
     // 需要压缩文件的后缀
     this.minimizeExt = {
       js: ['.js'],
-      css: ['.css','.wxss']
+      css: ['.css', '.wxss']
     }
 
   }
@@ -101,6 +101,8 @@ register(compiler) {
      * 编译结束进入打包阶段
      */
     compiler.hook('pack', function(projectGraph) {
+      compiler.writeFile('static/test1.js', 'dd')
+      compiler.writeFile('static/css1.css', '.class1 {color: red;}')
     })
 
 }
