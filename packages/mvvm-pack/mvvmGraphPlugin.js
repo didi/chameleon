@@ -32,7 +32,7 @@ class mvvmGraphPlugin {
       return false;      
     })
 
-   // 捕获错误
+    // 捕获错误
     process.on('uncaughtException', function (err) {
       cml.log.error(err);
     });
