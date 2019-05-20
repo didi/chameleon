@@ -1,7 +1,7 @@
 const traverse = require('@babel/traverse')['default'];
 const deepTraverse = require('traverse');
 const uniq = require('lodash.uniq');
-const config = require('../config');
+const utils = require('../utils');
 
 const DEFAULT_TOKENS_MAP = {
   WEEX: ['weex', 'global'],
@@ -62,6 +62,7 @@ const DEFAULT_TOKENS_MAP = {
   ]
 };
 
+
 // 这个path是否有需要校验的token
 const needCheck = function (path, tokenList) {
   let flag = false;
@@ -103,37 +104,20 @@ function checkToken(path, token) {
 }
 
 const checkGlobal = function (ast, type = 'ALL') {
-  let tokensMap = DEFAULT_TOKENS_MAP;
-  const TOKENS_MAP = tokensMap;
+  const TOKENS_MAP = DEFAULT_TOKENS_MAP;
+  let tokenList = [];
+  let messages = [];
   type = type.toUpperCase();
 
-  let tokenList = [];
-
-  if (type === 'ALL') {
-    // 都要校验
-    tokenList = TOKENS_MAP[type];
-  }
-  else {
-    Object.keys(TOKENS_MAP).forEach(key => {
-      // 把自身的和All的去掉，其他端的token放进去
-      if (key !== type && key !== 'ALL') {
-        tokenList = tokenList.concat(TOKENS_MAP[key]);
-      }
-    })
-    // 然后要把自身的全局变量去掉
-    for (let i = 0;i < tokenList.length;) {
-      if (~TOKENS_MAP[type].indexOf(tokenList[i])) {
-        tokenList.splice(i, 1);
-      }
-      else {
-        i++;
-      }
+  Object.keys(TOKENS_MAP).forEach(key => {
+    if (type === 'ALL' || key !== type) {
+      tokenList = tokenList.concat(TOKENS_MAP[key]);
     }
-  }
-  tokenList = uniq(tokenList);
-  const messages = [];
+  });
 
-  traverse(ast, {
+  tokenList = uniq(tokenList);
+
+  tokenList.length && traverse(ast, {
     enter: (path) => {
       // path是一个上下文
       // 需要校验的变量值
@@ -154,8 +138,6 @@ const checkGlobal = function (ast, type = 'ALL') {
           }
           next = next.parent;
         }
-
-
         if (globalVariable && path.parent.type != 'ObjectMethod' && path.parent.type != 'ClassMethod') {
           messages.push({
             line: path.node.loc.start.line,
@@ -178,13 +160,20 @@ const checkGlobal = function (ast, type = 'ALL') {
  * @return {Object}     分析结果
  */
 const getInterfaces = (ast) => {
-  let result = {};
+  let result = {
+    name: '',
+    properties: {}
+  };
   ast.program.body.forEach(function (node) {
     if (node.type == 'InterfaceDeclaration') {
       let interfaceName = node.id.name;
-      result[interfaceName] = {};
+      result.name = interfaceName;
+      result.loc = {
+        line: node.id.loc.start.line,
+        column: node.id.loc.start.column
+      };
       node.body.properties.map((property) => {
-        result[interfaceName][property.key.name] = {
+        result.properties[property.key.name] = {
           type: property.value.type.replace(/TypeAnnotation/g, ''),
           line: property.key.loc.start.line,
           column: property.key.loc.start.column
@@ -197,11 +186,15 @@ const getInterfaces = (ast) => {
 
 /**
  * 获取类定义
- *
- * @param  {Object} ast ast
- * @return {Object}     类定义
+ * @param   {Object} ast ast
+ * @param   {Object} isComp a flag indentify whether the ast is component or an interface portion
+ * @return  {Object}     类定义
  */
-const getClass = (ast) => {
+const getClass = (ast, isComp) => {
+  return isComp ? getCompClassDef(ast) : getInterfacePortionClassDef(ast);
+};
+
+function getCompClassDef(ast) {
   let classes = [];
 
   traverse(ast, {
@@ -221,15 +214,18 @@ const getClass = (ast) => {
           });
         }
 
-        // 参数
         path.node.body.body.forEach(define => {
           if (define.key.name == 'props') {
             define.value.properties.forEach(property => {
               clazz.properties.push(property.key.name);
             });
           }
-          else if (define.type == 'ClassMethod') {
-            clazz.methods.push(define.key.name);
+          else if (define.key.name == 'methods') {
+            define.value.properties.filter(property => {
+              return property.type === 'ObjectMethod';
+            }).forEach(property => {
+              clazz.methods.push(property.key.name);
+            });
           }
           else {
             deepTraverse(define)
@@ -268,7 +264,45 @@ const getClass = (ast) => {
   });
 
   return classes;
-};
+}
+
+function getInterfacePortionClassDef(ast) {
+  let classes = [];
+
+  traverse(ast, {
+    enter(path) {
+      if (path.node.type == 'ClassDeclaration') {
+        let clazz = {
+          interfaces: [],
+          properties: [],
+          events: [],
+          methods: []
+        };
+
+        // 接口
+        if (path.node['implements']) {
+          path.node['implements'].forEach(implament => {
+            clazz.interfaces.push(implament.id.name);
+          });
+        }
+
+        // 参数
+        path.node.body.body.forEach(define => {
+          if (define.type == 'ClassProperty') {
+            clazz.properties.push(define.key.name);
+          }
+          else if (define.type == 'ClassMethod') {
+            clazz.methods.push(define.key.name);
+          }
+        });
+
+        classes.push(clazz);
+      }
+    }
+  });
+
+  return classes;
+}
 
 /**
  * 校验接口与脚本
@@ -277,76 +311,69 @@ const getClass = (ast) => {
  * @return {Array}                数组
  */
 const checkScript = async (result) => {
-  let script;
-  let platforms = config.getPlatforms();
-
-  ['script'].concat(platforms).forEach(item => {
-    if (result[item] && result[item].ast) {
-      script = result[item];
+  let validPlatforms = Object.keys(result)
+    .filter(platform => {
+      return platform && (!~['json', 'template', 'style', 'script'].indexOf(platform));
+    })
+    .filter(platform => {
+      return platform && (platform != 'interface');
+    });
+  // add a script type for multi-file components.
+  result['interface'] && validPlatforms.concat('script').forEach(platform => {
+    let script;
+    if (result[platform] && result[platform].ast) {
+      script = result[platform];
     }
-  });
-
-  if (!result['interface'] && script) {
-    let interfaceFile = script.file.replace(new RegExp('\\.(' + platforms.join('|') + ')\\.cml$', 'ig'), '.interface');
-    if (/\.interface$/.test(interfaceFile)) {
-      result['interface'] = {
-        messages: [{
-          msg: 'file: [' + interfaceFile + '] was not found!'
-        }],
-        file: interfaceFile
-      };
-    }
-  }
-
-  if (result['interface'] && result['interface'].ast && script && script.ast) {
-    const interfaceDefine = getInterfaces(result['interface'].ast);
-    const classDefines = getClass(script.ast);
-
-    classDefines.forEach(clazz => {
-      clazz.interfaces.forEach(interfaceName => {
-        let define = interfaceDefine[interfaceName];
-
-        for (let key of Object.keys(define)) {
-          if ((define[key] && define[key].type == 'Generic') && clazz.properties.indexOf(key) == -1) {
+    if (result['interface'] && result['interface'].ast && script && script.ast) {
+      const interfaceDefine = getInterfaces(result['interface'].ast);
+      const classDefines = getClass(script.ast, platform === 'script');
+      classDefines.forEach(clazz => {
+        clazz.interfaces.forEach(interfaceName => {
+          let define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
+          if (!define) {
             result['interface'].messages.push({
-              line: define[key].line,
-              column: define[key].column,
-              token: key,
-              msg: 'property [' + key + '] is not found in file [' + script.file + ']'
+              msg: `The implement class name: "${interfaceName}" used in file: "${utils.toSrcPath(script.file)}" doesn\'t match the name defined in it\'s interface file: "${utils.toSrcPath(result['interface'].file)}"`
             });
+            return;
           }
-          else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
-            platforms.forEach(platform => {
-              if (result[platform]) {
-                result['interface'].messages.push({
-                  line: define[key].line,
-                  column: define[key].column,
-                  token: key,
-                  msg: 'method [' + key + '] is not found in file [' + script.file + ']'
-                });
-              }
-            });
+          for (let key of Object.keys(define)) {
+            if ((define[key] && define[key].type == 'Generic') && clazz.properties.indexOf(key) == -1) {
+              result['interface'].messages.push({
+                line: define[key].line,
+                column: define[key].column,
+                token: key,
+                msg: `interface property "${key}" is not defined in file "${utils.toSrcPath(script.file)}"`
+              });
+            }
+            else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
+              result['interface'].messages.push({
+                line: define[key].line,
+                column: define[key].column,
+                token: key,
+                msg: `interface method "${key}" is not defined in file "${utils.toSrcPath(script.file)}"`
+              });
+            }
           }
-        }
 
-        clazz.events.forEach(event => {
-          if (!define[event.event] || (define[event.event] && (define[event.event].type != 'Function'))) {
-            script.messages.push({
-              line: event.line,
-              column: event.column,
-              token: event.event,
-              msg: 'event [' + event.event + '] is not defined in interface file [' + result['interface'].file + ']'
-            });
-          }
+          clazz.events.forEach(event => {
+            if (!define[event.event] || (define[event.event] && (define[event.event].type != 'Function'))) {
+              script.messages.push({
+                line: event.line,
+                column: event.column,
+                token: event.event,
+                msg: 'event "' + event.event + '" is not defined in interface file "' + utils.toSrcPath(result['interface'].file) + '"'
+              });
+            }
+          });
         });
       });
-    });
 
-    if (script.platform) {
-      let messages = checkGlobal(script.ast, script.platform);
-      script.messages = script.messages.concat(messages);
+      if (script.platform) {
+        let messages = checkGlobal(script.ast, script.platform);
+        script.messages = script.messages.concat(messages);
+      }
     }
-  }
+  });
 };
 
 

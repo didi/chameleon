@@ -33,7 +33,10 @@ module.exports = {
     rules: {
       'block-no-empty': null,
       'selector-max-compound-selectors': 1,
-      'selector-type-no-unknown': true
+      'selector-type-no-unknown': [true, {
+        'ignore': ['custom-elements'],
+        'ignoreTypes': ['page']
+      }]
     }
   }
 };

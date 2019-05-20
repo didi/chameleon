@@ -1,16 +1,22 @@
 const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 const groupBy = require('lodash.groupby');
 const filter = require('lodash.filter');
 const map = require('lodash.map');
 const cliUtils = require('chameleon-tool-utils');
 const config = require('./config');
+const Message = require('./classes/message');
 
 let isCmlComponent = (templatePath, usingPath) => {
   let currentWorkspace = config.getCurrentWorkspace();
   let interfaceInfo = cliUtils.findInterfaceFile(currentWorkspace, templatePath, usingPath);
   let componentInfo = cliUtils.lintHandleComponentUrl(currentWorkspace, templatePath, usingPath);
   return !!interfaceInfo.filePath || (componentInfo && componentInfo.isCml);
+}
+
+let toSrcPath = (filePath = '') => {
+  return (filePath && path.isAbsolute(filePath)) ? path.relative(config.getCurrentWorkspace(), filePath) : filePath;
 }
 
 /**
@@ -111,25 +117,108 @@ let getCmlParts = filepath => {
 
 
 let getInterfaceParts = filepath => {
-  let content = fs.readFileSync(filepath, 'utf8');
-  let result = {};
-  let parts = cliUtils.splitParts({content});
+  let _result = {
+    parts: {},
+    messages: []
+  };
 
-  if (parts.script) {
-    parts.script.forEach(item => {
-      result[item.cmlType] = item;
+  _retrieveParts(filepath);
 
-      Object.assign(result[item.cmlType], {
-        params: {},
-        line: item.startLine,
-        file: filepath,
-        rawContent: item.tagContent,
-        platformType: item.cmlType
+  function _retrieveParts(interfaceFilePath) {
+    // terminate condition
+    if (!fs.existsSync(interfaceFilePath)) {
+      return;
+    }
+
+    const content = fs.readFileSync(interfaceFilePath, 'utf8');
+    const parts = cliUtils.splitParts({content});
+    // search parts.script array for interface defination and platform specific definations.
+    if (parts.script) {
+      parts.script.forEach(item => {
+        let errMsg = null;
+        let extraPartInfo = {
+          params: {},
+          line: item.startLine,
+          file: interfaceFilePath,
+          rawContent: item.tagContent,
+          platformType: item.cmlType
+        };
+        // for interface portion we should keep the origin filepath
+        if (item.cmlType === 'interface') {
+          extraPartInfo.file = filepath;
+        }
+        // check src references for platform definations
+        if (item.cmlType != 'interface' && item.attrs && item.attrs.src) {
+          const targetScriptPath = path.resolve(path.dirname(interfaceFilePath), item.attrs.src);
+          // the referenced source is a js file
+          if (/.js$/.test(item.attrs.src)) {
+            if (!fs.existsSync(targetScriptPath)) {
+              errMsg = new Message({
+                line: item.line,
+                column: item.tagContent.indexOf(item.attrs.src) + 1,
+                token: item.attrs.src,
+                msg: `The javascript file: "${toSrcPath(targetScriptPath)}" specified with attribute src was not found`
+              });
+            } else {
+              extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = fs.readFileSync(targetScriptPath, 'utf8');
+              extraPartInfo.file = targetScriptPath;
+            }
+          }
+          // the referenced source is a cml file
+          if (/.cml$/.test(item.attrs.src)) {
+            if (!fs.existsSync(targetScriptPath)) {
+              errMsg = new Message({
+                line: item.line,
+                column: item.tagContent.indexOf(item.attrs.src) + 1,
+                token: item.attrs.src,
+                msg: `The cml file: "${toSrcPath(targetScriptPath)}" specified with attribute src was not found`
+              });
+            } else {
+              const cmlFileContent = fs.readFileSync(targetScriptPath, 'utf8');
+              const cmlParts = cliUtils.splitParts({content: cmlFileContent});
+              const scriptPart = cmlParts.script ? cmlParts.script.filter(part => {
+                return part.type === 'script';
+              }) : null;
+              if (scriptPart && scriptPart.length) {
+                extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = scriptPart[0].content;
+                extraPartInfo.file = targetScriptPath;
+              } else {
+                errMsg = new Message({
+                  line: item.line,
+                  column: item.tagContent.indexOf(item.attrs.src) + 1,
+                  token: item.attrs.src,
+                  msg: `The referenced file: "${toSrcPath(targetScriptPath)}" may not has a script portion`
+                });
+              }
+            }
+          }
+        }
+        // previous cmlType defination has a higher priority.
+        if (!errMsg && !_result.parts[item.cmlType]) {
+          _result.parts[item.cmlType] = {...item, ...extraPartInfo};
+        }
+        if (errMsg) {
+          _result.messages.push(errMsg);
+        }
       });
-    });
+    }
+    // search parts.customBlocks array for include defination which may contains another interface file.
+    let include = null;
+    if (parts.customBlocks) {
+      parts.customBlocks.forEach(item => {
+        if (item.type === 'include') {
+          include = item;
+        }
+      });
+    }
+    if (include && include.attrs && include.attrs.src) {
+      let newFilePath = path.resolve(path.dirname(interfaceFilePath), include.attrs.src);
+      return _retrieveParts(newFilePath);
+    }
+    return;
   }
 
-  return result;
+  return _result;
 }
 
 
@@ -148,7 +237,6 @@ let outputWarnings = (result) => {
     flag = true;
     return true;
   });
-
   result = groupBy(result, 'file');
   for (let key of Object.keys(result)) {
     if (key !== 'undefined') {
@@ -165,14 +253,17 @@ let outputWarnings = (result) => {
 
         item.messages
           .sort((preMsg, nextMsg) => {
-            return preMsg.line - nextMsg.line;
+            if (preMsg.line == undefined || preMsg.column == undefined || nextMsg.line == undefined || nextMsg.column == undefined) {
+              return 0;
+            }
+            return (preMsg.line - nextMsg.line) * 10000 + (preMsg.column - nextMsg.column);
           })
           .forEach((message) => {
             if (message.line !== undefined && item.start !== undefined && message.column !== undefined) {
               console.log('[' + chalk.cyan(message.line + item.start - 1) + ' (line), ' + chalk.cyan(message.column) + ' (column)]' + ' ' + message.msg);
             }
             else {
-              console.log(message);
+              console.log(message.msg);
             }
           });
       });
@@ -187,5 +278,6 @@ module.exports = {
   getInterfaceParts,
   outputWarnings,
   toDash,
-  isCmlComponent
+  isCmlComponent,
+  toSrcPath
 };
