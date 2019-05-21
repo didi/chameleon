@@ -1,4 +1,9 @@
 
+## [0.4.0-mvvm.10]
+### Features
+* 完善mvvm-pack单元测试
+* 扩展新端compiler对象新增获取路由方法
+* 扩展新端cml节点的extra字段添加引用组件
 
 ## [0.4.0-mvvm.9]
 ### Features
