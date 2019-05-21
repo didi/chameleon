@@ -195,10 +195,6 @@ class Compiler {
 
     if (options.moduleType === 'template') {
       options.convert = cmlparse(options.source);
-      options.extra = {
-        nativeComponents: module._nativeComponents,
-        currentUsedBuildInTagMap: module._currentUsedBuildInTagMap
-      }
     }
 
     if (options.moduleType === 'json') {
@@ -213,8 +209,8 @@ class Compiler {
     if (options.moduleType === 'script') {
       // 要做js中require模块的处理 替换modId
       options.source = replaceJsModId(options.source, module);
-
     }
+    options.extra = module._cmlExtra || undefined;
     return new CMLNode(options)
   }
 
@@ -311,6 +307,15 @@ class Compiler {
           })
         }
       }
+    }
+  }
+
+  getRouterConfig() {
+    let {routerConfig} = cmlUtils.getRouterConfig();
+    let subProjectRouter = cmlUtils.getSubProjectRouter();
+    return {
+      projectRouter: routerConfig,
+      subProjectRouter: subProjectRouter
     }
   }
 }

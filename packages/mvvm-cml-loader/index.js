@@ -72,7 +72,7 @@ module.exports = function(source) {
   let usingComponentsAndFilePath = {}; // 记录文件依赖的组件名称及文件位置
   let nativeComponents = prepareParseUsingComponents({loaderContext: self, context, originObj: coms, cmlType});
   nativeComponents = nativeComponents.filter(item => {
-    return item.isNative; 
+    return item.isNative;
   })
 
 
@@ -145,6 +145,9 @@ module.exports = function(source) {
     nativeComponents,
     currentUsedBuildInTagMap,
     compiledJson: jsonObject,
+    componentFiles: usingComponentsAndFilePath
+  }
+  this._module._cmlExtra = {
     componentFiles: usingComponentsAndFilePath
   }
   return output;
