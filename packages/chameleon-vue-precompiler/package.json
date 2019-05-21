@@ -1,6 +1,6 @@
 {
   "name": "chameleon-vue-precompiler",
-  "version": "0.4.0-mvvm.9",
+  "version": "0.4.0-mvvm.10",
   "description": "为chameleon提供 vue-loader 的模板预编译处理能力",
   "author": "Chameleon-Team",
   "scripts": {},
