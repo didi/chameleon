@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cover": "istanbul cover --report lcov  node_modules/mocha/bin/_mocha -- -R spec --recursive",
-    "test": "mocha --recursive --reporter spec",
-    "test-brk": "node --inspect-brk node_modules/mocha/bin/mocha --recursive --reporter spec"
+    "cover": "istanbul cover --report lcov  node_modules/mocha/bin/_mocha -- -R spec --recursive test/*.test.js test/**/*.test.js",
+    "test": "mocha --recursive --reporter spec test/*.test.js test/**/*.test.js",
+    "test-brk": "node --inspect-brk node_modules/mocha/bin/mocha --recursive --reporter spec test/*.test.js test/**/*.test.js"
   },
   "author": "Chameleon-Team",
   "license": "Apache",

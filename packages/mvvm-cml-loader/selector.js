@@ -74,8 +74,10 @@ module.exports = function(source) {
       break;
     case 'template':
       this._module._cmlSource = cmlInfo.compiledTemplate || '';
-      this._module._nativeComponents = cmlInfo.nativeComponents || [];
-      this._module._currentUsedBuildInTagMap = cmlInfo.currentUsedBuildInTagMap || [];
+      this._module._cmlExtra = {
+        nativeComponents: cmlInfo.nativeComponents || [],
+        currentUsedBuildInTagMap: cmlInfo.currentUsedBuildInTagMap || []
+      }
       output = `module.exports = ${JSON.stringify(cmlInfo.compiledTemplate)}`;
 
       break;
