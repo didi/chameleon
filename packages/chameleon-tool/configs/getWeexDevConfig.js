@@ -6,7 +6,6 @@ const utils = require('./utils');
 
 module.exports = function (options) {
   return merge(getWeexCommonConfig(options), {
-    mode: 'development',
     plugins: [
       new webpack.DefinePlugin({
         'process.env.serverIp': JSON.stringify(config.ip),

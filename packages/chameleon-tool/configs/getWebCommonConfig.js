@@ -1,4 +1,4 @@
-var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+const MiniCssExtractPlugin = require("cml-mini-css-extract-plugin");
 var utils = require('./utils.js');
 var getCmlLoaderConfig = require('./cml-loader.conf');
 var path = require('path');
@@ -101,7 +101,7 @@ module.exports = function (options) {
 
   if (options.hot !== true && disableExtract !== true && media !== 'export') {
     commonConfig.plugins.push(
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: options.hash ? 'static/css/[name]_[contenthash].css' : 'static/css/[name].css',
         allChunks: true
       })

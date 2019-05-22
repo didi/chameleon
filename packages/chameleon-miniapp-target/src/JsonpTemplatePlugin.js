@@ -7,11 +7,13 @@ const JsonpHotUpdateChunkTemplatePlugin = require("./JsonpHotUpdateChunkTemplate
 
 class JsonpTemplatePlugin {
   apply(compiler) {
-    compiler.plugin("this-compilation", (compilation) => {
-      compilation.mainTemplate.apply(new JsonpMainTemplatePlugin());
-      compilation.chunkTemplate.apply(new JsonpChunkTemplatePlugin());
-      compilation.hotUpdateChunkTemplate.apply(new JsonpHotUpdateChunkTemplatePlugin());
-    });
+    compiler.hooks.thisCompilation.tap("JsonpTemplatePlugin", compilation => {
+			new JsonpMainTemplatePlugin().apply(compilation.mainTemplate);
+			new JsonpChunkTemplatePlugin().apply(compilation.chunkTemplate);
+			new JsonpHotUpdateChunkTemplatePlugin().apply(
+				compilation.hotUpdateChunkTemplate
+			);
+		});
   }
 }
 

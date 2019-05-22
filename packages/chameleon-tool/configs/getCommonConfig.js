@@ -3,8 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const {getBabelPath, getExcludeBabelPath, getGlobalCheckWhiteList, getFreePort} = require('./utils');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserJSPlugin = require("terser-webpack-plugin");
 const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
 const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
@@ -38,9 +38,10 @@ module.exports = function (options) {
     publicPath = `http://${config.ip}:${webServerPort}/${type}/`
   }
 
-
+  const mode = media === 'dev' ? 'development' : 'production';
   let commonConfig = {
-    mode: 'production',
+    mode,
+    devtool: '',
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
     output: {
       publicPath: publicPath
@@ -208,15 +209,15 @@ module.exports = function (options) {
   }))
 
   if (options.minimize) {
-    commonConfig.plugins = commonConfig.plugins.concat([
-      new OptimizeCSSPlugin({
-        assetNameRegExp: /\.css$/,
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false } 
-      }),
-      // new UglifyJsPlugin({})
-    ])
     commonConfig.optimization = {
-      minimizer: [new UglifyJsPlugin()]
+      minimizer: [
+        // new UglifyJsPlugin(),
+        new TerserJSPlugin({}),
+        new OptimizeCSSPlugin({
+          assetNameRegExp: /\.css$/,
+          cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false } 
+        })
+      ]
     }
   }
 
@@ -229,8 +230,6 @@ module.exports = function (options) {
   if (moduleIdType && moduleIdMap[moduleIdType]) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
-  
-
   let subProject = cml.config.get().subProject;
   if (subProject && subProject.length > 0) {
     subProject.forEach(npmName => {

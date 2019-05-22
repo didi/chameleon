@@ -11,9 +11,9 @@ const {chameleonHandle} = require('./utils.js');
 module.exports = function(compiler, options) {
 
   if (compiler.hooks) {
-    compiler.hooks.compilation("chameleon-plugin", (compilation) => {
+    compiler.hooks.compilation.tap("chameleon-plugin", (compilation) => {
       const usedIds = new Set();
-      compilation.hooks.beforeModuleIds("chameleon-plugin", (modules) => {
+      compilation.hooks.beforeModuleIds.tap("chameleon-plugin", (modules) => {
         modules.forEach((module) => {
           moduleIdHandle.call(this, module, usedIds)
         });

@@ -6,7 +6,7 @@ const getWebCommonConfig = require('../getWebCommonConfig.js')
 const getCmlLoaderConfig = require('../cml-loader.conf');
 const { styleLoaders, getBabelPath } = require('../utils');
 const ExportPlugin = require('./exportPlugin');
-const ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+const ExtractTextPlugin = require('cml-mini-css-extract-plugin')
 
 
 module.exports = function(options) {

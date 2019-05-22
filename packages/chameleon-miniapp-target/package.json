@@ -14,7 +14,8 @@
     "webpack": "^3.12.0"
   },
   "dependencies": {
-    "chameleon-tool-utils": "0.4.0-mvvm.8"
+    "chameleon-tool-utils": "0.4.0-mvvm.8",
+    "tapable": "^1.1.3"
   },
   "mail": "ChameleonCore@didiglobal.com",
   "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"

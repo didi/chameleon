@@ -65,7 +65,6 @@ module.exports = function (options) {
       baseWebpackConfig.entry[name] = [path.resolve(__dirname, '../commanders/web/liveload-dev-client.js')].concat(baseWebpackConfig.entry[name])
     })
   }
-  devConfig.mode = 'development';
 
   return merge(baseWebpackConfig, devConfig)
 }

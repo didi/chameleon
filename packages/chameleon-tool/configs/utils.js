@@ -1,5 +1,5 @@
 var path = require('path')
-var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+const MiniCssExtractPlugin = require("cml-mini-css-extract-plugin");
 var fs = require('fs');
 const fse = require('fs-extra');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -131,12 +131,12 @@ exports.cssLoaders = function (options) {
       result = loaders;
     } else {
       if (options.extract) {
-        result = ExtractTextPlugin.extract({
-          use: loaders,
-          fallback: 'vue-style-loader'
-        })
+        result = [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {}
+        }].concat(loaders)
       } else {
-        result = ['vue-style-loader'].concat(loaders)
+        result = ['style-loader'].concat(loaders)
       }
     }
 
@@ -326,17 +326,37 @@ exports.getWebEntry = function (options) {
   }
   exports.copyDefaultFile(options.root, 'web', options.media);
   var entry = {};
-  entry.vendor = ['vue', 'vuex', 'vue-router', path.resolve(cml.root, 'configs/web_global.js')];
-  if (options.babelPolyfill === true) {
-    entry.vendor.unshift('@babel/polyfill');
-  }
-  // web端插入全局样式
-  if (cml.config.get().baseStyle.web === true) {
-    entry.vendor.push('chameleon-runtime/src/platform/web/style/index.css')
-  }
-  if (cml.config.get().cmss.rem === true) {
-    entry.vendor.unshift(path.resolve(cml.root, 'configs/default/rem.js'));
-  }
+ 
+  // entry.vendor = ['vue', 'vuex', 'vue-router', path.resolve(cml.root, 'configs/web_global.js')];
+  // if (options.babelPolyfill === true) {
+  //   entry.vendor.unshift('@babel/polyfill');
+  // }
+  // // web端插入全局样式
+  // if (cml.config.get().baseStyle.web === true) {
+  //   entry.vendor.push('chameleon-runtime/src/platform/web/style/index.css')
+  // }
+  // if (cml.config.get().cmss.rem === true) {
+  //   entry.vendor.unshift(path.resolve(cml.root, 'configs/default/rem.js'));
+  // }
+  // var htmlPlugins = [];
+  // let entryConfig = cml.config.get().entry;
+
+  // // 配置web入口
+  // var entryFile;
+  // if (entryConfig && entryConfig.web) {
+  //   if (cml.utils.isFile(entryConfig.web)) {
+  //     entryFile = entryConfig.web;
+  //   } else {
+  //     throw new Error('no such file: ' + entryConfig.web);
+  //   }
+  // } else {
+  //   entryFile = path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js');
+  // }
+  // var entryName = exports.getEntryName();
+  // entry[entryName] = entryFile;
+
+
+  entry.vendor = ['vue', 'vuex', 'vue-router'];
   var htmlPlugins = [];
   let entryConfig = cml.config.get().entry;
 
@@ -352,7 +372,20 @@ exports.getWebEntry = function (options) {
     entryFile = path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js');
   }
   var entryName = exports.getEntryName();
-  entry[entryName] = entryFile;
+  entry[entryName] = [path.resolve(cml.root, 'configs/web_global.js')];
+  if (options.babelPolyfill === true) {
+    entry[entryName].unshift('@babel/polyfill');
+  }
+  // web端插入全局样式
+  if (cml.config.get().baseStyle.web === true) {
+    entry[entryName].push('chameleon-runtime/src/platform/web/style/index.css')
+  }
+  if (cml.config.get().cmss.rem === true) {
+    entry[entryName].unshift(path.resolve(cml.root, 'configs/default/rem.js'));
+  }
+  entry[entryName].push(entryFile);
+  
+
   var chunksort = ['manifest', 'vendor'];
   let filename = `${entryName}.html`;
   if (cml.config.get().templateType === 'smarty') {

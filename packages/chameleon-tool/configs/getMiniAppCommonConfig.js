@@ -1,7 +1,7 @@
-var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
+const MiniCssExtractPlugin = require("cml-mini-css-extract-plugin");
+
 var utils = require('./utils.js');
 var path = require('path');
-var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
 const CopyNpmPlugin = require('./plugins/CopyNpmPLugin.js');
@@ -74,7 +74,7 @@ module.exports = function (options) {
       ]
     },
     plugins: [
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: `[name].${targetObj.css}`,
         allChunks: true
       }),

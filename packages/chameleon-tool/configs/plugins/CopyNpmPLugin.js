@@ -11,7 +11,7 @@ class CopyNpmPLugin {
     let self = this;
 
     if (compiler.hooks) {
-      compiler.hooks.afterEmit.tap('CopyNpmPLugin', copyNpm);
+      compiler.hooks.afterEmit.tapAsync('CopyNpmPLugin', copyNpm);
     } else {
       compiler.plugin('after-emit', copyNpm);
     }
