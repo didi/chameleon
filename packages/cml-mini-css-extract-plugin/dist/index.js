@@ -331,7 +331,6 @@ class MiniCssExtractPlugin {
   }
 
   renderContentAsset(compilation, chunk, modules, requestShortener, compiler) {
-    debugger
     // const 
     let cmlDepsMap = compiler._cmlDepsMap ||  {};
     let allFileSort = cmlHelper.getAllFileSort(cmlDepsMap);

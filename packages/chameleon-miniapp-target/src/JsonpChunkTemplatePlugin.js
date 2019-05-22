@@ -3,6 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 "use strict";
+const cmlUtils = require('chameleon-tool-utils');
 
 const { ConcatSource } = require("webpack-sources");
 
@@ -28,13 +29,29 @@ class JsonpChunkTemplatePlugin {
 			"JsonpChunkTemplatePlugin",
 			(modules, chunk) => {
 				const jsonpFunction = chunkTemplate.outputOptions.jsonpFunction;
-				const globalObject = chunkTemplate.outputOptions.globalObject;
+				// const globalObject = chunkTemplate.outputOptions.globalObject;
 				const source = new ConcatSource();
+				const chunkNameLength = cmlUtils.handleWinPath(chunk.name).split('/').length;
+				// 所有chunk都在static/js下，求该chunk相对manifest.js的路径
+				const manifestPath = [
+					'manifest.js'
+				]
+				if (chunkNameLength === 1) {
+					manifestPath.unshift('./');
+				} else {
+					let prefix = '';
+					// 如果是3  ../../
+					for (let i = 1; i < chunkNameLength; i++) {
+						prefix += '../'
+					}
+					manifestPath.unshift(prefix);
+				}
 				const prefetchChunks = chunk.getChildIdsByOrders().prefetch;
+				source.add(`var __CML__GLOBAL = require("${manifestPath.join('')}");\n`);
 				source.add(
-					`(${globalObject}[${JSON.stringify(
+					`(${'__CML__GLOBAL'}[${JSON.stringify(
 						jsonpFunction
-					)}] = ${globalObject}[${JSON.stringify(
+					)}] = ${'__CML__GLOBAL'}[${JSON.stringify(
 						jsonpFunction
 					)}] || []).push([${JSON.stringify(chunk.ids)},`
 				);

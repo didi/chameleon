@@ -6,7 +6,12 @@
 
 const { SyncWaterfallHook } = require("tapable");
 const Template = require("webpack/lib/Template");
-
+const {
+	ConcatSource,
+	OriginalSource,
+	PrefixSource,
+	RawSource
+} = require("webpack-sources");
 class JsonpMainTemplatePlugin {
 	apply(mainTemplate) {
 		const needChunkOnDemandLoadingCode = chunk => {
@@ -456,11 +461,11 @@ class JsonpMainTemplatePlugin {
 			(source, chunk, hash) => {
 				if (needChunkLoadingCode(chunk)) {
 					var jsonpFunction = mainTemplate.outputOptions.jsonpFunction;
-					var globalObject = mainTemplate.outputOptions.globalObject;
+					// var globalObject = mainTemplate.outputOptions.globalObject;
 					return Template.asString([
-						`var jsonpArray = ${globalObject}[${JSON.stringify(
+						`var jsonpArray = ${'__CML__GLOBAL'}[${JSON.stringify(
 							jsonpFunction
-						)}] = ${globalObject}[${JSON.stringify(jsonpFunction)}] || [];`,
+						)}] = ${'__CML__GLOBAL'}[${JSON.stringify(jsonpFunction)}] || [];`,
 						"var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);",
 						"jsonpArray.push = webpackJsonpCallback;",
 						"jsonpArray = jsonpArray.slice();",
@@ -568,16 +573,42 @@ class JsonpMainTemplatePlugin {
 function hotDisposeChunk(chunkId) {
 	delete installedChunks[chunkId];
 }
-var parentHotUpdateCallback = ${globalObject}[${JSON.stringify(
+var parentHotUpdateCallback = ${'__CML__GLOBAL'}[${JSON.stringify(
 					hotUpdateFunction
 				)}];
-${globalObject}[${JSON.stringify(hotUpdateFunction)}] = ${runtimeSource}`;
+${'__CML__GLOBAL'}[${JSON.stringify(hotUpdateFunction)}] = ${runtimeSource}`;
 			}
 		);
 		mainTemplate.hooks.hash.tap("JsonpMainTemplatePlugin", hash => {
 			hash.update("jsonp");
 			hash.update("6");
 		});
+		mainTemplate.hooks.render.tap(
+			"MainTemplate",
+			(bootstrapSource, chunk, hash, moduleTemplate, dependencyTemplates) => {
+				const source = new ConcatSource();
+				source.add(`/******/ var __CML__GLOBAL = {};\n`);
+				source.add("/******/ (function(modules) { // webpackBootstrap\n");
+				source.add(new PrefixSource("/******/", bootstrapSource));
+				source.add("/******/ })\n");
+				source.add(
+					"/************************************************************************/\n"
+				);
+				source.add("/******/ (");
+				source.add(
+					mainTemplate.hooks.modules.call(
+						new RawSource(""),
+						chunk,
+						hash,
+						moduleTemplate,
+						dependencyTemplates
+					)
+				);
+				source.add(")");
+				source.add(`\r\n /******/ module.exports = __CML__GLOBAL;`);
+				return source;
+			}
+		);
 	}
 }
 module.exports = JsonpMainTemplatePlugin;
