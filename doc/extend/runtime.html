@@ -4444,13 +4444,8 @@
                                 <section class="normal markdown-section">
                                 
                                 <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;"><b></b>&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;"><a name="&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;" class="anchor-navigation-ex-anchor" href="#&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;" class="plugin-anchor" href="#&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;</h2>
-<p>&#x8FD0;&#x884C;&#x65F6;&#x4E3B;&#x8981;&#x662F;&#x5BF9;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x9002;&#x914D;&#x3002;&#x5185;&#x90E8;&#x5C06;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x5206;&#x4E3A;&#x4E09;&#x7C7B;App&#x3001;Page&#x3001;Component&#x3002;&#x5BF9;&#x5E94;&#x4F1A;&#x8C03;&#x7528;&#x7528;&#x6237;&#x8FD0;&#x884C;&#x65F6;npm&#x5305;&#x7684;<code>createApp&#x3001;createPage&#x3001;createComponent</code>&#x65B9;&#x6CD5;&#x3002;
-&#x5728;&#x7F16;&#x8BD1;&#x63D2;&#x4EF6;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x6DFB;&#x52A0;&#x4E0A;&#x8FD0;&#x884C;&#x65F6;npm&#x5305;&#x540D;&#x79F0;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x9700;&#x8981;&#x7EC4;&#x4EF6;&#x3002;</p>
-<pre><code>  constructor(options) {
-    this.runtimeNpmName = &apos;cml-demo-runtime&apos;;
-    this.runtimeNeedComponents = false; 
-  }
-</code></pre><p>&#x4F8B;&#x5982;&#x4E00;&#x4E2A;Page&#x7684;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x8FD0;&#x884C;&#x65F6;&#x4E3B;&#x8981;&#x662F;&#x5BF9; cml &#x6587;&#x4EF6;&#x7684;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x9002;&#x914D;&#xFF0C;chameleon &#x5185;&#x90E8;&#x5C06; cml &#x6587;&#x4EF6;&#x7684;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x5206;&#x4E3A;&#x4E09;&#x7C7B; App&#x3001;Page&#x3001;Component&#x3002;&#x5BF9;&#x5E94;&#x4F1A;&#x8C03;&#x7528;&#x7528;&#x6237;&#x8FD0;&#x884C;&#x65F6; npm &#x5305;&#x7684;<code>createApp&#x3001;createPage&#x3001;createComponent</code>&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x5916;&#x53EA;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8FD9;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#x4E00;&#x4E2A; Page &#x7684;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code>class PageIndex {
   data = {
     name: &apos;chameleon&apos;
@@ -4467,7 +4462,11 @@
 }
 
 export default new PageIndex();
-</code></pre><p>&#x7F16;&#x8BD1;&#x65F6;&#x5C31;&#x4F1A;&#x63D2;&#x5165;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x65B9;&#x6CD5;&#xFF1A;</p>
+</code></pre><p>&#x5728;<a href="https:/github.com/chameleon-team/cml-extplatform-demo/blob/master/packages/cml-demo-plugin/index.js">&#x7F16;&#x8BD1;&#x63D2;&#x4EF6;</a>&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x6DFB;&#x52A0;&#x4E0A;&#x8FD0;&#x884C;&#x65F6; npm &#x5305;&#x540D;&#x79F0;&#xFF0C;<code>cml-demo-runtime</code>&#x3002;</p>
+<pre><code>  constructor(options) {
+    this.runtimeNpmName = &apos;cml-demo-runtime&apos;;
+  }
+</code></pre><p>&#x7F16;&#x8BD1;&#x65F6;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x63D2;&#x5165;<code>cml-demo-runtime</code>&#x5904;&#x7406;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
 <pre><code>class PageIndex {
   data = {
     name: &apos;chameleon&apos;
@@ -4487,18 +4486,55 @@ export default new PageIndex();
 // &#x7F16;&#x8BD1;&#x65F6;&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x65B9;&#x6CD5;
 import {createPage} from &apos;cml-demo-runtime&apos;;
 createPage(exports.default);
-</code></pre><p><code>runtimeNeedComponents</code> &#x5B57;&#x6BB5;&#x51B3;&#x5B9A;&#x8FD0;&#x884C;&#x65F6;&#x662F;&#x5426;&#x9700;&#x8981;&#x7EC4;&#x4EF6;&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#x679C;&#x4E3A;<code>true</code>&#xFF0C;&#x5219;&#x4F1A;&#x4F20;&#x5165;<code>usingComponents</code>&#x4E2D;&#x7684;&#x7EC4;&#x4EF6;&#x5BF9;&#x8C61;&#x3002;</p>
-<pre><code>class PageIndex {
-}
-export default new PageIndex();
+</code></pre><p><code>createApp&#x3001;createPage&#x3001;createComponent</code>&#x65B9;&#x6CD5;,&#x53C2;&#x8003;<a href="https://github.com/chameleon-team/cml-extplatform-demo/tree/master/packages/cml-demo-runtime" target="_blank">cml-demo-runtime</a>&#x7684;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;<code>include</code> <code>chameleon-runtime</code>&#x4E2D;&#x76F8;&#x5E94;&#x7684;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x5BF9;<code>chameleon-runtime</code>&#x7684;&#x6269;&#x5C55;&#x3002;&#x7528;&#x6237;&#x7684;&#x5DE5;&#x4F5C;&#x91CF;&#x4E3B;&#x8981;&#x5728;&#x4E8E;&#x5BF9;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="https://github.com/chameleon-team/chameleon-runtime/tree/master/src/interfaces" target="_blank">chameleon-runtime</a>&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF0C;&#x4E00;&#x822C;&#x9700;&#x8981;&#x5982;&#x4E0B;&#x65B9;&#x9762;&#x7684;&#x9002;&#x914D;&#x5DE5;&#x4F5C;&#x3002;</p>
+<p>&#x4ECE;&#x5B8F;&#x89C2;&#x6765;&#x770B;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x5904;&#x7406;&#x53EF;&#x5206;&#x4E3A;&#xFF1A;</p>
+<ul>
+<li>&#x8F93;&#x5165;Options&#x5BF9;&#x8C61;&#x7684;&#x9002;&#x914D;&#xFF0C;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js" target="_blank">&#x53C2;&#x8003;</a></li>
+<li>&#x8DE8;&#x7AEF;&#x8FD0;&#x884C;&#x65F6;&#x80FD;&#x529B;&#x6CE8;&#x5165;&#xFF0C;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniRuntimeCore.js" target="_blank">&#x53C2;&#x8003;</a></li>
+</ul>
+<p>&#x4ECE;&#x5FAE;&#x89C2;&#x6765;&#x770B;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B;&#x5904;&#x7406;&#xFF1A;</p>
+<ul>
+<li>&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/util/lifecycle.js" target="_blank">&#x6620;&#x5C04;&#x8868;&#x53C2;&#x8003;</a> &#x548C; <a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L91" target="_blank">&#x5B9E;&#x73B0;&#x53C2;&#x8003;</a></li>
+<li>&#x7EC4;&#x4EF6; props &#x5C5E;&#x6027;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L89" target="_blank">&#x9002;&#x914D;&#x53C2;&#x8003;</a> &#x548C; <a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L48" target="_blank">&#x53D8;&#x5316;&#x76D1;&#x542C;&#x53C2;&#x8003;</a></li>
+<li>&#x6570;&#x636E;&#x54CD;&#x5E94;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniRuntimeCore.js#L63" target="_blank">&#x6570;&#x636E;&#x54CD;&#x5E94;&#x5B9E;&#x73B0;&#x53C2;&#x8003;</a></li>
+<li>computed &#x8BA1;&#x7B97;&#x80FD;&#x529B;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniRuntimeCore.js#L85" target="_blank">&#x5B9E;&#x73B0;&#x53C2;&#x8003;</a></li>
+<li>watch &#x76D1;&#x542C;&#x80FD;&#x529B;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniRuntimeCore.js#L126" target="_blank">&#x9002;&#x914D;&#x53C2;&#x8003;</a> &#x548C; <a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniRuntimeCore.js#L97" target="_blank">&#x5B9E;&#x73B0;&#x53C2;&#x8003;</a></li>
+<li>methods &#x65B9;&#x6CD5;&#x5C5E;&#x6027;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L46" target="_blank">&#x9002;&#x914D;&#x53C2;&#x8003;</a></li>
+<li>mixins &#x80FD;&#x529B;&#xFF1A;<a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L31" target="_blank">&#x9002;&#x914D;&#x53C2;&#x8003;</a> &#x548C; <a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L42" target="_blank">&#x5408;&#x5E76;&#x53C2;&#x8003;</a></li>
+<li><a href="https://github.com/chameleon-team/chameleon-runtime/blob/master/src/platform/common/proto/MiniVmAdapter.js#L34" target="_blank">&#x751F;&#x547D;&#x5468;&#x671F;&#x591A;&#x6001;</a></li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A; createPage &#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;</p>
+<pre><code>&lt;include src=&quot;chameleon-runtime/src/interfaces/createPage/index.interface&quot;&gt;&lt;/include&gt;
+&lt;script cml-type=&quot;demo&quot;&gt;
+  class Method implements createPageInterface {
+    createPage(options) {
+      // &#x5404;&#x7AEF;&#x81EA;&#x884C;&#x5B9E;&#x73B0;PageRuntime
+      let pageRuntime = new PageRuntime(options);
 
-// &#x7F16;&#x8BD1;&#x65F6;&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x65B9;&#x6CD5;
-import {createPage} from &apos;cml-demo-runtime&apos;;
-import demoCom from &apos;../components/demo-com/demo-com.cml&apos;
-createPage(exports.default,{demoCom});
-</code></pre><p><code>createApp&#x3001;createPage&#x3001;createComponent</code>&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x3002;&#x53C2;&#x8003;<code>cml-demo-runtime</code>&#x7684;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#xFF0C;<code>createApp&#x3001;createPage&#x3001;createComponent</code>&#x90FD;&#x9700;&#x8981;<code>include</code>chameleon-runtime&#x4E2D;&#x76F8;&#x5E94;&#x7684;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x5BF9;<code>chameleon-runtime</code>&#x7684;&#x6269;&#x5C55;&#x3002;&#x7528;&#x6237;&#x7684;&#x5DE5;&#x4F5C;&#x91CF;&#x4E3B;&#x8981;&#x5728;&#x4E8E;&#x5BF9;&#x903B;&#x8F91;&#x5BF9;&#x8C61;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<code>chameleon-runtime</code>&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
-<p>&#x8FD0;&#x884C;&#x65F6;&#x4E00;&#x822C;&#x9700;&#x8981;&#x63D0;&#x4F9B;mixins&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x914D;&#x5408;&#x6A21;&#x677F;&#x7F16;&#x8BD1;&#x4E2D;&#x7684;&#x4E8B;&#x4EF6;&#x4EE3;&#x7406;&#xFF0C;&#x6CE8;&#x5165;&#x5185;&#x7F6E;&#x65B9;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;&#x4E8B;&#x4EF6;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x3002;</p>
+      // &#x5904;&#x7406;props
+      pageRuntime.initProps();
 
+      // &#x5904;&#x7406;data
+      pageRuntime.initData();
+
+      // &#x5904;&#x7406;computed
+      pageRuntime.initComputed();
+
+      // &#x5904;&#x7406;methods
+      pageRuntime.initMethods();
+
+      // &#x5904;&#x7406;&#x751F;&#x547D;&#x5468;&#x671F;&#x6620;&#x5C04;
+      pageRuntime.initLifeCycle();
+
+      //&#x8C03;&#x7528;&#x5C0F;&#x7A0B;&#x5E8F;&#x539F;&#x751F;&#x9875;&#x9762;&#x6784;&#x9020;&#x51FD;&#x6570;
+      Page(options);
+      return {};
+    }
+  }
+
+  export default new Method();
+&lt;/script&gt;
+</code></pre>
                                 
                                 </section>
                             
@@ -4541,7 +4577,7 @@ createPage(exports.default,{demoCom});
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现框架","level":"5.1.5.2","depth":3,"next":{"title":"逻辑对象标准","level":"5.1.5.2.1","depth":4,"path":"extend/vm.md","ref":"extend/vm.md","articles":[]},"previous":{"title":"操作教程","level":"5.1.5.1","depth":3,"path":"extend/quickstart.md","ref":"extend/quickstart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"extend/runtime.md","mtime":"2019-05-17T09:36:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-17T11:39:54.622Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实现框架","level":"5.1.5.2","depth":3,"next":{"title":"逻辑对象标准","level":"5.1.5.2.1","depth":4,"path":"extend/vm.md","ref":"extend/vm.md","articles":[]},"previous":{"title":"操作教程","level":"5.1.5.1","depth":3,"path":"extend/quickstart.md","ref":"extend/quickstart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"extend/runtime.md","mtime":"2019-05-20T09:04:21.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-22T04:16:28.658Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
