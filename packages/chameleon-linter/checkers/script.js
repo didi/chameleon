@@ -8,6 +8,7 @@ const DEFAULT_TOKENS_MAP = {
   WX: ['wx', 'global'],
   BAIDU: ['swan', 'global'],
   ALIPAY: ['my', 'global'],
+  AMAP: ['my', 'global'],
   WEB: [
     'postMessage', 'blur', 'focus', 'close', 'frames', 'self',
     'window', 'parent', 'opener', 'top', 'length', 'closed',

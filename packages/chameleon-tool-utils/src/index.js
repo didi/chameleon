@@ -826,7 +826,8 @@ _.findComponent = function (filePath, cmlType) {
     web: ['.vue', '.js'],
     wx: '.wxml',
     baidu: '.swan',
-    alipay: '.axml'
+    alipay: '.axml',
+    amap: '.axml'
   }
 
   let ext = fileExtMap[cmlType];

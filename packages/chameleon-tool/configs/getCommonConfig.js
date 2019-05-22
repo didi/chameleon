@@ -30,7 +30,8 @@ module.exports = function (options) {
     'alipay': `http://${config.ip}:${webServerPort}/alipay/`,
     'baidu': `http://${config.ip}:${webServerPort}/baidu/`, // baidu小程序的publicPath不能设置能/  所以在启动dev服务的时候 也将dist作为静态资源
     'web': `http://${config.ip}:${webServerPort}/`,
-    'weex': `http://${config.ip}:${webServerPort}/weex/`
+    'weex': `http://${config.ip}:${webServerPort}/weex/`,
+    'amap': `http://${config.ip}:${webServerPort}/amap/`
   }
 
   publicPath = options.publicPath || defaultPublichPathMap[type];

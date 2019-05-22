@@ -222,7 +222,7 @@ exports.createConfigJson = function() {
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
-  let {wxAppId = '', baiduAppId = '', alipayAppId = '' } = config.buildInfo;
+  let {wxAppId = '', baiduAppId = '', alipayAppId = '', amapAppId = ''} = config.buildInfo;
   let {routerConfig, hasError} = cml.utils.getRouterConfig();
   if (hasError) {
     throw new Error('router.config.json格式不正确')
@@ -253,6 +253,10 @@ exports.createConfigJson = function() {
         },
         alipay: {
           appId: alipayAppId,
+          path: item.path
+        },
+        amap: {
+          appId: amapAppId,
           path: item.path
         },
         web: {
@@ -300,6 +304,10 @@ exports.createConfigJson = function() {
             },
             alipay: {
               appId: alipayAppId,
+              path: routePath
+            },
+            amap: {
+              appId: amapAppId,
               path: routePath
             },
             web: {
