@@ -159,18 +159,15 @@ module.exports = _;
 _.get = function() {
   if (chameleonConfig.base) {
     let baseConfig = chameleonConfig.base;
-    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex'];
-    if (baseConfig) {
-      platforms.forEach(platform => {
-        if (chameleonConfig[platform]) {
-          let base = JSON.parse(JSON.stringify(baseConfig));
-          let newConfig = JSON.parse(JSON.stringify(chameleonConfig[platform]));
-          utils.merge(base, newConfig);
-          chameleonConfig[platform] = base;
-        }
-      })
-      delete chameleonConfig.base;
-    }
+    let platforms = chameleonConfig.platforms;
+    platforms.forEach(platform => {
+      if (chameleonConfig[platform]) {
+        let base = JSON.parse(JSON.stringify(baseConfig));
+        let newConfig = JSON.parse(JSON.stringify(chameleonConfig[platform]));
+        utils.merge(base, newConfig);
+        chameleonConfig[platform] = base;
+      }
+    })
   }
   return chameleonConfig;
 }
