@@ -75,7 +75,7 @@ module.exports = function(source) {
     case 'template':
       this._module._cmlSource = cmlInfo.compiledTemplate || '';
       this._module._cmlExtra = {
-        nativeComponents: cmlInfo.nativeComponents || [],
+        usingComponents: cmlInfo.usingComponents || [],
         currentUsedBuildInTagMap: cmlInfo.currentUsedBuildInTagMap || []
       }
       output = `module.exports = ${JSON.stringify(cmlInfo.compiledTemplate)}`;

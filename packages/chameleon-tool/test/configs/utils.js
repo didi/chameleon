@@ -38,6 +38,7 @@ describe('configs utils.js', function () {
 
   it('getMiniAppEntry', function () {
     cml.projectRoot = path.join(__dirname, '../../node_modules/chameleon-templates/project');
+    cml.media = 'dev';
     let result = utils.getMiniAppEntry('wx');
     expect(result).to.have.property('app');
     expect(result).to.have.property('common');

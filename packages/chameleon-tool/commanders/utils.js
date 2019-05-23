@@ -128,13 +128,14 @@ exports.startReleaseAll = async function (media) {
   if (media === 'build') {
     process.env.NODE_ENV = 'production';
   }
-  let allPlatform = cml.config.get().platforms;
+  let cmlConfig = cml.config.get();
+  let allPlatform = cmlConfig.platforms;
   let offPlatform = [];
   let activePlatform = []; // 启动编译的platform
   if (media === 'dev') {
-    offPlatform = cml.config.get().devOffPlatform;
+    offPlatform = cmlConfig.devOffPlatform;
   } else if (media === 'build') {
-    offPlatform = cml.config.get().buildOffPlatform;
+    offPlatform = cmlConfig.buildOffPlatform;
   }
   // 获取激活平台
   for (let i = 0, j = allPlatform.length; i < j; i++) {
@@ -230,7 +231,7 @@ exports.createConfigJson = function() {
 
   let result = [];
   if (routerConfig) {
-    if (!routerConfig.domain) {
+    if (~cml.activePlatform.indexOf('web') && !routerConfig.domain) {
       throw new Error('router.config.json 中未设置web端需要的domain字段');
     }
     let {domain, mode} = routerConfig;
