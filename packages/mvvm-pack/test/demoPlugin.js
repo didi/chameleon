@@ -9,7 +9,6 @@ module.exports = class DemoPlugin {
     this.originComponentExtList = ['.wxml']; // 用于扩展原生组件的文件后缀查找
     this.runtimeNpmName = 'cml-demo-runtime'; // 指定当前端的运行时库
     this.builtinUINpmName = 'cml-demo-ui-builtin'; // 指定当前端的内置组件库
-    this.runtimeNeedComponents = false;
     this.cmlType = cmlType;
     this.media = media;
     this.miniappExt = { // 小程序原生组件处理
@@ -102,6 +101,14 @@ module.exports = class DemoPlugin {
 
     })
 
+   /**
+    * 编译other类型节点
+    * currentNode 当前节点
+    */
+   compiler.hook('config-json', function(jsonObj) {
+      jsonObj.name = 'chameleon';
+   })
+
     /**
        * 编译结束进入打包阶段
        */
@@ -114,7 +121,13 @@ module.exports = class DemoPlugin {
     cml.config = {
       get() {
          return {
-         subProject: ['cml-subproject']
+         subProject: ['cml-subproject'],
+            wx: {
+               dev: {
+               minimize: true,
+               hash: true
+               }
+            }
          }
       }
     }

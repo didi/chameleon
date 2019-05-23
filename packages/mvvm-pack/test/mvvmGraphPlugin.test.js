@@ -69,8 +69,10 @@ describe('mvvmGraphPlugin.js', function() {
     };
     cml.utils = cmlUtils;
     cml.event.emit('find-component', result);
+    var configJson = {};
+    cml.event.emit('config-json', configJson);
     expect(result.extPath).to.be.equal(path.join(__dirname, 'test.wxml'));
-
+    expect(configJson.name).to.be.equal('chameleon');
     global.cml = oldCml;
 
   })
