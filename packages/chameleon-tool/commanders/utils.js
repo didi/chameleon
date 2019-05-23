@@ -327,5 +327,7 @@ exports.createConfigJson = function() {
     })
   })
 
+  cml.event.emit('config-json', result);
+
   fse.outputFileSync(configJsonPath, JSON.stringify(result, '', 4))
 }
