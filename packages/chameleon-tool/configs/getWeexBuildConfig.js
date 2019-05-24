@@ -22,7 +22,7 @@ module.exports = function (options) {
     var buildConfig = {
       output: {
         path: `${outputPath}/${key}`,
-        filename: '[name]_[hash:7].js'
+        filename: `[name]${cml.config.get().weex.hash ? '_[hash:7]':''}.js`
       },
       plugins: [
         new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
@@ -38,7 +38,7 @@ module.exports = function (options) {
         e.options = {
           limit: false, // 不做limit的base64转换，需要添加?inline参数
           publicPath: cml.config.get().weex.publicPath,
-          name: `${cml.config.get().staticPath}/[name]_[hash:7].[ext]`
+          name: `${cml.config.get().staticPath}/[name]${cml.config.get().weex.hash ? '_[hash:7]':''}.[ext]`
         }
       }
     })
