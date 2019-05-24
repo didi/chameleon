@@ -35,7 +35,7 @@ exports.getConfig = function(options = {}) {
   if(!cmlType){
     throw new Error('未传递cmlType');
   }
-  if(!media){
+  if(!media){ 
     throw new Error('未传递media');
   }
 

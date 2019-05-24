@@ -6,7 +6,8 @@ module.exports = [{
       rawContent: "<template lang='web'></template>",
       params: {
         lang: ''
-      }
+      },
+      file: '/src/app.cml'
     },
     jsonAst: {}
   },

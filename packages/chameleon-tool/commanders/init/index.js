@@ -171,7 +171,7 @@ exports.register = function (commander) {
       }
       // 处理平台文件
       if (platforms.length < platformTotal) {
-        let { ignorePlatform, ignoreReg } = getIgnorePlatform(platforms);
+        let { ignorePlatform, ignoreReg } = exports.getIgnorePlatform(platforms);
         let currentPlatforms = platforms;
         let currentReg = new RegExp(`\\.(${currentPlatforms.join('|')})\\.cml$`);
         // 处理.cml文件
@@ -251,7 +251,7 @@ exports.register = function (commander) {
     inquirer.prompt(questions).then(answers => {
       let {pageName} = answers;
       let pagedir = path.join(cml.projectRoot, `src/pages/${pageName}`)
-      let UpperName = toUpperCase(pageName);
+      let UpperName = exports.toUpperCase(pageName);
       fs.readdirSync(tpl.pageTpl).forEach(fileName => {
         let filePath = path.join(tpl.pageTpl, fileName);
         let newFilePath = path.join(pagedir, fileName.replace('index', pageName));
@@ -259,7 +259,7 @@ exports.register = function (commander) {
         if (cml.config.get().templateLang === 'vue') {
           content = content.replace(/<template>/, '<template lang="vue">')
         }
-        content = contentIgnoreHanle(content, 'cml');
+        content = exports.contentIgnoreHanle(content, 'cml');
         fse.outputFile(newFilePath, content);
 
       })
@@ -303,8 +303,8 @@ exports.register = function (commander) {
         'Polymorphic function': 'interface-js'
       }
       let tplPath = path.join(tpl.componentTpl, comPathMap[componentType]);
-      let UpperName = toUpperCase(componentName);
-      let { ignoreReg } = getIgnorePlatform();
+      let UpperName = exports.toUpperCase(componentName);
+      let { ignoreReg } = exports.getIgnorePlatform();
       fs.readdirSync(tplPath).forEach(fileName => {
         if (ignoreReg.test(fileName)) {
           return;
@@ -316,55 +316,56 @@ exports.register = function (commander) {
           content = content.replace(/<template>/, '<template lang="vue">')
         }
         if (newFilePath.endsWith('.cml')) {
-          content = contentIgnoreHanle(content, 'cml');
+          content = exports.contentIgnoreHanle(content, 'cml');
         }
         if (newFilePath.endsWith('.interface')) {
-          content = contentIgnoreHanle(content, 'interface');
+          content = exports.contentIgnoreHanle(content, 'interface');
         }
         fse.outputFile(newFilePath, content);
       })
       cml.log.notice(`init component ${componentName} success!`)
     })
   }
+}
 
-  function toUpperCase(content) {
-    content = content[0].toUpperCase() + content.slice(1);
-    return content.replace(/-(\w)/ig, function(m, s1) {
-      return s1.toUpperCase()
-    })
-  }
+exports.toUpperCase = function (content) {
+  content = content[0].toUpperCase() + content.slice(1);
+  return content.replace(/-(\w)/ig, function(m, s1) {
+    return s1.toUpperCase()
+  })
+}
 
-  function getIgnorePlatform(platforms) {
-    platforms = platforms || cml.config.get().platforms.map(item => item.trim());
-    let platformValues = Object.values(platformMap);
-    let ignorePlatform = platformValues.filter(item => platforms.indexOf(item) === -1);
-    let ignoreReg = new RegExp(`\\.(${ignorePlatform.join('|')})\\.cml$`);
-    return {
-      ignorePlatform,
-      ignoreReg
-    }
+
+exports.getIgnorePlatform = function (platforms) {
+  platforms = platforms || cml.config.get().platforms.map(item => item.trim());
+  let platformValues = Object.values(platformMap);
+  let ignorePlatform = platformValues.filter(item => platforms.indexOf(item) === -1);
+  let ignoreReg = new RegExp(`\\.(${ignorePlatform.join('|')})\\.cml$`);
+  return {
+    ignorePlatform,
+    ignoreReg
   }
+}
+
   // 处理文件
-  function contentIgnoreHanle(content, type) {
-    let { ignorePlatform } = getIgnorePlatform();
-    if (type === 'interface') {
-      ignorePlatform.forEach(item => {
-        content = cml.utils.deleteScript({
-          content,
-          cmlType: item
-        });
+exports.contentIgnoreHanle = function (content, type) {
+  let { ignorePlatform } = exports.getIgnorePlatform();
+  if (type === 'interface') {
+    ignorePlatform.forEach(item => {
+      content = cml.utils.deleteScript({
+        content,
+        cmlType: item
       });
-    } else if (type === 'cml') {
-      let splitContent = cml.utils.getScriptPart({content, cmlType: 'json'});
-      if (splitContent) {
-        let jsonObj = JSON.parse(splitContent.content);
-        ignorePlatform.forEach(item => {
-          delete jsonObj[item];
-        });
-        content = content.replace(splitContent.content, `\n${JSON.stringify(jsonObj, null, 2)}\n`);
-      }
+    });
+  } else if (type === 'cml') {
+    let splitContent = cml.utils.getScriptPart({content, cmlType: 'json'});
+    if (splitContent) {
+      let jsonObj = JSON.parse(splitContent.content);
+      ignorePlatform.forEach(item => {
+        delete jsonObj[item];
+      });
+      content = content.replace(splitContent.content, `\n${JSON.stringify(jsonObj, null, 2)}\n`);
     }
-    return content;
   }
-
+  return content;
 }

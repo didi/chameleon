@@ -27,7 +27,7 @@ var miniappConfig = {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
     entry: [
-      './components'
+      './src/components'
     ],
     publicPath: '../../'
   }
@@ -68,7 +68,7 @@ var chameleonConfig = {
     wxAppId: ''
   },
   enableLinter: true,
-  enableGlobalCheck: false,
+  enableGlobalCheck: true,
   globalCheckWhiteList: [ // 全局校验的白名单文件 后缀匹配
   ],
   cmss: {
@@ -82,7 +82,9 @@ var chameleonConfig = {
     },
     autoprefixOptions: {
       browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-    }
+    },
+    // 是否对css开启autoprefix，默认为true  非weex端生效
+    enableAutoPrefix: true
   },
   wx: miniappConfig,
   alipay: miniappConfig,
@@ -155,6 +157,21 @@ const _ = {};
 module.exports = _;
 
 _.get = function() {
+  if (chameleonConfig.base) {
+    let baseConfig = chameleonConfig.base;
+    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex'];
+    if (baseConfig) {
+      platforms.forEach(platform => {
+        if (chameleonConfig[platform]) {
+          let base = JSON.parse(JSON.stringify(baseConfig));
+          let newConfig = JSON.parse(JSON.stringify(chameleonConfig[platform]));
+          utils.merge(base, newConfig);
+          chameleonConfig[platform] = base;
+        }
+      })
+      delete chameleonConfig.base;
+    }
+  }
   return chameleonConfig;
 }
 

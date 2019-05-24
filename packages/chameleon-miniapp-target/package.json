@@ -1,6 +1,6 @@
 {
   "name": "chameleon-miniapp-target",
-  "version": "0.1.1",
+  "version": "0.3.0-alpha.3",
   "description": "chameleon 小程序webpack的target",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "webpack": "^3.12.0"
   },
   "dependencies": {
-    "chameleon-tool-utils": "0.1.1"
+    "chameleon-tool-utils": "0.3.0-alpha.3"
   },
   "mail": "ChameleonCore@didiglobal.com",
   "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"

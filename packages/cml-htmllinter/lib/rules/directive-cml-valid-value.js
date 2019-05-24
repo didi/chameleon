@@ -5,7 +5,7 @@ var Issue = require('../issue'),
 module.exports = {
   name: 'directive-cml-valid-value',
   on: ['directive-cml'],
-  filter: ['c-if', 'c-else-if', 'c-for', 'c-model', 'c-text', 'c-show', 'c-animation'],
+  filter: ['is', 'c-if', 'c-else-if', 'c-for', 'c-model', 'c-text', 'c-show', 'c-animation'],
   options: [{
     name: 'cml-valid-value-regex',
     desc: 'If set, all diretives that can have values will be checked.',

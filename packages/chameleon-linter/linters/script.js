@@ -43,33 +43,40 @@ const checkSyntax = function (part) {
       msg: err.message.replace(/ \((\d+):(\d+)\)$/, '')
     });
   }
-
-  traverse(ast, {
-    enter(path) {
-      if (path.isClassProperty() && path.node) {
-        switch (path.node.key.name) {
-          case 'watch':
-          case 'computed':
-          case 'methods':
-            path.get('value').get('properties').forEach(property => {
-              handleProperty(property, path.node.key.name, messages);
-            });
-            break;
-          case 'beforeCreate':
-          case 'created':
-          case 'beforeMount':
-          case 'mounted':
-          case 'beforeDestroy':
-          case 'destroyed':
-            handleProperty(path, path.node.key.name, messages);
-            break;
-          default:
-            break;
+  try {
+    traverse(ast, {
+      enter(path) {
+        if (path.isClassProperty() && path.node) {
+          switch (path.node.key.name) {
+            case 'watch':
+            case 'computed':
+            case 'methods':
+              let properties = path.get('value').get('properties');
+              if (properties.forEach) {
+                (properties || []).forEach(property => {
+                  handleProperty(property, path.node.key.name, messages);
+                });
+              }
+              break;
+            case 'beforeCreate':
+            case 'created':
+            case 'beforeMount':
+            case 'mounted':
+            case 'beforeDestroy':
+            case 'destroyed':
+              handleProperty(path, path.node.key.name, messages);
+              break;
+            default:
+              break;
+          }
         }
+
       }
-      
-    }
-  });
+    });
+  }
+  catch (e) {
+    console.log(e);
+  }
 
 
   return {
