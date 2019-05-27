@@ -46,6 +46,7 @@ class Compiler {
     this.cmlType = options.cmlType;
     this.media = options.media;
     this.userPlugin = plugin;
+    this.outputPath = this.webpackCompiler.options.output.path;
   }
 
   run(modules) {
@@ -85,7 +86,12 @@ class Compiler {
       if (item._nodeType === 'module' && item._moduleType === 'asset') {
         // 写入资源文件
         if (item._bufferSource && item._outputPath) {
-          this.writeFile(item._outputPath, item._bufferSource);
+          // 用户插件中执行静态资源位置，而不影响publicPath
+          let outputPath = item._outputPath;
+          if (this.userPlugin.assetsPrePath) {
+            outputPath = this.userPlugin.assetsPrePath + outputPath;
+          }
+          this.writeFile(outputPath, item._bufferSource);
         }
         assetPublicMap[item.resource] = item._publicPath;
       }

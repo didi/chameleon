@@ -17,7 +17,16 @@ module.exports = function(options) {
     cmlType: type,
     media
   });
-  cml.extPlatformPlugin[type] = platformPlugin;
+  cml.extPlatformPlugin[type] = platformPlugin; // 扩展新端插件， utils中获取内置组件需要用到
+  debugger
+  // 扩展新端编译默认配置
+  if (platformPlugin.cmlConfig) {
+    cml.config.merge({
+      [type]: {
+        ...platformPlugin.cmlConfig
+      }
+    });
+  }
 
   function getCmlLoaders() {
     let loaders = utils.cssLoaders({type, media});
