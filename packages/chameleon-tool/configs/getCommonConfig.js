@@ -19,7 +19,11 @@ module.exports = function (options) {
   } = options;
 
   function getstaticPath(filetype) {
-    return `static/${filetype}/[name]_[hash:7].[ext]`
+    let staticPath = `static/${filetype}/[name]_[hash:7].[ext]`;
+    if (options.staticPath) {
+      staticPath = options.staticPath + staticPath;
+    }
+    return staticPath;
   }
 
   let webServerPort = getFreePort().webServerPort;
@@ -32,7 +36,6 @@ module.exports = function (options) {
     'web': `http://${config.ip}:${webServerPort}/`,
     'weex': `http://${config.ip}:${webServerPort}/weex/`
   }
-
   publicPath = options.publicPath || defaultPublichPathMap[type];
   if (!publicPath) {
     publicPath = `http://${config.ip}:${webServerPort}/${type}/`
@@ -170,7 +173,7 @@ module.exports = function (options) {
   let devApiPrefix = `http://${config.ip}:${webServerPort}`
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
-  // 新版api 优先读取domainMap
+  // 新版api 优先读取domain
   // 浅拷贝不影响config中的domain
   let domain = {};
   if (options.domain) {

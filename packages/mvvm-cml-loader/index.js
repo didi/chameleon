@@ -70,10 +70,7 @@ module.exports = function(source) {
   let coms = jsonObject.usingComponents = jsonObject.usingComponents || {};
   let customComKeys = Object.keys(coms); // 用户自定义组件key
   let usingComponentsAndFilePath = {}; // 记录文件依赖的组件名称及文件位置
-  let nativeComponents = prepareParseUsingComponents({loaderContext: self, context, originObj: coms, cmlType});
-  nativeComponents = nativeComponents.filter(item => {
-    return item.isNative;
-  })
+  let usingComponents = prepareParseUsingComponents({loaderContext: self, context, originObj: coms, cmlType});
 
 
   const isBuildInFile = cmlUtils.isBuildIn(self.resourcePath);
@@ -87,7 +84,7 @@ module.exports = function(source) {
 
   let {source: compiledTemplate, usedBuildInTagMap} = templateParse(templateContent, {
     buildInComponents, // 对内置组件做替换 并返回用了哪个内置组件
-    usingComponents: nativeComponents // 判断是否是原生组件
+    usingComponents // 判断是否是原生组件
   });
   const currentUsedBuildInTagMap = {};
 
@@ -142,7 +139,7 @@ module.exports = function(source) {
 
   this._compiler._mvvmCmlInfo[self.resourcePath] = {
     compiledTemplate,
-    nativeComponents,
+    usingComponents,
     currentUsedBuildInTagMap,
     compiledJson: jsonObject,
     componentFiles: usingComponentsAndFilePath

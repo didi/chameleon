@@ -32,6 +32,11 @@ class mvvmGraphPlugin {
       return false;      
     })
 
+    // 修改config.json的钩子
+    cml.event.on('config-json', function(jsonObj) {
+      mvvmCompiler.emit('config-json', jsonObj);
+    })
+
 
     // 捕获错误
     process.on('uncaughtException', function (err) {
