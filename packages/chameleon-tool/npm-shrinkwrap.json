@@ -498,6 +498,11 @@
       "integrity": "sha512-HJ7CfNHrfJLlNTzIEUTj43LNWGkqpRLxm3YjAlcD0ACydk9XynzYsCBHxut+iqt+1aBXkx9UP/w/ZqMr13XIzg==",
       "dev": true
     },
+    "acorn-walk": {
+      "version": "6.1.1",
+      "resolved": "http://registry.npm.xiaojukeji.com/acorn-walk/download/acorn-walk-6.1.1.tgz",
+      "integrity": "sha1-02O2b1+sXwGP+cOh57b44xDMORM="
+    },
     "agentkeepalive": {
       "version": "2.2.0",
       "resolved": "https://registry.npmjs.org/agentkeepalive/-/agentkeepalive-2.2.0.tgz",
@@ -1771,13 +1776,14 @@
         "tweetnacl": "0.14.5"
       }
     },
-    "bfj-node4": {
-      "version": "5.3.1",
-      "resolved": "https://registry.npmjs.org/bfj-node4/-/bfj-node4-5.3.1.tgz",
-      "integrity": "sha512-SOmOsowQWfXc7ybFARsK3C4MCOWzERaOMV/Fl3Tgjs+5dJWyzo3oa127jL44eMbQiAN17J7SvAs2TRxEScTUmg==",
+    "bfj": {
+      "version": "6.1.1",
+      "resolved": "http://registry.npm.xiaojukeji.com/bfj/download/bfj-6.1.1.tgz",
+      "integrity": "sha1-BaO3eE+9cs+jwi5WAC75kzZRbEg=",
       "requires": {
         "bluebird": "3.5.3",
         "check-types": "7.4.0",
+        "hoopy": "0.1.4",
         "tryer": "1.0.1"
       }
     },
@@ -5710,15 +5716,6 @@
       "integrity": "sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA==",
       "dev": true
     },
-    "gzip-size": {
-      "version": "4.1.0",
-      "resolved": "https://registry.npmjs.org/gzip-size/-/gzip-size-4.1.0.tgz",
-      "integrity": "sha1-iuCWJX6r59acRb4rZ8RIEk/7UXw=",
-      "requires": {
-        "duplexer": "0.1.1",
-        "pify": "3.0.0"
-      }
-    },
     "handlebars": {
       "version": "4.0.12",
       "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.0.12.tgz",
@@ -5864,6 +5861,11 @@
         "os-homedir": "1.0.2",
         "os-tmpdir": "1.0.2"
       }
+    },
+    "hoopy": {
+      "version": "0.1.4",
+      "resolved": "http://registry.npm.xiaojukeji.com/hoopy/download/hoopy-0.1.4.tgz",
+      "integrity": "sha1-YJIH1mEQADOpqUAq096mdzgcGx0="
     },
     "hosted-git-info": {
       "version": "2.7.1",
@@ -13933,37 +13935,48 @@
       }
     },
     "webpack-bundle-analyzer": {
-      "version": "2.13.1",
-      "resolved": "https://registry.npmjs.org/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.13.1.tgz",
-      "integrity": "sha512-rwxyfecTAxoarCC9VlHlIpfQCmmJ/qWD5bpbjkof+7HrNhTNZIwZITxN6CdlYL2axGmwNUQ+tFgcSOiNXMf/sQ==",
+      "version": "3.3.2",
+      "resolved": "http://registry.npm.xiaojukeji.com/webpack-bundle-analyzer/download/webpack-bundle-analyzer-3.3.2.tgz",
+      "integrity": "sha1-PaczqQD1FZFOcp/OvNTEDd5x/G8=",
       "requires": {
-        "acorn": "5.7.3",
-        "bfj-node4": "5.3.1",
+        "acorn": "6.1.1",
+        "acorn-walk": "6.1.1",
+        "bfj": "6.1.1",
         "chalk": "2.4.2",
-        "commander": "2.16.0",
+        "commander": "2.20.0",
         "ejs": "2.6.1",
         "express": "4.16.3",
         "filesize": "3.6.1",
-        "gzip-size": "4.1.0",
+        "gzip-size": "5.1.1",
         "lodash": "4.17.11",
         "mkdirp": "0.5.1",
         "opener": "1.5.1",
-        "ws": "4.1.0"
+        "ws": "6.1.2"
       },
       "dependencies": {
         "acorn": {
-          "version": "5.7.3",
-          "resolved": "https://registry.npmjs.org/acorn/-/acorn-5.7.3.tgz",
-          "integrity": "sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw=="
+          "version": "6.1.1",
+          "resolved": "http://registry.npm.xiaojukeji.com/acorn/download/acorn-6.1.1.tgz",
+          "integrity": "sha1-fSWuBbuK0fm2mRCOEJTs14hK3B8="
         },
-        "ws": {
-          "version": "4.1.0",
-          "resolved": "https://registry.npmjs.org/ws/-/ws-4.1.0.tgz",
-          "integrity": "sha512-ZGh/8kF9rrRNffkLFV4AzhvooEclrOH0xaugmqGsIfFgOE/pIz4fMc4Ef+5HSQqTEug2S9JZIWDR47duDSLfaA==",
+        "commander": {
+          "version": "2.20.0",
+          "resolved": "http://registry.npm.xiaojukeji.com/commander/download/commander-2.20.0.tgz",
+          "integrity": "sha1-1YuytcHuj4ew00ACfp6U4iLFpCI="
+        },
+        "gzip-size": {
+          "version": "5.1.1",
+          "resolved": "http://registry.npm.xiaojukeji.com/gzip-size/download/gzip-size-5.1.1.tgz",
+          "integrity": "sha1-y5vuaS+HwGErIyhAqHOQTkwTUnQ=",
           "requires": {
-            "async-limiter": "1.0.0",
-            "safe-buffer": "5.1.2"
+            "duplexer": "0.1.1",
+            "pify": "4.0.1"
           }
+        },
+        "pify": {
+          "version": "4.0.1",
+          "resolved": "http://registry.npm.xiaojukeji.com/pify/download/pify-4.0.1.tgz",
+          "integrity": "sha1-SyzSXFDVmHNcUCkiJP2MbfQeMjE="
         }
       }
     },
