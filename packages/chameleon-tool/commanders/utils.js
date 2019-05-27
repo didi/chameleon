@@ -18,7 +18,8 @@ exports.getBuildPromise = async function (media, type) {
 
   let options = exports.getOptions(media, type);
   let webpackConfig = await getConfig(options);
-  if (!~['web', 'weex'].indexOf(type)) {
+  //  非web和weex 并且非增量
+  if (!~['web', 'weex'].indexOf(type) && options.increase !== true) {
     // 异步删除output目录
     var outputpath = webpackConfig.output.path;
     if (outputpath) {

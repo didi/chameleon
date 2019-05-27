@@ -12,6 +12,7 @@ var miniappConfig = {
     definePlugin: {
       'process.env.NODE_ENV': JSON.stringify('development')
     }
+    //  increase:true, 是否增量部署打包代码
   },
   build: {
     hash: true,
@@ -96,6 +97,7 @@ var chameleonConfig = {
       hot: false,
       analysis: false,
       // apiPrefix: ,
+      // staticPath: '', 静态资源路径前缀
       definePlugin: {
         'process.env.NODE_ENV': JSON.stringify('development')
       }
