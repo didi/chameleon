@@ -1,6 +1,6 @@
 {
   "name": "chameleon-webpack-plugin",
-  "version": "0.4.0-mvvm.10",
+  "version": "0.4.0-mvvm.11.1",
   "description": "",
   "main": "index.js",
   "scripts": {
