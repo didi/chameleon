@@ -12,6 +12,7 @@ function getJsFiles(dir) {
 
 
 module.exports = function (app, options) {
+  console.log('dynamicApiMiddleware=========>', options);
   app.use(function (req, res, next) {
     const controllerFiles = getJsFiles(path.join(options.root, 'mock/api'));
     let self = this;
