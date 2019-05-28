@@ -1,6 +1,6 @@
 {
   "name": "chameleon-tool",
-  "version": "0.3.3-alpha.0",
+  "version": "0.3.3-fs-1",
   "description": "chameleon 脚手架工具",
   "main": "chameleon.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "chameleon-miniapp-target": "^0.3.3-alpha.0",
     "chameleon-mixins": "^0.3.3-alpha.0",
     "chameleon-template-parse": "^0.3.3-alpha.0",
-    "chameleon-templates": "^0.3.3-alpha.0",
+    "chameleon-templates": "^0.3.3-fs-1",
     "chameleon-tool-utils": "^0.3.3-alpha.0",
     "chameleon-url-loader": "^0.3.3-alpha.0",
     "chameleon-vue-precompiler": "^0.3.3-alpha.0",
