@@ -63,7 +63,10 @@ module.exports = function (options) {
     module: {
       rules: [{
         test: path.resolve(root, 'node_modules/chameleon-runtime/.temp/router.js'),
-        loader: path.join(__dirname, 'routerLoader.js')
+        loader: path.join(__dirname, 'routerLoader.js'),
+        options: {
+            cmlType: type,
+        }
       },
       {
         test: /\.js$/,
@@ -96,7 +99,7 @@ module.exports = function (options) {
         loader: 'file-loader',
         options: {
           name: getstaticPath('media')
-         
+
         }
       },
       {
@@ -190,6 +193,19 @@ module.exports = function (options) {
 
   commonConfig.plugins.push(new webpack.DefinePlugin({
     'process.env.media': JSON.stringify(options.media)
+  }))
+  let i18n = cml.config.get().i18n || 'zh-cn';
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+      'process.env.i18n': JSON.stringify(i18n)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.publicPath': JSON.stringify(publicPath)
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.singlePage': JSON.stringify(options.singlePage === false ? 'false' : 'true')
+  }))
+  commonConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env.devServer': JSON.stringify(devApiPrefix)
   }))
 
   if (options.minimize) {

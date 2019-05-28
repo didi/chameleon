@@ -11,6 +11,7 @@ parseDirective.tap('web-weex-cml', (args) => {
   if (lang === 'cml' && (type === 'web' || type === 'weex')) {
     // 以下开始处理指令；
     // v-model c-model
+    // web端因为是自定义组件触发的 input事件的参数不对，所以不能直接用vue的v-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
       let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))

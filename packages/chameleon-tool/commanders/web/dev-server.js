@@ -111,7 +111,7 @@ module.exports = function({webpackConfig, options, compiler}) {
     uri += `preview.html`;
     var entry = utils.getEntryName();
     var jsbundle = `weex/${entry}.js`;
-    let staticParams = { jsbundle, subpath, buildType: cml.activePlatform };
+    let staticParams = { jsbundle, subpath, buildType: cml.activePlatform ,singlePage:cml.config.get().weex.dev.singlePage};
     createRoutesReact({server, staticParams});
 
     cml.log.notice('Listening at ' + uri);

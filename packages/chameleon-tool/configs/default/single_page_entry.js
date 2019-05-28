@@ -1,9 +1,4 @@
-import runtime from "chameleon-runtime";
-import app from "$PROJECT/src/app/app.cml";
-import store from "$PROJECT/src/store/index.js";
-import router from "$ROUTER";
-import routerConfig from "$PROJECT/src/router.config.json";
-
+import instance from '$PROJECT/${PAGE_PATH}';
 
 const filter = require('$PROJECT/src/filter')["default"] || [];
 let promise;
@@ -16,11 +11,19 @@ filter.forEach(e => {
     }
   }
 })
-
+Vue.prototype.$router = {
+  history: {
+    index: 0
+  }
+}
 if (promise instanceof Promise) {
   promise.then(() => {
-    runtime.bootstrap({ app, store, router, routerConfig });
+    instance.el = '#root';
+    new Vue(instance);
+
   });
 } else {
-  runtime.bootstrap({ app, store, router, routerConfig });
+  instance.el = '#root';
+  new Vue(instance);
 }
+

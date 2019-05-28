@@ -151,9 +151,9 @@ exports.startReleaseAll = async function (media) {
   }
 
   await exports.getWebBuildPromise(media, isCompile);
-  if (media === 'build') {
-    exports.createConfigJson()
-  }
+  // if (media === 'build') {
+  //   exports.createConfigJson()
+  // }
   startCmlLinter(media);
 }
 
@@ -176,9 +176,9 @@ exports.startReleaseOne = async function(media, type) {
       await build;
     }
   }
-  if (media === 'build') {
-    exports.createConfigJson()
-  }
+  // if (media === 'build') {
+  //   exports.createConfigJson()
+  // }
   startCmlLinter(media);
 
 }

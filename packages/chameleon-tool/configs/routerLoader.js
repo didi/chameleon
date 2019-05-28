@@ -13,15 +13,27 @@ module.exports = function(content) {
   } else {
     let mode = routerConfig.mode;
     let routerList = '';
-    routerConfig.routes.forEach(item => {
-      routerList += `
-      {
-        path: "${item.url}",
-        name: "${item.name}",
-        component: require("$PROJECT/src${item.path}.cml").default
-      },
-      `
-    })
+    if(this.query.cmlType && this.query.cmlType === 'web'){
+        routerConfig.routes.forEach(item => {
+            routerList += `
+          {
+            path: "${item.url}",
+            name: "${item.name}",
+            component: function(resolve){return require(["$PROJECT/src${item.path}.cml"], resolve)}
+          },
+          `
+        })
+    } else {
+        routerConfig.routes.forEach(item => {
+            routerList += `
+          {
+            path: "${item.url}",
+            name: "${item.name}",
+            component: require("$PROJECT/src${item.path}.cml").default
+          },
+          `
+        })
+    }
 
     // subProject 中的页面
     let subProject = cml.config.get().subProject;
