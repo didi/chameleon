@@ -12,7 +12,6 @@ function getJsFiles(dir) {
 
 
 module.exports = function (app, options) {
-  console.log('dynamicApiMiddleware=========>', options);
   app.use(function (req, res, next) {
     const controllerFiles = getJsFiles(path.join(options.root, 'mock/api'));
     let self = this;
@@ -46,7 +45,8 @@ module.exports = function (app, options) {
         if (typeof method === 'string') {
           method = [method];
         }
-        if (~method.indexOf(reqMethod) && item.path === reqPath) {
+        let routeREG = new RegExp('^' + item.path);
+        if (~method.indexOf(reqMethod) && routeREG.test(reqPath)) {
           return item.controller.call(self, req, res, next);
         }
       }
