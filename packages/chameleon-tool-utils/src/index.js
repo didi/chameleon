@@ -308,11 +308,11 @@ _.getJsonFileContent = function (filePath, confType) {
           }
         })
       }
-      // 处理cmlPages配置的npm包中cml项目的页面
-      let cmlPages = cml.config.get().cmlPages;
-      if (cmlPages && cmlPages.length > 0) {
-        cmlPages.forEach(function(npmName) {
-          let npmRouterConfig = _.readCmlPagesRouterConfig(cml.projectRoot, npmName);
+      // 处理subProject配置的npm包中cml项目的页面
+      let subProject = cml.config.get().subProject;
+      if (subProject && subProject.length > 0) {
+        subProject.forEach(function(npmName) {
+          let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
           npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
             let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
             let routePath = _.getPureEntryName(cmlFilePath, confType, cml.projectRoot);
@@ -678,7 +678,6 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
       refUrl
     }
   }
-
   if (~filePath.indexOf('node_modules')) {
     refUrl = _.npmComponentRefPath(filePath, context);
     // 改为相对路径
@@ -687,18 +686,18 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
   } else {
     // 改成相对路径
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
+  }
 
-    refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
-    if (cmlType === 'wx') {
-      refUrl = refUrl.replace(/\.wxml/g, '');
-    }
-    if (cmlType === 'alipay') {
-      refUrl = refUrl.replace(/\.axml/g, '');
-    }
+  refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
+  if (cmlType === 'wx') {
+    refUrl = refUrl.replace(/\.wxml$/g, '');
+  }
+  if (cmlType === 'alipay') {
+    refUrl = refUrl.replace(/\.axml$/g, '');
+  }
 
-    if (cmlType === 'baidu') {
-      refUrl = refUrl.replace(/\.swan/g, '');
-    }
+  if (cmlType === 'baidu') {
+    refUrl = refUrl.replace(/\.swan$/g, '');
   }
 
   return {
@@ -730,17 +729,22 @@ _.findComponent = function (filePath, cmlType) {
     }
   }
   let fileExtMap = {
-    weex: '.vue',
-    web: '.vue',
+    weex: ['.vue', '.js'],
+    web: ['.vue', '.js'],
     wx: '.wxml',
     baidu: '.swan',
     alipay: '.axml'
   }
 
   let ext = fileExtMap[cmlType];
-  let extFilePath = filePath + ext;
-  if (_.isFile(extFilePath)) {
-    return extFilePath;
+  if (typeof ext === 'string') {
+    ext = [ext];
+  }
+  for (let i = 0; i < ext.length; i++) {
+    let extFilePath = filePath + ext[i];
+    if (_.isFile(extFilePath)) {
+      return extFilePath;
+    }
   }
   return false;
 }
@@ -984,20 +988,20 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
     if (entryName === 'app/app') {
       type = 'app';
     } else {
-      let cmlPages = cml.config.get().cmlPages || [];
-      let npmNames = cmlPages.map(item => 'node_modules/' + item);
-      let cmlPagesIndex = -1;
+      let subProject = cml.config.get().subProject || [];
+      let npmNames = subProject.map(item => 'node_modules/' + item);
+      let subProjectIndex = -1;
       for (let i = 0; i < npmNames.length; i++) {
         if (~cmlFilePath.indexOf(npmNames[i])) {
-          cmlPagesIndex = i;
+          subProjectIndex = i;
           break;
         }
       }
-      // 是cmlPages npm包中的cml文件 用cmlPages中的router.config.json判断
-      if (cmlPagesIndex != -1) {
-        let routerConfig = _.readCmlPagesRouterConfig(context, cmlPages[cmlPagesIndex]);
+      // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
+      if (subProjectIndex != -1) {
+        let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex]);
         let pageFiles = routerConfig.routes.map(item => {
-          return path.join(context, 'node_modules', cmlPages[cmlPagesIndex], 'src', item.path + '.cml');
+          return path.join(context, 'node_modules', subProject[subProjectIndex], 'src', item.path + '.cml');
         })
         // 如果是配置的路由则是page
         if (~pageFiles.indexOf(cmlFilePath)) {
@@ -1006,7 +1010,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
           type = 'component';
         }
       } else {
-        // 不是cmlPages 中的cml文件走正常判断
+        // 不是subProject 中的cml文件走正常判断
         let {routerConfig, hasError} = _.getRouterConfig();
         if (!hasError) {
           let routes = routerConfig.routes;
@@ -1039,6 +1043,6 @@ _.handleSpecialChar = function (str) {
   return result
 }
 
-_.readCmlPagesRouterConfig = function(context, npmName) {
+_.readsubProjectRouterConfig = function(context, npmName) {
   return JSON.parse(fs.readFileSync(path.join(context, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}))
 }

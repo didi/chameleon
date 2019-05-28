@@ -53,7 +53,7 @@ describe('process-template', function() {
   });
   describe('preParseVueEvent', function() {
     it('support @ v-on', function() {
-      expect(processTemplate.preParseVueEvent(`<view v-on:touch="handle1" @click="handle2"></view>`)).to.equal(`<view c-bind:touch="handle1" c-bind:tap="handle2"></view>`)
+      expect(processTemplate.preParseVueEvent(`<view v-on:touch="handle1" @tap="handle2"></view>`)).to.equal(`<view c-bind:touch="handle1" c-bind:tap="handle2"></view>`)
     })
   });
   describe('preParseGtLt', function() {
@@ -117,7 +117,23 @@ describe('process-template', function() {
   describe('analyzeTemplate', function() {
     it('collect which build-in-tag is used in template', function() {
       let options = {buildInComponents: {button: "cml-buildin-button"}};
-      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap')
+      expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap');
+      expect(processTemplate.analyzeTemplate(``, options)).to.include.keys('buildInComponents')
+    })
+  });
+  describe('_operationGtLt', function() {
+    it('transform _operationGtLt', function() {
+      expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
+    })
+  });
+  describe('_deOperationGtLt', function() {
+    it('transform _deOperationGtLt', function() {
+      expect(processTemplate._operationGtLt(`{{value}}`)).to.equal(`{{value}}`)
+    })
+  });
+  describe('transformNativeEvent', function() {
+    it('transform transformNativeEvent', function() {
+      expect(processTemplate.transformNativeEvent(`<view v-on:click__CML_NATIVE_EVENTS__="handleClick"=></view>`)).to.equal(`<view v-on:click.native="handleClick"=></view>`)
     })
   });
 })

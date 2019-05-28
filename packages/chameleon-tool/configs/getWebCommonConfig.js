@@ -59,6 +59,11 @@ module.exports = function (options) {
     output: {
       filename: getJsPath()
     },
+    resolve: {
+      alias: {
+        '$ROUTER': path.resolve(root, 'node_modules/chameleon-runtime/.temp/router.js')
+      }
+    },
     module: {
       rules: [
         ...utils.styleLoaders({type: 'web', extract: !hot && !disableExtract}),

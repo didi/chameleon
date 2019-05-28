@@ -27,7 +27,7 @@ var miniappConfig = {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
     entry: [
-      './components'
+      './src/components'
     ],
     publicPath: '../../'
   }
@@ -82,7 +82,9 @@ var chameleonConfig = {
     },
     autoprefixOptions: {
       browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-    }
+    },
+    // 是否对css开启autoprefix，默认为true  非weex端生效
+    enableAutoPrefix: true
   },
   wx: miniappConfig,
   alipay: miniappConfig,
@@ -161,7 +163,10 @@ _.get = function() {
     if (baseConfig) {
       platforms.forEach(platform => {
         if (chameleonConfig[platform]) {
-          utils.merge(chameleonConfig[platform], JSON.parse(JSON.stringify(baseConfig)));
+          let base = JSON.parse(JSON.stringify(baseConfig));
+          let newConfig = JSON.parse(JSON.stringify(chameleonConfig[platform]));
+          utils.merge(base, newConfig);
+          chameleonConfig[platform] = base;
         }
       })
       delete chameleonConfig.base;

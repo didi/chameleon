@@ -36,7 +36,11 @@ module.exports = function (options) {
       path: outputPath,
       filename: options.hash ? '[name]_[chunkhash].js' : '[name].js'
     },
-
+    resolve: {
+      alias: {
+        '$ROUTER': path.resolve(root, 'node_modules/chameleon-runtime/.temp/router.js')
+      }
+    },
     module: {
       rules: [
         ...utils.styleLoaders({type: 'weex'}),

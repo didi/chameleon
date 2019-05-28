@@ -1,14 +1,13 @@
 
 
-var getMiniAppCommonConfig = require('../getMiniAppCommonConfig.js');
 var merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 var path = require('path');
 
-module.exports = function (options) {
+module.exports = function (config, options) {
   let { type, root } = options;
   let outputPath = options.outputPath || path.resolve(root, `dist/export/${type}`);
-  return merge(getMiniAppCommonConfig(options), {
+  return merge(config, {
     output: {
       path: outputPath
     },

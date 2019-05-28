@@ -1,7 +1,7 @@
 const jsAstParser = require('./lib/js-ast-parser');
 const templateAstParser = require('./lib/template-ast-parser');
 const jsonAstParser = require('./lib/json-ast-parser');
-
+const commonEvents = require('../../config/common-events.json');
 
 class TemplateChecker {
 
@@ -49,10 +49,17 @@ class TemplateChecker {
         if (usingComponents[compName] && usingComponents[compName].isCml) {
           let { props, events } = component[compName];
           let { props: usingProps, events: usingEvents } = usingComponents[compName];
-          usingProps = usingProps.map((prop) => prop.name).join('|');
-          usingEvents = usingEvents.map((event) => event.name).join('|');
-
-          props.filter((prop) => usingProps.indexOf(prop.name) === -1).forEach((prop) => {
+          usingProps = usingProps
+            .map((prop) => prop.name)
+            .join('|');
+          usingEvents = usingEvents
+            .map((event) => event.name)
+            .concat(commonEvents.events)
+            .join('|');
+          usingProps = `|${usingProps}|`;
+          usingEvents = `|${usingEvents}|`;
+          debugger
+          props.filter((prop) => usingProps.indexOf('|' + prop.name + '|') === -1).forEach((prop) => {
             issues.push({
               line: prop.pos[0],
               column: prop.pos[1],
@@ -61,7 +68,7 @@ class TemplateChecker {
             });
           });
 
-          events.filter((event) => usingEvents.indexOf(event.name) === -1).forEach((event) => {
+          events.filter((event) => usingEvents.indexOf('|' + event.name + '|') === -1).forEach((event) => {
             issues.push({
               line: event.pos[0],
               column: event.pos[1],

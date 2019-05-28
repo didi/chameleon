@@ -1,7 +1,7 @@
 
 const cmlUtils = require('chameleon-tool-utils');
 
-module.exports = function(loaderContext, jsonObject, cmlType) {
+module.exports = function(loaderContext, jsonObject, cmlType, componentDeps) {
   var jsonPath = loaderContext.resourcePath.replace(/(\.cml|\.wx\.cml|\.alipay\.cml|\.baidu\.cml)$/, '.json')
   var context = (loaderContext._compiler && loaderContext._compiler.context) || loaderContext.options.context || process.cwd()
 
@@ -10,6 +10,7 @@ module.exports = function(loaderContext, jsonObject, cmlType) {
     Object.keys(components).forEach(key => {
       let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, loaderContext.resourcePath, components[key], cmlType);
       if (filePath) {
+        componentDeps.push(filePath);
         components[key] = refUrl;
       } else {
         delete components[key];
@@ -17,9 +18,7 @@ module.exports = function(loaderContext, jsonObject, cmlType) {
       }
     })
   }
-  cmlUtils.addNpmComponents(jsonObject, jsonPath, cmlType, context)
-  
-
+  cmlUtils.addNpmComponents(jsonObject, jsonPath, cmlType, context);
   return jsonObject;
 
 

@@ -214,10 +214,12 @@ exports.getMiniAppEntryFunc = function (cmlType) {
 }
 
 exports.getMiniAppEntry = function (cmlType) {
-  var root = cml.projectRoot;
-  var entry = {};
-  entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`]
-  var projectPath = path.resolve(root, 'src');
+  let options = cml.config.get()[cmlType][cml.media];
+
+  let root = cml.projectRoot;
+  let entry = {};
+  entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`];
+  let projectPath = path.resolve(root, 'src');
 
   // 记录已经添加的入口，防止重复循环添加
   let hasEntryedPath = [];
@@ -229,6 +231,9 @@ exports.getMiniAppEntry = function (cmlType) {
       addEntry(item);
     })
   } else {
+    if (options.babelPolyfill === true) {
+      entry.common.unshift(path.join(__dirname, 'default/miniappPolyfill.js'));
+    }
     entry.app = path.join(projectPath, 'app/app.cml');
     let appjson = cml.utils.getJsonFileContent(path.resolve(cml.projectRoot, 'src/app/app.cml'), cmlType)
     appjson.pages && appjson.pages.forEach(item => {
@@ -246,10 +251,10 @@ exports.getMiniAppEntry = function (cmlType) {
       addEntry(item.filePath)
     })
 
-    // cmlPages的入口
-    let cmlPages = cml.config.get().cmlPages;
-    if (cmlPages && cmlPages.length > 0) {
-      cmlPages.forEach(function(npmName) {
+    // subProject的入口
+    let subProject = cml.config.get().subProject;
+    if (subProject && subProject.length > 0) {
+      subProject.forEach(function(npmName) {
         let npmRouterConfig = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}));
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let routePath = item.path;

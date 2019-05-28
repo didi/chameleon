@@ -365,6 +365,22 @@ describe('index.js', function () {
     expect(result.isCml).to.equal(true);
   })
 
+  it('handleComponentUrl isCml true wxml', function() {
+    global.cml = {};
+    _.setCli(true);
+    cml.config = require('./testlib/cli/config.js');
+    cml.utils = require('../src/index.js');
+    cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    cml.config.merge({
+    })
+    var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/page1/page1.cml');
+    var comrefPath = 'vant-weapp/test'
+
+
+    let result = _.handleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath, 'wx');
+    expect(result.refUrl).to.equal('./../../npm/vant-weapp/test');
+  })
+
   it('findInterfaceFile', function() {
     global.cml = {};
     _.setCli(true);
@@ -545,13 +561,13 @@ describe('index.js', function () {
     expect(_.isDir(pathdir)).to.be.equal(true)
   })
 
-  it(`copyNpm and cmlPages`, function () {
+  it(`copyNpm and subProject`, function () {
     global.cml = {};
     cml.projectRoot = path.join(__dirname, './testlib/demo-project');
     cml.config = {
       get() {
         return {
-          cmlPages: ['cml-pages'],
+          subProject: ['cml-pages'],
           copyNpm: {
             wx: ['copy-npm']
           }

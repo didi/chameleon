@@ -1,10 +1,87 @@
-## [0.2.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.2.1)
+## [0.3.3-alpha.0]
+- web/weex样式一致性加强
+- 基础样式设置支持不导入
+- 修复 vue 语法下 v-for bug
+- 支持在cml组件上绑定原生事件，注意：需要升级chameleon-ui-builtin到0.2.10-alpha.4版本才支持
+- 修复weex内联事件传汉字编译过慢；
+- 支持组件上绑定多个内联事件传参的情况
+## [0.3.2]
+
+###  Bug Fixes
+* 修复 web端模板错误
+
+## [0.3.1] 有bug
+
+## [0.3.0]
+
+###  0.3.0-alpha.8 灰度完成发布0.3.0版本
+
+
+## [0.3.0-alpha.8](https://github.com/didi/chameleon/compare/v0.3.0-alpha.7...v0.3.0-alpha.8)
+
+###  Bug Fixes
+* 修复 全局安装chameleon-tool时的npm warn
+
+
+## [0.3.0-alpha.7](https://github.com/didi/chameleon/compare/v0.3.0-alpha.6...v0.3.0-alpha.7)
+
+###  Bug Fixes
+* 修复 build 模式autoprefixer被删除
+* 修复 chameleon.config.js 中的base配置优先级bug
+
+
+### Features
+* 增加了cmss.enableAutoPrefix 参数控制是否添加css的autoprefix
+
+
+## [0.3.0-alpha.6](https://github.com/didi/chameleon/compare/v0.3.0-alpha.5...v0.3.0-alpha.6)
+
+###  Bug Fixes
+* 修复 cml wx build执行后报错
+
+
+## [0.3.0-alpha.5](https://github.com/didi/chameleon/compare/v0.3.0-alpha.4...v0.3.0-alpha.5)
+
+###  Bug Fixes
+* 修复 cml weex build生成config.json 格式不正确
+
+
+## [0.3.0-alpha.4](https://github.com/didi/chameleon/compare/v0.3.0-alpha.3...v0.3.0-alpha.4)
+
+###  Bug Fixes
+* 回退模板的chameleon-ui-builtin@0.2.1 到chameleon-ui-builtin@0.2.0， 因为image组件不兼容样式设置
+
+
+## [0.3.0-alpha.3](https://github.com/didi/chameleon/compare/v0.3.0-alpha.2...v0.3.0-alpha.3)
+
+### Features
+* 升级初始化项目运行时依赖
+* weex config.json中增加md5字段
 
 ### Bug Fixes
+* 组件间css优先级问题
 
-- 修复 cml weex build 构建出的config.json不符合规范
+## [0.3.0-alpha.2](https://github.com/didi/chameleon/compare/v0.3.0-alpha.1...v0.3.0-alpha.2)
+
+### Features
+* 支持微信wxs 支付宝sjs 百度.filter.js的文件引用  [issues/67](https://github.com/didi/chameleon/issues/67)
 
 
+## [0.3.0-alpha.1](https://github.com/didi/chameleon/compare/v0.2.0...v0.3.0-alpha.1)
+
+### Bug Fixes
+* preview页面iframe未撑开修复
+* weex的 build模式jsbundle中存在本地路径
+
+### Features
+* 小程序的图片地址本地图片改网络图片
+* 解决父级目录babel-loader问题
+* build模式config.json的生成
+* web端weex端 多态组件支持js格式的vue组件
+* 小程序和weex也添加babelPolyfill的选项
+* 校验不支持Promise类型定义
+* 默认添加/components 别名
+* 校验添加生命周期函数白名单
 ## [0.2.0](https://github.com/didi/chameleon/compare/v0.2.0-alpha.1...v0.2.0)
 
 ### Bug Fixes
@@ -35,6 +112,14 @@
 ### Bug Fixes
 
 - 修复 组件间css优先级 使父组件可覆盖子组件样式
+
+## [0.1.1](https://github.com/didi/chameleon/compare/v0.1.0-alpha.4...v0.1.1)
+
+### Features
+
+- init component命令提示文案
+- init 多态组件中的json部分优化
+
 
 ## [0.1.0-alpha.4](https://github.com/didi/chameleon/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
 
@@ -75,7 +160,11 @@
 - 支持百度小程序和支付宝小程序
 - 支持mock多域名请求
 
+## [0.0.16](https://github.com/didi/chameleon/compare/v0.0.15...v0.0.16)
 
+### Bug Fixes
+* 修复 小程序组件导出 样式文件压缩
+* 回退 v0.3.0-alpha.0中引入微信预览模式白屏的问题
 
 ## [0.0.13](https://github.com/didi/chameleon/compare/b2aa4b...6dc5ff9#diff-b21d2ccb648a84e2a7348250c471cc2aL32)
 

@@ -8,6 +8,7 @@ const watch = require('glob-watcher');
 const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -118,6 +119,9 @@ exports.getWebBuildPromise = async function (media, isCompile) {
  * @param {*} type  wx web weex
  */
 exports.startReleaseAll = async function (media) {
+  if (media === 'build') {
+    process.env.NODE_ENV = 'production';
+  }
   let allPlatform = cml.config.get().platforms;
   let offPlatform = [];
   let activePlatform = []; // 启动编译的platform
@@ -154,6 +158,9 @@ exports.startReleaseAll = async function (media) {
 }
 
 exports.startReleaseOne = async function(media, type) {
+  if (media === 'build') {
+    process.env.NODE_ENV = 'production';
+  }
   // 给preview使用
   cml.activePlatform = [type];
   if (type === 'web') {
@@ -196,6 +203,15 @@ exports.createConfigJson = function() {
   };
   // 获取weex jsbundle地址
   let weexjs = configObj.weexjs || '';
+  let md5str = '';
+  const weexjsName = weexjs.split('/').pop();
+  const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
+  if (cml.utils.isFile(weexjsPath)) {
+    const md5sum = crypto.createHash('md5');
+    const buffer = fs.readFileSync(weexjsPath);
+    md5sum.update(buffer); 
+    md5str = md5sum.digest('hex').toUpperCase();
+  }
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
@@ -237,6 +253,7 @@ exports.createConfigJson = function() {
         },
         weex: {
           url: weexjs,
+          md5: md5str,
           query: {
             path: item.path
           }
@@ -247,11 +264,11 @@ exports.createConfigJson = function() {
       }
       result.push(route);
     })
-    // 处理cmlPages配置的npm包中cml项目的页面
-    let cmlPages = cml.config.get().cmlPages;
-    if (cmlPages && cmlPages.length > 0) {
-      cmlPages.forEach(function(npmName) {
-        let npmRouterConfig = cml.utils.readCmlPagesRouterConfig(cml.projectRoot, npmName);
+    // 处理subProject配置的npm包中cml项目的页面
+    let subProject = cml.config.get().subProject;
+    if (subProject && subProject.length > 0) {
+      subProject.forEach(function(npmName) {
+        let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
           let routePath = cml.utils.getPureEntryName(cmlFilePath, '', cml.projectRoot);
