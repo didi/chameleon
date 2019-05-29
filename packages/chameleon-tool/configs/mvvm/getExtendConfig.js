@@ -89,12 +89,30 @@ module.exports = function(options) {
 
   // 用户可以扩展webpack的rules用于处理特有文件后缀
   if (platformPlugin.webpackRules && platformPlugin.webpackRules instanceof Array) {
+    platformPlugin.webpackRules.forEach(rule => {
+      if (rule && rule.use && rule.use instanceof Array) {
+        rule.use.forEach(item => {
+          if (item.needDefaultOptions) {
+            item.options = item.options || {};
+            item.options = {
+              loaders: getCmlLoaders(),
+              cmlType: type,
+              media,
+              ...item.options
+            }
+            delete item.needDefaultOptions;
+          }
+        })
+      }
+    });
+
     extendConfig = merge(extendConfig, {
       module: {
         rules: platformPlugin.webpackRules
       }
     })
   }
+  debugger
 
   if (platformPlugin.miniappExt && platformPlugin.miniappExt.rule) {
     extendConfig = merge(extendConfig, {
