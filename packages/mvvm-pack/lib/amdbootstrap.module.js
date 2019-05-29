@@ -31,7 +31,6 @@
     var ret = (typeof factory == 'function')
       ? factory.apply(mod, [cmlrequire, mod.exports, mod])
       : factory;
-    debugger
     if (ret) {
       mod.exports = ret;
     }
