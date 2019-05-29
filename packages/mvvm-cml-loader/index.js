@@ -49,7 +49,7 @@ module.exports = function(source) {
       throw new Error('router.config.json read error')
     } else {
       routerConfig.routes.forEach(item => {
-        output += ` require("$PROJECT/src${item.path}.cml").default`
+        output += ` require("$PROJECT/src${item.path}.cml").default;`
       })
     }
 
