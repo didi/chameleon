@@ -12,12 +12,63 @@ class MiniAppSubPkg {
     let self = this;
 
     if (compiler.hooks) {
-      compiler.hooks.done.tap('miniAppSubPkg', miniappsubpkg);
+      compiler.hooks.emit.tap('miniAppSubPkg', miniappsubpkg);
     } else {
       // compiler.plugin('emit', miniappsubpkg);
-      compiler.plugin('done', miniappsubpkg);
+      compiler.plugin('emit', miniappsubpkg);
     }
-    function miniappsubpkg(stats) {
+    function miniappsubpkg(compilation, callback) {
+      // 第一步处理app.json
+      let appJSONString = compilation.assets['app.json'] && compilation.assets['app.json'].source();
+
+      let appJson = (appJSONString && JSON.parse(appJSONString)) || {};
+      let {pages, subpackages} = appJson;
+      if (!subpackages || !Array.isArray(subpackages)) { // 不存在分包配置或者配置不是数组直接执行callback
+        return callback();
+      }
+      let subPagesArr = [];
+      let subPagesRoot = []
+      subpackages.forEach((pkg) => {
+        subPagesRoot.push(pkg.root);
+        if (Array.isArray(pkg.pages)) {
+          pkg.pages.forEach((subpage) => {
+            subPagesArr.push(path.normalize(`${pkg.root}/${subpage}`))
+          })
+        }
+      });
+      let newPages = pages.filter((item) => !subPagesArr.includes(item));
+      appJson.pages = newPages;
+      compilation.assets['app.json']._value = JSON.stringify(appJson, '', 4)// 重写app.json文件；
+      // 第二步将subpage中的js文件拷贝到pages/subpage中的js文件中； outputFileSync
+      // 第三步删除static/js 中的subpage的js文件；removeSync
+      let regStatic = /require\(.*?static\/js\/pages.*?\)/;
+      let regMainfest = /var.*?require\(.*?manifest\.js.*?\)/
+      subPagesArr.forEach((item) => {
+        let subPageJSPath = `${item}.js`
+        let subPageStaticJSPath = `static/js/${item}.js`;
+        let content = compilation.assets[subPageJSPath] && compilation.assets[subPageJSPath].source();
+
+        if (content) {
+          content = content.replace(regStatic, '')
+        }
+        let staticContent = compilation.assets[subPageStaticJSPath] && compilation.assets[subPageStaticJSPath].source();
+        if (staticContent) {
+          staticContent = staticContent.replace(regMainfest, '');
+          delete compilation.assets[subPageStaticJSPath];
+          // 注意 assets中的key configurable与否
+        }
+        let finalContent = content + '\n' + staticContent;
+        compilation.assets[subPageJSPath]._value = finalContent;
+      });
+      callback();
+    }
+  }
+}
+module.exports = MiniAppSubPkg;
+
+/**
+ * done
+ * function miniappsubpkg(stats) {
       debugger;
       // 第一步处理app.json
       let appJSONString = '';
@@ -71,32 +122,6 @@ class MiniAppSubPkg {
         fse.removeSync(subPageStaticJSDir);
       })
     }
-  }
-}
-
-/**
- * "{
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Chameleon",
-        "navigationBarTextStyle": "black"
-    },
-    "subpackages": [
-        {
-            "root": "pages/subpage",
-            "pages": [
-                "page2/page2"
-            ]
-        }
-    ],
-    "pages": [
-        "pages/index/index",
-        "pages/subpage/page2/page2"
-    ],
-    "usingComponents": {}
-}"
 */
-module.exports = MiniAppSubPkg;
 
 
