@@ -94,7 +94,7 @@
     "vue-template-compiler": "2.5.16",
     "vuex": "3.0.1",
     "webpack": "3.12.0",
-    "webpack-bundle-analyzer": "2.13.1",
+    "webpack-bundle-analyzer": "3.3.2",
     "webpack-check-plugin": "^0.3.0-alpha.3",
     "webpack-chunk-hash": "0.6.0",
     "webpack-hot-middleware": "2.22.2",
