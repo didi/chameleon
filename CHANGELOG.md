@@ -1,3 +1,11 @@
+## [0.4.0-mvvm.12]
+
+### Features
+* 支持给扩展新端自定义loader传默认options
+
+### Bug Fixes
+* 修复多路由报错的bug
+
 ## [0.4.0-mvvm.11]
 ### Features
 * 增加生成config.json文件的钩子
