@@ -105,10 +105,10 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具Webp
 
 负责人：Conan
 
-内部成员：透心凉、Sgoddon、动机不纯、Jalon、Jack、卡尺哈哈、change、Observer、Kevin、guoqingSmile、Mr.MY、JiM、lzc、名字待定
+内部成员：透心凉、Sgoddon、动机不纯、Jalon、Jack、卡尺哈哈、change、Observer、Kevin、guoqingSmile、Mr.MY、JiM、lzc、名字待定、朱智恒、亭、龚磊、w55、小龙、不懂小彬、荣景超
 
-贡献者：
-luyixin、期待你加入（提交pull request）
+贡献参与者：
+快应用研发团队、broven、Jeany、luyixin、z-mirror、夏夜焰火
 
 ##  微信 & QQ交流群
 
