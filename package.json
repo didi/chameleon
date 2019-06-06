@@ -9,7 +9,7 @@
     "clear-all": "rimraf package-lock.json packages/*/node_modules packages/*/package-lock.json"
   },
   "author": "Chameleon-Team",
-  "license": "Apache",
+  "license": "Apache 2.0",
   "devDependencies": {
     "istanbul": "^0.4.5",
     "lerna": "^3.5.1"
