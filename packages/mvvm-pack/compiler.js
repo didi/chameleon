@@ -5,7 +5,7 @@ const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
 const {cmlparse} = require('mvvm-template-parser');
 const amd = require('./lib/amd.js');
-const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
+const {handleScript, chameleonIdHandle} = require('./lib/handleScript.js');
 const UglifyJs = require('./minimize/uglifyjs.js');
 const UglifyCSS = require('./minimize/uglifycss.js');
 class Compiler {
@@ -47,6 +47,8 @@ class Compiler {
     this.media = options.media;
     this.userPlugin = plugin;
     this.outputPath = this.webpackCompiler.options.output.path;
+    this.definitions = {}; //
+    this.getDefinePlugins();
   }
 
   run(modules) {
@@ -69,6 +71,20 @@ class Compiler {
     this.event.on(eventName, cb);
   }
 
+  getDefinePlugins() {
+    let plugins = this.webpackCompiler.options.plugins || [];
+    plugins = plugins.filter(item => {
+      return 'definitions' in item
+    });
+    let definitions = {};
+    plugins.forEach(item => {
+      definitions = {
+        ...definitions,
+        ...item.definitions
+      }
+    })
+    this.definitions = definitions;
+  }
 
   // 处理webpack modules
   module2Node(modules) {
@@ -214,7 +230,7 @@ class Compiler {
 
     if (options.moduleType === 'script') {
       // 要做js中require模块的处理 替换modId
-      options.source = replaceJsModId(options.source, module);
+      options.source = handleScript(options.source, module, this.definitions);
     }
     options.extra = module._cmlExtra || undefined;
     return new CMLNode(options)

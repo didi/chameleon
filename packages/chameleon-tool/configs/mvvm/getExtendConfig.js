@@ -112,7 +112,6 @@ module.exports = function(options) {
       }
     })
   }
-  debugger
 
   if (platformPlugin.miniappExt && platformPlugin.miniappExt.rule) {
     extendConfig = merge(extendConfig, {
