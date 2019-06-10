@@ -1,9 +1,9 @@
 
-let _ = require('../../lib/replaceJsModId.js');
+let _ = require('../../lib/handleScript.js');
 const expect = require('chai').expect;
 
-describe('replaceJsModId.js', function() {
-  it('replaceJsModId', function() {
+describe('handleScript.js', function() {
+  it('handleScript', function() {
     let code = `
       import a from '../a.js';
       var b = require('../b.js');
@@ -34,7 +34,7 @@ describe('replaceJsModId.js', function() {
         }
       ]
     }
-    let result = _.replaceJsModId(code, target);
+    let result = _.handleScript(code, target);
     console.log(result)
     expect(!!~result.indexOf('var b = require("b")')).to.be.equal(true);
     expect(!!~result.indexOf('import a from "a";')).to.be.equal(true);
@@ -66,7 +66,7 @@ describe('replaceJsModId.js', function() {
       ]
     }
     try {
-      _.replaceJsModId(code, target);
+      _.handleScript(code, target);
     }
     catch (e) {
     }

@@ -5,7 +5,7 @@ const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
 const {cmlparse} = require('mvvm-template-parser');
 const amd = require('./lib/amd.js');
-const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
+const {handleScript, chameleonIdHandle} = require('./lib/handleScript.js');
 const UglifyJs = require('./minimize/uglifyjs.js');
 const UglifyCSS = require('./minimize/uglifycss.js');
 class Compiler {
@@ -214,7 +214,7 @@ class Compiler {
 
     if (options.moduleType === 'script') {
       // 要做js中require模块的处理 替换modId
-      options.source = replaceJsModId(options.source, module);
+      options.source = handleScript(options.source, module);
     }
     options.extra = module._cmlExtra || undefined;
     return new CMLNode(options)
