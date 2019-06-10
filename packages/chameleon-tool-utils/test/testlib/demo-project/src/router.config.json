@@ -4,7 +4,7 @@
   "routes":[
     {
       "url": "/cml/h5/index",
-      "path": "/pages/page1/page1",
+      "path": "/pages/pagea/pagea",
       "name": "首页",
       "mock": "index.php"
     }
