@@ -1,3 +1,7 @@
+## [0.3.3-alpha.1]
+  - 支持小程序分包加载
+  - 修复windows 路径带有数字无法运行
+  - 升级webpack-bundle-analyzer 解决安全漏洞警告
 ## [0.3.3-alpha.0]
 - web/weex样式一致性加强
 - 基础样式设置支持不导入
