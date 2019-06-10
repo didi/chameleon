@@ -22,13 +22,13 @@ class MiniAppSubPkg {
       let appJSONString = compilation.assets['app.json'] && compilation.assets['app.json'].source();
 
       let appJson = (appJSONString && JSON.parse(appJSONString)) || {};
-      let {pages, subpackages} = appJson;
-      if (!subpackages || !Array.isArray(subpackages)) { // 不存在分包配置或者配置不是数组直接执行callback
+      let {pages, subPackages} = appJson;
+      if (!subPackages || !Array.isArray(subPackages)) { // 不存在分包配置或者配置不是数组直接执行callback
         return callback();
       }
       let subPagesArr = [];
       let subPagesRoot = []
-      subpackages.forEach((pkg) => {
+      subPackages.forEach((pkg) => {
         subPagesRoot.push(pkg.root);
         if (Array.isArray(pkg.pages)) {
           pkg.pages.forEach((subpage) => {
