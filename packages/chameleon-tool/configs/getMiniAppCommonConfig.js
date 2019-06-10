@@ -5,6 +5,7 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
 const CopyNpmPlugin = require('./plugins/CopyNpmPLugin.js');
+const miniAppSubPkg = require('./plugins/miniAppSubPkg.js')
 module.exports = function (options) {
   let {
     type,
@@ -86,6 +87,10 @@ module.exports = function (options) {
       new CopyNpmPlugin({
         cmlType: type,
         root: outputPath
+      }),
+      // eslint-disable-next-line new-cap
+      new miniAppSubPkg({
+        cmlType: type
       })
     ]
 
