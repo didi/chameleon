@@ -1,6 +1,6 @@
 {
   "name": "mvvm-style-loader",
-  "version": "0.4.0-mvvm.8",
+  "version": "0.4.0-mvvm.13",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "license": "Apache",
   "dependencies": {
     "postcss": "7.0.14",
-    "chameleon-tool-utils": "0.4.0-mvvm.8"
+    "chameleon-tool-utils": "0.4.0-mvvm.13"
   },
   "devDependencies": {
     "chai": "^4.2.0",

@@ -5,7 +5,7 @@ const EventEmitter = require('events');
 const cmlUtils = require('chameleon-tool-utils');
 const {cmlparse} = require('mvvm-template-parser');
 const amd = require('./lib/amd.js');
-const {replaceJsModId, chameleonIdHandle} = require('./lib/replaceJsModId.js');
+const {handleScript, chameleonIdHandle} = require('./lib/handleScript.js');
 const UglifyJs = require('./minimize/uglifyjs.js');
 const UglifyCSS = require('./minimize/uglifycss.js');
 class Compiler {
@@ -46,6 +46,9 @@ class Compiler {
     this.cmlType = options.cmlType;
     this.media = options.media;
     this.userPlugin = plugin;
+    this.outputPath = this.webpackCompiler.options.output.path;
+    this.definitions = {}; //
+    this.getDefinePlugins();
   }
 
   run(modules) {
@@ -68,6 +71,20 @@ class Compiler {
     this.event.on(eventName, cb);
   }
 
+  getDefinePlugins() {
+    let plugins = this.webpackCompiler.options.plugins || [];
+    plugins = plugins.filter(item => {
+      return 'definitions' in item
+    });
+    let definitions = {};
+    plugins.forEach(item => {
+      definitions = {
+        ...definitions,
+        ...item.definitions
+      }
+    })
+    this.definitions = definitions;
+  }
 
   // 处理webpack modules
   module2Node(modules) {
@@ -85,7 +102,12 @@ class Compiler {
       if (item._nodeType === 'module' && item._moduleType === 'asset') {
         // 写入资源文件
         if (item._bufferSource && item._outputPath) {
-          this.writeFile(item._outputPath, item._bufferSource);
+          // 用户插件中执行静态资源位置，而不影响publicPath
+          let outputPath = item._outputPath;
+          if (this.userPlugin.assetsPrePath) {
+            outputPath = this.userPlugin.assetsPrePath + outputPath;
+          }
+          this.writeFile(outputPath, item._bufferSource);
         }
         assetPublicMap[item.resource] = item._publicPath;
       }
@@ -189,12 +211,12 @@ class Compiler {
       options.source = module._source && module._source._value;
     }
 
+    if (module._cmlOriginSource !== undefined) {
+      options.originSource = module._cmlOriginSource;
+    }
+
     if (options.moduleType === 'template') {
       options.convert = cmlparse(options.source);
-      options.extra = {
-        nativeComponents: module._nativeComponents,
-        currentUsedBuildInTagMap: module._currentUsedBuildInTagMap
-      }
     }
 
     if (options.moduleType === 'json') {
@@ -208,9 +230,9 @@ class Compiler {
 
     if (options.moduleType === 'script') {
       // 要做js中require模块的处理 替换modId
-      options.source = replaceJsModId(options.source, module);
-
+      options.source = handleScript(options.source, module, this.definitions);
     }
+    options.extra = module._cmlExtra || undefined;
     return new CMLNode(options)
   }
 
@@ -307,6 +329,15 @@ class Compiler {
           })
         }
       }
+    }
+  }
+
+  getRouterConfig() {
+    let {routerConfig} = cmlUtils.getRouterConfig();
+    let subProjectRouter = cmlUtils.getSubProjectRouter();
+    return {
+      projectRouter: routerConfig,
+      subProjectRouter: subProjectRouter
     }
   }
 }

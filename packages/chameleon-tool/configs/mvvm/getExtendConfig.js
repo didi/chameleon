@@ -4,6 +4,9 @@ const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
 const resolve = require('resolve');
+const originSourceLoader = {
+  loader: path.join(__dirname, './originSourceLoader.js')
+};
 
 module.exports = function(options) {
   let {type, media} = options;
@@ -14,7 +17,24 @@ module.exports = function(options) {
     cmlType: type,
     media
   });
-  cml.extPlatformPlugin[type] = platformPlugin;
+  cml.extPlatformPlugin[type] = platformPlugin; // 扩展新端插件， utils中获取内置组件需要用到
+  // 扩展新端编译默认配置
+  if (platformPlugin.cmlConfig) {
+    cml.config.merge({
+      [type]: {
+        ...platformPlugin.cmlConfig
+      }
+    });
+  }
+
+  function getCmlLoaders() {
+    let loaders = utils.cssLoaders({type, media});
+    loaders.js = [
+      loaders.js,
+      originSourceLoader
+    ]
+    return loaders;
+  }
   let extendConfig = {
     entry: {
       app: path.join(cml.projectRoot, 'src/app/app.cml')
@@ -30,7 +50,7 @@ module.exports = function(options) {
           use: [{
             loader: 'mvvm-cml-loader',
             options: {
-              loaders: utils.cssLoaders({type, media}),
+              loaders: getCmlLoaders(),
               cmlType: type,
               media,
               check: cml.config.get().check
@@ -46,17 +66,46 @@ module.exports = function(options) {
       }, platformPlugin)
     ]
   };
-  // options.moduleIdType = 'hash';
   let commonConfig = getCommonConfig(options);
   commonConfig.module.rules.forEach(item => {
+    // 静态资源的处理
     if (~['chameleon-url-loader', 'file-loader'].indexOf(item.loader)) {
       item.loader = 'mvvm-file-loader';
       item.options.publicPath = commonConfig.output.publicPath
+    }
+
+    if (item.test instanceof RegExp) {
+      // interface获取originSource
+      if (item.test.test('name.interface')) {
+        item.use.splice(1, 0, originSourceLoader)
+      }
+
+      // js获取originSource
+      if (item.test.test('name.js')) {
+        item.use.push(originSourceLoader)
+      }
     }
   })
 
   // 用户可以扩展webpack的rules用于处理特有文件后缀
   if (platformPlugin.webpackRules && platformPlugin.webpackRules instanceof Array) {
+    platformPlugin.webpackRules.forEach(rule => {
+      if (rule && rule.use && rule.use instanceof Array) {
+        rule.use.forEach(item => {
+          if (item.needDefaultOptions) {
+            item.options = item.options || {};
+            item.options = {
+              loaders: getCmlLoaders(),
+              cmlType: type,
+              media,
+              ...item.options
+            }
+            delete item.needDefaultOptions;
+          }
+        })
+      }
+    });
+
     extendConfig = merge(extendConfig, {
       module: {
         rules: platformPlugin.webpackRules

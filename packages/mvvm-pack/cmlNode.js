@@ -7,7 +7,8 @@ class CMLNode {
     this.dependencies = []; // 该节点的直接依赖       app.cml依赖pages.cml pages.cml依赖components.cml js依赖js
     this.childrens = []; // 子模块 cml文件才有子模块
     this.parent; // 父模块 cml文件中的子模块才有
-    this.source; // 模块源代码
+    this.originSource; // 模块源代码 script节点
+    this.source; // 模块标准编译后代码
     this.convert; // 源代码的格式化形式
     this.output; // 模块输出  各种过程操作该字段
     this.identifier; // 节点唯一标识

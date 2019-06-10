@@ -26,13 +26,23 @@ class mvvmGraphPlugin {
       }
     })
     self.platformPlugin.register(mvvmCompiler);
-    compiler.plugin('should-emit', function(compilation) {      
-      mvvmCompiler.run(compilation.modules);
+    compiler.plugin('should-emit', function(compilation) {   
+      try {
+        mvvmCompiler.run(compilation.modules);
+      } catch (e) {
+        cml.log.error(e);
+      }
       // 返回false 不进入emit阶段
-      return false;      
+      return false; 
     })
 
-   // 捕获错误
+    // 修改config.json的钩子
+    cml.event.on('config-json', function(jsonObj) {
+      mvvmCompiler.emit('config-json', jsonObj);
+    })
+
+
+    // 捕获错误
     process.on('uncaughtException', function (err) {
       cml.log.error(err);
     });

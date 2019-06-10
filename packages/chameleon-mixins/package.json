@@ -1,6 +1,6 @@
 {
   "name": "chameleon-mixins",
-  "version": "0.4.0-mvvm.8",
+  "version": "0.4.0-mvvm.13",
   "description": "chameleon-mixins",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "license": "Apache",
   "devDependencies": {
     "chai": "^4.2.0",
-    "chameleon-css-loader": "0.4.0-mvvm.8",
+    "chameleon-css-loader": "0.4.0-mvvm.13",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
     "gulp": "^3.9.1",

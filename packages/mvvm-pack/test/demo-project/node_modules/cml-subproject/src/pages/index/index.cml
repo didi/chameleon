@@ -1,0 +1,60 @@
+<template>
+  <page title="chameleon">
+      <scroller height="{{-1}}">
+        <view class="scroller-wrap">
+          <demo-com title="{{title}}" image-src="{{chameleonSrc}}"></demo-com>
+        </view>
+      </scroller>
+  </page>
+</template>
+
+<script>
+
+class Index  {
+  data = {
+    title: "chameleon",
+    chameleonSrc: require('../../assets/images/chameleon.png')
+  }
+}
+
+export default new Index();
+
+</script>
+<style>
+
+.scroller-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+      "demo-com": "/components/demo-com/demo-com"
+    }
+  },
+  "wx": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2"
+  },
+  "alipay": {
+    "defaultTitle": "index",
+    "pullRefresh": false,
+    "allowsBounceVertical": "YES",
+    "titleBarColor": "#ffffff"
+  },
+  "baidu": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "index",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+  }
+}
+</script>

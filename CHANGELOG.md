@@ -1,5 +1,34 @@
+## [0.4.0-mvvm.13]
 
+### Bug Fixes
+* 修复扩展新端用户编译插件报错导致阻塞watch
+* 修复扩展新端中不支持变量注入的bug
 
+## [0.4.0-mvvm.12]
+
+### Features
+* 支持给扩展新端自定义loader传默认options
+
+### Bug Fixes
+* 修复多路由报错的bug
+
+## [0.4.0-mvvm.11]
+### Features
+* 增加生成config.json文件的钩子
+* 打包文件增量覆盖
+* 新端插件中可以有默认配置
+* 静态资源可以添加生成路径前缀
+
+## [0.4.0-mvvm.10]
+### Features
+* 完善mvvm-pack单元测试
+* 扩展新端compiler对象新增获取路由方法
+* 扩展新端cml节点的extra字段添加引用组件
+
+## [0.4.0-mvvm.9]
+### Features
+* 支持script类型节点 originSource字段获取节点babel前代码
+* linter支持扩展多态协议的校验
 
 ## [0.4.0-mvvm.8]
 ### Bug Fixes
