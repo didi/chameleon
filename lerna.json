@@ -28,7 +28,7 @@
     "packages/cml-vue-loader",
     "packages/cml-extract-css-webpack-plugin"
   ],
-  "version": "0.3.3-alpha.0",
+  "version": "0.3.3-alpha.1",
   "command": {
     "publish": {
       "allowBranch": "master",
