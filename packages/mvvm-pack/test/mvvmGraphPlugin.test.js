@@ -6,7 +6,7 @@ const EventEmitter = require('events');
 const path = require('path');
 const cmlUtils = require('chameleon-tool-utils');
 describe('mvvmGraphPlugin.js', function() {
-  it('mvvmGraphPlugin.js', function() {
+  it('1', function() {
     var oldCml;
     if (global.cml) {
       oldCml = global.cml;
@@ -77,7 +77,7 @@ describe('mvvmGraphPlugin.js', function() {
 
   })
 
-  it('mvvmGraphPlugin.js', function() {
+  it('2', function() {
     var oldCml;
     if (global.cml) {
       oldCml = global.cml;
@@ -93,7 +93,8 @@ describe('mvvmGraphPlugin.js', function() {
             }
           }
         }
-      }
+      },
+      log: cmlUtils.log
     };
 
     let options = {

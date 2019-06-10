@@ -72,7 +72,8 @@ class Compiler {
   }
 
   getDefinePlugins() {
-    let plugins = this.webpackCompiler.options.plugins.filter(item => {
+    let plugins = this.webpackCompiler.options.plugins || [];
+    plugins = plugins.filter(item => {
       return 'definitions' in item
     });
     let definitions = {};

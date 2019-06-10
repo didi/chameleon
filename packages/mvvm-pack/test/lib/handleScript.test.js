@@ -34,7 +34,7 @@ describe('handleScript.js', function() {
         }
       ]
     }
-    let result = _.handleScript(code, target);
+    let result = _.handleScript(code, target, {});
     console.log(result)
     expect(!!~result.indexOf('var b = require("b")')).to.be.equal(true);
     expect(!!~result.indexOf('import a from "a";')).to.be.equal(true);
@@ -73,6 +73,7 @@ describe('handleScript.js', function() {
   })
 
   it('getDefines', function() {
+    
     var defines = {
       'process.env.media': JSON.stringify('dev'),
       domain: {
@@ -84,13 +85,18 @@ describe('handleScript.js', function() {
     var result = [];
 
     _.getDefines(defines, '', result);
-    var expectresult = [ { key: [ 'process', 'env', 'media' ], value: '"dev"' },
-    { key: [ 'domain', 'domain1' ], value: '"domain1"' },
-    { key: [ 'a' ], value: 'avalue' } ]
+    var expectresult = [ { key: 'process.env.media', value: '"dev"' },
+    { key: 'domain.domain1', value: '"domain1"' },
+    { key: 'a', value: 'avalue' } ]
     expect(result).to.deep.equal(expectresult);
   })
 
-  it('replaceDefines', function() {
+  it('replaceDefines', function() { 
+
+    let definitions = {
+      CML: 'chameleon',
+      'process.env.media': 'dev'
+    }
 
     let code = `
     if(CML) {
@@ -102,7 +108,7 @@ describe('handleScript.js', function() {
     let a = 'a';
     console.log(b.c);
     `
-    let result = _.handleScript(code, {});
+    let result = _.handleScript(code, {}, definitions);
     console.log(result)
     // expect(result).to.deep.equal(expectresult);
   })
