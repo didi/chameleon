@@ -71,5 +71,40 @@ describe('handleScript.js', function() {
     catch (e) {
     }
   })
+
+  it('getDefines', function() {
+    var defines = {
+      'process.env.media': JSON.stringify('dev'),
+      domain: {
+        domain1: '"domain1"'
+      },
+      a: 'avalue',
+    }
+
+    var result = [];
+
+    _.getDefines(defines, '', result);
+    var expectresult = [ { key: [ 'process', 'env', 'media' ], value: '"dev"' },
+    { key: [ 'domain', 'domain1' ], value: '"domain1"' },
+    { key: [ 'a' ], value: 'avalue' } ]
+    expect(result).to.deep.equal(expectresult);
+  })
+
+  it('replaceDefines', function() {
+
+    let code = `
+    if(CML) {
+
+    }
+    if(process.env.media == 'dev') {
+
+    }
+    let a = 'a';
+    console.log(b.c);
+    `
+    let result = _.handleScript(code, {});
+    console.log(result)
+    // expect(result).to.deep.equal(expectresult);
+  })
 })
 
