@@ -162,6 +162,8 @@ _.get = function() {
   if (chameleonConfig.base) {
     let baseConfig = chameleonConfig.base;
     let platforms = chameleonConfig.platforms;
+    let extPlatform = chameleonConfig.extPlatform || {};
+    platforms = platforms.concat(Object.keys(extPlatform));
     platforms.forEach(platform => {
       if (chameleonConfig[platform]) {
         let base = JSON.parse(JSON.stringify(baseConfig));
