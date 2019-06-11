@@ -58,7 +58,6 @@ class TemplateChecker {
             .join('|');
           usingProps = `|${usingProps}|`;
           usingEvents = `|${usingEvents}|`;
-          debugger
           props.filter((prop) => usingProps.indexOf('|' + prop.name + '|') === -1).forEach((prop) => {
             issues.push({
               line: prop.pos[0],

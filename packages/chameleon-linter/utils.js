@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 const groupBy = require('lodash.groupby');
 const filter = require('lodash.filter');
@@ -11,6 +12,10 @@ let isCmlComponent = (templatePath, usingPath) => {
   let interfaceInfo = cliUtils.findInterfaceFile(currentWorkspace, templatePath, usingPath);
   let componentInfo = cliUtils.lintHandleComponentUrl(currentWorkspace, templatePath, usingPath);
   return !!interfaceInfo.filePath || (componentInfo && componentInfo.isCml);
+}
+
+let toSrcPath = (filePath = '') => {
+  return (filePath && path.isAbsolute(filePath)) ? path.relative(config.getCurrentWorkspace(), filePath) : filePath;
 }
 
 /**
@@ -96,7 +101,6 @@ let getCmlParts = filepath => {
   let parts = {};
   let platforms = config.getPlatforms();
   let platform;
-
   let result = new RegExp('([^/]*?)\.(' + platforms.join('|') + ')\.cml$', 'g').exec(filepath);
   if (result) {
     let interfaceFile = filepath.replace(new RegExp('\.(' + platforms.join('|') + ')\.cml$', 'ig'), '.interface');
@@ -187,5 +191,6 @@ module.exports = {
   getInterfaceParts,
   outputWarnings,
   toDash,
-  isCmlComponent
+  isCmlComponent,
+  toSrcPath
 };
