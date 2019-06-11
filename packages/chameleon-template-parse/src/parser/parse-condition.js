@@ -20,9 +20,9 @@ parseCondition.tap('web-weex', (args) => {
     }
   }
 })
-parseCondition.tap('wx-alipay', (args) => {
+parseCondition.tap('wx-alipay-qq', (args) => {
   let { node, type, options: {lang}} = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'alipay')) {
+  if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'qq')) {
     let currentCondition = node.name.name;
     let targetCondition = conditionMap[currentCondition] && conditionMap[currentCondition][type];
     if (targetCondition && currentCondition !== targetCondition) {
