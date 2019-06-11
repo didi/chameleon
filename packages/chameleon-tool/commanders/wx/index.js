@@ -1,9 +1,8 @@
-
 exports.name = 'wx';
 exports.usage = '[command] [options]';
 exports.desc = 'tools for the weixin miniprogram project';
 
-
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .option('-r, --root [root]', 'specify project root')

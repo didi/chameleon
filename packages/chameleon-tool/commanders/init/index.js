@@ -19,6 +19,8 @@ const cmdOptions = {
   tpl: 'html',
   demo: 'blank'
 }
+
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .option('-r, --root [root]', 'specify project root')
