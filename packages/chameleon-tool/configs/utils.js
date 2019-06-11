@@ -78,7 +78,7 @@ exports.cssLoaders = function (options) {
       })
       loaders.push(getPostCssLoader('web'))
     }
-    if (~['wx', 'alipay', 'baidu'].indexOf(options.type)) {
+    if (~['wx', 'alipay', 'baidu', 'qq'].indexOf(options.type)) {
       loaders = loaders.concat(getMiniappLoader(options.type))
     }
 

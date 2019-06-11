@@ -9,7 +9,7 @@ let fse = null;
 let chalk = null;
 let glob = null;
 const platformMap = require('./platform.json');
-const platformTotal = 5;
+const platformTotal = Object.keys(platformMap).length;
 
 exports.name = 'init';
 exports.usage = '[command] [options]';
@@ -133,7 +133,7 @@ exports.register = function (commander) {
 
     inquirer.prompt(questions).then(answers => {
       let {projectName } = answers;
-      let platforms = ['h5', 'weex', '微信小程序','支付宝小程序','百度小程序'];
+      let platforms = ['h5', 'weex', '微信小程序','支付宝小程序','百度小程序','qq小程序'];
       let templateType = cmdOptions.tpl;
       let templateLang = cmdOptions.lang;
       platforms = platforms.map(item => platformMap[item]);

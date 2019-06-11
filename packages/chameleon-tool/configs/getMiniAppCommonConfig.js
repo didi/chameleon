@@ -27,6 +27,10 @@ module.exports = function (options) {
     baidu: {
       css: 'css',
       templateReg: /.swan/
+    },
+    qq: {
+      css: 'qss',
+      templateReg: /.qml/
     }
   }
 

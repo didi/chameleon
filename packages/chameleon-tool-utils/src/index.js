@@ -586,7 +586,7 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
     let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
 
     // 需要忽略掉的组件
-    let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu'];
+    let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu', 'qq'];
     if (~ignoreComponents.indexOf(cmlType)) {
       ignoreComponents.splice(ignoreComponents.indexOf(cmlType), 1);
     }
@@ -700,6 +700,10 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
     refUrl = refUrl.replace(/\.swan$/g, '');
   }
 
+  if (cmlType === 'qq') {
+    refUrl = refUrl.replace(/\.qml$/g, '');
+  }
+
   return {
     refUrl,
     filePath
@@ -733,7 +737,8 @@ _.findComponent = function (filePath, cmlType) {
     web: ['.vue', '.js'],
     wx: '.wxml',
     baidu: '.swan',
-    alipay: '.axml'
+    alipay: '.axml',
+    qq: 'qml'
   }
 
   let ext = fileExtMap[cmlType];
@@ -751,7 +756,7 @@ _.findComponent = function (filePath, cmlType) {
 
 // 提供给cml-lint使用 cml-lint不知道cmlType
 _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
-  let cmlTypeList = ['wx', 'web', 'weex', 'alipay', 'baidu'];
+  let cmlTypeList = ['wx', 'web', 'weex', 'alipay', 'baidu', 'qq'];
   for (let i = 0; i < cmlTypeList.length; i++) {
     let cmlType = cmlTypeList[i];
     let result = _.handleComponentUrl(context, cmlFilePath, comPath, cmlType);
@@ -808,7 +813,7 @@ _.npmComponentRefPath = function (componentAbsolutePath, context) {
   if (refUrl[0] !== '/') {
     refUrl = '/' + refUrl
   }
-  refUrl = refUrl.replace(/(\.cml|\.web\.cml|\.alipay\.cml|\.baidu\.cml|\.wx\.cml|\.weex\.cml)/, '');
+  refUrl = refUrl.replace(/(\.cml|\.web\.cml|\.alipay\.cml|\.baidu\.cml|\.wx\.cml|\.weex\.cml|\.qq\.cml)/, '');
   return refUrl;
 
 }
@@ -907,7 +912,7 @@ _.getExportEntry = function (cmlType, context, entry = []) {
       } else if (_.isDirectory(filePath)) {
         filePath = path.join(filePath, '**/*.cml');
         // 需要忽略掉的组件
-        let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu'];
+        let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu', 'qq'];
         if (~ignoreComponents.indexOf(cmlType)) {
           ignoreComponents.splice(ignoreComponents.indexOf(cmlType), 1);
         }
@@ -949,6 +954,9 @@ _.getPureEntryName = function (cmlFilePath, cmlType, context) {
   }
   if (cmlType === 'baidu') {
     entryPath = entryPath.replace(/\.swan/g, '');
+  }
+  if (cmlType === 'qq') {
+    entryPath = entryPath.replace(/\.qml/g, '');
   }
   return entryPath.replace(cmlExtReg, '');
 }

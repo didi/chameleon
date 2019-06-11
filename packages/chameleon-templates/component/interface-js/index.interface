@@ -59,3 +59,15 @@ class Method implements ReplaceInterface {
 
 export default new Method();
 </script>
+
+<script cml-type="qq">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'qq:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
