@@ -41,6 +41,9 @@ exports.compileTemplateForVue = function (source, type, options) {
   if (type === 'wx') {
     source = compileWxTemplate(source, type, options).code;
   }
+  if (type === 'qq') {
+    source = compileQqTemplate(source, type, options).code;
+  }
   if (type === 'alipay') {
     source = compileAliPayTemplate(source, type, options).code;
   }
@@ -117,6 +120,34 @@ function compileWeexTemplate(source, type, options) {
   return generate(ast);
 }
 function compileWxTemplate(source, type, options) {
+
+  const ast = babylon.parse(source, {
+    plugins: ['jsx']
+  })
+  traverse(ast, {
+    enter(path) {
+      parseTemplate.parseClassStatement(path, type, options);
+      // 微信端支持安震 slider
+      parseTemplate.parseTagForSlider(path, type, options);
+      // 微信端支持 ref；
+      parseTemplate.parseRefStatement(path, type, options)
+      parseTemplate.parseBuildTag(path, type, options) // 解析内置标签；
+      parseTemplate.parseTag(path, type, options);// 替换标签；
+
+      parseTemplate.parseAnimationStatement(path, type, options);
+      parseTemplate.afterParseTag(path, type, options);
+      parseTemplate.parseEventListener(path, type, options);
+      // 解析v-model ==> value="{{modelValue}}" bindinput="_cmlModelEventProxy($event) data-modelkey="modelKey"
+      parseTemplate.parseDirectiveStatement(path, type, options);
+      // parseTemplate.parseIterationStatement(path,type,options);
+      parseTemplate.parseStyleStatement(path, type, options);
+      // 用于支持 v-bind:name="sth" ==> name="{{sth}}"  v-for  v-if
+      parseTemplate.parseVue2WxStatement(path, type, options);
+    }
+  })
+  return generate(ast);
+}
+function compileQqTemplate(source, type, options) {
 
   const ast = babylon.parse(source, {
     plugins: ['jsx']

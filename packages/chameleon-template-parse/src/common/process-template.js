@@ -293,7 +293,7 @@ exports.preParseTemplateToSatisfactoryJSX = function(source, callbacks) {
 }
 exports.preParseAnimation = function(source, type) {
   // 这个只在小程序端增加callback;
-  if (type === 'wx' || type === 'alipay' || type === 'baidu') {
+  if (type === 'wx' || type === 'alipay' || type === 'baidu' || type === 'qq') {
     let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     const ast = babylon.parse(source, {
