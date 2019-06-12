@@ -1,9 +1,9 @@
 
-
 exports.name = 'server';
 exports.usage = '[command] [options]';
 exports.desc = 'tools for the dev server';
 
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .action(function (...args) {

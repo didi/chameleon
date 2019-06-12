@@ -74,9 +74,9 @@ parseEvent.tap('web-weex', (args) => {
 
   }
 })
-parseEvent.tap('wx-baidu', (args) => {
+parseEvent.tap('wx-baidu-qq', (args) => {
   let { path, node, type, options} = args;
-  if (type === 'wx' || type === 'baidu') {
+  if (type === 'wx' || type === 'baidu' || type === 'qq') {
     let container = path.container;
     let value = container.value;
     let parentPath = path.parentPath;

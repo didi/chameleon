@@ -14,7 +14,7 @@ module.exports.run = function () {
   } else {
     commander.usage('[command] [options]')
     commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
-    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay'];
+    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay', 'qq'];
     cmdList = cmdList.map(key => {
       return {
         key: 'key',

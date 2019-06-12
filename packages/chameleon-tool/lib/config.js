@@ -53,7 +53,8 @@ var chameleonConfig = {
     web: true,
     weex: true,
     alipay: true,
-    baidu: true
+    baidu: true,
+    qq: true
   },
   proxy: {
     enable: false,
@@ -89,6 +90,7 @@ var chameleonConfig = {
   wx: miniappConfig,
   alipay: miniappConfig,
   baidu: miniappConfig,
+  qq: miniappConfig,
   web: {
     dev: {
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
@@ -159,7 +161,7 @@ module.exports = _;
 _.get = function() {
   if (chameleonConfig.base) {
     let baseConfig = chameleonConfig.base;
-    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex'];
+    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex', 'qq'];
     if (baseConfig) {
       platforms.forEach(platform => {
         if (chameleonConfig[platform]) {
