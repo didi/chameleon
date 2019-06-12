@@ -53,7 +53,8 @@ var chameleonConfig = {
     web: true,
     weex: true,
     alipay: true,
-    baidu: true
+    baidu: true,
+    qq: true
   },
   proxy: {
     enable: false,
