@@ -435,7 +435,7 @@ exports.getWeexEntry = function (options) {
     entryFile.push(path.join(cml.root, 'configs/weex_liveload/liveLoad.js'))
   }
   if (options.babelPolyfill === true) {
-    entryFile.unshift('@babel/polyfill');
+    entryFile.unshift(path.join(__dirname, 'default/miniappPolyfill.js'));
   }
   var entryName = exports.getEntryName();
   entry[entryName] = entryFile;
