@@ -6,6 +6,8 @@
   import { mapGetters } from 'chameleon-store';
   import { gettersShow, getterHide } from 'getter-types';
 
+  const tapEvent = 'topevent';
+
   export default {
     props: {
       propOne:{
@@ -41,6 +43,7 @@
     },
     methods:  {
       onTap() {
+        this.$cmlEmit(tapEvent);
         return true;
       },
       onClick: function(e) {
