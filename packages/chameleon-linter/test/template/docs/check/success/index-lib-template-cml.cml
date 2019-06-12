@@ -6,6 +6,8 @@
     <view data-attr="{{childView ? child : 'strChild'}}"></view>
   </view>
   <show-scroller c-if="{{true}}" scroll-x="{{disX}}" c-bind:tap="onTap" c-bind:onscroll="onScroll"></show-scroller>
+  <view c-if="{{logicalLeft || logicalRight}}"></view>
+  <view c-if="{{[eleOne, eleTwo]}}"></view>
 </template>
 
 <script>

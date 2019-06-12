@@ -3,6 +3,7 @@ const globalVars = {
   WX: ['wx', 'global'],
   BAIDU: ['swan', 'global'],
   ALIPAY: ['my', 'global'],
+  QQ: ['qq', 'global'],
   WEB: [
     'postMessage', 'blur', 'focus', 'close', 'frames', 'self',
     'window', 'parent', 'opener', 'top', 'length', 'closed',

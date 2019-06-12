@@ -19,7 +19,6 @@ class ApplyRecord   {
     pageData:{
       type:Object,
       default(){
-        window.location.href = 'xxx';
         return {}
       }
     }

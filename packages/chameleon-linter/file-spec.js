@@ -200,3 +200,4 @@ const checkFileSpecification = async (filepath, filetype) => {
 
 module.exports = checkFileSpecification;
 module.exports.lintCmlFile = lintCmlFile;
+module.exports.checkFile = checkFile;

@@ -73,29 +73,19 @@ function getForbiddenGlobalTokens(platform = 'all') {
 
 function checkGlobal(path, tokenList) {
   let messages = [];
-  let tokenName = path.node.name;
 
-  // we only consider a MemberExpression or ExpressionStatement statement, and tested token must in our token list.
-  if (~['MemberExpression', 'ExpressionStatement'].indexOf(path.parent.type) && ~tokenList.indexOf(tokenName)) {
-    // check if this token has been defined as a variable on its upper levels.
-    let isGlobalVariable = true;
-    let nextScope = path.scope;
-    while (nextScope) {
-      if (nextScope.hasOwnBinding(tokenName)) {
-        isGlobalVariable = false;
-        break;
-      }
-      nextScope = nextScope.parent;
-    }
-    if (isGlobalVariable && path.parent.type != 'ObjectMethod' && path.parent.type != 'ClassMethod') {
+  let programScope = path.scope;
+
+  Object.keys(programScope.globals).forEach(tokenName => {
+    if (~tokenList.indexOf(tokenName)) {
       messages.push({
-        line: path.node.loc.start.line,
-        column: path.node.loc.start.column,
+        line: programScope.globals[tokenName].loc.start.line,
+        column: programScope.globals[tokenName].loc.start.column,
         token: tokenName,
         msg: 'global variable: "' + tokenName + '" should not be used in this file'
       });
     }
-  }
+  });
 
   return messages;
 }
@@ -124,12 +114,12 @@ const checkSyntax = function (part) {
   try {
     tokenList = getForbiddenGlobalTokens(part.platformType || 'all');
     traverse(ast, {
+      // check arrow function: we do not allow arrow functions in life cycle hooks.
       ClassProperty(path) {
-        // check arrow function: we do not allow arrow functions in life cycle hooks.
         messages = messages.concat(checkArrowFun(path));
       },
-      Identifier(path) {
-        // check global variables: we shall never use any platform specified global variables such as wx, global, window etc.
+      // check global variables: we shall never use any platform specified global variables such as wx, global, window etc.
+      Program(path) {
         messages = messages.concat(checkGlobal(path, tokenList));
       }
     });
