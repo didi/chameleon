@@ -436,7 +436,7 @@ exports.getWeexEntry = function (options) {
     entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/weex_liveload_entry.js'));
   }
   if (options.babelPolyfill === true) {
-    entryFile.unshift('@babel/polyfill');
+    entryFile.unshift(path.join(__dirname, 'default/miniappPolyfill.js'));
   }
   var entryName = exports.getEntryName();
   entry[entryName] = entryFile;
