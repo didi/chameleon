@@ -432,7 +432,8 @@ exports.getWeexEntry = function (options) {
     entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'));
   }
   if (options.media === 'dev') {
-    entryFile.push(path.join(cml.root, 'configs/weex_liveload/liveLoad.js'))
+    exports.copyWeexLiveLoadFile(options.root, 'weex', options.media);
+    entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/weex_liveload_entry.js'));
   }
   if (options.babelPolyfill === true) {
     entryFile.unshift('@babel/polyfill');
@@ -547,6 +548,12 @@ exports.copyDefaultFile = function (dir, platform, media) {
     overwrite: true
   })
 
+}
+
+exports.copyWeexLiveLoadFile = function(dir, platform, media) {
+  fse.copySync(path.resolve(__dirname, './default/weex_liveload_entry.js'), path.resolve(dir, 'node_modules/chameleon-runtime/.temp/weex_liveload_entry.js'), {
+    overwrite: true
+  })
 }
 
 let webServerPort;
