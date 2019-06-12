@@ -1,5 +1,4 @@
 const traverse = require('@babel/traverse')['default'];
-const deepTraverse = require('traverse');
 const utils = require('../utils');
 
 /**
@@ -46,70 +45,70 @@ const getClass = (ast, isComp) => {
 
 function getCompClassDef(ast) {
   let classes = [];
+  let clazz = {
+    interfaces: [],
+    properties: [],
+    events: [],
+    methods: []
+  };
 
   traverse(ast, {
-    enter(path) {
-      if (path.node.type == 'ClassDeclaration') {
-        let clazz = {
-          interfaces: [],
-          properties: [],
-          events: [],
-          methods: []
-        };
+    ClassDeclaration(path) {
+      // 接口
+      if (path.node['implements']) {
+        path.node['implements'].forEach(implament => {
+          clazz.interfaces.push(implament.id.name);
+        });
+      }
 
-        // 接口
-        if (path.node['implements']) {
-          path.node['implements'].forEach(implament => {
-            clazz.interfaces.push(implament.id.name);
+      path.node.body.body.forEach(define => {
+        if (define.key.name == 'props') {
+          define.value.properties.forEach(property => {
+            clazz.properties.push(property.key.name);
           });
         }
+        else if (define.key.name == 'methods') {
+          define.value.properties.filter(property => {
+            return property.type === 'ObjectMethod';
+          }).forEach(property => {
+            clazz.methods.push(property.key.name);
+          });
+        }
+      });
 
-        path.node.body.body.forEach(define => {
-          if (define.key.name == 'props') {
-            define.value.properties.forEach(property => {
-              clazz.properties.push(property.key.name);
-            });
+      classes.push(clazz);
+    },
+    MemberExpression(path) {
+      if (!path.node.computed && path.get('object').isThisExpression() && path.get('property').isIdentifier()) {
+        if (path.node.property.name === '$cmlEmit') {
+          let parentNode = path.findParent(path => path.isCallExpression());
+          if (parentNode && parentNode.get('arguments')) {
+            let event = null;
+            let nameArg = parentNode.get('arguments')[0];
+            if (nameArg.isStringLiteral()) {
+              event = {
+                event: nameArg.node.value,
+                line: nameArg.node.loc.start.line,
+                column: nameArg.node.loc.start.column
+              };
+            } else if (nameArg.isIdentifier()) {
+              let argBinding = nameArg.scope.getBinding(nameArg.node.name);
+              let possibleInit = argBinding.path.node.init;
+              // For now, we only check just one jump along its scope chain.
+              if (possibleInit && possibleInit.type === 'StringLiteral') {
+                event = {
+                  event: possibleInit.value,
+                  line: nameArg.node.loc.start.line,
+                  column: nameArg.node.loc.start.column
+                };
+              }
+            }
+            if (event) {
+              clazz.methods.push(event.event);
+              clazz.events.push(event);
+            }
           }
-          else if (define.key.name == 'methods') {
-            define.value.properties.filter(property => {
-              return property.type === 'ObjectMethod';
-            }).forEach(property => {
-              clazz.methods.push(property.key.name);
-            });
-          }
-          else {
-            deepTraverse(define)
-              .nodes()
-              .filter(function (item) {
-                if (item && item.type == 'CallExpression') {
-                  return true;
-                }
-              })
-              .forEach(function (item) {
-
-                if (item.callee.property && item.callee.property.name == '$cmlEmit') {
-                  let event = {};
-
-                  item.arguments.map((arg) => {
-                    if (arg.value) {
-                      event.line = arg.loc.start.line;
-                      event.column = arg.loc.start.column;
-                      event.event = arg.value;
-                    }
-                    else if (arg.properties) {
-                      event.arguments = arg.properties.map(property => {
-                        return property.key.name;
-                      });
-                    }
-                  });
-                  clazz.methods.push(event.event);
-                  clazz.events.push(event);
-                }
-              });
-          }
-        });
-
-        classes.push(clazz);
+        }
       }
     }
   });
@@ -181,8 +180,9 @@ const checkScript = async (result) => {
       const interfaceDefine = getInterfaces(result['interface'].ast);
       const classDefines = getClass(script.ast, isComp);
       classDefines.forEach(clazz => {
+        let define = null;
         clazz.interfaces.forEach(interfaceName => {
-          let define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
+          define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
           if (!define) {
             result['interface'].messages.push({
               msg: `The implement class name: "${interfaceName}" used in file: "${utils.toSrcPath(script.file)}" doesn\'t match the name defined in it\'s interface file: "${utils.toSrcPath(result['interface'].file)}"`
@@ -207,17 +207,17 @@ const checkScript = async (result) => {
               });
             }
           }
+        });
 
-          clazz.events.forEach(event => {
-            if (!define[event.event] || (define[event.event] && (define[event.event].type != 'Function'))) {
-              script.messages.push({
-                line: event.line,
-                column: event.column,
-                token: event.event,
-                msg: 'event "' + event.event + '" is not defined in interface file "' + utils.toSrcPath(result['interface'].file) + '"'
-              });
-            }
-          });
+        define && clazz.events.forEach(event => {
+          if (!define[event.event] || (define[event.event] && (define[event.event].type != 'Function'))) {
+            script.messages.push({
+              line: event.line,
+              column: event.column,
+              token: event.event,
+              msg: 'event "' + event.event + '" is not defined in interface file "' + utils.toSrcPath(result['interface'].file) + '"'
+            });
+          }
         });
       });
     }
