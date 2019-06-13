@@ -159,7 +159,7 @@ module.exports.containerPathVisitor = function(path) {
               });
             } else if (nameArg.isIdentifier()) {
               let argBinding = nameArg.scope.getBinding(nameArg.node.name);
-              let possibleInit = argBinding.path.node.init;
+              let possibleInit = argBinding ? argBinding.path.node.init : null;
               // For now, we only check just one jump along its scope chain.
               if (possibleInit && possibleInit.type === 'StringLiteral') {
                 results.events.push({
