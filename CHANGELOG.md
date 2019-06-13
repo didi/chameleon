@@ -1,3 +1,17 @@
+## [0.3.3-alpha.qq.1]
+### Features
+* 支持qq小程序
+  旧项目支持qq小程序 需要修改的地方
+  - 1 升级以下几个npm包版本
+    "chameleon-api": "0.5.0-alpha.6",
+    "chameleon-bridge": "0.2.0-alpha.5",
+    "chameleon-runtime": "0.2.2-alpha.qq",
+    "chameleon-store": "0.1.0-alpha.qq",
+    "chameleon-ui-builtin": "0.2.11-alpha.qq",
+    "cml-ui": "0.2.0-alpha.qq"
+  - 2 chameleon.config.js中`platforms`字段添加`qq`
+ 
+
 ## [0.3.3-alpha.2]
 
 ###  Bug Fixes
