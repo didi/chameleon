@@ -2,7 +2,6 @@
 import bridge from 'chameleon-bridge';
 
 let wsAddr = `ws://${process.env.serverIp}:${process.env.liveloadPort}`
-var modal = weex.requireModule('modal')
 
 let socketInstance = bridge.initSocket({url: wsAddr});
 

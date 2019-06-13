@@ -5,20 +5,20 @@
   "requires": true,
   "dependencies": {
     "chameleon-api": {
-      "version": "0.4.16",
-      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.4.16.tgz",
-      "integrity": "sha512-Sgi8JMkIX1sFNR9vY7A3fktBCzYvn/YRBUNWWZgBqNH8y8GWZr+DyX88Xha/dYpcs4WuXCOG+GFk76uv+xGQtQ==",
+      "version": "0.4.17",
+      "resolved": "https://registry.npmjs.org/chameleon-api/-/chameleon-api-0.4.17.tgz",
+      "integrity": "sha512-3VD1mLr+16tH/6ZgSBDJA/PnIcekq/6xF2ucXiPxNgtD10+FhpWEjOLHIVAXEK7sRmUfqSf1/AnV29cptvIraQ==",
       "requires": {
-        "chameleon-bridge": "0.1.8",
+        "chameleon-bridge": "0.1.10",
         "child_process": "1.0.2",
         "fetch-detector": "1.0.1",
         "fetch-ie8": "1.5.0"
       }
     },
     "chameleon-bridge": {
-      "version": "0.1.8",
-      "resolved": "https://registry.npmjs.org/chameleon-bridge/-/chameleon-bridge-0.1.8.tgz",
-      "integrity": "sha512-okkq9BAZ77v2vWyruwTWjkbJqc3p/zb4X7VVO+e47vCUnG1aei4o0yK5pB4WPAODAkdP1Zvk3+sTUiTEFVbHSQ=="
+      "version": "0.1.10",
+      "resolved": "https://registry.npmjs.org/chameleon-bridge/-/chameleon-bridge-0.1.10.tgz",
+      "integrity": "sha512-k7gg00DKPJQ8+iZJI7uZXndLcCzSiG1yvJ8rpgcZuIpQsowhNhryYgWRu9Etiu3dNpQlLyrGVHfg91dKmoJstw=="
     },
     "chameleon-runtime": {
       "version": "0.1.4",
