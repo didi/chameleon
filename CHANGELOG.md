@@ -1,3 +1,8 @@
+## [0.4.0-mvvm.15]
+
+### Bug Fixes
+* 修复扩展新端代码中无法使用async函数
+
 ## [0.4.0-mvvm.13]
 
 ### Bug Fixes
