@@ -1,6 +1,6 @@
 {
   "name": "chameleon-css-loader",
-  "version": "0.4.0-mvvm.13",
+  "version": "0.4.0-mvvm.15",
   "description": "chameleon样式处理",
   "main": "index.js",
   "scripts": {

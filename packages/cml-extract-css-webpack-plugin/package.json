@@ -1,6 +1,6 @@
 {
   "name": "cml-extract-css-webpack-plugin",
-  "version": "0.4.0-mvvm.13",
+  "version": "0.4.0-mvvm.15",
   "author": "Chameleon-Team",
   "license": "Apache",
   "dependencies": {

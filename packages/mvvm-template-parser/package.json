@@ -1,6 +1,6 @@
 {
   "name": "mvvm-template-parser",
-  "version": "0.4.0-mvvm.13",
+  "version": "0.4.0-mvvm.15",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,8 @@
   "dependencies": {
     "@babel/traverse": "^7.3.4",
     "@babel/types": "^7.3.4",
-    "mvvm-babel-generator": "0.4.0-mvvm.13",
-    "mvvm-babel-parser": "0.4.0-mvvm.13"
+    "mvvm-babel-generator": "0.4.0-mvvm.15",
+    "mvvm-babel-parser": "0.4.0-mvvm.15"
   },
   "devDependencies": {
     "chai": "^4.2.0",
