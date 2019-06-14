@@ -8,6 +8,7 @@ describe('handleScript.js', function() {
       import a from '../a.js';
       var b = require('../b.js');
       require('../c.js');
+      module.exports = require('../d.js');
     `
     var target = {
       dependencies: [
@@ -31,6 +32,13 @@ describe('handleScript.js', function() {
             request: '../c.js',
             id: 'c'
           }
+        },
+        {
+          request: '../d.js',
+          module: {
+            request: '../d.js',
+            id: 'd'
+          }
         }
       ]
     }
@@ -39,6 +47,7 @@ describe('handleScript.js', function() {
     expect(!!~result.indexOf('var b = require("b")')).to.be.equal(true);
     expect(!!~result.indexOf('import a from "a";')).to.be.equal(true);
     expect(!!~result.indexOf('require("c");')).to.be.equal(true);
+    expect(!!~result.indexOf('require("d");')).to.be.equal(true);
   })
 
   it('no modId', function() {
