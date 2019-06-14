@@ -342,7 +342,7 @@ describe('mvvmGraphPlugin.js', function() {
 
     // 执行
     webpackCompiler.run();
-
+    cmlUtils.fse.removeSync(path.join(webpackCompiler.options.output.path, 'static'))
     global.cml = oldCml;
 
   })

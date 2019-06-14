@@ -22,28 +22,23 @@ exports.handleScript = function(source, cmlmodule, definitions) {
 }
 
 exports.replaceJsModId = function(source, cmlmodule, path) {
-
   let node = path.node;
   if (t.isImportDeclaration(node) && node.source.value) {
     let modId = getJSModId(node.source.value);
     node.source.value = modId;
     node.source.raw = `'${modId}'`;
 
+  } else if (t.isCallExpression(node) && node.callee && t.isIdentifier(node.callee) && node.callee.name === 'require') {
+    if (node.arguments && node.arguments.length === 1 && node.arguments[0] && t.isLiteral(node.arguments[0])) {
+      let modId = getJSModId(node.arguments[0].value);
+      node.arguments[0].value = modId;
+      node.arguments[0].raw = `'${modId}'`;
+    } else if (node.arguments && node.arguments.length === 1 && node.arguments[0] && t.isStringLiteral(node.arguments[0])) {
+      let modId = getJSModId(node.arguments[0].value);
+      node.arguments[0].value = modId;
+    }
   }
-  if (t.isVariableDeclaration(node)) {
-    node.declarations.forEach(item => {
-      if (item && item.init && item.init.callee && item.init.callee.name === 'require' && item.init.arguments && item.init.arguments[0] && item.init.arguments[0].value) {
-        let modId = getJSModId(item.init.arguments[0].value);
-        item.init.arguments[0].value = modId;
-        item.init.arguments[0].raw = `'${modId}'`;
-      }
-    })
-  }
-  if (t.isExpressionStatement(node) && node.expression && node.expression.callee && node.expression.callee.name === 'require' && node.expression.arguments && node.expression.arguments[0]) {
-    let modId = getJSModId(node.expression.arguments[0].value);
-    node.expression.arguments[0].value = modId;
-    node.expression.arguments[0].raw = `'${modId}'`;
-  }
+
   function getJSModId(rawRequest) {
     let deps = cmlmodule.dependencies;
     for (let i = 0; i < deps.length; i++) {
