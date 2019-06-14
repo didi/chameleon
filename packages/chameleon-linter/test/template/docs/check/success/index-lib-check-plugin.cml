@@ -1,12 +1,8 @@
-<template lang="cml">
-  <view c-for="{{messages}}" c-for-item="msg" c-for-index="index">
-    <text>{{msg}}</text>
+<template>
+  <view>
+    <c-radio></c-radio>
+    <c-plugin></c-plugin>
   </view>
-  <view c-if="{{show}}">
-    <view data-attr="{{childView ? child : 'strChild'}}"></view>
-  </view>
-  <show-scroller c-if="{{true}}" scroll-x="{{disX}}" c-bind:tap="onTap" c-bind:onscroll="onScroll"></show-scroller>
-  <view logic-prop="{{logicLeft || logicRight}}"></view>
 </template>
 
 <script>
@@ -36,7 +32,8 @@ export default new Toast()
 {
   "base": {
     "usingComponents": {
-      "show-scroller": "../../components/scroller/scroller"
+      "c-radio": "../../components/radio/radio",
+      "c-plugin": "plugin://components/radio/radio"
     }
   },
   "wx": {

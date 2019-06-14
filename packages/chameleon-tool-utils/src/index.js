@@ -75,6 +75,7 @@ _.resolveInterfaceRequire = function(oldFilePath, newFilePath, requirePath) {
   }
 
 }
+
 /**
  * 对象枚举元素遍历，若merge为true则进行_.assign(obj, callback)，若为false则回调元素的key value index
  * @param  {Object}   obj      源对象
@@ -331,7 +332,7 @@ _.getJsonFileContent = function (filePath, confType) {
       if (copyNpm && copyNpm.length > 0) {
         copyNpm.forEach(function(npmName) {
           let packageJson = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
-          let cmlConfig = packageJson.cml && packageJson.cml[confType]; 
+          let cmlConfig = packageJson.cml && packageJson.cml[confType];
           if (cmlConfig && cmlConfig.pages && cmlConfig.pages.length > 0) {
             cmlConfig.pages.forEach(item => {
               if (!~targetObject.pages.indexOf(item)) {
@@ -606,7 +607,7 @@ _.isBuildIn = function (filePath) {
 
 // 给json文件添加npm和buildin的components
 _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
-  
+
   let npmComponents = _.getTargetInsertComponents(jsonFile, cmlType, context);
   if (npmComponents.length) {
     let coms = jsonObject.usingComponents = jsonObject.usingComponents ? jsonObject.usingComponents : {};
@@ -624,7 +625,7 @@ _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
       }
     })
   }
-  
+
 }
 
 // 通过单个packages  寻找npm包中的interface入口的组件 单独的cml文件不会找到
@@ -799,7 +800,7 @@ _.findComponent = function (filePath, cmlType) {
    *  */
 
   // 1
-  // 记录多态组件依赖的第一级interface文件 编译cml文件时再根据这个interface文件查找接口定义 
+  // 记录多态组件依赖的第一级interface文件 编译cml文件时再根据这个interface文件查找接口定义
   // 不保存接口定义的代码，这样保证interface变化 触发cml编译 重新编译时重新或者接口定义
   let interfacePath = filePath + '.interface';
 
@@ -848,11 +849,12 @@ _.findComponent = function (filePath, cmlType) {
     extPath: ''
   }
   // 4 扩展端原生组件
-  cml.event.emit('find-component', result);
+  if (_.isCli()) {
+    cml.event.emit('find-component', result);
+  }
   if (result.extPath) {
     return result.extPath;
   }
-
   return false;
 }
 
@@ -898,7 +900,7 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
         throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
       }
       let newContent = fs.readFileSync(includeFilePath, {encoding: 'utf-8'});
-      return find(includeFilePath, newContent, cmlType);  
+      return find(includeFilePath, newContent, cmlType);
     }
   }
 
@@ -1158,9 +1160,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
       if (subProjectIndex != -1) {
         let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex]);
-        let pageFiles = routerConfig.routes.map(item => {
-          return path.join(context, 'node_modules', subProject[subProjectIndex], 'src', item.path + '.cml');
-        })
+        let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', subProject[subProjectIndex], 'src', item.path + '.cml'))
         // 如果是配置的路由则是page
         if (~pageFiles.indexOf(cmlFilePath)) {
           type = 'page';

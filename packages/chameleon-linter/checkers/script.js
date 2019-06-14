@@ -252,6 +252,7 @@ function getCompClassDef(ast) {
                       });
                     }
                   });
+                  clazz.methods.push(event.event);
                   clazz.events.push(event);
                 }
               });
@@ -321,12 +322,13 @@ const checkScript = async (result) => {
   // add a script type for multi-file components.
   result['interface'] && validPlatforms.concat('script').forEach(platform => {
     let script;
+    let isComp = (platform === 'script');
     if (result[platform] && result[platform].ast) {
       script = result[platform];
     }
     if (result['interface'] && result['interface'].ast && script && script.ast) {
       const interfaceDefine = getInterfaces(result['interface'].ast);
-      const classDefines = getClass(script.ast, platform === 'script');
+      const classDefines = getClass(script.ast, isComp);
       classDefines.forEach(clazz => {
         clazz.interfaces.forEach(interfaceName => {
           let define = interfaceDefine.name === interfaceName ? interfaceDefine.properties : null;
@@ -342,15 +344,15 @@ const checkScript = async (result) => {
                 line: define[key].line,
                 column: define[key].column,
                 token: key,
-                msg: `interface property "${key}" is not defined in file "${utils.toSrcPath(script.file)}"`
+                msg: `interface property "${key}" is not defined for platform ${script.platform} in file "${utils.toSrcPath(script.file)}"`
               });
             }
-            else if ((define[key] && define[key].type == 'Function') && clazz.methods.indexOf(key) == -1) {
+            else if ((define[key] && define[key].type == 'Function' && clazz.methods.indexOf(key) === -1)) {
               result['interface'].messages.push({
                 line: define[key].line,
                 column: define[key].column,
                 token: key,
-                msg: `interface method "${key}" is not defined in file "${utils.toSrcPath(script.file)}"`
+                msg: `interface method "${key}" is not defined for platform ${script.platform} in file "${utils.toSrcPath(script.file)}"`
               });
             }
           }

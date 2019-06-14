@@ -121,12 +121,16 @@ let getInterfaceParts = filepath => {
     parts: {},
     messages: []
   };
+  let lastFilePath = filepath;
 
   _retrieveParts(filepath);
 
   function _retrieveParts(interfaceFilePath) {
     // terminate condition
     if (!fs.existsSync(interfaceFilePath)) {
+      _result.messages.push(new Message({
+        msg: `The file: "${toSrcPath(interfaceFilePath)}" referenced by file: "${toSrcPath(lastFilePath)}" was not found`
+      }));
       return;
     }
 
@@ -182,6 +186,7 @@ let getInterfaceParts = filepath => {
               if (scriptPart && scriptPart.length) {
                 extraPartInfo.content = extraPartInfo.rawContent = extraPartInfo.tagContent = scriptPart[0].content;
                 extraPartInfo.file = targetScriptPath;
+                item.cmlType = 'script';
               } else {
                 errMsg = new Message({
                   line: item.line,
@@ -213,6 +218,7 @@ let getInterfaceParts = filepath => {
     }
     if (include && include.attrs && include.attrs.src) {
       let newFilePath = path.resolve(path.dirname(interfaceFilePath), include.attrs.src);
+      lastFilePath = interfaceFilePath;
       return _retrieveParts(newFilePath);
     }
     return;
