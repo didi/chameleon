@@ -27,7 +27,8 @@ module.exports = function (options) {
       cmlType: 'weex',
       media,
       check: cml.config.get().check,
-      isInjectBaseStyle: cml.config.get().baseStyle.weex === true
+      isInjectBaseStyle: cml.config.get().baseStyle.weex === true,
+      isWrapComponent: cml.config.get().weex.isWrapComponent === true
     }
   }]
   let commonConfig =

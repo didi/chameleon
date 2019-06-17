@@ -90,6 +90,7 @@ var chameleonConfig = {
   alipay: miniappConfig,
   baidu: miniappConfig,
   web: {
+    isWrapComponent: true, // 默认对组件进行一层包裹
     dev: {
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       moduleIdType: 'name',
@@ -122,6 +123,7 @@ var chameleonConfig = {
     }
   },
   weex: {
+    isWrapComponent: true, // 默认对组件进行一层包裹
     dev: {
       moduleIdType: 'name',
       definePlugin: {
