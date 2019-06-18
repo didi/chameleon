@@ -1,3 +1,5 @@
+## [0.3.3-alpha.3]
+  - 支持web weex可配置是否包裹组件
 ## [0.3.3-alpha.2]
 
 ###  Bug Fixes
