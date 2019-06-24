@@ -22,6 +22,7 @@ module.exports = {
     'checkbox',
     'page',
     'router-view',
+    'cover-view',
     'slot',
     'aside',
     'col',
