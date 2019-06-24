@@ -26,7 +26,6 @@ module.exports = function (content) {
   }
   const componentDeps = [];
   this._compiler._cmlDepsMap[this.resourcePath] = componentDeps;
-
   const self = this;
   const filePath = this.resourcePath;
   
@@ -50,7 +49,7 @@ module.exports = function (content) {
   }
 
   //loader的类型  wx  web weex
-  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isInjectBaseStyle = true} = options;
+  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isInjectBaseStyle = true,isWrapComponent = true} = options;
   options.isInjectBaseStyle = isInjectBaseStyle;
   if(isInjectBaseStyle && cmlType === 'weex') {
     content = prehandle.injectWeexBaseStyle(content, self);
@@ -375,7 +374,7 @@ module.exports = function (content) {
       
       //有组件在weex.cml中的template写的根标签不是唯一的，进入jsx解析会报错
       let before = '';
-      if (type === 'component') { // 组件包裹div
+      if (type === 'component' && isWrapComponent) { // 组件包裹div
         before = '<template>\n<view class="__shadow_root__">' +
         templateContent + '\n' +
         '</view></template>'

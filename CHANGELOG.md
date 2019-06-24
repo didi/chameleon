@@ -1,3 +1,14 @@
+## [0.3.3-alpha.3]
+  - 支持web weex可配置是否包裹组件
+## [0.3.3-alpha.2]
+
+###  Bug Fixes
+
+* 修复 weex dev模式liveload失效
+  老项目如果修复，还需要升级项目中两个npm包如下：
+  - "chameleon-api": "0.4.17",
+  - "chameleon-bridge": "0.1.10",
+* weex babelPolyfill为true时 将添加整个@babel/polyfill修改为只添加几个polyfill方法<a href="https://github.com/didi/chameleon/blob/v0.3.x-alpha/packages/chameleon-tool/configs/default/miniappPolyfill.js">miniappPolyfill.js</a>
 ## [0.3.3-alpha.1]
   - 支持小程序分包加载
   - 修复windows 路径带有数字无法运行

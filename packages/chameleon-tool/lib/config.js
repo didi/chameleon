@@ -91,6 +91,7 @@ var chameleonConfig = {
   baidu: miniappConfig,
   web: {
     dev: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       moduleIdType: 'name',
       hot: false,
@@ -101,6 +102,7 @@ var chameleonConfig = {
       }
     },
     build: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       hash: true,
       minimize: true,
@@ -110,6 +112,7 @@ var chameleonConfig = {
       }
     },
     export: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       hash: true,
       minimize: true,
       moduleIdType: 'chameleon',
@@ -123,12 +126,14 @@ var chameleonConfig = {
   },
   weex: {
     dev: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       moduleIdType: 'name',
       definePlugin: {
         'process.env.NODE_ENV': JSON.stringify('development')
       }
     },
     build: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
       hash: true,
       moduleIdType: 'chameleon',
@@ -137,6 +142,7 @@ var chameleonConfig = {
       }
     },
     export: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       hash: true,
       minimize: true,
       moduleIdType: 'chameleon',
