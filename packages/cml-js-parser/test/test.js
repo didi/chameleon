@@ -31,6 +31,8 @@ describe('parser check', function() {
     }], 'failed at checking props');
     expect(results).to.have.deep.property('events', [{
       name: 'eventOne', paramsNum: -1, params: []
+    }, {
+      name: 'topevent', paramsNum: -1, params: []
     }]);
   });
 });

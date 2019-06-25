@@ -1,0 +1,70 @@
+<template>
+<view class="border">
+</view>
+</template>
+<script>
+const eventName = 'refOne';
+
+class CTodoitem implements CTodoitemInterface   {
+  props = {
+    index: {
+      type: Number
+    },
+    completed: {
+      type: Boolean
+    },
+    text: {
+      type: String
+    }    
+  }
+  data = {
+  }
+
+  computed = {
+  }
+
+  watch  = {
+  }
+
+  methods = {
+  }
+
+  beforeCreate() {
+    this.$cmlEmit('delete');
+  }
+
+  created() {
+    this.$cmlEmit('create');
+  }
+
+  beforeMount() {
+    this.$cmlEmit(eventName);
+  }
+
+  mounted() {
+  }
+
+  beforeDestroy() {
+  }
+
+  destroyed() {
+  }
+}
+
+export default new CTodoitem();
+</script>
+<style scoped>
+.border {
+  border-bottom: 1px solid #ccc;
+  height: 100px;
+}
+</style>
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  }
+  }
+}
+</script>
