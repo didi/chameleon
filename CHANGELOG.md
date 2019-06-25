@@ -2,7 +2,7 @@
   - 支持web weex可配置是否包裹组件
 ## [0.3.3-alpha.2]
 
-###  Bug Fixes
+###  Bug Fixes 
 
 * 修复 weex dev模式liveload失效
   老项目如果修复，还需要升级项目中两个npm包如下：
