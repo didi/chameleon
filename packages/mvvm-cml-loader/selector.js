@@ -58,11 +58,11 @@ module.exports = function(source) {
             components.push('}');
 
             runtimeScript += `
-            ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default, ${components.join('')});\n
+            exports.default=${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default, ${components.join('')}).getOptions();\n
             `
           } else {
             runtimeScript += `
-            ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default);\n
+            exports.default=${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default).getOptions();\n
             `
           }
 
