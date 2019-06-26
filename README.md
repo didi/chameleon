@@ -15,6 +15,8 @@
 - [资源汇总 💰awesome-cml](https://github.com/chameleon-team/awesome-cml)：依赖库、demo、完整应用示例、学习资源
 - [后续规划](https://github.com/didi/chameleon/wiki/%E5%90%8E%E6%9C%9F%E8%A7%84%E5%88%92)
 - [五分钟上手视频教程](https://mp.weixin.qq.com/s/3NY_pbqDVnbQSYQG_D2qiA)
+- [青桔单车 chameleon 跨平台实践分享](https://mp.weixin.qq.com/s/N8PpxRHHtlIHVlemQ1Gepg)
+- [谁在使用？](https://github.com/didi/chameleon/issues/131)
 
 ## 仓库更新说明
 
