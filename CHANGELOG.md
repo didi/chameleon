@@ -1,3 +1,30 @@
+## [0.3.3-alpha.4]
+  - 修改全局变量校验失效问题，同时增加 qq 全局变量名单。
+  - 模板变量校验添加 LogicalExpression 处理逻辑表达式里的变量
+  - 修改cover-view报未定义组件问题件
+  - 修复引入zepto库后tap事件触发两次问题
+## [0.3.3-alpha.3]
+  - 支持web weex可配置是否包裹组件
+## [0.3.3-alpha.2]
+
+###  Bug Fixes 
+
+* 修复 weex dev模式liveload失效
+  老项目如果修复，还需要升级项目中两个npm包如下：
+  - "chameleon-api": "0.4.17",
+  - "chameleon-bridge": "0.1.10",
+* weex babelPolyfill为true时 将添加整个@babel/polyfill修改为只添加几个polyfill方法<a href="https://github.com/didi/chameleon/blob/v0.3.x-alpha/packages/chameleon-tool/configs/default/miniappPolyfill.js">miniappPolyfill.js</a>
+## [0.3.3-alpha.1]
+  - 支持小程序分包加载
+  - 修复windows 路径带有数字无法运行
+  - 升级webpack-bundle-analyzer 解决安全漏洞警告
+## [0.3.3-alpha.0]
+- web/weex样式一致性加强
+- 基础样式设置支持不导入
+- 修复 vue 语法下 v-for bug
+- 支持在cml组件上绑定原生事件，注意：需要升级chameleon-ui-builtin到0.2.10-alpha.4版本才支持
+- 修复weex内联事件传汉字编译过慢；
+- 支持组件上绑定多个内联事件传参的情况
 ## [0.3.2]
 
 ###  Bug Fixes

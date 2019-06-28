@@ -7,10 +7,8 @@ const utils = require('../utils');
 const fileSpec = require('../file-spec');
 const chai = require('chai');
 const assert = chai.assert;
-const should = chai.should;
 const expect = chai.expect;
 const path = require('path');
-
 
 
 describe('cml', function() {
@@ -128,9 +126,9 @@ describe('cml', function() {
       const result = await styleLinter(parts.style);
       expect(result.messages).to.deep.equal([
         {
-          "column": 3,
-          "line": 7,
-          "msg": "expected \"indent\", got \";\""
+          'column': 3,
+          'line': 7,
+          'msg': 'expected "indent", got ";"'
         }
       ]);
     });
@@ -186,14 +184,14 @@ describe('cml', function() {
       expect(result.messages).to.deep.equal(
         [
           {
-            "column": 5,
-            "line": 19,
-            "msg": "computed property \"hasApplyList\" cannot be used as an arrow function"
+            'column': 5,
+            'line': 19,
+            'msg': 'computed property "hasApplyList" cannot be used as an arrow function'
           },
           {
-            "column": 3,
-            "line": 30,
-            "msg": "lifecycle hook \"mounted\" cannot be used as an arrow function"
+            'column': 3,
+            'line': 30,
+            'msg': 'lifecycle hook "mounted" cannot be used as an arrow function'
           }
         ]
       );
@@ -335,6 +333,10 @@ describe('cml', function() {
     });
   });
   describe('check-script', function () {
+    before(function() {
+      const projectRoot = path.resolve(__dirname, './checker/cml/script');
+      config.init(projectRoot);
+    });
     it('standard', async function () {
       const cmlPath = path.resolve(__dirname, './checker/cml/script/standard/standard.wx.cml');
       const parts = utils.getCmlParts(cmlPath);
@@ -342,13 +344,6 @@ describe('cml', function() {
       checkers.script(result);
 
       expect(result.script.messages).to.deep.equal([]);
-    });
-    it('no-interface', async function () {
-      const cmlPath = path.resolve(__dirname, './checker/cml/script/nointerface/nonstandard.wx.cml');
-      const parts = utils.getCmlParts(cmlPath);
-      const result = await fileSpec.lintCmlFile(parts);
-      checkers.script(result);
-      assert.equal(result['interface'].messages.length, 1);
     });
     it('global-variable', async function () {
       const cmlPath = path.resolve(__dirname, './checker/cml/script/global-variable/standard.wx.cml');
@@ -370,6 +365,52 @@ describe('cml', function() {
       const result = await fileSpec.lintCmlFile(parts);
       checkers.script(result);
       assert.equal(result.script.messages.length, 0);
+    });
+    it('property-not-defined', async function() {
+      const cmlPath = path.resolve(__dirname, './checker/cml/script/properties-methods/property-not-defined.wx.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      let result = await fileSpec.lintCmlFile(parts);
+      checkers.script(result);
+      assert.equal(result['interface'].messages.length, 1);
+      expect(result['interface'].messages[0]).to.include({
+        line: 24,
+        column: 2,
+        token: 'text'
+      });
+    });
+    it('event-not-defined', async function() {
+      const cmlPath = path.resolve(__dirname, './checker/cml/script/properties-methods/event-not-defined.web.cml');
+      const parts = utils.getCmlParts(cmlPath);
+      let result = await fileSpec.lintCmlFile(parts);
+      checkers.script(result);
+      assert.equal(result['interface'].messages.length, 1);
+      expect(result['interface'].messages[0]).to.include({
+        line: 26,
+        column: 2,
+        token: 'top'
+      });
+      assert.equal(result.script.messages.length, 2);
+      expect(result.script.messages).to.deep.equal([{
+        line: 33,
+        column: 18,
+        token: 'create',
+        msg: 'event "create" is not defined in interface file "properties-methods/event-not-defined.interface"'
+      }, {
+        line: 37,
+        column: 18,
+        token: 'refOne',
+        msg: 'event "refOne" is not defined in interface file "properties-methods/event-not-defined.interface"'
+      }]);
+    });
+    it('interface-prop-not-defined', async function() {
+      const cmlPath = path.resolve(__dirname, './checker/cml/script/interfaces/prop-not-defined.interface');
+      const result = await fileSpec(cmlPath, 'interface');
+      expect(result['interface'].messages).to.have.lengthOf(1);
+      expect(result['interface'].messages[0]).to.include({
+        line: 3,
+        column: 2,
+        token: 'platform'
+      });
     });
   });
 });

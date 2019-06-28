@@ -2,6 +2,96 @@ const mixins = require('../weex-mixins.js').mixins.methods;
 const {expect} = require('chai');
 
 describe('weex-mixins.js', function() {
+  it('test _cmlInline', function() {
+    let e = {
+      type: 'touchstart',
+      target: {
+
+      },
+      stopPropagation: function() {},
+      timestamp: 3795662,
+
+      currentTarget: {
+        dataset: {
+          eventtouchstart: ['handleTouchStart', '$event', 1]
+        }
+      },
+      touches: [{
+        identifier: 'identifier',
+        pageX: 'pageX',
+        pageY: 'pageY',
+        screenX: 'screenX',
+        screenY: 'screenY'
+      }],
+      changedTouches: [{
+        identifier: 'identifier',
+        pageX: 'pageX',
+        pageY: 'pageY',
+        screenX: 'screenX',
+        screenY: 'screenY'
+      }]
+    }
+    let thisArg = {
+      handleTouchStart: function() {
+
+      }
+    }
+    expect(mixins._cmlInline.call(thisArg, 'handleTouchStart', true, 1, e)).to.be.not.ok
+  });
+  it('test _cmlModelEventProxy', function() {
+    let e = {
+      type: 'touchstart',
+      target: {
+
+      },
+      stopPropagation: function() {},
+      timestamp: 3795662,
+
+      currentTarget: {
+        dataset: {
+          eventtouchstart: ['handleTouchStart', '$event', 1]
+        }
+      }
+    }
+    let thisArg = {
+      key: 'modelKey'
+    }
+    expect(mixins._cmlModelEventProxy.call(thisArg, e, 'key')).to.be.not.ok
+  });
+  it('test _cmlEventProxy', function() {
+    let e = {
+      type: 'touchstart',
+      target: {
+
+      },
+      stopPropagation: function() {},
+      timestamp: 3795662,
+
+      currentTarget: {
+        dataset: {
+          eventtouchstart: ['handleTouchStart', '$event', 1]
+        }
+      }
+    }
+    let thisArg = {
+      handleTouchStart: function() {
+
+      }
+    }
+    expect(mixins._cmlEventProxy.call(thisArg, e, 'handleTouchStart', true)).to.be.not.ok
+  });
+  it('test $cmlEmit', function() {
+    let thisArg = {
+      $emit: function() {
+
+      },
+      $__checkCmlEmit__: function() {
+
+      }
+    }
+    expect(mixins.$cmlEmit.call(thisArg, 'handleTouchStart', {detail: 'detail'})).to.be.not.ok
+  });
+
   it('test styleProxyName function:aimed to transform cssStyle string to cssStyle Object', function() {
     expect(mixins._cmlStyleProxy('width:75px; ;height:50px; ')).to.be.deep.equal({ width: '75px', height: '50px' });
     expect(mixins._cmlStyleProxy({ width: '75px', height: '50px' })).to.be.deep.equal({ width: '75px', height: '50px' });
