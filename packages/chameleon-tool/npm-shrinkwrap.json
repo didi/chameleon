@@ -2808,6 +2808,26 @@
         "is-supported-regexp-flag": "^1.0.0"
       }
     },
+    "cml-component-parser": {
+      "version": "0.3.3-alpha.qq.1",
+      "resolved": "https://registry.npmjs.org/cml-component-parser/-/cml-component-parser-0.3.3-alpha.qq.1.tgz",
+      "integrity": "sha512-ULRx49za2Gqa0TmUmk8UvyYXHbAmF0iZVf7G0Yl2vTmGFGx3Boje0t7HyPY/4JfA1gfaW9BgclY4h2Okg2ZDGg==",
+      "requires": {
+        "@babel/parser": "7.2.3",
+        "@babel/traverse": "7.2.3",
+        "chameleon-tool-utils": "0.3.3-alpha.qq.1",
+        "cml-interface-parser": "0.3.3-alpha.qq.1",
+        "cml-js-parser": "0.3.3-alpha.qq.1",
+        "commander": "2.20.0"
+      },
+      "dependencies": {
+        "commander": {
+          "version": "2.20.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz",
+          "integrity": "sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ=="
+        }
+      }
+    },
     "cml-extract-css-webpack-plugin": {
       "version": "0.3.3-alpha.4",
       "resolved": "https://registry.npmjs.org/cml-extract-css-webpack-plugin/-/cml-extract-css-webpack-plugin-0.3.3-alpha.4.tgz",
@@ -2817,6 +2837,46 @@
         "loader-utils": "^1.1.0",
         "schema-utils": "^0.3.0",
         "webpack-sources": "^1.0.1"
+      }
+    },
+    "cml-htmllint": {
+      "version": "0.3.3-alpha.qq.1",
+      "resolved": "https://registry.npmjs.org/cml-htmllint/-/cml-htmllint-0.3.3-alpha.qq.1.tgz",
+      "integrity": "sha512-s5yPxKJ6CG7NZYTpUfgTdRsqq9lwyE9juGsT5AtNbzntK8teoVMv74i1qytd8meZGXUBz2PfaHKNqPRKtlclRw==",
+      "requires": {
+        "bulk-require": "1.0.1",
+        "htmlparser2": "3.10.0",
+        "lodash": "4.17.11",
+        "promise": "8.0.2"
+      }
+    },
+    "cml-interface-parser": {
+      "version": "0.3.3-alpha.qq.1",
+      "resolved": "https://registry.npmjs.org/cml-interface-parser/-/cml-interface-parser-0.3.3-alpha.qq.1.tgz",
+      "integrity": "sha512-pY7oonUCjZLKe47RIC27gkjCHfi2AJViqiZlezkWErLc8gKfAqRqrUBVeLzJusxXDZ2kFMbuvQcrunyhlqwdKg==",
+      "requires": {
+        "@babel/parser": "7.2.3",
+        "@babel/traverse": "7.2.3",
+        "chameleon-tool-utils": "0.3.3-alpha.qq.1",
+        "commander": "2.20.0"
+      },
+      "dependencies": {
+        "commander": {
+          "version": "2.20.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz",
+          "integrity": "sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ=="
+        }
+      }
+    },
+    "cml-js-parser": {
+      "version": "0.3.3-alpha.qq.1",
+      "resolved": "https://registry.npmjs.org/cml-js-parser/-/cml-js-parser-0.3.3-alpha.qq.1.tgz",
+      "integrity": "sha512-ztPPhHaznKoJPwARpACFYepJk2HGHL2LqTwGjITOd+zvkanVaTt1QykjIiJQkyNNeRMtZOPNYcz5rMhCwfzTqA==",
+      "requires": {
+        "@babel/parser": "7.2.3",
+        "@babel/traverse": "7.2.3",
+        "bulk-require": "1.0.1",
+        "chameleon-tool-utils": "0.3.3-alpha.qq.1"
       }
     },
     "cml-vue-loader": {
@@ -12192,6 +12252,23 @@
       "integrity": "sha1-6Eg5bwV9Ij8kOGkkYY4laUFh7Ec=",
       "requires": {
         "aproba": "^1.1.1"
+      }
+    },
+    "runtime-check": {
+      "version": "0.3.3-alpha.qq.1",
+      "resolved": "https://registry.npmjs.org/runtime-check/-/runtime-check-0.3.3-alpha.qq.1.tgz",
+      "integrity": "sha512-dLTVios1n8CFg72sA2PS3uigSkwfWCqgc5UoPHSGj8J6I54Iq+XVy8+abuQDqVmtAqe5Kl0hcIysbLngSicB+Q==",
+      "requires": {
+        "@babel/parser": "7.1.0",
+        "babel-generator": "6.26.1",
+        "babel-traverse": "6.26.0"
+      },
+      "dependencies": {
+        "@babel/parser": {
+          "version": "7.1.0",
+          "resolved": "https://registry.npmjs.org/@babel/parser/-/parser-7.1.0.tgz",
+          "integrity": "sha512-SmjnXCuPAlai75AFtzv+KCBcJ3sDDWbIn+WytKw1k+wAtEy6phqI2RqKh/zAnw53i1NR8su3Ep/UoqaKcimuLg=="
+        }
       }
     },
     "rxjs": {

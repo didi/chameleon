@@ -75,7 +75,7 @@ exports.parseBuildTag = function (path, type, options) {
 // 配合安震，解析c-slider;
 exports.parseTagForSlider = function(path, type, options) {
   let node = path.node;
-  if ((type === 'wx' || type === 'baidu' || type === 'alipay') && t.isJSXElement(node)) {
+  if ((['wx', 'qq', 'baidu', 'alipay'].includes(type)) && t.isJSXElement(node)) {
     let currentTag = node.openingElement.name.name;
     let targetTag = tagMap.wxTagMap[currentTag];
     if (targetTag && currentTag !== targetTag) {

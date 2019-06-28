@@ -80,7 +80,8 @@ parseClass.tap('weex-cml', (args) => {
 })
 parseClass.tap('wx-alipay-baidu-cml', (args) => {
   let { node, type, options: {lang, filePath, usingComponents, isInjectBaseStyle} } = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
+  // type === 'wx' || type === 'alipay' || type === 'baidu'
+  if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
     let classNodes = attributes.filter((attr) => // 如果没有符合条件的classNodes则返回一个空数组
@@ -88,10 +89,10 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
     );
     let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
     let extraClass = '';
-    if ((type === 'wx' || type === 'baidu')) {
+    if (['wx', 'qq', 'baidu'].includes(type)) {
       if (isInjectBaseStyle) {
         extraClass = ` cml-base cml-${tagName}`;
-        if (isUsingComponents && (type === 'wx' || type === 'baidu')) {
+        if (isUsingComponents) {
           extraClass = ` cml-view cml-${tagName}`;
         }
       }
@@ -154,7 +155,8 @@ parseClass.tap('weex-vue', (args) => {
 })
 parseClass.tap('wx-alipay-baidu-vue', (args) => {
   let { node, type, options: {lang, filePath, usingComponents, isInjectBaseStyle} } = args;
-  if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
+  // (type === 'wx' || type === 'alipay' || type === 'baidu')
+  if (lang === 'vue' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
     let classNodes = attributes.filter((attr) => // 如果没有符合条件的classNodes则返回一个空数组
@@ -162,10 +164,10 @@ parseClass.tap('wx-alipay-baidu-vue', (args) => {
     );
     let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
     let extraClass = '';
-    if ((type === 'wx' || type === 'baidu')) {
+    if (['wx', 'qq', 'baidu'].includes(type)) {
       if (isInjectBaseStyle) {
         extraClass = ` cml-base cml-${tagName}`;
-        if (isUsingComponents && (type === 'wx' || type === 'baidu')) {
+        if (isUsingComponents) {
           extraClass = ` cml-view cml-${tagName}`;
         }
       }

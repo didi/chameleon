@@ -145,10 +145,11 @@ module.exports = function (content) {
     wx: 'wxml',
     alipay: 'axml',
     baidu: 'swan',
+    qq: 'qml'
   }
   //小程序模板后缀正则
   const miniTplExtReg = /(\.wxml|\.axml)$/;
-  const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml| |\.baidu\.cml)$/;
+  const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml|\.qq\.cml|\.baidu\.cml)$/;
 
   if(isMiniAppRawComponent) {
     miniAppRawComponentHandler.call(this);
@@ -156,6 +157,7 @@ module.exports = function (content) {
       //handler中改变output的值 最后返回output
       switch (cmlType) {
         case 'wx':
+        case 'qq':
         case 'alipay':
         case 'baidu':
           miniAppHandler.call(this);
@@ -191,7 +193,7 @@ module.exports = function (content) {
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
     
-    if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan')) {
+    if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan') || (cmlType === 'qq' && extName === '.qml')) {
       //生成json文件
       let jsonFile = filePath.replace(miniTplExtReg,'.json');
       if(!cmlUtils.isFile(jsonFile)) {

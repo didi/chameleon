@@ -24,6 +24,7 @@ module.exports = async function (options) {
     case 'wx':
     case 'alipay':
     case 'baidu':
+    case 'qq':
       if (media == 'dev') {
         webpackConfig = getMiniAppDevConfig(options);
       } else {
