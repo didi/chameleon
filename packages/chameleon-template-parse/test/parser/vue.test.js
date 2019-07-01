@@ -212,6 +212,16 @@ describe('parse-template-vue-all', function() {
       expect(compileTemplate(source, 'alipay', options).source).to.equal(`<view class=" cml-base cml-view cml-5766bf8a"><tag catchTap="handleClick" class=" cml-base cml-origin-tag cml-5766bf8a"></tag><view catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp1 catchTap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1 cml-5766bf8a"></thirdComp1></view><view catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-view cml-5766bf8a"><thirdComp2 catchTap="_cmlInline" data-eventtap="{{['handleClick',1,item,'str']}}" class=" cml-base cml-thirdComp2 cml-5766bf8a"></thirdComp2></view></view>`);
     });
   });
+  // parseEvent- origin-tag 的click不处理成tap
+  describe('parse-event-transform-origin-tag', function() {
+    let source = `<view><origin-tag v-on:tap.stop="handleClick" @click="handleClick"></origin-tag><thirdComp1 @tap.stop="handleClick(1,item,'str')" @click="handleClick"></thirdComp1><thirdComp2 v-on:tap.stop="handleClick(1,item,'str')"></thirdComp2></view>`;
+    it('test-event-transform-web-origin-tag', function() {
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:tap="handleClick" v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:tap="handleClick(1,item,'str')" v-on:click="handleClick" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click.native="_cmlInline('handleClick',true,1,item,'str')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+    });
+    it('test-event-transform-weex-origin-tag', function() {
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,'str')" v-on:click="handleClick" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click.native="_cmlInline('handleClick',true,1,item,'str')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+    });
+  });
   // 非原生组件外面包的view要添加原生事件
   describe('parse-event-transform-alicomponent', function() {
     let source = `<view><thirdComp2 @tap.stop="handleClick(1,item,'str')" data-args="1" v-on:touchstart.stop="handleClick(1,item,'str')"></thirdComp2></view>`;
