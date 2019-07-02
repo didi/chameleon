@@ -37,7 +37,10 @@ parseEvent.tap('web-weex', (args) => {
       } else if (isNativeComp) {
         // native组件不处理名字
       } else { // 普通标签都处理成tap
-        node.name.name === 'click' && (node.name.name = 'tap');
+        let isOriginTag = tagName.indexOf('origin-') === 0;
+        if (!isOriginTag) { // 如果是原生 origin- 开头的标签，那么click不要处理成tap
+          node.name.name === 'click' && (node.name.name = 'tap');
+        }
       }
     }
     if (type === 'weex') { // weex端 还是原来的逻辑
