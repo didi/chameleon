@@ -1,9 +1,18 @@
+## [0.3.3-alpha.5]
+### Features
+  - 合并qq小程序分支
+  - web端原生origin click事件不处理成tap
+  
 ## [0.3.3-alpha.4]
+### Features
   - 修改全局变量校验失效问题，同时增加 qq 全局变量名单。
   - 模板变量校验添加 LogicalExpression 处理逻辑表达式里的变量
+### Bug Fixes
   - 修改cover-view报未定义组件问题件
   - 修复引入zepto库后tap事件触发两次问题
+  
 ## [0.3.3-alpha.3]
+### Features
   - 支持web weex可配置是否包裹组件
 
 ## [0.3.3-alpha.qq.1]
@@ -21,7 +30,7 @@
   - 
 ## [0.3.3-alpha.2]
 
-###  Bug Fixes 
+### Bug Fixes 
 
 * 修复 weex dev模式liveload失效
   老项目如果修复，还需要升级项目中两个npm包如下：
