@@ -1,6 +1,6 @@
 {
   "name": "chameleon-loader",
-  "version": "0.3.3-alpha.4",
+  "version": "0.3.3-alpha.5.1",
   "description": "chameleon cml文件处理loader",
   "main": "src/index.js",
   "directories": {
@@ -18,8 +18,8 @@
     "@babel/types": "^7.3.4",
     "babel-generator": "6.26.1",
     "babel-traverse": "6.26.0",
-    "chameleon-template-parse": "0.3.3-alpha.4",
-    "chameleon-tool-utils": "0.3.3-alpha.4",
+    "chameleon-template-parse": "0.3.3-alpha.5.1",
+    "chameleon-tool-utils": "0.3.3-alpha.5.1",
     "consolidate": "0.14.0",
     "de-indent": "1.0.2",
     "hash-sum": "1.0.2",
@@ -27,7 +27,7 @@
     "loader-utils": "1.1.0",
     "lru-cache": "4.1.1",
     "resolve": "1.4.0",
-    "runtime-check": "0.3.3-alpha.4",
+    "runtime-check": "0.3.3-alpha.5.1",
     "source-map": "0.6.1",
     "vue-style-loader": "4.0.1"
   },
