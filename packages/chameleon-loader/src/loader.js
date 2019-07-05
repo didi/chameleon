@@ -20,7 +20,6 @@ const miniAppScript = require('./miniapp-script.js');
 let jsonObject = {};
 
 module.exports = function (content) {
-  debugger;
   // 记录cml组件依赖 用于extract-css 优先级排序
   if(!this._compiler._cmlDepsMap) {
     this._compiler._cmlDepsMap = {};
