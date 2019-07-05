@@ -3,7 +3,7 @@
 const common = require('./common.js');
 const wxStyleHandle = require('chameleon-css-loader/proxy/proxyMiniapp.js')
 const utils = require('./utils.js');
-const {px2cpx} = require('./miniapp-utils/miniapp-px2cpx.js');
+const {px2cpx} = require('./miniapp-utils/px2cpx.js');
 const deepClone = function(obj) {
   if (obj.toString().slice(8, -1) !== "Object") {
     return obj;
