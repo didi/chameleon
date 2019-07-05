@@ -1,7 +1,7 @@
 
 const common = require('./common.js');
 const webStyleHandle = require('chameleon-css-loader/proxy/proxyWeb.js');
-const {px2cpx} = require('./web-utils/px2cpx.js');
+
 const _ =  module.exports  = {};
 common.merge(_, common);
 
@@ -124,10 +124,10 @@ function getNewEvent(e) {
       let touch = touches[i];
       let ret = {}
       ret.identifier = touch.identifier;
-      ret.pageX = px2cpx(parseInt(touch.pageX,10));
-      ret.pageY = px2cpx(parseInt(touch.pageY,10));
-      ret.clientX = px2cpx(parseInt(touch.clientX,10));
-      ret.clientY = px2cpx(parseInt(touch.clientY,10));
+      ret.pageX = parseInt(touch.pageX);
+      ret.pageY = parseInt(touch.pageY);
+      ret.clientX = parseInt(touch.clientX);
+      ret.clientY = parseInt(touch.clientY);
       newEvent.touches.push(ret);
     }
   }
@@ -138,10 +138,10 @@ function getNewEvent(e) {
       let touch = changedTouches[i];
       let ret = {}
       ret.identifier = touch.identifier;
-      ret.pageX = px2cpx(parseInt(touch.pageX,10));
-      ret.pageY = px2cpx(parseInt(touch.pageY,10));
-      ret.clientX = px2cpx(parseInt(touch.clientX,10));
-      ret.clientY = px2cpx(parseInt(touch.clientY,10));
+      ret.pageX = parseInt(touch.pageX);
+      ret.pageY = parseInt(touch.pageY);
+      ret.clientX = parseInt(touch.clientX);
+      ret.clientY = parseInt(touch.clientY);
       newEvent.changedTouches.push(ret);
     }
   }

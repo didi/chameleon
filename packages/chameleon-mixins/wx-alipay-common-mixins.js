@@ -2,8 +2,7 @@
 
 const common = require('./common.js');
 const wxStyleHandle = require('chameleon-css-loader/proxy/proxyMiniapp.js')
-const utils = require('./utils.js');
-const {px2cpx} = require('./miniapp-utils/px2cpx.js');
+const utils = require('./utils.js')
 const deepClone = function(obj) {
   if (obj.toString().slice(8, -1) !== "Object") {
     return obj;
@@ -116,36 +115,6 @@ function getNewEvent(e) {
           dataset: e[key].dataset
         }
         newEvent[key] = newTarget
-      } else if (~['touches', 'changedTouches'].indexOf(key)) {
-        if (key == 'touches') {
-          let touches = e[key];
-          newEvent.touches = [];
-          for (let i = 0;i < touches.length;i++) {
-            let touch = touches[i];
-            let ret = {}
-            ret.identifier = touch.identifier;
-            ret.pageX = px2cpx(parseInt(touch.pageX, 10));
-            ret.pageY = px2cpx(parseInt(touch.pageY, 10));
-            ret.clientX = px2cpx(parseInt(touch.clientX, 10));
-            ret.clientY = px2cpx(parseInt(touch.clientY, 10));
-            newEvent.touches.push(ret);
-          }
-        }
-
-        if (key == 'changedTouches') {
-          let changedTouches = e[key]
-          newEvent.changedTouches = [];
-          for (let i = 0;i < changedTouches.length;i++) {
-            let touch = changedTouches[i];
-            let ret = {}
-            ret.identifier = touch.identifier;
-            ret.pageX = px2cpx(parseInt(touch.pageX, 10));
-            ret.pageY = px2cpx(parseInt(touch.pageY, 10));
-            ret.clientX = px2cpx(parseInt(touch.clientX, 10));
-            ret.clientY = px2cpx(parseInt(touch.clientY, 10));
-            newEvent.changedTouches.push(ret);
-          }
-        }
       } else {
         newEvent[key] = e[key]
       }

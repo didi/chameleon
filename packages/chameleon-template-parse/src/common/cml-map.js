@@ -9,13 +9,6 @@ exports.tagMap = {
       baidu: 'cover-view',
       qq: 'cover-view'
     },
-    'cover-image': {
-      wx: 'cover-image',
-      web: 'img',
-      weex: 'image',
-      alipay: 'cover-image',
-      baidu: 'cover-image'
-    },
     'view': {
       wx: 'view',
       web: 'div',
