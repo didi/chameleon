@@ -47,6 +47,15 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cml-buildin-button class=" cml-base cml-button"></cml-buildin-button><thirdComp1 class=" cml-view cml-thirdComp1"></thirdComp1><thirdComp2 class=" cml-view cml-thirdComp2"></thirdComp2></view>`)
     });
   });
+  describe('parse-cover-tag-transform', function() {
+    let source = `<view><cover-image></cover-image><cover-view></cover-view></view>`;
+    it('test-cover-tag-transform-web', function() {
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><img class=" cml-base cml-cover-image"></img><div class=" cml-base cml-cover-view"></div></div>`);
+    });
+    it('test-cover-tag-transform-miniapp', function() {
+      expect(compileTemplate(source, 'wx', options).source).to.equal(`<view class=" cml-base cml-view"><cover-image class=" cml-base cml-cover-image"></cover-image><cover-view class=" cml-base cml-cover-view"></cover-view></view>`);
+    });
+  });
   // directive c-model
   describe('parse-directive-transform', function() {
     let source = `<view><button c-model="{{  value1}}"></button></view>`;
