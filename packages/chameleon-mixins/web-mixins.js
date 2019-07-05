@@ -1,7 +1,7 @@
 
 const common = require('./common.js');
 const webStyleHandle = require('chameleon-css-loader/proxy/proxyWeb.js');
-const {px2cpx} = require('./web-px2cpx.js');
+const {px2cpx} = require('./web-utils/web-px2cpx.js');
 const _ =  module.exports  = {};
 common.merge(_, common);
 
