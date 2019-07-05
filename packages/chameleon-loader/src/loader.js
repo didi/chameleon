@@ -49,8 +49,18 @@ module.exports = function (content) {
   }
 
   //loader的类型  wx  web weex
-  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isInjectBaseStyle = true,isWrapComponent = true} = options;
+  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isWrapComponent = true} = options;
+  let { isInjectBaseStyle = true } = options;
+  //处理拿到json对象, 使用baseStyle来配置是否注入基础样式
+  jsonObject = cmlUtils.getJsonFileContent(self.resourcePath, cmlType);
+
+  if (jsonObject && jsonObject.baseStyle !== undefined) {
+    isInjectBaseStyle = jsonObject.baseStyle;
+  }
+
   options.isInjectBaseStyle = isInjectBaseStyle;
+
+
   if(isInjectBaseStyle && cmlType === 'weex') {
     content = prehandle.injectWeexBaseStyle(content, self);
   }
@@ -74,8 +84,6 @@ module.exports = function (content) {
     process.cwd()
   )
 
-  //处理拿到json对象
-  jsonObject = cmlUtils.getJsonFileContent(self.resourcePath, cmlType);
   //是否是引用的原生小程序组件  wxml文件
   const isWxmlComponent = extName === '.wxml';
   const isAxmlComponent = extName === '.axml';
