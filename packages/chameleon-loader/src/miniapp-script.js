@@ -43,6 +43,9 @@ _.parseMiniAppScript = function(filePath, type) {
   if (type === 'wx') {
     miniAppPaths = _.parseMiniAppScriptForWx(filePath);
   }
+  if (type === 'qq') {
+    miniAppPaths = _.parseMiniAppScriptForQq(filePath);
+  }
   if (type === 'alipay') {
     miniAppPaths = _.parseMiniAppScriptForAlipay(filePath);
   }
@@ -78,6 +81,41 @@ _.parseMiniAppScriptForWx = function (filePath) {
       if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
         let value = node.arguments[0].value
         if (typeof value === 'string' && value.endsWith('.wxs')) {
+          scriptPaths.push(value)
+        }
+
+      }
+    };
+    _.commonParseScript(source, callback);
+  }
+  return scriptPaths;
+}
+_.parseMiniAppScriptForQq = function (filePath) {
+  let source = fs.readFileSync(filePath, {encoding: 'utf-8'});
+  let extName = path.extname(filePath);
+  let scriptPaths = [];
+  if (extName === '.qml') {
+    // <qs src="../wxs/utils.wxs" module="utils" />
+    // <qs module="sss" src="../wxs/utils.wxs" module="utils" ></wxs>
+    let miniScriptTagReg = /<qs[\s\S]*?[\/]*>/g;
+    let srcReg = /src\s*=\s*("[^"]*"|'[^']*')/
+    let matches = source.match(miniScriptTagReg);
+    if (!matches) {
+      return []
+    } else if (matches && Array.isArray(matches)) {
+      matches.forEach((item) => {
+        let srcMatches = item.match(srcReg);
+        if (srcMatches && Array.isArray(srcMatches)) {
+          scriptPaths.push(srcMatches[1].slice(1, -1))
+        }
+      })
+    }
+  } else if (extName === '.qs') {
+    let callback = function(path) {
+      let node = path.node;
+      if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
+        let value = node.arguments[0].value
+        if (typeof value === 'string' && value.endsWith('.qs')) {
           scriptPaths.push(value)
         }
 

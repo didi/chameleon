@@ -47,8 +47,11 @@ exports.getBuildPromise = async function (media, type) {
         aggregateTimeout: 300,
         poll: undefined
       }, (err, stats) => {
+
         if (type === 'weex') {
-          broadcast('weex_refresh');
+          if (!(stats && stats.compilation && stats.compilation.errors && stats.compilation.errors.length > 0)) {
+            broadcast('weex_refresh');
+          }
           previewSocket.broadcast('weex_refresh');
         }
         if (err) {

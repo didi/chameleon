@@ -52,9 +52,9 @@ parseInteration.tap('web-weex', (args) => {
     })
   }
 })
-parseInteration.tap('wx-alipay', (args) => {
+parseInteration.tap('wx-alipay-qq', (args) => {
   let { path, node, type, options: {lang} } = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'alipay')) {
+  if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'qq')) {
     let name = node.name.name;
     node.name.name = interationMap[name][type];
     let siblingPaths = utils.getSiblingPaths(path);

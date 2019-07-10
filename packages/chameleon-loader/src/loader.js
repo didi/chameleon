@@ -26,7 +26,6 @@ module.exports = function (content) {
   }
   const componentDeps = [];
   this._compiler._cmlDepsMap[this.resourcePath] = componentDeps;
-
   const self = this;
   const filePath = this.resourcePath;
   
@@ -50,8 +49,18 @@ module.exports = function (content) {
   }
 
   //loader的类型  wx  web weex
-  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isInjectBaseStyle = true} = options;
+  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isWrapComponent = true} = options;
+  let { isInjectBaseStyle = true } = options;
+  //处理拿到json对象, 使用baseStyle来配置是否注入基础样式
+  jsonObject = cmlUtils.getJsonFileContent(self.resourcePath, cmlType);
+
+  if (jsonObject && jsonObject.baseStyle !== undefined) {
+    isInjectBaseStyle = jsonObject.baseStyle;
+  }
+
   options.isInjectBaseStyle = isInjectBaseStyle;
+
+
   if(isInjectBaseStyle && cmlType === 'weex') {
     content = prehandle.injectWeexBaseStyle(content, self);
   }
@@ -75,8 +84,6 @@ module.exports = function (content) {
     process.cwd()
   )
 
-  //处理拿到json对象
-  jsonObject = cmlUtils.getJsonFileContent(self.resourcePath, cmlType);
   //是否是引用的原生小程序组件  wxml文件
   const isWxmlComponent = extName === '.wxml';
   const isAxmlComponent = extName === '.axml';
@@ -146,10 +153,11 @@ module.exports = function (content) {
     wx: 'wxml',
     alipay: 'axml',
     baidu: 'swan',
+    qq: 'qml'
   }
   //小程序模板后缀正则
   const miniTplExtReg = /(\.wxml|\.axml)$/;
-  const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml| |\.baidu\.cml)$/;
+  const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml|\.qq\.cml|\.baidu\.cml)$/;
 
   if(isMiniAppRawComponent) {
     miniAppRawComponentHandler.call(this);
@@ -157,6 +165,7 @@ module.exports = function (content) {
       //handler中改变output的值 最后返回output
       switch (cmlType) {
         case 'wx':
+        case 'qq':
         case 'alipay':
         case 'baidu':
           miniAppHandler.call(this);
@@ -192,7 +201,7 @@ module.exports = function (content) {
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
     
-    if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan')) {
+    if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan') || (cmlType === 'qq' && extName === '.qml')) {
       //生成json文件
       let jsonFile = filePath.replace(miniTplExtReg,'.json');
       if(!cmlUtils.isFile(jsonFile)) {
@@ -245,7 +254,8 @@ module.exports = function (content) {
       let compileResult = ASTcompileTemplate(templateContent, {
         lang,
         usingComponents,
-        filePath
+        filePath,
+        isInjectBaseStyle
       });
 
       let emitPath = entryPath.replace(miniCmlReg, `.${miniappTplExt[cmlType]}`)
@@ -373,13 +383,21 @@ module.exports = function (content) {
       usingComponents = prepareParseUsingComponents(usingComponents);
       
       //有组件在weex.cml中的template写的根标签不是唯一的，进入jsx解析会报错
-      let before = '<template>\n' +
-                       templateContent + '\n' +
-                    '</template>'
+      let before = '';
+      if (type === 'component' && isWrapComponent) { // 组件包裹div
+        before = '<template>\n<view class="__shadow_root__">' +
+        templateContent + '\n' +
+        '</view></template>'
+      } else { // 其他包裹template
+        before = '<template>\n' +
+        templateContent + '\n' +
+        '</template>'
+      }
       return ASTcompileTemplate(before, {
         lang,
         usingComponents,
-        filePath
+        filePath,
+        isInjectBaseStyle
       });
 
     }

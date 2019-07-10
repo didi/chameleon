@@ -1,10 +1,9 @@
 
-
 exports.name = 'web';
 exports.usage = '[command] [options]';
 exports.desc = 'tools for the web project';
 
-
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .option('-r, --root [root]', 'specify project root')

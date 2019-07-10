@@ -150,11 +150,25 @@ module.exports.containerPathVisitor = function(path) {
         if (path.node.property.name === '$cmlEmit') {
           let parentNode = path.findParent(path => path.isCallExpression());
           if (parentNode && parentNode.get('arguments')) {
-            parentNode.get('arguments')[0].isStringLiteral() && results.events.push({
-              name: parentNode.get('arguments')[0].node.value,
-              paramsNum: -1,
-              params: []
-            });
+            let nameArg = parentNode.get('arguments')[0];
+            if (nameArg.isStringLiteral()) {
+              results.events.push({
+                name: parentNode.get('arguments')[0].node.value,
+                paramsNum: -1,
+                params: []
+              });
+            } else if (nameArg.isIdentifier()) {
+              let argBinding = nameArg.scope.getBinding(nameArg.node.name);
+              let possibleInit = argBinding ? argBinding.path.node.init : null;
+              // For now, we only check just one jump along its scope chain.
+              if (possibleInit && possibleInit.type === 'StringLiteral') {
+                results.events.push({
+                  name: possibleInit.value,
+                  paramsNum: -1,
+                  params: []
+                });
+              }
+            }
           }
         }
       }

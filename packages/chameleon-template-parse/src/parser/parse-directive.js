@@ -11,6 +11,7 @@ parseDirective.tap('web-weex-cml', (args) => {
   if (lang === 'cml' && (type === 'web' || type === 'weex')) {
     // 以下开始处理指令；
     // v-model c-model
+    // web端因为是自定义组件触发的 input事件的参数不对，所以不能直接用vue的v-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
       let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
@@ -54,9 +55,10 @@ parseDirective.tap('web-weex-cml', (args) => {
     }
   }
 });
-parseDirective.tap('wx-baidu-cml', (args) => {
+parseDirective.tap('wx-baidu-qq-cml', (args) => {
   let { path, node, type, options: {lang} } = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
+  // type === 'wx' || type === 'baidu' || type === 'alipay'
+  if (lang === 'cml' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
     // c-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
       let modelKey = utils.getModelKey(node.value.value);
@@ -156,7 +158,7 @@ parseDirective.tap('web-weex-vue', (args) => {
 
 parseDirective.tap('wx-vue', (args) => {
   let { path, node, type, options: {lang} } = args;
-  if (lang === 'vue' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
+  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
       let modelKey = utils.getModelKey(node.value.value);
       path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(`{{${node.value.value}}}`)))
