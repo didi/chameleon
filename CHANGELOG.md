@@ -1,3 +1,7 @@
+## [0.3.3-alpha.6]
+### Features
+  - 组件导出依赖分离
+  
 ## [0.3.3-alpha.5]
 ### Features
   - 合并qq小程序分支
