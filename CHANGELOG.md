@@ -1,6 +1,7 @@
 ## [0.3.3-alpha.6]
 ### Features
   - 组件导出依赖分离
+  - 可通过命令行配置 preview 预览页是否打开
   
 ## [0.3.3-alpha.5]
 ### Features
