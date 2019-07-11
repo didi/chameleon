@@ -28,7 +28,7 @@ class Compiler {
         moduleType: 'asset'
       }
     ]
-    this.outputFiles = {}; // 输出文件 key为文件路径 value为输出文件内容
+    this.outputFiles = []; // 输出文件 filePath为文件路径 conent为输出文件内容 addHash 是否添加hash
     this.projectGraph = null;
     this.log = new Log({
       level: plugin.logLevel || 2
@@ -53,7 +53,7 @@ class Compiler {
 
   run(modules) {
     this.projectGraph = null;
-    this.outputFiles = {};
+    this.outputFiles = [];
     this.hasCompiledNode = [];
     this.module2Node(modules);
     this.customCompile();
@@ -107,7 +107,7 @@ class Compiler {
           if (this.userPlugin.assetsPrePath) {
             outputPath = this.userPlugin.assetsPrePath + outputPath;
           }
-          this.writeFile(outputPath, item._bufferSource);
+          this.writeFile(outputPath, item._bufferSource, false);
         }
         assetPublicMap[item.resource] = item._publicPath;
       }
@@ -270,13 +270,18 @@ class Compiler {
     }
   }
 
-
-  writeFile(filePath, content) {
-    if (this.outputFiles[filePath]) {
-      throw new Error(`has already write file ${filePath}`);
-    } else {
-      this.outputFiles[filePath] = content;
-    }
+  /**
+   * 
+   * @param {*} filePath 
+   * @param {*} content 
+   * @param {*} addHash 当配置文件中hash为true时 是否给该文件添加hash 
+   */
+  writeFile(filePath, content, addHash = true) {
+    this.outputFiles.push({
+      filePath,
+      content,
+      addHash
+    })
   }
 
   emitFiles() {
@@ -294,42 +299,41 @@ class Compiler {
     }
 
     let outputPath = this.webpackCompiler.options.output.path;
-    for (let key in this.outputFiles) {
-      if (this.outputFiles.hasOwnProperty(key)) {
-        let outFilePath = path.join(outputPath, key);
-        if (minimize === true && minimizeExt) {
-          let ext = path.extname(outFilePath);
-          let miniType = minimizeExtMap[ext]; // js or css
-          if (miniType === 'js') {
-            let result = UglifyJs(this.outputFiles[key], outFilePath);
-            if (result === undefined) {
-              throw new Error(`uglifyjs error from ${outFilePath}`);
-            } else {
-              this.outputFiles[key] = result;
-            }
+    debugger
+    this.outputFiles.forEach(item => {
+      let outFilePath = path.join(outputPath, item.filePath);
+      if (minimize === true && minimizeExt) {
+        let ext = path.extname(outFilePath);
+        let miniType = minimizeExtMap[ext]; // js or css
+        if (miniType === 'js') {
+          let result = UglifyJs(item.content, outFilePath);
+          if (result === undefined) {
+            throw new Error(`uglifyjs error from ${outFilePath}`);
+          } else {
+            item.content = result;
           }
+        }
 
-          if (miniType === 'css') {
-            let result = UglifyCSS(this.outputFiles[key], outFilePath);
-            if (result === undefined) {
-              throw new Error(`uglifycss error from ${outFilePath}`);
-            } else {
-              this.outputFiles[key] = result;
-            }
+        if (miniType === 'css') {
+          let result = UglifyCSS(item.content, outFilePath);
+          if (result === undefined) {
+            throw new Error(`uglifycss error from ${outFilePath}`);
+          } else {
+            item.content = result;
           }
-        }
-        if (hash === true) {
-          outFilePath = cmlUtils.addHashName(outFilePath, cmlUtils.createMd5(this.outputFiles[key]))
-        }
-        if (typeof this.outputFiles[key] === 'string') {
-          cmlUtils.fse.outputFileSync(outFilePath, this.outputFiles[key])
-        } else {
-          cmlUtils.fse.outputFileSync(outFilePath, this.outputFiles[key], {
-            encoding: 'binary'
-          })
         }
       }
-    }
+      if (hash === true && item.addHash === true) {
+        outFilePath = cmlUtils.addHashName(outFilePath, cmlUtils.createMd5(item.content))
+      }
+      if (typeof item.content === 'string') {
+        cmlUtils.fse.outputFileSync(outFilePath, item.content)
+      } else {
+        cmlUtils.fse.outputFileSync(outFilePath, item.content, {
+          encoding: 'binary'
+        })
+      }
+    })
   }
 
   getRouterConfig() {
