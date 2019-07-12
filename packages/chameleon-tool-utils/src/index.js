@@ -296,7 +296,7 @@ _.getJsonFileContent = function (filePath, confType) {
       if (copyNpm && copyNpm.length > 0) {
         copyNpm.forEach(function(npmName) {
           let packageJson = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
-          let cmlConfig = packageJson.cml && packageJson.cml[confType]; 
+          let cmlConfig = packageJson.cml && packageJson.cml[confType];
           if (cmlConfig && cmlConfig.pages && cmlConfig.pages.length > 0) {
             cmlConfig.pages.forEach(item => {
               if (!~targetObject.pages.indexOf(item)) {
@@ -311,7 +311,8 @@ _.getJsonFileContent = function (filePath, confType) {
       // 处理subProject配置的npm包中cml项目的页面
       let subProject = cml.config.get().subProject;
       if (subProject && subProject.length > 0) {
-        subProject.forEach(function(npmName) {
+        subProject.forEach(function(item) {
+          let { npmName } = item;
           let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
           npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
             let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
@@ -997,7 +998,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       type = 'app';
     } else {
       let subProject = cml.config.get().subProject || [];
-      let npmNames = subProject.map(item => 'node_modules/' + item);
+      let npmNames = subProject.map(item => 'node_modules/' + item.npmName);
       let subProjectIndex = -1;
       for (let i = 0; i < npmNames.length; i++) {
         if (~cmlFilePath.indexOf(npmNames[i])) {
@@ -1007,10 +1008,8 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       }
       // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
       if (subProjectIndex != -1) {
-        let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex]);
-        let pageFiles = routerConfig.routes.map(item => {
-          return path.join(context, 'node_modules', subProject[subProjectIndex], 'src', item.path + '.cml');
-        })
+        let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex].npmName);
+        let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', subProject[subProjectIndex].npmName, 'src', item.path + '.cml'))
         // 如果是配置的路由则是page
         if (~pageFiles.indexOf(cmlFilePath)) {
           type = 'page';

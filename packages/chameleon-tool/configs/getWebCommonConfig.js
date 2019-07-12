@@ -49,8 +49,8 @@ module.exports = function (options) {
       check: cml.config.get().check,
       cmss: cml.config.get().cmss, // 传递给模板编译，处理web端内置style
       isInjectBaseStyle: cml.config.get().baseStyle.web === true,
-      isWrapComponent
-
+      isWrapComponent,
+      subProject: cml.config.get().subProject
     }
   }
   ]

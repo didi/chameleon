@@ -49,18 +49,26 @@ module.exports = function (content) {
   }
 
   //loader的类型  wx  web weex
-  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isWrapComponent = true} = options;
+  const {cmlType, media, builtinNpmName, cmss = defaultCmss, isWrapComponent = true, subProject = []} = options;
   let { isInjectBaseStyle = true } = options;
   //处理拿到json对象, 使用baseStyle来配置是否注入基础样式
   jsonObject = cmlUtils.getJsonFileContent(self.resourcePath, cmlType);
+  
+  // 处理子项目的isInjectBaseStyle
+  if (subProject.length) {
+    subProject.forEach(item => {
+      if (self.resourcePath.indexOf(item.npmName) > -1 && item.isInjectBaseStyle !== undefined) {
+        isInjectBaseStyle = item.isInjectBaseStyle;
+      }
+    })
+  }
+  
 
   if (jsonObject && jsonObject.baseStyle !== undefined) {
     isInjectBaseStyle = jsonObject.baseStyle;
   }
 
-  options.isInjectBaseStyle = isInjectBaseStyle;
-
-
+  
   if(isInjectBaseStyle && cmlType === 'weex') {
     content = prehandle.injectWeexBaseStyle(content, self);
   }

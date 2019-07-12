@@ -97,7 +97,7 @@ module.exports = function (options) {
         loader: 'file-loader',
         options: {
           name: getstaticPath('media')
-         
+
         }
       },
       {
@@ -197,7 +197,7 @@ module.exports = function (options) {
     commonConfig.plugins = commonConfig.plugins.concat([
       new OptimizeCSSPlugin({
         assetNameRegExp: /\.css$/,
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false } 
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
       }),
       new UglifyJsPlugin({})
     ])
@@ -215,8 +215,9 @@ module.exports = function (options) {
 
   let subProject = cml.config.get().subProject;
   if (subProject && subProject.length > 0) {
-    subProject.forEach(npmName => {
-      let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'),{encoding:'utf-8'}));
+    subProject.forEach(item => {
+      let { npmName } = item;
+      let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
       let cmlConfig = packageJSON.cml || {};
       let definePlugin = cmlConfig.definePlugin;
       if (definePlugin) {
