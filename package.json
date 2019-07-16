@@ -8,6 +8,8 @@
     "clear": "rm -rf package-lock.json  packages/*/package-lock.json",
     "clear-all": "rimraf package-lock.json packages/*/node_modules packages/*/package-lock.json"
   },
+  "author": "Chameleon-Team",
+  "license": "Apache",
   "devDependencies": {
     "istanbul": "^0.4.5",
     "lerna": "^3.5.1"
