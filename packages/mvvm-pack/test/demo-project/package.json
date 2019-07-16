@@ -1,0 +1,17 @@
+{
+  "name": "fse",
+  "version": "1.0.0",
+  "description": "A chameleon project",
+  "author": "",
+  "private": true,
+  "scripts": {},
+  "license": "MIT",
+  "dependencies": {
+    "chameleon-runtime": "~1.1.0",
+    "chameleon-store": "~1.0.0",
+    "cml-ui": "~1.0.0",
+    "chameleon-ui-builtin": "~1.0.0",
+    "chameleon-api": "~0.1.0",
+    "chameleon-bridge": "~0.1.1"
+  }
+}

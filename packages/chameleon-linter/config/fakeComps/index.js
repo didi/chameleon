@@ -5,7 +5,7 @@ const list = [{
     methods: [],
     props: [{
       name: 'routerConfig',
-      required: true
+      required: false
     }],
     events: []
   }

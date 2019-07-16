@@ -181,7 +181,6 @@ module.exports = function(options) {
     exportConfig.externals = externals;
   }
 
-
   return merge.smart(getWebCommonConfig(options), exportConfig);
 
 

@@ -49,7 +49,6 @@ module.exports = async (currentWorkspace, needOutputWarnings = true) => {
     console.log(chalk.red('[ERROR] ') + 'The current project is not a chameleon project!');
     return;
   }
-
   let results = [];
 
   if (config.getRuleOption('core-files-check')) {

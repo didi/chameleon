@@ -136,13 +136,16 @@ function getInterfacePortionClassDef(ast) {
           });
         }
 
-        // 参数
         path.node.body.body.forEach(define => {
           if (define.type == 'ClassProperty') {
             clazz.properties.push(define.key.name);
           }
-          else if (define.type == 'ClassMethod') {
-            clazz.methods.push(define.key.name);
+          else if (define.key.name == 'methods') {
+            define.value.properties.filter(property => {
+              return property.type === 'ObjectMethod';
+            }).forEach(property => {
+              clazz.methods.push(property.key.name);
+            });
           }
         });
 

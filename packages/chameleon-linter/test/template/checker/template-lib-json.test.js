@@ -48,5 +48,13 @@ describe('template lib json', function() {
     expect(results['c-radio']).to.have.deep.property('methods', ['check']);
     expect(results['c-radio']).to.have.nested.property('events[0].name', 'radiocheked');
     expect(results['c-radio']).to.have.property('path', radioPath);
+  });
+
+  it('should pass plugin:// prefix component test', async function() {
+    let filepath = '../docs/check/success/index-lib-check-plugin.cml';
+    let {parseResults, filepath: fullFilePath} = await getParseResults(filepath);
+    let results = jsonAstParser.getUsingComponents(parseResults.json.obj, fullFilePath);
+    expect(results).to.have.property('c-radio');
+    expect(results).to.not.have.property('c-plugin');
   })
 });

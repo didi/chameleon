@@ -1,0 +1,49 @@
+<template>
+  <app store="{{store}}" router-config="{{routerConfig}}"></app>
+</template>
+
+<script>
+import store from '../store/index.js'
+import routerConfig from '../router.config.json';
+
+class App {
+  data = {
+    store,
+    routerConfig
+  }
+  created(res) {
+  }
+}
+
+export default new App();
+</script>
+
+<style>
+
+</style>
+
+<script cml-type="json">
+{
+  "wx": {
+    "window": {
+      "backgroundTextStyle":"light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "Chameleon",
+      "navigationBarTextStyle":"black"
+    }
+  },
+  "baidu": {
+    "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#ffffff",
+      "navigationBarTitleText": "Chameleon",
+      "navigationBarTextStyle": "black"
+    }
+  },
+  "alipay": {
+      "window": {
+        "defaultTitle": "Chameleon"
+      }
+  }
+}
+</script>

@@ -10,7 +10,6 @@ const assert = chai.assert;
 const expect = chai.expect;
 const path = require('path');
 
-
 describe('cml', function() {
 
 
@@ -411,6 +410,49 @@ describe('cml', function() {
         column: 2,
         token: 'platform'
       });
+    });
+  });
+  describe('check-interface-include', async function() {
+    before(async function() {
+      config.init(path.resolve(__dirname, './checker/cml/script/'));
+    });
+    it('should fail because of not found include interface file', async function() {
+      const interfacePath = path.resolve(__dirname, './checker/cml/script/include/include-interface-fail.interface');
+      const result = await fileSpec(interfacePath, 'interface');
+      expect(result).to.have.property('core');
+      expect(result.core.messages[0].msg).to.contain('include/include-interface-fail.interface');
+      expect(result.core.file).to.equal(interfacePath);
+    });
+    it('should fail because of not found include src js file', async function() {
+      const interfacePath = path.resolve(__dirname, './checker/cml/script/include/include-src-js-fail.interface');
+      const result = await fileSpec(interfacePath, 'interface');
+      expect(result).to.have.property('core');
+      expect(result.core.messages[0].msg).to.contain('someplatform.js');
+      expect(result.core.file).to.equal(interfacePath);
+    });
+    it('should fail because of not found include src cml file', async function() {
+      const interfacePath = path.resolve(__dirname, './checker/cml/script/include/include-src-cml-fail.interface');
+      const result = await fileSpec(interfacePath, 'interface');
+      expect(result).to.have.property('core');
+      expect(result.core.messages[0].msg).to.contain('someplatform.cml');
+      expect(result.core.file).to.equal(interfacePath);
+    });
+    it('should fail test because class name mismatch', async function() {
+      const interfacePath = path.resolve(__dirname, './checker/cml/script/include/include-src-js-class-name-fail.interface');
+      const result = await fileSpec(interfacePath, 'interface');
+      expect(result['interface'].messages[0].msg).to.contain('ExtendInterfaceInterface');
+    });
+    it('should fail test because missing prop', async function() {
+      const interfacePath = path.resolve(__dirname, './checker/cml/script/include/include-src-js-mis-prop-fail.interface');
+      const result = await fileSpec(interfacePath, 'interface');
+      expect(result['interface'].messages[0].token).to.equal('setTitle');
+      expect(result['interface'].messages[0].msg).to.contain('someplatform-mis-prop.js');
+    });
+    it('should fail test because missing prop in someplatform cml file', async function() {
+      const interfacePath = path.resolve(__dirname, './checker/cml/script/include/include-src-cml-mis-prop-fail.interface');
+      const result = await fileSpec(interfacePath, 'interface');
+      expect(result['interface'].messages[0].token).to.equal('age');
+      expect(result['interface'].messages[0].msg).to.contain('someplatform-mis-prop.cml');
     });
   });
 });
