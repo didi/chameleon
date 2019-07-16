@@ -65,9 +65,7 @@ module.exports = function(source) {
             exports.default = ${helper.toUpperCase(runtimeNpmName)}.${insertMethodMap[fileType]}(exports.default).getOptions();\n
             `
           }
-
           content += runtimeScript;
-          
           output = getScriptCode(self, cmlType, content, media, check);
         }
       })
