@@ -567,7 +567,7 @@ describe('index.js', function () {
     cml.config = {
       get() {
         return {
-          subProject: ['cml-pages'],
+          subProject: [{npmName: 'cml-pages'}],
           copyNpm: {
             wx: ['copy-npm']
           }

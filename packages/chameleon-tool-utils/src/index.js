@@ -312,6 +312,7 @@ _.getJsonFileContent = function (filePath, confType) {
       let subProject = cml.config.get().subProject;
       if (subProject && subProject.length > 0) {
         subProject.forEach(function(item) {
+          
           let { npmName } = item;
           let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
           npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
