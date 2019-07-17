@@ -413,7 +413,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'web', cpOptions).source).to.equal(`<div><div class="cls1 "><thirdComp2 class="cls2 "></thirdComp2></div></div>`);
     });
     it('test-class-noinjected-weex', function() {
-      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`div><div v-bind:class="_weexClassProxy(' cls1')"><thirdComp2 v-bind:class="_weexClassProxy(' cls2')"></thirdComp2></div></div>`);
+      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`<div><div v-bind:class="_weexClassProxy(' cls1')"><thirdComp2 v-bind:class="_weexClassProxy(' cls2')"></thirdComp2></div></div>`);
     });
     it('test-class-noinjected-alipay', function() {
       expect(compileTemplate(source, 'alipay', cpOptions).source).to.equal(`<view class=" cml-5766bf8a"><view class="cls1  cml-5766bf8a"><view class="cls2  cml-5766bf8a"><thirdComp2 class="cls2  cml-5766bf8a"></thirdComp2></view></view></view>`);
