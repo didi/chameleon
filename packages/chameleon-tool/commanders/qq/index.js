@@ -1,7 +1,6 @@
-
-exports.name = 'weex';
+exports.name = 'qq';
 exports.usage = '[command] [options]';
-exports.desc = 'tools for the weex project';
+exports.desc = 'tools for the qq miniprogram project';
 
 /* istanbul ignore next */
 exports.register = function (commander) {
@@ -10,15 +9,18 @@ exports.register = function (commander) {
     .action(function (...args) {
       cml.utils.checkProjectConfig();
       /* eslint-disable */
+      //提高cml -h命令速度 
       cml.log.startBuilding();
-      const inquirer = require('inquirer');
-      const utils = require('../utils.js');
-      /* eslint-disable */
+
+      const inquirer = require('inquirer');   
+      const utils = require('../utils.js'); 
+      /* eslint-disable */  
+
+      
       // 不能删除
-      var options = args.pop(); // eslint-disable-line
+      var options = args.pop(); // eslint-disable-line  
 
       var cmd = args.shift();
-
       if (cmd) {
         handlerCmd(cmd);
       } else {
@@ -28,8 +30,7 @@ exports.register = function (commander) {
           message: 'Which do you want to do?',
           choices: [
             'dev',
-            'build',
-            'proxy'
+            'build'
           ]
         }]
         inquirer.prompt(questions).then(answers => {
@@ -37,22 +38,21 @@ exports.register = function (commander) {
         })
       }
 
-      function handlerCmd(cmd) {
+      function handlerCmd (cmd) {
         cml.media = cmd;
-        utils.startReleaseOne(cmd, 'weex');
-
+        utils.startReleaseOne(cmd, 'qq');
       }
 
-
     })
+
   commander.on('--help', function() {
     var cmd = `
   Commands:
-    dev     develop the project for weex 
-    build   build the project for weex 
+    dev      develop the project for qq miniprogram
+    build    build the project for qq miniprogram
   Examples:
-    cml weex dev
-    cml weex build
+    cml qq dev
+    cml qq build
     `
     console.log(cmd)
   })

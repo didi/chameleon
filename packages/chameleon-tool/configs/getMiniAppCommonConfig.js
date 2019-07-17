@@ -27,6 +27,10 @@ module.exports = function (options) {
     baidu: {
       css: 'css',
       templateReg: /.swan/
+    },
+    qq: {
+      css: 'qss',
+      templateReg: /.qml/
     }
   }
 
@@ -47,7 +51,8 @@ module.exports = function (options) {
             path: path.join(cml.root, `./configs/postcss/${type}/.postcssrc.js`)
           }
         },
-        isInjectBaseStyle: cml.config.get().baseStyle[type] === true
+        isInjectBaseStyle: cml.config.get().baseStyle[type] === true,
+        subProject: cml.config.get().subProject
       }
     }];
 

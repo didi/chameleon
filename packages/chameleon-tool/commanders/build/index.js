@@ -1,9 +1,9 @@
 
-
 exports.name = 'build';
 exports.usage = '';
 exports.desc = 'start build mode';
 
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .action(function (...args) {

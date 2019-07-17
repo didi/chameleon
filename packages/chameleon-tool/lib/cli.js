@@ -14,13 +14,11 @@ module.exports.run = function () {
   } else {
     commander.usage('[command] [options]')
     commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
-    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay'];
-    cmdList = cmdList.map(key => {
-      return {
+    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay', 'qq'];
+    cmdList = cmdList.map(key => ({
         key: 'key',
         cmd: require(`../commanders/${key}/index.js`) // eslint-disable-line 
-      }
-    })
+      }))
 
     cmdList.forEach(item => {
       let cmd = item.cmd;
@@ -28,6 +26,7 @@ module.exports.run = function () {
         commander
           .command(cmd.name)
           .option('-l, --log [debug]', 'logLevel')
+          .option('-n, --nopreview ', "don't auto open preview")
           .usage(cmd.usage)
           .description(cmd.desc)
       );

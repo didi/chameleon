@@ -15,6 +15,8 @@ const url = require('url')
 const {createRoutesReact} = require('./web-socket.js')
 const http = require('http');
 const bodyParser = require('body-parser')
+const argv = require('minimist')(process.argv);
+const nopreview = argv.nopreview || argv.n;
 
 /**
  * webpackConfig webpack的配置对象
@@ -25,7 +27,6 @@ const bodyParser = require('body-parser')
 module.exports = function({webpackConfig, options, compiler}) {
   // 执行web之前先更新server模板
   updateServerTpl();
-
   var port = utils.getFreePort().webServerPort;
   var autoOpenBrowser = true;
   var app = express();
@@ -116,7 +117,7 @@ module.exports = function({webpackConfig, options, compiler}) {
 
     cml.log.notice('Listening at ' + uri);
     // when env is testing, don't need open it
-    if (autoOpenBrowser) {
+    if (autoOpenBrowser && !nopreview) {
       opn(uri)
     }
     let proxyObj = cml.config.get().proxy || {};

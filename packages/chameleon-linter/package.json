@@ -1,6 +1,6 @@
 {
   "name": "chameleon-linter",
-  "version": "0.3.3-alpha.4",
+  "version": "0.3.3-alpha.7",
   "description": "cml规范校验工具",
   "main": "index.js",
   "scripts": {
@@ -24,10 +24,10 @@
     "@babel/traverse": "^7.1.4",
     "bulk-require": "^1.0.1",
     "chalk": "^2.4.1",
-    "chameleon-tool-utils": "0.3.3-alpha.4",
-    "cml-component-parser": "0.3.3-alpha.4",
-    "cml-htmllint": "0.3.3-alpha.4",
-    "cml-js-parser": "0.3.3-alpha.4",
+    "chameleon-tool-utils": "0.3.3-alpha.7",
+    "cml-component-parser": "0.3.3-alpha.7",
+    "cml-htmllint": "0.3.3-alpha.7",
+    "cml-js-parser": "0.3.3-alpha.7",
     "commander": "^2.19.0",
     "glob": "^7.1.3",
     "json-lint": "^0.1.0",

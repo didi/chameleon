@@ -26,6 +26,7 @@ module.exports = function (options) {
   let publicPath;
   let defaultPublichPathMap = {
     'wx': `http://${config.ip}:${webServerPort}/wx/`,
+    'qq': `http://${config.ip}:${webServerPort}/qq/`,
     'alipay': `http://${config.ip}:${webServerPort}/alipay/`,
     'baidu': `http://${config.ip}:${webServerPort}/baidu/`, // baidu小程序的publicPath不能设置能/  所以在启动dev服务的时候 也将dist作为静态资源
     'web': `http://${config.ip}:${webServerPort}/`,
@@ -96,7 +97,7 @@ module.exports = function (options) {
         loader: 'file-loader',
         options: {
           name: getstaticPath('media')
-         
+
         }
       },
       {
@@ -196,7 +197,7 @@ module.exports = function (options) {
     commonConfig.plugins = commonConfig.plugins.concat([
       new OptimizeCSSPlugin({
         assetNameRegExp: /\.css$/,
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false } 
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
       }),
       new UglifyJsPlugin({})
     ])
@@ -214,8 +215,9 @@ module.exports = function (options) {
 
   let subProject = cml.config.get().subProject;
   if (subProject && subProject.length > 0) {
-    subProject.forEach(npmName => {
-      let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'),{encoding:'utf-8'}));
+    subProject.forEach(item => {
+      let { npmName } = item;
+      let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
       let cmlConfig = packageJSON.cml || {};
       let definePlugin = cmlConfig.definePlugin;
       if (definePlugin) {

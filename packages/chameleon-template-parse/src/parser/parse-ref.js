@@ -5,7 +5,7 @@ const { SyncHook } = require("tapable");
 let parseRef = new SyncHook(['args'])
 parseRef.tap('wx-cml', (args) => {
   let { path, type, options: { lang } } = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
+  if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
     let parentPath = path.parentPath;
     let attributes = parentPath.node.attributes;
     let idNode = attributes.find((attr) => attr.name.name === 'id');
@@ -29,7 +29,7 @@ parseRef.tap('wx-cml', (args) => {
 });
 parseRef.tap('wx-vue', (args) => {
   let { path, type, options: { lang } } = args;
-  if (lang === 'vue' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
+  if (lang === 'vue' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
     let parentPath = path.parentPath;
     let attributes = parentPath.node.attributes;
     let idNode = attributes.find((attr) => attr.name.name === 'id');

@@ -21,6 +21,9 @@ module.exports = function (options) {
     },
     baidu: {
       cssReg: /\.css$/
+    },
+    qq: {
+      cssReg: /(\.qss|\.css)$/
     }
   }
   const targetObj = miniMap[type];

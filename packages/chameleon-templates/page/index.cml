@@ -50,6 +50,9 @@ export default new Replace();
     "usingComponents": {
     }
   },
+  "qq": {
+    
+  },
   "wx": {
     "navigationBarTitleText": "index",
     "backgroundTextStyle": "dark",
