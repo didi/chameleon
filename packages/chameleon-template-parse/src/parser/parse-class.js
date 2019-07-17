@@ -60,13 +60,13 @@ parseClass.tap('weex-cml', (args) => {
     } else if (classNodes.length === 1) {
       classNodes.forEach((itemNode) => {
         if (utils.isMustacheReactive(itemNode.value.value)) { // 动态的
-          const dealedClassNodeValue = `${itemNode.value.value} ${extraClass}` ;
+          const dealedClassNodeValue = `${extraClass} ${itemNode.value.value}` ;
           itemNode.name.name = `:${itemNode.name.name}`
           const newDynamicClassNodeValue = utils.getReactiveValue(dealedClassNodeValue);
           itemNode.value.value = `${weexMixins.weexClassProxy}(${newDynamicClassNodeValue})`
         } else {
           itemNode.name.name = `:${itemNode.name.name}`
-          const newStaticClassNodeValue = `${itemNode.value.value} ${extraClass}`
+          const newStaticClassNodeValue = `${extraClass} ${itemNode.value.value}`
           itemNode.value.value = `${weexMixins.weexClassProxy}('${newStaticClassNodeValue}')`
         }
 
