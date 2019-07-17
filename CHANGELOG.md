@@ -1,3 +1,15 @@
+## [0.3.3]
+### Features:
+  - 组件导出依赖分离
+  - 可通过命令行配置 preview 预览页是否打开
+  - 合并qq小程序分支
+  - web端原生origin click事件不处理成tap
+  - 修改全局变量校验失效问题，同时增加 qq 全局变量名单。
+  - 模板变量校验添加 LogicalExpression 处理逻辑表达式里的变量
+  - 支持以组件、页面、子项目粒度配置是否注入默认样式
+### Bug Fixes
+  - 修改cover-view报未定义组件问题件
+  - 修复引入zepto库后tap事件触发两次问题
 ## [0.3.3-alpha.6]
 ### Features
   - 组件导出依赖分离
