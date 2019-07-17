@@ -321,7 +321,7 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseClassStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-class-transform', function() {
-      expect(result).to.equal(`<view :class="_weexClassProxy('cls1 cls2  cml-base cml-view')"><view :class="_weexClassProxy((true?'cls3':'cls4')+'  cml-base cml-view')"></view></view>`)
+      expect(result).to.equal(`<view :class="_weexClassProxy(' cml-base cml-view cls1 cls2')"><view :class="_weexClassProxy(' cml-base cml-view '+(true?'cls3':'cls4'))"></view></view>`)
     });
   });
   describe('parseClassStatement-wx-alipay-baidu', function() {

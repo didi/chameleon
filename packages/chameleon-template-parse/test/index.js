@@ -1,7 +1,6 @@
 const compileTemplate = require('../src/index.js');
-const source = `<view class="demo-com" c-bind:click="handleClick" c-bind:tap="handleTap">
-<thirdComp2 c-bind:click="handleClick" c-bind:tap="handleTap">index-handleTouchStart</thirdComp2>
-<cube-button c-bind:click="handleClick" c-bind:tap="handleTap">index-handleTouchStart</cube-button>
+const source = `<view class="demo-com" >
+
 </view>`
 // <view><text :class="{{true? 'bg-green':''}}" >fafafa</text></view>
 // <view><text :class="true? 'bg-green':''" >fafafa</text></view>
@@ -38,12 +37,12 @@ let options = {lang: 'cml',
 };
 console.log('before-compile', source);
 let result_web = compileTemplate(source, 'web', options);
-// let result_weex = compileTemplate(source, 'weex', options);
+let result_weex = compileTemplate(source, 'weex', options);
 // let result_wx = compileTemplate(source, 'wx', options);
 // let result_baidu = compileTemplate(source, 'baidu', options);
 // let result_alipay = compileTemplate(source, 'alipay', options);
-console.log('result_web', result_web)
-// console.log('result_weex', result_weex)
+// console.log('result_web', result_web)
+console.log('result_weex', result_weex)
 // console.log('result_wx', result_wx)
 // console.log('result_baidu', result_baidu)
 // console.log('result_alipay', result_alipay)

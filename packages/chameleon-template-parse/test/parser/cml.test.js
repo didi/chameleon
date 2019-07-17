@@ -263,7 +263,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="(\'cls1 \'+(true ? \'cls2\':\'cls3\')+\'  cml-base cml-button\')"></cml-buildin-button><thirdComp1 class="cls4  cml-base cml-thirdComp1"></thirdComp1></div>`);
     });
     it('parse-class-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy(\'cls1 \'+(true ? \'cls2\':\'cls3\')+\'  cml-base cml-button\')"></cml-buildin-button><thirdComp1 v-bind:class="_weexClassProxy(\'cls4  cml-base cml-thirdComp1\')"></thirdComp1></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy(' cml-base cml-button cls1 '+(true ? 'cls2':'cls3'))"></cml-buildin-button><thirdComp1 v-bind:class="_weexClassProxy(' cml-base cml-thirdComp1 cls4')"></thirdComp1></div>`);
     });
     // wx baidu alipay
     it('parse-class-miniapp', function() {
@@ -413,7 +413,7 @@ describe('parse-template-cml-all', function() {
       expect(compileTemplate(source, 'web', cpOptions).source).to.equal(`<div><div class="cls1 "><thirdComp2 class="cls2 "></thirdComp2></div></div>`);
     });
     it('test-class-noinjected-weex', function() {
-      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`<div><div v-bind:class="_weexClassProxy('cls1 ')"><thirdComp2 v-bind:class="_weexClassProxy('cls2 ')"></thirdComp2></div></div>`);
+      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`div><div v-bind:class="_weexClassProxy(' cls1')"><thirdComp2 v-bind:class="_weexClassProxy(' cls2')"></thirdComp2></div></div>`);
     });
     it('test-class-noinjected-alipay', function() {
       expect(compileTemplate(source, 'alipay', cpOptions).source).to.equal(`<view class=" cml-5766bf8a"><view class="cls1  cml-5766bf8a"><view class="cls2  cml-5766bf8a"><thirdComp2 class="cls2  cml-5766bf8a"></thirdComp2></view></view></view>`);
