@@ -1,0 +1,4811 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>audio · chameleon</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight-code/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-code3/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../expand/expand.html" />
+    
+    
+    <link rel="prev" href="video.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../../../assets/favicon.ico' type="image/x-icon">
+    
+    
+    
+    
+
+    </head>
+    <body>
+        
+
+
+<div class="custom-loading-bg">
+  <div class="custom-loading-wrap">
+    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+    <path fill="#1D6EF0" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z" transform="rotate(188.365 25 25)">
+      <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform>
+      </path>
+    </svg>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="book-nav">
+  
+    <a class="book-nav-brand" href="/">
+      
+        <img class="book-nav-brand-logo" src="../../../assets/cml-logo.png" alt="Chameleon">
+      
+    </a>
+  
+  
+    <div class="book-nav-list">
+      
+        <a href="/doc/quick_start/quick_start.html" data-part="quick_start" class="book-nav-list-link">快速上手</a>
+      
+        <a href="/doc/framework/framework.html" data-part="framework" class="book-nav-list-link">框架</a>
+      
+        <a href="/doc/component/component.html" data-part="component" class="book-nav-list-link">组件</a>
+      
+        <a href="/doc/api/api.html" data-part="api" class="book-nav-list-link">API</a>
+      
+        <a href="/doc/extend/advanced_use.html" data-part="example" class="book-nav-list-link">高级使用</a>
+      
+        <a href="/doc/example/main.html" data-part="tutorial" class="book-nav-list-link">教程</a>
+      
+        <a href="/doc/framework/faq.html" data-part="faq" class="book-nav-list-link">FAQ</a>
+      
+        <a href="/doc/update_record.html" data-part="log" class="book-nav-list-link">更新记录</a>
+      
+    </div>
+  
+</div>
+
+
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../" data-part="quick_start">
+            
+                <a href="../../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../../quick_start/quick_start.html" data-part="quick_start">
+            
+                <a href="../../../quick_start/quick_start.html">
+            
+                    
+                    快速上手
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../../example/guide.html" data-part="quick_start">
+            
+                <a href="../../../example/guide.html">
+            
+                    
+                    cml 迁移指南
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../../../example/wx_to_chameleon.html" data-part="quick_start">
+            
+                <a href="../../../example/wx_to_chameleon.html">
+            
+                    
+                    微信小程序项目迁移 chameleon 指引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="../../../example/web_to_chameleon.html" data-part="quick_start">
+            
+                <a href="../../../example/web_to_chameleon.html">
+            
+                    
+                    web 项目迁移 chameleon 指引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="../../../example/weex_to_chameleon.html" data-part="quick_start">
+            
+                <a href="../../../example/weex_to_chameleon.html">
+            
+                    
+                    weex 项目迁移 chameleon 指引
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../../framework/framework.html" data-part="framework">
+            
+                <a href="../../../framework/framework.html">
+            
+                    
+                    框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../../quick_start/cml_cmd.html" data-part="framework">
+            
+                <a href="../../../quick_start/cml_cmd.html">
+            
+                    
+                    脚手架工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../../framework/structure.html" data-part="framework">
+            
+                <a href="../../../framework/structure.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../../view/view.html" data-part="framework">
+            
+                <a href="../../../view/view.html">
+            
+                    
+                    视图层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.1" data-path="../../../view/cmss.html" data-part="framework">
+            
+                <a href="../../../view/cmss.html">
+            
+                    
+                    CMSS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.1.1" data-path="../../../view/cmss/style_way.html" data-part="framework">
+            
+                <a href="../../../view/cmss/style_way.html">
+            
+                    
+                    样式使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.2" data-path="../../../view/cmss/layout.html" data-part="framework">
+            
+                <a href="../../../view/cmss/layout.html">
+            
+                    
+                    布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.3" data-path="../../../view/cmss/box.html" data-part="framework">
+            
+                <a href="../../../view/cmss/box.html">
+            
+                    
+                    盒模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.4" data-path="../../../view/cmss/text.html" data-part="framework">
+            
+                <a href="../../../view/cmss/text.html">
+            
+                    
+                    文本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.5" data-path="../../../view/cmss/unit.html" data-part="framework">
+            
+                <a href="../../../view/cmss/unit.html">
+            
+                    
+                    单位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.6" data-path="../../../view/cmss/color.html" data-part="framework">
+            
+                <a href="../../../view/cmss/color.html">
+            
+                    
+                    颜色
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.7" data-path="../../../view/cmss/css_diff.html" data-part="framework">
+            
+                <a href="../../../view/cmss/css_diff.html">
+            
+                    
+                    样式多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.8" data-path="../../../view/cmss/base_style.html" data-part="framework">
+            
+                <a href="../../../view/cmss/base_style.html">
+            
+                    
+                    一致性基础样式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.9" data-path="../../../example/web_wx.html" data-part="framework">
+            
+                <a href="../../../example/web_wx.html">
+            
+                    
+                    只跨 web 和小程序的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2" data-path="../../../view/cml.html" data-part="framework">
+            
+                <a href="../../../view/cml.html">
+            
+                    
+                    CML-标准语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.2.1" data-path="../../../view/databind.html" data-part="framework">
+            
+                <a href="../../../view/databind.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2.2" data-path="../../../view/condition.html" data-part="framework">
+            
+                <a href="../../../view/condition.html">
+            
+                    
+                    条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2.3" data-path="../../../view/iterator.html" data-part="framework">
+            
+                <a href="../../../view/iterator.html">
+            
+                    
+                    列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2.4" data-path="../../../view/event.html" data-part="framework">
+            
+                <a href="../../../view/event.html">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2.5" data-path="../../../view/component.html" data-part="framework">
+            
+                <a href="../../../view/component.html">
+            
+                    
+                    动态组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2.6" data-path="../../../view/directive.html" data-part="framework">
+            
+                <a href="../../../view/directive.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3" data-path="../../../view/vue.html" data-part="framework">
+            
+                <a href="../../../view/vue.html">
+            
+                    
+                    CML-类 vue 语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.3.1" data-path="../../../view/databind-vue.html" data-part="framework">
+            
+                <a href="../../../view/databind-vue.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3.2" data-path="../../../view/condition-vue.html" data-part="framework">
+            
+                <a href="../../../view/condition-vue.html">
+            
+                    
+                    条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3.3" data-path="../../../view/iterator-vue.html" data-part="framework">
+            
+                <a href="../../../view/iterator-vue.html">
+            
+                    
+                    列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3.4" data-path="../../../view/event-vue.html" data-part="framework">
+            
+                <a href="../../../view/event-vue.html">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3.5" data-path="../../../view/component-vue.html" data-part="framework">
+            
+                <a href="../../../view/component-vue.html">
+            
+                    
+                    动态组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3.6" data-path="../../../view/directive-vue.html" data-part="framework">
+            
+                <a href="../../../view/directive-vue.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3.7" data-path="../../../view/css-vue.html" data-part="framework">
+            
+                <a href="../../../view/css-vue.html">
+            
+                    
+                    样式语法规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.4" data-path="../../../view/base_component.html" data-part="framework">
+            
+                <a href="../../../view/base_component.html">
+            
+                    
+                    基础组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../../logic/logic.html" data-part="framework">
+            
+                <a href="../../../logic/logic.html">
+            
+                    
+                    逻辑层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.4.1" data-path="../../../logic/data_bind.html" data-part="framework">
+            
+                <a href="../../../logic/data_bind.html">
+            
+                    
+                    响应式数据绑定系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.2" data-path="../../../logic/lifecycle.html" data-part="framework">
+            
+                <a href="../../../logic/lifecycle.html">
+            
+                    
+                    生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.3" data-path="../../../logic/computed.html" data-part="framework">
+            
+                <a href="../../../logic/computed.html">
+            
+                    
+                    计算属性 computed
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.4" data-path="../../../logic/watch.html" data-part="framework">
+            
+                <a href="../../../logic/watch.html">
+            
+                    
+                    侦听属性 watch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.5" data-path="../../../logic/API.html" data-part="framework">
+            
+                <a href="../../../logic/API.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6" data-path="../../../logic/store.html" data-part="framework">
+            
+                <a href="../../../logic/store.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.4.6.1" data-path="../../../logic/store/start.html" data-part="framework">
+            
+                <a href="../../../logic/store/start.html">
+            
+                    
+                    开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.2" data-path="../../../logic/store/state.html" data-part="framework">
+            
+                <a href="../../../logic/store/state.html">
+            
+                    
+                    state
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.3" data-path="../../../logic/store/getters.html" data-part="framework">
+            
+                <a href="../../../logic/store/getters.html">
+            
+                    
+                    getters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.4" data-path="../../../logic/store/mutation.html" data-part="framework">
+            
+                <a href="../../../logic/store/mutation.html">
+            
+                    
+                    mutation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.5" data-path="../../../logic/store/action.html" data-part="framework">
+            
+                <a href="../../../logic/store/action.html">
+            
+                    
+                    action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.6" data-path="../../../logic/store/module.html" data-part="framework">
+            
+                <a href="../../../logic/store/module.html">
+            
+                    
+                    子模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.7" data-path="../../../logic/store/structure.html" data-part="framework">
+            
+                <a href="../../../logic/store/structure.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../../framework/custom-component/custom-component.html" data-part="framework">
+            
+                <a href="../../../framework/custom-component/custom-component.html">
+            
+                    
+                    自定义组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.1" data-path="../../../framework/custom-component/cml-cmss.html" data-part="framework">
+            
+                <a href="../../../framework/custom-component/cml-cmss.html">
+            
+                    
+                    组件模板和样式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.2" data-path="../../../framework/custom-component/comp-vm.html" data-part="framework">
+            
+                <a href="../../../framework/custom-component/comp-vm.html">
+            
+                    
+                    组件 VM
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../../framework/settings.html" data-part="framework">
+            
+                <a href="../../../framework/settings.html">
+            
+                    
+                    配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.6.1" data-path="../../../framework/json.html" data-part="framework">
+            
+                <a href="../../../framework/json.html">
+            
+                    
+                    组件配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6.2" data-path="../../../framework/router.html" data-part="framework">
+            
+                <a href="../../../framework/router.html">
+            
+                    
+                    路由配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6.3" data-path="../../../framework/config.html" data-part="framework">
+            
+                <a href="../../../framework/config.html">
+            
+                    
+                    工程配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../component.html" data-part="component">
+            
+                <a href="../../component.html">
+            
+                    
+                    组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../base.html" data-part="component">
+            
+                <a href="../base.html">
+            
+                    
+                    内置组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.1" data-path="../content/view.html" data-part="component">
+            
+                <a href="../content/view.html">
+            
+                    
+                    基础内容
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.1.1" data-path="../content/view.html" data-part="component">
+            
+                <a href="../content/view.html">
+            
+                    
+                    view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.1.2" data-path="../content/cover-view.html" data-part="component">
+            
+                <a href="../content/cover-view.html">
+            
+                    
+                    cover-view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.1.3" data-path="../content/text.html" data-part="component">
+            
+                <a href="../content/text.html">
+            
+                    
+                    text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.1.4" data-path="../../expand/native/richtext.html" data-part="component">
+            
+                <a href="../../expand/native/richtext.html">
+            
+                    
+                    rich-text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.1.5" data-path="../content/page.html" data-part="component">
+            
+                <a href="../content/page.html">
+            
+                    
+                    page
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.1.6" data-path="../content/block.html" data-part="component">
+            
+                <a href="../content/block.html">
+            
+                    
+                    block
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.1.7" data-path="../content/cell.html" data-part="component">
+            
+                <a href="../content/cell.html">
+            
+                    
+                    cell
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2" data-path="../layout/scroller.html" data-part="component">
+            
+                <a href="../layout/scroller.html">
+            
+                    
+                    布局容器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.2.1" data-path="../layout/scroller.html" data-part="component">
+            
+                <a href="../layout/scroller.html">
+            
+                    
+                    scroller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2.2" data-path="../layout/list.html" data-part="component">
+            
+                <a href="../layout/list.html">
+            
+                    
+                    list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2.3" data-path="../layout/container.html" data-part="component">
+            
+                <a href="../layout/container.html">
+            
+                    
+                    container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2.4" data-path="../layout/row.html" data-part="component">
+            
+                <a href="../layout/row.html">
+            
+                    
+                    row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2.5" data-path="../layout/col.html" data-part="component">
+            
+                <a href="../layout/col.html">
+            
+                    
+                    col
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2.6" data-path="../layout/carousel.html" data-part="component">
+            
+                <a href="../layout/carousel.html">
+            
+                    
+                    carousel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2.7" data-path="../layout/carousel-item.html" data-part="component">
+            
+                <a href="../layout/carousel-item.html">
+            
+                    
+                    carousel-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3" data-path="../form/button.html" data-part="component">
+            
+                <a href="../form/button.html">
+            
+                    
+                    表单组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.3.1" data-path="../form/button.html" data-part="component">
+            
+                <a href="../form/button.html">
+            
+                    
+                    button
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3.2" data-path="../form/input.html" data-part="component">
+            
+                <a href="../form/input.html">
+            
+                    
+                    input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3.3" data-path="../form/textarea.html" data-part="component">
+            
+                <a href="../form/textarea.html">
+            
+                    
+                    textarea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3.4" data-path="../form/switch.html" data-part="component">
+            
+                <a href="../form/switch.html">
+            
+                    
+                    switch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3.5" data-path="../form/radio.html" data-part="component">
+            
+                <a href="../form/radio.html">
+            
+                    
+                    radio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3.6" data-path="../form/checkbox.html" data-part="component">
+            
+                <a href="../form/checkbox.html">
+            
+                    
+                    checkbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.4" data-path="image.html" data-part="component">
+            
+                <a href="image.html">
+            
+                    
+                    媒体组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.4.1" data-path="image.html" data-part="component">
+            
+                <a href="image.html">
+            
+                    
+                    image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.4.2" data-path="video.html" data-part="component">
+            
+                <a href="video.html">
+            
+                    
+                    video
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.1.1.4.3" data-path="audio.html" data-part="component">
+            
+                <a href="audio.html">
+            
+                    
+                    audio
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../../expand/expand.html" data-part="component">
+            
+                <a href="../../expand/expand.html">
+            
+                    
+                    扩展组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.2.1" data-path="../../expand/compound/c-toast.html" data-part="component">
+            
+                <a href="../../expand/compound/c-toast.html">
+            
+                    
+                    c-toast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.2" data-path="../../expand/compound/c-loading.html" data-part="component">
+            
+                <a href="../../expand/compound/c-loading.html">
+            
+                    
+                    c-loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.3" data-path="../../expand/compound/c-dialog.html" data-part="component">
+            
+                <a href="../../expand/compound/c-dialog.html">
+            
+                    
+                    c-dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.4" data-path="../../expand/compound/c-popup.html" data-part="component">
+            
+                <a href="../../expand/compound/c-popup.html">
+            
+                    
+                    c-popup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.5" data-path="../../expand/compound/c-tip.html" data-part="component">
+            
+                <a href="../../expand/compound/c-tip.html">
+            
+                    
+                    c-tip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.6" data-path="../../expand/compound/c-actionsheet.html" data-part="component">
+            
+                <a href="../../expand/compound/c-actionsheet.html">
+            
+                    
+                    c-actionsheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.7" data-path="../../expand/compound/c-tab.html" data-part="component">
+            
+                <a href="../../expand/compound/c-tab.html">
+            
+                    
+                    c-tab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.8" data-path="../../expand/compound/c-picker.html" data-part="component">
+            
+                <a href="../../expand/compound/c-picker.html">
+            
+                    
+                    c-picker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.9" data-path="../../expand/polymorphism/c-picker-panel.html" data-part="component">
+            
+                <a href="../../expand/polymorphism/c-picker-panel.html">
+            
+                    
+                    c-picker-panel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.10" data-path="../../expand/polymorphism/c-picker-item.html" data-part="component">
+            
+                <a href="../../expand/polymorphism/c-picker-item.html">
+            
+                    
+                    c-picker-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.11" data-path="../../expand/compound/c-checkbox-group.html" data-part="component">
+            
+                <a href="../../expand/compound/c-checkbox-group.html">
+            
+                    
+                    c-checkbox-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.12" data-path="../../expand/compound/c-radio-group.html" data-part="component">
+            
+                <a href="../../expand/compound/c-radio-group.html">
+            
+                    
+                    c-radio-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.13" data-path="../../expand/compound/c-tabbar.html" data-part="component">
+            
+                <a href="../../expand/compound/c-tabbar.html">
+            
+                    
+                    c-tabbar
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../../api/api.html" data-part="api">
+            
+                <a href="../../../api/api.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../../api/runtime/runtime.html" data-part="api">
+            
+                <a href="../../../api/runtime/runtime.html">
+            
+                    
+                    运行时相关
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.1" data-path="../../../api/runtime/module.html" data-part="api">
+            
+                <a href="../../../api/runtime/module.html">
+            
+                    
+                    export&import
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2" data-path="../../../api/runtime/@import.html" data-part="api">
+            
+                <a href="../../../api/runtime/@import.html">
+            
+                    
+                    @import
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../../api/request.html" data-part="api">
+            
+                <a href="../../../api/request.html">
+            
+                    
+                    网络请求
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.2.1" data-path="../../../api/request.html" data-part="api">
+            
+                <a href="../../../api/request.html#get">
+            
+                    
+                    cml.get
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.2" data-path="../../../api/request.html" data-part="api">
+            
+                <a href="../../../api/request.html#post">
+            
+                    
+                    cml.post
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.3" data-path="../../../api/request.html" data-part="api">
+            
+                <a href="../../../api/request.html#request">
+            
+                    
+                    cml.request
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../../api/navigate.html" data-part="api">
+            
+                <a href="../../../api/navigate.html">
+            
+                    
+                    路由导航
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.3.1" data-path="../../../api/navigate.html" data-part="api">
+            
+                <a href="../../../api/navigate.html#navigateto">
+            
+                    
+                    cml.navigateTo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3.2" data-path="../../../api/navigate.html" data-part="api">
+            
+                <a href="../../../api/navigate.html#redirectto">
+            
+                    
+                    cml.redirectTo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3.3" data-path="../../../api/navigate.html" data-part="api">
+            
+                <a href="../../../api/navigate.html#navigateback">
+            
+                    
+                    cml.navigateBack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../../api/storage.html" data-part="api">
+            
+                <a href="../../../api/storage.html">
+            
+                    
+                    数据存储
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.4.1" data-path="../../../api/storage.html" data-part="api">
+            
+                <a href="../../../api/storage.html#setstorage">
+            
+                    
+                    cml.setStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4.2" data-path="../../../api/storage.html" data-part="api">
+            
+                <a href="../../../api/storage.html#getstorage">
+            
+                    
+                    cml.getStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4.3" data-path="../../../api/storage.html" data-part="api">
+            
+                <a href="../../../api/storage.html#removestorage">
+            
+                    
+                    cml.removeStorage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../../../api/location.html" data-part="api">
+            
+                <a href="../../../api/location.html">
+            
+                    
+                    地理位置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.5.1" data-path="../../../api/location.html" data-part="api">
+            
+                <a href="../../../api/location.html#getlocationinfo">
+            
+                    
+                    cml.getLocationInfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="../../../api/system.html" data-part="api">
+            
+                <a href="../../../api/system.html">
+            
+                    
+                    系统信息
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.6.1" data-path="../../../api/system.html" data-part="api">
+            
+                <a href="../../../api/system.html#getsysteminfo">
+            
+                    
+                    cml.getSystemInfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.7" data-path="../../../api/launchOptions.html" data-part="api">
+            
+                <a href="../../../api/launchOptions.html">
+            
+                    
+                    启动参数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.7.1" data-path="../../../api/launchOptions.html" data-part="api">
+            
+                <a href="../../../api/launchOptions.html#getlaunchoptionssync">
+            
+                    
+                    cml.getLaunchOptionsSync
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.8" data-path="../../../api/getRect.html" data-part="api">
+            
+                <a href="../../../api/getRect.html">
+            
+                    
+                    元素属性
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.8.1" data-path="../../../api/getRect.html" data-part="api">
+            
+                <a href="../../../api/getRect.html#getrect">
+            
+                    
+                    cml.getRect
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.9" data-path="../../../api/px.html" data-part="api">
+            
+                <a href="../../../api/px.html">
+            
+                    
+                    单位转换
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.9.1" data-path="../../../api/px.html" data-part="api">
+            
+                <a href="../../../api/px.html#px2cpx">
+            
+                    
+                    cml.px2cpx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.9.2" data-path="../../../api/px.html" data-part="api">
+            
+                <a href="../../../api/px.html#cpx2px">
+            
+                    
+                    cml.cpx2px
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.10" data-path="../../../api/modal.html" data-part="api">
+            
+                <a href="../../../api/modal.html">
+            
+                    
+                    交互反馈
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.10.1" data-path="../../../api/modal.html" data-part="api">
+            
+                <a href="../../../api/modal.html#showtoast">
+            
+                    
+                    cml.showToast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.10.2" data-path="../../../api/modal.html" data-part="api">
+            
+                <a href="../../../api/modal.html#alert">
+            
+                    
+                    cml.alert
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.10.3" data-path="../../../api/modal.html" data-part="api">
+            
+                <a href="../../../api/modal.html#confirm">
+            
+                    
+                    cml.confirm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.11" data-path="../../../api/title.html" data-part="api">
+            
+                <a href="../../../api/title.html">
+            
+                    
+                    设置 title
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.11.1" data-path="../../../api/title.html" data-part="api">
+            
+                <a href="../../../api/title.html#settitle">
+            
+                    
+                    cml.setTitle
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.12" data-path="../../../api/open.html" data-part="api">
+            
+                <a href="../../../api/open.html">
+            
+                    
+                    打开/关闭应用页面
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.12.1" data-path="../../../api/open.html" data-part="api">
+            
+                <a href="../../../api/open.html#open">
+            
+                    
+                    cml.open
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.12.2" data-path="../../../api/open.html" data-part="api">
+            
+                <a href="../../../api/open.html#close">
+            
+                    
+                    cml.close
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.13" data-path="../../../api/chooseImage.html" data-part="api">
+            
+                <a href="../../../api/chooseImage.html">
+            
+                    
+                    获取照片
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.13.1" data-path="../../../api/chooseImage.html" data-part="api">
+            
+                <a href="../../../api/chooseImage.html#chooseimage">
+            
+                    
+                    cml.chooseImage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.14" data-path="../../../api/clipBoard.html" data-part="api">
+            
+                <a href="../../../api/clipBoard.html">
+            
+                    
+                    剪贴板
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.14.1" data-path="../../../api/clipBoard.html" data-part="api">
+            
+                <a href="../../../api/clipBoard.html#setclipboarddata">
+            
+                    
+                    cml.setClipBoardData
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.14.2" data-path="../../../api/clipBoard.html" data-part="api">
+            
+                <a href="../../../api/clipBoard.html#getclipboarddata">
+            
+                    
+                    cml.getClipBoardData
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.15" data-path="../../../api/socket.html" data-part="api">
+            
+                <a href="../../../api/socket.html">
+            
+                    
+                    WebSocket
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.15.1" data-path="../../../api/socket.html" data-part="api">
+            
+                <a href="../../../api/socket.html#initsocket">
+            
+                    
+                    cml.initSocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.16" data-path="../../../api/timer.html" data-part="api">
+            
+                <a href="../../../api/timer.html">
+            
+                    
+                    计时器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.16.1" data-path="../../../api/timer.html" data-part="api">
+            
+                <a href="../../../api/timer.html#settimeout">
+            
+                    
+                    setTimeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.16.2" data-path="../../../api/timer.html" data-part="api">
+            
+                <a href="../../../api/timer.html#cleartimeout">
+            
+                    
+                    clearTimeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.16.3" data-path="../../../api/timer.html" data-part="api">
+            
+                <a href="../../../api/timer.html#setinterval">
+            
+                    
+                    setInterval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.16.4" data-path="../../../api/timer.html" data-part="api">
+            
+                <a href="../../../api/timer.html#clearinterval">
+            
+                    
+                    clearInterval
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.17" data-path="../../../api/caniuse.html" data-part="api">
+            
+                <a href="../../../api/caniuse.html">
+            
+                    
+                    canIUse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.18" data-path="../../../api/async.html" data-part="api">
+            
+                <a href="../../../api/async.html">
+            
+                    
+                    异步流程控制
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.18.1" data-path="../../../api/async.html" data-part="api">
+            
+                <a href="../../../api/async.html">
+            
+                    
+                    Promise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.18.2" data-path="../../../api/async.html" data-part="api">
+            
+                <a href="../../../api/async.html#async，await">
+            
+                    
+                    async，await
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.19" data-path="../../../api/error_control.html" data-part="api">
+            
+                <a href="../../../api/error_control.html">
+            
+                    
+                    异常和错误处理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.19.1" data-path="../../../api/error_control.html" data-part="api">
+            
+                <a href="../../../api/error_control.html#promise.then(">
+            
+                    
+                    promise.then().catch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.19.2" data-path="../../../api/error_control.html" data-part="api">
+            
+                <a href="../../../api/error_control.html#try">
+            
+                    
+                    try catch
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.20" data-path="../../../api/animationFrame.html" data-part="api">
+            
+                <a href="../../../api/animationFrame.html">
+            
+                    
+                    动画关键帧
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.20.1" data-path="../../../api/animationFrame.html" data-part="api">
+            
+                <a href="../../../api/animationFrame.html#requestanimationframe">
+            
+                    
+                    requestAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.20.2" data-path="../../../api/animationFrame.html" data-part="api">
+            
+                <a href="../../../api/animationFrame.html#cancelanimationframe">
+            
+                    
+                    cancelAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21" data-path="../../../api/createAnimation/main.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/main.html">
+            
+                    
+                    动画
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.21.1" data-path="../../../api/createAnimation/createAnimation.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/createAnimation.html">
+            
+                    
+                    cml.createAnimation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2" data-path="../../../api/createAnimation/animation/main.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/main.html">
+            
+                    
+                    Animation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.21.2.1" data-path="../../../api/createAnimation/animation/step.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/step.html">
+            
+                    
+                    .step
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.2" data-path="../../../api/createAnimation/animation/rotate.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/rotate.html">
+            
+                    
+                    .rotate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.3" data-path="../../../api/createAnimation/animation/rotateX.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/rotateX.html">
+            
+                    
+                    .rotateX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.4" data-path="../../../api/createAnimation/animation/rotateY.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/rotateY.html">
+            
+                    
+                    .rotateY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.5" data-path="../../../api/createAnimation/animation/rotateZ.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/rotateZ.html">
+            
+                    
+                    .rotateZ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.6" data-path="../../../api/createAnimation/animation/scale.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/scale.html">
+            
+                    
+                    .scale
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.7" data-path="../../../api/createAnimation/animation/scaleX.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/scaleX.html">
+            
+                    
+                    .scaleX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.8" data-path="../../../api/createAnimation/animation/scaleY.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/scaleY.html">
+            
+                    
+                    .scaleY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.9" data-path="../../../api/createAnimation/animation/translate.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/translate.html">
+            
+                    
+                    .translate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.10" data-path="../../../api/createAnimation/animation/translateX.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/translateX.html">
+            
+                    
+                    .translateX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.11" data-path="../../../api/createAnimation/animation/translateY.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/translateY.html">
+            
+                    
+                    .translateY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.12" data-path="../../../api/createAnimation/animation/opacity.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/opacity.html">
+            
+                    
+                    .opacity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.13" data-path="../../../api/createAnimation/animation/backgroundColor.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/backgroundColor.html">
+            
+                    
+                    .backgroundColor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.14" data-path="../../../api/createAnimation/animation/width.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/width.html">
+            
+                    
+                    .width
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.15" data-path="../../../api/createAnimation/animation/height.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/height.html">
+            
+                    
+                    .height
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.21.2.16" data-path="../../../api/createAnimation/animation/export.html" data-part="api">
+            
+                <a href="../../../api/createAnimation/animation/export.html">
+            
+                    
+                    .export
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22" data-path="../../../api/store/store.html" data-part="api">
+            
+                <a href="../../../api/store/store.html">
+            
+                    
+                    Store
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.22.1" data-path="../../../api/store/createStore.html" data-part="api">
+            
+                <a href="../../../api/store/createStore.html">
+            
+                    
+                    Store.createStore
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.2" data-path="../../../api/store/commit.html" data-part="api">
+            
+                <a href="../../../api/store/commit.html">
+            
+                    
+                    Store.commit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.3" data-path="../../../api/store/dispatch.html" data-part="api">
+            
+                <a href="../../../api/store/dispatch.html">
+            
+                    
+                    Store.dispatch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.4" data-path="../../../api/store/mapState.html" data-part="api">
+            
+                <a href="../../../api/store/mapState.html">
+            
+                    
+                    Store.mapState
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.5" data-path="../../../api/store/mapGetters.html" data-part="api">
+            
+                <a href="../../../api/store/mapGetters.html">
+            
+                    
+                    Store.mapGetters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.6" data-path="../../../api/store/mapMutations.html" data-part="api">
+            
+                <a href="../../../api/store/mapMutations.html">
+            
+                    
+                    Store.mapMutations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.7" data-path="../../../api/store/mapActions.html" data-part="api">
+            
+                <a href="../../../api/store/mapActions.html">
+            
+                    
+                    Store.mapActions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.22.8" data-path="../../../api/store/registerModule.html" data-part="api">
+            
+                <a href="../../../api/store/registerModule.html">
+            
+                    
+                    Store.registerModule
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.23" data-path="../../../api/audio/createInnerAudio.html" data-part="api">
+            
+                <a href="../../../api/audio/createInnerAudio.html">
+            
+                    
+                    Audio
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../../extend/advanced_use.html" data-part="example">
+            
+                <a href="../../../extend/advanced_use.html">
+            
+                    
+                    高级使用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../../../framework/polymorphism/intro.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/intro.html">
+            
+                    
+                    多态协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1.1" data-path="../../../framework/polymorphism/api.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/api.html">
+            
+                    
+                    接口多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.1.2" data-path="../../../framework/polymorphism/component.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/component.html">
+            
+                    
+                    组件多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="../../../framework/engineering.html" data-part="example">
+            
+                <a href="../../../framework/engineering.html">
+            
+                    
+                    工程化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.2.1" data-path="../../../framework/mock.html" data-part="example">
+            
+                <a href="../../../framework/mock.html">
+            
+                    
+                    数据 mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.2" data-path="../../../framework/newmock.html" data-part="example">
+            
+                <a href="../../../framework/newmock.html">
+            
+                    
+                    api 多域名 mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.3" data-path="../../../framework/source_location.html" data-part="example">
+            
+                <a href="../../../framework/source_location.html">
+            
+                    
+                    资源定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.4" data-path="../../../framework/config.html" data-part="example">
+            
+                <a href="../../../framework/config.html#文件指纹">
+            
+                    
+                    文件指纹
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.5" data-path="../../../framework/config.html" data-part="example">
+            
+                <a href="../../../framework/config.html#代码压缩">
+            
+                    
+                    代码压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.6" data-path="../../../framework/config.html" data-part="example">
+            
+                <a href="../../../framework/config.html#热更新与自动刷新">
+            
+                    
+                    热更新与自动刷新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.7" data-path="../../../framework/devproxy.html" data-part="example">
+            
+                <a href="../../../framework/devproxy.html">
+            
+                    
+                    代理调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.8" data-path="../../../framework/chameleon_url.html" data-part="example">
+            
+                <a href="../../../framework/chameleon_url.html">
+            
+                    
+                    Chameleon URL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9" data-path="../../../framework/polymorphism/standards.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/standards.html">
+            
+                    
+                    规范与校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.2.9.1" data-path="../../../framework/polymorphism/check.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/check.html">
+            
+                    
+                    接口语法校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.2" data-path="../../../framework/global_check.html" data-part="example">
+            
+                <a href="../../../framework/global_check.html">
+            
+                    
+                    全局变量校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.3" data-path="../../../framework/linter.html" data-part="example">
+            
+                <a href="../../../framework/linter.html">
+            
+                    
+                    代码规范校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.2.9.3.1" data-path="../../../framework/linter/core.html" data-part="example">
+            
+                <a href="../../../framework/linter/core.html">
+            
+                    
+                    核心文件校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.3.2" data-path="../../../framework/linter/cml-file.html" data-part="example">
+            
+                <a href="../../../framework/linter/cml-file.html">
+            
+                    
+                    CML 文件规范校验
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.2.9.3.2.1" data-path="../../../framework/linter/standards/cml-interface.html" data-part="example">
+            
+                <a href="../../../framework/linter/standards/cml-interface.html">
+            
+                    
+                    interface 规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.3.3" data-path="../../../framework/linter/cml-template.html" data-part="example">
+            
+                <a href="../../../framework/linter/cml-template.html">
+            
+                    
+                    模板规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.3.4" data-path="../../../framework/linter/cml-script.html" data-part="example">
+            
+                <a href="../../../framework/linter/cml-script.html">
+            
+                    
+                    脚本规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.3.5" data-path="../../../framework/linter/cml-cmss.html" data-part="example">
+            
+                <a href="../../../framework/linter/cml-cmss.html">
+            
+                    
+                    样式规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2.9.3.6" data-path="../../../framework/linter/cml-json.html" data-part="example">
+            
+                <a href="../../../framework/linter/cml-json.html">
+            
+                    
+                    配置规范校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="../../../terminal/io.html" data-part="example">
+            
+                <a href="../../../terminal/io.html">
+            
+                    
+                    导入与导出
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.1" data-path="../../../framework/progressive.html" data-part="example">
+            
+                <a href="../../../framework/progressive.html">
+            
+                    
+                    渐进式接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.1.1" data-path="../../../framework/webpack_plugin.html" data-part="example">
+            
+                <a href="../../../framework/webpack_plugin.html">
+            
+                    
+                    webpack 集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.1.2" data-path="../../../framework/compont_export.html" data-part="example">
+            
+                <a href="../../../framework/compont_export.html">
+            
+                    
+                    组件导出应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.2" data-path="../../../terminal/web/framework.html" data-part="example">
+            
+                <a href="../../../terminal/web/framework.html">
+            
+                    
+                    Web 框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.2.1" data-path="../../../terminal/web/component.html" data-part="example">
+            
+                <a href="../../../terminal/web/component.html">
+            
+                    
+                    Web 组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.3" data-path="../../../terminal/weex/framework.html" data-part="example">
+            
+                <a href="../../../terminal/weex/framework.html">
+            
+                    
+                    Weex 框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.3.1" data-path="../../../terminal/weex/component.html" data-part="example">
+            
+                <a href="../../../terminal/weex/component.html">
+            
+                    
+                    Weex 组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.4" data-path="../../../terminal/wx/framework.html" data-part="example">
+            
+                <a href="../../../terminal/wx/framework.html">
+            
+                    
+                    微信小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.4.1" data-path="../../../terminal/wx/component.html" data-part="example">
+            
+                <a href="../../../terminal/wx/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.5" data-path="../../../terminal/alipay/framework.html" data-part="example">
+            
+                <a href="../../../terminal/alipay/framework.html">
+            
+                    
+                    支付宝小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.5.1" data-path="../../../terminal/alipay/component.html" data-part="example">
+            
+                <a href="../../../terminal/alipay/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.6" data-path="../../../terminal/baidu/framework.html" data-part="example">
+            
+                <a href="../../../terminal/baidu/framework.html">
+            
+                    
+                    百度小程序框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.6.1" data-path="../../../terminal/baidu/component.html" data-part="example">
+            
+                <a href="../../../terminal/baidu/component.html">
+            
+                    
+                    小程序组件接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4" data-path="../../../chameleon_client/introduction.html" data-part="example">
+            
+                <a href="../../../chameleon_client/introduction.html">
+            
+                    
+                    Native 渲染能力接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.4.1" data-path="../../../chameleon_client/integration.html" data-part="example">
+            
+                <a href="../../../chameleon_client/integration.html">
+            
+                    
+                    Chameleon SDK 接入
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.4.1.1" data-path="../../../chameleon_client/ios/introduction.html" data-part="example">
+            
+                <a href="../../../chameleon_client/ios/introduction.html">
+            
+                    
+                    iOS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.4.1.1.1" data-path="../../../chameleon_client/ios/module.html" data-part="example">
+            
+                <a href="../../../chameleon_client/ios/module.html">
+            
+                    
+                    Module 的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4.1.1.2" data-path="../../../chameleon_client/ios/cache.html" data-part="example">
+            
+                <a href="../../../chameleon_client/ios/cache.html">
+            
+                    
+                    预加载和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4.1.2" data-path="../../../chameleon_client/android/introduction.html" data-part="example">
+            
+                <a href="../../../chameleon_client/android/introduction.html">
+            
+                    
+                    Android
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.4.1.2.1" data-path="../../../chameleon_client/android/module.html" data-part="example">
+            
+                <a href="../../../chameleon_client/android/module.html">
+            
+                    
+                    Module 的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4.1.2.2" data-path="../../../chameleon_client/android/adapter.html" data-part="example">
+            
+                <a href="../../../chameleon_client/android/adapter.html">
+            
+                    
+                    Adapter 的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4.1.2.3" data-path="../../../chameleon_client/android/cache.html" data-part="example">
+            
+                <a href="../../../chameleon_client/android/cache.html">
+            
+                    
+                    预加载和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4.1.3" data-path="../../../chameleon_client/sdk_api.html" data-part="example">
+            
+                <a href="../../../chameleon_client/sdk_api.html">
+            
+                    
+                    SDK 独有方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4.2" data-path="../../../chameleon_client/js_cache.html" data-part="example">
+            
+                <a href="../../../chameleon_client/js_cache.html">
+            
+                    
+                    端 JS 包资源缓存、更新和预加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5" data-path="../../../extend/extend.html" data-part="example">
+            
+                <a href="../../../extend/extend.html">
+            
+                    
+                    跨端标准协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.5.1" data-path="../../../extend/quickstart.html" data-part="example">
+            
+                <a href="../../../extend/quickstart.html">
+            
+                    
+                    操作教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.2" data-path="../../../extend/runtime.html" data-part="example">
+            
+                <a href="../../../extend/runtime.html">
+            
+                    
+                    实现框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.5.2.1" data-path="../../../extend/vm.html" data-part="example">
+            
+                <a href="../../../extend/vm.html">
+            
+                    
+                    逻辑对象标准
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.2.2" data-path="../../../extend/component.html" data-part="example">
+            
+                <a href="../../../extend/component.html">
+            
+                    
+                    组件化标准
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.2.3" data-path="../../../extend/event.html" data-part="example">
+            
+                <a href="../../../extend/event.html">
+            
+                    
+                    事件标准
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.2.4" data-path="../../../extend/store.html" data-part="example">
+            
+                <a href="../../../extend/store.html">
+            
+                    
+                    状态管理标准
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.3" data-path="../../../extend/api.html" data-part="example">
+            
+                <a href="../../../extend/api.html">
+            
+                    
+                    实现接口
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.5.3.1" data-path="../../../framework/polymorphism/api_extend.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/api_extend.html">
+            
+                    
+                    接口多态扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.4" data-path="../../../extend/ui-builtin.html" data-part="example">
+            
+                <a href="../../../extend/ui-builtin.html">
+            
+                    
+                    实现组件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.5.4.1" data-path="../../../framework/polymorphism/component_extend.html" data-part="example">
+            
+                <a href="../../../framework/polymorphism/component_extend.html">
+            
+                    
+                    组件多态扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.5" data-path="../../../extend/mvvm-plugin.html" data-part="example">
+            
+                <a href="../../../extend/mvvm-plugin.html">
+            
+                    
+                    实现编译
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.5.5.1" data-path="../../../extend/start.html" data-part="example">
+            
+                <a href="../../../extend/start.html">
+            
+                    
+                    扩展新端编译手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5.5.2" data-path="../../../extend/template.html" data-part="example">
+            
+                <a href="../../../extend/template.html">
+            
+                    
+                    CML 模板语言标准
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../../example/main.html" data-part="tutorial">
+            
+                <a href="../../../example/main.html">
+            
+                    
+                    教程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="../../../example/chameleon-api.html" data-part="tutorial">
+            
+                <a href="../../../example/chameleon-api.html">
+            
+                    
+                    API 扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2" data-path="../../../example/poly.html" data-part="tutorial">
+            
+                <a href="../../../example/poly.html">
+            
+                    
+                    多态组件扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.3" data-path="../../../example/gestures.html" data-part="tutorial">
+            
+                <a href="../../../example/gestures.html">
+            
+                    
+                    手势拖拽效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.4" data-path="../../../example/project.html" data-part="tutorial">
+            
+                <a href="../../../example/project.html">
+            
+                    
+                    工程化实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.5" data-path="../../../example/webpack_output.html" data-part="tutorial">
+            
+                <a href="../../../example/webpack_output.html">
+            
+                    
+                    普通项目使用跨端组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.6" data-path="../../../example/webpack_plugin.html" data-part="tutorial">
+            
+                <a href="../../../example/webpack_plugin.html">
+            
+                    
+                    webpack 集成 chameleon
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.7" data-path="../../../example/android_example.html" data-part="tutorial">
+            
+                <a href="../../../example/android_example.html">
+            
+                    
+                    Android Chameleon SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.8" data-path="../../../example/ios_example.html" data-part="tutorial">
+            
+                <a href="../../../example/ios_example.html">
+            
+                    
+                    iOS Chameleon SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.9" data-path="../../../example/chameleon-product-diff.html" data-part="tutorial">
+            
+                <a href="../../../example/chameleon-product-diff.html">
+            
+                    
+                    为什么用多态协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.10" data-path="../../../framework/edit-plugin.html" data-part="tutorial">
+            
+                <a href="../../../framework/edit-plugin.html">
+            
+                    
+                    编辑器插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.11" data-path="../../../framework/deploy.html" data-part="tutorial">
+            
+                <a href="../../../framework/deploy.html">
+            
+                    
+                    上线指南
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.12" data-path="../../../example/subpage.html" data-part="tutorial">
+            
+                <a href="../../../example/subpage.html">
+            
+                    
+                    使用分包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13" data-path="../../../example/components-link.html" data-part="tutorial">
+            
+                <a href="../../../example/components-link.html">
+            
+                    
+                    组件实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.13.1" data-path="../../../example/view.html" data-part="tutorial">
+            
+                <a href="../../../example/view.html">
+            
+                    
+                    view
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.2" data-path="../../../example/text.html" data-part="tutorial">
+            
+                <a href="../../../example/text.html">
+            
+                    
+                    text
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.3" data-path="../../../example/page.html" data-part="tutorial">
+            
+                <a href="../../../example/page.html">
+            
+                    
+                    page
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.4" data-path="../../../example/cell.html" data-part="tutorial">
+            
+                <a href="../../../example/cell.html">
+            
+                    
+                    cell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.5" data-path="../../../example/scroller.html" data-part="tutorial">
+            
+                <a href="../../../example/scroller.html">
+            
+                    
+                    scroller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.6" data-path="../../../example/list.html" data-part="tutorial">
+            
+                <a href="../../../example/list.html">
+            
+                    
+                    list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.7" data-path="../../../example/container.html" data-part="tutorial">
+            
+                <a href="../../../example/container.html">
+            
+                    
+                    container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.8" data-path="../../../example/row.html" data-part="tutorial">
+            
+                <a href="../../../example/row.html">
+            
+                    
+                    row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.9" data-path="../../../example/col.html" data-part="tutorial">
+            
+                <a href="../../../example/col.html">
+            
+                    
+                    col
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.10" data-path="../../../example/button.html" data-part="tutorial">
+            
+                <a href="../../../example/button.html">
+            
+                    
+                    button
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.11" data-path="../../../example/input.html" data-part="tutorial">
+            
+                <a href="../../../example/input.html">
+            
+                    
+                    input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.12" data-path="../../../example/textarea.html" data-part="tutorial">
+            
+                <a href="../../../example/textarea.html">
+            
+                    
+                    textarea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.13" data-path="../../../example/switch.html" data-part="tutorial">
+            
+                <a href="../../../example/switch.html">
+            
+                    
+                    switch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.14" data-path="../../../example/radio.html" data-part="tutorial">
+            
+                <a href="../../../example/radio.html">
+            
+                    
+                    radio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.15" data-path="../../../example/checkbox.html" data-part="tutorial">
+            
+                <a href="../../../example/checkbox.html">
+            
+                    
+                    checkbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.16" data-path="../../../example/image.html" data-part="tutorial">
+            
+                <a href="../../../example/image.html">
+            
+                    
+                    image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.17" data-path="../../../example/video.html" data-part="tutorial">
+            
+                <a href="../../../example/video.html">
+            
+                    
+                    video
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.18" data-path="../../../example/animation.html" data-part="tutorial">
+            
+                <a href="../../../example/animation.html">
+            
+                    
+                    animation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.19" data-path="../../../example/c-toast.html" data-part="tutorial">
+            
+                <a href="../../../example/c-toast.html">
+            
+                    
+                    c-toast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.20" data-path="../../../example/c-dialog.html" data-part="tutorial">
+            
+                <a href="../../../example/c-dialog.html">
+            
+                    
+                    c-dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.21" data-path="../../../example/c-popup.html" data-part="tutorial">
+            
+                <a href="../../../example/c-popup.html">
+            
+                    
+                    c-popup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.22" data-path="../../../example/c-tip.html" data-part="tutorial">
+            
+                <a href="../../../example/c-tip.html">
+            
+                    
+                    c-tip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.23" data-path="../../../example/c-loading.html" data-part="tutorial">
+            
+                <a href="../../../example/c-loading.html">
+            
+                    
+                    c-loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.24" data-path="../../../example/c-actionsheet.html" data-part="tutorial">
+            
+                <a href="../../../example/c-actionsheet.html">
+            
+                    
+                    c-actionsheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.25" data-path="../../../example/c-picker.html" data-part="tutorial">
+            
+                <a href="../../../example/c-picker.html">
+            
+                    
+                    c-picker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.26" data-path="../../../example/c-picker-panel.html" data-part="tutorial">
+            
+                <a href="../../../example/c-picker-panel.html">
+            
+                    
+                    c-picker-panel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.27" data-path="../../../example/c-picker-item.html" data-part="tutorial">
+            
+                <a href="../../../example/c-picker-item.html">
+            
+                    
+                    c-picker-item
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.28" data-path="../../../example/c-checkbox-group.html" data-part="tutorial">
+            
+                <a href="../../../example/c-checkbox-group.html">
+            
+                    
+                    c-checkbox-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.29" data-path="../../../example/c-radio-group.html" data-part="tutorial">
+            
+                <a href="../../../example/c-radio-group.html">
+            
+                    
+                    c-radio-group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.30" data-path="../../../example/c-tab.html" data-part="tutorial">
+            
+                <a href="../../../example/c-tab.html">
+            
+                    
+                    c-tab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13.31" data-path="../../../example/c-tabbar.html" data-part="tutorial">
+            
+                <a href="../../../example/c-tabbar.html">
+            
+                    
+                    c-tabbar
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../../framework/faq.html" data-part="faq">
+            
+                <a href="../../../framework/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../../../update_record.html" data-part="log">
+            
+                <a href="../../../update_record.html">
+            
+                    
+                    更新记录
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >audio</a>
+    </h1>
+</div>
+
+
+
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#video"><b></b>video</a></li><ul><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5C5E;&#x6027;"><b></b>&#x5C5E;&#x6027;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x793A;&#x4F8B;"><b></b>&#x793A;&#x4F8B;</a></li></ul></ul></ul></div><a href="#video" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="video"><a name="video" class="anchor-navigation-ex-anchor" href="#video"><i class="fa fa-link" aria-hidden="true"></i></a><a name="video" class="plugin-anchor" href="#video"><i class="fa fa-link" aria-hidden="true"></i></a>video</h1>
+<hr>
+<p>&#x97F3;&#x9891;&#x64AD;&#x653E;&#x5668;</p>
+<p>&#x5347;&#x7EA7;<code>chameleon-ui-builtin  chameleon-api  chameleon-bridge</code> </p>
+<pre><code>npm i chameleon-ui-builtin@0.2.11-alpha.1 -S
+npm i chameleon-api@0.5.0 -S  
+npm i chameleon-bridge@0.1.11 -S
+</code></pre><h3 id="&#x5C5E;&#x6027;"><a name="&#x5C5E;&#x6027;" class="anchor-navigation-ex-anchor" href="#&#x5C5E;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5C5E;&#x6027;" class="plugin-anchor" href="#&#x5C5E;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5C5E;&#x6027;</h3>
+<table>
+<thead>
+<tr>
+<th>&#x5C5E;&#x6027;&#x540D;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x5FC5;&#x586B;</th>
+<th>&#x9ED8;&#x8BA4;&#x503C;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src</td>
+<td>String</td>
+<td>&#x662F;</td>
+<td>&quot;&quot;</td>
+<td>&#x8981;&#x64AD;&#x653E;&#x7684;&#x97F3;&#x9891;&#x8D44;&#x6E90;&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>Boolean</td>
+<td>&#x5426;</td>
+<td>false</td>
+<td>&#x662F;&#x5426;&#x5FAA;&#x73AF;&#x64AD;&#x653E;</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>Boolean</td>
+<td>&#x5426;</td>
+<td>false</td>
+<td>&#x662F;&#x5426;&#x663E;&#x793A;&#x97F3;&#x9891;&#x63A7;&#x4EF6;</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>String</td>
+<td>&#x5426;</td>
+<td>&quot;&quot;</td>
+<td>&#x9ED8;&#x8BA4;&#x63A7;&#x4EF6;&#x4E0A;&#x7684;&#x97F3;&#x9891;&#x5C01;&#x9762;&#x7684;&#x56FE;&#x7247;&#x8D44;&#x6E90;&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>&#x5426;</td>
+<td>&#x672A;&#x77E5;&#x97F3;&#x9891;</td>
+<td>&#x9ED8;&#x8BA4;&#x63A7;&#x4EF6;&#x4E0A;&#x7684;&#x97F3;&#x9891;&#x540D;&#x5B57;</td>
+</tr>
+<tr>
+<td>author</td>
+<td>String</td>
+<td>&#x5426;</td>
+<td>&#x672A;&#x77E5;&#x4F5C;&#x8005;</td>
+<td>&#x9ED8;&#x8BA4;&#x63A7;&#x4EF6;&#x4E0A;&#x7684;&#x4F5C;&#x8005;&#x540D;&#x5B57;</td>
+</tr>
+<tr>
+<td>autoplay</td>
+<td>Boolean</td>
+<td>&#x5426;</td>
+<td>false</td>
+<td>&#x662F;&#x5426;&#x81EA;&#x52A8;&#x64AD;&#x653E;&#x97F3;&#x9891;</td>
+</tr>
+<tr>
+<td>c-bind:play</td>
+<td>EventHandle</td>
+<td>&#x5426;</td>
+<td></td>
+<td>&#x5F53;&#x5F00;&#x59CB;/&#x7EE7;&#x7EED;&#x64AD;&#x653E;&#x65F6;&#x89E6;&#x53D1;play&#x4E8B;&#x4EF6;</td>
+</tr>
+<tr>
+<td>c-bind:pause</td>
+<td>EventHandle</td>
+<td>&#x5426;</td>
+<td></td>
+<td>&#x5F53;&#x6682;&#x505C;&#x64AD;&#x653E;&#x65F6;&#x89E6;&#x53D1; pause &#x4E8B;&#x4EF6;</td>
+</tr>
+<tr>
+<td>c-bind:timeupdate</td>
+<td>EventHandle</td>
+<td>&#x5426;</td>
+<td></td>
+<td>&#x5F53;&#x64AD;&#x653E;&#x8FDB;&#x5EA6;&#x6539;&#x53D8;&#x65F6;&#x89E6;&#x53D1; timeupdate &#x4E8B;&#x4EF6;&#xFF0C;detail = {currentTime, duration}</td>
+</tr>
+<tr>
+<td>c-bind:end</td>
+<td>EventHadnle</td>
+<td>&#x5426;</td>
+<td></td>
+<td>&#x5F53;&#x64AD;&#x653E;&#x5230;&#x672B;&#x5C3E;&#x65F6;&#x89E6;&#x53D1; ended &#x4E8B;&#x4EF6;</td>
+</tr>
+<tr>
+<td>c-bind:error</td>
+<td>EventHadnle</td>
+<td>&#x5426;</td>
+<td></td>
+<td>&#x5F53;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#x65F6;&#x89E6;&#x53D1; error &#x4E8B;&#x4EF6;&#xFF0C;detail = {errMsg:errorCode}</td>
+</tr>
+</tbody>
+</table>
+<p>errorCode&#x53D6;&#x503C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x503C;</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+<th style="text-align:left">&#x6700;&#x4F4E;&#x7248;&#x672C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10001</td>
+<td style="text-align:left">&#x7CFB;&#x7EDF;&#x9519;&#x8BEF;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">10002</td>
+<td style="text-align:left">&#x7F51;&#x7EDC;&#x9519;&#x8BEF;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">10003</td>
+<td style="text-align:left">&#x6587;&#x4EF6;&#x9519;&#x8BEF;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">10004</td>
+<td style="text-align:left">&#x683C;&#x5F0F;&#x9519;&#x8BEF;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">&#x672A;&#x77E5;&#x9519;&#x8BEF;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="&#x793A;&#x4F8B;"><a name="&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;" class="plugin-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">page</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;audio&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;audio&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;{{src}}&quot;</span>
+        <span class="hljs-attr">controls</span>=<span class="hljs-string">&quot;{{true}}&quot;</span>
+        <span class="hljs-attr">autoplay</span>=<span class="hljs-string">&quot;{{true}}&quot;</span>
+        <span class="hljs-attr">loop</span>=<span class="hljs-string">&quot;{{true}}&quot;</span>
+        <span class="hljs-attr">poster</span>=<span class="hljs-string">&quot;{{poster}}&quot;</span>
+        <span class="hljs-attr">c-bind:pause</span>=<span class="hljs-string">&quot;handlePause&quot;</span>
+        <span class="hljs-attr">c-bind:play</span>=<span class="hljs-string">&quot;handlePlay&quot;</span>
+        <span class="hljs-attr">c-bind:timeupdate</span>=<span class="hljs-string">&quot;handleTimeupdate&quot;</span>
+        <span class="hljs-attr">c-bind:ended</span>=<span class="hljs-string">&quot;handleEnded&quot;</span>
+        <span class="hljs-attr">c-bind:error</span>=<span class="hljs-string">&quot;handleError&quot;</span>
+      &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">page</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> cml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chameleon-api&apos;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Audio</span>   </span>{
+  data = {
+    <span class="hljs-attr">poster</span>:<span class="hljs-string">&apos;http://p1.music.126.net/bYTctrjUegSyzDPteIeNOw==/74766790705099.jpg?imageView&amp;thumbnail=360y360&amp;quality=75&amp;tostatic=0&apos;</span>,
+    <span class="hljs-attr">src</span>:<span class="hljs-string">&apos;http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&amp;bizid=1023&amp;hy=SH&amp;fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400&apos;</span>,
+  }
+
+  computed = {}
+  watch  = {}
+  methods = {
+    handlePause(...args){
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;emit-pause&apos;</span>,args);
+      <span class="hljs-keyword">this</span>.audioText = <span class="hljs-string">&apos;pause&apos;</span>
+    },
+    handlePlay(...args){
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;emit-play&apos;</span>,args);
+      <span class="hljs-keyword">this</span>.audioText = <span class="hljs-string">&apos;play&apos;</span>;
+    },
+    handleTimeupdate(...args){
+      <span class="hljs-keyword">this</span>.audioText = <span class="hljs-string">&apos;timeUpdate&apos;</span>
+      <span class="hljs-comment">// console.log(&apos;timeupdate&apos;,args)</span>
+    },
+    handleEnded(...args){
+      <span class="hljs-keyword">this</span>.audioText = <span class="hljs-string">&apos;ended&apos;</span>;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;emit-ended&apos;</span>,args)
+    },
+    handleError(...args){
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;emit-error&apos;</span>,args)
+    }
+
+  }
+
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Audio();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.audio</span>{
+  <span class="hljs-attribute">padding-top</span>:<span class="hljs-number">200</span>cpx;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;json&quot;</span>&gt;</span><span class="actionscript">
+{
+    <span class="hljs-string">&quot;base&quot;</span>: {
+        <span class="hljs-string">&quot;usingComponents&quot;</span>: {
+        },
+        <span class="hljs-string">&quot;navigationBarTitleText&quot;</span>: <span class="hljs-string">&quot;button&quot;</span>,
+        <span class="hljs-string">&quot;backgroundTextStyle&quot;</span>: <span class="hljs-string">&quot;dark&quot;</span>,
+        <span class="hljs-string">&quot;backgroundColor&quot;</span>: <span class="hljs-string">&quot;#E2E2E2&quot;</span>
+    }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="video.html" class="navigation navigation-prev " aria-label="Previous page: video">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../expand/expand.html" class="navigation navigation-next " aria-label="Next page: 扩展组件">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"audio","level":"3.1.1.4.3","depth":4,"next":{"title":"扩展组件","level":"3.1.2","depth":2,"path":"component/expand/expand.md","ref":"component/expand/expand.md","articles":[{"title":"c-toast","level":"3.1.2.1","depth":3,"path":"component/expand/compound/c-toast.md","ref":"component/expand/compound/c-toast.md","articles":[]},{"title":"c-loading","level":"3.1.2.2","depth":3,"path":"component/expand/compound/c-loading.md","ref":"component/expand/compound/c-loading.md","articles":[]},{"title":"c-dialog","level":"3.1.2.3","depth":3,"path":"component/expand/compound/c-dialog.md","ref":"component/expand/compound/c-dialog.md","articles":[]},{"title":"c-popup","level":"3.1.2.4","depth":3,"path":"component/expand/compound/c-popup.md","ref":"component/expand/compound/c-popup.md","articles":[]},{"title":"c-tip","level":"3.1.2.5","depth":3,"path":"component/expand/compound/c-tip.md","ref":"component/expand/compound/c-tip.md","articles":[]},{"title":"c-actionsheet","level":"3.1.2.6","depth":3,"path":"component/expand/compound/c-actionsheet.md","ref":"component/expand/compound/c-actionsheet.md","articles":[]},{"title":"c-tab","level":"3.1.2.7","depth":3,"path":"component/expand/compound/c-tab.md","ref":"component/expand/compound/c-tab.md","articles":[]},{"title":"c-picker","level":"3.1.2.8","depth":3,"path":"component/expand/compound/c-picker.md","ref":"component/expand/compound/c-picker.md","articles":[]},{"title":"c-picker-panel","level":"3.1.2.9","depth":3,"path":"component/expand/polymorphism/c-picker-panel.md","ref":"component/expand/polymorphism/c-picker-panel.md","articles":[]},{"title":"c-picker-item","level":"3.1.2.10","depth":3,"path":"component/expand/polymorphism/c-picker-item.md","ref":"component/expand/polymorphism/c-picker-item.md","articles":[]},{"title":"c-checkbox-group","level":"3.1.2.11","depth":3,"path":"component/expand/compound/c-checkbox-group.md","ref":"component/expand/compound/c-checkbox-group.md","articles":[]},{"title":"c-radio-group","level":"3.1.2.12","depth":3,"path":"component/expand/compound/c-radio-group.md","ref":"component/expand/compound/c-radio-group.md","articles":[]},{"title":"c-tabbar","level":"3.1.2.13","depth":3,"path":"component/expand/compound/c-tabbar.md","ref":"component/expand/compound/c-tabbar.md","articles":[]}]},"previous":{"title":"video","level":"3.1.1.4.2","depth":4,"path":"component/base/media/video.md","ref":"component/base/media/video.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"component/base/media/audio.md","mtime":"2019-07-17T03:26:52.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-18T09:14:27.116Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    <script src="../../../gitbook/custom.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-code3/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
