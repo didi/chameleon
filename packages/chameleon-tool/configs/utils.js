@@ -524,7 +524,8 @@ let babelNpm = [
   'chameleon-weex-vue-loader',
   'babel-plugin-chameleon-import',
   /mvvm-interface-parser/,
-  /chameleon-loader/
+  /chameleon-loader/,
+  'mobx'
 ];
 
 exports.getBabelPath = function () {
