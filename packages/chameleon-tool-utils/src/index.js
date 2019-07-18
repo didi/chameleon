@@ -560,7 +560,7 @@ _.getTargetInsertComponents = function (filePath, cmlType, context) {
   let result = [];
 
   // 内建不需要插入
-  if (_.isBuildIn(filePath)) {
+  if (_.isBuildIn(filePath, cmlType, context)) {
     return result;
   }
 
@@ -591,11 +591,19 @@ _.getTargetInsertComponents = function (filePath, cmlType, context) {
 /**
  * 是否是内置组件
  */
-_.isBuildIn = function (filePath) {
+_.isBuildIn = function (filePath, cmlType, context) {
   let result = false;
   if (_.isCli()) {
-    if (cml.config.get().isBuildInProject || ~filePath.indexOf(builtinNpmName)) {
+    if (cml.config.get().isBuildInProject) {
       result = true;
+    } else {
+      let {components} = _.getBuildinComponents(cmlType, context);
+      for (let i = 0; i < components.length; i++) {
+        if (filePath === components[i].filePath) {
+          result = true;
+          break;
+        }
+      }
     }
   } else {
     if (~filePath.indexOf(builtinNpmName)) {

@@ -90,9 +90,8 @@ module.exports = function (content) {
   // 如果是web端 默认添加scoped属性
   // 如果是weex端 默认添加全局样式
   //判断是否是内置组件
-  const isBuildInFile = cmlUtils.isBuildIn(filePath);
-
-
+  const isBuildInFile = cmlUtils.isBuildIn(filePath, cmlType, context);
+  
   const shortFilePath = path.relative(context, filePath).replace(/^(\.\.[\\\/])+/, '')
   var hashNum = hash(isProduction ? (shortFilePath + '\n' + content) : shortFilePath)
 
