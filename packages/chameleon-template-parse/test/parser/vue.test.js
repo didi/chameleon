@@ -264,7 +264,7 @@ describe('parse-template-vue-all', function() {
       expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="true ? \'cls2\':\'cls3\'" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1><div v-bind:class="computedCls" class=" cml-base cml-view"></div></div>`);
     });
     it('parse-class-weex', function() {
-      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy((true ? \'cls2\':\'cls3\'))" class="cls1   cml-base cml-button"></cml-buildin-button><thirdComp1 class="cls4   cml-base cml-thirdComp1"></thirdComp1><div v-bind:class="_weexClassProxy((computedCls))" class=" cml-base cml-view"></div></div>`);
+      expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><cml-buildin-button v-bind:class="_weexClassProxy((true ? 'cls2':'cls3'))" class="  cml-base cml-button cls1"></cml-buildin-button><thirdComp1 class="  cml-base cml-thirdComp1 cls4"></thirdComp1><div v-bind:class="_weexClassProxy((computedCls))" class=" cml-base cml-view"></div></div>`);
     });
     // wx baidu alipay
     it('parse-class-miniapp', function() {
@@ -405,7 +405,7 @@ describe('parse-template-vue-all', function() {
       expect(compileTemplate(source, 'web', cpOptions).source).to.equal(`<div><div class="cls1  "><thirdComp2 class="cls2 cls3  "></thirdComp2></div></div>`);
     });
     it('test-class-noinjected-weex', function() {
-      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`<div><div class="cls1  "><thirdComp2 class="cls2 cls3  "></thirdComp2></div></div>`);
+      expect(compileTemplate(source, 'weex', cpOptions).source).to.equal(`<div><div class="  cls1"><thirdComp2 class="  cls2 cls3"></thirdComp2></div></div>`);
     });
     it('test-class-noinjected-alipay', function() {
       expect(compileTemplate(source, 'alipay', cpOptions).source).to.equal(`<view class=" cml-5766bf8a"><view class="cls1  cml-5766bf8a"><view class="cls2 cls3  cml-5766bf8a"><thirdComp2 class="cls2 cls3  cml-5766bf8a"></thirdComp2></view></view></view>`);
