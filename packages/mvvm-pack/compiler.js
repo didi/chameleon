@@ -221,7 +221,7 @@ class Compiler {
 
     if (options.moduleType === 'json') {
       // cml文件中的json部分
-      if (options.ext === '.cml') {
+      if (options.ext === '.cml' || (this.userPlugin.miniappExt && this.userPlugin.miniappExt.rule.test(options.realPath))) {
         options.convert = JSON.parse(options.source);
       } else {
         // 其他json文件当成script模块
