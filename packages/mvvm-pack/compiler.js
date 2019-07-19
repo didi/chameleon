@@ -221,11 +221,13 @@ class Compiler {
 
     if (options.moduleType === 'json') {
       // cml文件中的json部分
-      // todo 这里进不来
-      if (/^\{[\s\S]*\}$/.test(options.source)) {
+      if (options.ext === '.cml') {
         options.convert = JSON.parse(options.source);
+      } else {
+        // 其他json文件当成script模块
+        options.moduleType === 'script';
+        options.source = `module.exports = ${options.source}`
       }
-      // 其他json文件不处理 例如router.config.json
     }
 
     if (options.moduleType === 'script') {
@@ -299,7 +301,6 @@ class Compiler {
     }
 
     let outputPath = this.webpackCompiler.options.output.path;
-    debugger
     this.outputFiles.forEach(item => {
       let outFilePath = path.join(outputPath, item.filePath);
       if (minimize === true && minimizeExt) {

@@ -72,8 +72,8 @@ module.exports = function(source) {
   let usingComponentsAndFilePath = {}; // 记录文件依赖的组件名称及文件位置
   let usingComponents = prepareParseUsingComponents({loaderContext: self, context, originObj: coms, cmlType});
 
-
-  const isBuildInFile = cmlUtils.isBuildIn(self.resourcePath);
+  const isBuildInFile = cmlUtils.isBuildIn(self.resourcePath, cmlType, context);
+  
   let buildInComponents = {};
   // 内置组件库中的cml文件不进行内置组件的替换
   if (!isBuildInFile) {
