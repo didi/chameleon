@@ -364,10 +364,20 @@ module.exports = function (content) {
     const parseScript = (parts.script && parts.script[0]) || {};
     const scriptContent = parseScript.content || '';
     let newTemplate = handleTemplate();
+    // if(type === 'app') {
+    //   newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
+    //   <router-view ></router-view> 
+    // </div>`)
+    
+    // }
     if(type === 'app') {
-      newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
-      <router-view ></router-view> 
-    </div>`)
+      if (cmlType == 'web') {
+        newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<router-view class="app" bubble="true"></router-view> `)
+      } else {
+        newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
+        <router-view ></router-view> 
+        </div>`)
+      }
       // newTemplate = `<template><view><router-view></router-view></view></template>`
     }
     let newScript = handleVueScript();
