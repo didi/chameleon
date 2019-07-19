@@ -1,6 +1,6 @@
 {
   "name": "chameleon-url-loader",
-  "version": "0.4.0-alpha.0",
+  "version": "0.4.0-alpha.1",
   "description": "A loader for webpack which transforms files into base64 URIs",
   "license": "Apache",
   "main": "dist/cjs.js",

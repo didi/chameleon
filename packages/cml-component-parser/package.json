@@ -1,6 +1,6 @@
 {
   "name": "cml-component-parser",
-  "version": "0.4.0-alpha.0",
+  "version": "0.4.0-alpha.1",
   "description": "A tool that can parse interface file and return all properties and methods it has.",
   "main": "index.js",
   "scripts": {},
@@ -13,9 +13,9 @@
   "dependencies": {
     "@babel/parser": "^7.1.3",
     "@babel/traverse": "^7.2.2",
-    "chameleon-tool-utils": "0.4.0-alpha.0",
-    "cml-interface-parser": "0.4.0-alpha.0",
-    "cml-js-parser": "0.4.0-alpha.0",
+    "chameleon-tool-utils": "0.4.0-alpha.1",
+    "cml-interface-parser": "0.4.0-alpha.1",
+    "cml-js-parser": "0.4.0-alpha.1",
     "commander": "^2.19.0"
   },
   "devDependencies": {
