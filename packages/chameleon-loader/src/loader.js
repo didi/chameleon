@@ -63,8 +63,8 @@ module.exports = function (content) {
       }
     })
   }
-  
 
+  
   if (jsonObject && jsonObject.baseStyle !== undefined) {
     isInjectBaseStyle = jsonObject.baseStyle;
   }

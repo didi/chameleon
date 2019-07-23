@@ -1,4 +1,5 @@
 const path = require('path');
+const cmlUtils = require('chameleon-tool-utils');
 module.exports = function(content) {
   const context = (
     this.rootContext ||
@@ -27,7 +28,7 @@ module.exports = function(content) {
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
       subProject.forEach(function(item) {
-        let { npmName } = item;
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');

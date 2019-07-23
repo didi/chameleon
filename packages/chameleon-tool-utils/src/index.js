@@ -348,7 +348,7 @@ _.getJsonFileContent = function (filePath, confType) {
       let subProject = cml.config.get().subProject;
       if (subProject && subProject.length > 0) {
         subProject.forEach(function(item) {
-          let { npmName } = item;
+          let npmName = _.isString(item) ? item : item.npmName;
           let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
           npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
             let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
@@ -410,7 +410,8 @@ _.getSubProjectRouter = function() {
   let subProject = cml.config.get().subProject;
   let subProjectMap = {};
   if (subProject && subProject.length > 0) {
-    subProject.forEach(function(npmName) {
+    subProject.forEach(function(item) {
+      let npmName = _.isString(item) ? item : item.npmName;
       let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
       subProjectMap[npmName] = npmRouterConfig;
     })
@@ -1163,7 +1164,10 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       type = 'app';
     } else {
       let subProject = cml.config.get().subProject || [];
-      let npmNames = subProject.map(item => 'node_modules/' + item.npmName);
+      let npmNames = subProject.map(item => {
+        let npmName = _.isString(item) ? item : item.npmName;
+        return 'node_modules/' + npmName
+      });
       let subProjectIndex = -1;
       for (let i = 0; i < npmNames.length; i++) {
         if (~cmlFilePath.indexOf(npmNames[i])) {
@@ -1173,8 +1177,9 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       }
       // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
       if (subProjectIndex != -1) {
-        let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex].npmName);
-        let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', subProject[subProjectIndex].npmName, 'src', item.path + '.cml'))
+        let currentNpm = _.isString(subProject[subProjectIndex]) ? subProject[subProjectIndex] :subProject[subProjectIndex].npmName 
+        let routerConfig = _.readsubProjectRouterConfig(context, currentNpm);
+        let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', currentNpm, 'src', item.path + '.cml'))
         // 如果是配置的路由则是page
         if (~pageFiles.indexOf(cmlFilePath)) {
           type = 'page';
@@ -1266,4 +1271,24 @@ _.deleteExt = function(filePath) {
   splitArray.push(basename);
   let result = splitArray.join('/')
   return result;
+}
+
+
+_.isType = function(type, o) {
+  return Object.prototype.toString.call(o) === `[object ${type}]`
+}
+
+_.isArray = function(arr) {
+  return _.isType('Array', arr)
+}
+
+_.isPlainObject = function(obj) {
+  return _.isType('Object', obj);
+}
+
+_.isFunction = function(fun) {
+  return _.isType('Function', fun);
+}
+_.isString = function(str) {
+  return typeof str === 'string'
 }
