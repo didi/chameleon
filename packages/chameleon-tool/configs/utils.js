@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
+const cmlUtils = require('chameleon-tool-utils');
 
 exports.getPostcssrcPath = function (type) {
   return path.join(__dirname, `./postcss/${type}/.postcssrc.js`);
@@ -272,7 +273,7 @@ exports.getMiniAppEntry = function (cmlType) {
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
       subProject.forEach(function(item) {
-        let { npmName } = item;
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}));
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let routePath = item.path;

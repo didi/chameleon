@@ -56,7 +56,8 @@ module.exports = function(source) {
     // subProject 中的页面
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
-      subProject.forEach(function(npmName) {
+      subProject.forEach(function(item) {
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');

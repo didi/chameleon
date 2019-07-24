@@ -9,6 +9,7 @@ const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const cmlUtils = require('chameleon-tool-utils');
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -280,7 +281,7 @@ exports.createConfigJson = function() {
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
       subProject.forEach(function(item) {
-        let { npmName } = item;
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');

@@ -10,6 +10,7 @@ const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
+const cmlUtils = require('chameleon-tool-utils');
 
 module.exports = function (options) {
   let {
@@ -231,7 +232,7 @@ module.exports = function (options) {
   let subProject = cml.config.get().subProject;
   if (subProject && subProject.length > 0) {
     subProject.forEach(item => {
-      let { npmName } = item;
+      let npmName = cmlUtils.isString(item) ? item : item.npmName;
       let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
       let cmlConfig = packageJSON.cml || {};
       let definePlugin = cmlConfig.definePlugin;
