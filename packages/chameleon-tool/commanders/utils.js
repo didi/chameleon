@@ -9,6 +9,9 @@ const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const cluster = require('cluster');
+const configUtils = require('../configs/utils')
+
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -145,11 +148,63 @@ exports.startReleaseAll = async function (media) {
       activePlatform.push(platform)
     }
   }
-
-  // 是否编译web端
-  let isCompile = !!~activePlatform.indexOf('web');
   // 给preview使用
   cml.activePlatform = activePlatform;
+  let activePlatformLen = activePlatform.length;
+  // 项目编译需要多端且用户选择多端编译
+  if (activePlatformLen > 1 && cml.isParallel) {
+    await configUtils.setFreePort()
+    // 获取一个可用端口号
+    let port = configUtils.getFreePort().webServerPort;
+    let finishedCount = 0; // 完成编译的进程数量
+    let isIncludeWeb = activePlatform.includes('web');
+    // 开工作进程并行编译多端
+    for (let i = 0; i < activePlatformLen; i++) {
+      let platform = activePlatform[i];
+      if (platform !== 'web') {
+        cluster.setupMaster({
+          exec: path.resolve(__dirname, '../chameleon.js'),
+          args: [platform, media, '-p', port]
+        })
+        cluster.fork()
+      }
+    }
+    exports.getWebBuildPromise(media, isIncludeWeb).then(() => {
+      if (isIncludeWeb) {
+        addCount();
+      }
+    });
+
+    /* eslint-disable */
+    function addCount() {
+      if (++finishedCount === activePlatformLen) { // 所有工作进程均编译完成
+        if(media === 'dev') {
+          cml.utils.openPreviewUrl(); // 打开预览页面
+        }
+        if (media === 'build') {
+          exports.createConfigJson();
+        } 
+        // 不是dev就退出
+        if(media !== 'dev') {
+          process.exit(0);
+        }
+        startCmlLinter(media);
+      }
+    }   
+
+    // 监听工作进程消息
+    cluster.on('message', (worker, msg, handle) => {
+      cml.log.debug(`cluster message ${msg}`)
+      if (msg === 'COMPILED SUCCESS') {
+        addCount();
+      }
+    })
+
+
+    return;
+  }
+  // 是否编译web端
+  let isCompile = !!~activePlatform.indexOf('web');
 
   for (let i = 0, j = activePlatform.length; i < j; i++) {
     let platform = activePlatform[i];
@@ -159,6 +214,10 @@ exports.startReleaseAll = async function (media) {
   }
 
   await exports.getWebBuildPromise(media, isCompile);
+  if(media === 'dev') {
+    // 打开预览页面
+    cml.utils.openPreviewUrl();
+  }
   if (media === 'build') {
     exports.createConfigJson()
   }
@@ -173,21 +232,30 @@ exports.startReleaseOne = async function(media, type) {
   cml.activePlatform = [type];
   if (type === 'web') {
     await exports.getWebBuildPromise(media, true);
+    // 打开预览页面
+    if(media === 'dev') {
+      cml.utils.openPreviewUrl();
+    }
   } else {
     let build = exports.getBuildPromise(media, type);
-    // 如果dev模式再启动web服务
-    if (media === 'dev') {
+    // 如果dev模式再启动web服（多端并行编译时，子进程不启动web服务）
+    if (media === 'dev' && cluster.isMaster) {
       await build.then(res => {
-        exports.getWebBuildPromise(media, false);
-      })
+        return exports.getWebBuildPromise(media, false);
+      });
+      // 打开预览页面
+      cml.utils.openPreviewUrl();
     } else {
       await build;
     }
   }
-  if (media === 'build') {
-    exports.createConfigJson()
+  // 多端并行编译时，子进程不执行以下操作
+  if (cluster.isMaster) {
+    if (media === 'build') {
+      exports.createConfigJson()
+    }
+    startCmlLinter(media);
   }
-  startCmlLinter(media);
 
 }
 
@@ -208,17 +276,17 @@ exports.createConfigJson = function() {
   let configObj = {};
   if (cml.utils.isFile(configJsonPath)) {
     configObj = JSON.parse(fs.readFileSync(configJsonPath, {encoding: 'utf-8'}))
-  };
+  }
   // 获取weex jsbundle地址
   let weexjs = configObj.weexjs || '';
   let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
-  
+
   if (cml.utils.isFile(weexjsPath)) {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
-    md5sum.update(buffer); 
+    md5sum.update(buffer);
     md5str = md5sum.digest('hex').toUpperCase();
   }
 

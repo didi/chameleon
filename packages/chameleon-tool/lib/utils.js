@@ -2,7 +2,7 @@ const path = require('path');
 
 const fse = require('fs-extra');
 const watch = require('node-watch');
-
+var opn = require('opn');
 const utils = require('chameleon-tool-utils');
 // 创建路由文件
 // platform   web端和weex端 现在没有用到，如果要区分，cml weex dev命令要执行两遍， web和weex的要生成两个不同的routerOptions文件
@@ -51,6 +51,22 @@ utils.setTempRoot = function (tmp) {
   }
 };
 
+
+(function() {
+  let previewUrl = '';
+  // 设置打开预览页面Url
+  utils.setPreviewUrl = function(url) {
+    cml.log.debug('setPreviewUrl:' + url)
+    previewUrl = url;
+  }
+  utils.openPreviewUrl = function() {
+    cml.log.notice('Listening at ' + previewUrl);
+    if (cml.config.get().autoOpenPreview) {
+      cml.log.debug('openPreviewUrl:' + previewUrl)
+      opn(previewUrl);
+    }
+  }
+})();
 // 生成config.json文件
 module.exports = utils;
 

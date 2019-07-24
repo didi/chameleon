@@ -1,5 +1,4 @@
 
-var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var phpIndexMiddleWare = require('./php_cgi_middleware.js');
@@ -27,7 +26,6 @@ module.exports = function({webpackConfig, options, compiler}) {
   updateServerTpl();
 
   var port = utils.getFreePort().webServerPort;
-  var autoOpenBrowser = true;
   var app = express();
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -114,11 +112,8 @@ module.exports = function({webpackConfig, options, compiler}) {
     let staticParams = { jsbundle, subpath, buildType: cml.activePlatform };
     createRoutesReact({server, staticParams});
 
-    cml.log.notice('Listening at ' + uri);
-    // when env is testing, don't need open it
-    if (autoOpenBrowser) {
-      opn(uri)
-    }
+    // 设置要打开的url
+    cml.utils.setPreviewUrl(uri);
     let proxyObj = cml.config.get().proxy || {};
     // 最后启动代理服务
     if (proxyObj.enable) {

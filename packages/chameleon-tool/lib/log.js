@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const cluster = require('cluster');
 
 const _ = module.exports = {};
 
@@ -30,7 +31,9 @@ _.startBuilding = function(cmlType) {
   if (cmlType) {
     _.notice(`${cmlType} Compiling....`)
   } else {
-    _.notice('start Compiling...')
+    if (cluster.isMaster) {
+      _.notice('start Compiling...')
+    }
   }
 }
 

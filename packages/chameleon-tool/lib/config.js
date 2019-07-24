@@ -36,6 +36,7 @@ var miniappConfig = {
 
 var chameleonConfig = {
   platforms: ['web', 'weex', 'wx', 'baidu', 'alipay'],
+  autoOpenPreview: true, // dev模式是否自动打开预览页面
   // devPort: 8000,
   // projectName: undefined,
   templateType: 'html', // 模板类型 smarty or html，决定web页面的格式与dev web服务器的类型
