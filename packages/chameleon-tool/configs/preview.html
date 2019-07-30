@@ -216,7 +216,10 @@
       justify-content: space-between;
       min-width: 980px;
     }
-
+    .main .right{
+      height:600px;
+      overflow:auto;
+    }
     .main .qrcode-box {
       /* width: 400px; */
       width: 990px;
@@ -243,6 +246,10 @@
       left: 50%;
       top: 60%;
       transform: translate(-50%, -50%)
+    }
+    .qrcode-title img {
+      width:36px;
+      height:36px
     }
 
     .qrcode-item .qrcode-title {
@@ -362,13 +369,13 @@
     }
 
     #routeList li {
-      padding-top: 10px;
-      padding-bottom: 10px;
       padding-left: 5px;
       position: relative;
     }
 
     #routeList li span {
+      padding-top: 10px;
+      padding-bottom: 10px;
       padding-left: 30px;
     }
 
@@ -418,7 +425,7 @@
       display: none;
     }
 
-    .alipay-dev {
+    .alipay-dev,.tt-dev,.qq-dev {
       display: none;
     }
     .baidu-dev {
@@ -598,8 +605,7 @@
                 <img src="./preview-assets/cml-forbidden.png" alt="">
               </div>
               <p class='no-dev-content'>
-                <!-- 未启动支付宝小程序构建 -->
-                即将支持支付宝小程序，敬请期待！
+                未启动支付宝小程序构建
               </p>
             </div>
           </div>
@@ -618,11 +624,49 @@
                 <img src="./preview-assets/cml-forbidden.png" alt="">
               </div>
               <p class='no-dev-content'>
-                  即将支持百度小程序，敬请期待！
+                  未启动百度小程序构建
               </p>
             </div>
           </div>
         </div>
+        <div class="qrcode-box qrcode-box-bottom" id="qrcodeBox">
+            <div class='qrcode-item'>
+              <div class="qrcode-title">
+                <img src="./preview-assets/cml-tt.png" alt="">
+                <span> 字节跳动小程序 效果预览</span>
+              </div>
+              <div class="qrcode-content tt-dev" id="tt-dev">
+                <p class="qrcode-tips"> 代码产出到：项目根目录 /dist/tt </p>
+                <p class="qrcode-tips"> 下载 <a href="https://microapp.bytedance.com/docs/devtool/versionUpdate.html">头条开发者工具</a>
+                  进行预览</p>
+              </div>
+              <div class="qrcode-content" id="tt-no-dev">
+                <div style="text-align:center">
+                  <img src="./preview-assets/cml-forbidden.png" alt="">
+                </div>
+                <p class="no-dev-content">未启动字节跳动小程序构建</p>
+              </div>
+            </div>
+            <div class='qrcode-item'>
+              <div class="qrcode-title">
+                <img src="./preview-assets/cml-qq.png" alt="">
+                <span> QQ小程序 效果预览</span>
+              </div>
+              <div class="qrcode-content qq-dev" id="alipay-dev">
+                <p class="qrcode-tips"> 代码产出到：项目根目录 /dist/qq </p>
+                <p class="qrcode-tips"> 下载 <a href="https://q.qq.com/wiki/#_3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F">QQ开发者工具</a>
+                  进行预览</p>
+              </div>
+              <div class="qrcode-content" id="qq-no-dev">
+                <div style="text-align:center">
+                  <img src="./preview-assets/cml-forbidden.png" alt="">
+                </div>
+                <p class='no-dev-content'>
+                  未启动QQ小程序构建
+                </p>
+              </div>
+            </div>
+          </div>
       </div>
     </main>
   </div>
