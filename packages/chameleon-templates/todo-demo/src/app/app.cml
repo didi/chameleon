@@ -42,6 +42,14 @@ export default new App();
       "window": {
         "defaultTitle": "Chameleon"
       }
+  },
+  "qq": {
+    "window": {
+      "backgroundTextStyle": "dark",
+      "navigationBarBackgroundColor": "#343434",
+      "navigationBarTitleText": "CNODE",
+      "navigationBarTextStyle": "white"
+    }
   }
 }
 </script>
