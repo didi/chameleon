@@ -216,7 +216,6 @@ module.exports = function (obj, __CML_ERROR__, __enableTypes__, __CHECK__DEFINES
   const checkArgsType = function (methodName, argValues) {
     let argList;
     if (getType(methodName) == 'Array') { // methodName:['getMsg',2];
-      debugger;
       // 回调函数的校验    methodName[0] 方法的名字 methodName[1]该回调函数在方法的参数索引
       // 如上，对于可传可不传的回调函数来说，Callback_cml_nullable_lmc_,所以需要将其去掉
       let funcKey = methods[methodName[0]].input[methodName[1]].replace('_cml_nullable_lmc_', '');
