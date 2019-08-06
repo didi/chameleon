@@ -52,8 +52,10 @@ exports.preParseAliComponent = function(source, type, options) {
         // 先 push view标签，然后再push组件标签
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
         let inheritNodes = (item.attrs || []).filter((attr) => {
-          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ":class", "c-show", "v-show"]
-          return inheritAttrsFromComp.includes(attr[1]);
+          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ":class", "c-show", "v-show"];
+          let inheritEvent = ['c-bind:click', 'c-bind:tap', 'c-bind:touchstart', 'c-bind:touchmove', 'c-bind:touchend', 'c-bind:touchcancel', 'c-catch:click', 'c-catch:tap', 'c-catch:touchstart', 'c-catch:touchmove', 'c-catch:touchend', 'c-catch:touchcancel'];
+          let isInherit = inheritAttrsFromComp.includes(attr[1]) || inheritEvent.includes(attr[1]) || /^data-/.test(attr[1])
+          return isInherit;
         });
         let inheritString = inheritNodes.reduce((result, styleClassNode) => result = result + (styleClassNode[0] || ''), '');
         if (isComponent && !isExpectTags) { // 如果是组件需要从组件继承一些属性过来
@@ -98,7 +100,6 @@ exports.preParseHTMLtoArray = function(html, type, options, callbacks) {
   const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`)
   let index = 0;
   while (html) {
-    last = html;
     let textEnd = html.indexOf('<')
     // 解析标签内容，包括开始标签以及结束标签
     if (textEnd === 0) { // 以 < 开头的html
@@ -255,10 +256,8 @@ exports.preParseVueEvent = function (content) {
   content = content.replace(reg, (m, $1) => {
     if (typeof $1 === "string" && $1.endsWith('.stop')) {
       $1 = $1.replace('.stop', '');
-      $1 = $1 === 'click' ? 'tap' : $1;
       return `c-catch:${$1}=`;
     } else {
-      $1 = $1 === 'click' ? 'tap' : $1;
       return `c-bind:${$1}=`
     }
   });
@@ -294,7 +293,7 @@ exports.preParseTemplateToSatisfactoryJSX = function(source, callbacks) {
 }
 exports.preParseAnimation = function(source, type) {
   // 这个只在小程序端增加callback;
-  if (type === 'wx' || type === 'alipay' || type === 'baidu') {
+  if (type === 'wx' || type === 'alipay' || type === 'baidu' || type === 'qq') {
     let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     const ast = babylon.parse(source, {
@@ -531,4 +530,8 @@ exports._deOperationGtLt = function(content) {
     }
     return match;
   })
+}
+exports.transformNativeEvent = function(source) {
+  let reg = /__CML_NATIVE_EVENTS__/g;
+  return source.replace(reg, '.native');
 }

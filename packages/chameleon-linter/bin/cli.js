@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+// --inspect-brk
 const program = require('commander');
 const packageJson = require('../package.json');
 const main = require('../index');

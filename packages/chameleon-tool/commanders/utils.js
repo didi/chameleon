@@ -47,8 +47,11 @@ exports.getBuildPromise = async function (media, type) {
         aggregateTimeout: 300,
         poll: undefined
       }, (err, stats) => {
+
         if (type === 'weex') {
-          broadcast('weex_refresh');
+          if (!(stats && stats.compilation && stats.compilation.errors && stats.compilation.errors.length > 0)) {
+            broadcast('weex_refresh');
+          }
           previewSocket.broadcast('weex_refresh');
         }
         if (err) {
@@ -209,7 +212,7 @@ exports.createConfigJson = function() {
   if (cml.utils.isFile(weexjsPath)) {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
-    md5sum.update(buffer); 
+    md5sum.update(buffer);
     md5str = md5sum.digest('hex').toUpperCase();
   }
 
@@ -267,7 +270,8 @@ exports.createConfigJson = function() {
     // 处理subProject配置的npm包中cml项目的页面
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
-      subProject.forEach(function(npmName) {
+      subProject.forEach(function(item) {
+        let { npmName } = item;
         let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');

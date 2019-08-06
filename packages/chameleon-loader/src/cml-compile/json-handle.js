@@ -2,7 +2,7 @@
 const cmlUtils = require('chameleon-tool-utils');
 
 module.exports = function(loaderContext, jsonObject, cmlType, componentDeps) {
-  var jsonPath = loaderContext.resourcePath.replace(/(\.cml|\.wx\.cml|\.alipay\.cml|\.baidu\.cml)$/, '.json')
+  var jsonPath = loaderContext.resourcePath.replace(/(\.cml|\.wx\.cml|\.alipay\.cml|\.baidu\.cml|\.qq\.cml)$/, '.json')
   var context = (loaderContext._compiler && loaderContext._compiler.context) || loaderContext.options.context || process.cwd()
 
   if (jsonObject.usingComponents) {

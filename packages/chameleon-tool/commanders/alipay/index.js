@@ -3,6 +3,7 @@ exports.name = 'alipay';
 exports.usage = '[command] [options]';
 exports.desc = 'tools for the alipay miniprogram project';
 
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .option('-r, --root [root]', 'specify project root')

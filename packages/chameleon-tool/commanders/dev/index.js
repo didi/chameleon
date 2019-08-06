@@ -1,8 +1,8 @@
-
 exports.name = 'dev';
 exports.usage = '';
 exports.desc = 'start dev mode';
 
+/* istanbul ignore next */
 exports.register = function (commander) {
   commander
     .action(function (...args) {

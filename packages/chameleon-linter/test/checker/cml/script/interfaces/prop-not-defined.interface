@@ -1,0 +1,46 @@
+<script cml-type="interface">
+interface IntgInterface {
+  platform: String;
+  getMsg(msg: String): String;
+}
+
+</script>
+
+<script cml-type="web">
+
+class Method implements IntgInterface {
+  platform = 'web';
+  getMsg(msg) {
+    return msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="weex">
+
+class Method implements IntgInterface {
+  getMsg(msg) {
+    return msg;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+
+class Method implements IntgInterface {
+  platform = 'wx';
+  getMsg(msg) {
+    return msg;
+  }
+}
+
+export default new Method();
+</script>
+
+
+
+

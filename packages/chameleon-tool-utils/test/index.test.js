@@ -337,7 +337,7 @@ describe('index.js', function () {
       let params = [
         cml.projectRoot,
         path.join(cml.projectRoot, 'index.cml'),
-        `../${item.key}/${item.key}`,
+        `../${item.key}/${item.key}`
       ]
 
       let result = _.lintHandleComponentUrl(...params);
@@ -357,11 +357,11 @@ describe('index.js', function () {
       cmlComponents: ['cml-ui']
     })
     var cmlFilePath = path.join(__dirname, 'testlib/demo-project/index.cml');
-    var comrefPath = './com2/com2'
+    var comrefPath = './comb/comb'
 
 
     let result = _.lintHandleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath);
-    expect(result.filePath).to.equal(path.join(__dirname, `testlib/demo-project/com2/com2.cml`));
+    expect(result.filePath).to.equal(path.join(__dirname, `testlib/demo-project/comb/comb.cml`));
     expect(result.isCml).to.equal(true);
   })
 
@@ -373,7 +373,7 @@ describe('index.js', function () {
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
     cml.config.merge({
     })
-    var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/page1/page1.cml');
+    var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/pagea/pagea.cml');
     var comrefPath = 'vant-weapp/test'
 
 
@@ -392,9 +392,9 @@ describe('index.js', function () {
     })
 
     var cmlFilePath = path.join(__dirname, 'testlib/demo-project/index.cml');
-    var comrefPath = './com1/com1'
+    var comrefPath = './coma/coma'
     let result = _.findInterfaceFile(cml.projectRoot, cmlFilePath, comrefPath);
-    expect(result.filePath).to.equal(path.join(__dirname, `testlib/demo-project/com1/com1.interface`));
+    expect(result.filePath).to.equal(path.join(__dirname, `testlib/demo-project/coma/coma.interface`));
   })
 
 
@@ -479,11 +479,11 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
-    let page1 = path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')
-    let com1 = path.join(__dirname, './testlib/demo-project/src/components/com1/com1.cml')
+    let pagea = path.join(__dirname, './testlib/demo-project/src/pages/pagea/pagea.cml')
+    let coma = path.join(__dirname, './testlib/demo-project/src/components/coma/coma.cml')
     let app = path.join(__dirname, './testlib/demo-project/src/app/app.cml')
-    let result1 = cml.utils.getCmlFileType(page1, cml.projectRoot, 'wx')
-    let result2 = cml.utils.getCmlFileType(com1, cml.projectRoot, 'wx')
+    let result1 = cml.utils.getCmlFileType(pagea, cml.projectRoot, 'wx')
+    let result2 = cml.utils.getCmlFileType(coma, cml.projectRoot, 'wx')
     let result3 = cml.utils.getCmlFileType(app, cml.projectRoot, 'wx')
     expect(result1).to.be.equal('page')
     expect(result2).to.be.equal('component')
@@ -496,8 +496,8 @@ describe('index.js', function () {
     let npmRef = '/npm/cml-ui/button/button';
     let notNpmRef = './npm/cml-ui';
 
-    let file1 = path.join(context, 'src/pages/page1/page1.cml') // ./../../npm
-    let file2 = path.join(context, 'src/pages/page1.cml') // ./../npm
+    let file1 = path.join(context, 'src/pages/pagea/pagea.cml') // ./../../npm
+    let file2 = path.join(context, 'src/pages/pagea.cml') // ./../npm
     let file3 = path.join(context, 'src/pages.cml') // ./npm
 
     let result1 = _.npmRefPathToRelative(npmRef, file1, context);
@@ -538,7 +538,7 @@ describe('index.js', function () {
       }
     }
     _.setCli(true);
-    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml'), 'wx');
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/pages/pagea/pagea.cml'), 'wx');
     expect(typeof result).to.equal('object');
   })
 
@@ -551,7 +551,7 @@ describe('index.js', function () {
       }
     }
     _.setCli(true);
-    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/components/com1/com1.cml'), 'wx');
+    let result = _.getJsonFileContent(path.join(__dirname, './testlib/demo-project/src/components/coma/coma.cml'), 'wx');
     expect(typeof result).to.equal('object');
   })
 
@@ -567,7 +567,7 @@ describe('index.js', function () {
     cml.config = {
       get() {
         return {
-          subProject: ['cml-pages'],
+          subProject: [{npmName: 'cml-pages'}],
           copyNpm: {
             wx: ['copy-npm']
           }
@@ -626,7 +626,7 @@ describe('index.js', function () {
     }
     _.setCli(true);
     cml.utils = _;
-    let result = _.getTargetInsertComponents(path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    let result = _.getTargetInsertComponents(path.join(path.join(__dirname, './testlib/demo-project/src/pages/pagea/pagea.cml')), 'wx', cml.projectRoot);
     expect(typeof result).to.equal('object');
 
   })
@@ -644,10 +644,10 @@ describe('index.js', function () {
     _.setCli(true);
     cml.utils = _;
     var obj = {};
-    _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/page1/page1.cml')), 'wx', cml.projectRoot);
+    _.addNpmComponents(obj, path.join(path.join(__dirname, './testlib/demo-project/src/pages/pagea/pagea.cml')), 'wx', cml.projectRoot);
     console.log(obj)
     expect(obj).to.has.property('usingComponents');
 
   })
-  
+
 })

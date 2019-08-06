@@ -29,7 +29,7 @@ _.analysisFor = function (nodeValue) {
   let reg1 = /\s*(.+?)\s+(?:in|of)\s+(.+)\s*/;
 
   // v-for="(item, index) in items"
-  let reg2 = /\s*\(([^\,\s]+?)\s*\,\s*([^\,\s]+?)\s*\)\s*(?:in|of)\s+(.+)\s*/
+  let reg2 = /\s*\(\s*([^\,\s]+?)\s*\,\s*([^\,\s]+?)\s*\)\s*(?:in|of)\s+(.+)\s*/
   let item, index, list;
   let matches1 = nodeValue.match(reg1);
   let matches2 = nodeValue.match(reg2);
@@ -203,14 +203,11 @@ _.handleVUEClassNodes = function (options) {
 _.webVUEClassNodes = function (options) {
   let { classNodes, attributes, extraClass } = options;
   if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+    extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
     classNodes.forEach((itemNode) => {
       if (t.isJSXNamespacedName(itemNode.name)) { // 动态的
-        attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-        // itemNode.name.name = `:${itemNode.name.name}`
-        // let newClassNodeValue = utils.getReactiveValue(itemNode.value.value);
-        // itemNode.value.value = `${newClassNodeValue}`;
+        extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
       } else {// 静态的
         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
       }
@@ -218,9 +215,7 @@ _.webVUEClassNodes = function (options) {
   } else if (classNodes.length === 2) {
     classNodes.forEach((itemNode) => {
       if (t.isJSXNamespacedName(itemNode.name)) { // 动态的
-        // itemNode.name.name = `:${itemNode.name.name}`
-        // let newClassNodeValue = utils.getReactiveValue(itemNode.value.value);
-        // itemNode.value.value = `${newClassNodeValue}`;
+
       } else { // 静态的
         itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
       }
@@ -230,13 +225,11 @@ _.webVUEClassNodes = function (options) {
 _.weexVUEClassNodes = function (options) {
   let { classNodes, attributes, extraClass } = options;
   if (classNodes.length === 0) {
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+    extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
     classNodes.forEach((itemNode) => {
       if (t.isJSXNamespacedName(itemNode.name)) { // 动态的
-        attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
-
-        // itemNode.value.value = `[${newClassNodeValue}]`;
+        extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)));
         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
         itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
       } else {// 静态的
@@ -259,8 +252,7 @@ _.weexVUEClassNodes = function (options) {
 _.miniappVUEClassNodes = function (options) {
   let { classNodes, attributes, extraClass } = options;
   if (classNodes.length === 0) {
-    // t.jsxAttribute(t.jsxIdentifier('data-cmlref'),t.stringLiteral(value))
-    attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+    extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
   } else if (classNodes.length === 1) { // 可能是动态class或者静态class
     classNodes.forEach((itemNode) => {
       // itemNode.value.value = `${itemNode.value.value} ${extraClass}`
@@ -293,3 +285,43 @@ _.miniappVUEClassNodes = function (options) {
 
   }
 }
+// 转换 $event参数
+_.getInlineStatementArgs = function(argsStr) {
+  // argsStr:"1,'index'+1,$event,'item',index+1,item"
+  const result = argsStr.split(',').reduce((result, current, index) => {
+    if (current === '$event') {
+      result.push("'$event'");
+    } else {
+      result.push(current)
+    }
+    return result
+  }, []);
+  return result.join();// "1,'index'+1,'$event','item',index+1,item"
+
+}
+_.isOriginTagOrNativeComp = function(tagName, options) {
+  let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
+  let isNative = usedComponentInfo && usedComponentInfo.isNative;
+  let isOrigin = (tagName && typeof tagName === 'string' && tagName.indexOf('origin-') === 0);
+  if (isOrigin || isNative) {
+    return true
+  }
+  return false;
+}
+// 判断是否是原生组件
+_.isNativeComp = function(tagName, options) {
+  let usedComponentInfo = (options.usingComponents || []).find((item) => item.tagName === tagName)
+  let isNative = usedComponentInfo && usedComponentInfo.isNative;
+  return isNative
+}
+// 判断是否是组件，不包括第三方原生组件
+// {button: "cml-buildin-button"},
+_.isNotNativeComponent = function(tagName, options) {
+  let usingComponents = options.usingComponents || [];
+  let buildInComponents = options.buildInComponents || {};
+  let isComponent = usingComponents.find((comp) =>
+    ((comp.tagName === tagName) && !comp.isNative)
+  ) || Object.values(buildInComponents).includes(tagName);
+  return isComponent
+}
+

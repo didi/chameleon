@@ -49,7 +49,7 @@ parseStyle.tap('weex-cml', (args) => {
 });
 parseStyle.tap('wx-alipay-baidu-cml', (args) => {
   let { node, type, options: { lang } } = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'baidu')) {
+  if (lang === 'cml' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
     let styleNode = node
     if (styleNode && styleNode.value && utils.isMustacheReactive(styleNode.value.value)) {// 动态的style  cpx转化成rpx
       styleNode.value && (styleNode.value.value = utils.transformWxDynamicStyleCpxToRpx(styleNode.value.value));
@@ -90,7 +90,7 @@ parseStyle.tap('weex-vue', (args) => {
 });
 parseStyle.tap('miniapp-vue', (args) => {
   let { path, node, type, options: { lang } } = args;
-  if (lang === 'vue' && (type === 'wx' || type === 'baidu' || type === 'alipay')) {
+  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
     let styleNode = node;
     if (styleNode) {
       let newStyleNodeValue;
