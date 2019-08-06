@@ -29,6 +29,7 @@ module.exports.run = function () {
           commander
             .command(cmd.name)
             .option('-l, --log [debug]', 'logLevel')
+            .option('-n, --nopreview ', "don't auto open preview")
             .usage(cmd.usage)
             .description(cmd.desc)
         );

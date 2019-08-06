@@ -71,14 +71,18 @@ exports.cssLoaders = function (options) {
         {
           loader: 'mvvm-style-loader'
         },
-        getPostCssLoader('extend'),
-        {
-          loader: loader + '-loader',
-          options: Object.assign({}, loaderOptions, {
-            sourceMap: false
-          })
-        }
+        getPostCssLoader('extend')
       ]
+      if (loader) {
+        extLoaders.push(
+          {
+            loader: loader + '-loader',
+            options: Object.assign({}, loaderOptions, {
+              sourceMap: false
+            })
+          }
+        )
+      }
       addMediaLoader(extLoaders, options.type);
       return extLoaders;
     }
