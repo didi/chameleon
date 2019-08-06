@@ -2,7 +2,7 @@
 
 ## process.env.platform
 
-chameleon项目提供了可以判断当前代码执行环境的变量`process.env.platform`,取值为`web, weex, wx, baidu, alipay`。 
+chameleon项目提供了可以判断当前代码执行环境的变量`process.env.platform`,取值为`web, weex, wx, baidu, alipay|qq|tt`。 
 chameleon项目中当出现有各端需要差异实现的代码时，我们建议采用多态接口的方式去解决，这样更利用项目的维护，当有特殊需求时，可以采用`process.env.platform` 变量进行判断。
 
 ```javascript

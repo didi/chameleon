@@ -10,7 +10,7 @@
 }
 <style>
 ```
-其中`支持的平台`为可以用逗号分隔多个平台，可选平台为`web,weex,wx,alipay,baidu`。
+其中`支持的平台`为可以用逗号分隔多个平台，可选平台为`web,weex,wx,alipay,baidu,tt,qq`。
 demo示例，`class1`在各端的差异实现。
 ```
 <template>
@@ -33,7 +33,7 @@ demo示例，`class1`在各端的差异实现。
     color: green;
   }
 }
-@media cml-type (wx,alipay,baidu) {
+@media cml-type (wx,alipay,baidu,tt,qq) {
   .class1 {
     color: blue;
   }
@@ -54,7 +54,7 @@ demo示例，`class1`在各端的差异实现。
   @import "./style2.less";
 
 }
-@media cml-type (wx,alipay,baidu) {
+@media cml-type (wx,alipay,baidu,tt,qq) {
   @import "./style3.less";
 
 }
