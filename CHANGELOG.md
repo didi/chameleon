@@ -1,62 +1,70 @@
+## [0.4.0]
+### Features
+- 灰度完成发正式版
+  
+## [0.4.0-alpha.2]
+### Features
+- 合并0.3.3 和 mvvm+ 版本的代码
+
 ## [0.4.0-mvvm.16]
 
 ### Bug Fixes
-* 修复扩展新端运行时代码插入
+- 修复扩展新端运行时代码插入
 
 ## [0.4.0-mvvm.15]
 
 ### Bug Fixes
-* 修复扩展新端代码中无法使用async函数
+- 修复扩展新端代码中无法使用async函数
 
 ## [0.4.0-mvvm.13]
 
 ### Bug Fixes
-* 修复扩展新端用户编译插件报错导致阻塞watch
-* 修复扩展新端中不支持变量注入的bug
+- 修复扩展新端用户编译插件报错导致阻塞watch
+- 修复扩展新端中不支持变量注入的bug
 
 ## [0.4.0-mvvm.12]
 
 ### Features
-* 支持给扩展新端自定义loader传默认options
+- 支持给扩展新端自定义loader传默认options
 
 ### Bug Fixes
-* 修复多路由报错的bug
+- 修复多路由报错的bug
 
 ## [0.4.0-mvvm.11]
 ### Features
-* 增加生成config.json文件的钩子
-* 打包文件增量覆盖
-* 新端插件中可以有默认配置
-* 静态资源可以添加生成路径前缀
+- 增加生成config.json文件的钩子
+- 打包文件增量覆盖
+- 新端插件中可以有默认配置
+- 静态资源可以添加生成路径前缀
 
 ## [0.4.0-mvvm.10]
 ### Features
-* 完善mvvm-pack单元测试
-* 扩展新端compiler对象新增获取路由方法
-* 扩展新端cml节点的extra字段添加引用组件
+- 完善mvvm-pack单元测试
+- 扩展新端compiler对象新增获取路由方法
+- 扩展新端cml节点的extra字段添加引用组件
 
 ## [0.4.0-mvvm.9]
 ### Features
-* 支持script类型节点 originSource字段获取节点babel前代码
-* linter支持扩展多态协议的校验
+- 支持script类型节点 originSource字段获取节点babel前代码
+- linter支持扩展多态协议的校验
 
 ## [0.4.0-mvvm.8]
 ### Bug Fixes
-* 修复扩展新端在window上构建报错
+- 修复扩展新端在window上构建报错
 ## [0.4.0-mvvm.7]
 ### Features
-* 支持扩展新端支持文件指纹与js和css压缩
-* 对齐百度和微信小程序能力，支持 支付宝 web weex 在自定义组件上使用 tap touchstart touchend touchcancel原生事件直接触发
+- 支持扩展新端支持文件指纹与js和css压缩
+- 对齐百度和微信小程序能力，支持 支付宝 web weex 在自定义组件上使用 tap touchstart touchend touchcancel原生事件直接触发
 
 ## [0.4.0-mvvm.6]
 ### Features
-* 支持扩展新端对小程序原生组件支持
+- 支持扩展新端对小程序原生组件支持
 
 ## [0.4.0-mvvm.1-0.4.0-mvvm.3]
 ### Features
-* 增加 扩展新端功能
-* 增加 web端组件导出支持externals参数进行运行时分离
-* 增加 支持小程序配置原生tabbar
+- 增加 扩展新端功能
+- 增加 web端组件导出支持externals参数进行运行时分离
+- 增加 支持小程序配置原生tabbar
 
 ## [0.3.3]
 ### Features:
