@@ -192,12 +192,34 @@ module.exports = function (obj, __CML_ERROR__, __enableTypes__, __CHECK__DEFINES
   * @param  {Array}  argValues  参数值列表
   * @return {bool}              校验结果
   */
+  /**
+       * var __CHECK__DEFINES__ = {
+          "types": {
+            "Callback": {
+              "input": [],
+              "output": "Undefined"
+            }
+          },
+          "interfaces": {
+            "MultiInterface": {
+              "getMsg": {
+                "input": ["String", "Object_cml_nullable_lmc_", "Callback_cml_nullable_lmc_"],
+                "output": "String"
+              }
+            }
+          },
+          "classes": {
+            "Method": ["MultiInterface"]
+          }
+        };
+      */
   const checkArgsType = function (methodName, argValues) {
     let argList;
-
-    if (getType(methodName) == 'Array') {
+    if (getType(methodName) == 'Array') { // methodName:['getMsg',2];
       // 回调函数的校验    methodName[0] 方法的名字 methodName[1]该回调函数在方法的参数索引
-      argList = types[methods[methodName[0]].input[methodName[1]]].input;
+      // 如上，对于可传可不传的回调函数来说，Callback_cml_nullable_lmc_,所以需要将其去掉
+      let funcKey = methods[methodName[0]].input[methodName[1]].replace('_cml_nullable_lmc_', '');
+      argList = types[funcKey].input;
       // 拿到这个回调函数的参数定义
     } else {
       argList = methods[methodName].input;
@@ -226,7 +248,11 @@ module.exports = function (obj, __CML_ERROR__, __enableTypes__, __CHECK__DEFINES
   const checkReturnType = function (methodName, returnData) {
     let output;
     if (getType(methodName) == 'Array') {
-      output = types[methods[methodName[0]].input[methodName[1]]].output;
+      // 回调函数的校验    methodName[0] 方法的名字 methodName[1]该回调函数在方法的参数索引
+      // 如上，对于可传可不传的回调函数来说，Callback_cml_nullable_lmc_,所以需要将其去掉
+      let funcKey = methods[methodName[0]].input[methodName[1]].replace('_cml_nullable_lmc_', '');
+      output = types[funcKey].output;
+      // output = types[methods[methodName[0]].input[methodName[1]]].output;
     } else {
       output = methods[methodName].output;
     }
