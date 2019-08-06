@@ -528,8 +528,8 @@ let babelNpm = [
   'webpack-liveload-middleware',
   'chameleon-weex-vue-loader',
   'babel-plugin-chameleon-import',
-  /mvvm-interface-parser/,
-  /chameleon-loader/,
+  'mvvm-interface-parser',
+  'chameleon-loader',
   'mobx'
 ];
 
