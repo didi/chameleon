@@ -89,7 +89,7 @@ describe('mvvmGraphPlugin.js', function() {
         get() {
           return {
             wx: {
-              
+
             }
           }
         }
@@ -157,7 +157,7 @@ describe('mvvmGraphPlugin.js', function() {
         }
       }
     };
-
+    global.cml.log = cmlUtils.log;
     let options = {
       cmlType: 'wx',
       media: 'dev'
@@ -266,7 +266,7 @@ describe('mvvmGraphPlugin.js', function() {
         }
         let json2Module = {
           _source: {
-            _value: `module.exports = {a}`
+            _value: `module.exports = {a:'a'}`
           },
           _moduleType: 'json',
           dependencies: [],
@@ -295,32 +295,16 @@ describe('mvvmGraphPlugin.js', function() {
             dependencies: [{
               module: page1module
             }, {
-              module: page1module
+              module: page2module
             }, {
-              module: page2module
-            },
-            {
-              module: page2module
-            },
-            {
               module: assetModule
-            },
-            {
+            }, {
               module: styleModule
-            },
-            {
-              module: style2Module
-            },
-            {
+            }, {
               module: templateModule
-            },
-            {
+            }, {
               module: json1Module
-            },
-            {
-              module: json2Module
-            },
-            {
+            }, {
               module: scriptModule
             }],
             request: 'request',
