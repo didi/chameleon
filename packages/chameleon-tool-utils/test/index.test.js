@@ -266,8 +266,8 @@ describe('index.js', function () {
     cml.config.merge({
       isBuildInProject: false
     })
-    let result = _.isBuildIn('/Users/didi/Documents/cml/chameleon-cli-utils/test/testlib/demo-project/node_modules/cml-ui/components/picker/picker.cml');
-    expect(result).to.equal(true);
+    let result = _.isBuildIn('/Users/didi/work/chameleon-open/chameleon/packages/chameleon-tool-utils/test/testlib/demo-project/node_modules/cml-ui/components/picker/picker.cml', 'wx', cml.projectRoot);
+    expect(result).to.equal(false);
   })
 
   it(`addNpmComponents`, function () {
@@ -436,7 +436,8 @@ describe('index.js', function () {
   it('getDevServerPath', function() {
     process.env.HOME = __dirname;
     let devpath = cml.utils.getDevServerPath();
-    expect(devpath).to.be.equal(path.join(__dirname, '.chameleon/www'))
+    cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    expect(devpath).to.be.equal(path.join(cml.projectRoot, './node_modules/.chameleon/www'))
   })
 
   it('handleRelativePath same level', function() {

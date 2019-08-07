@@ -29,6 +29,7 @@ let e = {
     screenY: 'screenY'
   }]
 }
+
 describe('web-mixins.js', function() {
   it('test _cmlInline', function() {
     global.Event = eventEmittter
@@ -43,6 +44,7 @@ describe('web-mixins.js', function() {
     let thisArg = {
       key: 'modelKey'
     }
+    global.window = {innerWidth: 750, innerHeight: 1260 } // px2cpx用到了window.innerWidth
     expect(mixins._cmlModelEventProxy.call(thisArg, e, 'key')).to.be.not.ok
   });
   it('test _cmlEventProxy', function() {
