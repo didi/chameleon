@@ -58,7 +58,30 @@ master为稳定版本，除了紧急 bug 修复，每份代码提交都有很严
 ![Alt text](https://CML.JS.org/doc/assets/mvvm4.png)
 
 ## 开发语言
+代码示例
+```html
+<template>
+  <view>
+    <text>{{title}}</text><text>{{reversedTitle}}</text>
+  </view>
+</template>
 
+<script>
+class Index  {
+  data = {
+    title: "chameleon"
+  }
+  computed = {
+    reversedTitle: function () {
+      return this.title.split('').reverse().join('')
+    }
+  }
+  mounted() {}
+  destroyed() {}
+}
+export default new Index();
+</script>
+```
 从事过网页编程的人知道，网页编程采用的是 HTML + CSS + JS 这样的组合，同样道理，chameleon 中采用的是 CML + CMSS + JS。
 
 [JS](https://CML.JS.org/doc/logic/logic.html)语法用于处理页面的逻辑层，与普通网页编程相比，本项目目标定义标准 MVVM 框架，拥有完整的生命周期，watch，computed，数据双向绑定等优秀的特性，能够快速提高开发速度、降低维护成本。
