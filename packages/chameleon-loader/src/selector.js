@@ -30,7 +30,9 @@ module.exports = function (content) {
   }
   let output = part.content;
   if (query.type === 'styles' && ~['page', 'component'].indexOf(query.fileType) && query.isInjectBaseStyle === 'true') {
-    if (query.fileType === 'page') {
+    let pageCssPath = path.join(cml.projectRoot, 'node_modules', `chameleon-runtime/src/platform/${query.cmlType}/style/page.css`)
+    let hasPageCss = cmlUtils.isFile(pageCssPath)
+    if (query.fileType === 'page' && hasPageCss) {
       output = `
         @import 'chameleon-runtime/src/platform/${query.cmlType}/style/page.css';
         ${output}
