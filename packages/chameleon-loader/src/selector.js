@@ -30,10 +30,18 @@ module.exports = function (content) {
   }
   let output = part.content;
   if (query.type === 'styles' && ~['page', 'component'].indexOf(query.fileType) && query.isInjectBaseStyle === 'true') {
-    output = `
+    if (query.fileType === 'page') {
+      output = `
+        @import 'chameleon-runtime/src/platform/${query.cmlType}/style/page.css';
+        ${output}
+      `
+    } else {
+      output = `
         @import 'chameleon-runtime/src/platform/${query.cmlType}/style/index.css';
         ${output}
       `
+    }
+
   }
   if (query.type == 'script') {
     // 拼接wx所需要的运行时代码，如果在loader中拼接，拼接的代码将不会过loader了
