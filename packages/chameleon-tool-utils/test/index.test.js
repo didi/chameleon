@@ -436,8 +436,7 @@ describe('index.js', function () {
   it('getDevServerPath', function() {
     process.env.HOME = __dirname;
     let devpath = cml.utils.getDevServerPath();
-    cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
-    expect(devpath).to.be.equal(path.join(cml.projectRoot, './node_modules/.chameleon/www'))
+    expect(devpath).to.be.equal(path.join(__dirname, '.chameleon/www'))
   })
 
   it('handleRelativePath same level', function() {
