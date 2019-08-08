@@ -137,7 +137,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 内部成员：透心凉、Sgoddon、动机不纯、Jalon、Jack、卡尺哈哈、change、Observer、Kevin、guoqingSmile、Mr.MY、JiM、lzc、名字待定、朱智恒、亭、龚磊、w55、小龙、不懂小彬、荣景超
 
 ## 特别鸣谢
-[![broven](https://avatars0.githubusercontent.com/u/12854613?s=400&v=4)](https://github.com/broven/) | [![Jeany](https://avatars0.githubusercontent.com/u/137496?s=400&v=4)](https://github.com/Jeany/)
+[![broven](https://avatars0.githubusercontent.com/u/12854613?s=100&v=4)](https://github.com/broven/) | [![Jeany](https://avatars0.githubusercontent.com/u/137496?s=100&v=4)](https://github.com/Jeany/)
 :---:|:---:
 [broven（阿里影业）](https://github.com/broven/) | [Jeany（芒果 TV)](https://github.com/Jeany/)
 
