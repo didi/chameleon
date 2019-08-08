@@ -10,6 +10,8 @@ const WebpackCheckPlugin = require('webpack-check-plugin')
 const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
+const cmlUtils = require('chameleon-tool-utils');
+
 module.exports = function (options) {
   let {
     type,
@@ -18,7 +20,11 @@ module.exports = function (options) {
   } = options;
 
   function getstaticPath(filetype) {
-    return `static/${filetype}/[name]_[hash:7].[ext]`
+    let staticPath = `static/${filetype}/[name]_[hash:7].[ext]`;
+    if (options.staticPath) {
+      staticPath = options.staticPath + staticPath;
+    }
+    return staticPath;
   }
 
   let webServerPort = getFreePort().webServerPort;
@@ -32,9 +38,10 @@ module.exports = function (options) {
     'web': `http://${config.ip}:${webServerPort}/`,
     'weex': `http://${config.ip}:${webServerPort}/weex/`
   }
-
   publicPath = options.publicPath || defaultPublichPathMap[type];
-
+  if (!publicPath) {
+    publicPath = `http://${config.ip}:${webServerPort}/${type}/`
+  }
 
   let commonConfig = {
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
@@ -52,7 +59,7 @@ module.exports = function (options) {
       },
       modules: [
         'node_modules',
-        path.join(cml.root, '/node_modules'),
+        path.join(cml.root, '/node_modules')
       ]
     },
     resolveLoader: {
@@ -76,9 +83,7 @@ module.exports = function (options) {
           options: {
             'filename': path.join(cml.root, 'chameleon.js')
           }
-        }
-
-        ]
+        }]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -96,7 +101,12 @@ module.exports = function (options) {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'file-loader',
         options: {
-          name: getstaticPath('media')
+          name: getstaticPath('media'),
+          outputPath: function(output) {
+            // 处理图片中的@符号 改成_ 解决在支付宝小程序中上传失败的问题
+            output = cml.utils.handleSpecialChar(output)
+            return output;
+          }
 
         }
       },
@@ -104,7 +114,12 @@ module.exports = function (options) {
         test: /\.(woff|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'file-loader',
         options: {
-          name: getstaticPath('fonts')
+          name: getstaticPath('fonts'),
+          outputPath: function(output) {
+            // 处理图片中的@符号 改成_ 解决在支付宝小程序中上传失败的问题
+            output = cml.utils.handleSpecialChar(output)
+            return output;
+          }
         }
       },
 
@@ -160,7 +175,7 @@ module.exports = function (options) {
   let devApiPrefix = `http://${config.ip}:${webServerPort}`
   // 兼容旧版api
   let apiPrefix = options.apiPrefix || devApiPrefix;
-  // 新版api 优先读取domainMap
+  // 新版api 优先读取domain
   // 浅拷贝不影响config中的domain
   let domain = {};
   if (options.domain) {
@@ -213,10 +228,11 @@ module.exports = function (options) {
     commonConfig.plugins.push(moduleIdMap[moduleIdType])
   }
 
+
   let subProject = cml.config.get().subProject;
   if (subProject && subProject.length > 0) {
     subProject.forEach(item => {
-      let { npmName } = item;
+      let npmName = cmlUtils.isString(item) ? item : item.npmName;
       let packageJSON = JSON.parse(fs.readFileSync(path.resolve(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
       let cmlConfig = packageJSON.cml || {};
       let definePlugin = cmlConfig.definePlugin;

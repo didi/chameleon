@@ -72,25 +72,15 @@ describe('template lib template', function() {
       variable: true,
       pos: [8, 46]
     }, {
-      name: 'logicalLeft',
+      name: 'logicLeft',
       method: false,
       variable: true,
-      pos: [9, 17]
+      pos: [9, 23]
     }, {
-      name: 'logicalRight',
+      name: 'logicRight',
       method: false,
       variable: true,
-      pos: [9, 32]
-    }, {
-      name: 'eleOne',
-      method: false,
-      variable: true,
-      pos: [10, 18]
-    }, {
-      name: 'eleTwo',
-      method: false,
-      variable: true,
-      pos: [10, 26]
+      pos: [9, 36]
     }], 'variables mismatch');
     expect(results.customizedComponents[0]['show-scroller']).to.have.deep.property('props', [{
       event: false,

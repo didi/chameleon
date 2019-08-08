@@ -8,10 +8,9 @@
   "license": "MIT",
   "dependencies": {
     "chameleon-api": "0.5.3",
-    "chameleon-bridge": "0.1.11",
-    "chameleon-runtime": "0.2.2",
-    "chameleon-store": "0.1.0-alpha.qq",
-    "chameleon-ui-builtin": "0.2.11-alpha.qq",
-    "cml-ui": "0.2.1"
+    "chameleon-runtime": "0.3.1",
+    "chameleon-store": "0.1.0",
+    "chameleon-ui-builtin": "0.4.1",
+    "cml-ui": "0.3.1"
   }
 }

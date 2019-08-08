@@ -1,0 +1,17 @@
+{
+  "name": "mvvm-cml-loader",
+  "version": "0.4.0-alpha.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "dependencies": {
+    "chameleon-loader": "0.4.0-alpha.2",
+    "chameleon-tool-utils": "0.4.0-alpha.2",
+    "loader-utils": "1.1.0",
+    "mvvm-template-parser": "0.4.0-alpha.2"
+  }
+}

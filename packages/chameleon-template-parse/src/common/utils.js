@@ -233,7 +233,7 @@ _.weexVUEClassNodes = function (options) {
         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
         itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
       } else {// 静态的
-        itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
+        itemNode.value.value = ` ${extraClass} ${itemNode.value.value}`
       }
     })
   } else if (classNodes.length === 2) {
@@ -244,7 +244,7 @@ _.weexVUEClassNodes = function (options) {
         let newClassNodeValue = utils.trimCurly(itemNode.value.value);
         itemNode.value.value = `${weexMixins.weexClassProxy}((${newClassNodeValue}))`
       } else { // 静态的
-        itemNode.value.value = `${itemNode.value.value}  ${extraClass}`
+        itemNode.value.value = ` ${extraClass} ${itemNode.value.value}`
       }
     })
   }

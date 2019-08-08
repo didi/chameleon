@@ -1,6 +1,6 @@
 {
   "name": "chameleon-url-loader",
-  "version": "0.3.3-alpha.7",
+  "version": "0.4.0-alpha.2",
   "description": "A loader for webpack which transforms files into base64 URIs",
   "license": "Apache",
   "main": "dist/cjs.js",
@@ -12,7 +12,6 @@
     "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js' --copy-files",
     "clean": "del-cli dist",
     "prebuild": "npm run clean",
-    "prepublish": "npm run build",
     "release": "standard-version",
     "release:ci": "conventional-github-releaser -p angular",
     "release:validate": "commitlint --from=$(git describe --tags --abbrev=0) --to=$(git rev-parse HEAD)",

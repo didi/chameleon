@@ -17,6 +17,7 @@ const cmlUtils = require('chameleon-tool-utils');
 const prehandle = require('./utils/prehandle.js');
 const loaderMethods = require('./loaderMethods');
 const miniAppScript = require('./miniapp-script.js');
+const loadIcon = require('./load-icon.js');
 let jsonObject = {};
 
 module.exports = function (content) {
@@ -62,8 +63,8 @@ module.exports = function (content) {
       }
     })
   }
-  
 
+  
   if (jsonObject && jsonObject.baseStyle !== undefined) {
     isInjectBaseStyle = jsonObject.baseStyle;
   }
@@ -104,9 +105,8 @@ module.exports = function (content) {
   // 如果是web端 默认添加scoped属性
   // 如果是weex端 默认添加全局样式
   //判断是否是内置组件
-  const isBuildInFile = cmlUtils.isBuildIn(filePath);
-
-
+  const isBuildInFile = cmlUtils.isBuildIn(filePath, cmlType, context);
+  
   const shortFilePath = path.relative(context, filePath).replace(/^(\.\.[\\\/])+/, '')
   var hashNum = hash(isProduction ? (shortFilePath + '\n' + content) : shortFilePath)
 
@@ -253,6 +253,7 @@ module.exports = function (content) {
     })
 
     usingComponents = prepareParseUsingComponents(usingComponents);
+    
     //cml 编译出wxml模板
     if (type !== 'app') {
       let parseTemplate = parts.template && parts.template[0];
@@ -286,9 +287,13 @@ module.exports = function (content) {
     Object.keys(newJsonObj.usingComponents).forEach(key=>{
       newJsonObj.usingComponents[key] = cmlUtils.handleSpecialChar(newJsonObj.usingComponents[key])
     });
+    //处理tabbar中配置的icon路径
+    if(type == 'app'){
+      loadIcon.handleApptabbar(newJsonObj,filePath,cmlType)
+    }
     let jsonResult = JSON.stringify(newJsonObj, '', 4);
     self.emitFile(emitJsonPath, jsonResult);
-
+    
     //cml
     parts.styles.forEach(function (style, i) {
       //微信小程序在使用组件的时候 不支持属性选择器
@@ -359,10 +364,20 @@ module.exports = function (content) {
     const parseScript = (parts.script && parts.script[0]) || {};
     const scriptContent = parseScript.content || '';
     let newTemplate = handleTemplate();
+    // if(type === 'app') {
+    //   newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
+    //   <router-view ></router-view> 
+    // </div>`)
+    
+    // }
     if(type === 'app') {
-      newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
-      <router-view ></router-view> 
-    </div>`)
+      if (cmlType == 'web') {
+        newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<router-view class="app" bubble="true"></router-view> `)
+      } else {
+        newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
+        <router-view ></router-view> 
+        </div>`)
+      }
       // newTemplate = `<template><view><router-view></router-view></view></template>`
     }
     let newScript = handleVueScript();

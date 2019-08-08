@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
+const cmlUtils = require('chameleon-tool-utils');
 
 exports.getPostcssrcPath = function (type) {
   return path.join(__dirname, `./postcss/${type}/.postcssrc.js`);
@@ -63,6 +64,29 @@ exports.cssLoaders = function (options) {
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
+
+    // 扩展流程
+    if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(options.type)) {
+      let extLoaders = [
+        {
+          loader: 'mvvm-style-loader'
+        },
+        getPostCssLoader('extend')
+      ]
+      if (loader) {
+        extLoaders.push(
+          {
+            loader: loader + '-loader',
+            options: Object.assign({}, loaderOptions, {
+              sourceMap: false
+            })
+          }
+        )
+      }
+      addMediaLoader(extLoaders, options.type);
+      return extLoaders;
+    }
+
     var loaders = [cssLoader];
     let result = [];
 
@@ -192,7 +216,6 @@ exports.updateEntry = function (updateEntryConfig) {
           source = parts.template[0].content;
           options = analyzeTemplate(source, options)
         }
-
       }
     });
     let usedBuildInTagMap = options.usedBuildInTagMap;
@@ -254,7 +277,7 @@ exports.getMiniAppEntry = function (cmlType) {
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
       subProject.forEach(function(item) {
-        let { npmName } = item;
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}));
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let routePath = item.path;
@@ -491,7 +514,6 @@ let babelNpm = [
   'chameleon-api',
   'chameleon-tool-utils',
   'chameleon-css-loader',
-  'chameleon-loader',
   'chameleon-miniapp-target',
   'chameleon-mixins',
   'chameleon-template-parse',
@@ -505,7 +527,10 @@ let babelNpm = [
   'webpack-check-plugin',
   'webpack-liveload-middleware',
   'chameleon-weex-vue-loader',
-  'babel-plugin-chameleon-import'
+  'babel-plugin-chameleon-import',
+  'mvvm-interface-parser',
+  'chameleon-loader',
+  'mobx'
 ];
 
 exports.getBabelPath = function () {
@@ -515,8 +540,12 @@ exports.getBabelPath = function () {
     path.join(cml.root, 'configs')
   ]
   babelNpm.forEach(item => {
-    babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
-    babelPath.push(path.join(cml.root, 'node_modules', item))
+    if (typeof item === 'string') {
+      babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
+      babelPath.push(path.join(cml.root, 'node_modules', item))
+    } else if (item instanceof RegExp) {
+      babelPath.push(item)
+    }
   })
   let configBabelPath = cml.config.get().babelPath || [];
   return configBabelPath.concat(babelPath);

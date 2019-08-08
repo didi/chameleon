@@ -2,7 +2,7 @@ var _ = require('../src/index.js');
 var expect = require('chai').expect;
 const path = require('path');
 const fs = require('fs');
-
+const EventEmitter = require('events');
 const cmlFileContent = fs.readFileSync(path.resolve(__dirname, './testlib/index.cml'), {
   encoding: 'utf-8'
 });
@@ -159,7 +159,6 @@ describe('index.js', function () {
     let result = _.splitParts({
       content: cmlFileContent
     });
-    debugger
     expect(result.template.length).to.equal(1);
     expect(result.script.length).to.equal(2);
     expect(result.style.length).to.equal(1);
@@ -267,8 +266,8 @@ describe('index.js', function () {
     cml.config.merge({
       isBuildInProject: false
     })
-    let result = _.isBuildIn('/Users/didi/Documents/cml/chameleon-cli-utils/test/testlib/demo-project/node_modules/cml-ui/components/picker/picker.cml');
-    expect(result).to.equal(true);
+    let result = _.isBuildIn('/Users/didi/work/chameleon-open/chameleon/packages/chameleon-tool-utils/test/testlib/demo-project/node_modules/cml-ui/components/picker/picker.cml', 'wx', cml.projectRoot);
+    expect(result).to.equal(false);
   })
 
   it(`addNpmComponents`, function () {
@@ -329,6 +328,8 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    global.cml.event = new EventEmitter();
+
     cml.config.merge({
       cmlComponents: ['cml-ui']
     })
@@ -339,7 +340,6 @@ describe('index.js', function () {
         path.join(cml.projectRoot, 'index.cml'),
         `../${item.key}/${item.key}`
       ]
-
       let result = _.lintHandleComponentUrl(...params);
       expect(result.filePath).to.equal(path.join(__dirname, `./testlib/${item.key}/${item.key}.${item.name}`));
       expect(result.isCml).to.equal(undefined);
@@ -353,6 +353,8 @@ describe('index.js', function () {
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    global.cml.event = new EventEmitter();
+
     cml.config.merge({
       cmlComponents: ['cml-ui']
     })
@@ -368,6 +370,7 @@ describe('index.js', function () {
   it('handleComponentUrl isCml true wxml', function() {
     global.cml = {};
     _.setCli(true);
+    cml.event = new EventEmitter();
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
@@ -375,7 +378,6 @@ describe('index.js', function () {
     })
     var cmlFilePath = path.join(__dirname, 'testlib/demo-project/src/pages/pagea/pagea.cml');
     var comrefPath = 'vant-weapp/test'
-
 
     let result = _.handleComponentUrl(cml.projectRoot, cmlFilePath, comrefPath, 'wx');
     expect(result.refUrl).to.equal('./../../npm/vant-weapp/test');
@@ -418,21 +420,7 @@ describe('index.js', function () {
   it(`findComponent false`, function () {
     global.cml = {};
     _.setCli(true);
-    cml.config = require('./testlib/cli/config.js');
-    cml.utils = require('../src/index.js');
-    cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
-    cml.config.merge({
-      cmlComponents: ['cml-ui']
-    })
-
-    let result = _.findComponent(__dirname, 'wx');
-    expect(result).to.equal(false);
-
-  })
-
-  it(`convertToRelativeRef`, function () {
-    global.cml = {};
-    _.setCli(true);
+    cml.event = new EventEmitter();
     cml.config = require('./testlib/cli/config.js');
     cml.utils = require('../src/index.js');
     cml.projectRoot = path.join(__dirname, 'testlib/demo-project');
@@ -641,6 +629,7 @@ describe('index.js', function () {
         }
       }
     }
+    cml.event = new EventEmitter();
     _.setCli(true);
     cml.utils = _;
     var obj = {};
@@ -649,5 +638,147 @@ describe('index.js', function () {
     expect(obj).to.has.property('usingComponents');
 
   })
+
+  it(`getSubProjectRouter`, function () {
+    global.cml = {};
+    _.setCli(true);
+    cml.projectRoot = path.join(__dirname, './testlib/demo-project');
+    cml.config = {
+      get() {
+        return {
+          subProject: ['cml-subproject']
+        }
+      }
+    }
+
+    let result = _.getSubProjectRouter();
+
+    expect(Object.keys(result).length).to.be.equal(1);
+
+  })
+
+  it(`deleteExt`, function () {
+    global.cml = {};
+    _.setCli(true);
+    global.cml.event = new EventEmitter();
+    let path1 = '/src/pages/name.web.cml';
+    let path2 = '/src/pages/name.cml';
+    let path3 = 'name.cml';
+    let result1 = _.deleteExt(path1);
+    let result2 = _.deleteExt(path2);
+    let result3 = _.deleteExt(path3);
+    expect(result1).to.be.equal('/src/pages/name');
+    expect(result2).to.be.equal('/src/pages/name');
+    expect(result3).to.be.equal('name');
+
+  })
+
+  it(`getExportEntry`, function () {
+    global.cml = {};
+    _.setCli(true);
+    global.cml.event = new EventEmitter();
+    global.cml.utils = _;
+    global.projectRoot = path.join(__dirname, 'testlib/demo-project');
+    let result = _.getExportEntry('web', global.projectRoot, [
+      'src/components',
+      'src/notfinr.cml',
+      'src/components/com2/com2.interface'
+    ]);
+    console.log(result)
+    expect(result.length).to.be.equal(2);
+  })
+
+  it(`creatMD5`, function () {
+    let source = '12345678';
+    let result = _.createMd5(source);
+    expect(result).to.be.equal('25d55ad283aa400af464c76d713c07ad');
+  })
+
+  it(`delQueryPath`, function () {
+    let filePath = '/user/cml/name.png?__inline';
+    let result = _.delQueryPath(filePath);
+    expect(result).to.be.equal('/user/cml/name.png');
+  })
+
+
+  it(`splitFileName`, function () {
+    let filePath = '/user/cml/name.web.cml?__inline';
+    let result = _.splitFileName(filePath);
+    expect(!!~result.indexOf('name')).to.be.equal(true);
+    expect(!!~result.indexOf('web')).to.be.equal(true);
+    expect(!!~result.indexOf('cml')).to.be.equal(true);
+  })
+
+  it(`isInline`, function () {
+    let filePath = '/user/cml/name.web.cml?__inline';
+    let result = _.isInline(filePath);
+    let filePath2 = '/user/cml/name.web.cml';
+    let result2 = _.isInline(filePath2);
+    expect(result).to.be.equal(true);
+    expect(result2).to.be.equal(false);
+
+  })
+
+  it(`addHashName has ext`, function () {
+    let filePath = '/user/cml/name.web.cml';
+    let result = _.addHashName(filePath, '3123123123123sd');
+    expect(result).to.be.equal('/user/cml/name.web_3123123123123sd.cml');
+
+  })
+
+  it(`addHashName no ext`, function () {
+    let filePath = '/user/cml/name';
+    let result = _.addHashName(filePath, '3123123123123sd');
+    expect(result).to.be.equal('/user/cml/name_3123123123123sd');
+
+  })
+  it(`addHashName multi .`, function () {
+    let filePath = '/user/cml/name.web.cml';
+    let result = _.addHashName(filePath, '3123123123123sd');
+    expect(result).to.be.equal('/user/cml/name.web_3123123123123sd.cml');
+
+  })
+
+  it(`resolveSync relativePath`, function () {
+    let filePath = path.join(__dirname, 'index.test.js');
+    let relativePath = './testlib/index.cml';
+    let result = _.resolveSync(filePath, relativePath);
+
+    expect(result).to.be.equal(path.join(__dirname, './testlib/index.cml'));
+
+  })
+
+  it(`resolveSync npmPath`, function () {
+    let filePath = path.join(__dirname, 'index.test.js');
+    let relativePath = 'glob';
+    let result = _.resolveSync(filePath, relativePath);
+    console.log(result)
+    expect(!!~result.indexOf('glob')).to.be.equal(true);
+
+  })
+
+  it(`resolveInterfaceRequire npmPath`, function () {
+    let oldFilePath = path.join(__dirname, 'index.test.js');
+    let relativePath = 'glob';
+    let result = _.resolveInterfaceRequire(oldFilePath, '', relativePath);
+    expect(result).to.be.equal(relativePath);
+  })
+
+  it(`resolveInterfaceRequire relativePath1`, function () {
+    let oldFilePath = path.join(__dirname, 'index.test.js');
+    let newFilePath = path.join(__dirname, '../index.test.js');
+    let relativePath = './glob';
+    let result = _.resolveInterfaceRequire(oldFilePath, newFilePath, relativePath);
+    expect(result).to.be.equal('./test/glob');
+  })
+
+  it(`resolveInterfaceRequire relativePath2`, function () {
+    let oldFilePath = path.join(__dirname, 'index.test.js');
+    let newFilePath = path.join(__dirname, 'temp/index.test.js');
+    let relativePath = './glob';
+    let result = _.resolveInterfaceRequire(oldFilePath, newFilePath, relativePath);
+    expect(result).to.be.equal('../glob');
+  })
+
 
 })

@@ -1,0 +1,4 @@
+<include src="./origin-interface.interface"></include>
+
+<script cml-type="someplatform" src="./src/someplatform-mis-class.js">
+</script>

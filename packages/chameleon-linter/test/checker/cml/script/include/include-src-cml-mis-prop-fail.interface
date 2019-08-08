@@ -1,0 +1,4 @@
+<include src="./origin-comp-interface.interface"></include>
+
+
+<script cml-type="someplatform" src="./src/someplatform-mis-prop.cml"></script>
