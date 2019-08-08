@@ -94,40 +94,6 @@ export default new Index();
 
 CML 采用与 Vue 一致的组件化方案、单文件组织方式、生命周期，同时数据响应能力对齐 Vue，数据管理能力对齐 Vuex，非常方便开发者上手、维护。
 
-代码示例
-
-```html
-<template>
-  <view>
-    <text>{{title}}</text>
-  </view>
-</template>
-
-<script>
-
-class Index  {
-  data = {
-    title: "chameleon"
-  }
-  beforeCreate() {}
-
-  created() {}
-
-  beforeMount() {}
-
-  mounted() {}
-
-  beforeDestroy() {}
-
-  destroyed() {}
-  
-}
-
-export default new Index();
-
-</script>
-```
-
 通过以上对于开发语言的介绍，相信你看到只要是有过网页编程知识的人都可以快速的上手chameleon的开发。
 
 ## 多端高度一致
