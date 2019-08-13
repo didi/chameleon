@@ -7,11 +7,10 @@
   "scripts": {},
   "license": "MIT",
   "dependencies": {
-    "chameleon-api": "0.4.3",
-    "chameleon-bridge": "0.1.2",
-    "chameleon-runtime": "0.1.4",
-    "chameleon-store": "0.0.3",
-    "chameleon-ui-builtin": "^0.2.0",
-    "cml-ui": "0.1.7"
+    "chameleon-api": "0.5.4",
+    "chameleon-runtime": "0.3.2",
+    "chameleon-store": "0.1.0",
+    "chameleon-ui-builtin": "0.4.1",
+    "cml-ui": "0.3.1"
   }
 }

@@ -5,7 +5,6 @@ const utils = require('./utils.js');
 const config = require('./config.js');
 const log = require('./log.js');
 const argv = require('minimist')(process.argv.slice(2));
-const fs = require('fs');
 const EventEmitter = require('events');
 
 const chameleon = {};
@@ -19,7 +18,6 @@ cml.cli = cli;
 cml.log = log;
 cml.event = new EventEmitter();
 cml.utils.setCli(true); // 标识当前在chameleon-cli环境中
-// cml.platform = ['wx', 'weex', 'web'];  // cml 当前支持的所有平台  决定打包的执行顺序web端放到最后
 cml.logLevel = argv.log || 'none'; // 日志输入等级   none  debug
 cml.log.setLogLevel(cml.logLevel);
 
@@ -36,5 +34,5 @@ if (cml.utils.isFile(configPath)) {
 }
 // 设置内置组件库名称
 cml.utils.setBuiltinNpmName(cml.config.get().builtinNpmName);
-
+cml.extPlatformPlugin = {}; // 扩展端的插件对象
 cml.cli.run();

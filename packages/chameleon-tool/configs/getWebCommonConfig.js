@@ -14,6 +14,7 @@ module.exports = function (options) {
     hot
   } = options;
 
+  let isWrapComponent = cml.config.get().web[media] && cml.config.get().web[media].isWrapComponent === true
 
   function getJsPath() {
     return options.hash ? 'static/js/[name]_[chunkhash].js' : 'static/js/[name].js'
@@ -47,8 +48,9 @@ module.exports = function (options) {
       media,
       check: cml.config.get().check,
       cmss: cml.config.get().cmss, // 传递给模板编译，处理web端内置style
-      isInjectBaseStyle: cml.config.get().baseStyle.web === true
-
+      isInjectBaseStyle: cml.config.get().baseStyle.web === true,
+      isWrapComponent,
+      subProject: cml.config.get().subProject
     }
   }
   ]

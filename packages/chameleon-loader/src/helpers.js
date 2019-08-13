@@ -117,7 +117,6 @@ module.exports = function createHelpers (
 ) {
   // console.log(fileType)
   const rawRequest = getRawRequest(loaderContext, options.excludedPreLoaders)
-
   const {
     defaultLoaders,
     loaders,

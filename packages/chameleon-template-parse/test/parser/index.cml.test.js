@@ -10,6 +10,7 @@ const expect = require('chai').expect;
 let options = {lang: 'cml',
   buildInComponents: {button: "cml-buildin-button"},
   filePath: '/User/Jim-W/didi/component/button.cml',
+  isInjectBaseStyle: true,
   cmss: {
     rem: true,
     scale: 0.5,
@@ -150,11 +151,11 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'web', options, callback);
     it('test-event-transform', function() {
-      expect(result).to.equal(`<view><view v-on:click="_cmlEventProxy($event,\'tapHandle\',false)"></view></view>`)
+      expect(result).to.equal(`<view><view v-on:tap="_cmlEventProxy($event,'tapHandle',false)"></view></view>`)
     });
     // 原生组件事件不进行代理
     it('test-origin-tag-event-transform', function() {
-      expect(compileTemplate(originSource, 'web', options, callback)).to.equal(`<view><origin-tag v-on:click="handleClick"></origin-tag><thirdComp1 v-on:click="handleClick"></thirdComp1><thirdComp2 v-on:click="_cmlEventProxy($event,\'handleClick\',false)"></thirdComp2></view>`)
+      expect(compileTemplate(originSource, 'web', options, callback)).to.equal(`<view><origin-tag v-on:click="handleClick"></origin-tag><thirdComp1 v-on:click="handleClick"></thirdComp1><thirdComp2 v-on:click__CML_NATIVE_EVENTS__="_cmlEventProxy($event,'handleClick',false)"></thirdComp2></view>`)
     });
   });
   describe('parseEventListener-wx-baidu', function() {
@@ -164,10 +165,10 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'wx', options, callback);
     it('test-event-transform', function() {
-      expect(result).to.equal(`<view><view bindtap="_cmlEventProxy" data-eventtap="tapHandle"></view></view>`)
+      expect(result).to.equal(`<view><view bindtap="_cmlEventProxy" data-eventtap="{{['tapHandle']}}"></view></view>`)
     });
     it('test-origin-tag-event-transform', function() {
-      expect(compileTemplate(originSource, 'wx', options, callback)).to.equal(`<view><origin-tag bindtap="handleClick"></origin-tag><thirdComp1 bindtap="handleClick"></thirdComp1><thirdComp2 bindtap="_cmlEventProxy" data-eventtap="handleClick"></thirdComp2></view>`)
+      expect(compileTemplate(originSource, 'wx', options, callback)).to.equal(`<view><origin-tag bindtap="handleClick"></origin-tag><thirdComp1 bindtap="handleClick"></thirdComp1><thirdComp2 bindtap="_cmlEventProxy" data-eventtap="{{['handleClick']}}"></thirdComp2></view>`)
     });
   });
   describe('parseEventListener-alipay', function() {
@@ -177,10 +178,10 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseEventListener;
     let result = compileTemplate(source, 'alipay', options, callback);
     it('test-event-transform', function() {
-      expect(result).to.equal(`<view><view onTap="_cmlEventProxy" data-eventtap="tapHandle"></view></view>`)
+      expect(result).to.equal(`<view><view onTap="_cmlEventProxy" data-eventtap="{{['tapHandle']}}"></view></view>`)
     });
     it('test-origin-tag-event-transform', function() {
-      expect(compileTemplate(originSource, 'alipay', options, callback)).to.equal(`<view><origin-tag onTap="handleClick"></origin-tag><thirdComp1 onTap="handleClick"></thirdComp1><thirdComp2 onTap="_cmlEventProxy" data-eventtap="handleClick"></thirdComp2></view>`)
+      expect(compileTemplate(originSource, 'alipay', options, callback)).to.equal(`<view><origin-tag onTap="handleClick"></origin-tag><thirdComp1 onTap="handleClick"></thirdComp1><thirdComp2 onTap="_cmlEventProxy" data-eventtap="{{['handleClick']}}"></thirdComp2></view>`)
     });
   });
   // parseIterationStatement
@@ -320,7 +321,7 @@ describe('parse-template-cml', function() {
     let callback = parseTemplate.parseClassStatement;
     let result = compileTemplate(source, 'weex', options, callback);
     it('test-class-transform', function() {
-      expect(result).to.equal(`<view :class="_weexClassProxy('cls1 cls2  cml-base cml-view')"><view :class="_weexClassProxy((true?'cls3':'cls4')+'  cml-base cml-view')"></view></view>`)
+      expect(result).to.equal(`<view :class="_weexClassProxy(' cml-base cml-view cls1 cls2')"><view :class="_weexClassProxy(' cml-base cml-view '+(true?'cls3':'cls4'))"></view></view>`)
     });
   });
   describe('parseClassStatement-wx-alipay-baidu', function() {

@@ -2,7 +2,8 @@
 
 const common = require('./common.js');
 const wxStyleHandle = require('chameleon-css-loader/proxy/proxyMiniapp.js')
-
+const utils = require('./utils.js');
+const {px2cpx} = require('./miniapp-utils/px2cpx.js');
 const deepClone = function(obj) {
   if (obj.toString().slice(8, -1) !== "Object") {
     return obj;
@@ -23,23 +24,22 @@ _.mixins = {
     // 支持事件传参
     [_.inlineStatementEventProxy](e) {
       let { dataset } = e.currentTarget;
-      let originFuncName = dataset && dataset[`event${e.type}`];
-      let argsStr = dataset && dataset.args;
+      // 支付宝的e.type = 'touchStart',需要改为小写，否则找不到函数
+      e.type = utils.handleEventType(e.type);
+      let eventKey = e.type.toLowerCase();
+      let originFuncName = dataset && dataset[`event${eventKey}`] && dataset[`event${eventKey}`][0];
+      let inlineArgs = dataset && dataset[`event${eventKey}`] && dataset[`event${eventKey}`].slice(1);
       let argsArr = [];
       // 由于百度对于 data-arg="" 在dataset.arg = true 值和微信端不一样所以需要重新处理下这部分逻辑
-      if (argsStr && typeof argsStr === 'string') {
-        argsArr = argsStr.split(',').reduce((result, item, index) => {
-          let arg = dataset[`arg${index}`];
+      if (inlineArgs) {
+        argsArr = inlineArgs.reduce((result, arg, index) => {
           if (arg === "$event") {
             let newEvent = getNewEvent(e);
             result.push(newEvent);
           } else {
-            // 这里的值微信已经计算好了；到dateset的时候已经是计算的结果 比如msg = 'sss' data-arg1="{{msg + 1}}"
-            // dataset[arg1] = 'sss1'
-            result.push(dataset[`arg${index}`])
+            result.push(arg)
           }
           return result;
-
         }, []);
       }
       if (originFuncName && this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
@@ -58,7 +58,10 @@ _.mixins = {
     },
     [_.eventProxyName](e) {
       let { dataset } = e.currentTarget;
-      let originFuncName = dataset && dataset[`event${e.type}`]
+      // 支付宝的e.type = 'touchStart',需要改为小写，否则找不到函数
+      e.type = utils.handleEventType(e.type);
+      let eventKey = e.type.toLowerCase();
+      let originFuncName = dataset && dataset[`event${eventKey}`] && dataset[`event${eventKey}`][0];
       if (originFuncName && this[originFuncName] && _.isType(this[originFuncName], 'Function')) {
         let newEvent = getNewEvent(e);
         this[originFuncName](newEvent)
@@ -113,6 +116,36 @@ function getNewEvent(e) {
           dataset: e[key].dataset
         }
         newEvent[key] = newTarget
+      } else if (~['touches', 'changedTouches'].indexOf(key)) {
+        if (key == 'touches') {
+          let touches = e[key];
+          newEvent.touches = [];
+          for (let i = 0;i < touches.length;i++) {
+            let touch = touches[i];
+            let ret = {}
+            ret.identifier = touch.identifier;
+            ret.pageX = px2cpx(parseInt(touch.pageX, 10));
+            ret.pageY = px2cpx(parseInt(touch.pageY, 10));
+            ret.clientX = px2cpx(parseInt(touch.clientX, 10));
+            ret.clientY = px2cpx(parseInt(touch.clientY, 10));
+            newEvent.touches.push(ret);
+          }
+        }
+
+        if (key == 'changedTouches') {
+          let changedTouches = e[key]
+          newEvent.changedTouches = [];
+          for (let i = 0;i < changedTouches.length;i++) {
+            let touch = changedTouches[i];
+            let ret = {}
+            ret.identifier = touch.identifier;
+            ret.pageX = px2cpx(parseInt(touch.pageX, 10));
+            ret.pageY = px2cpx(parseInt(touch.pageY, 10));
+            ret.clientX = px2cpx(parseInt(touch.clientX, 10));
+            ret.clientY = px2cpx(parseInt(touch.clientY, 10));
+            newEvent.changedTouches.push(ret);
+          }
+        }
       } else {
         newEvent[key] = e[key]
       }
@@ -122,3 +155,4 @@ function getNewEvent(e) {
   newEvent._originEvent = e;
   return newEvent;
 }
+

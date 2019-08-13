@@ -2,7 +2,7 @@
 const cmlUtils = require('chameleon-tool-utils');
 
 module.exports = function(loaderContext, jsonObject, cmlType, componentDeps) {
-  var jsonPath = loaderContext.resourcePath.replace(/(\.cml|\.wx\.cml|\.alipay\.cml|\.baidu\.cml)$/, '.json')
+  var jsonPath = loaderContext.resourcePath.replace(/(\.cml|\.wx\.cml|\.alipay\.cml|\.baidu\.cml|\.qq\.cml)$/, '.json')
   var context = (loaderContext._compiler && loaderContext._compiler.context) || loaderContext.options.context || process.cwd()
 
   if (jsonObject.usingComponents) {
@@ -13,8 +13,11 @@ module.exports = function(loaderContext, jsonObject, cmlType, componentDeps) {
         componentDeps.push(filePath);
         components[key] = refUrl;
       } else {
-        delete components[key];
-        cmlUtils.log.error(`can't find component:${refUrl} in ${loaderContext.resourcePath}`);
+        // plugin开头的小程序插件不做处理
+        if (components[key].indexOf('plugin://') !== 0) {
+          delete components[key];
+          cmlUtils.log.error(`can't find component:${refUrl} in ${loaderContext.resourcePath}`);
+        }
       }
     })
   }

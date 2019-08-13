@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 let webpostcssLoader = 'postcss-loader';
 const portfinder = require('portfinder');
 const analyzeTemplate = require('chameleon-template-parse').analyzeTemplate;
+const cmlUtils = require('chameleon-tool-utils');
 
 exports.getPostcssrcPath = function (type) {
   return path.join(__dirname, `./postcss/${type}/.postcssrc.js`);
@@ -63,6 +64,29 @@ exports.cssLoaders = function (options) {
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
+
+    // 扩展流程
+    if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(options.type)) {
+      let extLoaders = [
+        {
+          loader: 'mvvm-style-loader'
+        },
+        getPostCssLoader('extend')
+      ]
+      if (loader) {
+        extLoaders.push(
+          {
+            loader: loader + '-loader',
+            options: Object.assign({}, loaderOptions, {
+              sourceMap: false
+            })
+          }
+        )
+      }
+      addMediaLoader(extLoaders, options.type);
+      return extLoaders;
+    }
+
     var loaders = [cssLoader];
     let result = [];
 
@@ -78,7 +102,7 @@ exports.cssLoaders = function (options) {
       })
       loaders.push(getPostCssLoader('web'))
     }
-    if (~['wx', 'alipay', 'baidu'].indexOf(options.type)) {
+    if (~['wx', 'alipay', 'baidu', 'qq'].indexOf(options.type)) {
       loaders = loaders.concat(getMiniappLoader(options.type))
     }
 
@@ -192,7 +216,6 @@ exports.updateEntry = function (updateEntryConfig) {
           source = parts.template[0].content;
           options = analyzeTemplate(source, options)
         }
-
       }
     });
     let usedBuildInTagMap = options.usedBuildInTagMap;
@@ -253,7 +276,8 @@ exports.getMiniAppEntry = function (cmlType) {
     // subProject的入口
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
-      subProject.forEach(function(npmName) {
+      subProject.forEach(function(item) {
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}));
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let routePath = item.path;
@@ -432,10 +456,11 @@ exports.getWeexEntry = function (options) {
     entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'));
   }
   if (options.media === 'dev') {
-    entryFile.push(path.join(cml.root, 'configs/weex_liveload/liveLoad.js'))
+    exports.copyWeexLiveLoadFile(options.root, 'weex', options.media);
+    entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/weex_liveload_entry.js'));
   }
   if (options.babelPolyfill === true) {
-    entryFile.unshift('@babel/polyfill');
+    entryFile.unshift(path.join(__dirname, 'default/miniappPolyfill.js'));
   }
   var entryName = exports.getEntryName();
   entry[entryName] = entryFile;
@@ -489,7 +514,6 @@ let babelNpm = [
   'chameleon-api',
   'chameleon-tool-utils',
   'chameleon-css-loader',
-  'chameleon-loader',
   'chameleon-miniapp-target',
   'chameleon-mixins',
   'chameleon-template-parse',
@@ -503,7 +527,10 @@ let babelNpm = [
   'webpack-check-plugin',
   'webpack-liveload-middleware',
   'chameleon-weex-vue-loader',
-  'babel-plugin-chameleon-import'
+  'babel-plugin-chameleon-import',
+  'mvvm-interface-parser',
+  'chameleon-loader',
+  'mobx'
 ];
 
 exports.getBabelPath = function () {
@@ -513,8 +540,12 @@ exports.getBabelPath = function () {
     path.join(cml.root, 'configs')
   ]
   babelNpm.forEach(item => {
-    babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
-    babelPath.push(path.join(cml.root, 'node_modules', item))
+    if (typeof item === 'string') {
+      babelPath.push(path.join(cml.projectRoot, 'node_modules', item))
+      babelPath.push(path.join(cml.root, 'node_modules', item))
+    } else if (item instanceof RegExp) {
+      babelPath.push(item)
+    }
   })
   let configBabelPath = cml.config.get().babelPath || [];
   return configBabelPath.concat(babelPath);
@@ -547,6 +578,12 @@ exports.copyDefaultFile = function (dir, platform, media) {
     overwrite: true
   })
 
+}
+
+exports.copyWeexLiveLoadFile = function(dir, platform, media) {
+  fse.copySync(path.resolve(__dirname, './default/weex_liveload_entry.js'), path.resolve(dir, 'node_modules/chameleon-runtime/.temp/weex_liveload_entry.js'), {
+    overwrite: true
+  })
 }
 
 let webServerPort;

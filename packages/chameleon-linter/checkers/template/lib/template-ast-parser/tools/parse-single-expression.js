@@ -67,7 +67,23 @@ module.exports.parseSingleExpression = function(expressinoStr = '') {
         nodes.push(getVarFromIdentifier(path.node.property, isFakeBlock));
       }
     },
+    LogicalExpression(path) {
+      if (path.get('left').isIdentifier()) {
+        nodes.push(getVarFromIdentifier(path.node.left, isFakeBlock));
+      }
+      if (path.get('right').isIdentifier()) {
+        nodes.push(getVarFromIdentifier(path.node.right, isFakeBlock));
+      }
+    },
     BinaryExpression(path) {
+      if (path.get('left').isIdentifier()) {
+        nodes.push(getVarFromIdentifier(path.node.left, isFakeBlock));
+      }
+      if (path.get('right').isIdentifier()) {
+        nodes.push(getVarFromIdentifier(path.node.right, isFakeBlock));
+      }
+    },
+    LogicalExpression(path) {
       if (path.get('left').isIdentifier()) {
         nodes.push(getVarFromIdentifier(path.node.left, isFakeBlock));
       }

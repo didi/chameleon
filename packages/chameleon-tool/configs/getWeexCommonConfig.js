@@ -10,6 +10,7 @@ module.exports = function (options) {
     media,
     root
   } = options;
+  let isWrapComponent = cml.config.get().web[media] && cml.config.get().web[media].isWrapComponent === true
 
   let entry = utils.getWeexEntry(options);
   let outputPath = path.join(utils.getDevServerPath(), 'weex');
@@ -27,7 +28,8 @@ module.exports = function (options) {
       cmlType: 'weex',
       media,
       check: cml.config.get().check,
-      isInjectBaseStyle: cml.config.get().baseStyle.weex === true
+      isInjectBaseStyle: cml.config.get().baseStyle.weex === true,
+      isWrapComponent
     }
   }]
   let commonConfig =

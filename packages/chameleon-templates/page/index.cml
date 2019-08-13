@@ -18,16 +18,22 @@ class Replace   {
   methods = {
   }
 
-  beforeCreate() {
+  beforeCreate(query) {
   }
 
-  created() {
+  created(query) {
   }
 
-  beforeMount() {
+  beforeMount(query) {
+  }
+
+  onShow() {
   }
 
   mounted() {
+  }
+
+  onHide() {
   }
 
   beforeDestroy() {
@@ -49,6 +55,11 @@ export default new Replace();
   "base": {
     "usingComponents": {
     }
+  },
+  "qq": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2"
   },
   "wx": {
     "navigationBarTitleText": "index",

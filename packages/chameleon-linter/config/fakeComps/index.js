@@ -1,14 +1,11 @@
 const list = [{
   name: 'app',
   allowAttrs: {
-    vars: ['store', 'routerConfig'],
+    vars: ['routerConfig'],
     methods: [],
     props: [{
-      name: 'store',
-      required: true
-    }, {
       name: 'routerConfig',
-      required: true
+      required: false
     }],
     events: []
   }

@@ -1,0 +1,34 @@
+{
+  "name": "mvvm-pack",
+  "version": "0.4.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cover": "istanbul cover --report lcov  node_modules/mocha/bin/_mocha -- -R spec --recursive test/*.test.js test/**/*.test.js",
+    "test": "mocha --recursive --reporter spec test/*.test.js test/**/*.test.js",
+    "test-brk": "node --inspect-brk node_modules/mocha/bin/mocha --recursive --reporter spec test/*.test.js test/**/*.test.js"
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/generator": "^7.4.0",
+    "@babel/parser": "^7.3.4",
+    "@babel/traverse": "^7.3.4",
+    "@babel/types": "^7.3.4",
+    "chameleon-tool-utils": "0.4.0",
+    "chameleon-webpack-plugin": "0.4.0",
+    "csso": "^3.5.1",
+    "mvvm-babel-parser": "0.4.0",
+    "mvvm-template-parser": "0.4.0",
+    "runtime-check": "0.4.0",
+    "uglify-js": "^3.5.10",
+    "webpack-merge": "^4.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  }
+}

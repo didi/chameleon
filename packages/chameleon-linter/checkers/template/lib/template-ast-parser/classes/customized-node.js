@@ -1,5 +1,5 @@
 /**
- * A class reprents a customized component.
+ * A class represents a customized component.
  */
 class CustomizedNode {
   constructor(tag, lang = 'cml') {

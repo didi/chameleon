@@ -1,0 +1,16 @@
+{
+  "name": "mvvm-file-loader",
+  "version": "0.4.0",
+  "description": "mvvm file loader",
+  "main": "dist/cjs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "loader-utils": "^1.0.2",
+    "mime": "^2.4.2",
+    "schema-utils": "^0.4.5"
+  },
+  "author": "Chameleon-Team",
+  "license": "Apache"
+}

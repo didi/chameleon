@@ -9,6 +9,7 @@ const fse = require('fs-extra');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const cmlUtils = require('chameleon-tool-utils');
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -18,21 +19,24 @@ exports.getBuildPromise = async function (media, type) {
 
   let options = exports.getOptions(media, type);
   let webpackConfig = await getConfig(options);
-  if (~['wx', 'baidu', 'alipay'].indexOf(type)) {
+  //  非web和weex 并且非增量
+  if (!~['web', 'weex'].indexOf(type) && options.increase !== true) {
     // 异步删除output目录
     var outputpath = webpackConfig.output.path;
-    await new Promise(function(resolve, reject) {
-      fse.remove(outputpath, function(err) {
-        if (err) {
-          reject(err);
-        }
-        resolve();
+    if (outputpath) {
+      await new Promise(function(resolve, reject) {
+        fse.remove(outputpath, function(err) {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        })
+      })["catch"](e => {
+        let message = `clear file error! please remove direction ${outputpath} by yourself!`
+        cml.log.error(message);
+        throw new Error(e)
       })
-    })["catch"](e => {
-      let message = `clear file error! please remove direction ${outputpath} by yourself!`
-      cml.log.error(message);
-      throw new Error(e)
-    })
+    }
 
   }
   return new Promise(function(resolve, reject) {
@@ -47,8 +51,11 @@ exports.getBuildPromise = async function (media, type) {
         aggregateTimeout: 300,
         poll: undefined
       }, (err, stats) => {
+
         if (type === 'weex') {
-          broadcast('weex_refresh');
+          if (!(stats && stats.compilation && stats.compilation.errors && stats.compilation.errors.length > 0)) {
+            broadcast('weex_refresh');
+          }
           previewSocket.broadcast('weex_refresh');
         }
         if (err) {
@@ -74,7 +81,7 @@ exports.getBuildPromise = async function (media, type) {
  * @param {*} type  wx web weex
  */
 exports.getOptions = function (media, type) {
-  let chameleonConfig = cml.config.get()[type][media];
+  let chameleonConfig = (cml.config.get() && cml.config.get()[type] && cml.config.get()[type][media]) || {};
 
   if (!chameleonConfig) {
     cml.log.error(`在chameleon的config中未找到 ${media}的配置参数`);
@@ -109,7 +116,11 @@ exports.getWebBuildPromise = async function (media, isCompile) {
     }
     return devServer({webpackConfig, options, compiler});
   } else {
-    return exports.getBuildPromise(media, 'web');
+    if (isCompile) {
+      return exports.getBuildPromise(media, 'web');
+    } else {
+      return Promise.resolve();
+    }
   }
 }
 
@@ -122,13 +133,14 @@ exports.startReleaseAll = async function (media) {
   if (media === 'build') {
     process.env.NODE_ENV = 'production';
   }
-  let allPlatform = cml.config.get().platforms;
+  let cmlConfig = cml.config.get();
+  let allPlatform = cmlConfig.platforms;
   let offPlatform = [];
   let activePlatform = []; // 启动编译的platform
   if (media === 'dev') {
-    offPlatform = cml.config.get().devOffPlatform;
+    offPlatform = cmlConfig.devOffPlatform;
   } else if (media === 'build') {
-    offPlatform = cml.config.get().buildOffPlatform;
+    offPlatform = cmlConfig.buildOffPlatform;
   }
   // 获取激活平台
   for (let i = 0, j = allPlatform.length; i < j; i++) {
@@ -206,10 +218,11 @@ exports.createConfigJson = function() {
   let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
+  
   if (cml.utils.isFile(weexjsPath)) {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
-    md5sum.update(buffer); 
+    md5sum.update(buffer);
     md5str = md5sum.digest('hex').toUpperCase();
   }
 
@@ -223,7 +236,7 @@ exports.createConfigJson = function() {
 
   let result = [];
   if (routerConfig) {
-    if (!routerConfig.domain) {
+    if (~cml.activePlatform.indexOf('web') && !routerConfig.domain) {
       throw new Error('router.config.json 中未设置web端需要的domain字段');
     }
     let {domain, mode} = routerConfig;
@@ -267,7 +280,8 @@ exports.createConfigJson = function() {
     // 处理subProject配置的npm包中cml项目的页面
     let subProject = cml.config.get().subProject;
     if (subProject && subProject.length > 0) {
-      subProject.forEach(function(npmName) {
+      subProject.forEach(function(item) {
+        let npmName = cmlUtils.isString(item) ? item : item.npmName;
         let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
@@ -318,6 +332,8 @@ exports.createConfigJson = function() {
       }
     })
   })
+
+  cml.event.emit('config-json', result);
 
   fse.outputFileSync(configJsonPath, JSON.stringify(result, '', 4))
 }

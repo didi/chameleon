@@ -12,6 +12,7 @@ var miniappConfig = {
     definePlugin: {
       'process.env.NODE_ENV': JSON.stringify('development')
     }
+    //  increase:true, 是否增量部署打包代码
   },
   build: {
     hash: true,
@@ -53,7 +54,8 @@ var chameleonConfig = {
     web: true,
     weex: true,
     alipay: true,
-    baidu: true
+    baidu: true,
+    qq: true
   },
   proxy: {
     enable: false,
@@ -89,18 +91,22 @@ var chameleonConfig = {
   wx: miniappConfig,
   alipay: miniappConfig,
   baidu: miniappConfig,
+  qq: miniappConfig,
   web: {
     dev: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       moduleIdType: 'name',
       hot: false,
       analysis: false,
       // apiPrefix: ,
+      // staticPath: '', 静态资源路径前缀
       definePlugin: {
         'process.env.NODE_ENV': JSON.stringify('development')
       }
     },
     build: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       hash: true,
       minimize: true,
@@ -110,6 +116,7 @@ var chameleonConfig = {
       }
     },
     export: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       hash: true,
       minimize: true,
       moduleIdType: 'chameleon',
@@ -123,12 +130,14 @@ var chameleonConfig = {
   },
   weex: {
     dev: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       moduleIdType: 'name',
       definePlugin: {
         'process.env.NODE_ENV': JSON.stringify('development')
       }
     },
     build: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
       hash: true,
       moduleIdType: 'chameleon',
@@ -137,6 +146,7 @@ var chameleonConfig = {
       }
     },
     export: {
+      isWrapComponent: true, // 默认对组件进行一层包裹
       hash: true,
       minimize: true,
       moduleIdType: 'chameleon',
@@ -159,18 +169,17 @@ module.exports = _;
 _.get = function() {
   if (chameleonConfig.base) {
     let baseConfig = chameleonConfig.base;
-    let platforms = ['wx', 'web', 'alipay', 'baidu', 'weex'];
-    if (baseConfig) {
-      platforms.forEach(platform => {
-        if (chameleonConfig[platform]) {
-          let base = JSON.parse(JSON.stringify(baseConfig));
-          let newConfig = JSON.parse(JSON.stringify(chameleonConfig[platform]));
-          utils.merge(base, newConfig);
-          chameleonConfig[platform] = base;
-        }
-      })
-      delete chameleonConfig.base;
-    }
+    let platforms = chameleonConfig.platforms;
+    let extPlatform = chameleonConfig.extPlatform || {};
+    platforms = platforms.concat(Object.keys(extPlatform));
+    platforms.forEach(platform => {
+      if (chameleonConfig[platform]) {
+        let base = JSON.parse(JSON.stringify(baseConfig));
+        let newConfig = JSON.parse(JSON.stringify(chameleonConfig[platform]));
+        utils.merge(base, newConfig);
+        chameleonConfig[platform] = base;
+      }
+    })
   }
   return chameleonConfig;
 }

@@ -1,11 +1,154 @@
+## [0.4.0]
+### Features
+- 灰度完成发正式版
+  
+## [0.4.0-alpha.2]
+### Features
+- 合并0.3.3 和 mvvm+ 版本的代码
+
+## [0.4.0-mvvm.16]
+
+### Bug Fixes
+- 修复扩展新端运行时代码插入
+
+## [0.4.0-mvvm.15]
+
+### Bug Fixes
+- 修复扩展新端代码中无法使用async函数
+
+## [0.4.0-mvvm.13]
+
+### Bug Fixes
+- 修复扩展新端用户编译插件报错导致阻塞watch
+- 修复扩展新端中不支持变量注入的bug
+
+## [0.4.0-mvvm.12]
+
+### Features
+- 支持给扩展新端自定义loader传默认options
+
+### Bug Fixes
+- 修复多路由报错的bug
+
+## [0.4.0-mvvm.11]
+### Features
+- 增加生成config.json文件的钩子
+- 打包文件增量覆盖
+- 新端插件中可以有默认配置
+- 静态资源可以添加生成路径前缀
+
+## [0.4.0-mvvm.10]
+### Features
+- 完善mvvm-pack单元测试
+- 扩展新端compiler对象新增获取路由方法
+- 扩展新端cml节点的extra字段添加引用组件
+
+## [0.4.0-mvvm.9]
+### Features
+- 支持script类型节点 originSource字段获取节点babel前代码
+- linter支持扩展多态协议的校验
+
+## [0.4.0-mvvm.8]
+### Bug Fixes
+- 修复扩展新端在window上构建报错
+## [0.4.0-mvvm.7]
+### Features
+- 支持扩展新端支持文件指纹与js和css压缩
+- 对齐百度和微信小程序能力，支持 支付宝 web weex 在自定义组件上使用 tap touchstart touchend touchcancel原生事件直接触发
+
+## [0.4.0-mvvm.6]
+### Features
+- 支持扩展新端对小程序原生组件支持
+
+## [0.4.0-mvvm.1-0.4.0-mvvm.3]
+### Features
+- 增加 扩展新端功能
+- 增加 web端组件导出支持externals参数进行运行时分离
+- 增加 支持小程序配置原生tabbar
+
+## [0.3.3]
+### Features:
+  - 组件导出依赖分离
+  - 可通过命令行配置 preview 预览页是否打开
+  - 合并qq小程序分支
+  - web端原生origin click事件不处理成tap
+  - 修改全局变量校验失效问题，同时增加 qq 全局变量名单。
+  - 模板变量校验添加 LogicalExpression 处理逻辑表达式里的变量
+  - 支持以组件、页面、子项目粒度配置是否注入默认样式
+### Bug Fixes
+  - 修改cover-view报未定义组件问题件
+  - 修复引入zepto库后tap事件触发两次问题
+## [0.3.3-alpha.6]
+### Features
+  - 组件导出依赖分离
+  - 可通过命令行配置 preview 预览页是否打开
+  
+## [0.3.3-alpha.5]
+### Features
+  - 合并qq小程序分支
+  - web端原生origin click事件不处理成tap
+  
+## [0.3.3-alpha.4]
+### Features
+  - 修改全局变量校验失效问题，同时增加 qq 全局变量名单。
+  - 模板变量校验添加 LogicalExpression 处理逻辑表达式里的变量
+### Bug Fixes
+  - 修改cover-view报未定义组件问题件
+  - 修复引入zepto库后tap事件触发两次问题
+  
+## [0.3.3-alpha.3]
+### Features
+  - 支持web weex可配置是否包裹组件
+
+## [0.3.3-alpha.qq.1]
+### Features
+* 支持qq小程序
+  旧项目支持qq小程序 需要修改的地方
+  - 1 升级以下几个npm包版本
+    "chameleon-api": "0.5.0-alpha.6",
+    "chameleon-bridge": "0.2.0-alpha.5",
+    "chameleon-runtime": "0.2.2-alpha.qq",
+    "chameleon-store": "0.1.0-alpha.qq",
+    "chameleon-ui-builtin": "0.2.11-alpha.qq",
+    "cml-ui": "0.2.0-alpha.qq"
+  - 2 chameleon.config.js中`platforms`字段添加`qq`
+  - 
+## [0.3.3-alpha.2]
+
+### Bug Fixes 
+
+* 修复 weex dev模式liveload失效
+  老项目如果修复，还需要升级项目中两个npm包如下：
+  - "chameleon-api": "0.4.17",
+  - "chameleon-bridge": "0.1.10",
+* weex babelPolyfill为true时 将添加整个@babel/polyfill修改为只添加几个polyfill方法<a href="https://github.com/didi/chameleon/blob/v0.3.x-alpha/packages/chameleon-tool/configs/default/miniappPolyfill.js">miniappPolyfill.js</a>
+## [0.3.3-alpha.1]
+  - 支持小程序分包加载
+  - 修复windows 路径带有数字无法运行
+  - 升级webpack-bundle-analyzer 解决安全漏洞警告
+## [0.3.3-alpha.0]
+- web/weex样式一致性加强
+- 基础样式设置支持不导入
+- 修复 vue 语法下 v-for bug
+- 支持在cml组件上绑定原生事件，注意：需要升级chameleon-ui-builtin到0.2.10-alpha.4版本才支持
+- 修复weex内联事件传汉字编译过慢；
+- 支持组件上绑定多个内联事件传参的情况
+
 ## [0.3.2]
 
 ###  Bug Fixes
 * 修复 web端模板错误
 
-## [0.3.1] 有bug
+## [0.3.1] 
+有bug
 
 ## [0.3.0]
+0.3.0-alpha.9 灰度为正式版本
+
+## [0.3.0-alpha.9](https://github.com/didi/chameleon/compare/v0.3.0-alpha.8...v0.3.0-alpha.9)
+
+###  Bug Fixes
+* 修复 cml build 命令 不配置web端也会进行web端构建的bug
 
 ###  0.3.0-alpha.8 灰度完成发布0.3.0版本
 

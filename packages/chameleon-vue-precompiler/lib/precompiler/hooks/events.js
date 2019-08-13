@@ -123,9 +123,9 @@ function bindEvents(evts, el, attrs, cmlEvents, appearAttached) {
    * - click -> cml$tap
    * - scroll -> cml$scroll
    */
-  if (evts.click) {
-    evts['cml$tap'] = extend({}, evts.click);
-    delete evts.click;
+  if (evts.tap) { //这里取到tap事件进行代理，而不是原来的click事件，区分了tap和click
+    evts['cml$tap'] = extend({}, evts.tap);
+    delete evts.tap; //zepto，scroller等可能会在touchend阶段创建tap事件并触发它所以要删除；
     if (!hasBubbleParent) {
       evts.click = {
         value: '$stopOuterA'

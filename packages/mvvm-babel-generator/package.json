@@ -1,0 +1,26 @@
+{
+  "name": "mvvm-babel-generator",
+  "version": "0.4.0",
+  "description": "Turns an AST into code.",
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/babel/babel/tree/master/packages/babel-generator",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@babel/types": "^7.1.2",
+    "jsesc": "^2.5.1",
+    "lodash": "^4.17.10",
+    "source-map": "^0.5.0",
+    "trim-right": "^1.0.1"
+  },
+  "devDependencies": {
+    "@babel/helper-fixtures": "^7.0.0",
+    "@babel/parser": "^7.0.0"
+  }
+}

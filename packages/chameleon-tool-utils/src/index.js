@@ -12,6 +12,10 @@ const cache = require('lru-cache')(cacheNumber);
 const hash = require('hash-sum');
 const splitParts = require('./lib/splitParts.js');
 const childProcess = require('child_process');
+const crypto = require('crypto');
+
+const resolve = require('resolve');
+
 
 var _ = module.exports = {}
 
@@ -30,6 +34,8 @@ _.setCli = function (flag) {
   global.cml.__ISCML__ = flag;
 }
 
+_.fse = fse;
+
 // 内置组件库名称
 let builtinNpmName = 'chameleon-ui-builtin';
 
@@ -39,6 +45,36 @@ _.setBuiltinNpmName = function(npmName) {
   return builtinNpmName;
 }
 
+// include 和script的src不支持别名查找 并且必须有后缀 window上不会加后缀
+_.resolveSync = function(filepath, requirePath) {
+  let fromCwd
+  try {
+    fromCwd = resolve.sync(requirePath, { basedir: path.dirname(filepath)})
+  } catch (e) {}
+  return fromCwd
+}
+
+/**
+ * @param oldFilePath 旧文件路径
+ * @param interfaceFilePath 新文件路径
+ * @param requirePath require的路径
+ */
+_.resolveInterfaceRequire = function(oldFilePath, newFilePath, requirePath) {
+  // 非相对路径不处理
+  if (requirePath[0] !== '.') {
+    return requirePath;
+  } else {
+    // 处理相对路径
+    const absPath = path.join(path.dirname(oldFilePath), requirePath);
+    let result = path.relative(path.dirname(newFilePath), absPath);
+    result = _.handleWinPath(result);
+    if (result[0] !== '.') {
+      result = './' + result;
+    }
+    return result;
+  }
+
+}
 
 /**
  * 对象枚举元素遍历，若merge为true则进行_.assign(obj, callback)，若为false则回调元素的key value index
@@ -296,7 +332,7 @@ _.getJsonFileContent = function (filePath, confType) {
       if (copyNpm && copyNpm.length > 0) {
         copyNpm.forEach(function(npmName) {
           let packageJson = JSON.parse(fs.readFileSync(path.join(cml.projectRoot, 'node_modules', npmName, 'package.json'), {encoding: 'utf-8'}));
-          let cmlConfig = packageJson.cml && packageJson.cml[confType]; 
+          let cmlConfig = packageJson.cml && packageJson.cml[confType];
           if (cmlConfig && cmlConfig.pages && cmlConfig.pages.length > 0) {
             cmlConfig.pages.forEach(item => {
               if (!~targetObject.pages.indexOf(item)) {
@@ -311,7 +347,8 @@ _.getJsonFileContent = function (filePath, confType) {
       // 处理subProject配置的npm包中cml项目的页面
       let subProject = cml.config.get().subProject;
       if (subProject && subProject.length > 0) {
-        subProject.forEach(function(npmName) {
+        subProject.forEach(function(item) {
+          let npmName = _.isString(item) ? item : item.npmName;
           let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
           npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
             let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
@@ -366,6 +403,20 @@ _.getRouterConfig = function() {
     hasError,
     routerConfig
   };
+}
+
+// 获取子项目的路由配置
+_.getSubProjectRouter = function() {
+  let subProject = cml.config.get().subProject;
+  let subProjectMap = {};
+  if (subProject && subProject.length > 0) {
+    subProject.forEach(function(item) {
+      let npmName = _.isString(item) ? item : item.npmName;
+      let npmRouterConfig = _.readsubProjectRouterConfig(cml.projectRoot, npmName);
+      subProjectMap[npmName] = npmRouterConfig;
+    })
+  }
+  return subProjectMap;
 }
 
 // 分离文件
@@ -482,8 +533,12 @@ _.getBuildinComponents = function (cmlType, context) {
   if (cacheBuildIn[cmlType]) {
     return cacheBuildIn[cmlType];
   }
-  let packageFilePath = path.join(context, 'node_modules', builtinNpmName, 'package.json');
-  let result = _.getOnePackageComponents(builtinNpmName, packageFilePath, cmlType, context);
+  let newNpmName = builtinNpmName;
+  if (_.isCli() && cml.extPlatformPlugin && cml.extPlatformPlugin[cmlType]) {
+    newNpmName = cml.extPlatformPlugin[cmlType].builtinUINpmName || newNpmName;
+  }
+  let packageFilePath = path.join(context, 'node_modules', newNpmName, 'package.json');
+  let result = _.getOnePackageComponents(newNpmName, packageFilePath, cmlType, context);
   let compileTagMap = {};
   // 内置组件的componet name需要特殊处理，并且挂在cml上给模板编译做处理
   result.forEach(item => {
@@ -507,7 +562,7 @@ _.getTargetInsertComponents = function (filePath, cmlType, context) {
   let result = [];
 
   // 内建不需要插入
-  if (_.isBuildIn(filePath)) {
+  if (_.isBuildIn(filePath, cmlType, context)) {
     return result;
   }
 
@@ -538,11 +593,19 @@ _.getTargetInsertComponents = function (filePath, cmlType, context) {
 /**
  * 是否是内置组件
  */
-_.isBuildIn = function (filePath) {
+_.isBuildIn = function (filePath, cmlType, context) {
   let result = false;
   if (_.isCli()) {
-    if (cml.config.get().isBuildInProject || ~filePath.indexOf(builtinNpmName)) {
+    if (cml.config.get().isBuildInProject) {
       result = true;
+    } else {
+      let {components} = _.getBuildinComponents(cmlType, context);
+      for (let i = 0; i < components.length; i++) {
+        if (filePath === components[i].filePath) {
+          result = true;
+          break;
+        }
+      }
     }
   } else {
     if (~filePath.indexOf(builtinNpmName)) {
@@ -554,6 +617,7 @@ _.isBuildIn = function (filePath) {
 
 // 给json文件添加npm和buildin的components
 _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
+
   let npmComponents = _.getTargetInsertComponents(jsonFile, cmlType, context);
   if (npmComponents.length) {
     let coms = jsonObject.usingComponents = jsonObject.usingComponents ? jsonObject.usingComponents : {};
@@ -571,9 +635,10 @@ _.addNpmComponents = function (jsonObject, jsonFile, cmlType, context) {
       }
     })
   }
+
 }
 
-// 通过单个packages
+// 通过单个packages  寻找npm包中的interface入口的组件 单独的cml文件不会找到
 _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context) {
   let components = [];
   if (_.isFile(packageFilePath)) {
@@ -583,29 +648,42 @@ _.getOnePackageComponents = function (npmName, packageFilePath, cmlType, context
     if (packageJson && packageJson.main) {
       main = packageJson && packageJson.main;
     }
-    let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
-
-    // 需要忽略掉的组件
-    let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu'];
-    if (~ignoreComponents.indexOf(cmlType)) {
-      ignoreComponents.splice(ignoreComponents.indexOf(cmlType), 1);
-    }
-    ignoreComponents = ignoreComponents.map(item => `\\.${item}\\.cml`)
-
-    let ignoreReg = new RegExp(`(${ignoreComponents.join('|')})`);
-
-    let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`)
-    glob.sync(globPath).forEach(comPath => {
+    // let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`)
+    // npm包中的多态组件也是以interface文件为入口进行查找，多态api无法找到对应cml文件
+    let globPath = path.join(context, 'node_modules', npmName, main, '/**/*.interface');
+    glob.sync(globPath).forEach(interfacePath => {
       // 其他端的多态cml组件排除在外
-      if (!ignoreReg.test(comPath)) {
-        let comKey = path.basename(comPath).replace(cmlExtReg, '');
+      let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
+      let cmlFilePath = _.findPolymorphicComponent(interfacePath, content, cmlType);
+
+      if (_.isFile(cmlFilePath)) {
+        // 组件的名称是interface文件的名称
+        let comKey = _.deleteExt(path.basename(interfacePath));
         components.push({
           name: comKey,
-          filePath: comPath,
-          refPath: _.npmComponentRefPath(comPath, context)
+          filePath: cmlFilePath,
+          refPath: _.npmComponentRefPath(cmlFilePath, context)
         })
       }
     })
+
+    // npm包中的组件库都是以interface为入口
+    // 多态组件之外 还有普通的cml组件 怎么判断  文件名中.cml 用.分隔后数组长度是2 后面是cml
+    // let cmlGlobPath = path.join(context, 'node_modules', npmName, main, '/**/*.cml');
+    // glob.sync(cmlGlobPath).forEach(cmlFilePath => {
+    //   // 其他端的多态cml组件排除在外
+    //   let paths = path.basename(cmlFilePath).split('.');
+    //   if (paths.length === 2 && paths[1] === 'cml') {
+    //     if (_.isFile(cmlFilePath)) {
+    //       let comKey = path.basename(cmlFilePath).replace(cmlExtReg, '');
+    //       components.push({
+    //         name: comKey,
+    //         filePath: cmlFilePath,
+    //         refPath: _.npmComponentRefPath(cmlFilePath, context)
+    //       })
+    //     }
+    //   }
+    // })
   }
 
   return components;
@@ -673,6 +751,17 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
     }
   }
   if (!findFile) {
+    if (_.isCli()) {
+      // 扩展查找组件方法
+      const result = {
+        filePath: '',
+        refUrl
+      };
+      // 通过扩展找到文件
+      if (result.filePath && _.isFile(result.filePath)) {
+        return result;
+      }
+    }
     return {
       filePath: '',
       refUrl
@@ -688,16 +777,10 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
     refUrl = _.handleRelativePath(cmlFilePath, filePath);
   }
 
-  refUrl = refUrl.replace(new RegExp(`(\\.cml|\\.${cmlType}\\.cml)`), '');
-  if (cmlType === 'wx') {
-    refUrl = refUrl.replace(/\.wxml$/g, '');
-  }
-  if (cmlType === 'alipay') {
-    refUrl = refUrl.replace(/\.axml$/g, '');
-  }
+  refUrl = _.deleteExt(refUrl);
 
-  if (cmlType === 'baidu') {
-    refUrl = refUrl.replace(/\.swan$/g, '');
+  if (cmlType === 'qq') {
+    refUrl = refUrl.replace(/\.qml$/g, '');
   }
 
   return {
@@ -707,9 +790,13 @@ _.handleComponentUrl = function (context, cmlFilePath, comPath, cmlType) {
 
 }
 
+// 记录多态cml文件对应的interface文件的路径及
+const RecordCml2Interface = _.RecordCml2Interface = {};
+
 // 判断不带后缀的文件路径是否存在
 // filePath  是不带后缀的文件路径
 _.findComponent = function (filePath, cmlType) {
+
   // 如果没有传递cmlType  默认是interface  这个情况是给cmllint用的 构建必须传cmlType
   // cml-linter 需要获取interface文件
   if (cmlType === 'interface') {
@@ -719,46 +806,138 @@ _.findComponent = function (filePath, cmlType) {
     } else {
       return false;
     }
-
   }
-  let extlist = ['.cml', `.${cmlType}.cml`];
-  for (let i = 0; i < extlist.length; i++) {
-    let newFilePath = filePath + extlist[i];
-    if (_.isFile(newFilePath)) {
-      return newFilePath;
+
+  /**
+   * 1 .interface 文件   遍历寻找到interface的内容  遍历寻找到当前cmlType的多态cml文件的真实路径  然后内存中记录这个多态cml文件对应的interface文件内容与依赖的文件 在处理多态cml组件是添加dev依赖
+   * 2 .cml 文件
+   *  */
+
+  // 1
+  // 记录多态组件依赖的第一级interface文件 编译cml文件时再根据这个interface文件查找接口定义
+  // 不保存接口定义的代码，这样保证interface变化 触发cml编译 重新编译时重新或者接口定义
+  let interfacePath = filePath + '.interface';
+
+  if (_.isFile(interfacePath)) {
+    let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
+
+    // 多态文件路径
+    let polymorphicComponentPath = _.findPolymorphicComponent(interfacePath, content, cmlType);
+
+    if (polymorphicComponentPath) {
+      return polymorphicComponentPath;
     }
   }
+
+  // 2
+  let cmlFilePath = filePath + '.cml';
+  if (_.isFile(cmlFilePath)) {
+    return cmlFilePath;
+  }
+
+  // 3
   let fileExtMap = {
     weex: ['.vue', '.js'],
     web: ['.vue', '.js'],
     wx: '.wxml',
     baidu: '.swan',
-    alipay: '.axml'
+    alipay: '.axml',
+    qq: 'qml'
   }
 
   let ext = fileExtMap[cmlType];
-  if (typeof ext === 'string') {
-    ext = [ext];
-  }
-  for (let i = 0; i < ext.length; i++) {
-    let extFilePath = filePath + ext[i];
-    if (_.isFile(extFilePath)) {
-      return extFilePath;
+  if (ext) {
+    if (typeof ext === 'string') {
+      ext = [ext];
     }
+    for (let i = 0; i < ext.length; i++) {
+      let extFilePath = filePath + ext[i];
+      if (_.isFile(extFilePath)) {
+        return extFilePath;
+      }
+    }
+  }
+
+  let result = {
+    cmlType,
+    filePath,
+    extPath: ''
+  }
+  // 4 扩展端原生组件
+  if (_.isCli()) {
+    cml.event.emit('find-component', result);
+  }
+  if (result.extPath) {
+    return result.extPath;
   }
   return false;
 }
 
+
+// 根据interface寻找多态组件路径 多态组件优先级 · 1 interface文件中指定  2 未指定找同名多态cml文件  3 include中查找
+_.findPolymorphicComponent = function(interfacePath, content, cmlType) {
+
+  function find(interfacePath, content, cmlType) {
+    let parts = _.splitParts({content});
+    let include = [];
+    for (let i = 0;i < parts.customBlocks.length;i++) {
+      if (parts.customBlocks[i].type === 'include') {
+        include.push(parts.customBlocks[i]);
+      }
+    }
+    let targetScript = null;
+    for (let i = 0;i < parts.script.length;i++) {
+      if (~parts.script[i].cmlType.split(',').indexOf(cmlType)) {
+        targetScript = parts.script[i];
+      }
+    }
+    // interface文件中script src 指定
+    if (targetScript && targetScript.attrs && targetScript.attrs.src) {
+      let cmlFilePath = _.resolveSync(interfacePath, targetScript.attrs.src);
+      let reg = new RegExp(`\\.cml$`); // 只要是.cml文件就可以 不限制多态文件名称
+      // let reg = new RegExp(`\\.${cmlType}\\.cml$`);
+      // 获取npm包中的组件时 只能够根据interface文件去查找 无法区分是多态组件还是接口 如果找到了组件就返回 找不到就返回空
+      if (reg.test(cmlFilePath)) {
+        return cmlFilePath;
+      }
+      return;
+    }
+    // 同名文件
+    let sameNamePath = interfacePath.replace(/\.interface$/, `.${cmlType}.cml`);
+    if (_.isFile(sameNamePath)) {
+      return sameNamePath;
+    }
+    // include中查找
+    for (let i = include.length - 1; i >= 0; i--) {
+      let item = include[i];
+      let includeFilePath = _.resolveSync(interfacePath, item.attrs.src);
+      if (!_.isFile(includeFilePath)) {
+        throw new Error(`${includeFilePath} is not a file in : ${interfacePath}`);
+      }
+      let newContent = fs.readFileSync(includeFilePath, {encoding: 'utf-8'});
+      return find(includeFilePath, newContent, cmlType);
+    }
+  }
+
+  let cmlFilePath = find(interfacePath, content, cmlType);
+  if (cmlFilePath) {
+    RecordCml2Interface[cmlFilePath] = interfacePath;
+  }
+  return cmlFilePath;
+}
 // 提供给cml-lint使用 cml-lint不知道cmlType
 _.lintHandleComponentUrl = function(context, cmlFilePath, comPath) {
-  let cmlTypeList = ['wx', 'web', 'weex', 'alipay', 'baidu'];
+  let cmlTypeList = ['wx', 'web', 'weex', 'alipay', 'baidu', 'qq'];
   for (let i = 0; i < cmlTypeList.length; i++) {
     let cmlType = cmlTypeList[i];
     let result = _.handleComponentUrl(context, cmlFilePath, comPath, cmlType);
     if (result.filePath) {
       // 如果是.cml并且不是多态的cml文件
-      let cmlReg = new RegExp(`\\.${cmlType}\\.cml$`)
-      if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
+      // let cmlReg = new RegExp(`\\.${cmlType}\\.cml$`)
+      // if (/\.cml$/.test(result.filePath) && !cmlReg.test(result.filePath)) {
+      //   result.isCml = true;
+      // }
+      if (/\.cml$/.test(result.filePath) && !_.RecordCml2Interface[result.filePath]) {
         result.isCml = true;
       }
       return result;
@@ -808,29 +987,10 @@ _.npmComponentRefPath = function (componentAbsolutePath, context) {
   if (refUrl[0] !== '/') {
     refUrl = '/' + refUrl
   }
-  refUrl = refUrl.replace(/(\.cml|\.web\.cml|\.alipay\.cml|\.baidu\.cml|\.wx\.cml|\.weex\.cml)/, '');
+  // refUrl = refUrl.replace(/(\.cml|\.web\.cml|\.alipay\.cml|\.baidu\.cml|\.wx\.cml|\.weex\.cml)/, '');
+  refUrl = _.deleteExt(refUrl);
   return refUrl;
 
-}
-
-// 已经弃用了 因为在handleComponentUrl 已经返回正确的相对路径
-// 将json文件中usingComponents中的组件引用路径从绝对路径改为相对路径，export导出模式要求相对路径
-// 如果是绝对路径 导出的组件只能放到项目根目录下，最后生成json文件的时候修改
-_.convertToRelativeRef = function (jsonFilePath, jsonObject) {
-  // if (jsonFilePath[0] !== '/') {
-  //   jsonFilePath = '/' + jsonFilePath;
-  // }
-  let components = jsonObject.usingComponents;
-  if (components) {
-    Object.keys(components).forEach(key => {
-      let absoluteRef = components[key];
-      // plugin:// 开头不处理
-      if (absoluteRef.indexOf('plugin://') !== 0) {
-        let relativePath = _.handleRelativePath(jsonFilePath, absoluteRef);
-        components[key] = relativePath;
-      }
-    })
-  }
 }
 
 /**
@@ -899,26 +1059,40 @@ function getPluginKey(type, key) {
 // 获取export模式的入口cml文件
 _.getExportEntry = function (cmlType, context, entry = []) {
   let exportFiles = [];
+  function addExport(filePath) {
+    if (_.isFile(filePath) && !~exportFiles.indexOf(filePath)) {
+      exportFiles.push(filePath);
+    }
+  }
   if (entry && entry.length > 0) {
     entry.forEach(item => {
       let filePath = path.join(context, item);
+      // cml文件插入
       if (_.isFile(filePath)) {
-        exportFiles.push(filePath);
-      } else if (_.isDirectory(filePath)) {
-        filePath = path.join(filePath, '**/*.cml');
-        // 需要忽略掉的组件
-        let ignoreComponents = ['web', 'weex', 'wx', 'alipay', 'baidu'];
-        if (~ignoreComponents.indexOf(cmlType)) {
-          ignoreComponents.splice(ignoreComponents.indexOf(cmlType), 1);
+        if (path.extname(filePath) === '.cml') {
+          exportFiles.push(filePath);
+        } else if (path.extname(filePath) === '.interface') {
+          let content = fs.readFileSync(filePath, {encoding: 'utf-8'});
+          let cmlFilePath = _.findPolymorphicComponent(filePath, content, cmlType);
+          addExport(cmlFilePath);
         }
-        ignoreComponents = ignoreComponents.map(item => `\\.${item}\\.cml`);
-
-        let ignoreReg = new RegExp(`(${ignoreComponents.join('|')})`);
-
-        glob.sync(filePath).forEach(cmlPath => {
+      } else if (_.isDirectory(filePath)) {
+        let cmlFilePath = path.join(filePath, '**/*.cml');
+        let interfaceFilePath = path.join(filePath, '**/*.interface');
+        // 1 先找interface指定的多态组件
+        // 2 再找cml文件 不能根据文件名称区分端，如果所有cml文件 也会把其他端多态组件引入，所以取只有一个逗号的cml文件为非多态组件
+        // 获取重复添加入口时有校验
+        glob.sync(interfaceFilePath).forEach(interfacePath => {
           // 其他端的多态cml组件排除在外
-          if (!ignoreReg.test(cmlPath)) {
-            exportFiles.push(cmlPath);
+          let content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
+          let cmlFilePath = _.findPolymorphicComponent(interfacePath, content, cmlType);
+          addExport(cmlFilePath);
+        })
+
+        glob.sync(cmlFilePath).forEach(item => {
+          let basename = path.basename(item);
+          if (basename.split('.').length === 2) {
+            addExport(item);
           }
         })
       }
@@ -940,17 +1114,18 @@ _.getExportEntry = function (cmlType, context, entry = []) {
  */
 _.getPureEntryName = function (cmlFilePath, cmlType, context) {
   let entryPath = _.getEntryPath(cmlFilePath, context);
-  let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`);
-  if (cmlType === 'wx') {
-    entryPath = entryPath.replace(/\.wxml/g, '');
-  }
-  if (cmlType === 'alipay') {
-    entryPath = entryPath.replace(/\.axml/g, '');
-  }
-  if (cmlType === 'baidu') {
-    entryPath = entryPath.replace(/\.swan/g, '');
-  }
-  return entryPath.replace(cmlExtReg, '');
+  // let cmlExtReg = new RegExp(`(\\.cml|\\.${cmlType}.cml)`);
+  // if (cmlType === 'wx') {
+  //   entryPath = entryPath.replace(/\.wxml/g, '');
+  // }
+  // if (cmlType === 'alipay') {
+  //   entryPath = entryPath.replace(/\.axml/g, '');
+  // }
+  // if (cmlType === 'baidu') {
+  //   entryPath = entryPath.replace(/\.swan/g, '');
+  // }
+  return _.deleteExt(entryPath);
+  // return entryPath.replace(cmlExtReg, '');
 }
 
 /**
@@ -989,7 +1164,10 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       type = 'app';
     } else {
       let subProject = cml.config.get().subProject || [];
-      let npmNames = subProject.map(item => 'node_modules/' + item);
+      let npmNames = subProject.map(item => {
+        let npmName = _.isString(item) ? item : item.npmName;
+        return 'node_modules/' + npmName
+      });
       let subProjectIndex = -1;
       for (let i = 0; i < npmNames.length; i++) {
         if (~cmlFilePath.indexOf(npmNames[i])) {
@@ -999,10 +1177,9 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       }
       // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
       if (subProjectIndex != -1) {
-        let routerConfig = _.readsubProjectRouterConfig(context, subProject[subProjectIndex]);
-        let pageFiles = routerConfig.routes.map(item => {
-          return path.join(context, 'node_modules', subProject[subProjectIndex], 'src', item.path + '.cml');
-        })
+        let currentNpm = _.isString(subProject[subProjectIndex]) ? subProject[subProjectIndex] :subProject[subProjectIndex].npmName 
+        let routerConfig = _.readsubProjectRouterConfig(context, currentNpm);
+        let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', currentNpm, 'src', item.path + '.cml'))
         // 如果是配置的路由则是page
         if (~pageFiles.indexOf(cmlFilePath)) {
           type = 'page';
@@ -1045,4 +1222,73 @@ _.handleSpecialChar = function (str) {
 
 _.readsubProjectRouterConfig = function(context, npmName) {
   return JSON.parse(fs.readFileSync(path.join(context, 'node_modules', npmName, 'src/router.config.json'), {encoding: 'utf-8'}))
+}
+
+
+_.createMd5 = function(content) {
+  let md5 = crypto.createHash('md5');
+  md5.update(content);
+  return md5.digest('hex');
+}
+
+// 给文件添加hash值
+_.addHashName = function(filePath, hashValue) {
+  let dirname = path.dirname(filePath);
+  let basename = path.basename(filePath);
+  let nameArray = basename.split('.');
+  if (nameArray.length > 1) {
+    nameArray[nameArray.length - 2] = nameArray[nameArray.length - 2] + '_' + hashValue;
+  } else {
+    nameArray[0] = nameArray[0] + '_' + hashValue;
+  }
+  basename = nameArray.join('.');
+  return path.join(dirname, basename);
+}
+
+_.delQueryPath = function(filePath) {
+  return filePath.split('?')[0];
+}
+
+_.splitFileName = function(filePath) {
+  let basename = path.basename(filePath.split('?')[0]);
+  return basename.split('.');
+}
+
+_.isInline = function(filePath) {
+  if (~filePath.indexOf("__inline")) {
+    return true;
+  }
+  return false;
+}
+
+// 删除cml文件的后缀 因为有了script src语法之后  .cmlType.cml的语法已经无法穷举，
+// 处理的文件分隔符为 /
+_.deleteExt = function(filePath) {
+  let splitArray = filePath.split(/\/|\\/);
+
+  let basename = splitArray.pop();
+  basename = basename.split('.')[0];
+  splitArray.push(basename);
+  let result = splitArray.join('/')
+  return result;
+}
+
+
+_.isType = function(type, o) {
+  return Object.prototype.toString.call(o) === `[object ${type}]`
+}
+
+_.isArray = function(arr) {
+  return _.isType('Array', arr)
+}
+
+_.isPlainObject = function(obj) {
+  return _.isType('Object', obj);
+}
+
+_.isFunction = function(fun) {
+  return _.isType('Function', fun);
+}
+_.isString = function(str) {
+  return typeof str === 'string'
 }

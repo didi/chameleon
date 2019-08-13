@@ -6,6 +6,7 @@
     <view data-attr="{{childView ? child : 'strChild'}}"></view>
   </view>
   <show-scroller c-if="{{true}}" scroll-x="{{disX}}" c-bind:tap="onTap" c-bind:onscroll="onScroll"></show-scroller>
+  <view logic-prop="{{logicLeft || logicRight}}"></view>
 </template>
 
 <script>

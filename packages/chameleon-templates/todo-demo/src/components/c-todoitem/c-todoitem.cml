@@ -157,15 +157,6 @@ export default new CTodoitem();
     "usingComponents": {
       "c-checkbox": "/components/c-checkbox/c-checkbox"
     }
-  },
-  "wx": {
-    "component": true
-  },
-  "alipay": {
-    "component": true
-  },
-  "baidu": {
-    "component": true
   }
 }
 </script>
