@@ -94,40 +94,6 @@ export default new Index();
 
 CML 采用与 Vue 一致的组件化方案、单文件组织方式、生命周期，同时数据响应能力对齐 Vue，数据管理能力对齐 Vuex，非常方便开发者上手、维护。
 
-代码示例
-
-```html
-<template>
-  <view>
-    <text>{{title}}</text>
-  </view>
-</template>
-
-<script>
-
-class Index  {
-  data = {
-    title: "chameleon"
-  }
-  beforeCreate() {}
-
-  created() {}
-
-  beforeMount() {}
-
-  mounted() {}
-
-  beforeDestroy() {}
-
-  destroyed() {}
-  
-}
-
-export default new Index();
-
-</script>
-```
-
 通过以上对于开发语言的介绍，相信你看到只要是有过网页编程知识的人都可以快速的上手chameleon的开发。
 
 ## 多端高度一致
@@ -171,9 +137,9 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 内部成员：透心凉、Sgoddon、动机不纯、Jalon、Jack、卡尺哈哈、change、Observer、Kevin、guoqingSmile、Mr.MY、JiM、lzc、名字待定、朱智恒、亭、龚磊、w55、小龙、不懂小彬、荣景超
 
 ## 特别鸣谢
-[![broven](https://avatars0.githubusercontent.com/u/12854613?s=400&v=4)](https://github.com/broven/) | [![Jeany](https://avatars0.githubusercontent.com/u/137496?s=400&v=4)](https://github.com/Jeany/)
-:---:|:---:
-[broven（阿里影业）](https://github.com/broven/) | [Jeany（芒果 TV)](https://github.com/Jeany/)
+[![zheyizhifeng](https://avatars3.githubusercontent.com/u/9592849?s=100&v=4)](https://github.com/zheyizhifeng)|[(头像空)](https://github.com/whuhenrylee)|[![broven](https://avatars0.githubusercontent.com/u/12854613?s=100&v=4)](https://github.com/broven/)|[(头像空)](https://github.com/Jeany/)
+:---:|:---:|:---:|:---:
+[zheyizhifeng（快应用）](https://github.com/zheyizhifeng)|[whuhenrylee（快应用）](https://github.com/whuhenrylee)|[broven（阿里影业）](https://github.com/broven/)|[Jeany（芒果 TV)](https://github.com/Jeany/)
 
 ## 贡献者们
 快应用官方研发团队、luyixin、z-mirror、夏夜焰火（百度）
