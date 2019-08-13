@@ -1,7 +1,5 @@
 # 鲲鹏接入教程：http://wiki.intra.xiaojukeji.com/pages/viewpage.action?pageId=111903894
 # ---------refer用来标识此项目评审入口是OneExperience, 请勿改动--------- #
-refer: OE
-force: master
 strategy: ownerOne
 owners: xuguodong
 reviewers: 
