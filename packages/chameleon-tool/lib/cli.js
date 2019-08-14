@@ -13,6 +13,7 @@ module.exports.run = function () {
   } else {
     const extPlatform = require('../commanders/extPlatform.js');
     if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(first)) {
+      debugger;
       extPlatform({type: first, media: argv[3]});
     } else {
       commander.usage('[command] [options]')
@@ -29,7 +30,6 @@ module.exports.run = function () {
           commander
             .command(cmd.name)
             .option('-l, --log [debug]', 'logLevel')
-            .option('-n, --nopreview ', "don't auto open preview")
             .usage(cmd.usage)
             .description(cmd.desc)
         );
