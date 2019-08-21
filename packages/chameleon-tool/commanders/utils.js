@@ -10,6 +10,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const cmlUtils = require('chameleon-tool-utils');
+
 /**
  * 非web端构建
  * @param {*} media  dev or build ...
@@ -212,13 +213,13 @@ exports.createConfigJson = function() {
   let configObj = {};
   if (cml.utils.isFile(configJsonPath)) {
     configObj = JSON.parse(fs.readFileSync(configJsonPath, {encoding: 'utf-8'}))
-  };
+  }
   // 获取weex jsbundle地址
   let weexjs = configObj.weexjs || '';
   let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
-  
+
   if (cml.utils.isFile(weexjsPath)) {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
@@ -327,7 +328,7 @@ exports.createConfigJson = function() {
 
   result.forEach(item => {
     Object.keys(item).forEach(key => {
-      if (!~cml.activePlatform.indexOf(key)) {
+      if (!~cml.activePlatform.indexOf(key) && key !== 'extra') {
         delete item[key]
       }
     })
