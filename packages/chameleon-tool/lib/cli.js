@@ -13,7 +13,6 @@ module.exports.run = function () {
   } else {
     const extPlatform = require('../commanders/extPlatform.js');
     if (cml.config.get().extPlatform && ~Object.keys(cml.config.get().extPlatform).indexOf(first)) {
-      debugger;
       extPlatform({type: first, media: argv[3]});
     } else {
       commander.usage('[command] [options]')
