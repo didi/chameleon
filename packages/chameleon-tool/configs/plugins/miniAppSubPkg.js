@@ -44,8 +44,8 @@ class MiniAppSubPkg {
       let regStatic = /require\(.*?static\/js\/pages.*?\)/;
       let regMainfest = /var.*?require\(.*?manifest\.js.*?\)/
       subPagesArr.forEach((item) => {
-        let subPageJSPath = `${item}.js`
-        let subPageStaticJSPath = `static/js/${item}.js`;
+        let subPageJSPath = cmlUtils.handleWinPath(`${item}.js`);
+        let subPageStaticJSPath = cmlUtils.handleWinPath(`static/js/${item}.js`);
         let content = compilation.assets[subPageJSPath] && compilation.assets[subPageJSPath].source();
 
         if (content) {
@@ -58,7 +58,8 @@ class MiniAppSubPkg {
           // 注意 assets中的key configurable与否
         }
         let finalContent = content + '\n' + staticContent;
-        compilation.assets[subPageJSPath]._value = finalContent;
+
+        compilation.assets[subPageJSPath] && (compilation.assets[subPageJSPath]._value = finalContent);
       });
       callback();
     }
