@@ -1,3 +1,10 @@
+## [0.4.1-alpha.0]
+
+### Bug Fixes
+
+- 修复 config.json文件中不生成extra
+- 修复 -h 指令提示 -n 的情况
+
 ## [0.4.0]
 ### Features
 - 灰度完成发正式版

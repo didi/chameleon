@@ -7,6 +7,7 @@ exports.desc = 'tools for the alipay miniprogram project';
 exports.register = function (commander) {
   commander
     .option('-r, --root [root]', 'specify project root')
+    .option('-n, --nopreview ', "don't auto open preview")
     .action(function (...args) {
       cml.utils.checkProjectConfig();
       /* eslint-disable */
