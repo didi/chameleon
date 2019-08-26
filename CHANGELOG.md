@@ -1,3 +1,7 @@
+## [0.4.1-alpha.1]
+### Bugfixes
+   - 修复window下分包加载的bug
+   - 修复babel-loader无法在回调插件中重新配置的bug
 ## [0.4.1-alpha.0]
 
 ### Bug Fixes
