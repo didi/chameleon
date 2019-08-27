@@ -70,8 +70,12 @@ function resolveLoaders (
   hasScoped,
   hasComment,
   hasFunctionalTemplate,
-  needCssSourceMap
+  needCssSourceMap,
+  loaderContext
 ) {
+  const JSLoader = (loaderContext._compiler.options.module.rules || []).find((rule) => (rule.test instanceof RegExp && rule.test.test('name.js')))
+  const JSLoaderConfig = (JSLoader.use || []).find((item) => item.loader === 'babel-loader')
+  options.loaders && (options.loaders.js = JSLoaderConfig)
   let cssLoaderOptions = ''
   if (needCssSourceMap) {
     cssLoaderOptions += '?sourceMap'
@@ -129,7 +133,8 @@ module.exports = function createHelpers (
     hasScoped,
     hasComment,
     hasFunctionalTemplate,
-    needCssSourceMap
+    needCssSourceMap,
+    loaderContext
   )
 
   function getRequire (type, part, index, scoped) {
