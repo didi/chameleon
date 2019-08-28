@@ -1,3 +1,7 @@
+## [1.0.0]
+### Bugfixes
+   - 修复alipay baidu qq 端引用原生组件的问题
+   
 ## [0.4.1]
 ### Bugfixes
    - 修复内联事件对象 $event的匹配问题
