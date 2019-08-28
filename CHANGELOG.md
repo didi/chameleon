@@ -1,3 +1,7 @@
+## [0.4.1]
+### Bugfixes
+   - 修复内联事件对象 $event的匹配问题
+   - 修复chameleon.config.js内部配置公用miniappConfig一个对象导致的对象合并不准确问题
 ## [0.4.1-alpha.1]
 ### Bugfixes
    - 修复window下分包加载的bug
