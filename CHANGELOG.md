@@ -1,3 +1,5 @@
+## [1.0.2]
+ 修改project tododemo的package.lock.json
 ## [1.0.0]
 ### Bugfixes
    - 修复alipay baidu qq 端引用原生组件的问题
