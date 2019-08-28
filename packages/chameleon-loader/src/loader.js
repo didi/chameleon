@@ -97,7 +97,8 @@ module.exports = function (content) {
   const isWxmlComponent = extName === '.wxml';
   const isAxmlComponent = extName === '.axml';
   const isSwanComponent = extName === '.swan';
-  const isMiniAppRawComponent = isWxmlComponent ||  isAxmlComponent || isSwanComponent;
+  const isQmlComponent = extName === '.qml';
+  const isMiniAppRawComponent = isWxmlComponent ||  isAxmlComponent || isSwanComponent || isQmlComponent;
   if(!isMiniAppRawComponent) {
     //处理script cml-type为json的内容
     content = cmlUtils.deleteScript({content, cmlType: 'json'});
@@ -164,7 +165,7 @@ module.exports = function (content) {
     qq: 'qml'
   }
   //小程序模板后缀正则
-  const miniTplExtReg = /(\.wxml|\.axml)$/;
+  const miniTplExtReg = /(\.wxml|\.axml|\.swan|\.qml)$/;
   const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml|\.qq\.cml|\.baidu\.cml)$/;
 
   if(isMiniAppRawComponent) {
@@ -208,7 +209,6 @@ module.exports = function (content) {
 
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
-    
     if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan') || (cmlType === 'qq' && extName === '.qml')) {
       //生成json文件
       let jsonFile = filePath.replace(miniTplExtReg,'.json');
@@ -240,7 +240,6 @@ module.exports = function (content) {
     npmComponents.forEach(item=>{
       componentDeps.push(item.filePath);
     })
-
     let newJsonObj = jsonHandler(self, jsonObject, cmlType, componentDeps) || {};
     newJsonObj.usingComponents = newJsonObj.usingComponents || {};
     let usingComponents ={} ;
