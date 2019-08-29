@@ -32,7 +32,9 @@ class MiniAppSubPkg {
         subPagesRoot.push(pkg.root);
         if (Array.isArray(pkg.pages)) {
           pkg.pages.forEach((subpage) => {
-            subPagesArr.push(path.normalize(`${pkg.root}/${subpage}`))
+            // subPagesArr.push(path.normalize(`${pkg.root}/${subpage}`))
+            let subPkgPath = path.normalize(`${pkg.root}/${subpage}`)
+            subPagesArr.push(cmlUtils.handleWinPath(subPkgPath))
           })
         }
       });
