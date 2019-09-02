@@ -27,21 +27,22 @@ parseEvent.tap('web-weex', (args) => {
     let tagName = jsxElementNode.openingElement.name.name;
     let isOriginOrNative = utils.isOriginTagOrNativeComp(tagName, options);
     let isNotNativeComp = utils.isNotNativeComponent(tagName, options);
-    let isNativeComp = utils.isNativeComp(tagName, options);
-    let originEvents = ['click', 'touchstart', 'touchmove', 'touchend', 'touchcancel'];
-    if (type === 'web') { // cml标签或者cml组件
-      // web端非第三方UI库的上的tap和click都处理成tap;
-      if (isNotNativeComp || tagName === 'component') { // cml组件上的tap和click都处理成 click.native
-        node.name.name === 'tap' && (node.name.name = 'click');
+    let originEvents = ['tap', 'click', 'touchstart', 'touchmove', 'touchend', 'touchcancel'];
+    if (type === 'web') {
+      if (isNotNativeComp || tagName === 'component') { // cml组件上的tap和click都处理成tap.native  click.native;这是为了和小程序端保持一致;对于第三方组件或者标签上的click或者tap则不再处理；
         originEvents.includes(node.name.name) && (node.name.name = `${node.name.name}__CML_NATIVE_EVENTS__`);
-      } else if (isNativeComp) {
-        // native组件不处理名字
-      } else { // 普通标签都处理成tap
-        let isOriginTag = tagName.indexOf('origin-') === 0;
-        if (!isOriginTag) { // 如果是原生 origin- 开头的标签，那么click不要处理成tap
-          node.name.name === 'click' && (node.name.name = 'tap');
-        }
       }
+      // if (isNotNativeComp || tagName === 'component') { // cml组件上的tap和click都处理成tap.native  click.native;这是为了和小程序端保持一致;
+      //   // node.name.name === 'tap' && (node.name.name = 'click');
+      //   originEvents.includes(node.name.name) && (node.name.name = `${node.name.name}__CML_NATIVE_EVENTS__`);
+      // } else if (isNativeComp) { // 对于引用的第三方组件则不处理
+      //   // native组件不处理名字
+      // } else { // 普通标签都处理成tap
+      //   let isOriginTag = tagName.indexOf('origin-') === 0;
+      //   if (!isOriginTag) { // 如果是原生 origin- 开头的标签，那么click不要处理成tap
+      //     // node.name.name === 'click' && (node.name.name = 'tap');
+      //   }
+      // }
     }
     if (type === 'weex') { // weex端 还是原来的逻辑
       node.name.name === 'tap' && (node.name.name = 'click');
