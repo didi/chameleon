@@ -1002,14 +1002,20 @@ _.handleRelativePath = function(sourcePath, targetPath) {
   sourcePath = path.join(sourcePath);
   targetPath = path.join(targetPath);
   let relativePath = path.relative(sourcePath, targetPath);
+
   if (relativePath == '..' || relativePath == '.') {
     relativePath = ''
   } else {
-    relativePath = relativePath.slice(3); // eslint-disable-line
+
+    if (_.isWin()) { // windows特殊处理下
+      !path.isAbsolute(relativePath) && (relativePath = relativePath.slice(3));// eslint-disable-line
+    } else {
+      relativePath = relativePath.slice(3); // eslint-disable-line
+    }
   }
   relativePath = _.handleWinPath(relativePath);
   // 不是绝对路径都加上./  否则同一目录文件引用有问题  这里的路径是给代码中使用 统一处理成正斜杠
-  if (relativePath.indexOf('/') !== 0) {
+  if (!path.isAbsolute(relativePath)) {
     relativePath = './' + relativePath;
   }
   return relativePath;
