@@ -1,13 +1,18 @@
+
+## [1.0.3]
+
+- 发布1.0.3-alpha.0的正式版
+
 ## [1.0.3-alpha.0]
-  - Bugfixes
-   - 区分web端click和tap事件，由原来的click和tap统一处理成tap，改为tap和click区别对待，如果要在pc端生效click事件，那么必须绑定click而非tap
-   - 修复windows 上 app.json 中分包页面没有删除
-   - 修复windows 上初始化项目无法运行
+- Bugfixes
+  - 区分web端click和tap事件，由原来的click和tap统一处理成tap，改为tap和click区别对待，如果要在pc端生效click事件，那么必须绑定click而非tap
+  - 修复windows 上 app.json 中分包页面没有删除
+  - 修复windows 上初始化项目无法运行
 - Features
   - 扩展新端命令支持集成到chameleon-tool中
 ## [1.0.2]
 
- -修改project tododemo的package.lock.json
+ - 修改project tododemo的package.lock.json
 
 ## [1.0.0]
 
