@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-// --inspect-brk
+#! /usr/bin/env node --inspect-brk
 
 require('./lib/index.js');
-

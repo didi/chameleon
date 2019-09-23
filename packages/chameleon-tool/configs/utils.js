@@ -241,6 +241,11 @@ exports.getMiniAppEntry = function (cmlType) {
   let root = cml.projectRoot;
   let entry = {};
   entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`];
+  let pageCssPath = path.join(cml.projectRoot, 'node_modules', `chameleon-runtime/src/platform/${cmlType}/style/page.css`)
+  // 兼容老的chameleon-runtime 版本没有 page.css 这个文件；
+  let hasPageCss = cmlUtils.isFile(pageCssPath);
+  entry['static/css/index'] = `chameleon-runtime/src/platform/${cmlType}/style/index.css`;
+  hasPageCss && (entry['static/css/page'] = `chameleon-runtime/src/platform/${cmlType}/style/page.css`);
   let projectPath = path.resolve(root, 'src');
 
   // 记录已经添加的入口，防止重复循环添加
