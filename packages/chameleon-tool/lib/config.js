@@ -6,6 +6,20 @@ moduleIdType 决定webpack打包模块的id
   name 利用webpack.NamedModulesPlugin()
   chameleon 利用chameleon-webpack-plugin 中开启moduleid的处理
 */
+function clone (value) {
+  if (Array.isArray(value)) {
+    return value.map(clone)
+  } else if (value && typeof value === 'object') {
+    const res = {}
+    // eslint-disable-next-line guard-for-in
+    for (const key in value) {
+      res[key] = clone(value[key])
+    }
+    return res
+  } else {
+    return value
+  }
+}
 var miniappConfig = {
   dev: {
     moduleIdType: 'name',
@@ -88,10 +102,10 @@ var chameleonConfig = {
     // 是否对css开启autoprefix，默认为true  非weex端生效
     enableAutoPrefix: true
   },
-  wx: miniappConfig,
-  alipay: miniappConfig,
-  baidu: miniappConfig,
-  qq: miniappConfig,
+  wx: clone(miniappConfig),
+  alipay: clone(miniappConfig),
+  baidu: clone(miniappConfig),
+  qq: clone(miniappConfig),
   web: {
     dev: {
       isWrapComponent: true, // 默认对组件进行一层包裹

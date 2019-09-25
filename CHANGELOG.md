@@ -1,3 +1,24 @@
+## [1.0.2]
+ 修改project tododemo的package.lock.json
+## [1.0.0]
+### Bugfixes
+   - 修复alipay baidu qq 端引用原生组件的问题
+   
+## [0.4.1]
+### Bugfixes
+   - 修复内联事件对象 $event的匹配问题
+   - 修复chameleon.config.js内部配置公用miniappConfig一个对象导致的对象合并不准确问题
+## [0.4.1-alpha.1]
+### Bugfixes
+   - 修复window下分包加载的bug
+   - 修复babel-loader无法在回调插件中重新配置的bug
+## [0.4.1-alpha.0]
+
+### Bug Fixes
+
+- 修复 config.json文件中不生成extra
+- 修复 -h 指令提示 -n 的情况
+
 ## [0.4.0]
 ### Features
 - 灰度完成发正式版

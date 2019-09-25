@@ -289,7 +289,8 @@ _.miniappVUEClassNodes = function (options) {
 _.getInlineStatementArgs = function(argsStr) {
   // argsStr:"1,'index'+1,$event,'item',index+1,item"
   const result = argsStr.split(',').reduce((result, current, index) => {
-    if (current === '$event') {
+    // if (current === '$event') {
+    if (/\s*?\$event\s*?/.test(current)) {
       result.push("'$event'");
     } else {
       result.push(current)

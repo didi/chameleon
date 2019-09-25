@@ -276,8 +276,8 @@ _.getJsonFileContent = function (filePath, confType) {
     } else {
       _.log.error(`There is no file:${filePath}`)
     }
-  } else if (~['.wxml', '.axml', '.swan'].indexOf(path.extname(filePath))) {
-    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan)/, '.json');
+  } else if (~['.wxml', '.axml', '.swan', '.qml'].indexOf(path.extname(filePath))) {
+    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan|\.qml)/, '.json');
     if (_.isFile(filePath)) {
       let content = fs.readFileSync(jsonFilePath, {
         encoding: 'utf-8'
@@ -842,7 +842,7 @@ _.findComponent = function (filePath, cmlType) {
     wx: '.wxml',
     baidu: '.swan',
     alipay: '.axml',
-    qq: 'qml'
+    qq: '.qml'
   }
 
   let ext = fileExtMap[cmlType];
@@ -1177,7 +1177,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       }
       // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
       if (subProjectIndex != -1) {
-        let currentNpm = _.isString(subProject[subProjectIndex]) ? subProject[subProjectIndex] :subProject[subProjectIndex].npmName 
+        let currentNpm = _.isString(subProject[subProjectIndex]) ? subProject[subProjectIndex] : subProject[subProjectIndex].npmName
         let routerConfig = _.readsubProjectRouterConfig(context, currentNpm);
         let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', currentNpm, 'src', item.path + '.cml'))
         // 如果是配置的路由则是page
