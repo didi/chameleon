@@ -1,6 +1,6 @@
 {
   "name": "mvvm-file-loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "mvvm file loader",
   "main": "dist/cjs.js",
   "scripts": {
