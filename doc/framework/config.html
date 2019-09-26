@@ -268,6 +268,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.2.3" data-path="../example/quickapp_miniapp.html" data-part="quick_start">
+            
+                <a href="../example/quickapp_miniapp.html">
+            
+                    
+                    快速接入快应用
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -5105,6 +5118,7 @@ cml.config.merge({
   }
 });
 </code></pre>
+<p>&#x4EE5;&#x4E0B;&#x4ECB;&#x7ECD;&#x5E73;&#x53F0;&#x5185;&#x914D;&#x7F6E;&#x652F;&#x6301;&#x7684;&#x914D;&#x7F6E;&#x9879;</p>
 <h3 id="&#x6587;&#x4EF6;&#x6307;&#x7EB9;"><a name="&#x6587;&#x4EF6;&#x6307;&#x7EB9;" class="anchor-navigation-ex-anchor" href="#&#x6587;&#x4EF6;&#x6307;&#x7EB9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6587;&#x4EF6;&#x6307;&#x7EB9;" class="plugin-anchor" href="#&#x6587;&#x4EF6;&#x6307;&#x7EB9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6587;&#x4EF6;&#x6307;&#x7EB9;</h3>
 <p>&#x6587;&#x4EF6;&#x6307;&#x7EB9;&#x662F;&#x6587;&#x4EF6;&#x7684;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#xFF0C;&#x4EE5;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x751F;&#x6210;hash&#x503C;&#x4F5C;&#x4E3A;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;&#x5728;&#x5F00;&#x542F;&#x5F3A;&#x7F13;&#x5B58;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x6587;&#x4EF6;&#x7684; URL &#x4E0D;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x65E0;&#x6CD5;&#x5237;&#x65B0;&#x6D4F;&#x89C8;&#x5668;&#x7F13;&#x5B58;&#x3002;&#x6587;&#x4EF6;&#x6307;&#x7EB9;&#x7528;&#x4E8E;&#x66F4;&#x65B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7F13;&#x5B58;&#x3002;&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#x4E0D;&#x9700;&#x8981;&#x6587;&#x4EF6;&#x6307;&#x7EB9;&#x3002; &#x9ED8;&#x8BA4;&#x56FE;&#x7247;&#x8D44;&#x6E90;&#x5F00;&#x542F;hash&#xFF0C;build&#x6A21;&#x5F0F;&#x5F00;&#x542F;hash&#x3002;&#x901A;&#x8FC7;<code>hash</code>&#x5B57;&#x6BB5;&#x914D;&#x7F6E;&#x3002;</p>
 <p><code>hash</code>, Boolean &#x7C7B;&#x578B;&#x3002;
@@ -5298,15 +5312,33 @@ chameleon-api@0.3.1&#x5F00;&#x59CB;&#x652F;&#x6301;</p>
 </code></pre><h3 id="&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;"><a name="&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;" class="plugin-anchor" href="#&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;</h3>
 <p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x591A;&#x5957;&#x6784;&#x5EFA;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;media&#xFF0C;&#x6BD4;&#x5982;&#x8BBE;&#x7F6E;weex.custom &#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;<code>cml weex custom</code>&#x5373;&#x53EF;&#x4F7F;&#x7528;&#x4F60;&#x8BBE;&#x7F6E;&#x7684;custom&#x914D;&#x7F6E;&#x8FDB;&#x884C;&#x6784;&#x5EFA;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4F1A;&#x542F;&#x52A8;dev&#x670D;&#x52A1;&#x548C;watch&#x3002;
 &#x4F8B;&#x5982;&#xFF1A;</p>
-<pre><code>cml.config.merge({
-  weex: {
-    custom: {
-      minimize: true,
-      moduleIdType: &quot;number&quot;
+<pre><code class="lang-javascript">cml.config.merge({
+  <span class="hljs-attr">weex</span>: {
+    <span class="hljs-attr">custom</span>: {
+      <span class="hljs-attr">minimize</span>: <span class="hljs-literal">true</span>,<span class="hljs-comment">//&#x5BF9;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x538B;&#x7F29;</span>
+      moduleIdType: <span class="hljs-string">&quot;name&quot;</span> <span class="hljs-comment">//&#x7F16;&#x8BD1;&#x7684;&#x6A21;&#x5757;&#x7ED3;&#x679C;&#x4EE5;&#x6A21;&#x5757;&#x540D;&#x5B57;&#x663E;&#x793A;</span>
     }
   }
 })
-</code></pre><h4 id="&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;"><a name="&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;" class="plugin-anchor" href="#&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;</h4>
+</code></pre>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x6784;&#x5EFA;&#x914D;&#x7F6E;&#x53EF;&#x914D;&#x7F6E;&#x9879;&#x548C;&#x4E0A;&#x9762;&#x4ECB;&#x7ECD;&#x7684;&#x5E73;&#x53F0;&#x5185;&#x914D;&#x7F6E;&#x9879;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#x540C;&#x6837;&#x652F;&#x6301; publicPath apiPrefix  hash  minimize  anslysis &#x7B49;&#xFF1B;</p>
+<p>&#x5047;&#x5982;&#x4F60;&#x5728;&#x6784;&#x5EFA;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x7AEF;&#xFF0C;&#x4E00;&#x4E2A;&#x6784;&#x5EFA;&#x6A21;&#x5F0F;&#x4E0B;&#x8981;&#x6C42;&#x4E0D;&#x538B;&#x7F29;&#x4EE3;&#x7801;&#xFF0C;&#x4E00;&#x4E2A;&#x6784;&#x5EFA;&#x6A21;&#x5F0F;&#x4E0B;&#x8981;&#x6C42;&#x663E;&#x793A;&#x6A21;&#x5757;&#x540D;&#x5B57;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x5982;&#x4E0B;&#x914D;&#x7F6E;</p>
+<pre><code class="lang-javascript">cml.config.merge({
+  <span class="hljs-attr">wx</span>: {
+    <span class="hljs-attr">build</span>: {
+      <span class="hljs-attr">minimize</span>: <span class="hljs-literal">true</span>,<span class="hljs-comment">//&#x5BF9;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x538B;&#x7F29;</span>
+      moduleIdType: <span class="hljs-string">&quot;id&quot;</span> <span class="hljs-comment">//&#x7F16;&#x8BD1;&#x7684;&#x6A21;&#x5757;&#x7ED3;&#x679C;&#x4EE5;&#x6A21;&#x5757;&#x540D;&#x5B57;&#x663E;&#x793A;</span>
+    }
+    custom: {
+      <span class="hljs-attr">minimize</span>: <span class="hljs-literal">false</span>,<span class="hljs-comment">//&#x5BF9;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x538B;&#x7F29;</span>
+      moduleIdType: <span class="hljs-string">&quot;name&quot;</span> <span class="hljs-comment">//&#x7F16;&#x8BD1;&#x7684;&#x6A21;&#x5757;&#x7ED3;&#x679C;&#x4EE5;&#x6A21;&#x5757;&#x540D;&#x5B57;&#x663E;&#x793A;</span>
+    }
+  }
+})
+</code></pre>
+<p>&#x6267;&#x884C; cml wx build  &#x5219;&#x6253;&#x5305;&#x7684;&#x4EE3;&#x7801;&#x4F1A;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#x4EE5;&#x53CA;&#x6A21;&#x5757;&#x540D;&#x4EE5;id&#x53D6;&#x540D;&#xFF1B;
+&#x6267;&#x884C; cml wx custom &#x5219;&#x6253;&#x5305;&#x7684;&#x4EE3;&#x7801;&#x4E0D;&#x4F1A;&#x538B;&#x7F29;&#x6291;&#x83CC;&#x5242;&#x6A21;&#x5757;&#x540D;&#x4EE5;&#x8BE5;&#x6A21;&#x5757;&#x5BF9;&#x5E94;&#x7684;name&#x53D6;&#x540D;</p>
+<h4 id="&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;"><a name="&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;" class="plugin-anchor" href="#&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x914D;&#x7F6E;</h4>
 <p>&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x76F8;&#x5173;&#x7684;&#x914D;&#x7F6E;&#x8BF7;&#x53C2;&#x89C1;&#x7EC4;&#x4EF6;&#x5BFC;&#x51FA;&#x4ECB;&#x7ECD;&#x3002;</p>
 <h2 id="&#x4FEE;&#x6539;webpack&#x914D;&#x7F6E;"><a name="&#x4FEE;&#x6539;webpack&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x4FEE;&#x6539;webpack&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4FEE;&#x6539;webpack&#x914D;&#x7F6E;" class="plugin-anchor" href="#&#x4FEE;&#x6539;webpack&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4FEE;&#x6539;webpack&#x914D;&#x7F6E;</h2>
 <p>&#x5728;<code>chameleon.config.js</code>&#x4E2D;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;api&#x83B7;&#x53D6;&#x5230;&#x6784;&#x5EFA;&#x4E4B;&#x524D;&#x7684;webpack&#x914D;&#x7F6E;&#x5E76;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF1A;</p>
@@ -5361,7 +5393,7 @@ chameleon-api@0.3.1&#x5F00;&#x59CB;&#x652F;&#x6301;</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"工程配置","level":"2.1.6.3","depth":3,"next":{"title":"终端列表","level":"2.1.6.4","depth":3,"path":"framework/platform-list.md","ref":"framework/platform-list.md","articles":[]},"previous":{"title":"路由配置","level":"2.1.6.2","depth":3,"path":"framework/router.md","ref":"framework/router.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/config.md","mtime":"2019-09-10T05:19:48.965Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-12T11:40:40.561Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"工程配置","level":"2.1.6.3","depth":3,"next":{"title":"终端列表","level":"2.1.6.4","depth":3,"path":"framework/platform-list.md","ref":"framework/platform-list.md","articles":[]},"previous":{"title":"路由配置","level":"2.1.6.2","depth":3,"path":"framework/router.md","ref":"framework/router.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/config.md","mtime":"2019-09-26T10:37:05.203Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-26T10:43:04.423Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
