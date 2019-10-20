@@ -5,7 +5,8 @@ const config = require('../../../config');
 
 function getUsingComponents(jsonAst, filePath = '') {
   let results = {};
-  let interfaceParser = new Parser(null, config.getParserConfig().script);
+  let currentWorkspace = config.getCurrentWorkspace();
+  let interfaceParser = new Parser(null, config.getParserConfig().script, currentWorkspace);
 
   if (jsonAst && jsonAst.base && jsonAst.base.usingComponents) {
     Object
@@ -20,7 +21,6 @@ function getUsingComponents(jsonAst, filePath = '') {
         return !(infoPair.path.indexOf('plugin://') === 0);
       })
       .forEach((infoPair) => {
-        let currentWorkspace = config.getCurrentWorkspace();
         // filePath: is a full absolute path of the target template file
         // inforPair.path: is the original path of base: {usingComponents: 'path/to/referenced component'}
         let interfaceInfo = cmlUtils.findInterfaceFile(currentWorkspace, filePath, infoPair.path);
