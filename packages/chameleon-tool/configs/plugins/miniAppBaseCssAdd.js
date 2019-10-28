@@ -25,10 +25,15 @@ class miniappBaseCssAdd {
         Object.keys(compilation.assets).forEach((assetPath) => {
           let ext = path.extname(assetPath);
           let platformCss = cssExt[self.cmlType];
-          let pageCss = `static/css/page${platformCss}`
-          let indexCss = `static/css/index${platformCss}`;
+          let pageCss = cmlUtils.handleWinPath(`static/css/page${platformCss}`);
+          let pageCssEntryPath = cmlUtils.handleWinPath(`static/js/static/css/page.js`);
+          let indexCss = cmlUtils.handleWinPath(`static/css/index${platformCss}`);
+          let indexCssEntryPath = cmlUtils.handleWinPath(`static/js/static/css/index.js`);
+          //删除因为新增 css 入口导致的  js 文件；
+          delete compilation.assets[pageCssEntryPath];
+          delete compilation.assets[indexCssEntryPath];
           if ((ext === platformCss) && ![pageCss, indexCss].includes(assetPath)) {
-            // 是对应的css样式，且不能是 static/css/index.wxss static/css/page.wxss
+            // 是对应的css样式，且不能是 static/css/index.wxss static/css/page.wxss 公用样式中不能再导入公用基础样式；
             let primaryCss = compilation.assets[assetPath].source();
             let primaryCssSize = compilation.assets[assetPath].size();
             let assetType = judgeAssetType(assetPath, compilation);
@@ -37,7 +42,7 @@ class miniappBaseCssAdd {
             if (assetType === 'page') {
               compilation.assets[assetPath] = {
                 source() {
-                  if (compilation.assets[pageCss]) { // 如果有page.css ，那么久插入page.css
+                  if (compilation.assets[pageCss]) { // 如果有page.css ，那么插入page.css
                     return `@import '/static/css/page${platformCss}'; \n ${primaryCss}`
                   } else {
                     return `@import '/static/css/index${platformCss}'; \n ${primaryCss}`
