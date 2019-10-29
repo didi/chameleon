@@ -72,7 +72,6 @@ module.exports = MiniAppSubPkg;
 /**
  * done
  * function miniappsubpkg(stats) {
-      debugger;
       // 第一步处理app.json
       let appJSONString = '';
       let appJSONPath = path.resolve(cml.projectRoot, `dist/${self.cmlType}/app.json`)

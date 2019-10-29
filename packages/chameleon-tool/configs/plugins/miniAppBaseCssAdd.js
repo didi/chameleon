@@ -21,7 +21,6 @@ class miniappBaseCssAdd {
 
     function miniappBaseCssAdd(compilation, callback) {
       if (self.isInjectBaseStyle) { // 只有配置导入样式的时候，才进行样式的导入
-        debugger;
         Object.keys(compilation.assets).forEach((assetPath) => {
           let ext = path.extname(assetPath);
           let platformCss = cssExt[self.cmlType];
