@@ -2,4 +2,3 @@
 // --inspect-brk
 
 require('./lib/index.js');
-
