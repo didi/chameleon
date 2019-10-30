@@ -114,6 +114,33 @@ describe('process-template', function() {
       expect(processTemplate.postParseOriginTag(`<view><origin-input></origin-input></view>`)).to.equal(`<view><input></input></view>;`)
     })
   });
+  describe('postParseOriginTag', function() {
+    it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
+      expect(processTemplate.postParseOriginTag(`<template><cml type='alipay'>alipay</cml><cml type='base'></cml></template>`,'alipay')).to.equal(`<template><view type="alipay">alipay</cml></view>;`)
+    })
+  });
+  describe('postParseOriginTag', function() {
+    it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
+      expect(processTemplate.postParseOriginTag(`<template><cml type='alipay'>alipay</cml><cml type='base'>base</cml></template>`,'wx')).to.equal(`<template><view type="base">base</cml></view>;`)
+    })
+  });
+  describe('postParseOriginTag', function() {
+    it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
+      try{
+        processTemplate.postParseOriginTag(`<template>
+        <cml type='alipay'>
+          alipay
+          <cml></cml>
+          </cml>
+        <cml type='base'></cml>
+        <cml ></cml>
+          
+          </template>`,'alipay')
+        }catch(e){
+          
+        }
+    })
+  });
   describe('analyzeTemplate', function() {
     it('collect which build-in-tag is used in template', function() {
       let options = {buildInComponents: {button: "cml-buildin-button"}};

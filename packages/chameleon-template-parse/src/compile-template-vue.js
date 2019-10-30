@@ -51,7 +51,7 @@ exports.compileTemplateForVue = function (source, type, options) {
     source = compileBaiduTemplate(source, type, options).code;
   }
   // 后置处理，解析origin-tag ==> tag
-  source = processTemplate.postParseOriginTag(source)
+  source = processTemplate.postParseOriginTag(source,type)
   // 后置处理：解析_cml{str}lmc_ ==> {{str}}
   source = processTemplate.postParseMustache(source)
   // 后置处理：用于处理 \u ，便于解析unicode 中文

@@ -441,7 +441,78 @@ exports.postParseUnicode = function(content) {
   let reg = /\\u/g;
   return unescape(content.replace(reg, '%u'));
 }
-exports.postParseOriginTag = function(source) {
+/**
+ * 校验 template 模板下如果有 cml 标签，则必须是第一层,且在第一层不能有其他标签；
+ */
+exports.checkTemplateChildren = function(path){
+  let node = path.node;
+  let children = node.children || [];
+  let jsxElements = children.filter((child) => {
+    return t.isJSXElement(child)
+  });
+  let hasCMLTag = jsxElements.some((ele) => {
+    return ele.openingElement.name.name === 'cml';
+  });
+  let hasOtherTag = jsxElements.some((ele) => {
+    return ele.openingElement.name.name !== 'cml';
+  });
+  return {hasCMLTag,hasOtherTag,jsxElements};
+}
+/*
+校验 cml 标签的父元素必须是 template;
+
+*/
+exports.checkCMLParent = function(path){
+  let node = path.node;
+  if(node.openingElement.name.name === 'cml'){
+    let parentNode = path.parentPath && path.parentPath.node;
+    if(parentNode && parentNode.openingElement && parentNode.openingElement.name.name !== 'template'){
+      throw new Error('模板多态标签 cml 只允许在 template 标签的第一层'); 
+    }
+  }
+}
+/**
+ * 获取 符合多态模板结构的 template 标签下对应平台的cml标签里的内容；
+ * @params:jsxElements  template 节点下所有的 元素节点标签
+ * @params:type  当前平台对应的 type，wx baidu alipay 等
+ */
+exports.getCurrentPlatformCML = function(jsxElements,type){
+  debugger;
+  let currentCML = jsxElements.find((ele) => {
+    let typeAttr = ele.openingElement.attributes.find((attr) => {
+     return attr.name.name = 'type';
+    });
+    if(!typeAttr){
+      throw new Error('cml 标签必须有 type 属性，标识用于哪端的代码')
+    }
+    let typeValue = typeAttr && typeAttr.value && typeAttr.value.value;
+    return typeValue.includes(type)
+  });
+  //有对应平台的 type 找到之后直接return 这个节点
+  if(currentCML){
+    return currentCML;
+  }
+  let baseCML = jsxElements.find((ele) => {
+    let typeAttr = ele.openingElement.attributes.find((attr) => {
+      return attr.name.name = 'type';
+    });
+    if(!typeAttr){
+      throw new Error('cml 标签必须有 type 属性，标识用于哪端的代码')
+    }
+    let typeValue = typeAttr && typeAttr.value && typeAttr.value.value;
+    return typeValue.includes('base')
+  });
+
+  if(!currentCML && baseCML){
+    return baseCML;
+  }
+  
+}
+/*
+@source: 源 template 文件
+@type:要编译的平台
+*/
+exports.postParseOriginTag = function(source,type) {
   let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt'];
   source = exports.postParseUnicode(source);
   source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
@@ -452,6 +523,24 @@ exports.postParseOriginTag = function(source) {
     enter(path) {
       let node = path.node;
       if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
+        if(node.openingElement.name.name === 'template'){
+          let {hasCMLTag,hasOtherTag,jsxElements} = exports.checkTemplateChildren(path);
+          if(hasCMLTag && hasOtherTag){
+            throw new Error('多态模板里只允许在template标签下的一级标签是cml');
+          }
+          if(hasCMLTag && !hasOtherTag){//符合多态模板的结构格式
+            let currentPlatformCML = exports.getCurrentPlatformCML(jsxElements,type);
+            if(currentPlatformCML){
+              currentPlatformCML.openingElement.name.name = 'view';
+              // 这里要处理自闭和标签，没有closingElement，所以做个判断；
+              currentPlatformCML.closingElement && (node.closingElement.name.name = 'view');
+              node.children = [currentPlatformCML];
+            }
+          }
+        };
+        if(node.openingElement.name.name === 'cml'){
+          exports.checkCMLParent(path);
+        };
         if (node.openingElement.name.name.indexOf('origin-') === 0) {
           let currentTag = node.openingElement.name.name;
           let targetTag = currentTag.replace('origin-', '')
