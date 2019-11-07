@@ -314,9 +314,7 @@ module.exports = function (content) {
       __CML__GLOBAL.__CMLCOMPONNETS__['${entryBasePath}'] = __cml__script;\n`
 
       //采用分离的方式，入口js会放到static/js下，需要再生成入口js去require该js
-      console.log('entry',entryPath)
       var jsFileName = entryPath.replace(miniCmlReg, '.js');
-      console.log('jsFileName',jsFileName);
       emitJSFile(jsFileName);
     }
   }
