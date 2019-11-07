@@ -30,7 +30,11 @@ class JsonpChunkTemplatePlugin {
       if(entries.length > 0) {
         source.add(`,${JSON.stringify(entries)}`);
       }
-      source.add(")");
+      source.add(")\n");
+      if(chunk.name !== 'common'){
+        
+        source.add(`module.exports = __CML__GLOBAL.__CMLCOMPONNETS__['${chunk.name}']`)
+      }
       return source;
     });
     chunkTemplate.plugin("hash", function(hash) {

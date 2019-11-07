@@ -309,12 +309,14 @@ module.exports = function (content) {
       var scriptRequireString = script.src
         ? getRequireForImport('script', script)
         : getRequire('script', script)
-
-      output += `var __cml__script = ${scriptRequireString};\n`
-
+      var entryBasePath = entryPath.replace(miniCmlReg, '');
+      output += `var __cml__script = ${scriptRequireString};\n
+      __CML__GLOBAL.__CMLCOMPONNETS__['${entryBasePath}'] = __cml__script;\n`
 
       //采用分离的方式，入口js会放到static/js下，需要再生成入口js去require该js
+      console.log('entry',entryPath)
       var jsFileName = entryPath.replace(miniCmlReg, '.js');
+      console.log('jsFileName',jsFileName);
       emitJSFile(jsFileName);
     }
   }
@@ -348,7 +350,7 @@ module.exports = function (content) {
       entryContent += "__CML__GLOBAL.Page = Page;\n"
     }
     entryContent += `require('${relativePath}/static/js/common.js')\n`;
-    entryContent += `require('${relativePath}/static/js/${jsFileName}')\n`;
+    entryContent += `require('${relativePath}/static/js/${jsFileName}')()\n`;
     
      
     self.emitFile(jsFileName, entryContent);
