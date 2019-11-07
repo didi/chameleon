@@ -477,7 +477,6 @@ exports.checkCMLParent = function(path){
  * @params:type  当前平台对应的 type，wx baidu alipay 等
  */
 exports.getCurrentPlatformCML = function(jsxElements,type){
-  debugger;
   let currentCML = jsxElements.find((ele) => {
     let typeAttr = ele.openingElement.attributes.find((attr) => {
      return attr.name.name = 'type';
