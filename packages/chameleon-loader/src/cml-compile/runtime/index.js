@@ -6,6 +6,6 @@ _.getMiniAppRunTimeSnippet = function (platform, type) {
   return fs.readFileSync(path.join(__dirname, `./${type}.js`))
 }
 _.getVueRunTimeSnippet = function (platform, type) {
-  return fs.readFileSync(path.join(__dirname, `./${platform}/${type}.js`))
+  return fs.readFileSync(path.join(__dirname, `./web/${type}.js`))
 }
 
