@@ -7,7 +7,7 @@ const loaderUtils = require('loader-utils')
 const normalize = require('./utils/normalize')
 const componentNormalizerPath = normalize.lib('runtime/component-normalizer')
 const fs = require('fs');
-const getRunTimeSnippet = require('./cml-compile/runtime/index.js');
+const {getVueRunTimeSnippet} = require('./cml-compile/runtime/index.js');
 
 var compileTemplate = require('chameleon-template-parse');
 
@@ -426,7 +426,7 @@ module.exports = function (content) {
 
     function handleVueScript() {
       let { defineComponets, componetsStr } = getComponents();
-      let runtimeSnippet = getRunTimeSnippet(cmlType, type);
+      let runtimeSnippet = getVueRunTimeSnippet(cmlType, type);
       let scriptCode = getScriptCode(self, cmlType, scriptContent, media, options.check);
       return `
         ${defineComponets}
