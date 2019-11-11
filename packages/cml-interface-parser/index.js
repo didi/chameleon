@@ -13,8 +13,9 @@ class InterfaceParser {
    *  astTree // an ast tree object got from bable parser.
    * }
    */
-  constructor({filePath = null, astTree = null}, options = null) {
+  constructor({filePath = null, astTree = null}, options = null, currentWorkspace = '') {
     this._astTree = null;
+    this._currentWorkspace = currentWorkspace;
 
     if (filePath) {
       this._astTree = this.getAstTreeFromFile(filePath);
@@ -28,7 +29,7 @@ class InterfaceParser {
   }
 
   getAstTreeFromFile(filePath) {
-    let content = fileReader.getContent(filePath);
+    let content = fileReader.getContent(filePath, this._currentWorkspace);
     let astTree = null;
     try {
       astTree = babelParser.parse(content, this._options || parserConfig);
