@@ -4,7 +4,7 @@
 
 const path = require('path')
 const parse = require('./parser')
-const getRunTimeSnippet = require('./cml-compile/runtime/index.js');
+const {getMiniAppRunTimeSnippet} = require('./cml-compile/runtime/index.js');
 const {getScriptCode} = require('./interface-check/getScriptCode.js');
 const cmlUtils = require('chameleon-tool-utils');
 
@@ -53,7 +53,7 @@ module.exports = function (content) {
   }
   if (query.type == 'script') {
     // 拼接wx所需要的运行时代码，如果在loader中拼接，拼接的代码将不会过loader了
-    let runtimeScript = getRunTimeSnippet(query.cmlType, query.fileType);
+    let runtimeScript = getMiniAppRunTimeSnippet(query.cmlType, query.fileType);
     output = getScriptCode(loaderContext, query.cmlType, output, query.media, query.check);
     output = `
       ${output}\n

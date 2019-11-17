@@ -43,7 +43,7 @@ class MiniAppSubPkg {
       compilation.assets['app.json']._value = JSON.stringify(appJson, '', 4)// 重写app.json文件；
       // 第二步将subpage中的js文件拷贝到pages/subpage中的js文件中； outputFileSync
       // 第三步删除static/js 中的subpage的js文件；removeSync
-      let regStatic = /require\(.*?static\/js\/pages.*?\)/;
+      let regStatic = /require\(.*?static\/js\/pages.*?\)\(\)/;
       let regMainfest = /var.*?require\(.*?manifest\.js.*?\)/
       subPagesArr.forEach((item) => {
         let subPageJSPath = cmlUtils.handleWinPath(`${item}.js`);
@@ -56,6 +56,7 @@ class MiniAppSubPkg {
         let staticContent = compilation.assets[subPageStaticJSPath] && compilation.assets[subPageStaticJSPath].source();
         if (staticContent) {
           staticContent = staticContent.replace(regMainfest, '');
+          staticContent = staticContent.replace(/;$/,'()')
           delete compilation.assets[subPageStaticJSPath];
           // 注意 assets中的key configurable与否
         }
