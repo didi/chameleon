@@ -22,7 +22,6 @@ class MiniAppSubPkg {
     }
     function miniappsubpkg(compilation, callback) {
       // 第一步处理app.json
-      debugger;
       let appJSONString = compilation.assets['app.json'] && compilation.assets['app.json'].source();
 
       let appJson = (appJSONString && JSON.parse(appJSONString)) || {};
@@ -45,7 +44,6 @@ class MiniAppSubPkg {
       let newPages = pages.filter((item) => !subPagesArr.includes(item));
       appJson.pages = newPages;
       compilation.assets['app.json']._value = JSON.stringify(appJson, '', 4)// 重写app.json文件；
-      debugger;
       //处理分包的页面js
       const subCompsArr = self.getSubpkgComp(subPagesRoot,compilation);
       self.handleJsContent(subPagesArr,compilation);
@@ -67,7 +65,6 @@ class MiniAppSubPkg {
 
   }
   handleJsContent(pathArr,compilation){  
-    debugger;
     // 第二步将subpage中的js文件拷贝到pages/subpage中的js文件中； outputFileSync
     // 第三步删除static/js 中的subpage的js文件；removeSync
     let regStatic = /require\(.*?static\/js\/.*?\)\(\)/;
