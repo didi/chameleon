@@ -33,13 +33,19 @@ module.exports = function (content) {
     let pageCssPath = path.join(cml.projectRoot, 'node_modules', `chameleon-runtime/src/platform/${query.cmlType}/style/page.css`)
     let hasPageCss = cmlUtils.isFile(pageCssPath)
     if (query.fileType === 'page' && hasPageCss) {
+      // output = `
+      //   @import 'chameleon-runtime/src/platform/${query.cmlType}/style/page.css';
+      //   ${output}
+      // `
       output = `
-        @import 'chameleon-runtime/src/platform/${query.cmlType}/style/page.css';
         ${output}
       `
     } else {
+      // output = `
+      //   @import 'chameleon-runtime/src/platform/${query.cmlType}/style/index.css';
+      //   ${output}
+      // `
       output = `
-        @import 'chameleon-runtime/src/platform/${query.cmlType}/style/index.css';
         ${output}
       `
     }

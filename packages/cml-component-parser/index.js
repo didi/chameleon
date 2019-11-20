@@ -6,11 +6,11 @@ const InterfaceAstTreeParser = require('cml-interface-parser');
 const entranceFlat = require('./src/entrance-flat');
 
 
-
 class ComponentParser {
-  constructor(filePath = '', options = null) {
+  constructor(filePath = '', options = null, currentWorkspace = '') {
     this._paseResults = {props: [], events: []};
     this._options = options;
+    this._currentWorkspace = currentWorkspace;
     filePath && this.resetPath(filePath);
   }
 
@@ -20,7 +20,7 @@ class ComponentParser {
       this._paseResults = cmlTreeParser.getParseResults();
       this._fileName = path.basename(filePath, '.cml');
     } else {
-      let interfaceTreeParser = new InterfaceAstTreeParser({filePath}, this._options);
+      let interfaceTreeParser = new InterfaceAstTreeParser({filePath}, this._options, this._currentWorkspace);
       this._paseResults = interfaceTreeParser.getParseResults();
       this._fileName = path.basename(filePath, '.interface');
     }

@@ -33,6 +33,13 @@ function toDash(str = '') {
   }) : '';
 }
 
+function getRegExecRes(reg, str) {
+  let res = str;
+  if (reg && reg.exec(str)) {
+    res = reg.exec(str)[1];
+  }
+  return res;
+}
 
 module.exports.lint = function (element, opts) {
   let components = opts['component-allow-attr'];
@@ -107,7 +114,7 @@ module.exports.lint = function (element, opts) {
   }
 
   issues = issues.concat(issueAttrs ? issueAttrs.map((issueAttr) => {
-    let propName = issueAttr._isEvent ? (eventRegex ? eventRegex.exec(issueAttr.name)[1] : issueAttr.name) : (propRegex ? propRegex.exec(issueAttr.name)[1] : issueAttr.name);
+    let propName = issueAttr._isEvent ? (eventRegex ? getRegExecRes(eventRegex, issueAttr.name) : issueAttr.name) : (propRegex ? getRegExecRes(propRegex, issueAttr.name) : issueAttr.name);
     return new Issue(issueAttr._isEvent ? 'E064' : 'E063', issueAttr.nameLineCol.map((lineCol) => {
       lineCol[1] = issueAttr.name.indexOf(propName) + 1;
       return lineCol;

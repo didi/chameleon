@@ -229,7 +229,7 @@ describe('parse-template-cml-all', function() {
   describe('parse-event-transform-stop', function() {
     let source = `<view><origin-tag c-catch:tap="handleClick"></origin-tag><thirdComp1 c-catch:tap="handleClick(1,item,'str')"></thirdComp1><thirdComp2 c-catch:tap="handleClick(1,item,'str')"></thirdComp2></view>`;
     it('test-event-transform-web-stop', function() {
-      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:tap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:tap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click.native="_cmlInline('handleClick',true,1,item,'str')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
+      expect(compileTemplate(source, 'web', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:tap="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:tap="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:tap.native="_cmlInline('handleClick',true,1,item,'str')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);
     });
     it('test-event-transform-weex-stop', function() {
       expect(compileTemplate(source, 'weex', options).source).to.equal(`<div class=" cml-base cml-view"><tag v-on:click="handleClick" class=" cml-base cml-origin-tag"></tag><thirdComp1 v-on:click="handleClick(1,item,'str')" class=" cml-base cml-thirdComp1"></thirdComp1><thirdComp2 v-on:click.native="_cmlInline('handleClick',true,1,item,'str')" class=" cml-base cml-thirdComp2"></thirdComp2></div>`);

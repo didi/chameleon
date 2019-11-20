@@ -4,7 +4,7 @@ const cliUtils = require('chameleon-tool-utils');
 const partRegExp = /<\s*(script)\s*([^>]*?)\s*>([\s\S]*?)<\s*\/\s*\1\s*>/g;
 const paramRegExp = /([^\s\=]+)=?(['"])?([^\s\=\'\"]*)\2/g;
 
-function _retrieveInterfaceContent(filePath = null) {
+function _retrieveInterfaceContent(filePath = null, currentWorkspace = '') {
   let fileContent = '';
   let splitParts = {};
   let include = null;
@@ -26,14 +26,23 @@ function _retrieveInterfaceContent(filePath = null) {
   }
 
   if (include && include.attrs && include.attrs.src) {
-    return _retrieveInterfaceContent(path.resolve(path.dirname(filePath), include.attrs.src));
+    let nextPath = path.resolve(path.dirname(filePath), include.attrs.src);
+    if (currentWorkspace) {
+      let pathObj = path.parse(include.attrs.src);
+      pathObj.base = pathObj.name;
+      nextPath = cliUtils.findInterfaceFile(currentWorkspace, filePath, path.format(pathObj));
+      if (nextPath.filePath) {
+        nextPath = nextPath.filePath;
+      }
+    }
+    return _retrieveInterfaceContent(nextPath, currentWorkspace);
   }
   return fileContent;
 }
 
-function getContent(filePath = null) {
+function getContent(filePath = null, currentWorkspace = '') {
   let fileRawContent = ''; let interfaceContent = '';
-  fileRawContent = _retrieveInterfaceContent(filePath);
+  fileRawContent = _retrieveInterfaceContent(filePath, currentWorkspace);
 
   fileRawContent.replace(partRegExp, (match, type, rawAttribute, definationContent) => {
     !interfaceContent && rawAttribute.replace(paramRegExp, (attrMatch, attrName, mark, attrValue) => {
