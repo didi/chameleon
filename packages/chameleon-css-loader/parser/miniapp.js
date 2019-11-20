@@ -9,7 +9,7 @@ module.exports = function(source, options = {}) {
   let {cmlType, filePath} = options;
   let globalCssPath = [`chameleon-runtime/src/platform/${cmlType}/style/index.css`, `chameleon-runtime/src/platform/${cmlType}/style/page.css`];
   let isGlobalCss = globalCssPath.some((item) => filePath.includes(item))
-  if (cmlType === 'alipay' && !isGlobalCss) {
+  if (cmlType === 'alipay' && !isGlobalCss) { //对于全局样式不能经过 addAlipayClassPlugin 这个插件进行样式唯一性的处理；比如这样的 .cml-57b5135a.scroller-wrap
     return postcss([cpx(options), weexPlus(), addAlipayClassPlugin(options)]).process(source).css;
   } else {
     return postcss([cpx(options), weexPlus()]).process(source).css;
