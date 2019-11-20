@@ -5,7 +5,9 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
 const CopyNpmPlugin = require('./plugins/CopyNpmPLugin.js');
-const miniAppSubPkg = require('./plugins/miniAppSubPkg.js')
+const miniAppSubPkg = require('./plugins/miniAppSubPkg.js');
+const miniAppBaseCssAdd = require('./plugins/miniAppBaseCssAdd.js');
+
 module.exports = function (options) {
   let {
     type,
@@ -96,6 +98,11 @@ module.exports = function (options) {
       // eslint-disable-next-line new-cap
       new miniAppSubPkg({
         cmlType: type
+      }),
+      // eslint-disable-next-line new-cap
+      new miniAppBaseCssAdd({
+        cmlType: type,
+        isInjectBaseStyle: cml.config.get().baseStyle[type] === true
       })
     ]
 

@@ -223,8 +223,10 @@ module.exports = function (content) {
       miniAppScript.addMiniAppScript(self,filePath,context,cmlType)
       var styleString = getWxmlRequest('styles');
       var scriptString = getWxmlRequest('script');
+      var entryBasePath = entryPath.replace(miniTplExtReg, '');
       output += `var __cml__style = ${styleString};\n`
-      output += `var __cml__script = ${scriptString};\n`
+      output += `var __cml__script = ${scriptString};\n
+      __CML__GLOBAL.__CMLCOMPONNETS__['${entryBasePath}'] = __cml__script;\n`
 
       //采用分离的方式，入口js会放到static/js下，需要再生成入口js去require该js
       var jsFileName = entryPath.replace(miniTplExtReg, '.js');
