@@ -30,7 +30,7 @@
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.10.0",
     "css-loader": "^0.23.1",
-    "eslint": "^2.9.0",
+    "eslint": "^6.7.1",
     "eslint-config-vue": "^1.0.0",
     "eslint-plugin-html": "^1.5.2",
     "expose-loader": "^0.7.1",
