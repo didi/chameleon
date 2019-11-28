@@ -276,8 +276,8 @@ _.getJsonFileContent = function (filePath, confType) {
     } else {
       _.log.error(`There is no file:${filePath}`)
     }
-  } else if (~['.wxml', '.axml', '.swan'].indexOf(path.extname(filePath))) {
-    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan)/, '.json');
+  } else if (~['.wxml', '.axml', '.swan', '.qml'].indexOf(path.extname(filePath))) {
+    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan|\.qml)/, '.json');
     if (_.isFile(filePath)) {
       let content = fs.readFileSync(jsonFilePath, {
         encoding: 'utf-8'
@@ -842,7 +842,7 @@ _.findComponent = function (filePath, cmlType) {
     wx: '.wxml',
     baidu: '.swan',
     alipay: '.axml',
-    qq: 'qml'
+    qq: '.qml'
   }
 
   let ext = fileExtMap[cmlType];
@@ -1002,14 +1002,20 @@ _.handleRelativePath = function(sourcePath, targetPath) {
   sourcePath = path.join(sourcePath);
   targetPath = path.join(targetPath);
   let relativePath = path.relative(sourcePath, targetPath);
+
   if (relativePath == '..' || relativePath == '.') {
     relativePath = ''
   } else {
-    relativePath = relativePath.slice(3); // eslint-disable-line
+
+    if (_.isWin()) { // windows特殊处理下
+      !path.isAbsolute(relativePath) && (relativePath = relativePath.slice(3));// eslint-disable-line
+    } else {
+      relativePath = relativePath.slice(3); // eslint-disable-line
+    }
   }
   relativePath = _.handleWinPath(relativePath);
   // 不是绝对路径都加上./  否则同一目录文件引用有问题  这里的路径是给代码中使用 统一处理成正斜杠
-  if (relativePath.indexOf('/') !== 0) {
+  if (!path.isAbsolute(relativePath)) {
     relativePath = './' + relativePath;
   }
   return relativePath;
@@ -1177,7 +1183,7 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       }
       // 是subProject npm包中的cml文件 用subProject中的router.config.json判断
       if (subProjectIndex != -1) {
-        let currentNpm = _.isString(subProject[subProjectIndex]) ? subProject[subProjectIndex] :subProject[subProjectIndex].npmName 
+        let currentNpm = _.isString(subProject[subProjectIndex]) ? subProject[subProjectIndex] : subProject[subProjectIndex].npmName
         let routerConfig = _.readsubProjectRouterConfig(context, currentNpm);
         let pageFiles = routerConfig.routes.map(item => path.join(context, 'node_modules', currentNpm, 'src', item.path + '.cml'))
         // 如果是配置的路由则是page

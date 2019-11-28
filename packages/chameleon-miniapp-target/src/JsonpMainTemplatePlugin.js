@@ -205,8 +205,10 @@ this[${JSON.stringify(hotUpdateFunction)}] = ${runtimeSource}`;
 
     mainTemplate.plugin("render", (beforeMainSource, chunk, hash, moduleTemplate, dependencyTemplates) => {
       //beforeMainSource 是每部的MainTemplate render之后的代码
+      // __CMLCOMPONNETS__ 是用于存放每个组件的执行函数
       const source = new ConcatSource();
       source.add(`/******/ var __CML__GLOBAL = {};\n`);
+      source.add(`/******/ __CML__GLOBAL.__CMLCOMPONNETS__ = {};\n`);
       source.add(beforeMainSource);
       source.add(`\r\n /******/ module.exports = __CML__GLOBAL;`);	
 			return source;

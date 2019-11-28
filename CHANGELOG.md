@@ -1,3 +1,34 @@
+## [1.0.4-alpha.1]
+
+  - 解决分包内组件js分包不彻底，优化包体积40%左右
+  - 支持原生小程序组件的导入也是函数式的
+  - 支持公用样式以文件的形式 @import
+  - 支持模板多态语法
+
+## [1.0.3]
+
+- 发布1.0.3-alpha.0的正式版
+
+## [1.0.3-alpha.0]
+- Bugfixes
+  - 区分web端click和tap事件，由原来的click和tap统一处理成tap，改为tap和click区别对待，如果要在pc端生效click事件，那么必须绑定click而非tap
+  - 修复windows 上 app.json 中分包页面没有删除
+  - 修复windows 上初始化项目无法运行
+- Features
+  - 扩展新端命令支持集成到chameleon-tool中
+## [1.0.2]
+
+ - 修改project tododemo的package.lock.json
+
+## [1.0.0]
+
+### Bugfixes
+   - 修复alipay baidu qq 端引用原生组件的问题
+   
+## [0.4.1]
+### Bugfixes
+   - 修复内联事件对象 $event的匹配问题
+   - 修复chameleon.config.js内部配置公用miniappConfig一个对象导致的对象合并不准确问题
 ## [0.4.1-alpha.1]
 ### Bugfixes
    - 修复window下分包加载的bug
