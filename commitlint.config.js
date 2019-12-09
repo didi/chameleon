@@ -1,4 +1,5 @@
-
+//git commit -m"feat: 新增功能"
+//规范团队commit规范，参考commitlint-angular https://www.npmjs.com/package/@commitlint/config-angular
 module.exports = {
   extends: ['@commitlint/config-angular'],
   rules: {
