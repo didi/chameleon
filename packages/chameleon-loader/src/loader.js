@@ -7,7 +7,7 @@ const loaderUtils = require('loader-utils')
 const normalize = require('./utils/normalize')
 const componentNormalizerPath = normalize.lib('runtime/component-normalizer')
 const fs = require('fs');
-const getRunTimeSnippet = require('./cml-compile/runtime/index.js');
+const {getVueRunTimeSnippet} = require('./cml-compile/runtime/index.js');
 
 var compileTemplate = require('chameleon-template-parse');
 
@@ -223,8 +223,10 @@ module.exports = function (content) {
       miniAppScript.addMiniAppScript(self,filePath,context,cmlType)
       var styleString = getWxmlRequest('styles');
       var scriptString = getWxmlRequest('script');
+      var entryBasePath = entryPath.replace(miniTplExtReg, '');
       output += `var __cml__style = ${styleString};\n`
-      output += `var __cml__script = ${scriptString};\n`
+      output += `var __cml__script = ${scriptString};\n
+      __CML__GLOBAL.__CMLCOMPONNETS__['${entryBasePath}'] = __cml__script;\n`
 
       //采用分离的方式，入口js会放到static/js下，需要再生成入口js去require该js
       var jsFileName = entryPath.replace(miniTplExtReg, '.js');
@@ -309,9 +311,9 @@ module.exports = function (content) {
       var scriptRequireString = script.src
         ? getRequireForImport('script', script)
         : getRequire('script', script)
-
-      output += `var __cml__script = ${scriptRequireString};\n`
-
+      var entryBasePath = entryPath.replace(miniCmlReg, '');
+      output += `var __cml__script = ${scriptRequireString};\n
+      __CML__GLOBAL.__CMLCOMPONNETS__['${entryBasePath}'] = __cml__script;\n`
 
       //采用分离的方式，入口js会放到static/js下，需要再生成入口js去require该js
       var jsFileName = entryPath.replace(miniCmlReg, '.js');
@@ -348,7 +350,7 @@ module.exports = function (content) {
       entryContent += "__CML__GLOBAL.Page = Page;\n"
     }
     entryContent += `require('${relativePath}/static/js/common.js')\n`;
-    entryContent += `require('${relativePath}/static/js/${jsFileName}')\n`;
+    entryContent += `require('${relativePath}/static/js/${jsFileName}')()\n`;
     
      
     self.emitFile(jsFileName, entryContent);
@@ -426,7 +428,7 @@ module.exports = function (content) {
 
     function handleVueScript() {
       let { defineComponets, componetsStr } = getComponents();
-      let runtimeSnippet = getRunTimeSnippet(cmlType, type);
+      let runtimeSnippet = getVueRunTimeSnippet(cmlType, type);
       let scriptCode = getScriptCode(self, cmlType, scriptContent, media, options.check);
       return `
         ${defineComponets}

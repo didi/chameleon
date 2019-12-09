@@ -1,4 +1,4 @@
-
+/*这个文件用来处理原生小程序组件*/
 
 const loaderUtils = require('loader-utils');
 const fs = require('fs');
@@ -32,6 +32,12 @@ module.exports = function(content) {
     self.addDependency(targetFilePath);
     output = fs.readFileSync(targetFilePath, {encoding: 'utf-8'})
   }
+  if(type === 'script'){
+    return `module.exports = function(){\n
+      ${output}
+    }`
+  }
+  
   return output;
 
 }
