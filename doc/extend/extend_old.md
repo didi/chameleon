@@ -1,4 +1,4 @@
-# 定制扩展端(Terminal expand)[chameleon-tool@0.4.0-mvvm.6 版本生效]
+# 定制扩展端(Terminal expand)[chameleon-tool@0.4.0  版本以上生效]
 
 希望扩展支持 头条小程序、淘宝小程序、高德小程序、react-native？
 你只需按标准流程即可扩展，敬请期待：
