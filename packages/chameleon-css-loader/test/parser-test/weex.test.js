@@ -58,13 +58,18 @@ describe('parse/weex', function() {
   .e {
     margin: 10px 20px 5px 15px;
   }
+  .f {
+    border-style:solid;
+    border-width:10cpx;
+    border-color:red;
+    flex-flow:row;
+  }
 `;
 
   it('margin', function() {
 
     let result = parseCss(css);// body {width:1rem;}
-    console.log(result);
-    expect(result).to.equal(`.a {\n  margin-left: 10px;\n}\n\n.b {\n  margin-top: 10px;\n  margin-right: 10px;\n  margin-bottom: 10px;\n  margin-left: 10px;\n}\n\n.c {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 10px;\n  margin-left: 20px;\n}\n\n.d {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 10px;\n  margin-left: 20px;\n}\n\n.e {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 5px;\n  margin-left: 15px;\n}`);
+    expect(result).to.equal('.a {\n  margin-left: 10px;\n}\n\n.b {\n  margin-top: 10px;\n  margin-right: 10px;\n  margin-bottom: 10px;\n  margin-left: 10px;\n}\n\n.c {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 10px;\n  margin-left: 20px;\n}\n\n.d {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 10px;\n  margin-left: 20px;\n}\n\n.e {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 5px;\n  margin-left: 15px;\n}\n\n.f {\n  border-top-style: solid;\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-left-style: solid;\n  border-top-width: 10px;\n  border-right-width: 10px;\n  border-bottom-width: 10px;\n  border-left-width: 10px;\n  border-top-color: red;\n  border-right-color: red;\n  border-bottom-color: red;\n  border-left-color: red;\n  flex-direction: row;\n}');
   })
 
 })
