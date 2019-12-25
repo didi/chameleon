@@ -4,6 +4,7 @@ const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
 const resolve = require('resolve');
+const webpack = require('webpack');
 const originSourceLoader = {
   loader: path.join(__dirname, './originSourceLoader.js')
 };

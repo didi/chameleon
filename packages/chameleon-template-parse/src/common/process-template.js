@@ -522,24 +522,6 @@ exports.postParseOriginTag = function(source,type) {
     enter(path) {
       let node = path.node;
       if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string')) {
-        if(node.openingElement.name.name === 'template'){
-          let {hasCMLTag,hasOtherTag,jsxElements} = exports.checkTemplateChildren(path);
-          if(hasCMLTag && hasOtherTag){
-            throw new Error('多态模板里只允许在template标签下的一级标签是cml');
-          }
-          if(hasCMLTag && !hasOtherTag){//符合多态模板的结构格式
-            let currentPlatformCML = exports.getCurrentPlatformCML(jsxElements,type);
-            if(currentPlatformCML){
-              currentPlatformCML.openingElement.name.name = 'view';
-              // 这里要处理自闭和标签，没有closingElement，所以做个判断；
-              currentPlatformCML.closingElement && (node.closingElement.name.name = 'view');
-              node.children = [currentPlatformCML];
-            }
-          }
-        };
-        if(node.openingElement.name.name === 'cml'){
-          exports.checkCMLParent(path);
-        };
         if (node.openingElement.name.name.indexOf('origin-') === 0) {
           let currentTag = node.openingElement.name.name;
           let targetTag = currentTag.replace('origin-', '')
@@ -552,32 +534,99 @@ exports.postParseOriginTag = function(source,type) {
   // 这里注意，每次经过babel之后，中文都需要转义过来；
   return exports.postParseUnicode(generate(ast).code);
 }
-// cli仓库使用
-exports.analyzeTemplate = function(source, options) {
-  let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
-  if (!source) {
-    return options;
-  }
-  source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
-  const ast = babylon.parse(source, {
-    plugins: ['jsx']
-  })
-  traverse(ast, {
-    enter(path) {
-      let node = path.node;
-      let buildInTagMap = options && options.buildInComponents;// {button:"cml-buildin-button"}
-      if (t.isJSXElement(node) && buildInTagMap) {
-        let currentTag = node.openingElement.name.name;
-        let targetTag = buildInTagMap[currentTag];
-        // 收集用了哪些内置组件 usedBuildInTagMap:{button:'cml-buildin-button',radio:'cml-buildin-radio'}
-        if (targetTag) {
-          (!options.usedBuildInTagMap) && (options.usedBuildInTagMap = {});
-          options.usedBuildInTagMap[currentTag] = targetTag;
+/*提供给 chameleon-loader 用于删除多态模板多其他端的不用的代码
+@params:source 模板内容
+@params:type 当前要编译的平台，用于截取多态模板
+@params:options needTranJSX 需要转化为jsx可以解析的模板；needDelTemplate 需要删除template节点
+*/
+exports.preParseMultiTemplate = function(source,type,options = {}) {
+  try{
+    if(options.needTranJSX){ //当调用这个方法之前没有事先转义jsx,那么就需要转义一下
+      let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent','preParseMustache', 'postParseLtGt'];
+      source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
+    }
+    let isEmptyTemplate = false;
+    const ast = babylon.parse(source, {
+      plugins: ['jsx']
+    })
+    traverse(ast, {
+      enter(path) {
+        let node = path.node;
+        if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string' && node.openingElement.name.name === 'template')) {
+          path.stop();//不要在进行子节点的遍历,因为这个只需要处理template
+          let {hasCMLTag,hasOtherTag,jsxElements} = exports.checkTemplateChildren(path);
+          if(hasCMLTag && hasOtherTag){
+            throw new Error('多态模板里只允许在template标签下的一级标签是cml');
+          }
+          if(hasCMLTag && !hasOtherTag){//符合多态模板的结构格式
+            let currentPlatformCML = exports.getCurrentPlatformCML(jsxElements,type);
+            if(currentPlatformCML){
+              currentPlatformCML.openingElement.name.name = 'view';
+              // 这里要处理自闭和标签，没有closingElement，所以做个判断；
+              currentPlatformCML.closingElement && (currentPlatformCML.closingElement.name.name = 'view');
+              node.children = [currentPlatformCML];
+              if(options.needDelTemplate){ //将template节点替换成找到的cml type 节点；
+                path.replaceWith(currentPlatformCML)
+              }
+            }else{
+              //如果没有写对应平台的 cml type='xxx' 或者 cml type='base',那么报错
+              throw new Error('没有对应平台的模板或者基础模板')
+            }
+          }else{ //不是多态模板
+            //注意要考虑空模板的情况
+            if(options.needDelTemplate && jsxElements.length === 1){ //将template节点替换成找到的cml type 节点；
+              path.replaceWith((jsxElements[0]));
+            }else{
+              isEmptyTemplate = true;
+            }
+          }
         }
       }
+    });
+    // 这里注意，每次经过babel之后，中文都需要转义过来；
+    if(isEmptyTemplate){
+      return '';
     }
-  });
-  return options;
+    source = exports.postParseUnicode(generate(ast).code);
+    if (/;$/.test(source)) { // 这里有个坑，jsx解析语法的时候，默认解析的是js语法，所以会在最后多了一个 ; 字符串；但是在 html中 ; 是无法解析的；
+      source = source.slice(0, -1);
+    }
+    return source;
+  }catch(e){
+    console.log('preParseMultiTemplate',e)
+  }
+}
+// cli仓库使用
+exports.analyzeTemplate = function(source, options) {
+  try{
+    let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt'];////这些预处理是为了让jsx可以处理
+    if (!source) {
+      return options;
+    }
+    source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
+    source = exports.preParseMultiTemplate(source,options.cmlType,{needDelTemplate:true})
+    const ast = babylon.parse(source, {
+      plugins: ['jsx']
+    })
+    traverse(ast, {
+      enter(path) {
+        let node = path.node;
+        let buildInTagMap = options && options.buildInComponents;// {button:"cml-buildin-button"}
+        if (t.isJSXElement(node) && buildInTagMap) {
+          let currentTag = node.openingElement.name.name;
+          let targetTag = buildInTagMap[currentTag];
+          // 收集用了哪些内置组件 usedBuildInTagMap:{button:'cml-buildin-button',radio:'cml-buildin-radio'}
+          if (targetTag) {
+            (!options.usedBuildInTagMap) && (options.usedBuildInTagMap = {});
+            options.usedBuildInTagMap[currentTag] = targetTag;
+          }
+        }
+      }
+    });
+    return options;
+  }catch(e){
+    console.log('analyzeTemplate',e)
+  }
 }
 // 模块内置方法
 // 这里主要处理1  >{{}}< 双花括号之间的 ==> _cml{}lmc_ ,因为jsx无法识别 {{}}
