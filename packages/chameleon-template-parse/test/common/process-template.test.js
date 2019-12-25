@@ -156,7 +156,7 @@ describe('process-template', function() {
         </cml>
 
         </template>`,'web',{needTranJSX:true});
-      expect(result).to.equal(`<template class="demo-com"><view type="base">\n          <view c-bind:click="handleClick">base</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view></template>`)
+      expect(result).to.equal(`<template class="demo-com"><view type="base">\n          <view c-bind:click="handleClick">base</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>_cml{5 > 2 ? 5 : 2}lmc_</view>\n        </view></template>`)
         
     })
   });
@@ -185,7 +185,7 @@ describe('process-template', function() {
         </cml>
 
         </template>`,'wx',{needTranJSX:true});
-      expect(result).to.equal(`<template class="demo-com"><view type="wx">\n          <view c-bind:click="handleClick">wx</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view></template>`)
+      expect(result).to.equal(`<template class="demo-com"><view type="wx">\n          <view c-bind:click="handleClick">wx</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>_cml{5 > 2 ? 5 : 2}lmc_</view>\n        </view></template>`)
         
     })
   });
@@ -214,7 +214,7 @@ describe('process-template', function() {
         </cml>
 
         </template>`,'alipay',{needTranJSX:true});
-      expect(result).to.equal(`<template class="demo-com"><view type="alipay,baidu">\n          <view c-bind:click="handleClick">alipay baidu</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view></template>`)
+      expect(result).to.equal(`<template class="demo-com"><view type="alipay,baidu">\n          <view c-bind:click="handleClick">alipay baidu</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>_cml{5 > 2 ? 5 : 2}lmc_</view>\n        </view></template>`)
         
     })
   });
@@ -243,7 +243,7 @@ describe('process-template', function() {
         </cml>
 
         </template>`,'web',{needTranJSX:true,needDelTemplate:true});
-      expect(result).to.equal(`<view type="base">\n          <view c-bind:click="handleClick">base</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view>`)
+      expect(result).to.equal(`<view type="base">\n          <view c-bind:click="handleClick">base</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>_cml{5 > 2 ? 5 : 2}lmc_</view>\n        </view>`)
         
     })
   });
