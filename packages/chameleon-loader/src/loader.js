@@ -10,7 +10,7 @@ const fs = require('fs');
 const {getVueRunTimeSnippet} = require('./cml-compile/runtime/index.js');
 
 var compileTemplate = require('chameleon-template-parse');
-
+const preParseMultiTemplate = require('chameleon-template-parse').preParseMultiTemplate;
 var jsonHandler = require('./cml-compile/json-handle.js');
 const { getScriptCode } = require('./interface-check/getScriptCode.js');
 const cmlUtils = require('chameleon-tool-utils');
@@ -259,6 +259,7 @@ module.exports = function (content) {
     if (type !== 'app') {
       let parseTemplate = parts.template && parts.template[0];
       let templateContent = (parseTemplate && parseTemplate.content) || '';
+      templateContent = preParseMultiTemplate(`<template>${templateContent}</template>`,cmlType,{needTranJSX:true,needDelTemplate:true});
       let lang = (parseTemplate && parseTemplate.lang) || 'cml';
       //content是不带template标签的内容；
       let compileResult = ASTcompileTemplate(templateContent, {
@@ -360,17 +361,14 @@ module.exports = function (content) {
   function webWeexHandler() {
     //主要是对模板进行编译和script进行拼接  vue组件的注册
     const parseTemplate = (parts.template && parts.template[0]) || {};
-    const templateContent = parseTemplate.content || '';
+    let templateContent = parseTemplate.content || '';
+    if(type !== 'app'){
+      templateContent = preParseMultiTemplate(`<template>${templateContent}</template>`,cmlType,{needTranJSX:true,needDelTemplate:true});
+    }
     const lang = parseTemplate.lang || 'cml';
     const parseScript = (parts.script && parts.script[0]) || {};
     const scriptContent = parseScript.content || '';
     let newTemplate = handleTemplate();
-    // if(type === 'app') {
-    //   newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<div class="app" bubble="true">
-    //   <router-view ></router-view> 
-    // </div>`)
-    
-    // }
     if(type === 'app') {
       if (cmlType == 'web') {
         newTemplate = newTemplate.replace(/<app[\s\S]*?\/app>/,`<router-view class="app" bubble="true"></router-view> `)

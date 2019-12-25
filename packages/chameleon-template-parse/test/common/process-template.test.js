@@ -116,16 +116,6 @@ describe('process-template', function() {
   });
   describe('postParseOriginTag', function() {
     it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
-      expect(processTemplate.postParseOriginTag(`<template><cml type='alipay'>alipay</cml><cml type='base'></cml></template>`,'alipay')).to.equal(`<template><view type="alipay">alipay</cml></view>;`)
-    })
-  });
-  describe('postParseOriginTag', function() {
-    it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
-      expect(processTemplate.postParseOriginTag(`<template><cml type='alipay'>alipay</cml><cml type='base'>base</cml></template>`,'wx')).to.equal(`<template><view type="base">base</cml></view>;`)
-    })
-  });
-  describe('postParseOriginTag', function() {
-    it('transform <origin-tag></origin-tag> to <tag></tag>', function() {
       try{
         processTemplate.postParseOriginTag(`<template>
         <cml type='alipay'>
@@ -141,11 +131,149 @@ describe('process-template', function() {
         }
     })
   });
+  describe('preParseMultiTemplate', function() {
+    it('test multi template:web', function() {
+      let result = processTemplate.preParseMultiTemplate(`<template class="demo-com" >
+        <cml type='weex'>
+          <view @click="handleClick">weex</view>
+          <demo-com title="我是标题1"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="alipay,baidu">
+          <view @click="handleClick">alipay baidu</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="wx">
+          <view @click="handleClick">wx</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="base">
+          <view @click="handleClick">base</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+
+        </template>`,'web',{needTranJSX:true});
+      expect(result).to.equal(`<template class="demo-com"><view type="base">\n          <view c-bind:click="handleClick">base</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view></template>`)
+        
+    })
+  });
+  describe('preParseMultiTemplate', function() {
+    it('test multi template:wx', function() {
+      let result = processTemplate.preParseMultiTemplate(`<template class="demo-com" >
+        <cml type='weex'>
+          <view @click="handleClick">weex</view>
+          <demo-com title="我是标题1"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="alipay,baidu">
+          <view @click="handleClick">alipay baidu</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="wx">
+          <view @click="handleClick">wx</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="base">
+          <view @click="handleClick">base</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+
+        </template>`,'wx',{needTranJSX:true});
+      expect(result).to.equal(`<template class="demo-com"><view type="wx">\n          <view c-bind:click="handleClick">wx</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view></template>`)
+        
+    })
+  });
+  describe('preParseMultiTemplate', function() {
+    it('test multi template:alipay', function() {
+      let result = processTemplate.preParseMultiTemplate(`<template class="demo-com" >
+        <cml type='weex'>
+          <view @click="handleClick">weex</view>
+          <demo-com title="我是标题1"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="alipay,baidu">
+          <view @click="handleClick">alipay baidu</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="wx">
+          <view @click="handleClick">wx</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="base">
+          <view @click="handleClick">base</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+
+        </template>`,'alipay',{needTranJSX:true});
+      expect(result).to.equal(`<template class="demo-com"><view type="alipay,baidu">\n          <view c-bind:click="handleClick">alipay baidu</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view></template>`)
+        
+    })
+  });
+  describe('preParseMultiTemplate', function() {
+    it('test multi template delete template', function() {
+      let result = processTemplate.preParseMultiTemplate(`<template class="demo-com" >
+        <cml type='weex'>
+          <view @click="handleClick">weex</view>
+          <demo-com title="我是标题1"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="alipay,baidu">
+          <view @click="handleClick">alipay baidu</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="wx">
+          <view @click="handleClick">wx</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+        <cml type="base">
+          <view @click="handleClick">base</view>
+          <demo-com title="我是标题2"></demo-com>
+          <view>{{5 > 2 ? 5 : 2}}</view>
+        </cml>
+
+        </template>`,'web',{needTranJSX:true,needDelTemplate:true});
+      expect(result).to.equal(`<view type="base">\n          <view c-bind:click="handleClick">base</view>\n          <demo-com title="我是标题2"></demo-com>\n          <view>{{5 > 2 ? 5 : 2}}</view>\n        </view>`)
+        
+    })
+  });
+  describe('preParseMultiTemplate', function() {
+    it('test multi template delete template with blank template', function() {
+      let result = processTemplate.preParseMultiTemplate(`<template class="demo-com" >
+        
+        </template>`,'web',{needTranJSX:true,needDelTemplate:true});
+      expect(result).to.equal(``)
+        
+    })
+  });
   describe('analyzeTemplate', function() {
     it('collect which build-in-tag is used in template', function() {
       let options = {buildInComponents: {button: "cml-buildin-button"}};
       expect(processTemplate.analyzeTemplate(`<view><button></button></view>`, options)).to.include.keys('usedBuildInTagMap');
       expect(processTemplate.analyzeTemplate(``, options)).to.include.keys('buildInComponents')
+    })
+  });
+  describe('analyzeTemplate', function() {
+    it('collect which build-in-tag is used in template', function() {
+      let options = {buildInComponents: {button: "cml-buildin-button"}};
+      expect(processTemplate.analyzeTemplate(`<template><view><button></button></view></template>`, options)).to.include.keys('usedBuildInTagMap');
+      expect(processTemplate.analyzeTemplate(``, options)).to.include.keys('buildInComponents')
+    })
+  });
+  describe('analyzeTemplate', function() {
+    it('collect which build-in-tag is used in template', function() {
+      let options = {buildInComponents: {button: "cml-buildin-button"}};
+      expect(processTemplate.analyzeTemplate(`<template></template>`, options)).to.include.keys('buildInComponents');
     })
   });
   describe('_operationGtLt', function() {
