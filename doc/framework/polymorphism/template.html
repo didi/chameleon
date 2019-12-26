@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>接口多态扩展 · chameleon</title>
+        <title>模板多态 · chameleon</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -78,10 +78,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../../extend/ui-builtin.html" />
+    <link rel="next" href="../engineering.html" />
     
     
-    <link rel="prev" href="../../extend/api.html" />
+    <link rel="prev" href="component.html" />
     
 
     
@@ -2990,7 +2990,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.1.1.3" data-path="template.html" data-part="example">
+        <li class="chapter active" data-level="5.1.1.3" data-path="template.html" data-part="example">
             
                 <a href="template.html">
             
@@ -3795,7 +3795,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="5.1.5.3.1" data-path="api_extend.html" data-part="example">
+        <li class="chapter " data-level="5.1.5.3.1" data-path="api_extend.html" data-part="example">
             
                 <a href="api_extend.html">
             
@@ -4599,7 +4599,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >接口多态扩展</a>
+        <a href="../.." >模板多态</a>
     </h1>
 </div>
 
@@ -4612,165 +4612,30 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;"><b></b>&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;"><b></b>1 &#x6269;&#x5C55;&#x8BED;&#x6CD5;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#11-include&#x6807;&#x7B7E;"><b></b>1.1 include&#x6807;&#x7B7E;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#12-script-src&#x5C5E;&#x6027;"><b></b>1.2 script src&#x5C5E;&#x6027;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#2-&#x591A;&#x6001;api&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;"><b></b>2 &#x591A;&#x6001;API&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;</a></li></ul></ul></div><a href="#&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;"><a name="&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;" class="anchor-navigation-ex-anchor" href="#&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;" class="plugin-anchor" href="#&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x6269;&#x5C55;</h1>
-<p><b>(chameleon-tool@0.4.0&#x4EE5;&#x4E0A;&#x5F00;&#x59CB;&#x652F;&#x6301;)</b></p>
-<p><a href="api.html">&#x63A5;&#x53E3;&#x591A;&#x6001;</a>&#x4E00;&#x8282;&#x8BB2;&#x89E3;&#x4E86;&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x8FD9;&#x4E00;&#x8282;&#x8BB2;&#x89E3;&#x63A5;&#x53E3;&#x591A;&#x6001;&#x7684;&#x4E00;&#x4E9B;&#x6269;&#x5C55;&#x8BED;&#x6CD5;&#xFF0C;&#x66F4;&#x9002;&#x7528;&#x4E8E;&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x4F7F;&#x7528;&#x3002;</p>
-<h2 id="1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;"><a name="1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;" class="plugin-anchor" href="#1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1 &#x6269;&#x5C55;&#x8BED;&#x6CD5;</h2>
-<h2 id="11-include&#x6807;&#x7B7E;"><a name="11-include&#x6807;&#x7B7E;" class="anchor-navigation-ex-anchor" href="#11-include&#x6807;&#x7B7E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="11-include&#x6807;&#x7B7E;" class="plugin-anchor" href="#11-include&#x6807;&#x7B7E;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 <code>include</code>&#x6807;&#x7B7E;</h2>
-<p>&#x5F53;&#x524D;interface&#x6587;&#x4EF6;&#x7528;<code>&lt;include&gt;</code>&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x5F15;&#x5165;&#x5176;&#x4ED6;<code>.interface</code>&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x8868;&#x7EE7;&#x627F;&#x8BE5;&#x6587;&#x4EF6;&#x7684;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x548C;&#x5B9E;&#x73B0;&#x3002;&#x7136;&#x540E;&#x5728;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x4E2D;&#x53BB;&#x5B9E;&#x73B0;&#x5F15;&#x5165;&#x7684;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#xFF0C;&#x53EF;&#x4EE5;&#x8986;&#x5199;&#x5F15;&#x5165;&#x7684;&#x67D0;&#x4E00;&#x7AEF;&#x5B9E;&#x73B0;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x53BB;&#x6269;&#x5C55;&#x65B0;&#x7AEF;&#x7684;&#x5B9E;&#x73B0;&#x3002; &#x8BED;&#x6CD5;&#x662F;<code>&lt;include src=&quot;${&#x5F15;&#x7528;&#x8DEF;&#x5F84;}.interface&quot;&gt;&lt;/include&gt;</code>&#xFF0C;&#x6709;&#x5982;&#x4E0B;&#x89C4;&#x5219;&#xFF1A;</p>
-<ul>
-<li>src&#x5C5E;&#x6027;&#x6307;&#x5411;&#x7684;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x4E0D;&#x652F;&#x6301;webpack&#x522B;&#x540D;&#xFF0C;&#x53EA;&#x80FD;&#x662F;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x6216;&#x8005;npm&#x5305;&#x540D;&#x5F00;&#x59CB;&#x3002;</li>
-</ul>
-<h4 id="&#x4F8B;&#x5982;&#x6269;&#x5C55;&#x65B0;&#x7AEF;api&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;"><a name="&#x4F8B;&#x5982;&#x6269;&#x5C55;&#x65B0;&#x7AEF;api&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;" class="anchor-navigation-ex-anchor" href="#&#x4F8B;&#x5982;&#x6269;&#x5C55;&#x65B0;&#x7AEF;api&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F8B;&#x5982;&#x6269;&#x5C55;&#x65B0;&#x7AEF;api&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;" class="plugin-anchor" href="#&#x4F8B;&#x5982;&#x6269;&#x5C55;&#x65B0;&#x7AEF;api&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F8B;&#x5982;&#x6269;&#x5C55;&#x65B0;&#x7AEF;API&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;:</h4>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x5F15;&#x5165;&#x5B98;&#x65B9;&#x6807;&#x51C6;interface&#x6587;&#x4EF6;</span>
-&lt;include src=<span class="hljs-string">&quot;chameleon-api/src/interfaces/alert/index.interface&quot;</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span></span>
-
-<span class="hljs-comment">// &#x6269;&#x5C55;&#x5B9E;&#x73B0;&#x65B0;&#x7AEF;&#xFF08;&#x4EE5;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x8BBE;&#x7AEF;&#x6269;&#x5C55;&#x6807;&#x8BC6;&#x4E3A;&#xFF1A;toutiao&#xFF09;</span>
-&lt;script cml-type=<span class="hljs-string">&quot;toutiao&quot;</span>&gt;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-title">implements</span> <span class="hljs-title">uiInterface</span> </span>{
-  alert(opt, successCallBack, failCallBack) {
-    <span class="hljs-comment">// &#x6839;&#x636E;&#x5934;&#x6761;&#x5C0F;&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;alert&#x5F39;&#x7A97;</span>
-    <span class="hljs-keyword">let</span> { message, confirmTitle} = opt;
-    tt.showModal({
-      <span class="hljs-attr">showCancel</span>: <span class="hljs-literal">false</span>,
-      <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;&apos;</span>,
-      <span class="hljs-attr">content</span>: message,
-      <span class="hljs-attr">confirmText</span>: confirmTitle,
-      success() {
-        successCallBack(confirmTitle);
-      },
-      fail() {
-        failCallBack(confirmTitle);
-      }
-    });
-  }
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-
-<span class="hljs-comment">// &#x60F3;&#x8986;&#x5199;&#x67D0;&#x5DF2;&#x6709;&#x7AEF;&#x7684;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF08;&#x4EE5;&#x5FAE;&#x4FE1;&#x5C0F;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;&#xFF09;</span>
-&lt;script cml-type=<span class="hljs-string">&quot;wx&quot;</span>&gt;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-title">implements</span> <span class="hljs-title">uiInterface</span> </span>{
-  alert(opt, successCallBack, failCallBack) {
-    <span class="hljs-comment">// &#x6309;&#x4F60;&#x7684;&#x60F3;&#x6CD5;&#x91CD;&#x65B0;&#x5B9E;&#x73B0;</span>
-  }
-}
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x591A;&#x6001;"><b></b>&#x6A21;&#x677F;&#x591A;&#x6001;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;"><b></b>&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;"><b></b>&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;</a></li></ul></ul></div><a href="#&#x6A21;&#x677F;&#x591A;&#x6001;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x6A21;&#x677F;&#x591A;&#x6001;"><a name="&#x6A21;&#x677F;&#x591A;&#x6001;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x591A;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x591A;&#x6001;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x591A;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x591A;&#x6001;</h1>
+<h2 id="&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;"><a name="&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;" class="plugin-anchor" href="#&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x677F;&#x591A;&#x6001;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;</h2>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-com&quot;</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">cml</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&apos;weex&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>weex&#x7AEF;&#x4EE3;&#x7801;&#x4EE5;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x6E32;&#x67D3;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">demo-com</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&#x6211;&#x662F;&#x6807;&#x9898;weex&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo-com</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cml</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">cml</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;alipay,baidu&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>alipay&#x548C;baidu&#x7AEF;&#x4EE5;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x6E32;&#x67D3;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">demo-com</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&#x6211;&#x662F;&#x6807;&#x9898;2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo-com</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cml</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">cml</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;wx&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>wx&#x7AEF;&#x4EE5;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x6E32;&#x67D3;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">demo-com</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&#x6211;&#x662F;&#x6807;&#x9898;wx&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo-com</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cml</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">cml</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;base&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>&#x5982;&#x679C;&#x627E;&#x4E0D;&#x5230;&#x5BF9;&#x5E94;&#x7AEF;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5219;&#x4EE5;type=&apos;base&apos;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#xFF0C;&#x6BD4;&#x5982;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4F1A;&#x5728;web&#x7AEF;&#x8FDB;&#x884C;&#x6E32;&#x67D3;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">demo-com</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&#x6211;&#x662F;&#x6807;&#x9898;base&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo-com</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cml</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
-<h2 id="12-script-src&#x5C5E;&#x6027;"><a name="12-script-src&#x5C5E;&#x6027;" class="anchor-navigation-ex-anchor" href="#12-script-src&#x5C5E;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="12-script-src&#x5C5E;&#x6027;" class="plugin-anchor" href="#12-script-src&#x5C5E;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2 <code>script</code> src&#x5C5E;&#x6027;</h2>
-<p><code>&lt;script&gt;&lt;/script&gt;</code>&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6307;&#x5B9A;<code>src</code>&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;&#x5916;&#x90E8;js&#x6587;&#x4EF6;&#x4E3A;&#x67D0;&#x4E00;&#x5E73;&#x53F0;&#x6216;&#x67D0;&#x51E0;&#x4E2A;&#x7684;&#x5B9E;&#x73B0;&#x6216;&#x8005;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x3002;
-&#x6709;&#x5982;&#x4E0B;&#x89C4;&#x5219;&#xFF1A;</p>
-<ul>
-<li>src&#x5C5E;&#x6027;&#x6307;&#x5411;&#x7684;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x4E0D;&#x652F;&#x6301;webpack&#x522B;&#x540D;&#xFF0C;&#x53EA;&#x80FD;&#x662F;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x6216;&#x8005;npm&#x5305;&#x540D;&#x5F00;&#x59CB;&#x3002;</li>
-<li>cml-type&#x5C5E;&#x6027;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5982;&#x679C;&#x591A;&#x4E2A;&#x7AEF;&#x53EF;&#x4EE5;&#x7528;&#x82F1;&#x6587;&#x9017;&#x53F7; , &#x8FDB;&#x884C;&#x5206;&#x5272;&#xFF0C;&#x4F8B;&#x5982; cml-type=&quot;web,wx&quot;.</li>
-</ul>
-<p>&#x4F8B;&#x5982;&#xFF1A;</p>
-<pre><code>&lt;script cml-type=&quot;interface&quot;&gt;
-interface FirstInterface {
-  getMsg(msg: String): String;
-}
-
-&lt;/script&gt;
-
-&lt;script cml-type=&quot;web&quot; src=&quot;./web.js&quot;&gt;&lt;/script&gt;
-
-&lt;script cml-type=&quot;wx,alipay&quot; src=&quot;./miniapp.js&quot;&gt;&lt;/script&gt;
-</code></pre><p><code>web.js</code>&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code>class Method implements FirstInterface {
-  getMsg(msg) {
-    return &apos;web:&apos; + msg;
-  }
-}
-
-export default new Method();
-</code></pre><h2 id="2-&#x591A;&#x6001;api&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;"><a name="2-&#x591A;&#x6001;api&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;" class="anchor-navigation-ex-anchor" href="#2-&#x591A;&#x6001;api&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x591A;&#x6001;api&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;" class="plugin-anchor" href="#2-&#x591A;&#x6001;api&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a>2 &#x591A;&#x6001;API&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;</h2>
-<p>&#x6CA1;&#x6709;&#x6269;&#x5C55;&#x8BED;&#x6CD5;&#x4E4B;&#x524D;&#xFF0C;&#x6BCF;&#x4E2A;&#x7AEF;&#x7684;&#x5B9E;&#x73B0;&#x90FD;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6CA1;&#x6709;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E86;&#x6269;&#x5C55;&#x8BED;&#x6CD5;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x4F1A;&#x6709;&#x4F18;&#x5148;&#x7EA7;&#x95EE;&#x9898;&#x3002;&#x67E5;&#x627E;&#x4F18;&#x5148;&#x7EA7;&#x5982;&#x4E0B;&#xFF1A;</p>
-<ul>
-<li>&#x6587;&#x4EF6;&#x5185;&#x90E8;&#x7684;&#x5B9A;&#x4E49;, &#x5305;&#x62EC;&#x91C7;&#x7528;src&#x7684;&#x5F62;&#x5F0F;&#x6307;&#x5B9A;&#x5176;&#x4ED6;&#x6587;&#x4EF6;</li>
-<li><code>&lt;include&gt;src</code>&#x5C5E;&#x6027;&#x6307;&#x5411;&#x7684;interface&#x6587;&#x4EF6;&#x4E2D;&#x7EE7;&#x7EED;&#x67E5;&#x627E;&#x8BE5;&#x90E8;&#x5206;</li>
-</ul>
-<p>&#x4F8B;&#x5982;&#x6709;&#x5982;&#x4E0B;&#x4E24;&#x4E2A;interface&#x6587;&#x4EF6;&#xFF1A;</p>
-<pre><code>&#x251C;&#x2500;&#x2500; first
-&#x2502;   &#x2514;&#x2500;&#x2500; first.interface
-&#x2514;&#x2500;&#x2500; second
-    &#x2514;&#x2500;&#x2500; second.interface
-</code></pre><p><code>first.interface</code> &#x5305;&#x62EC;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#xFF0C;web&#x548C;weex&#x7AEF;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;interface&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">FirstInterface</span> </span>{
-  getMsg(msg: String): String;
-}
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;web&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FirstInterface</span> </span>{
-  getMsg(msg) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;first web:&apos;</span> + msg;
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;weex&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FirstInterface</span> </span>{
-  getMsg(msg) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;first weex:&apos;</span> + msg;
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-<p><code>second.interface</code> &#x5305;&#x62EC;&#x5BF9;<code>first.interface</code>&#x7684;<code>include</code> weex&#x7AEF;&#x548C;wx&#x7AEF;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../first/first.interface&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;weex&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FirstInterface</span> </span>{
-  getMsg(msg) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;second weex:&apos;</span> + msg;
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">cml-type</span>=<span class="hljs-string">&quot;wx&quot;</span>&gt;</span><span class="actionscript">
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Method</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FirstInterface</span> </span>{
-  getMsg(msg) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;second wx:&apos;</span> + msg;
-  }
-}
-export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Method();
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-<p>&#x5F53;&#x5916;&#x90E8;&#x5F15;&#x7528;<code>second.interface</code>&#x6587;&#x4EF6;&#x5E76;&#x8C03;&#x7528;getMsg&#x65B9;&#x6CD5;&#x65F6; &#x5404;&#x7AEF;&#x7F16;&#x8BD1;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
-<ul>
-<li>web&#x7AEF;&#xFF0C;&#x56E0;&#x4E3A;<code>second.interface</code>&#x4E2D;&#x6CA1;&#x6709;web&#x7AEF;&#x5B9E;&#x73B0; &#x6240;&#x4EE5;&#x67E5;&#x627E;&#x5230;<code>first.interface</code>&#x4E2D;web&#x7AEF;getMsg&#x65B9;&#x6CD5;</li>
-<li>weex&#x7AEF;&#xFF0C;&#x56E0;&#x4E3A;<code>second.interface</code>&#x4E2D;&#x6709;weex&#x7AEF;&#x5B9E;&#x73B0; &#x6240;&#x4EE5;&#x4F7F;&#x7528;<code>second.interface</code>&#x4E2D;weex&#x7AEF;getMsg&#x65B9;&#x6CD5;</li>
-<li>wx&#x7AEF;&#xFF0C;&#x56E0;&#x4E3A;<code>second.interface</code>&#x4E2D;&#x6709;wx&#x7AEF;&#x5B9E;&#x73B0; &#x6240;&#x4EE5;&#x4F7F;&#x7528;<code>second.interface</code>&#x4E2D;wx&#x7AEF;getMsg&#x65B9;&#x6CD5;</li>
-</ul>
-<h4 id="&#x6CE8;&#x610F;-cml-type-interface&#x90E8;&#x5206;&#x5FC5;&#x987B;&#x662F;&#x552F;&#x4E00;&#x7684;"><a name="&#x6CE8;&#x610F;-cml-type-interface&#x90E8;&#x5206;&#x5FC5;&#x987B;&#x662F;&#x552F;&#x4E00;&#x7684;" class="anchor-navigation-ex-anchor" href="#&#x6CE8;&#x610F;-cml-type-interface&#x90E8;&#x5206;&#x5FC5;&#x987B;&#x662F;&#x552F;&#x4E00;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6CE8;&#x610F;-cml-type-interface&#x90E8;&#x5206;&#x5FC5;&#x987B;&#x662F;&#x552F;&#x4E00;&#x7684;" class="plugin-anchor" href="#&#x6CE8;&#x610F;-cml-type-interface&#x90E8;&#x5206;&#x5FC5;&#x987B;&#x662F;&#x552F;&#x4E00;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6CE8;&#x610F; cml-type interface&#x90E8;&#x5206;&#x5FC5;&#x987B;&#x662F;&#x552F;&#x4E00;&#x7684;</h4>
-<p>&#x4F8B;1&#xFF1A;</p>
-<pre><code>// &#x5F15;&#x5165;chameleon-api interface&#x6587;&#x4EF6;
-&lt;include src=&quot;chameleon-api/src/interfaces/alert/index.interface&quot;&gt;&lt;/include&gt;
-
-// &#x9519;&#x8BEF;&#x5B9E;&#x73B0;interface&#x90E8;&#x5206;
-&lt;script cml-type=&quot;interface&quot;&gt;
-......
-&lt;/script&gt;
-
-// &#x6269;&#x5C55;&#x5B9E;&#x73B0;&#x65B0;&#x7AEF;
-&lt;script cml-type=&quot;demo&quot;&gt;
-......
-&lt;/script&gt;
-</code></pre><p><code>&lt;include&gt;</code>&#x7684;<code>chameleon-api/src/interfaces/alert/index.interface</code>&#x6587;&#x4EF6;&#x4E2D;&#x5DF2;&#x7ECF;&#x6709;<code>cml-type=&quot;interface&quot;</code>&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x4E2D;<code>&lt;script cml-type=&quot;interface&quot;&gt;&lt;/script&gt;</code>&#x5B9A;&#x4E49;&#x90E8;&#x5206;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002;</p>
-<p>&#x4F8B;2&#xFF1A;</p>
-<pre><code>// &#x5F15;&#x5165;cml-tt-api interface&#x6587;&#x4EF6;
-&lt;include src=&quot;cml-tt-api/src/interfaces/alert/index.interface&quot;&gt;&lt;/include&gt;
-
-// &#x5F15;&#x5165;cml-quickapp-api interface&#x6587;&#x4EF6;
-&lt;include src=&quot;cml-quickapp-api/src/interfaces/alert/index.interface&quot;&gt;&lt;/include&gt;
-
-// &#x6269;&#x5C55;&#x5B9E;&#x73B0;&#x65B0;&#x7AEF;
-&lt;script cml-type=&quot;demo&quot;&gt;
-......
-&lt;/script&gt;
-</code></pre><p>&#x6587;&#x4EF6;&#x4E2D;&#x5F15;&#x5165;&#x4E86;&#x4E24;&#x4E2A;<code>interface</code>&#x6587;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x5185;&#x90E8;&#x627E;&#x5230;&#x7684;<code>&lt;script cml-type=&quot;interface&quot;&gt;&lt;/script&gt;</code>&#x5B9A;&#x4E49;&#x90E8;&#x5206;&#x90FD;&#x5728;<code>chameleon-api/src/interfaces/alert/index.interface</code>&#x4E2D;&#xFF0C;&#x662F;&#x540C;&#x4E00;&#x6587;&#x4EF6;&#x3002;&#x6240;&#x4EE5;&#x4E0D;&#x8BA4;&#x4E3A;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002;</p>
+<h2 id="&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;"><a name="&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;" class="anchor-navigation-ex-anchor" href="#&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;" class="plugin-anchor" href="#&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x5982;&#x4E0B;</h2>
+<p>1.&#x5FC5;&#x987B;&#x7B26;&#x5408;&#x5982;&#x4E0A;&#x7ED3;&#x6784;&#xFF0C;<code>template</code> &#x6807;&#x7B7E;&#x4E0B;&#x7B2C;&#x4E00;&#x5C42;&#x5E76;&#x5217;&#x6807;&#x7B7E;&#x5FC5;&#x987B;&#x662F; <code>cml</code> &#x6807;&#x7B7E;&#xFF1B;
+2.cml &#x6807;&#x7B7E;&#x662F;&#x5FC5;&#x987B;&#x6709; <code>type</code> &#x5C5E;&#x6027;&#xFF0C;&#x8868;&#x660E;&#x5E94;&#x7528;&#x4E8E;&#x54EA;&#x7AEF;&#xFF0C;cml&#x6807;&#x7B7E;&#x6700;&#x7EC8;&#x4F1A;&#x88AB;&#x66FF;&#x6362;&#x4E3A; <code>view</code> &#x6807;&#x7B7E;</p>
 
                                 
                                 </section>
@@ -4798,12 +4663,12 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
 
             
                 
-                <a href="../../extend/api.html" class="navigation navigation-prev " aria-label="Previous page: 实现接口">
+                <a href="component.html" class="navigation navigation-prev " aria-label="Previous page: 组件多态">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../../extend/ui-builtin.html" class="navigation navigation-next " aria-label="Next page: 实现组件">
+                <a href="../engineering.html" class="navigation navigation-next " aria-label="Next page: 工程化">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -4814,7 +4679,7 @@ export <span class="hljs-keyword">default</span> <span class="hljs-keyword">new<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"接口多态扩展","level":"5.1.5.3.1","depth":4,"next":{"title":"实现组件","level":"5.1.5.4","depth":3,"path":"extend/ui-builtin.md","ref":"extend/ui-builtin.md","articles":[{"title":"组件多态扩展","level":"5.1.5.4.1","depth":4,"path":"framework/polymorphism/component_extend.md","ref":"framework/polymorphism/component_extend.md","articles":[]}]},"previous":{"title":"实现接口","level":"5.1.5.3","depth":3,"path":"extend/api.md","ref":"extend/api.md","articles":[{"title":"接口多态扩展","level":"5.1.5.3.1","depth":4,"path":"framework/polymorphism/api_extend.md","ref":"framework/polymorphism/api_extend.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/polymorphism/api_extend.md","mtime":"2019-12-09T03:11:37.272Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-26T07:52:40.483Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"模板多态","level":"5.1.1.3","depth":3,"next":{"title":"工程化","level":"5.1.2","depth":2,"path":"framework/engineering.md","ref":"framework/engineering.md","articles":[{"title":"数据 mock","level":"5.1.2.1","depth":3,"path":"framework/mock.md","ref":"framework/mock.md","articles":[]},{"title":"api 多域名 mock","level":"5.1.2.2","depth":3,"path":"framework/newmock.md","ref":"framework/newmock.md","articles":[]},{"title":"资源定位","level":"5.1.2.3","depth":3,"path":"framework/source_location.md","ref":"framework/source_location.md","articles":[]},{"title":"文件指纹","level":"5.1.2.4","depth":3,"anchor":"#文件指纹","path":"framework/config.md","ref":"framework/config.md#文件指纹","articles":[]},{"title":"代码压缩","level":"5.1.2.5","depth":3,"anchor":"#代码压缩","path":"framework/config.md","ref":"framework/config.md#代码压缩","articles":[]},{"title":"热更新与自动刷新","level":"5.1.2.6","depth":3,"anchor":"#热更新与自动刷新","path":"framework/config.md","ref":"framework/config.md#热更新与自动刷新","articles":[]},{"title":"代理调试","level":"5.1.2.7","depth":3,"path":"framework/devproxy.md","ref":"framework/devproxy.md","articles":[]},{"title":"Chameleon URL","level":"5.1.2.8","depth":3,"path":"framework/chameleon_url.md","ref":"framework/chameleon_url.md","articles":[]},{"title":"规范与校验","level":"5.1.2.9","depth":3,"path":"framework/polymorphism/standards.md","ref":"framework/polymorphism/standards.md","articles":[{"title":"接口语法校验","level":"5.1.2.9.1","depth":4,"path":"framework/polymorphism/check.md","ref":"framework/polymorphism/check.md","articles":[]},{"title":"全局变量校验","level":"5.1.2.9.2","depth":4,"path":"framework/global_check.md","ref":"framework/global_check.md","articles":[]},{"title":"代码规范校验","level":"5.1.2.9.3","depth":4,"path":"framework/linter.md","ref":"framework/linter.md","articles":[{"title":"核心文件校验","level":"5.1.2.9.3.1","depth":5,"path":"framework/linter/core.md","ref":"framework/linter/core.md","articles":[]},{"title":"CML 文件规范校验","level":"5.1.2.9.3.2","depth":5,"path":"framework/linter/cml-file.md","ref":"framework/linter/cml-file.md","articles":[{"title":"interface 规范","level":"5.1.2.9.3.2.1","depth":6,"path":"framework/linter/standards/cml-interface.md","ref":"framework/linter/standards/cml-interface.md","articles":[]}]},{"title":"模板规范校验","level":"5.1.2.9.3.3","depth":5,"path":"framework/linter/cml-template.md","ref":"framework/linter/cml-template.md","articles":[]},{"title":"脚本规范校验","level":"5.1.2.9.3.4","depth":5,"path":"framework/linter/cml-script.md","ref":"framework/linter/cml-script.md","articles":[]},{"title":"样式规范校验","level":"5.1.2.9.3.5","depth":5,"path":"framework/linter/cml-cmss.md","ref":"framework/linter/cml-cmss.md","articles":[]},{"title":"配置规范校验","level":"5.1.2.9.3.6","depth":5,"path":"framework/linter/cml-json.md","ref":"framework/linter/cml-json.md","articles":[]}]}]}]},"previous":{"title":"组件多态","level":"5.1.1.2","depth":3,"path":"framework/polymorphism/component.md","ref":"framework/polymorphism/component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","alerts","favicon","expandable-chapters-small","highlight-code","splitter","github","-sharing","code3","-lunr","-search","search-plus","anchor-navigation-ex","include","theme-custom"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy; DIDI 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"]},"github":{"url":"https://github.com/didi/chameleon"},"highlight-code":{},"code3":{"copyButtons":true},"splitter":{},"include":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":false,"showGoTop":true,"isShowTocTitleIcon":false,"printLog":false,"multipleH1":false,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true}},"favicon":{"shortcut":"./assets/favicon.ico"},"theme-custom":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"navbar":{"brand":{"url":"/","logo":{"alt":"Chameleon","path":"assets/cml-logo.png"}},"nav":[{"text":"快速上手","url":"/doc/quick_start/quick_start.html","part":"quick_start"},{"text":"框架","url":"/doc/framework/framework.html","part":"framework"},{"text":"组件","url":"/doc/component/component.html","part":"component"},{"text":"API","url":"/doc/api/api.html","part":"api"},{"text":"高级使用","url":"/doc/extend/advanced_use.html","part":"example"},{"text":"教程","url":"/doc/example/main.html","part":"tutorial"},{"text":"FAQ","url":"/doc/framework/faq.html","part":"faq"},{"text":"更新记录","url":"/doc/update_record.html","part":"log"}]}},"alerts":{},"expandable-chapters-small":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"Settings":{"title":"chameleon"},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"chameleon","gitbook":"*"},"file":{"path":"framework/polymorphism/template.md","mtime":"2019-12-26T07:37:15.115Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-26T07:52:40.483Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
