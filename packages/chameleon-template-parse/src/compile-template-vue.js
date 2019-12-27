@@ -1,15 +1,15 @@
 
 const babylon = require('babylon');
-const traverse = require('@babel/traverse')["default"];
-const generate = require('@babel/generator')["default"];
+const traverse = require('@babel/traverse')['default'];
+const generate = require('@babel/generator')['default'];
 // traverse path的时候解析path
 const parseTemplate = require('./parser/index.js');
 // 对于模板的预处理 - 后置处理 - 等正则的一些替换；
 const processTemplate = require('./common/process-template.js')
+
 // 目前事件的处理有两处：第一，c-bind,第二c-model,两者互相不影响；借鉴于此，需要新增处理事件支持传参的形式，而此时就需要处理c-bind;
-const cliUtils = require('chameleon-tool-utils');
 exports.compileTemplateForVue = function (source, type, options) {
-  
+
   // source
   // 预处理html模板中的注释，将其删除；这个需要优先处理，防止解析 < > 的时候出现问题；
   source = processTemplate.preDisappearAnnotation(source);
@@ -47,7 +47,7 @@ exports.compileTemplateForVue = function (source, type, options) {
     source = compileBaiduTemplate(source, type, options).code;
   }
   // 后置处理，解析origin-tag ==> tag
-  source = processTemplate.postParseOriginTag(source,type)
+  source = processTemplate.postParseOriginTag(source, type)
   // 后置处理：解析_cml{str}lmc_ ==> {{str}}
   source = processTemplate.postParseMustache(source)
   // 后置处理：用于处理 \u ，便于解析unicode 中文
