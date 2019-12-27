@@ -43,6 +43,6 @@
     "rimraf": "^2.6.3"
   },
   "lint-staged": {
-    "packages/**/*.js": "eslint"
+    "packages/**/*.js": "eslint --fix"
   }
 }
