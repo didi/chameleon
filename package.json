@@ -13,13 +13,23 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-angular": "^8.2.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.0.2",
     "husky": "^3.1.0",
     "istanbul": "^0.4.5",
-    "lerna": "^3.5.1"
+    "lerna": "^3.5.1",
+    "lint-staged": "^9.5.0"
   },
   "husky": {
     "hooks": {
-      "commit-msg":"commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
@@ -31,5 +41,8 @@
     "mocha": "*",
     "nyc": "*",
     "rimraf": "^2.6.3"
+  },
+  "lint-staged": {
+    "packages/**/*.js": "eslint"
   }
 }
