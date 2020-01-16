@@ -139,7 +139,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 ## 特别鸣谢
 [![zheyizhifeng](https://avatars3.githubusercontent.com/u/9592849?s=100&v=4)](https://github.com/zheyizhifeng)|[(头像空)](https://github.com/whuhenrylee)|[![broven](https://avatars0.githubusercontent.com/u/12854613?s=100&v=4)](https://github.com/broven/)|[(头像空)](https://github.com/Jeany/)
 :---:|:---:|:---:|:---:
-[zheyizhifeng（快应用）](https://github.com/zheyizhifeng)|[whuhenrylee（快应用）](https://github.com/whuhenrylee)|[broven（阿里影业）](https://github.com/broven/)|[Jeany（芒果 TV)](https://github.com/Jeany/)
+[zheyizhifeng（快应用）](https://github.com/zheyizhifeng)|[whuhenrylee（快应用）](https://github.com/whuhenrylee)|[broven（阿里影业）](https://github.com/broven/)|[Jeany（芒果 TV)](https://github.com/yaxiji/)
 
 ## 贡献者们
 快应用官方研发团队、luyixin、z-mirror、夏夜焰火（百度）
