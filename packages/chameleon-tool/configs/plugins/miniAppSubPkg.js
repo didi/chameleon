@@ -1,8 +1,6 @@
-const fs = require('fs');
-const fse = require('fs-extra');
 const path = require('path');
-const glob = require('glob');
 const cmlUtils = require('chameleon-tool-utils');
+
 /*
 小程序分包：1 微信限制主包不能引用分包的组件 2 分包可以引用主包的组件  3 分包不能引用分包的组件
 */
@@ -11,7 +9,9 @@ class MiniAppSubPkg {
     this.cmlType = options.cmlType;
     this.root = options.root;
   }
+
   apply(compiler) {
+    /* eslint-disable-next-line */
     let self = this;
 
     if (compiler.hooks) {
@@ -43,28 +43,26 @@ class MiniAppSubPkg {
       });
       let newPages = pages.filter((item) => !subPagesArr.includes(item));
       appJson.pages = newPages;
+      /* eslint-disable-next-line */
       compilation.assets['app.json']._value = JSON.stringify(appJson, '', 4)// 重写app.json文件；
-      //处理分包的页面js
-      const subCompsArr = self.getSubpkgComp(subPagesRoot,compilation);
-      self.handleJsContent(subPagesArr,compilation);
-      self.handleJsContent(subCompsArr,compilation);
+      // 处理分包的页面js
+      const subCompsArr = self.getSubpkgComp(subPagesRoot, compilation);
+      // 修复重复对于页面的js分离操作，subCompsArr里面会进行分离
+      // self.handleJsContent(subPagesArr,compilation);
+      self.handleJsContent(subCompsArr, compilation);
       callback();
     }
   }
-  getSubpkgComp(subPagesRoot,compilation){
+
+  getSubpkgComp(subPagesRoot, compilation) {
     let assetsKeys = Object.keys(compilation.assets) || [];
-    let subPageCompKeys = assetsKeys.filter((assetsKey) => {
-      return subPagesRoot.some((item) => {
-        return assetsKey.startsWith(item) && assetsKey.endsWith('js');
-      });
-    });
-    subPageCompKeys = subPageCompKeys.map((k) => {
-      return k.replace('\.js','');
-    });
+    let subPageCompKeys = assetsKeys.filter((assetsKey) => subPagesRoot.some((item) => assetsKey.startsWith(item) && assetsKey.endsWith('js')));
+    subPageCompKeys = subPageCompKeys.map((k) => k.replace('\.js', ''));
     return subPageCompKeys
 
   }
-  handleJsContent(pathArr,compilation){  
+
+  handleJsContent(pathArr, compilation) {
     // 第二步将subpage中的js文件拷贝到pages/subpage中的js文件中； outputFileSync
     // 第三步删除static/js 中的subpage的js文件；removeSync
     let regStatic = /require\(.*?static\/js\/.*?\)\(\)/;
@@ -80,13 +78,22 @@ class MiniAppSubPkg {
       let staticContent = compilation.assets[subPageStaticJSPath] && compilation.assets[subPageStaticJSPath].source();
       if (staticContent) {
         staticContent = staticContent.replace(regMainfest, '');
-        staticContent = staticContent.replace(/;$/,'()')
+        staticContent = staticContent.replace(/;$/, '()')
         delete compilation.assets[subPageStaticJSPath];
         // 注意 assets中的key configurable与否
       }
       let finalContent = content + '\n' + staticContent;
-
-      compilation.assets[subPageJSPath] && (compilation.assets[subPageJSPath]._value = finalContent);
+      // 修复分包依赖的js资源更新，打包结果不更新
+      if (compilation.assets[subPageJSPath]) {
+        compilation.assets[subPageJSPath] = {
+          source() {
+            return finalContent;
+          },
+          size() {
+            return finalContent.length;
+          }
+        }
+      }
     });
 
   }
