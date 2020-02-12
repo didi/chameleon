@@ -12,16 +12,16 @@ exports.injectWeexBaseStyle = function(content, self) {
   if (parts.styles && parts.styles.length === 1) {
     let contentStart = parts.styles[0].start;
     let contentEnd = parts.styles[0].end;
-    let globalStyle = `\n@import 'chameleon-runtime/src/platform/weex/style/index.css';\n`;
+    let globalStyle = '\n@import \'chameleon-runtime/src/platform/weex/style/index.css\';\n';
     let injectCssContent = '';
-    if(weexCssConfig &&  weexCssConfig.weexCssPath && cmlUtils.isFile(weexCssConfig.weexCssPath)){
+    if (weexCssConfig && weexCssConfig.weexCssPath && cmlUtils.isFile(weexCssConfig.weexCssPath)) {
       globalStyle = `${globalStyle} @import '${weexCssConfig.weexCssPath}';\n`
     }
-    if(weexCssConfig && weexCssConfig.injectCss && Array.isArray(weexCssConfig.injectCss)){
+    if (weexCssConfig && weexCssConfig.injectCss && Array.isArray(weexCssConfig.injectCss)) {
       let injectConfig = weexCssConfig.injectCss.find((item) => item.componentPath === self.resourcePath);
       injectConfig && (injectCssContent = `\n@import '${injectConfig.cssPath}';\n`);
     }
-    newcontent = content.slice(0, contentStart) + globalStyle + content.slice(contentStart,contentEnd) + injectCssContent + content.slice(contentEnd);
+    newcontent = content.slice(0, contentStart) + globalStyle + content.slice(contentStart, contentEnd) + injectCssContent + content.slice(contentEnd);
   }
   return newcontent;
 }
