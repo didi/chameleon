@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chameleon-tool-utils": "^1.0.4",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
     "gulp": "^3.9.1",
