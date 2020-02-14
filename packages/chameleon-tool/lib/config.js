@@ -172,8 +172,8 @@ var chameleonConfig = {
       }
     }
   },
-  optimize:{
-    watchNodeModules:false,//默认不对node_modules中的文件进行watch,提升编译性能
+  optimize: {
+    watchNodeModules: false// 默认不对node_modules中的文件进行watch,提升编译性能
   }
 }
 

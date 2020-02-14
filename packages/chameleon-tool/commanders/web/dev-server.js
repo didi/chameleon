@@ -84,9 +84,9 @@ module.exports = function({webpackConfig, options, compiler}) {
     let optimizeCML = cml.config.get().optimize;
     let watchOptions = {
       aggregateTimeout: 300,
-      poll: undefined,
+      poll: undefined
     }
-    if(optimizeCML && !optimizeCML.watchNodeModules){
+    if (optimizeCML && !optimizeCML.watchNodeModules) {
       watchOptions.ignored = /node_modules/;
     }
     compiler.watch(watchOptions, (err, stats) => {
