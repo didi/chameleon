@@ -171,6 +171,9 @@ var chameleonConfig = {
         'process.env.NODE_ENV': JSON.stringify('production')
       }
     }
+  },
+  optimize:{
+    watchNodeModules:false,//默认不对node_modules中的文件进行watch,提升编译性能
   }
 }
 

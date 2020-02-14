@@ -81,11 +81,15 @@ module.exports = function({webpackConfig, options, compiler}) {
   fse.writeJsonSync(path.join(cml.utils.getDevServerPath(), 'json/project.json'), {projectName: cml.config.get().projectName})
   if (compiler) {
     let first = true;
-    compiler.watch({
+    let optimizeCML = cml.config.get().optimize;
+    let watchOptions = {
       aggregateTimeout: 300,
       poll: undefined,
-      ignored: /node_modules/
-    }, (err, stats) => {
+    }
+    if(optimizeCML && !optimizeCML.watchNodeModules){
+      watchOptions.ignored = /node_modules/;
+    }
+    compiler.watch(watchOptions, (err, stats) => {
       if (first) {
         startServer();
         first = false;

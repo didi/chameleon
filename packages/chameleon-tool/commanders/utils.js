@@ -47,12 +47,15 @@ exports.getBuildPromise = async function (media, type) {
       if (type === 'weex') {
         startWeexLiveLoad(options);
       }
-      compiler.watch({
-        // watchOptions 示例
+      let optimizeCML = cml.config.get().optimize;
+      let watchOptions = {
         aggregateTimeout: 300,
         poll: undefined,
-        ignored: /node_modules/
-      }, (err, stats) => {
+      }
+      if(optimizeCML && !optimizeCML.watchNodeModules){
+        watchOptions.ignored = /node_modules/;
+      }
+      compiler.watch(watchOptions, (err, stats) => {
 
         if (type === 'weex') {
           if (!(stats && stats.compilation && stats.compilation.errors && stats.compilation.errors.length > 0)) {
