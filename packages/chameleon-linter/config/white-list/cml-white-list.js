@@ -32,6 +32,7 @@ module.exports = {
     'main',
     'row',
     'carousel',
-    'carousel-item'
+    'carousel-item',
+    'component'
   ]
 }
