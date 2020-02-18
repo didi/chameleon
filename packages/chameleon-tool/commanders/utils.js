@@ -233,7 +233,13 @@ exports.createConfigJson = function() {
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
-  let {wxAppId = '', baiduAppId = '', alipayAppId = '' } = config.buildInfo;
+  let {wxAppId = '', baiduAppId = '', alipayAppId = '', qqAppId = '' } = config.buildInfo;
+  let extPlatform = config.extPlatform ;
+  let extCommand = (typeof extPlatform === 'object') ? Object.keys(extPlatform)[0] : undefined;
+  let extAppId = ''
+  if (extCommand) { // extCommand 可能值为 tt  quickApp
+    extAppId = config.buildInfo && config.buildInfo[`${extCommand}AppId`]
+  }
   let {routerConfig, hasError} = cml.utils.getRouterConfig();
   if (hasError) {
     throw new Error('router.config.json格式不正确')
@@ -266,6 +272,10 @@ exports.createConfigJson = function() {
           appId: alipayAppId,
           path: item.path
         },
+        qq: {
+          appId: qqAppId,
+          path: item.path
+        },
         web: {
           url: webUrl
         },
@@ -279,6 +289,12 @@ exports.createConfigJson = function() {
       }
       if (item.extra) {
         route.extra = item.extra;
+      }
+      if (extCommand) {
+        route[extCommand] = {
+          appId: extAppId,
+          path: item.path
+        }
       }
       result.push(route);
     })
@@ -314,6 +330,10 @@ exports.createConfigJson = function() {
               appId: alipayAppId,
               path: routePath
             },
+            qq: {
+              appId: qqAppId,
+              path: routePath
+            },
             web: {
               url: webUrl
             },
@@ -322,6 +342,15 @@ exports.createConfigJson = function() {
               query: {
                 path: routePath
               }
+            }
+          }
+          if (item.extra) {
+            route.extra = item.extra;
+          }
+          if (extCommand) {
+            route[extCommand] = {
+              appId: extAppId,
+              path: item.path
             }
           }
           result.push(route);
