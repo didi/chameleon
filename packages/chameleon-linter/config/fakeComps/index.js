@@ -9,20 +9,6 @@ const list = [{
     }],
     events: []
   }
-}, {
-  name: 'component',
-  allowAttrs: {
-    vars: ['is', 'shrinkcomponents'],
-    methods: [],
-    props: [{
-      name: 'is',
-      required: true
-    }, {
-      name: 'shrinkcomponents',
-      required: false
-    }],
-    events: []
-  }
 }];
 
 module.exports = list;
