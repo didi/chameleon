@@ -1,7 +1,7 @@
 
 const { compileTemplateForCml } = require('./compile-template-cml');
 const { compileTemplateForVue } = require('./compile-template-vue');
-const {analyzeTemplate} = require('./common/process-template.js')
+const {analyzeTemplate, preParseMultiTemplate} = require('./common/process-template.js');
 
 module.exports = function(source, type, options = {lang: 'cml'}) {
   if (!source) {
@@ -18,3 +18,4 @@ module.exports = function(source, type, options = {lang: 'cml'}) {
   return result;
 }
 module.exports.analyzeTemplate = analyzeTemplate;
+module.exports.preParseMultiTemplate = preParseMultiTemplate;

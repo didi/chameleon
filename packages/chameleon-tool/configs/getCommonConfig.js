@@ -11,7 +11,7 @@ const config = require('./config.js');
 const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
-
+const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 module.exports = function (options) {
   let {
     type,
@@ -193,6 +193,11 @@ module.exports = function (options) {
       }
       domain[key] = domain[key] + '__DEV_SPLIT__' + key;
     })
+    commonConfig.plugins.push(
+      new ExtraWatchWebpackPlugin({
+        dirs: [path.join(cml.projectRoot, 'mock/api')]
+      })
+    )
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
