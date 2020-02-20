@@ -4,6 +4,7 @@ const getCommonConfig = require('../getCommonConfig');
 const utils = require('../utils.js');
 const {MvvmGraphPlugin} = require('mvvm-pack');
 const resolve = require('resolve');
+const webpack = require('webpack');
 const originSourceLoader = {
   loader: path.join(__dirname, './originSourceLoader.js')
 };
@@ -66,6 +67,15 @@ module.exports = function(options) {
       }, platformPlugin)
     ]
   };
+  if(media === 'dev'){ //扩展新端dev模式下注入全局变量 'process.env.NODE_ENV': JSON.stringify('development')
+    extendConfig.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }))
+  }else if(media === 'build'){
+    extendConfig.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }))
+  }
   let commonConfig = getCommonConfig(options);
   commonConfig.module.rules.forEach(item => {
     // 静态资源的处理

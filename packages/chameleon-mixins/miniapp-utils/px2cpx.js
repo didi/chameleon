@@ -15,6 +15,10 @@ _.px2cpx = function(px) {
       const { windowWidth } = my.getSystemInfoSync();
       return windowWidth;
     }
+    if(platform === 'qq'){
+      const { windowWidth } = qq.getSystemInfoSync();
+      return windowWidth;
+    }
   }
 
   viewportWidth = viewportWidth || getViewportSize();

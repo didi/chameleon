@@ -32,7 +32,7 @@ exports.getBuildPromise = async function (media, type) {
           }
           resolve();
         })
-      })["catch"](e => {
+      })['catch'](e => {
         let message = `clear file error! please remove direction ${outputpath} by yourself!`
         cml.log.error(message);
         throw new Error(e)
@@ -50,7 +50,8 @@ exports.getBuildPromise = async function (media, type) {
       compiler.watch({
         // watchOptions 示例
         aggregateTimeout: 300,
-        poll: undefined
+        poll: undefined,
+        ignored: /node_modules/
       }, (err, stats) => {
 
         if (type === 'weex') {
@@ -335,6 +336,6 @@ exports.createConfigJson = function() {
   })
 
   cml.event.emit('config-json', result);
-
+  /* eslint-disable-next-line */
   fse.outputFileSync(configJsonPath, JSON.stringify(result, '', 4))
 }

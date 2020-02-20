@@ -38,6 +38,7 @@ module.exports = function({webpackConfig, options, compiler}) {
   if (compiler) {
 
     if (options.hot === true) {
+      /* eslint-disable-next-line */
       var hotMiddleware = require('webpack-hot-middleware')(compiler, {
         heartbeat: 9000,
         noInfo: true,
@@ -53,6 +54,7 @@ module.exports = function({webpackConfig, options, compiler}) {
     }
     if (cml.config.get().templateType === 'html') {
       // handle fallback for HTML5 history API
+      /* eslint-disable-next-line */
       app.use(require('connect-history-api-fallback')({
         index: `${utils.getEntryName()}.html`
       }))
@@ -61,9 +63,9 @@ module.exports = function({webpackConfig, options, compiler}) {
 
   // serve pure static assets
   var staticPath = webpackConfig.output.path;
-  app.use(express["static"](staticPath));
+  app.use(express['static'](staticPath));
   let dist = path.join(cml.projectRoot, 'dist');
-  app.use(express["static"](dist));
+  app.use(express['static'](dist));
 
   if (compiler && cml.config.get().templateType === 'smarty') {
     // php-cgi
@@ -81,7 +83,8 @@ module.exports = function({webpackConfig, options, compiler}) {
     let first = true;
     compiler.watch({
       aggregateTimeout: 300,
-      poll: undefined
+      poll: undefined,
+      ignored: /node_modules/
     }, (err, stats) => {
       if (first) {
         startServer();
@@ -106,10 +109,10 @@ module.exports = function({webpackConfig, options, compiler}) {
     let subpath = '';
     // 未启动web端编译
     if (!compiler) {
-      subpath = `web_empty.html`;
+      subpath = 'web_empty.html';
       fse.copyFileSync(path.join(cml.root, 'configs/web_empty.html'), path.join(cml.utils.getDevServerPath(), 'web_empty.html'))
     }
-    uri += `preview.html`;
+    uri += 'preview.html';
     var entry = utils.getEntryName();
     var jsbundle = `weex/${entry}.js`;
     let staticParams = { jsbundle, subpath, buildType: cml.activePlatform };
@@ -131,13 +134,13 @@ module.exports = function({webpackConfig, options, compiler}) {
         from: `/web/static/js/${cml.config.get().projectName}_(.+).js`,
         to: `http://${config.ip}:${port}/static/js/${cml.config.get().projectName}.js`
       }, {
-        from: `/web/static/js/manifest_(.+).js`,
+        from: '/web/static/js/manifest_(.+).js',
         to: `http://${config.ip}:${port}/static/js/manifest.js`
       }, {
-        from: `/web/static/js/vender_(.+).js`,
+        from: '/web/static/js/vender_(.+).js',
         to: `http://${config.ip}:${port}/static/js/vender.js`
       }, {
-        from: `/web/static/css/vender_(.+).css`,
+        from: '/web/static/css/vender_(.+).css',
         to: `http://${config.ip}:${port}/static/css/vender.css`
       }, {
         from: `/web/static/css/${cml.config.get().projectName}_(.+).css`,
@@ -156,7 +159,9 @@ module.exports = function({webpackConfig, options, compiler}) {
           if (maplist) {
             maplist.forEach((item) => {
               if (new RegExp(item.from).test(fullUrl)) {
+                /* eslint-disable-next-line */
                 var srcObj = url.parse(fullUrl);
+                /* eslint-disable-next-line */
                 var desObj = url.parse(item.to);
                 rOptions.host = desObj.host;
                 rOptions.hostname = desObj.hostname;
@@ -182,7 +187,8 @@ module.exports = function({webpackConfig, options, compiler}) {
 function updateServerTpl() {
   let serverPath = cml.utils.getDevServerPath();
   let serverVersionFile = path.resolve(serverPath, '.server/server-tpl-verison.json');
-  let tplVersion = require(tpl["package"]).version;
+  /* eslint-disable-next-line */
+  let tplVersion = require(tpl['package']).version;
   if (cml.utils.isFile(serverVersionFile)) {
     let version = require(serverVersionFile).version;
     if (version === tplVersion) {

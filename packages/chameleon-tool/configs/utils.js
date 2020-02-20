@@ -206,14 +206,14 @@ exports.updateEntry = function (updateEntryConfig) {
   try {
     let { entry, cmlType, root, addEntry } = updateEntryConfig;
     let { components, compileTagMap } = cml.utils.getBuildinComponents(cmlType, root);
-    let options = { buildInComponents: compileTagMap, usedBuildInTagMap: {}};
+    let options = { buildInComponents: compileTagMap, usedBuildInTagMap: {},cmlType};
     let source = '';
     Object.keys(entry).forEach(key => {
       if (cml.utils.isFile(entry[key])) {
         let content = fs.readFileSync(entry[key], 'utf-8');
         let parts = cml.utils.splitParts({ content });
         if (parts && parts.template.length) {
-          source = parts.template[0].content;
+          source = parts.template[0].tagContent;
           options = analyzeTemplate(source, options)
         }
       }
@@ -237,7 +237,6 @@ exports.getMiniAppEntryFunc = function (cmlType) {
 
 exports.getMiniAppEntry = function (cmlType) {
   let options = cml.config.get()[cmlType][cml.media];
-
   let root = cml.projectRoot;
   let entry = {};
   entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`];
@@ -299,7 +298,6 @@ exports.getMiniAppEntry = function (cmlType) {
     }
   }
   exports.updateEntry({ entry, cmlType, root, addEntry });
-
   return entry;
 
   function addEntry(chameleonFilePath) {
