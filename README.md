@@ -143,6 +143,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 
 ## 贡献者们
 快应用官方研发团队、luyixin、z-mirror、夏夜焰火（百度）
+[kingsleydon](https://github.com/kingsleydon)
 
 ## 微信 & QQ 交流群
 
