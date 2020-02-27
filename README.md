@@ -164,3 +164,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 Apache-2.0 license
 
 Chameleon 基于 Apache-2.0 协议进行分发和使用，更多信息参见[协议文件](./LICENSE)。
+
+## 友情链接
+
+[DoraemonKit](https://github.com/didi/DoraemonKit) /'dɔ:ra:'emɔn/，简称DoKit， 一款功能齐全的客户端（ iOS 、Android、微信小程序 ）研发助手，你值得拥有。
