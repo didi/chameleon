@@ -53,7 +53,7 @@ exports.preParseAliComponent = function(source, type, options) {
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
         let inheritNodes = (item.attrs || []).filter((attr) => {
           let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ':class', 'c-show', 'v-show'];
-          // eslint-disable-next-line 
+          // eslint-disable-next-line
           let inheritEvent = ['c-bind:click', 'c-bind:tap', 'c-bind:touchstart', 'c-bind:touchmove', 'c-bind:touchend', 'c-bind:touchcancel', 'c-catch:click', 'c-catch:tap', 'c-catch:touchstart', 'c-catch:touchmove', 'c-catch:touchend', 'c-catch:touchcancel'];
           let isInherit = inheritAttrsFromComp.includes(attr[1]) || inheritEvent.includes(attr[1]) || /^data-/.test(attr[1])
           return isInherit;
@@ -99,7 +99,7 @@ exports.preParseHTMLtoArray = function(html, type, options, callbacks) {
   const startTagOpen = new RegExp(`^<${qnameCapture}`) // 匹配开始open
   const startTagClose = /^\s*(\/?)>/ // 匹配开始关闭；单标签的关闭有两种情况，第一就是 > 第二个就是 />,可以通过捕获分组 / 来判断是单闭合标签还是双开标签的开始标签的闭合
   const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`);
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   let index = 0;
   while (html) {
     let textEnd = html.indexOf('<')
