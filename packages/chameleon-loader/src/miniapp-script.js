@@ -2,7 +2,7 @@ const _ = module.exports = {};
 const fs = require('fs');
 const path = require('path');
 const babylon = require('@babel/parser');
-const traverse = require('babel-traverse')["default"];
+const traverse = require('babel-traverse')['default'];
 const t = require('@babel/types')
 const cmlUtils = require('chameleon-tool-utils');
 const fse = require('fs-extra');
@@ -227,7 +227,7 @@ _.getRelativeIconPath = function(p) {
 }
 _.getTabbarIconPaths = function(tabbar, type) {
   let iconPaths = [];
-  if (tabbar && (type === 'baidu' || type === 'wx')) {
+  if (tabbar && (type === 'baidu' || type === 'wx' || type === 'qq')) {
     (tabbar.list || []).forEach((item) => {
       if (item.iconPath) {
         let iconInfo = {};

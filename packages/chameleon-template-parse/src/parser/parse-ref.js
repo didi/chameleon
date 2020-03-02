@@ -1,11 +1,11 @@
 // import * as t from "@babel/types";
 const t = require('@babel/types');
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 
 let parseRef = new SyncHook(['args'])
 parseRef.tap('wx-cml', (args) => {
   let { path, type, options: { lang } } = args;
-  if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
+  if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay', 'tt'].includes(type))) {
     let parentPath = path.parentPath;
     let attributes = parentPath.node.attributes;
     let idNode = attributes.find((attr) => attr.name.name === 'id');
@@ -29,7 +29,7 @@ parseRef.tap('wx-cml', (args) => {
 });
 parseRef.tap('wx-vue', (args) => {
   let { path, type, options: { lang } } = args;
-  if (lang === 'vue' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
+  if (lang === 'vue' && (['wx', 'qq', 'baidu', 'alipay', 'tt'].includes(type))) {
     let parentPath = path.parentPath;
     let attributes = parentPath.node.attributes;
     let idNode = attributes.find((attr) => attr.name.name === 'id');
