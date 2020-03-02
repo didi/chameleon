@@ -153,9 +153,6 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 <br />
 
 **QQ**<br />
-<img width="150px" src="https://CML.JS.org/doc/assets/qr-qq.jpeg" />
-
-**QQ二群**<br />
 <img width="150px" src="https://cmljs.org/doc/assets/qq2-qrcode.JPG" />
 
 
