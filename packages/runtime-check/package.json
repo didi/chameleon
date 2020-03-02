@@ -1,6 +1,6 @@
 {
   "name": "runtime-check",
-  "version": "1.0.4",
+  "version": "1.0.5-alpha.1",
   "description": "",
   "main": "index.js",
   "scripts": {

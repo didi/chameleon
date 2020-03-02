@@ -1,6 +1,6 @@
 {
   "name": "interface-loader",
-  "version": "1.0.4",
+  "version": "1.0.5-alpha.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -13,10 +13,10 @@
     "@babel/parser": "7.1.0",
     "babel-generator": "6.26.1",
     "babel-traverse": "6.26.0",
-    "chameleon-tool-utils": "1.0.4",
+    "chameleon-tool-utils": "1.0.5-alpha.1",
     "loader-utils": "1.1.0",
-    "mvvm-interface-parser": "1.0.4",
-    "runtime-check": "1.0.4"
+    "mvvm-interface-parser": "1.0.5-alpha.1",
+    "runtime-check": "1.0.5-alpha.1"
   },
   "author": "Chameleon-Team",
   "license": "Apache",
