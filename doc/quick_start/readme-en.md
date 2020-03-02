@@ -103,4 +103,4 @@ Chameleon is not only just a solution for multi-platform development, it also ab
 <br />
 
 **QQ**<br />
-<img width="150px" src="https://CMLJS.org/doc/assets/qr-qq.jpeg" />
+<img width="150px" src="https://CMLJS.org/doc/assets/qq2-qrcode.JPG" />
