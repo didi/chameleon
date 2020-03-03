@@ -58,6 +58,6 @@ export default new App();
       "navigationBarTitleText": "Chameleon",
       "navigationBarTextStyle":"black"
     }
-  },
+  }
 }
 </script>
