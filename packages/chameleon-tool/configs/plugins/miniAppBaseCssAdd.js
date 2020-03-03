@@ -13,7 +13,8 @@ class miniappBaseCssAdd {
       'wx': '.wxss',
       'alipay': '.acss',
       'baidu': '.css',
-      'qq': '.qss'
+      'qq': '.qss',
+      'tt': '.ttss'
     }
     if (compiler.hooks) {
       compiler.hooks.shouldEmit.tap('miniappBaseCssAdd', miniappBaseCssAdd);

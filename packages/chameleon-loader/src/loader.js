@@ -1,4 +1,6 @@
 /* eslint-disable */
+
+
 const path = require('path')
 const hash = require('hash-sum')
 const parse = require('./parser')
@@ -162,11 +164,12 @@ module.exports = function (content) {
     wx: 'wxml',
     alipay: 'axml',
     baidu: 'swan',
-    qq: 'qml'
+    qq: 'qml',
+    tt:'ttml'
   }
   //小程序模板后缀正则
-  const miniTplExtReg = /(\.wxml|\.axml|\.swan|\.qml)$/;
-  const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml|\.qq\.cml|\.baidu\.cml)$/;
+  const miniTplExtReg = /(\.wxml|\.axml|\.swan|\.qml|\.ttml)$/;
+  const miniCmlReg = /(\.cml|\.wx\.cml|\.alipay\.cml|\.qq\.cml|\.baidu\.cml|\.tt\.cml)$/;
 
   if(isMiniAppRawComponent) {
     miniAppRawComponentHandler.call(this);
@@ -177,6 +180,7 @@ module.exports = function (content) {
         case 'qq':
         case 'alipay':
         case 'baidu':
+        case 'tt':
           miniAppHandler.call(this);
           break;
         case 'web':
@@ -209,7 +213,7 @@ module.exports = function (content) {
 
   // 引用微信小程序组件处理
   function miniAppRawComponentHandler() {
-    if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan') || (cmlType === 'qq' && extName === '.qml')) {
+    if((cmlType === 'wx' && extName === '.wxml') || (cmlType === 'alipay' && extName === '.axml') || (cmlType === 'baidu' && extName === '.swan') || (cmlType === 'qq' && extName === '.qml') || (cmlType === 'tt' && extName === '.ttml')) {
       //生成json文件
       let jsonFile = filePath.replace(miniTplExtReg,'.json');
       if(!cmlUtils.isFile(jsonFile)) {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 var ExtractTextPlugin = require('cml-extract-css-webpack-plugin')
 var utils = require('./utils.js');
 var path = require('path');
@@ -33,6 +34,10 @@ module.exports = function (options) {
     qq: {
       css: 'qss',
       templateReg: /.qml/
+    },
+    tt: {
+      css: 'ttss',
+      templateReg: /.ttml/
     }
   }
 

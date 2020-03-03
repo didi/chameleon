@@ -60,6 +60,11 @@ export default new Index();
     "navigationBarTitleText": "index",
     "backgroundTextStyle": "dark",
     "backgroundColor": "#E2E2E2"
+  },
+  "tt": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2"
   }
 }
 </script>
