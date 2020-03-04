@@ -100,7 +100,8 @@ module.exports = function (content) {
   const isAxmlComponent = extName === '.axml';
   const isSwanComponent = extName === '.swan';
   const isQmlComponent = extName === '.qml';
-  const isMiniAppRawComponent = isWxmlComponent ||  isAxmlComponent || isSwanComponent || isQmlComponent;
+  const isTtmlComponent = extName === '.ttml';
+  const isMiniAppRawComponent = isWxmlComponent ||  isAxmlComponent || isSwanComponent || isQmlComponent || isTtmlComponent;
   if(!isMiniAppRawComponent) {
     //处理script cml-type为json的内容
     content = cmlUtils.deleteScript({content, cmlType: 'json'});

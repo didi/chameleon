@@ -277,8 +277,8 @@ _.getJsonFileContent = function (filePath, confType) {
     } else {
       _.log.error(`There is no file:${filePath}`)
     }
-  } else if (~['.wxml', '.axml', '.swan', '.qml'].indexOf(path.extname(filePath))) {
-    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan|\.qml)/, '.json');
+  } else if (~['.wxml', '.axml', '.swan', '.qml','.ttml'].indexOf(path.extname(filePath))) {
+    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan|\.qml|\.ttml)/, '.json');
     if (_.isFile(filePath)) {
       let content = fs.readFileSync(jsonFilePath, {
         encoding: 'utf-8'

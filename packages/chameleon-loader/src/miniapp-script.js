@@ -206,7 +206,7 @@ _.parseMiniAppScriptForTt = function (filePath) {
     extName = '.filter.js';
   }
   let scriptPaths = [];
-  if (extName === '.swan') {
+  if (extName === '.ttml') {
     let miniScriptTagReg = /<filter[\s\S]*?[\/]*>/g;
     let srcReg = /from\s*=\s*("[^"]*"|'[^']*')/
     let matches = source.match(miniScriptTagReg);
