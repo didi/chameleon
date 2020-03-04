@@ -2,7 +2,7 @@ const _ = module.exports = {};
 const fs = require('fs');
 const path = require('path');
 const babylon = require('@babel/parser');
-const traverse = require('babel-traverse')["default"];
+const traverse = require('babel-traverse')['default'];
 const t = require('@babel/types')
 const cmlUtils = require('chameleon-tool-utils');
 const fse = require('fs-extra');
@@ -52,6 +52,9 @@ _.parseMiniAppScript = function(filePath, type) {
   }
   if (type === 'baidu') {
     miniAppPaths = _.parseMiniAppScriptForBaidu(filePath);
+  }
+  if (type === 'tt') {
+    miniAppPaths = _.parseMiniAppScriptForTt(filePath);
   }
   return miniAppPaths || [];
 
@@ -195,6 +198,43 @@ _.parseMiniAppScriptForBaidu = function (filePath) {
   }
   return scriptPaths;
 }
+// 暂未找到对应文档
+_.parseMiniAppScriptForTt = function (filePath) {
+  let source = fs.readFileSync(filePath, {encoding: 'utf-8'});
+  let extName = path.extname(filePath);
+  if (filePath.endsWith('.filter.js')) {
+    extName = '.filter.js';
+  }
+  let scriptPaths = [];
+  if (extName === '.ttml') {
+    let miniScriptTagReg = /<filter[\s\S]*?[\/]*>/g;
+    let srcReg = /from\s*=\s*("[^"]*"|'[^']*')/
+    let matches = source.match(miniScriptTagReg);
+    if (!matches) {
+      return []
+    } else if (matches && Array.isArray(matches)) {
+      matches.forEach((item) => {
+        let srcMatches = item.match(srcReg);
+        if (srcMatches && Array.isArray(srcMatches)) {
+          scriptPaths.push(srcMatches[1].slice(1, -1))
+        }
+      })
+    }
+  } else if (extName === '.filter.js') {
+    let callback = function(path) {
+      let node = path.node;
+      if (t.isCallExpression(node) && node.callee.name === 'require' && node.arguments[0]) {
+        let value = node.arguments[0].value
+        if (typeof value === 'string' && value.endsWith('.filter.js')) {
+          scriptPaths.push(value)
+        }
+
+      }
+    };
+    _.commonParseScript(source, callback);
+  }
+  return scriptPaths;
+}
 
 _.commonParseScript = function(source, callback) {
   let ast = babylon.parse(source);
@@ -227,7 +267,8 @@ _.getRelativeIconPath = function(p) {
 }
 _.getTabbarIconPaths = function(tabbar, type) {
   let iconPaths = [];
-  if (tabbar && (type === 'baidu' || type === 'wx')) {
+  let miniAppType = ['wx', 'baidu', 'qq', 'tt']
+  if (tabbar && miniAppType.includes(type)) {
     (tabbar.list || []).forEach((item) => {
       if (item.iconPath) {
         let iconInfo = {};

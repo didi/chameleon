@@ -233,7 +233,7 @@ exports.createConfigJson = function() {
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
-  let {wxAppId = '', baiduAppId = '', alipayAppId = '', qqAppId = '' } = config.buildInfo;
+  let {wxAppId = '', baiduAppId = '', alipayAppId = '', qqAppId = '', ttAppId = ''} = config.buildInfo;
   let extPlatform = config.extPlatform ;
   let extCommand = (typeof extPlatform === 'object') ? Object.keys(extPlatform)[0] : undefined;
   let extAppId = ''
@@ -274,6 +274,10 @@ exports.createConfigJson = function() {
         },
         qq: {
           appId: qqAppId,
+          path: item.path
+        },
+        tt: {
+          appId: ttAppId,
           path: item.path
         },
         web: {
@@ -333,6 +337,10 @@ exports.createConfigJson = function() {
             qq: {
               appId: qqAppId,
               path: routePath
+            },
+            tt: {
+              appId: ttAppId,
+              path: item.path
             },
             web: {
               url: webUrl

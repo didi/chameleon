@@ -61,7 +61,7 @@ exports.parseBuildTag = function (path, type, options) {
     // 兼容用户自己写了组件和内置组件重名
     let isUserComponent = usingComponents.includes(currentTag);
     if (isUserComponent) { // 如果是用户的内置组件，这里不做任何处理，直接返回
-      return;
+
     } else {
       if (targetTag && currentTag !== targetTag) {
         node.openingElement.name.name = targetTag;
@@ -75,7 +75,7 @@ exports.parseBuildTag = function (path, type, options) {
 // 配合安震，解析c-slider;
 exports.parseTagForSlider = function(path, type, options) {
   let node = path.node;
-  if ((['wx', 'qq', 'baidu', 'alipay'].includes(type)) && t.isJSXElement(node)) {
+  if ((['wx', 'qq', 'baidu', 'alipay', 'tt'].includes(type)) && t.isJSXElement(node)) {
     let currentTag = node.openingElement.name.name;
     let targetTag = tagMap.wxTagMap[currentTag];
     if (targetTag && currentTag !== targetTag) {

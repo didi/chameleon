@@ -26,7 +26,7 @@ master为稳定版本，除了紧急 bug 修复，每份代码提交都有很严
 [进行中的项目分支介绍](https://github.com/didi/chameleon/wiki/%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE)
 
 ## CML 即 多端
-支持平台：**web、微信小程序、支付宝小程序、百度小程序、[android(weex)](https://github.com/chameleon-team/chameleon-sdk-android)、[ios(weex)](https://github.com/chameleon-team/chameleon-sdk-ios)、qq 小程序、[头条小程序（alpha版本）](https://cml.js.org/doc/example/tt_miniapp.html)、[快应用(进行中)](https://github.com/didi/chameleon/issues/185)、持续更新中**
+支持平台：**web、微信小程序、支付宝小程序、百度小程序、[android(weex)](https://github.com/chameleon-team/chameleon-sdk-android)、[ios(weex)](https://github.com/chameleon-team/chameleon-sdk-ios)、qq 小程序、[字节跳动小程序](https://cml.js.org/doc/example/tt_miniapp.html)、[快应用](https://cml.js.org/doc/example/quickapp_miniapp.html)、持续更新中**
 
 **一端所见即多端所见**——多端高度一致，无需关注各端文档。
 
@@ -139,7 +139,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 ## 特别鸣谢
 [![zheyizhifeng](https://avatars3.githubusercontent.com/u/9592849?s=100&v=4)](https://github.com/zheyizhifeng)|[(头像空)](https://github.com/whuhenrylee)|[![broven](https://avatars0.githubusercontent.com/u/12854613?s=100&v=4)](https://github.com/broven/)|[(头像空)](https://github.com/Jeany/)
 :---:|:---:|:---:|:---:
-[zheyizhifeng（快应用）](https://github.com/zheyizhifeng)|[whuhenrylee（快应用）](https://github.com/whuhenrylee)|[broven（阿里影业）](https://github.com/broven/)|[Jeany（芒果 TV)](https://github.com/Jeany/)
+[zheyizhifeng（快应用）](https://github.com/zheyizhifeng)|[whuhenrylee（快应用）](https://github.com/whuhenrylee)|[broven（阿里影业）](https://github.com/broven/)|[Jeany（芒果 TV)](https://github.com/yaxiji/)
 
 ## 贡献者们
 快应用官方研发团队、luyixin、z-mirror、夏夜焰火（百度）
@@ -153,6 +153,10 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 
 **QQ**<br />
 <img width="150px" src="https://CML.JS.org/doc/assets/qr-qq.jpeg" />
+
+**QQ二群**<br />
+<img width="150px" src="https://cmljs.org/doc/assets/qq2-qrcode.JPG" />
+
 
 ## 协议
 

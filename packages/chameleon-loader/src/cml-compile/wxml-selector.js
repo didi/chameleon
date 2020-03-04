@@ -1,4 +1,4 @@
-/*这个文件用来处理原生小程序组件*/
+/* 这个文件用来处理原生小程序组件*/
 
 const loaderUtils = require('loader-utils');
 const fs = require('fs');
@@ -6,14 +6,15 @@ const cmlUtils = require('chameleon-tool-utils');
 const path = require('path');
 
 module.exports = function(content) {
-  const self = this;
+  const self = this;// eslint-disable-line
   const resource = this.resourcePath;
   const extName = path.extname(resource);
   const cssExt = {
     '.wxml': '.wxss',
     '.axml': '.acss',
     '.swan': '.css',
-    '.qml': '.qss'
+    '.qml': '.qss',
+    '.ttml': '.ttss'
   }
   const styles = cssExt[extName];
   const query = loaderUtils.getOptions(this) || {}
@@ -32,12 +33,12 @@ module.exports = function(content) {
     self.addDependency(targetFilePath);
     output = fs.readFileSync(targetFilePath, {encoding: 'utf-8'})
   }
-  if(type === 'script'){
+  if (type === 'script') {
     return `module.exports = function(){\n
       ${output}
     }`
   }
-  
+
   return output;
 
 }

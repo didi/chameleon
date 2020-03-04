@@ -7,7 +7,8 @@ exports.tagMap = {
       weex: 'div',
       alipay: 'cover-view',
       baidu: 'cover-view',
-      qq: 'cover-view'
+      qq: 'cover-view',
+      tt: 'cover-view'
     },
     'view': {
       wx: 'view',
@@ -15,7 +16,8 @@ exports.tagMap = {
       weex: 'div',
       alipay: 'view',
       baidu: 'view',
-      qq: 'view'
+      qq: 'view',
+      tt: 'view'
     },
     'text': {
       wx: 'text',
@@ -23,7 +25,8 @@ exports.tagMap = {
       weex: 'text',
       alipay: 'text',
       baidu: 'text',
-      qq: 'text'
+      qq: 'text',
+      tt: 'text'
     },
     'image': {
       wx: 'image',
@@ -31,7 +34,8 @@ exports.tagMap = {
       weex: 'image',
       alipay: 'image',
       baidu: 'image',
-      qq: 'image'
+      qq: 'image',
+      tt: 'image'
     },
     'input': {
       wx: 'input',
@@ -39,7 +43,8 @@ exports.tagMap = {
       weex: 'input',
       alipay: 'input',
       baidu: 'input',
-      qq: 'input'
+      qq: 'input',
+      tt: 'input'
 
     },
     'button': {
@@ -48,7 +53,8 @@ exports.tagMap = {
       weex: 'div',
       alipay: 'button',
       baidu: 'button',
-      qq: 'button'
+      qq: 'button',
+      tt: 'button'
     },
     'cell': {
       wx: 'view',
@@ -56,7 +62,8 @@ exports.tagMap = {
       weex: 'cell',
       alipay: 'view',
       baidu: 'view',
-      qq: 'view'
+      qq: 'view',
+      tt: 'view'
     },
     'slider-item': {
       wx: 'swiper-item',
@@ -64,7 +71,8 @@ exports.tagMap = {
       weex: 'div',
       alipay: 'swiper-item',
       baidu: 'swiper-item',
-      qq: 'swiper-item'
+      qq: 'swiper-item',
+      tt: 'swiper-item'
 
     }
   },
@@ -76,7 +84,8 @@ exports.tagMap = {
       weex: 'template',
       alipay: 'block',
       baidu: 'block',
-      qq: 'block'
+      qq: 'block',
+      tt: 'block'
     }
   },
   diffTagMap: {
@@ -85,11 +94,12 @@ exports.tagMap = {
     weex: ['cml-weex', 'cml-web-weex'],
     alipay: ['cml-ali'],
     baidu: ['cml-baidu'],
-    qq: ['cml-qq']
+    qq: ['cml-qq'],
+    tt: ['cml-tt']
   },
   wxTagMap: {
-    "carousel": "swiper",
-    "carousel-item": "swiper-item"
+    'carousel': 'swiper',
+    'carousel-item': 'swiper-item'
   }
 }
 exports.conditionMap = {
@@ -99,7 +109,8 @@ exports.conditionMap = {
     wx: 'wx:if',
     alipay: 'a:if',
     baidu: 's-if',
-    qq: 'qq:if'
+    qq: 'qq:if',
+    tt: 'tt:if'
   },
   'c-else-if': {
     web: 'v-else-if',
@@ -107,7 +118,8 @@ exports.conditionMap = {
     wx: 'wx:elif',
     alipay: 'a:elif',
     baidu: 's-elif',
-    qq: 'qq:elif'
+    qq: 'qq:elif',
+    tt: 'tt:elif'
   },
   'c-else': {
     web: 'v-else',
@@ -115,7 +127,9 @@ exports.conditionMap = {
     wx: 'wx:else',
     alipay: 'a:else',
     baidu: 's-else',
-    qq: 'qq:else'
+    qq: 'qq:else',
+    tt: 'tt:else'
+
   }
 }
 exports.interationMap = {
@@ -123,51 +137,58 @@ exports.interationMap = {
     wx: 'wx:for',
     alipay: 'a:for',
     baidu: 's-for',
-    qq: 'qq:for'
+    qq: 'qq:for',
+    tt: 'tt:for'
   },
   'c-key': {
     wx: 'wx:key',
     alipay: 'a:key',
     baidu: 's-key', // 百度文档没有提到这个，黑人问号脸
-    qq: 'qq:key'
+    qq: 'qq:key',
+    tt: 'tt:key'
   },
   'c-for-item': {
     wx: 'wx:for-item',
     alipay: 'a:for-item',
     baidu: 's-for-item',
-    qq: 'qq:for-item'
+    qq: 'qq:for-item',
+    tt: 'tt:for-item'
   },
   'c-for-index': {
     wx: 'wx:for-index',
     alipay: 'a:for-index',
     baidu: 's-for-index',
-    qq: 'qq:for-index'
+    qq: 'qq:for-index',
+    tt: 'tt:for-index'
   }
 }
 exports.eventMap = {
-  "touchstart": "touchStart",
-  "touchmove": "touchMove",
-  "touchend": "touchEnd",
-  "touchcancel": "touchCancel",
-  "longtap": "longTap"
+  'touchstart': 'touchStart',
+  'touchmove': 'touchMove',
+  'touchend': 'touchEnd',
+  'touchcancel': 'touchCancel',
+  'longtap': 'longTap'
 }
 exports.conditionMapVue2Wx = {
   'v-if': {
     wx: 'wx:if',
     alipay: 'a:if',
     baidu: 's-if',
-    qq: 'qq:if'
+    qq: 'qq:if',
+    tt: 'tt:if'
   },
   'v-else-if': {
     wx: 'wx:elif',
     alipay: 'a:elif',
     baidu: 's-elif',
-    qq: 'qq:elif'
+    qq: 'qq:elif',
+    tt: 'tt:elif'
   },
   'v-else': {
     wx: 'wx:else',
     alipay: 'a:else',
     baidu: 's-else',
-    qq: 'qq:else'
+    qq: 'qq:else',
+    tt: 'tt:else'
   }
 }

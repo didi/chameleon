@@ -1,4 +1,4 @@
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const utils = require('../common/utils');
 const t = require('@babel/types');
 const weexMixins = require('chameleon-mixins/weex-mixins.js')
@@ -38,7 +38,7 @@ parseClass.tap('web-cml', (args) => {
         }
       })
     } else {
-      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
+      throw new Error('Only allow one class node in element\'s attribute with cml syntax');
     }
   }
 
@@ -72,7 +72,7 @@ parseClass.tap('weex-cml', (args) => {
 
       })
     } else {
-      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
+      throw new Error('Only allow one class node in element\'s attribute with cml syntax');
     }
 
   }
@@ -81,7 +81,7 @@ parseClass.tap('weex-cml', (args) => {
 parseClass.tap('wx-alipay-baidu-cml', (args) => {
   let { node, type, options: {lang, filePath, usingComponents, isInjectBaseStyle} } = args;
   // type === 'wx' || type === 'alipay' || type === 'baidu'
-  if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
+  if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay', 'tt'].includes(type))) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
     let classNodes = attributes.filter((attr) => // 如果没有符合条件的classNodes则返回一个空数组
@@ -89,7 +89,7 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
     );
     let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
     let extraClass = '';
-    if (['wx', 'qq', 'baidu'].includes(type)) {
+    if (['wx', 'qq', 'baidu', 'tt'].includes(type)) {
       if (isInjectBaseStyle) {
         extraClass = ` cml-base cml-${tagName}`;
         if (isUsingComponents) {
@@ -115,7 +115,7 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
         itemNode.value.value = dealedClassNodeValue;
       })
     } else {
-      throw new Error(`Only allow one class node in element's attribute with cml syntax`);
+      throw new Error('Only allow one class node in element\'s attribute with cml syntax');
     }
   }
 
@@ -156,7 +156,7 @@ parseClass.tap('weex-vue', (args) => {
 parseClass.tap('wx-alipay-baidu-vue', (args) => {
   let { node, type, options: {lang, filePath, usingComponents, isInjectBaseStyle} } = args;
   // (type === 'wx' || type === 'alipay' || type === 'baidu')
-  if (lang === 'vue' && (['wx', 'qq', 'baidu', 'alipay'].includes(type))) {
+  if (lang === 'vue' && (['wx', 'qq', 'baidu', 'alipay', 'tt'].includes(type))) {
     let tagName = node.openingElement.name.name;
     let attributes = node.openingElement.attributes;
     let classNodes = attributes.filter((attr) => // 如果没有符合条件的classNodes则返回一个空数组
@@ -164,7 +164,7 @@ parseClass.tap('wx-alipay-baidu-vue', (args) => {
     );
     let isUsingComponents = (usingComponents || []).find((comp) => comp.tagName === tagName);
     let extraClass = '';
-    if (['wx', 'qq', 'baidu'].includes(type)) {
+    if (['wx', 'qq', 'baidu', 'tt'].includes(type)) {
       if (isInjectBaseStyle) {
         extraClass = ` cml-base cml-${tagName}`;
         if (isUsingComponents) {

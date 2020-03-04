@@ -1,3 +1,4 @@
+/* eslint-disable */
 const _ = module.exports = {};
 const platform = process.env.platform;
 let viewportWidth ;
@@ -15,8 +16,12 @@ _.px2cpx = function(px) {
       const { windowWidth } = my.getSystemInfoSync();
       return windowWidth;
     }
-    if(platform === 'qq'){
+    if (platform === 'qq') {
       const { windowWidth } = qq.getSystemInfoSync();
+      return windowWidth;
+    }
+    if (platform === 'tt') {
+      const { windowWidth } = tt.getSystemInfoSync();
       return windowWidth;
     }
   }

@@ -26,7 +26,9 @@ _.getRelativeIconPath = function(p) {
 }
 _.getTabbarIconPaths = function(tabbar, type) {
   let iconPaths = [];
-  if (tabbar && (type === 'baidu' || type === 'wx')) {
+  let miniAppType = ['wx', 'baidu', 'qq', 'tt']
+
+  if (tabbar && miniAppType.includes(type)) {
     (tabbar.list || []).forEach((item) => {
       if (item.iconPath) {
         let iconInfo = {};

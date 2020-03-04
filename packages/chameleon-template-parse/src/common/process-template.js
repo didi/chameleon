@@ -1,8 +1,8 @@
 
 const babylon = require('babylon');
 const t = require('@babel/types');
-const traverse = require('@babel/traverse')["default"];
-const generate = require('@babel/generator')["default"];
+const traverse = require('@babel/traverse')['default'];
+const generate = require('@babel/generator')['default'];
 const {
   tagMap
 } = require('../common/cml-map.js')
@@ -52,7 +52,8 @@ exports.preParseAliComponent = function(source, type, options) {
         // 先 push view标签，然后再push组件标签
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
         let inheritNodes = (item.attrs || []).filter((attr) => {
-          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ":class", "c-show", "v-show"];
+          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ':class', 'c-show', 'v-show'];
+          // eslint-disable-next-line
           let inheritEvent = ['c-bind:click', 'c-bind:tap', 'c-bind:touchstart', 'c-bind:touchmove', 'c-bind:touchend', 'c-bind:touchcancel', 'c-catch:click', 'c-catch:tap', 'c-catch:touchstart', 'c-catch:touchmove', 'c-catch:touchend', 'c-catch:touchcancel'];
           let isInherit = inheritAttrsFromComp.includes(attr[1]) || inheritEvent.includes(attr[1]) || /^data-/.test(attr[1])
           return isInherit;
@@ -66,7 +67,7 @@ exports.preParseAliComponent = function(source, type, options) {
           if (item.isunary) { // 如果是一元标签，那么在该标签前后都要push view
             newHtmlArr.push(`<view ${inheritString} >`);
             newHtmlArr.push(item.content);
-            newHtmlArr.push(`</view>`)
+            newHtmlArr.push('</view>')
           }
         } else { // 不是内置组件直接push
           newHtmlArr.push(item.content)
@@ -97,7 +98,8 @@ exports.preParseHTMLtoArray = function(html, type, options, callbacks) {
   // const startTag = /^<([a-zA-Z-:.]*)[^>]*?>/;
   const startTagOpen = new RegExp(`^<${qnameCapture}`) // 匹配开始open
   const startTagClose = /^\s*(\/?)>/ // 匹配开始关闭；单标签的关闭有两种情况，第一就是 > 第二个就是 />,可以通过捕获分组 / 来判断是单闭合标签还是双开标签的开始标签的闭合
-  const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`)
+  const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`);
+  // eslint-disable-next-line
   let index = 0;
   while (html) {
     let textEnd = html.indexOf('<')
@@ -129,7 +131,7 @@ exports.preParseHTMLtoArray = function(html, type, options, callbacks) {
         rest = html.slice(textEnd)
       }
       let matchText = {
-        type: "tagContent"
+        type: 'tagContent'
       };
       text = html.substring(0, textEnd)
       matchText.content = text;
@@ -254,7 +256,7 @@ exports.preParseVueEvent = function (content) {
   //         v-on | @--> <--  属性名  --><--=-->
   let reg = /(?:v\-on:|@)([^\s"'<>\/=]+?)\s*=\s*/g
   content = content.replace(reg, (m, $1) => {
-    if (typeof $1 === "string" && $1.endsWith('.stop')) {
+    if (typeof $1 === 'string' && $1.endsWith('.stop')) {
       $1 = $1.replace('.stop', '');
       return `c-catch:${$1}=`;
     } else {
@@ -293,7 +295,9 @@ exports.preParseTemplateToSatisfactoryJSX = function(source, callbacks) {
 }
 exports.preParseAnimation = function(source, type) {
   // 这个只在小程序端增加callback;
-  if (type === 'wx' || type === 'alipay' || type === 'baidu' || type === 'qq') {
+  // if (type === 'wx' || type === 'alipay' || type === 'baidu' || type === 'qq') {
+  let miniAppType = ['wx', 'alipay', 'baidu', 'qq', 'tt'];
+  if (miniAppType.includes(type)) {
     let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt']
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     const ast = babylon.parse(source, {
@@ -304,7 +308,7 @@ exports.preParseAnimation = function(source, type) {
         let node = path.node;
         if (t.isJSXAttribute(node) && (node.name.name === 'c-animation' || node.name.name === 'v-animation')) {
           let value = utils.trimCurly(node.value.value).trim();
-          path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`c-bind:transitionend`), t.stringLiteral(`_animationCb('${value}',$event)`)))
+          path.insertAfter(t.jsxAttribute(t.jsxIdentifier('c-bind:transitionend'), t.stringLiteral(`_animationCb('${value}',$event)`)))
         }
       }
     });
@@ -320,7 +324,7 @@ exports.preParseAnimation = function(source, type) {
 exports.preParseEventSyntax = function (content) {
   let reg = /(?:v\-on:|@)([^\s"'<>\/=]+?)\s*=\s*/g
   content = content.replace(reg, (m, $1) => {
-    if (typeof $1 === "string" && $1.endsWith('.stop')) {
+    if (typeof $1 === 'string' && $1.endsWith('.stop')) {
       $1 = $1.replace('.stop', '');
       $1 = $1 === 'click' ? 'tap' : $1;
       return `v-on:${$1}=`;
@@ -441,77 +445,71 @@ exports.postParseUnicode = function(content) {
   let reg = /\\u/g;
   return unescape(content.replace(reg, '%u'));
 }
+
 /**
  * 校验 template 模板下如果有 cml 标签，则必须是第一层,且在第一层不能有其他标签；
  */
-exports.checkTemplateChildren = function(path){
+exports.checkTemplateChildren = function(path) {
   let node = path.node;
   let children = node.children || [];
-  let jsxElements = children.filter((child) => {
-    return t.isJSXElement(child)
-  });
-  let hasCMLTag = jsxElements.some((ele) => {
-    return ele.openingElement.name.name === 'cml';
-  });
-  let hasOtherTag = jsxElements.some((ele) => {
-    return ele.openingElement.name.name !== 'cml';
-  });
-  return {hasCMLTag,hasOtherTag,jsxElements};
+  let jsxElements = children.filter((child) => t.isJSXElement(child));
+  let hasCMLTag = jsxElements.some((ele) => ele.openingElement.name.name === 'cml');
+  let hasOtherTag = jsxElements.some((ele) => ele.openingElement.name.name !== 'cml');
+  return {hasCMLTag, hasOtherTag, jsxElements};
 }
+
 /*
 校验 cml 标签的父元素必须是 template;
 
 */
-exports.checkCMLParent = function(path){
+exports.checkCMLParent = function(path) {
   let node = path.node;
-  if(node.openingElement.name.name === 'cml'){
+  if (node.openingElement.name.name === 'cml') {
     let parentNode = path.parentPath && path.parentPath.node;
-    if(parentNode && parentNode.openingElement && parentNode.openingElement.name.name !== 'template'){
-      throw new Error('模板多态标签 cml 只允许在 template 标签的第一层'); 
+    if (parentNode && parentNode.openingElement && parentNode.openingElement.name.name !== 'template') {
+      throw new Error('模板多态标签 cml 只允许在 template 标签的第一层');
     }
   }
 }
+
 /**
  * 获取 符合多态模板结构的 template 标签下对应平台的cml标签里的内容；
  * @params:jsxElements  template 节点下所有的 元素节点标签
  * @params:type  当前平台对应的 type，wx baidu alipay 等
  */
-exports.getCurrentPlatformCML = function(jsxElements,type){
+exports.getCurrentPlatformCML = function(jsxElements, type) {
   let currentCML = jsxElements.find((ele) => {
-    let typeAttr = ele.openingElement.attributes.find((attr) => {
-     return attr.name.name = 'type';
-    });
-    if(!typeAttr){
+    let typeAttr = ele.openingElement.attributes.find((attr) => attr.name.name = 'type');
+    if (!typeAttr) {
       throw new Error('cml 标签必须有 type 属性，标识用于哪端的代码')
     }
     let typeValue = typeAttr && typeAttr.value && typeAttr.value.value;
     return typeValue.includes(type)
   });
-  //有对应平台的 type 找到之后直接return 这个节点
-  if(currentCML){
+  // 有对应平台的 type 找到之后直接return 这个节点
+  if (currentCML) {
     return currentCML;
   }
   let baseCML = jsxElements.find((ele) => {
-    let typeAttr = ele.openingElement.attributes.find((attr) => {
-      return attr.name.name = 'type';
-    });
-    if(!typeAttr){
+    let typeAttr = ele.openingElement.attributes.find((attr) => attr.name.name = 'type');
+    if (!typeAttr) {
       throw new Error('cml 标签必须有 type 属性，标识用于哪端的代码')
     }
     let typeValue = typeAttr && typeAttr.value && typeAttr.value.value;
     return typeValue.includes('base')
   });
 
-  if(!currentCML && baseCML){
+  if (!currentCML && baseCML) {
     return baseCML;
   }
-  
+
 }
+
 /*
 @source: 源 template 文件
 @type:要编译的平台
 */
-exports.postParseOriginTag = function(source,type) {
+exports.postParseOriginTag = function(source, type) {
   let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseMustache', 'postParseLtGt'];
   source = exports.postParseUnicode(source);
   source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
@@ -534,15 +532,16 @@ exports.postParseOriginTag = function(source,type) {
   // 这里注意，每次经过babel之后，中文都需要转义过来；
   return exports.postParseUnicode(generate(ast).code);
 }
-/*提供给 chameleon-loader 用于删除多态模板多其他端的不用的代码
+
+/* 提供给 chameleon-loader 用于删除多态模板多其他端的不用的代码
 @params:source 模板内容
 @params:type 当前要编译的平台，用于截取多态模板
 @params:options needTranJSX 需要转化为jsx可以解析的模板；needDelTemplate 需要删除template节点
 */
-exports.preParseMultiTemplate = function(source,type,options = {}) {
-  try{
-    if(options.needTranJSX){ //当调用这个方法之前没有事先转义jsx,那么就需要转义一下
-      let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent','preParseMustache', 'postParseLtGt'];
+exports.preParseMultiTemplate = function(source, type, options = {}) {
+  try {
+    if (options.needTranJSX) { // 当调用这个方法之前没有事先转义jsx,那么就需要转义一下
+      let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt'];
       source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
     }
     let isEmptyTemplate = false;
@@ -553,30 +552,30 @@ exports.preParseMultiTemplate = function(source,type,options = {}) {
       enter(path) {
         let node = path.node;
         if (t.isJSXElement(node) && (node.openingElement.name && typeof node.openingElement.name.name === 'string' && node.openingElement.name.name === 'template')) {
-          path.stop();//不要在进行子节点的遍历,因为这个只需要处理template
-          let {hasCMLTag,hasOtherTag,jsxElements} = exports.checkTemplateChildren(path);
-          if(hasCMLTag && hasOtherTag){
+          path.stop();// 不要在进行子节点的遍历,因为这个只需要处理template
+          let {hasCMLTag, hasOtherTag, jsxElements} = exports.checkTemplateChildren(path);
+          if (hasCMLTag && hasOtherTag) {
             throw new Error('多态模板里只允许在template标签下的一级标签是cml');
           }
-          if(hasCMLTag && !hasOtherTag){//符合多态模板的结构格式
-            let currentPlatformCML = exports.getCurrentPlatformCML(jsxElements,type);
-            if(currentPlatformCML){
+          if (hasCMLTag && !hasOtherTag) {// 符合多态模板的结构格式
+            let currentPlatformCML = exports.getCurrentPlatformCML(jsxElements, type);
+            if (currentPlatformCML) {
               currentPlatformCML.openingElement.name.name = 'view';
               // 这里要处理自闭和标签，没有closingElement，所以做个判断；
               currentPlatformCML.closingElement && (currentPlatformCML.closingElement.name.name = 'view');
               node.children = [currentPlatformCML];
-              if(options.needDelTemplate){ //将template节点替换成找到的cml type 节点；
+              if (options.needDelTemplate) { // 将template节点替换成找到的cml type 节点；
                 path.replaceWith(currentPlatformCML)
               }
-            }else{
-              //如果没有写对应平台的 cml type='xxx' 或者 cml type='base',那么报错
+            } else {
+              // 如果没有写对应平台的 cml type='xxx' 或者 cml type='base',那么报错
               throw new Error('没有对应平台的模板或者基础模板')
             }
-          }else{ //不是多态模板
-            //注意要考虑空模板的情况
-            if(options.needDelTemplate && jsxElements.length === 1){ //将template节点替换成找到的cml type 节点；
+          } else { // 不是多态模板
+            // 注意要考虑空模板的情况
+            if (options.needDelTemplate && jsxElements.length === 1) { // 将template节点替换成找到的cml type 节点；
               path.replaceWith((jsxElements[0]));
-            }else{
+            } else {
               isEmptyTemplate = true;
             }
           }
@@ -584,7 +583,7 @@ exports.preParseMultiTemplate = function(source,type,options = {}) {
       }
     });
     // 这里注意，每次经过babel之后，中文都需要转义过来；
-    if(isEmptyTemplate){
+    if (isEmptyTemplate) {
       return '';
     }
     source = exports.postParseUnicode(generate(ast).code);
@@ -592,19 +591,19 @@ exports.preParseMultiTemplate = function(source,type,options = {}) {
       source = source.slice(0, -1);
     }
     return source;
-  }catch(e){
-    console.log('preParseMultiTemplate',e)
+  } catch (e) {
+    console.log('preParseMultiTemplate', e)
   }
 }
 // cli仓库使用
 exports.analyzeTemplate = function(source, options) {
-  try{
-    let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt'];////这些预处理是为了让jsx可以处理
+  try {
+    let callbacks = ['preDisappearAnnotation', 'preParseGtLt', 'preParseBindAttr', 'preParseVueEvent', 'preParseMustache', 'postParseLtGt'];// //这些预处理是为了让jsx可以处理
     if (!source) {
       return options;
     }
     source = exports.preParseTemplateToSatisfactoryJSX(source, callbacks);
-    source = exports.preParseMultiTemplate(source,options.cmlType,{needDelTemplate:true})
+    source = exports.preParseMultiTemplate(source, options.cmlType, {needDelTemplate: true})
     const ast = babylon.parse(source, {
       plugins: ['jsx']
     })
@@ -624,8 +623,8 @@ exports.analyzeTemplate = function(source, options) {
       }
     });
     return options;
-  }catch(e){
-    console.log('analyzeTemplate',e)
+  } catch (e) {
+    console.log('analyzeTemplate', e)
   }
 }
 // 模块内置方法
@@ -648,10 +647,10 @@ exports._operationGtLt = function(content) {
   let gtltReg = />|</g;
   return content.replace(gtltReg, function(match) {
     if (match === '>') {
-      return `_cml_gt_lmc_`
+      return '_cml_gt_lmc_'
     }
     if (match === '<') {
-      return `_cml_lt_lmc_`
+      return '_cml_lt_lmc_'
     }
     return match;
   })

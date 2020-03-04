@@ -71,3 +71,15 @@ class Method implements ReplaceInterface {
 export default new Method();
 </script>
 
+<script cml-type="tt">
+
+class Method implements ReplaceInterface {
+  getMsg(msg) {
+    return 'tt:' + msg;
+  }
+}
+
+export default new Method();
+</script>
+
+
