@@ -167,3 +167,6 @@ Chameleon 基于 Apache-2.0 协议进行分发和使用，更多信息参见[协
 [DoraemonKit](https://github.com/didi/DoraemonKit) /'dɔ:ra:'emɔn/，简称DoKit， 一款功能齐全的客户端（ iOS 、Android、微信小程序 ）研发助手，你值得拥有。
 
 [Mand Mobile](https://github.com/didi/mand-mobile) 一款优秀的面向金融场景的 移动端UI组件库。
+
+
+[Cube-UI](https://github.com/didi/cube-ui)  基于 Vue.js 实现的精致移动端组件库。
