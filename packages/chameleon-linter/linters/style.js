@@ -27,6 +27,13 @@ module.exports = async (part) => {
             column: isImportStyl ? 0 : err.column,
             msg: err.message
           };
+          // guess line coloumn from err message
+          if (err.lineno === undefined) {
+            err.message.replace(/stylus:\s*(\d+):\s*(\d+)/g, (match, line, column) => {
+              message.line = +line;
+              message.column = +column;
+            });
+          }
           messages.push(message);
         }
         let ast;
