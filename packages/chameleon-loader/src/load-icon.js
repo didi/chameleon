@@ -4,6 +4,7 @@ const cmlUtils = require('chameleon-tool-utils');
 const fse = require('fs-extra');
 
 _.handleApptabbar = function(newJsonObj, filePath, type) {
+  filePath = path.dirname(filePath); // 得到 app.cml 文件所在目录
   let tabbarIconPaths = _.getTabbarIconPaths(newJsonObj.tabBar, type);
   if (tabbarIconPaths.length) {
     tabbarIconPaths.forEach((item) => {
