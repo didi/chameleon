@@ -296,7 +296,8 @@ module.exports = function (content) {
     });
     //处理tabbar中配置的icon路径
     if(type == 'app'){
-      loadIcon.handleApptabbar(newJsonObj,filePath,cmlType)
+      loadIcon.handleApptabbar(newJsonObj,filePath,cmlType);
+      loadIcon.handleWorkers(newJsonObj,cmlType,self);
     }
     let jsonResult = JSON.stringify(newJsonObj, '', 4);
     self.emitFile(emitJsonPath, jsonResult);
