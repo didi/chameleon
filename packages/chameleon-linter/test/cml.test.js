@@ -127,7 +127,7 @@ describe('cml', function() {
         {
           'column': 3,
           'line': 7,
-          'msg': 'expected "indent", got ";"'
+          'msg': 'stylus:7:3\n    3| /*只作用于 web body下的first-child 节点*/\n    4| .app-root\n    5|   position:\n    6|   top: 0px;\n    7|   bottom: 0px;\n--------^\n    8|   left: 0px;\n    9|   right: 0px;\n   10| \n\nexpected \"indent\", got \";\"\n'
         }
       ]);
     });
