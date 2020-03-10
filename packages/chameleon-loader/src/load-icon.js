@@ -71,7 +71,7 @@ _.getTabbarIconPaths = function(tabbar, type) {
   }
   return iconPaths;
 }
-_.handleWorkers = function(newJsonObj, type,loaderContext) {
+_.handleWorkers = function(newJsonObj, type, loaderContext) {
   const workers = newJsonObj.workers;
 
   const destDir = path.resolve(cml.projectRoot, `dist/${type}`, workers);
