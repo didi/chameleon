@@ -20,6 +20,7 @@ exports.getBuildPromise = async function (media, type) {
 
   let options = exports.getOptions(media, type);
   let webpackConfig = await getConfig(options);
+
   //  非web和weex 并且非增量
   if (!~['web', 'weex'].indexOf(type) && options.increase !== true) {
     // 异步删除output目录
@@ -39,6 +40,15 @@ exports.getBuildPromise = async function (media, type) {
       })
     }
 
+  }
+  let projectConfig = options && options.projectConfig;
+  let destDir = path.resolve(cml.projectRoot, `dist/${type}`);
+  // 支付宝小程序没有工程配置
+  if (['wx', 'qq', 'tt'].includes(type) && projectConfig) {
+    fse.outputJsonSync(path.join(destDir, 'project.config.json'), projectConfig, {spaces: 4})
+  }
+  if (type === 'baidu' && projectConfig) {
+    fse.outputJsonSync(path.join(destDir, 'project.swan.json'), projectConfig, {spaces: 4})
   }
   return new Promise(function(resolve, reject) {
     // watch模式
