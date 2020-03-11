@@ -34,8 +34,8 @@ module.exports = function(content) {
     output = fs.readFileSync(targetFilePath, {encoding: 'utf-8'})
   }
   if (type === 'script') {
-    return `module.exports = function(){\n
-      ${output}
+    return `${output}\n;
+    module.exports = function(){\n
     }`
   }
 
