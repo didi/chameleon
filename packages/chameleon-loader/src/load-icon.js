@@ -73,14 +73,14 @@ _.getTabbarIconPaths = function(tabbar, type) {
 }
 _.handleWorkers = function(newJsonObj, type, loaderContext) {
   const workers = newJsonObj.workers;
+  if(workers){
+    const destDir = path.resolve(cml.projectRoot, `dist/${type}`, workers);
+    const sourceDir = path.resolve(cml.projectRoot, 'src/', workers);
 
-  const destDir = path.resolve(cml.projectRoot, `dist/${type}`, workers);
-  const sourceDir = path.resolve(cml.projectRoot, 'src/', workers);
+    if (cmlUtils.isDir(sourceDir)) {
+      fse.copySync(sourceDir, destDir);
+      loaderContext.addContextDependency(sourceDir)
 
-  if (cmlUtils.isDir(sourceDir)) {
-    fse.copySync(sourceDir, destDir);
-    loaderContext.addContextDependency(sourceDir)
-
+    }
   }
-
 }
