@@ -4,6 +4,7 @@ const globalVars = {
   BAIDU: ['swan', 'global'],
   ALIPAY: ['my', 'global'],
   QQ: ['qq', 'global'],
+  TT: ['tt', 'global'],
   WEB: [
     'postMessage', 'blur', 'focus', 'close', 'frames', 'self',
     'window', 'parent', 'opener', 'top', 'length', 'closed',
