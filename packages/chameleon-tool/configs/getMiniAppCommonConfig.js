@@ -8,7 +8,8 @@ const getCommonConfig = require('./getCommonConfig');
 const CopyNpmPlugin = require('./plugins/CopyNpmPLugin.js');
 const miniAppSubPkg = require('./plugins/miniAppSubPkg.js');
 const miniAppBaseCssAdd = require('./plugins/miniAppBaseCssAdd.js');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const cmlUtils = require('chameleon-tool-utils');
 module.exports = function (options) {
   let {
     type,
@@ -42,9 +43,10 @@ module.exports = function (options) {
   }
 
   const targetObj = miniMap[type];
-
+  
 
   var outputPath = path.resolve(root, `dist/${type}`);
+  
   var cmlLoaders = [
 
     {
@@ -110,13 +112,43 @@ module.exports = function (options) {
         isInjectBaseStyle: cml.config.get().baseStyle[type] === true
       })
     ]
-
   }
-
+  let projectConfig = options && options.projectConfig;
+  if(projectConfig){
+    if(projectConfig.pluginRoot){
+      let fromPluginDir = path.resolve(root,'src/',projectConfig.pluginRoot);
+      let toPluginDir = path.resolve(outputPath,projectConfig.pluginRoot)
+      if(cmlUtils.isDir(fromPluginDir)){
+        commonConfig.plugins.push(
+          new CopyWebpackPlugin([
+            {
+              from:fromPluginDir,
+              to:toPluginDir
+            }
+          ])
+        )
+      }
+    }
+    if(projectConfig.cloudfunctionRoot){
+      let fromCloudDir = path.resolve(root,'src/',projectConfig.cloudfunctionRoot);
+      let toCloudDir = path.resolve(outputPath,projectConfig.cloudfunctionRoot)
+      if(cmlUtils.isDir(fromCloudDir)){
+        commonConfig.plugins.push(
+          new CopyWebpackPlugin([
+            {
+              from:fromCloudDir,
+              to:toCloudDir
+            }
+          ])
+        )
+      }
+    }
+  }
   if (media === 'export') {
     // 组件导出，修改jsonpFunction
     commonConfig.output.jsonpFunction = getJsonpFunction(root);
   }
+
 
   return merge(getCommonConfig(options), commonConfig);
 

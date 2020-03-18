@@ -41,6 +41,7 @@ exports.getBuildPromise = async function (media, type) {
     }
 
   }
+  //工程配置输出
   let projectConfig = options && options.projectConfig;
   let destDir = path.resolve(cml.projectRoot, `dist/${type}`);
   // 支付宝小程序没有工程配置
@@ -49,6 +50,11 @@ exports.getBuildPromise = async function (media, type) {
   }
   if (type === 'baidu' && projectConfig) {
     fse.outputJsonSync(path.join(destDir, 'project.swan.json'), projectConfig, {spaces: 4})
+  }
+  //sitemap配置输出
+  let siteMap = options && options.siteMap;
+  if (type === 'wx' && siteMap) {
+    fse.outputJsonSync(path.join(destDir, 'sitemap.json'), siteMap, {spaces: 4})
   }
   return new Promise(function(resolve, reject) {
     // watch模式
