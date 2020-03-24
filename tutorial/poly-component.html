@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>实现多态 ECharts 组件 | Chameleon 变色龙</title>
+    <meta name="description" content="一套代码运行多端，一端所见即多端所见">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/brand/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.4f526a61.css" as="style"><link rel="preload" href="/assets/js/app.99fcbcce.js" as="script"><link rel="preload" href="/assets/js/59.508d9d70.js" as="script"><link rel="preload" href="/assets/js/1.6e133947.js" as="script"><link rel="preload" href="/assets/js/6.9e8e6b26.js" as="script"><link rel="preload" href="/assets/js/2.7c7fd3bd.js" as="script"><link rel="prefetch" href="/assets/js/10.3f3c97ec.js"><link rel="prefetch" href="/assets/js/11.8fd0e8ae.js"><link rel="prefetch" href="/assets/js/12.7eb44a90.js"><link rel="prefetch" href="/assets/js/13.42430351.js"><link rel="prefetch" href="/assets/js/14.aab83fd9.js"><link rel="prefetch" href="/assets/js/15.237669db.js"><link rel="prefetch" href="/assets/js/16.1b9de261.js"><link rel="prefetch" href="/assets/js/17.c0bf57ea.js"><link rel="prefetch" href="/assets/js/18.386d3bfe.js"><link rel="prefetch" href="/assets/js/19.b9becf3c.js"><link rel="prefetch" href="/assets/js/20.7ebc7997.js"><link rel="prefetch" href="/assets/js/21.6724581d.js"><link rel="prefetch" href="/assets/js/22.69ec1ad0.js"><link rel="prefetch" href="/assets/js/23.858a223b.js"><link rel="prefetch" href="/assets/js/24.f243c259.js"><link rel="prefetch" href="/assets/js/25.bfa416fc.js"><link rel="prefetch" href="/assets/js/26.2154d5c8.js"><link rel="prefetch" href="/assets/js/27.bb92a04b.js"><link rel="prefetch" href="/assets/js/28.15bdd9a1.js"><link rel="prefetch" href="/assets/js/29.6d241a0d.js"><link rel="prefetch" href="/assets/js/30.c7013aea.js"><link rel="prefetch" href="/assets/js/31.a2cc4043.js"><link rel="prefetch" href="/assets/js/32.876f052c.js"><link rel="prefetch" href="/assets/js/33.443a092c.js"><link rel="prefetch" href="/assets/js/34.10e2e96a.js"><link rel="prefetch" href="/assets/js/35.d2681381.js"><link rel="prefetch" href="/assets/js/36.c06aa7dd.js"><link rel="prefetch" href="/assets/js/37.3a2c7e3f.js"><link rel="prefetch" href="/assets/js/38.7359be1a.js"><link rel="prefetch" href="/assets/js/39.58154c72.js"><link rel="prefetch" href="/assets/js/4.e4489a0a.js"><link rel="prefetch" href="/assets/js/40.dc6c6a82.js"><link rel="prefetch" href="/assets/js/41.4f328cc0.js"><link rel="prefetch" href="/assets/js/42.db6f5dbf.js"><link rel="prefetch" href="/assets/js/43.5c867da9.js"><link rel="prefetch" href="/assets/js/44.e1a4f56b.js"><link rel="prefetch" href="/assets/js/45.efc06433.js"><link rel="prefetch" href="/assets/js/46.435e0121.js"><link rel="prefetch" href="/assets/js/47.630e64bc.js"><link rel="prefetch" href="/assets/js/48.bf913c8c.js"><link rel="prefetch" href="/assets/js/49.1db8624e.js"><link rel="prefetch" href="/assets/js/5.c07f5998.js"><link rel="prefetch" href="/assets/js/50.7829e330.js"><link rel="prefetch" href="/assets/js/51.8cf85456.js"><link rel="prefetch" href="/assets/js/52.00305991.js"><link rel="prefetch" href="/assets/js/53.503b2ea4.js"><link rel="prefetch" href="/assets/js/54.d4f5c566.js"><link rel="prefetch" href="/assets/js/55.d0e4387b.js"><link rel="prefetch" href="/assets/js/56.57fecbfb.js"><link rel="prefetch" href="/assets/js/57.1b68b234.js"><link rel="prefetch" href="/assets/js/58.c2b7d564.js"><link rel="prefetch" href="/assets/js/60.527eb36e.js"><link rel="prefetch" href="/assets/js/61.5247339f.js"><link rel="prefetch" href="/assets/js/62.54c884bf.js"><link rel="prefetch" href="/assets/js/63.331544bf.js"><link rel="prefetch" href="/assets/js/64.caa5c449.js"><link rel="prefetch" href="/assets/js/65.bb36b5a9.js"><link rel="prefetch" href="/assets/js/66.fb7fc181.js"><link rel="prefetch" href="/assets/js/67.b39d0300.js"><link rel="prefetch" href="/assets/js/68.c4ac29dd.js"><link rel="prefetch" href="/assets/js/69.f37635c5.js"><link rel="prefetch" href="/assets/js/7.7bb6da72.js"><link rel="prefetch" href="/assets/js/70.2c24a379.js"><link rel="prefetch" href="/assets/js/71.ac03b9f4.js"><link rel="prefetch" href="/assets/js/72.8242c89c.js"><link rel="prefetch" href="/assets/js/73.0aac4225.js"><link rel="prefetch" href="/assets/js/74.cca48904.js"><link rel="prefetch" href="/assets/js/75.78bc877f.js"><link rel="prefetch" href="/assets/js/76.edea28d3.js"><link rel="prefetch" href="/assets/js/77.79dae385.js"><link rel="prefetch" href="/assets/js/78.e551f7e8.js"><link rel="prefetch" href="/assets/js/79.5f148893.js"><link rel="prefetch" href="/assets/js/8.5d390741.js"><link rel="prefetch" href="/assets/js/80.d0cf063e.js"><link rel="prefetch" href="/assets/js/81.db96036b.js"><link rel="prefetch" href="/assets/js/82.4e4da58b.js"><link rel="prefetch" href="/assets/js/83.145895b5.js"><link rel="prefetch" href="/assets/js/84.eeaeb4af.js"><link rel="prefetch" href="/assets/js/85.717dd2c6.js"><link rel="prefetch" href="/assets/js/86.49f3e4f1.js"><link rel="prefetch" href="/assets/js/87.cce28408.js"><link rel="prefetch" href="/assets/js/88.80db1d50.js"><link rel="prefetch" href="/assets/js/89.005c3932.js"><link rel="prefetch" href="/assets/js/9.101b2658.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4f526a61.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/brand/logo.png" alt="Chameleon 变色龙" class="logo"> <span class="site-name can-hide">Chameleon 变色龙</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/" class="nav-link">
+  文档
+</a></div><div class="nav-item"><a href="/components/" class="nav-link">
+  组件
+</a></div><div class="nav-item"><a href="/api/" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><a href="/faq/" class="nav-link">
+  FAQ
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/" class="nav-link">
+  文档
+</a></div><div class="nav-item"><a href="/components/" class="nav-link">
+  组件
+</a></div><div class="nav-item"><a href="/api/" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><a href="/faq/" class="nav-link">
+  FAQ
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>教程</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/tutorial/first-cml-app.html" class="sidebar-link">开发第一个 CML 应用</a></li><li><a href="/tutorial/web-wx-only-app.html" class="sidebar-link">只跨 Web 与小程序的应用</a></li><li><a href="/tutorial/bytedance-cml-app.html" class="sidebar-link">字节跳动小程序体验</a></li><li><a href="/tutorial/quickapp-cml-app.html" class="sidebar-link">快应用体验</a></li><li><a href="/tutorial/poly-api.html" class="sidebar-link">实现多态 API</a></li><li><a href="/tutorial/poly-component.html" class="active sidebar-link">实现多态 ECharts 组件</a></li><li><a href="/tutorial/export-cml-component.html" class="sidebar-link">普通项目使用 CML 跨端组件</a></li><li><a href="/tutorial/webpack-with-cml.html" class="sidebar-link">webpack 集成 CML</a></li><li><a href="/tutorial/build-config.html" class="sidebar-link">项目工程化配置</a></li><li><a href="/tutorial/deploy-guide.html" class="sidebar-link">项目上线指南</a></li><li><a href="/tutorial/bundle-splitting.html" class="sidebar-link">使用项目分包</a></li><li><a href="/tutorial/android-sdk.html" class="sidebar-link">CML Android SDK 使用范例</a></li><li><a href="/tutorial/ios-sdk.html" class="sidebar-link">CML iOS SDK 使用范例</a></li><li><a href="/tutorial/use-gestures.html" class="sidebar-link">卡片拖拽手势删除效果</a></li><li><a href="/tutorial/normal-vs-cml.html" class="sidebar-link">普通跨端 vs CML</a></li><li><a href="/tutorial/editor-plugin.html" class="sidebar-link">编辑器插件</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="实现多态-echarts-组件"><a href="#实现多态-echarts-组件" class="header-anchor">#</a> 实现多态 ECharts 组件</h1> <h2 id="背景介绍"><a href="#背景介绍" class="header-anchor">#</a> 背景介绍</h2> <p>正常情况下大部分功能可以用 CML 语法即可实现；常常会有特殊情况：</p> <ul><li>当我们想实现一个特别<strong>复杂功能</strong>时常常会用到成熟的第三方库</li> <li>当产品经理需要各端差异化实现需求</li> <li>类似“分享到朋友圈”功能在小程序、Web、Native 天生有底层能力差异</li></ul> <p>我们这里举例实现一个柱状图图表一般会想到很强大的开源可视化库<a href="http://echarts.baidu.com/" target="_blank" rel="noopener noreferrer">echart<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。</p> <p>本文讲讲如何在 CML 项目中优雅的使用 ECharts 库,最终效果图如下：</p> <img src="/assets/img/echart_all.5b7e1c7a.png" style="width:600cpx;display:block;"> <p>在 CML 项目中使用第三方库可以基于多态组件来开发。</p> <img src="/assets/img/polymorphism_widget.bbb4654d.png" style="width:600cpx;display:block;">
+多态协议的意义我就不做赘述了，直接说怎么使用。
+<h2 id="项目初始化"><a href="#项目初始化" class="header-anchor">#</a> 项目初始化</h2> <p>新建一个项目 <code>demo-poly</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>cml init project
+</code></pre></div><p>在项目中调用组件创建命令：</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> demo-poly
+cml init component
+</code></pre></div><ol><li><p>切换选择<strong>Polymorphic component</strong></p></li> <li><p>输入<code>echart</code></p></li></ol> <img src="/assets/img/init_component.5ce3ebd6.png" style="width:600cpx;display:block;"> <p>此时项目中看到<code>./src/components/echart</code>文件夹</p> <div class="language-bash extra-class"><pre class="language-bash"><code>./src/components
+└── echart
+    ├── echart.interface
+    ├── echart.web.cml
+    ├── echart.weex.cml
+    └── echart.wx.cml
+</code></pre></div><p>修改 src/pages/index/index.cml 文件里面的 json 配置，引用多态组件</p> <div class="language- extra-class"><pre class="language-text"><code>  &quot;base&quot;: {
+    &quot;usingComponents&quot;: {
+      &quot;echart&quot;: &quot;/components/echart/echart&quot;,
+      &quot;demo-com&quot;: &quot;/components/demo-com/demo-com&quot;
+    }
+  }
+</code></pre></div><p>修改 src/pages/index/index.cml 文件里面的组件<code>template</code>模板，调用<code>echart</code>组件</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>page</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>chameleon<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>scroller-wrap<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-com</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{title}}<span class="token punctuation">&quot;</span></span> <span class="token attr-name">image-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{chameleonSrc}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-com</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>echart</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>echart<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>hi<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>echart</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>page</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>修改 style 标签代码给<code>&lt;echart&gt;</code>标签添加宽高</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.scroller-wrap</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.echart</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> row<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 500cpx<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 500cpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在项目根目录下启动预览<code>cml dev</code>，有效果如下，展现 2 个组件分别是默认项目初始化放置的<code>&lt;demo-com&gt;</code>和我们刚刚添加的<code>&lt;echart&gt;</code>组件。
+echart 作为多态组件，在 web、weex、微信小程序分别展示的是不同文案。</p> <p>Web 端效果如下：</p> <img src="/assets/img/component_default.487cdeed.png" style="width:300cpx;display:block;"> <h2 id="多态组件构成介绍"><a href="#多态组件构成介绍" class="header-anchor">#</a> 多态组件构成介绍</h2> <p><strong>echart.interface</strong>：描述 echart 组件的输入和输出。</p> <p>默认 interface 定义了一个组件，参数<strong>name</strong>的值是一个字符串，事件<strong>onshow</strong>的值是一个函数，函数的回调是一个<strong>Object</strong>结构为<code>{value: 字符串}</code>。</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">cml-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>interface<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token comment">/*
+定义一个inteface用于描述组件的属性和事件
+1、 如何区分组件属性和事件？
+通过类型来区分，事件为函数类型，属性为非函数类型
+2、 如何定义组件属性
+给interface添加同名的属性即可，指定类型
+3、 如何定义组件事件
+以事件名称为key值给interface定义属性，该属性是一个函数类型，返回值为void，
+定义函数的第一个参数为自定义事件传递的detail对象类型
+*/</span>
+
+<span class="token comment">//定义事件detail对象的参数</span>
+type EventDetail <span class="token operator">=</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> String<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">interface</span> <span class="token class-name">EchartInterface</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> String<span class="token punctuation">;</span>
+  <span class="token function">onshow</span><span class="token punctuation">(</span>eventDetail<span class="token operator">:</span> EventDetail<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>这里我们先不用改。</p> <p><strong>echart.web.cml</strong>、<strong>echart.weex.cml</strong>、<strong>echart.wx.cml</strong>：文件是灰度区，它是唯一可以调用下层端组件的 CML 文件，分别是 web、weex、wx 三个端的调用入口。建议这一块代码尽量薄，只是用来调用下层端代码，不要编写过于重的代码。</p> <ul><li><p>在灰度区的 template 模板中：可以调用下层组件，传入的属性也可以是各自下层端的语法，绑定的函数回调事件对象也是原始对象。也可以正常使用普通的 cml 模板语法</p></li> <li><p>在灰度区的 script 逻辑代码中：可以调用下层端的全局变量和任意方法，以及下层段的生命周期。也可以正常使用普通 cml 逻辑代码。</p></li> <li><p>在灰度区的 style 样式代码中：可以使用下层端 css 语法。也可以正常调用 cmss 语法。</p></li></ul> <h2 id="实现微信-echarts"><a href="#实现微信-echarts" class="header-anchor">#</a> 实现微信 ECharts</h2> <p>我们先修改**./src/components/echart/echart.wx.cml**实现微信的 ECharts 功能。
+Google 搜索到了<a href="https://github.com/ecomfe/echarts-for-weixin" target="_blank" rel="noopener noreferrer">echarts-for-weixin<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，我们看该项目的使用文档，我们把该项目下的<a href="https://github.com/ecomfe/echarts-for-weixin/tree/master/ec-canvas" target="_blank" rel="noopener noreferrer">ec-canvas<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>文件夹拷贝到<code>./src/components/echart</code>文件夹下</p> <div class="language-bash extra-class"><pre class="language-bash"><code>./src/components
+└── echart
+    ├── ec-canvas
+    │   ├── ec-canvas.js
+    │   ├── ec-canvas.json
+    │   ├── ec-canvas.wxml
+    │   ├── ec-canvas.wxss
+    │   ├── echarts.js
+    │   └── wx-canvas.js
+    ├── echart.interface
+    ├── echart.web.cml
+    ├── echart.weex.cml
+    └── echart.wx.cml
+</code></pre></div><p><strong>不检查第三方库的全局变量</strong></p> <p>CML 默认会检查代码中禁止使用某端特有的全局变量，<code>echarts.js</code> 作为微信小程序代码，其中有 Web 端所特有的 <code>window</code> 全局变量，编译是会报错，所以这种第三方库建议不做检查。
+在项目根目录下的<code>chameleon.config.js</code> 添加。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>globalCheckWhiteList<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token regex">/node_modules/</span><span class="token punctuation">,</span> <span class="token string">'echarts.js'</span><span class="token punctuation">,</span> <span class="token string">'wx-canvas.js'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>不 babel 编译第三方库</strong>
+第三方库 <code>ec-echart</code>已经是编译后包所以为了提升编译速度，配置不做 babel 处理。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 引入 path 模块</span>
+<span class="token keyword">var</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+excludeBablePath<span class="token operator">:</span> <span class="token punctuation">[</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./src/components/echart/ec-canvas'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>修改**./src/components/echart/echart.wx.cml**文件里面的 json 配置，引用微信组件</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;ec-canvas&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ec-canvas/ec-canvas&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>修改 cml 模板，调用组件</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ec-canvas</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mychart_dom_bar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">canvas-id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mychartbar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">ec</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{ ec }}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ec-canvas</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>新建**./src/components/echart/bar.js**，作为统一存放 ECharts 图表的配置代码，代码如下：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">getdata</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> option <span class="token operator">=</span> <span class="token punctuation">{</span>
+    tooltip<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    xAxis<span class="token operator">:</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'衬衫'</span><span class="token punctuation">,</span> <span class="token string">'羊毛衫'</span><span class="token punctuation">,</span> <span class="token string">'雪纺衫'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    yAxis<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    series<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'销量'</span><span class="token punctuation">,</span>
+        type<span class="token operator">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">36</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> option<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>修改**./src/components/echart/echart.wx.cml**文件里面的 JS 代码，编写传递给组件的参数</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'./ec-canvas/echarts'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> chart <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> getBar <span class="token keyword">from</span> <span class="token string">'./bar'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">initChart</span><span class="token punctuation">(</span><span class="token parameter">canvas<span class="token punctuation">,</span> width<span class="token punctuation">,</span> height</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  chart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>canvas<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    width<span class="token operator">:</span> width<span class="token punctuation">,</span>
+    height<span class="token operator">:</span> height<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  canvas<span class="token punctuation">.</span><span class="token function">setChart</span><span class="token punctuation">(</span>chart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  chart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span><span class="token function">getBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> chart<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Echart</span> <span class="token keyword">implements</span> <span class="token class-name">EchartInterface</span> <span class="token punctuation">{</span>
+  props <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> String<span class="token punctuation">,</span>
+      <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">'默认值'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    ec<span class="token operator">:</span> <span class="token punctuation">{</span>
+      onInit<span class="token operator">:</span> initChart<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  computed <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  watch <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  methods <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">beforeCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">beforeMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$cmlEmit</span><span class="token punctuation">(</span><span class="token string">'onshow'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">beforeDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">destroyed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Echart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>修改**./src/components/echart/echart.wx.cml**文件里面的 style 代码，设置宽高</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.mychart_dom_bar,
+.container</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 750cpx<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 750cpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>此时能看到微信能展现图表了</p> <img src="/assets/img/echart_wx.839847da.png" style="width:300cpx;display:block;"> <h2 id="实现-web-端-echarts"><a href="#实现-web-端-echarts" class="header-anchor">#</a> 实现 Web 端 ECharts</h2> <p>Web 端使用 vue 框架，所以找到 ECharts 的 Vue 版本<a href="https://github.com/ecomfe/vue-echarts" target="_blank" rel="noopener noreferrer">vue-echarts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，
+按他说明文档，直接在 CML 项目根目录 <code>demo-poly</code> (我创建的 project 名) 下安装组件</p> <div class="language- extra-class"><pre class="language-text"><code>npm install echarts vue-echarts --save
+
+</code></pre></div><p>打开<strong>src/components/echart/echart.web.cml</strong>
+修改 json 标签配置，引用组件</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;chart&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-echarts/components/ECharts&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>修改 cml 模板，调用组件</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>chart</span>
+      <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mychart_dom_bar<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">:options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>bar<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">:init-options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>initOptions<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>bar<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">theme</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ovilia-green<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">auto-resize</span>
+    <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>修改 script，设置传入 chart 组件的参数</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token string">'echarts/lib/chart/bar'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> getBar <span class="token keyword">from</span> <span class="token string">'./bar'</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Echart</span> <span class="token keyword">implements</span> <span class="token class-name">EchartInterface</span> <span class="token punctuation">{</span>
+  props <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> String<span class="token punctuation">,</span>
+      <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">'默认值'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    bar<span class="token operator">:</span> <span class="token function">getBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    initOptions<span class="token operator">:</span> <span class="token punctuation">{</span>
+      renderer<span class="token operator">:</span> <span class="token string">'canvas'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  computed <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  watch <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  methods <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">beforeCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">beforeMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$cmlEmit</span><span class="token punctuation">(</span><span class="token string">'onshow'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">beforeDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">destroyed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Echart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>此时 Web 端也能看到图表效果了</p> <img src="/assets/img/echart_web.74168e11.png" style="width:300cpx;display:block;"> <h2 id="实现-native-weex-端-echarts"><a href="#实现-native-weex-端-echarts" class="header-anchor">#</a> 实现 Native Weex 端 ECharts</h2> <p>weex 不支持 canvas 接口，所以无法在 wWeex 环境下运行，我们可以用 Weex 的<a href="https://weex.apache.org/zh/docs/components/web.html" target="_blank" rel="noopener noreferrer">eb 组件<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>需要注意点就是 Weex 的<a href="https://weex.apache.org/zh/docs/components/web.html" target="_blank" rel="noopener noreferrer">web<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>组件是用于展示一个页面的</p> <p>所以，我们需要新建一个页面用于展示 ECharts</p> <div class="language-vue extra-class"><pre class="language-vue"><code>cml init page 然后输入页面名称 weex-echarts
+</code></pre></div><p>然后在 <code>./src/pages/weex-echarts/weex-echarts.cml</code>中写入图表这个页面的内容</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>page</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>chameleon<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scroller</span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{-1}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>scroller-wrap<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>echart</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>echart<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>hi<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>echart</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scroller</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>page</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">Index</span> <span class="token punctuation">{</span>
+  data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+<span class="token selector">.scroller-wrap</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.echart</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> row<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 500cpx<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 500cpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">cml-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>json<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;echart&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/components/echart/echart&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;wx&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;navigationBarTitleText&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dark&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#E2E2E2&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>在<code>./src/components/echart/echart.weex.cml</code>里面修改</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web</span>
+    <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>h5url<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@pagestart</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>onPageStart<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@pagefinish</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>onPageFinish<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@error</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>onError<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@receivedtitle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>onReceivedTitle<span class="token punctuation">&quot;</span></span>
+  <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">Echart</span> <span class="token keyword">implements</span> <span class="token class-name">EchartInterface</span> <span class="token punctuation">{</span>
+  props <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> String<span class="token punctuation">,</span>
+      <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">'默认值'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    pagestart<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    pagefinish<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    error<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    canGoBack<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    canGoForward<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">//这是作者的本机IP,cml/h5/weex-echarts 这个页面只有echarts图表</span>
+    h5url<span class="token operator">:</span> <span class="token string">'http://172.22.137.224:8000/cml/h5/weex-echarts'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  methods <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">onPageStart</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pagestart <span class="token operator">=</span> e<span class="token punctuation">.</span>url<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">onPageFinish</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pagefinish <span class="token operator">=</span> e<span class="token punctuation">.</span>url<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>canGoBack <span class="token operator">=</span> e<span class="token punctuation">.</span>canGoBack<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>canGoForward <span class="token operator">=</span> e<span class="token punctuation">.</span>canGoForward<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>title<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>title <span class="token operator">=</span> e<span class="token punctuation">.</span>title<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>error <span class="token operator">=</span> url<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">onReceivedTitle</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>title <span class="token operator">=</span> e<span class="token punctuation">.</span>title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$cmlEmit</span><span class="token punctuation">(</span><span class="token string">'onshow'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Echart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+<span class="token selector">.mychart_dom_bar</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 500cpx<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 750cpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 500cpx<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 750cpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">cml-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>json<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>此时 Weex 端也能看到图表效果了</p> <img src="/assets/img/echart_weex.bea7cb58.png" style="width:300cpx;display:block;"> <h2 id="资源"><a href="#资源" class="header-anchor">#</a> 资源</h2> <ul><li>本文中例子源码： https://github.com/GongLLei/cml-echarts-demo</li> <li>预览地址： http://gonglei.me/cml-echarts-demo/dist/web/cml-echarts-demo.html#/index</li></ul> <h2 id="最后"><a href="#最后" class="header-anchor">#</a> 最后</h2> <ul><li><p>同时如果有更多配置参数需要由调用方 index.cml 传入时，可以再 echart.interface 中定义更多输入输出的参数，保障各端一致。</p></li> <li><p>基于多态协议开发各端上实现差异较大的一类组件，调用上抹平了差异，同时我们可以各自维护，修改其中一端代码时，不会影响其他端的代码，做到充分隔离。</p></li> <li><p>后期我们可以把这 <strong>src/components/echart</strong> 单独发布成一个 npm 包，单拉出来维护</p></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/tutorial/poly-api.html" class="prev">
+        实现多态 API
+      </a></span> <span class="next"><a href="/tutorial/export-cml-component.html">
+        普通项目使用 CML 跨端组件
+      </a>
+      →
+    </span></p></div> <footer class="footer" data-v-aa5c954a><div class="content" data-v-aa5c954a><div class="left" data-v-aa5c954a><a href="/" class="brand" data-v-aa5c954a><img src="data:image/png;base64,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" alt="logo" data-v-aa5c954a> <span data-v-aa5c954a>Chameleon</span></a> <div class="info" data-v-aa5c954a>Copyright © 2020 DiDi Chuxing Inc.</div></div> <div class="right" data-v-aa5c954a><div class="col" data-v-aa5c954a><h4 data-v-aa5c954a>资源</h4> <a href="/components/expand.html" data-v-aa5c954a>Chameleon UI</a><a href="https://github.com/beatles-chameleon/cml-demo" target="_blank" rel="noopener" data-v-aa5c954a>
+              Chameleon Demo
+            </a><a href="https://github.com/chameleon-team/awesome-cml" target="_blank" rel="noopener" data-v-aa5c954a>
+              Awesome Chameleon
+            </a><a href="https://github.com/didi/chameleon/releases" target="_blank" rel="noopener" data-v-aa5c954a>
+              更新记录
+            </a></div><div class="col" data-v-aa5c954a><h4 data-v-aa5c954a>社区</h4> <a href="https://github.com/didi/chameleon/issues" target="_blank" rel="noopener" data-v-aa5c954a>
+              GitHub
+            </a><a data-v-aa5c954a><span data-v-aa5c954a>微信交流群</span> <img src="/assets/img/qr_weixin.59cd000a.png" alt="image" data-v-aa5c954a></a><a data-v-aa5c954a><span data-v-aa5c954a>QQ 交流群</span> <img src="/assets/img/qr_qq.115678d7.jpg" alt="image" data-v-aa5c954a></a><a data-v-aa5c954a><span data-v-aa5c954a>顺风公鹿</span> <img src="/assets/img/qr_deer.e2ddb653.png" alt="image" data-v-aa5c954a></a></div><div class="col" data-v-aa5c954a><h4 data-v-aa5c954a>关于</h4> <a href="https://github.com/didi/chameleon/wiki/Chameleon%E5%9B%A2%E9%98%9F" target="_blank" rel="noopener" data-v-aa5c954a>
+              Chameleon 团队
+            </a><a href="https://github.com/didi/chameleon/wiki/%E5%8A%A0%E5%85%A5%E6%88%91%E4%BB%AC" target="_blank" rel="noopener" data-v-aa5c954a>
+              加入我们
+            </a><a href="mailto:CML@didichuxing.com" target="_blank" rel="noopener" data-v-aa5c954a>
+              联系我们
+            </a><a href="https://github.com/didi/chameleon/wiki/Contributors" target="_blank" rel="noopener" data-v-aa5c954a>
+              贡献者
+            </a></div></div></div></footer></main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.99fcbcce.js" defer></script><script src="/assets/js/59.508d9d70.js" defer></script><script src="/assets/js/1.6e133947.js" defer></script><script src="/assets/js/6.9e8e6b26.js" defer></script><script src="/assets/js/2.7c7fd3bd.js" defer></script>
+  </body>
+</html>

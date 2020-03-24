@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>工程化 | Chameleon 变色龙</title>
+    <meta name="description" content="一套代码运行多端，一端所见即多端所见">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/brand/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.4f526a61.css" as="style"><link rel="preload" href="/assets/js/app.99fcbcce.js" as="script"><link rel="preload" href="/assets/js/59.508d9d70.js" as="script"><link rel="preload" href="/assets/js/1.6e133947.js" as="script"><link rel="preload" href="/assets/js/52.00305991.js" as="script"><link rel="preload" href="/assets/js/2.7c7fd3bd.js" as="script"><link rel="prefetch" href="/assets/js/10.3f3c97ec.js"><link rel="prefetch" href="/assets/js/11.8fd0e8ae.js"><link rel="prefetch" href="/assets/js/12.7eb44a90.js"><link rel="prefetch" href="/assets/js/13.42430351.js"><link rel="prefetch" href="/assets/js/14.aab83fd9.js"><link rel="prefetch" href="/assets/js/15.237669db.js"><link rel="prefetch" href="/assets/js/16.1b9de261.js"><link rel="prefetch" href="/assets/js/17.c0bf57ea.js"><link rel="prefetch" href="/assets/js/18.386d3bfe.js"><link rel="prefetch" href="/assets/js/19.b9becf3c.js"><link rel="prefetch" href="/assets/js/20.7ebc7997.js"><link rel="prefetch" href="/assets/js/21.6724581d.js"><link rel="prefetch" href="/assets/js/22.69ec1ad0.js"><link rel="prefetch" href="/assets/js/23.858a223b.js"><link rel="prefetch" href="/assets/js/24.f243c259.js"><link rel="prefetch" href="/assets/js/25.bfa416fc.js"><link rel="prefetch" href="/assets/js/26.2154d5c8.js"><link rel="prefetch" href="/assets/js/27.bb92a04b.js"><link rel="prefetch" href="/assets/js/28.15bdd9a1.js"><link rel="prefetch" href="/assets/js/29.6d241a0d.js"><link rel="prefetch" href="/assets/js/30.c7013aea.js"><link rel="prefetch" href="/assets/js/31.a2cc4043.js"><link rel="prefetch" href="/assets/js/32.876f052c.js"><link rel="prefetch" href="/assets/js/33.443a092c.js"><link rel="prefetch" href="/assets/js/34.10e2e96a.js"><link rel="prefetch" href="/assets/js/35.d2681381.js"><link rel="prefetch" href="/assets/js/36.c06aa7dd.js"><link rel="prefetch" href="/assets/js/37.3a2c7e3f.js"><link rel="prefetch" href="/assets/js/38.7359be1a.js"><link rel="prefetch" href="/assets/js/39.58154c72.js"><link rel="prefetch" href="/assets/js/4.e4489a0a.js"><link rel="prefetch" href="/assets/js/40.dc6c6a82.js"><link rel="prefetch" href="/assets/js/41.4f328cc0.js"><link rel="prefetch" href="/assets/js/42.db6f5dbf.js"><link rel="prefetch" href="/assets/js/43.5c867da9.js"><link rel="prefetch" href="/assets/js/44.e1a4f56b.js"><link rel="prefetch" href="/assets/js/45.efc06433.js"><link rel="prefetch" href="/assets/js/46.435e0121.js"><link rel="prefetch" href="/assets/js/47.630e64bc.js"><link rel="prefetch" href="/assets/js/48.bf913c8c.js"><link rel="prefetch" href="/assets/js/49.1db8624e.js"><link rel="prefetch" href="/assets/js/5.c07f5998.js"><link rel="prefetch" href="/assets/js/50.7829e330.js"><link rel="prefetch" href="/assets/js/51.8cf85456.js"><link rel="prefetch" href="/assets/js/53.503b2ea4.js"><link rel="prefetch" href="/assets/js/54.d4f5c566.js"><link rel="prefetch" href="/assets/js/55.d0e4387b.js"><link rel="prefetch" href="/assets/js/56.57fecbfb.js"><link rel="prefetch" href="/assets/js/57.1b68b234.js"><link rel="prefetch" href="/assets/js/58.c2b7d564.js"><link rel="prefetch" href="/assets/js/6.9e8e6b26.js"><link rel="prefetch" href="/assets/js/60.527eb36e.js"><link rel="prefetch" href="/assets/js/61.5247339f.js"><link rel="prefetch" href="/assets/js/62.54c884bf.js"><link rel="prefetch" href="/assets/js/63.331544bf.js"><link rel="prefetch" href="/assets/js/64.caa5c449.js"><link rel="prefetch" href="/assets/js/65.bb36b5a9.js"><link rel="prefetch" href="/assets/js/66.fb7fc181.js"><link rel="prefetch" href="/assets/js/67.b39d0300.js"><link rel="prefetch" href="/assets/js/68.c4ac29dd.js"><link rel="prefetch" href="/assets/js/69.f37635c5.js"><link rel="prefetch" href="/assets/js/7.7bb6da72.js"><link rel="prefetch" href="/assets/js/70.2c24a379.js"><link rel="prefetch" href="/assets/js/71.ac03b9f4.js"><link rel="prefetch" href="/assets/js/72.8242c89c.js"><link rel="prefetch" href="/assets/js/73.0aac4225.js"><link rel="prefetch" href="/assets/js/74.cca48904.js"><link rel="prefetch" href="/assets/js/75.78bc877f.js"><link rel="prefetch" href="/assets/js/76.edea28d3.js"><link rel="prefetch" href="/assets/js/77.79dae385.js"><link rel="prefetch" href="/assets/js/78.e551f7e8.js"><link rel="prefetch" href="/assets/js/79.5f148893.js"><link rel="prefetch" href="/assets/js/8.5d390741.js"><link rel="prefetch" href="/assets/js/80.d0cf063e.js"><link rel="prefetch" href="/assets/js/81.db96036b.js"><link rel="prefetch" href="/assets/js/82.4e4da58b.js"><link rel="prefetch" href="/assets/js/83.145895b5.js"><link rel="prefetch" href="/assets/js/84.eeaeb4af.js"><link rel="prefetch" href="/assets/js/85.717dd2c6.js"><link rel="prefetch" href="/assets/js/86.49f3e4f1.js"><link rel="prefetch" href="/assets/js/87.cce28408.js"><link rel="prefetch" href="/assets/js/88.80db1d50.js"><link rel="prefetch" href="/assets/js/89.005c3932.js"><link rel="prefetch" href="/assets/js/9.101b2658.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4f526a61.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/brand/logo.png" alt="Chameleon 变色龙" class="logo"> <span class="site-name can-hide">Chameleon 变色龙</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/" class="nav-link router-link-active">
+  文档
+</a></div><div class="nav-item"><a href="/components/" class="nav-link">
+  组件
+</a></div><div class="nav-item"><a href="/api/" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  教程
+</a></div><div class="nav-item"><a href="/faq/" class="nav-link">
+  FAQ
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/" class="nav-link router-link-active">
+  文档
+</a></div><div class="nav-item"><a href="/components/" class="nav-link">
+  组件
+</a></div><div class="nav-item"><a href="/api/" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  教程
+</a></div><div class="nav-item"><a href="/faq/" class="nav-link">
+  FAQ
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>开始</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/introduction.html" class="sidebar-link">介绍</a></li><li><a href="/docs/setup.html" class="sidebar-link">起步</a></li><li><a href="/docs/cli.html" class="sidebar-link">命令行工具 (CLI)</a></li><li><a href="/docs/folder.html" class="sidebar-link">目录结构</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>框架</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/view.html" class="sidebar-link">视图层</a></li><li><a href="/docs/cmss.html" class="sidebar-link">CMSS 介绍</a></li><li><a href="/docs/cml.html" class="sidebar-link">CML 语法</a></li><li><a href="/docs/cml-vue.html" class="sidebar-link">CML - 类 Vue 语法</a></li><li><a href="/docs/logic.html" class="sidebar-link">逻辑层</a></li><li><a href="/docs/store.html" class="sidebar-link">数据管理</a></li><li><a href="/docs/custom.html" class="sidebar-link">自定义组件</a></li><li><a href="/docs/config.html" class="sidebar-link">配置</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>高级指引</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/poly.html" class="sidebar-link">多态协议</a></li><li><a href="/docs/build.html" class="active sidebar-link">工程化</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/build.html#数据-mock" class="sidebar-link">数据 Mock</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#api-多域名-mock" class="sidebar-link">API 多域名 Mock</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#资源定位" class="sidebar-link">资源定位</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#文件指纹" class="sidebar-link">文件指纹</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#代码压缩" class="sidebar-link">代码压缩</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#热更新与自动刷新" class="sidebar-link">热更新与自动刷新</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#代理模式开发" class="sidebar-link">代理模式开发</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#cmlurl" class="sidebar-link">cmlUrl</a></li><li class="sidebar-sub-header"><a href="/docs/build.html#规范与校验" class="sidebar-link">规范与校验</a></li></ul></li><li><a href="/docs/io.html" class="sidebar-link">导入与导出</a></li><li><a href="/docs/sdk.html" class="sidebar-link">CML SDK</a></li><li><a href="/docs/mvvm.html" class="sidebar-link">定制扩展端</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>迁移</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/migrate-guide.html" class="sidebar-link">CML 迁移指南</a></li><li><a href="/docs/migrate-wx-to-cml.html" class="sidebar-link">迁移微信小程序项目到 CML</a></li><li><a href="/docs/migrate-vue-to-cml.html" class="sidebar-link">迁移 Vue 项目到 CML</a></li><li><a href="/docs/migrate-weex-to-cml.html" class="sidebar-link">迁移 Weex 项目到 CML</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="工程化"><a href="#工程化" class="header-anchor">#</a> 工程化</h1> <p>工程化是使用软件工程的技术和方法对项目的开发、上线和维护进行管理。CML 的工程化包含如下几个大方面：</p> <ul><li>1 模块化，项目中的文件统一以模块化的方式引入，包括.css,.js 以及定义的 interface 文件，这样做有如下好处避免变量污染与命名冲突，提高代码的复用率，提高代码的可维护性。</li> <li>2 组件化，CML 定义了.cml 文件，以组件为单位，将一个组件需要的视图、逻辑、样式、配置采用单文件的形式进行开发，提高了代码的可读性。</li> <li>3 本地开发解决方案，CML 提供了大量的工程化方法，解决本地开发时的各种痛点，包括
+<ul><li>提供 dev 服务，Mock 数据等能力，达到不依赖后端实现开发的前后端分离。</li> <li>提供  热更新，自动刷新，调试窗口，线上资源代理等能力，提高本地开发时的效率。</li></ul></li> <li>4 线上部署解决方案，CML 的构建是完全配置化的，内置线上线下两种构建模式，线上工程化相关功能包括
+<ul><li>线上静态资源的路径指定</li> <li> 基于文件内容的文件指纹</li> <li>减少文件体积的代码压缩</li></ul></li> <li>5 渐进式使用，CML 提供了两种渐进式使用的方式，一种是将 CML 的组件导出成各端的原生组件，第二种方式是引用插件在 webpack 项目中使用 CML 组件与接口。</li></ul> <h2 id="数据-mock"><a href="#数据-mock" class="header-anchor">#</a> 数据 Mock</h2> <h3 id="如何-mock-api-请求"><a href="#如何-mock-api-请求" class="header-anchor">#</a> 如何 Mock API 请求</h3> <blockquote><p>如果需要 Mock 多个域名的 API 请参见 <a href="/docs/build.html#api-多域名-mock">API 多域名 Mock</a>。</p></blockquote> <p>1、 使用<a href="/api/#网络请求">内置网络请求</a>接口发起网络请求。例如：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> cml <span class="token keyword">from</span> <span class="token string">'chameleon-api'</span><span class="token punctuation">;</span>
+cml
+  <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    url<span class="token operator">:</span> <span class="token string">'/api/getdriver'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      cml<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        message<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        duration<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      cml<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        message<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        duration<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>调用方法的参数 url 中只需要写 api 的路径。那么本地 dev 开发模式如何 mock 这个 api 请求以及 build 线上模式如何请求线上地址，就需要在配置文件中配置 apiPrefix。</p> <p>2、配置 <code>apiPrefix</code> <code>dev</code> 开发模式和 <code>build</code> 模式配置的 <code>apiPrefix</code> 会拼接到网络请求的 url 前，<code>dev</code> 模式不配置时，默认为当前启动 Web 服务的 ip+端口。上面的例子中如果本地 ip 为 <code>198.168.1.1</code> 启动端口为 <code>8000</code>。<code>dev</code> 模式发起的网络请求为 <code>198.168.1.1:8000/api/getdriver</code>, <code>build</code> 模式发起的网络请求为 <code>http://api.chameleon.com/api/getdriver</code>。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 设置 API 请求前缀</span>
+<span class="token keyword">const</span> apiPrefix <span class="token operator">=</span> <span class="token string">'http://api.chameleon.com'</span><span class="token punctuation">;</span>
+cml<span class="token punctuation">.</span>config<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  wx<span class="token operator">:</span> <span class="token punctuation">{</span>
+    dev<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    build<span class="token operator">:</span> <span class="token punctuation">{</span>
+      apiPrefix<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>3、 配置本地 Mock 数据</p> <p>前两步操作实现了网络请求 dev 模式请求本地，build 模式请求线上，这一步就讲解如何 mock 本地请求数据。</p> <p>在<code>/mock/api/</code>文件夹下创建 Mock 数据的 js 文件。文件内容格式如下：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    method<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    path<span class="token operator">:</span> <span class="token string">'/api/getdriver'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">controller</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'/api/driver/getList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        total<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+        driverList<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>method 指定请求方法，默认值['get','post']</li> <li>path 指定请求的路径</li> <li>controller 是 express 的中间件形式，在中间件中可以做任何操作最后调用 res 的方法返回结果。</li></ul> <p>启动 dev 模式后，通过 ip+端口+path 即可访问配置的 api 请求。结合上面讲到的网络请求方法，即可实现本地的 API 数据 Mock。</p> <p><b> 扩展 如何在本地 dev 模式请求线上数据？</b></p> <p>可以在 mock 文件的 controller 中请求对应的线上数据，例如可以使用 <a href="https://github.com/request/request" target="_blank" rel="noopener noreferrer">request 模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>实现请求。</p> <p>注：<a href="/tutorial/deploy-guide.html#apiPrefix、publicPath、router.config.json、cmlUrl的关系">apiPrefix、publicPath、router.config.json、cmlUrl 的关系</a></p> <h3 id="如何-mock-php-模板下发数据"><a href="#如何-mock-php-模板下发数据" class="header-anchor">#</a> 如何 mock php 模板下发数据</h3> <p><code>/mock/template/</code>文件夹下存放的 php 文件是下发的模板数据，php 文件内将下发的数据赋值给$CML 对象，例如：</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+  <span class="token variable">$chameleon</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token double-quoted-string string">&quot;errno&quot;</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token double-quoted-string string">&quot;errmsg&quot;</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token double-quoted-string string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token double-quoted-string string">&quot;pageData&quot;</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+      <span class="token double-quoted-string string">&quot;pageInfo&quot;</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+        <span class="token double-quoted-string string">&quot;title&quot;</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token double-quoted-string string">&quot;chameleon&quot;</span><span class="token punctuation">,</span>
+        <span class="token double-quoted-string string">&quot;content&quot;</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token double-quoted-string string">&quot;chameleon跨端&quot;</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?&gt;</span></span>
+</code></pre></div><p>在模板中通过变量<code>pageData,errno,errmsg</code>接收。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+  <span class="token keyword">var</span> pageData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token function">json_encode</span><span class="token punctuation">(</span>$pageData<span class="token punctuation">)</span><span class="token punctuation">}</span>
+  <span class="token keyword">var</span> errno <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token function">json_encode</span><span class="token punctuation">(</span>$errno<span class="token punctuation">)</span><span class="token punctuation">}</span>
+  <span class="token keyword">var</span> errmsg <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token function">json_encode</span><span class="token punctuation">(</span>$errmsg<span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre></div><p>同时还模拟了与模板下发的 pageData 相同的 ajax 请求，只需在当前访问页面的 url 上添加 puredata=1 参数。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+  errno<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  errmsg<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+  pageData<span class="token operator">:</span> <span class="token punctuation">{</span>
+    pageInfo<span class="token operator">:</span> <span class="token punctuation">{</span>
+      title<span class="token operator">:</span> <span class="token string">'chameleon'</span><span class="token punctuation">,</span>
+      content<span class="token operator">:</span> <span class="token string">'chameleon跨端'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="api-多域名-mock"><a href="#api-多域名-mock" class="header-anchor">#</a> API 多域名 Mock</h2> <p>在数据 Mock 一节讲述了如何进行 API 数据的 mock，但是只局限于所有 api 请求都是相同域名的情况，工作中可能出现一个项目请求多个域名的 api 接口，本节将讲解如和进行多域名的 mock。</p> <h3 id="版本要求"><a href="#版本要求" class="header-anchor">#</a> 版本要求</h3> <ul><li><code>chameleon-tool &gt;= 0.2.1</code></li> <li><code>chameleon-api &gt;= 0.3.1</code></li></ul> <h3 id="chameleon-config-js-中配置多域名信息"><a href="#chameleon-config-js-中配置多域名信息" class="header-anchor">#</a> chameleon.config.js 中配置多域名信息</h3> <p>domain 对象配置多域名的信息。
+<code>domain</code>, Object 类型。
+配置在 base 对象中，可以作为所有平台的公共配置，dev 模式中配置的<code>localhost</code>会替换成当前 dev 模式启动的 web 服务 ip+端口。</p> <p>例如：</p> <div class="language- extra-class"><pre class="language-text"><code>cml.config.merge({
+  base: {
+    dev: {
+      domain: {
+        domain1: &quot;localhost&quot;,
+        domain2: &quot;localhost&quot;
+      },
+    },
+    build: {
+      domain: {
+        domain1: &quot;http://api.cml.com&quot;,
+        domain2: &quot;http://api2.cml.com&quot;
+      },
+    }
+  },
+})
+</code></pre></div><h3 id="使用-chameleon-api-发网络请求"><a href="#使用-chameleon-api-发网络请求" class="header-anchor">#</a> 使用 chameleon-api 发网络请求</h3> <p><code>chameleon-api</code>的网络请求<code>get、post、request</code>方法中添加 domain 参数。
+<code>chameleon.config.js</code>中添加的<code>domain</code>对象配置，在项目中可以通过<code>process.env.domain</code>变量访问。</p> <p>例如：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> cml <span class="token keyword">from</span> <span class="token string">'chameleon-api'</span><span class="token punctuation">;</span>
+cml
+  <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    domain<span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>domain<span class="token punctuation">.</span>domain1<span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'/api/getMessage'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      cml<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        message<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        duration<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      cml<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        message<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        duration<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="配置-mock-数据"><a href="#配置-mock-数据" class="header-anchor">#</a> 配置 Mock 数据</h3> <p>前两步操作实现了网络请求 dev 模式请求本地，build 模式请求线上，这一步就讲解如何 mock 本地多域名的请求数据。</p> <p>在<code>/mock/api/</code>文件夹下创建 Mock 数据的 js 文件。文件内容格式如下：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    domainKey<span class="token operator">:</span> <span class="token string">'domain1'</span><span class="token punctuation">,</span>
+    request<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        method<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'get'</span><span class="token punctuation">,</span> <span class="token string">'post'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        path<span class="token operator">:</span> <span class="token string">'/api/getMessage'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">controller</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            total<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            message<span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span>
+                name<span class="token operator">:</span> <span class="token string">'HelloCML domain1'</span><span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    domainKey<span class="token operator">:</span> <span class="token string">'domain2'</span><span class="token punctuation">,</span>
+    request<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        method<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'get'</span><span class="token punctuation">,</span> <span class="token string">'post'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        path<span class="token operator">:</span> <span class="token string">'/api/getMessage'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">controller</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            total<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            message<span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span>
+                name<span class="token operator">:</span> <span class="token string">'domain2!'</span><span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>domainKey 指定 Mock 的域名，对应 <code>chameleon.config.js</code> 中 domain 对象的 key 值。</li> <li>method 指定请求方法，默认值['get','post']</li> <li>path 指定请求的路径</li> <li>controller 是 express 的中间件形式，在中间件中可以做任何操作最后调用 res 的方法返回结果。</li></ul> <h2 id="资源定位"><a href="#资源定位" class="header-anchor">#</a> 资源定位</h2> <h3 id="静态资源引用"><a href="#静态资源引用" class="header-anchor">#</a> 静态资源引用</h3> <p>模板中引用静态资源，不能直接将资源的路径写在模板中，而是要通过 js 中 require 该静态资源得到变量，在模板中引用该变量。
+该路径会根据<a href="/docs/config.html">项目配置的 publicPath</a>自动替换成正确路径。利用该功能可以实现  静态资源  开发路径和部署路径之间的  分离，开发者只需要写相对路径，线上可以通过设置<code>publicPath</code>指定任意路径。</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- 
+错误形式
+&lt;image src=&quot;./images/logo.png&quot; /&gt; 
+--&gt;</span>
+  <span class="token comment">&lt;!-- 正确形式 --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{imgPath}}<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">Index</span> <span class="token punctuation">{</span>
+  data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    imgPath<span class="token operator">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./images/logo.png'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="图片-base64"><a href="#图片-base64" class="header-anchor">#</a> 图片 base64</h3> <p>支持在引用图片 url 后面添加<code>inline</code>参数，以指定图片的 base64 格式，例如：</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">Index</span> <span class="token punctuation">{</span>
+  data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    imgPath<span class="token operator">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./images/logo.png?__inline'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="文件指纹"><a href="#文件指纹" class="header-anchor">#</a> 文件指纹</h2> <p>查看<a href="/docs/config.html#文件指纹">文件指纹配置</a></p> <h2 id="代码压缩"><a href="#代码压缩" class="header-anchor">#</a> 代码压缩</h2> <p>查看<a href="/docs/config.html#代码压缩">代码压缩配置</a></p> <h2 id="热更新与自动刷新"><a href="#热更新与自动刷新" class="header-anchor">#</a> 热更新与自动刷新</h2> <p>查看<a href="/docs/config.html#热更新与自动刷新">热更新与自动刷新配置</a></p> <h2 id="代理模式开发"><a href="#代理模式开发" class="header-anchor">#</a> 代理模式开发</h2> <p>调试线上编译处理过的非可读性代码，可以使用本功能</p> <p>通过简单的 CML 配置将线上文件代理到线下的开发环境，这样就可以通过修改线下的源码 debug 线上页面了，使用方法如下：</p> <h3 id="第一步"><a href="#第一步" class="header-anchor">#</a> 第一步</h3> <p>chameleon.config.js 中开启代理模式:</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+    proxy<span class="token operator">:</span> <span class="token punctuation">{</span>
+        enable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="第二步"><a href="#第二步" class="header-anchor">#</a> 第二步</h3> <p>执行以下命令</p> <div class="language- extra-class"><pre class="language-text"><code>cml dev
+</code></pre></div><h3 id="第三步"><a href="#第三步" class="header-anchor">#</a> 第三步</h3> <p>根据调试面板打印的信息给手机安装证书</p> <p><img src="/assets/img/cert.26a9702f.png" alt="image"></p> <h3 id="第四步"><a href="#第四步" class="header-anchor">#</a> 第四步</h3> <p>根据上图提示将手机代理到相应的端口</p> <p>完成以上步骤就可以进行代理开发了。</p> <p>默认代理了 Weex 和 Web 端的 js 和 css 文件，如需代理更多文件，可以  添加 mapremote 配置，方法如下：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+    proxy<span class="token operator">:</span> <span class="token punctuation">{</span>
+        enable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        mapremote<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+            <span class="token keyword">from</span><span class="token operator">:</span> <span class="token string">'https://a.b.com/weex/aaa_(.+).js'</span><span class="token punctuation">,</span>
+            to<span class="token operator">:</span> <span class="token string">'http://localhost:8000/weex/aaa.js'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+            <span class="token keyword">from</span><span class="token operator">:</span> <span class="token string">'https://a.b.com/weex/bbb_(.+).js'</span><span class="token punctuation">,</span>
+            to<span class="token operator">:</span> <span class="token string">'http://localhost:8000/weex/bbb.js'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="cmlurl"><a href="#cmlurl" class="header-anchor">#</a> cmlUrl</h2> <p>一个 cmlUrl 能在多端运行，在普通浏览器/webview 运行 Web 端，小程序运行小程序端，Native 渲染（weex）则拉取对应的 JS Bundle 并展现，完整地址如下，使用场景包含：</p> <ul><li>a.跨应用页面之间跳转使用<a href="/api/#open">open 接口</a></li> <li>b.服务端下发给端（weex/浏览器/小程序）进行跳转</li></ul> <p><code>https://h5地址</code>?
+<code>cml_addr=jsbundle地址</code>&amp;
+<code>path=路由path(通用字段)</code>&amp;
+<code>envVersion=要打开的小程序版本(通用字段)</code>&amp;
+<code>weixin_appid=123456</code>&amp;
+<code>weixin_path=微信小程序路由path</code>&amp;
+<code>weixin_envVersion=要打开的微信小程序版本</code>&amp;
+<code>baidu_appid=123456</code>&amp;
+<code>baidu_path=百度小程序路由path</code>&amp;
+<code>baidu_envVersion=要打开的百度小程序版本</code>&amp;
+<code>alipay_appid=123456</code>&amp;
+<code>alipay_path=支付宝小程序路由path</code></p> <table><tr><th>参数</th> <th>作用</th> <th>说明</th></tr> <tr><td>h5地址</td> <td>H5端的地址或者用于提示bundle出错的h5地址</td> <td>如果你没有h5地址，可以选择将h5地址写为jsbundle地址（后面的cml_addr=jsbundle地址依然需要）。</td></tr> <tr><td>cml_addr</td> <td>描述weex/rn js bundle地址</td> <td>内部非使用sdk开发者暂时使用cml_addr字段</td></tr> <tr><td>path</td> <td>描述应用里面的页面路由， 即路由里面的 path 值 </td> <td>若未填写weixin_path, baidu_path, alipay_path时, 统一使用该字段</td></tr> <tr><td>envVersion</td> <td>要打开的小程序版本 </td> <td>有效值 develop（开发版），trial（体验版），release（正式版） ，仅在当前小程序为开发版或体验版时此参数有效(仅支持<a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.navigateToMiniProgram.html">微信小程序</a>和<a href="https://docs.alipay.com/mini/api/open-miniprogram">支付宝小程序</a>)</td></tr> <tr><td>weixin_appid</td> <td>描述微信小程序的app id</td> <td>微信小程序跳转需要 <a href="https://developers.weixin.qq.com/minigame/dev/api/open-api/miniprogram-navigate/wx.navigateToMiniProgram.html?t=18091916">appid</a></td></tr> <tr><td>weixin_path</td> <td>描述应用里面的页面路由(目标微信小程序为非 CML 项目时可用)</td> <td></td></tr> <tr><td>weixin_envVersion</td> <td>要打开的小程序版本 </td> <td>有效值 develop（开发版），trial（体验版），release（正式版） ，仅在当前小程序为开发版或体验版时此参数有效(该字段仅对微信小程序跳转生效)</td></tr> <tr><td>baidu_appid</td> <td>描述百度小程序的appKey</td> <td>百度小程序跳转需要 <a href="https://smartprogram.baidu.com/docs/develop/api/open_smartprogram/#navigateToSmartProgram/">appKey</a></td></tr> <tr><td>baidu_path</td> <td>描述应用里面的页面路由(目标百度小程序为非 CML 项目时可用)</td> <td></td></tr> <tr><td>alipay_appid</td> <td>描述支付宝小程序的app id</td> <td>支付宝小程序跳转需要 <a href="https://docs.alipay.com/mini/api/open-miniprogram">appid</a></td></tr> <tr><td>alipay_path</td> <td>描述应用里面的页面路由(目标支付宝小程序为非 CML 项目时可用)</td> <td></td></tr> <tr><td>alipay_envVersion</td> <td>要打开的小程序版本 </td> <td>有效值 develop（开发版），trial（体验版），release（正式版） ，仅在当前小程序为开发版或体验版时此参数有效(该字段仅对支付宝小程序跳转生效)</td></tr></table> <h2 id="规范与校验"><a href="#规范与校验" class="header-anchor">#</a> 规范与校验</h2> <p>按照框架定义，有相应的目录规范，文件规范，文件内容规范等，按照规范编写代码，可以最大程度的减少开发、调试时间。</p> <p>另，框架提供了校验工具，让开发者可以提前发现不符合规范的问题，提高效率。</p> <h3 id="接口校验语法"><a href="#接口校验语法" class="header-anchor">#</a> 接口校验语法</h3> <blockquote><p>接口是一系列方法的声明，是一些方法特征的集合，一个接口只有方法的特征没有方法的实现，因此这些方法可以在不同的地方被不同的类实现，而这些实现可以具有不同的行为（功能）进行沟通。</p></blockquote> <h4 id="校验配置"><a href="#校验配置" class="header-anchor">#</a> 校验配置</h4> <p>通过配置决定是否开启接口的校验。
+<code>Object、Array、Nullable</code>这三个类型默认是不支持的，因为我们建议更精确的校验，可以通过配置文件开启这三个类型。
+具体参见<a href="/docs/config.html#多态校验控制">多态校验控制的配置</a></p> <h4 id="类型说明"><a href="#类型说明" class="header-anchor">#</a> 类型说明</h4> <p><strong> 注意：建议定义类型的时候取值为 Number String Boolean Null Undefined(Void) Object Array Function Date RegExp</strong></p> <p>目前 CML 接口定义支持简单类型和复合类型。</p> <p>其中简单类型包括以下类型：</p> <ul><li>Number(number)</li> <li>String(string)</li> <li>Boolean(bool)</li> <li>Undefined(void)</li> <li>Null</li></ul> <p>复合类型包括以下类型：</p> <ul><li>Function</li> <li>Object</li> <li>Array</li> <li>Date</li> <li>RegExp</li></ul> <h4 id="接口语法"><a href="#接口语法" class="header-anchor">#</a> 接口语法</h4> <p>接口的使用分两个过程：</p> <ol><li>定义一个接口。</li> <li>定义实现接口的类。</li></ol> <h5 id="接口定义"><a href="#接口定义" class="header-anchor">#</a> 接口定义</h5> <p><strong>范式</strong></p> <div class="language- extra-class"><pre><code>interface [接口名称] {
+    // 接口中的属性
+    [属性名称]: [类型],
+
+    // 接口中的方法
+   [方法名称]([传入参数1名称]: [传入参数1类型], [传入参数2名称]: [传入参数2类型], ...): [返回类型]
+}
+</code></pre></div><p><strong>举例</strong></p> <div class="language- extra-class"><pre><code>// 一个名为interface1的接口
+interface interface1 {
+  // foo1: 传入分别为string和number的两个数据，返回值类型为string值
+  foo1(a: string, b: number): string;
+
+  // foo2: 传入分别为string和Callback(上文定义)的两个数据，返回值类型为bool值
+  foo2(c: string, d: Callback): Boolean;
+}
+</code></pre></div><h5 id="实现接口（定义类）"><a href="#实现接口（定义类）" class="header-anchor">#</a> 实现接口（定义类）</h5> <p><strong>范式</strong></p> <div class="language- extra-class"><pre><code>class [类名称] implaments [接口名称] {
+
+    // 实现接口中的属性
+    [属性名称]: [类型]
+
+    // 实现接口中的方法
+  [方法名称]([传入参数1名称], [传入参数2名称], ...){
+      return [返回值];
+    }
+}
+</code></pre></div><p><strong>举例</strong></p> <div class="language- extra-class"><pre><code>// 实现一个名称为Clazz，实现上文定义的interface1接口
+class Clazz implaments interface1 {
+
+    // 实现interface1定义的foo1方法，输入值和输出值要满足定义
+    foo1(a, b) {
+        return 'hello ' + a + ' : ' + (b + 1);
+    }
+
+    // 实现interface1定义的foo2方法，输入值和输出值要满足定义
+    foo2(c, d) {
+        return 'balabala...';
+    }
+}
+</code></pre></div><h4 id="复合类型的定义范式"><a href="#复合类型的定义范式" class="header-anchor">#</a> 复合类型的定义范式</h4> <div class="language- extra-class"><pre><code>type [类型名称] = [类型定义]
+</code></pre></div><p>不同的复合类型，类型定义也不相同，下面会对三种复合类型做详细说明。</p> <h5 id="function-类型定义"><a href="#function-类型定义" class="header-anchor">#</a> Function 类型定义</h5> <p><strong>范式</strong></p> <div class="language- extra-class"><pre><code>type [Function类型名称] = ([传入参数1名称]: [传入参数1类型], [传入参数2名称]: [传入参数2类型], ...) =&gt; [返回类型]
+</code></pre></div><p><strong>举例</strong></p> <div class="language- extra-class"><pre><code>// 定义一个传参分别为number,string,bool类型的三个参数，返回值为number的函数类型
+type Callback = (a: number, b: string, c: bool) =&gt; number;
+</code></pre></div><h5 id="object-类型定义"><a href="#object-类型定义" class="header-anchor">#</a> Object 类型定义</h5> <p><strong>范式</strong></p> <div class="language- extra-class"><pre><code>type [Object类型名称] = {
+    [属性名称1]: [类型1],
+    [属性名称2]: [类型2]
+}
+</code></pre></div><p><strong>举例</strong></p> <div class="language- extra-class"><pre><code>// 定义含有a,b,c三个属性的复合类型
+type Scheme = {
+    a: string,
+    b: bool,
+    c: number
+}
+</code></pre></div><h5 id="array-类型定义"><a href="#array-类型定义" class="header-anchor">#</a> Array 类型定义</h5> <p><strong>范式</strong></p> <div class="language- extra-class"><pre><code>type [Array类型名称] = [
+  [类型1]
+]
+</code></pre></div><p><strong>举例</strong></p> <div class="language- extra-class"><pre><code>// 定义名称为arrayType1的数组类型，数组元素为number类型
+type arrayType1 = [
+    number
+]
+</code></pre></div><h5 id="目前数组的详细校验只能校验数组中的元素是同一种类型，即-1-2-3-而不能校验-1-2-this-is-string"><a href="#目前数组的详细校验只能校验数组中的元素是同一种类型，即-1-2-3-而不能校验-1-2-this-is-string" class="header-anchor">#</a> 目前数组的详细校验只能校验数组中的元素是同一种类型，即[1,2,3],而不能校验 [1,2,'this is string'];</h5> <ul><li>如果想要校验某个入参或者函数的返回值是一个数组，但是数组中的值得类型不是同一类型</li> <li>或者只想简单的对某个对象进行类型校验，但是对象中具体的 key-value 值不想校验；
+那么在项目配置开启['Object','Array']直接校验的前提下，可以如下写**</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span>arr<span class="token operator">:</span> Array<span class="token punctuation">,</span> o<span class="token operator">:</span> Object<span class="token punctuation">)</span><span class="token operator">:</span> Array<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'str'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>address<span class="token operator">:</span><span class="token string">'China'</span><span class="token punctuation">}</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span>obj</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">'this is str'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>name<span class="token operator">:</span><span class="token string">&quot;jhon&quot;</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>此时校验就只会校验入参或者返回值得数据类型是否是 Array 或者 Object ，而不会深入校验数组或者对象中的元素；</p> <h4 id="复合类型中的相互嵌套"><a href="#复合类型中的相互嵌套" class="header-anchor">#</a> 复合类型中的相互嵌套</h4> <p>Function、Object、Array 三种复合类型可以互相嵌套：</p> <div class="language- extra-class"><pre><code>// 定义一个传参分别为number,string,bool类型的三个参数，返回值为number的函数类型
+type Callback = (a: number, b: string, c: bool) =&gt; number;
+
+// 定义名称为arrayType1的数组类型，数组元素为number类型
+type arrayType1 = [
+    number
+]
+
+// 定义名称为Scheme的，含有Array类型和Function类型属性的Object类型
+type Scheme = {
+    a: arrayType1,
+    b: Callback,
+}
+
+// 定义名称为Plan，含有Scheme类型和Callback的属性的Object类型
+type Plan = {
+    a: string,
+    b: Scheme,
+    c: Callback
+}
+
+// 定义名称为arrayType1类型，元素为Plan类型
+type arrayType1 = [
+    Plan
+]
+</code></pre></div><h5 id="date-类型的定义"><a href="#date-类型的定义" class="header-anchor">#</a> Date 类型的定义</h5> <p>如果函数参数或者返回值是 Date 数据类型，那么可以按照下面的方式进行定义；</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span>d<span class="token operator">:</span> Date<span class="token punctuation">)</span><span class="token operator">:</span> Date<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span><span class="token parameter">d</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="regexp-类型的定义"><a href="#regexp-类型的定义" class="header-anchor">#</a> RegExp 类型的定义</h4> <p>如果函数参数或者返回值是 RegExp 数据类型，那么可以按照下面的方式进行定义；</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span>d<span class="token operator">:</span> RegExp<span class="token punctuation">)</span><span class="token operator">:</span> RegExp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span><span class="token parameter">r</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="maybe-types-意味着该值可能是这种类型，但是也可能是-undefined-或者-null"><a href="#maybe-types-意味着该值可能是这种类型，但是也可能是-undefined-或者-null" class="header-anchor">#</a> Maybe Types : 意味着该值可能是这种类型，但是也可能是 undefined 或者 null</h4> <p><strong>注意如果要定义 Nullable（?Number）这样的参数，那么该参数的占位符是必须的</strong></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token operator">?</span>Number<span class="token punctuation">,</span> b<span class="token operator">:</span> String<span class="token punctuation">,</span> c<span class="token operator">:</span> Boolean<span class="token punctuation">)</span><span class="token operator">:</span> Undefined<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">,</span> <span class="token string">'str'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token string">'str'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">'str'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token string">'42'</span><span class="token punctuation">,</span> <span class="token string">'str'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+
+<span class="token comment">//**注意如果要定义Nullable（?Number）这样的参数，那么该参数的占位符是必须的,在校验入参的时候，会按照interface中定义的顺序，有序的校验传入的参数是否和interface中定义的数据参数类型一直，(?Number)这种定义的校验其实只是说明这个参数可以是 null  undefined number类型的数据，但是是必须传递的**</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token string">'str'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><h3 id="全局变量校验"><a href="#全局变量校验" class="header-anchor">#</a> 全局变量校验</h3> <p>CML 的代码最终会运行在多端框架中，每一个端都会有一些特有的全局变量，chameleon 内部维护了一个各端全局变量的散列表如下表所示。</p> <p><b>全局变量校验校验的是某一端运行的代码中存在其他端的全局变量并且不是当前端的全局变量</b>。例如非微信小程序端的  代码中不能出现<code>wx</code>全局变量，非百度小程序的代码中不能出现<code>swan</code>全局变量。</p> <p>可以通过项目配置决定是否开启全局变量校验，还可以配置哪些文件是白名单文件进行校验。</p> <table><tr><th>端</th><th>全局变量</th></tr> <tr><td>微信小程序</td><td>[&quot;wx&quot;]</td></tr> <tr><td>百度小程序</td><td>[&quot;swan&quot;]</td></tr> <tr><td>weex</td><td>[&quot;weex&quot;]</td></tr> <tr><td>支付宝小程序</td><td>[&quot;my&quot;]</td></tr> <tr><td>web</td><td><div style="width:500px;">[&quot;postMessage&quot;,&quot;blur&quot;,&quot;focus&quot;,&quot;close&quot;,&quot;frames&quot;,&quot;self&quot;,&quot;window&quot;,&quot;parent&quot;,&quot;opener&quot;,&quot;top&quot;,&quot;length&quot;,&quot;closed&quot;,&quot;location&quot;,&quot;document&quot;,&quot;origin&quot;,&quot;name&quot;,&quot;history&quot;,&quot;locationbar&quot;,&quot;menubar&quot;,&quot;personalbar&quot;,&quot;scrollbars&quot;,&quot;statusbar&quot;,&quot;toolbar&quot;,&quot;status&quot;,&quot;frameElement&quot;,&quot;navigator&quot;,&quot;customElements&quot;,&quot;external&quot;,&quot;screen&quot;,&quot;innerWidth&quot;,&quot;innerHeight&quot;,&quot;scrollX&quot;,&quot;pageXOffset&quot;,&quot;scrollY&quot;,&quot;pageYOffset&quot;,&quot;screenX&quot;,&quot;screenY&quot;,&quot;outerWidth&quot;,&quot;outerHeight&quot;,&quot;devicePixelRatio&quot;,&quot;clientInformation&quot;,&quot;screenLeft&quot;,&quot;screenTop&quot;,&quot;defaultStatus&quot;,&quot;defaultstatus&quot;,&quot;styleMedia&quot;,&quot;onanimationend&quot;,&quot;onanimationiteration&quot;,&quot;onanimationstart&quot;,&quot;onsearch&quot;,&quot;ontransitionend&quot;,&quot;onwebkitanimationend&quot;,&quot;onwebkitanimationiteration&quot;,&quot;onwebkitanimationstart&quot;,&quot;onwebkittransitionend&quot;,&quot;isSecureContext&quot;,&quot;onabort&quot;,&quot;onblur&quot;,&quot;oncancel&quot;,&quot;oncanplay&quot;,&quot;oncanplaythrough&quot;,&quot;onchange&quot;,&quot;onclick&quot;,&quot;onclose&quot;,&quot;oncontextmenu&quot;,&quot;oncuechange&quot;,&quot;ondblclick&quot;,&quot;ondrag&quot;,&quot;ondragend&quot;,&quot;ondragenter&quot;,&quot;ondragleave&quot;,&quot;ondragover&quot;,&quot;ondragstart&quot;,&quot;ondrop&quot;,&quot;ondurationchange&quot;,&quot;onemptied&quot;,&quot;onended&quot;,&quot;onerror&quot;,&quot;onfocus&quot;,&quot;oninput&quot;,&quot;oninvalid&quot;,&quot;onkeydown&quot;,&quot;onkeypress&quot;,&quot;onkeyup&quot;,&quot;onload&quot;,&quot;onloadeddata&quot;,&quot;onloadedmetadata&quot;,&quot;onloadstart&quot;,&quot;onmousedown&quot;,&quot;onmouseenter&quot;,&quot;onmouseleave&quot;,&quot;onmousemove&quot;,&quot;onmouseout&quot;,&quot;onmouseover&quot;,&quot;onmouseup&quot;,&quot;onmousewheel&quot;,&quot;onpause&quot;,&quot;onplay&quot;,&quot;onplaying&quot;,&quot;onprogress&quot;,&quot;onratechange&quot;,&quot;onreset&quot;,&quot;onresize&quot;,&quot;onscroll&quot;,&quot;onseeked&quot;,&quot;onseeking&quot;,&quot;onselect&quot;,&quot;onstalled&quot;,&quot;onsubmit&quot;,&quot;onsuspend&quot;,&quot;ontimeupdate&quot;,&quot;ontoggle&quot;,&quot;onvolumechange&quot;,&quot;onwaiting&quot;,&quot;onwheel&quot;,&quot;onauxclick&quot;,&quot;ongotpointercapture&quot;,&quot;onlostpointercapture&quot;,&quot;onpointerdown&quot;,&quot;onpointermove&quot;,&quot;onpointerup&quot;,&quot;onpointercancel&quot;,&quot;onpointerover&quot;,&quot;onpointerout&quot;,&quot;onpointerenter&quot;,&quot;onpointerleave&quot;,&quot;onafterprint&quot;,&quot;onbeforeprint&quot;,&quot;onbeforeunload&quot;,&quot;onhashchange&quot;,&quot;onlanguagechange&quot;,&quot;onmessage&quot;,&quot;onmessageerror&quot;,&quot;onoffline&quot;,&quot;ononline&quot;,&quot;onpagehide&quot;,&quot;onpageshow&quot;,&quot;onpopstate&quot;,&quot;onrejectionhandled&quot;,&quot;onstorage&quot;,&quot;onunhandledrejection&quot;,&quot;onunload&quot;,&quot;performance&quot;,&quot;stop&quot;,&quot;open&quot;,&quot;alert&quot;,&quot;confirm&quot;,&quot;prompt&quot;,&quot;print&quot;,&quot;requestAnimationFrame&quot;,&quot;cancelAnimationFrame&quot;,&quot;requestIdleCallback&quot;,&quot;cancelIdleCallback&quot;,&quot;captureEvents&quot;,&quot;releaseEvents&quot;,&quot;getComputedStyle&quot;,&quot;matchMedia&quot;,&quot;moveTo&quot;,&quot;moveBy&quot;,&quot;resizeTo&quot;,&quot;resizeBy&quot;,&quot;getSelection&quot;,&quot;find&quot;,&quot;webkitRequestAnimationFrame&quot;,&quot;webkitCancelAnimationFrame&quot;,&quot;fetch&quot;,&quot;btoa&quot;,&quot;atob&quot;,&quot;createImageBitmap&quot;,&quot;scroll&quot;,&quot;scrollTo&quot;,&quot;scrollBy&quot;,&quot;onappinstalled&quot;,&quot;onbeforeinstallprompt&quot;,&quot;crypto&quot;,&quot;ondevicemotion&quot;,&quot;ondeviceorientation&quot;,&quot;ondeviceorientationabsolute&quot;,&quot;indexedDB&quot;,&quot;webkitStorageInfo&quot;,&quot;sessionStorage&quot;,&quot;localStorage&quot;,&quot;chrome&quot;,&quot;visualViewport&quot;,&quot;speechSynthesis&quot;,&quot;webkitRequestFileSystem&quot;,&quot;webkitResolveLocalFileSystemURL&quot;,&quot;openDatabase&quot;,&quot;applicationCache&quot;,&quot;caches&quot;,&quot;whichAnimationEvent&quot;,&quot;animationendEvent&quot;,&quot;infinity&quot;,&quot;SETTING&quot;,&quot;AppView&quot;,&quot;ExtensionOptions&quot;,&quot;ExtensionView&quot;,&quot;WebView&quot;,&quot;iconPath&quot;,&quot;_app&quot;,&quot;_ZOOM_&quot;,&quot;Feed&quot;,&quot;md5&quot;,&quot;$&quot;,&quot;jQuery&quot;,&quot;Search&quot;,&quot;windmill&quot;,&quot;Lethargy&quot;,&quot;alertTimeOut&quot;,&quot;supportApps&quot;,&quot;lethargyX&quot;,&quot;lethargyY&quot;,&quot;iView&quot;,&quot;onModuleResLoaded&quot;,&quot;iEditDelete&quot;,&quot;infinityDrag&quot;,&quot;i&quot;,&quot;array&quot;,&quot;TEMPORARY&quot;,&quot;PERSISTENT&quot;,&quot;addEventListener&quot;,&quot;removeEventListener&quot;,&quot;dispatchEvent&quot;]</div></td></tr></table> <h3 id="代码规范校验"><a href="#代码规范校验" class="header-anchor">#</a> 代码规范校验</h3> <h4 id="核心文件校验"><a href="#核心文件校验" class="header-anchor">#</a> 核心文件校验</h4> <p>根据<code>chameleon</code>目录结构，确定核心文件的位置，保证 CML 项目能够正常运行。</p> <h5 id="目录结构"><a href="#目录结构" class="header-anchor">#</a> 目录结构</h5> <div class="language-bash extra-class"><pre class="language-bash"><code>├── chameleon.config.js                 // 项目的配置文件
+├── dist                                // 打包产出目录
+├── mock                                // 模拟数据目录
+├── node_modules                        // npm包依赖
+├── package.json
+└── src                                 // 项目源代码
+    ├── app                             // app入口
+    ├── components                      // 组件文件夹
+    ├── pages                           // 页面文件夹
+    ├── router.config.json              // 路由配置文件
+    └── store                           // 全局状态管理
+</code></pre></div><h5 id="核心文件列表"><a href="#核心文件列表" class="header-anchor">#</a> 核心文件列表</h5> <p>会对以下核心文件进行检查：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>chameleon.config.js
+src/app/app.cml
+src/router.config.json
+</code></pre></div><h4 id="cml-文件规范校验"><a href="#cml-文件规范校验" class="header-anchor">#</a> CML 文件规范校验</h4> <p>CML 文件规范校验包括校验以下三个规范：</p> <ul><li>CML 文件命名规范</li> <li>CML 文件内容规范</li> <li>CML Interface 内容规范</li></ul> <h5 id="cml-文件命名规范"><a href="#cml-文件命名规范" class="header-anchor">#</a> CML 文件命名规范</h5> <p>以 cml 后缀结尾的文件分两种情况：</p> <p><strong>多端实现完全一致组件命名格式</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>component name<span class="token punctuation">]</span>.cml
+</code></pre></div><p>组件所有逻辑实现在同一文件中</p> <p>举例：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>demo.cml
+</code></pre></div><p><strong>多端实现不一致组件命名格式</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>component name<span class="token punctuation">]</span>.<span class="token punctuation">[</span>weex<span class="token operator">|</span>wx<span class="token operator">|</span>alipay<span class="token operator">|</span>baidu<span class="token operator">|</span>web<span class="token punctuation">]</span>.cml
+</code></pre></div><p>组件文件名按照适配端命名，需要同一目录下的 interface 文件组合使用</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>component name<span class="token punctuation">]</span>.interface
+</code></pre></div><p>举例：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>demo.interface
+demo.weex.cml
+demo.wx.cml
+demo.alipay.cml
+demo.baidu.cml
+demo.web.cml
+</code></pre></div><h5 id="cml-文件内容规范"><a href="#cml-文件内容规范" class="header-anchor">#</a> CML 文件内容规范</h5> <p>cml 文件中可能包括以下几个字段标签</p> <ol><li>template(template 规范)：标签中书写组件的视图层结构，chameleon 自定义了一套标签语言，结合基础组件、事件系统，可以构建出页面的结构。</li> <li>style(CMSS 规范)：标签中书写组件的样式, 描述视图中的元素样式。</li> <li>script(script 规范)：标签中填充编写组件逻辑层响应页面操作的代码。</li> <li>json(json 规范)：标签中书写组件的配置信息。</li></ol> <p>举例：</p> <div class="language-vue extra-class"><pre class="language-vue"><code>// demo.cml code
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>banner<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">Index</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+<span class="token selector">#banner</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #ff0000<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">cml-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>json<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;wx&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;navigationBarTitleText&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dark&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#E2E2E2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;alipay&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;defaultTitle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;pullRefresh&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;allowsBounceVertical&quot;</span><span class="token operator">:</span> <span class="token string">&quot;YES&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;titleBarColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;baidu&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;navigationBarBackgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;navigationBarTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;white&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;navigationBarTitleText&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dark&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;enablePullDownRefresh&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;onReachBottomDistance&quot;</span><span class="token operator">:</span> <span class="token number">50</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;web&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;weex&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h5 id="cml-interface-内容规范"><a href="#cml-interface-内容规范" class="header-anchor">#</a> CML Interface 内容规范</h5> <p><code>.interface</code> 后缀文件用于定义多态组件的接口。</p> <blockquote><p>接口是一系列方法的声明，是一些方法特征的集合，一个接口只有方法的特征没有方法的实现，因此这些方法可以在不同的地方被不同的类实现，而这些实现可以具有不同的行为（功能）进行沟通。</p></blockquote> <p><strong>类型说明</strong></p> <p><strong>注意：建议定义类型的时候取值为 Number String Boolean Null Undefined(Void) Object Array Function Date RegExp</strong></p> <p>目前 CML 接口定义支持简单类型和复合类型。</p> <p>其中简单类型包括以下类型：</p> <ul><li>Number(number)</li> <li>String(string)</li> <li>Boolean(bool)</li> <li>Undefined(void)</li> <li>Null</li></ul> <p>复合类型包括以下类型：</p> <ul><li>Function</li> <li>Object</li> <li>Array</li> <li>Date</li> <li>RegExp</li> <li>Promise</li></ul> <p><strong>接口语法</strong></p> <p>接口的使用分两个过程：</p> <ol><li>定义一个接口。</li> <li>定义实现接口的类。</li></ol> <p><strong>接口定义</strong></p> <p>范式:</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    <span class="token keyword">interface</span> <span class="token punctuation">[</span>接口名称<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 接口中的属性</span>
+        <span class="token punctuation">[</span>属性名称<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>类型<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token comment">// 接口中的方法</span>
+       <span class="token punctuation">[</span>方法名称<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">[</span>传入参数<span class="token number">1</span>名称<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>传入参数<span class="token number">1</span>类型<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>传入参数<span class="token number">2</span>名称<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>传入参数<span class="token number">2</span>类型<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span>返回类型<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>举例：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 一个名为interface1的接口</span>
+<span class="token keyword">interface</span> <span class="token class-name">interface1</span> <span class="token punctuation">{</span>
+  <span class="token comment">// foo1: 传入分别为string和number的两个数据，返回值类型为string值</span>
+  <span class="token function">foo1</span><span class="token punctuation">(</span>a<span class="token operator">:</span> string<span class="token punctuation">,</span> b<span class="token operator">:</span> number<span class="token punctuation">)</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+  <span class="token comment">// foo2: 传入分别为string和Callback(上文定义)的两个数据，返回值类型为bool值</span>
+  <span class="token function">foo2</span><span class="token punctuation">(</span>c<span class="token operator">:</span> string<span class="token punctuation">,</span> d<span class="token operator">:</span> Callback<span class="token punctuation">)</span><span class="token operator">:</span> Boolean<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>实现接口（定义类）</strong></p> <p>范式：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    <span class="token keyword">class</span> <span class="token punctuation">[</span>类名称<span class="token punctuation">]</span> implaments <span class="token punctuation">[</span>接口名称<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 实现接口中的属性</span>
+        <span class="token punctuation">[</span>属性名称<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>类型<span class="token punctuation">]</span>
+        <span class="token comment">// 实现接口中的方法</span>
+      <span class="token punctuation">[</span>方法名称<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">[</span>传入参数<span class="token number">1</span>名称<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>传入参数<span class="token number">2</span>名称<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token punctuation">[</span>返回值<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>举例：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    <span class="token comment">// 实现一个名称为Clazz，实现上文定义的interface1接口</span>
+    <span class="token keyword">class</span> <span class="token class-name">Clazz</span> implaments interface1 <span class="token punctuation">{</span>
+        <span class="token comment">// 实现interface1定义的foo1方法，输入值和输出值要满足定义</span>
+        <span class="token function">foo1</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">'hello '</span> <span class="token operator">+</span> a <span class="token operator">+</span> <span class="token string">' : '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>b <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 实现interface1定义的foo2方法，输入值和输出值要满足定义</span>
+        <span class="token function">foo2</span><span class="token punctuation">(</span><span class="token parameter">c<span class="token punctuation">,</span> d</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">'balabala...'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p><strong>复合类型的定义范式</strong></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>type<span class="token punctuation">[</span>类型名称<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>类型定义<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>不同的复合类型，类型定义也不相同，下面会对三种复合类型做详细说明。</p> <p><strong>Function 类型定义</strong></p> <p>范式:</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    type <span class="token punctuation">[</span>Function类型名称<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">[</span>传入参数<span class="token number">1</span>名称<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>传入参数<span class="token number">1</span>类型<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>传入参数<span class="token number">2</span>名称<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>传入参数<span class="token number">2</span>类型<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">...</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>返回类型<span class="token punctuation">]</span>
+</code></pre></div><p>举例：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 定义一个传参分别为number,string,bool类型的三个参数，返回值为number的函数类型</span>
+type <span class="token function-variable function">Callback</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token operator">:</span> number<span class="token punctuation">,</span> b<span class="token operator">:</span> string<span class="token punctuation">,</span> c<span class="token operator">:</span> boolean</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> number<span class="token punctuation">;</span>
+</code></pre></div><p><strong>Object 类型定义</strong></p> <p>范式：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>type<span class="token punctuation">[</span>Object类型名称<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>属性名称<span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>类型<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span>属性名称<span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">[</span>类型<span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>举例：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 定义含有a,b,c三个属性的复合类型</span>
+type Scheme <span class="token operator">=</span> <span class="token punctuation">{</span>
+  a<span class="token operator">:</span> string<span class="token punctuation">,</span>
+  b<span class="token operator">:</span> boolean<span class="token punctuation">,</span>
+  c<span class="token operator">:</span> number<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>Array 类型定义</strong></p> <p>范式：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>type<span class="token punctuation">[</span>Array类型名称<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>类型<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>举例：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 定义名称为arrayType1的数组类型，数组元素为number类型</span>
+type arrayType1 <span class="token operator">=</span> <span class="token punctuation">[</span>number<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>复合类型中的相互嵌套</strong></p> <p>Function、Object、Array 三种复合类型可以互相嵌套：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 定义一个传参分别为number,string,bool类型的三个参数，返回值为number的函数类型</span>
+type <span class="token function-variable function">Callback</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token operator">:</span> number<span class="token punctuation">,</span> b<span class="token operator">:</span> string<span class="token punctuation">,</span> c<span class="token operator">:</span> boolean</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> number<span class="token punctuation">;</span>
+<span class="token comment">// 定义名称为arrayType1的数组类型，数组元素为number类型</span>
+type arrayType1 <span class="token operator">=</span> <span class="token punctuation">[</span>number<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 定义名称为Scheme的，含有Array类型和Function类型属性的Object类型</span>
+type Scheme <span class="token operator">=</span> <span class="token punctuation">{</span>
+  a<span class="token operator">:</span> arrayType1<span class="token punctuation">,</span>
+  b<span class="token operator">:</span> Callback<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 定义名称为Plan，含有Scheme类型和Callback的属性的Object类型</span>
+type Plan <span class="token operator">=</span> <span class="token punctuation">{</span>
+  a<span class="token operator">:</span> string<span class="token punctuation">,</span>
+  b<span class="token operator">:</span> Scheme<span class="token punctuation">,</span>
+  c<span class="token operator">:</span> Callback<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 定义名称为arrayType1类型，元素为Plan类型</span>
+type arrayType1 <span class="token operator">=</span> <span class="token punctuation">[</span>Plan<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>Promise 类型的定义</strong></p> <p>对于 async 函数，由于该函数调用之后的返回值是 Promise 对象，所以这样的函数的返回值要声明成 Promise;</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">appEntry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Promise<span class="token punctuation">;</span>
+  <span class="token function">appEntry2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Promise<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在 methods 中</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">async</span> <span class="token function">appEntry</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token function">appEntry2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Date 类型的定义</strong></p> <p>如果函数参数或者返回值是 Date 数据类型，那么可以按照下面的方式进行定义；</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span>d<span class="token operator">:</span> Date<span class="token punctuation">)</span><span class="token operator">:</span> Date<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span><span class="token parameter">d</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>RegExp 类型的定义</strong></p> <p>如果函数参数或者返回值是 RegExp 数据类型，那么可以按照下面的方式进行定义；</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">interface</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span>d<span class="token operator">:</span> RegExp<span class="token punctuation">)</span><span class="token operator">:</span> RegExp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Method</span> <span class="token keyword">implements</span> <span class="token class-name">EntryInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">handleDate</span><span class="token punctuation">(</span><span class="token parameter">r</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="模板规范校验"><a href="#模板规范校验" class="header-anchor">#</a> 模板规范校验</h4> <p>该文档汇集模板校验支持所有检查点，附录有模板格式规范</p> <h5 id="模板语言校验"><a href="#模板语言校验" class="header-anchor">#</a> 模板语言校验</h5> <p>模板可以指定模板语言，指定方式为在 template 标签上指定 lang 属性， 其合法值为 &quot;cml&quot; 和 &quot;vue&quot;。</p> <p>校验点:</p> <ul><li>template 可以忽略 lang 属性，此时默认值为 cml</li> <li>template lang 属性如果指定，则必须为 &quot;cml&quot; 或者 &quot;vue&quot;</li></ul> <blockquote><p>报错信息：'the tag template lang attribute: &quot;&lt;%= lang %&gt;&quot; is not valid'.</p></blockquote> <h5 id="模板-template-标签校验"><a href="#模板-template-标签校验" class="header-anchor">#</a> 模板 template 标签校验</h5> <p>校验点：每个模板只能  且必须有一对 template 根标签。</p> <blockquote><p>报错信息：&quot;Each template can only have one group of template tags.&quot;</p></blockquote> <h5 id="模板内-tags-校验"><a href="#模板内-tags-校验" class="header-anchor">#</a> 模板内 tags 校验</h5> <p>每个模板都有一个模板语言和一个平台类型，其中模板语言由 template 的 lang 属性指定，平台类型由模板文件的文件名解析出来。
+对于多态组件平台类型可以直接从文件名解析出来， 比如 index.web.cml, index.weex.cml, index.wx.cml, index.alipay.cml, index.baidu.cml, 对应的平台类型分别为 web, weex, wx, alipay, baidu。
+对于单文件组件，由于其模板要跨三端，故模板中只能使用 CML 原生支持的内建标签。</p> <p>校验点：</p> <ul><li>单文件组件只能使用 CML 内建标签，使用非内建标签校验不通过。
+<ul><li>CML 内建标签有: ['template', 'view', 'text', 'block', 'scroller', 'list', 'cell', 'image', 'switch', 'video', 'input', 'button', 'radio', 'checkbox', 'page', 'router-view', 'slot']</li></ul></li> <li><strong><code>src/app/app.cml</code> 项目启动文件中可以使用<code>app</code>组件，且只有<code>store</code>和<code>router-config</code>属性</strong></li> <li>多态组件可以使用 CML 内建标签， 加上各平台类型所支持的原生标签，使用其他标签验证不同过。在使用平台类型支持的原生标签时，必须使用 'origin-'  为前缀。比如: 在 wx 平台下使用 swiper 标签，那么在模板里的写法是 'origin-swiper'. 各个平台类型支持的原生标签列举如下:
+<ul><li>web 平台原生支持标签: ['a', 'abbr', 'acronym', 'address', 'applet', 'area', 'article', 'aside', 'audio', 'b', 'base', 'basefont', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'command', 'datalist', 'dd', 'del', 'details', 'dir', 'div', 'dfn', 'dialog', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'frame', 'frameset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noframes', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strike', 'strong', 'style', 'slot', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']</li> <li>weex 平台原生支持标签: ['a', 'div', 'image', 'indicator', 'input', 'list', 'cell', 'recycle-list', 'loading', 'refresh', 'scroller', 'slider', 'textarea', 'text', 'richtext', 'video', 'waterfall', 'web']</li> <li>wx 平台原生支持标签: ['template', 'view', 'block', 'scroll-view', 'swiper', 'movable-view', 'movable-area', 'cover-view', 'cover-image', 'icon', 'text', 'rich-text', 'progress', 'lable', 'input', 'form', 'checkbox', 'picker', 'picker-view', 'radio', 'switch', 'slider', 'textarea', 'navigator', 'functional-page-navigator', 'camera', 'live-player', 'live-pusher', 'map', 'open-data', 'web-view', 'ad', 'official-account', 'slot']</li> <li>alipay 平台原生支持标签: ['view', 'swiper', 'scroll-view', 'cover-view', 'movable-view', 'text', 'icon', 'progress', 'rich-text', 'button', 'form', 'label', 'input', 'textarea', 'radio', 'checkbox', 'switch', 'slider', 'picker-view', 'picker', 'navigator', 'image', 'canvas', 'map', 'webview']</li> <li>baidu 平台原生支持标签: ['view', 'scroll-view', 'swiper', 'movable-area', 'cover-view', 'cover-image', 'icon', 'text', 'rich-text', 'progress', 'animation-view', 'button', 'checkbox', 'form', 'input', 'label', 'picker', 'radio', 'slider', 'switch', 'textarea', 'navigator', 'audio', 'image', 'video', 'camera', 'ar-camera', 'live-player', 'map', 'canvas', 'open-data', 'web-view']</li></ul></li></ul> <blockquote><p>报错信息：'tag: &quot;&lt;%= tag %&gt;&quot; is either not allowed in this template or not referenced as a component'</p></blockquote> <h5 id="模板指令校验"><a href="#模板指令校验" class="header-anchor">#</a> 模板指令校验</h5> <p>除引入的  平台原生组件对应的标签和'origin-'为前缀的原生标签，每个模板只能够使用 template lang 指定  模板语言对应的指令。Chameleon  现只提供两种模板语言 'vue' 和 'cml'。其对应的指令列举如下:</p> <ul><li>lang='cml' 支持的指令：['c-if', 'c-else', 'c-else-if', 'c-for', 'c-for-index', 'c-for-item', 'c-model', 'c-text', 'c-show', 'c-bind', 'c-catch', 'c-key']</li> <li>lang='vue' 支持的指令：['v-if', 'v-else', 'v-else-if', 'v-for', 'v-on', 'v-bind', 'v-html', 'v-show', 'v-model', 'v-pre', 'v-once', 'slot-scope', 'is', '@', ':']</li></ul> <p>校验点：</p> <ul><li><p>单文件模板只能使用模板语言对应的指令，使用模板语言指令之外的指令校验不通过</p></li> <li><p>多态组件各平台文件中以  'origin-' 为前缀的平台类型原生标签上必须使<strong>平台原生指令</strong>，不能使用 Chameleon 内置指令，使用此外其他指令校验不通过。各平台支持原生指令列举如下:</p> <ul><li>web 平台支持指令: ['v-if', 'v-else', 'v-else-if', 'v-for', 'v-on', 'v-bind', 'v-html', 'v-show', 'v-model', 'v-pre', 'v-once', 'slot-scope', 'is', '@', ':']</li> <li>weex 平台支持指令同 vue.js 框架: ['v-if', 'v-else', 'v-else-if', 'v-for', 'v-on', 'v-bind', 'v-html', 'v-show', 'v-model', 'v-pre', 'v-once', 'slot-scope', 'is', '@', ':']</li> <li>wx 平台支持指令：['wx:if', 'wx:elif', 'wx:else', 'wx:for', 'wx:for-item', 'wx:for-index', 'wx:key', 'bindtap', 'catchtap']</li></ul></li> <li><p> 多态组件通过 usingComponents 配置引入的  第三方  平台原生组件，组件对应的标签上只能够使用<strong>平台原生指令</strong>，不能使用 Chameleon 内置指令，使用此外其他指令校验不通过。</p></li></ul> <blockquote><p>报错信息：'directive &quot;&lt;%= attribute %&gt;&quot; is not allowed to be used in this template, as the template language is set to &quot;&lt;%= lang %&gt;&quot;'</p></blockquote> <blockquote><p>报错信息：'tag &quot;&lt;%= name %&gt;&quot; is prefixed with &quot;origin-&quot; directive, so it's not allowed to use a CML built-in directive:&quot;&lt;%= directive %&gt;&quot;'</p></blockquote> <blockquote><p>报错信息：'tag &quot;&lt;%= name %&gt;&quot; is a third party imported component, so it's not allowed to use a CML built-in directive:&quot;&lt;%= directive %&gt;&quot;'</p></blockquote> <h5 id="组件属性和事件名称校验"><a href="#组件属性和事件名称校验" class="header-anchor">#</a> 组件属性和事件名称校验</h5> <p>在使用组件的时，会对使用过程中属性名和绑定的事件名称进行校验。组件属性校验分为内建组件与自定义组件两部分。</p> <p>校验点：</p> <ul><li>内建组件:使用的属性名和绑定事件必须在组件内有定义否则校验不通过 - CML 内建组件有：['template', 'view', 'text', 'block', 'scroller', 'list', 'cell', 'image', 'switch', 'video', 'input', 'textarea', 'richtext', 'button', 'radio', 'checkbox', 'page', 'router-view', 'slot', 'aside', 'col', 'container', 'foot', 'head', 'main', 'row']
+<blockquote><p>报错信息：'component &quot;&lt;%= name %&gt;&quot; doesn't have a defined property named &quot;&lt;%= prop %&gt;&quot;'</p></blockquote></li></ul> <blockquote><p> 报错信息：'component &quot;&lt;%= name %&gt;&quot; doesn't have a defined event named &quot;&lt;%= prop %&gt;&quot;'</p></blockquote> <ul><li>自定义组件:模板校验时和根据 usingComponents 配置解析对应组件，使用组件时属性名和事件名必须在组件内有定义否则校验不通过。</li></ul> <blockquote><p>报错信息：
+&quot;The property &quot;propName&quot; is not a property of component &quot;compName&quot; which path is: path/to/component&quot;</p></blockquote> <blockquote><p>报错信息：
+&quot;The event &quot;eventName&quot; is not defined in component &quot;compName&quot; which path is: path/to/component&quot;</p></blockquote> <h5 id="内置组件嵌套规则校验"><a href="#内置组件嵌套规则校验" class="header-anchor">#</a> 内置组件嵌套规则校验</h5> <p>在使用 CML 内置组件时，内置组件之间需要遵循一定的嵌套关系。</p> <p>校验点：</p> <ul><li>text 组件
+<ul><li>text 组件只能包含 text 组件作为子节点</li></ul></li> <li>scroller 组件
+<ul><li>scroller 组件不能包含 textarea 或者 video 组件</li></ul></li> <li>list
+<ul><li>list 组件不能包含 textarea 或者 video 组件</li></ul></li> <li>video
+<ul><li>video 组件如果包含子组件，那么只能是 text 组件</li></ul></li></ul> <blockquote><p>报错信息
+'tag &quot;&lt;%= parent %&gt;&quot; can not have any child elements, therefor tag &quot;&lt;%= forbiddenTag %&gt;&quot; is not allowed as it's children'</p></blockquote> <blockquote><p>报错信息
+'tag &quot;&lt;%= parent %&gt;&quot; can only have &quot;&lt;%= elements %&gt;&quot; as it's child elements, therefor tag &quot;&lt;%= forbiddenTag %&gt;&quot; is not allowed as it's children'</p></blockquote> <blockquote><p>报错信息
+'tag &quot;&lt;%= parent %&gt;&quot; can not have &quot;&lt;%= forbiddenTag %&gt;&quot; as it's child elements, and element in this list: &quot;&lt;%= elements %&gt;&quot; is forbidden as well'</p></blockquote> <h5 id="附：模板格式规范"><a href="#附：模板格式规范" class="header-anchor">#</a> 附：模板格式规范</h5> <p><strong>模板书写规范</strong></p> <p>chameleon 模板书写规范尊从 HTML5 基本规范。</p> <p><strong>模板目录规范</strong></p> <p>CML 支持三端(三种 Native 环境)，每个组件在每个环境对应有一个模板。模板命名格式 <code>组件名称+端名称.cml</code> 比如：c-title 组件</p> <div class="language-bash extra-class"><pre class="language-bash"><code>├── components
+│   ├── c-title
+│   │   ├── c-title.web.cml
+│   │   ├── c-title.weex.cml
+│   │   └── c-title.wx.cml
+</code></pre></div><p>其中： c-title.web.cml 为 Web 端模板，c-title.weex.cml 为 iOS、Android 端，c-title.wx.cml 为微信小程序端。</p> <p>本节模板规范就是指对这三个模板文件的编写规范。</p> <p><strong>模板语言指定</strong></p> <p>每个端的模板都可以并且必须选择两种语法规范中的一个，cml 语法规范 或者 类 vue 语法规范。指定语法规范的方式为在根节点 template 标签上给属性 lang 指定 &quot;cml&quot; 或者 &quot;vue&quot;。</p> <p>列如指定模板为 cml 语法规范</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>cml<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><blockquote><p>注意：每个模板只能够有一个根节点并且必须为 template 标签，template 便签每个模板只能有一个。</p></blockquote> <p><strong>模板标签使用规范</strong></p> <p>每个模板内可以使用的标签由三部分组成：</p> <ol><li><p>CML 的内置组件对应的标签</p> <ul><li>chamelon 支持的标签有: template、view、text、block、scroller、list、cell、image、switch、video、input、textarea、richtext、button、radio、checkbox、page、router-view、slot、aside、col、container、foot、head、main、row</li></ul></li> <li><p>多态组件中在平台文件里， 以 'origin-'  为  前缀的平台原生组件对应的  标签。</p></li> <li><p> 模板文件中通过 usingComponents 引入的组件对应的  标签。</p></li></ol> <p><strong>举例</strong></p> <p>仍以 c-title 组件为例，假设各个模板都有自定义组件配置</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">cml-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>json<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;tickets&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/components/ticket/index&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><ul><li>c-title.web.cml
+<ul><li>可以使用 CML 支持的 view、text、block 等基本标签，带 'origin-'  前缀的 web 原生标签 origin-div、origin-p、origin-span 等,以及自定义组件 tickets。</li></ul></li> <li>c-title.weex.cml
+<ul><li>可以使用 CML 支持的 view、text、block 等基本标签，Weex 支持的标签，以及自定义组件 tickets。如果以 Vue 作为 Weex 使用的前端框架，那么 Weex 支持的标签基本和 vue 框架支持的标签基本一致，其中有部分不支持的标签比如：transition 标签，具体请参见<a href="https://weex.apache.org/cn/guide/" target="_blank" rel="noopener noreferrer">weex 文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。</li></ul></li> <li>c-title.wx.cml
+<ul><li>可以使用 CML 支持的 view、text、block 等基本标签，带 'origin-' 前缀的 wx 原生标签比如 origin-swiper、origin-movable-area、origin-cover-view、origin-web-view 等,以及自定义组件 tickets。</li></ul></li></ul> <p><strong>模板指令使用规范</strong></p> <p>除引用平台原生组件  对应的标签外，每个模板必须使用模板  语言(由 template 标签  的 lang 属性指定) 所对应的指令集。</p> <ul><li>模板语言为 cml 时支持的指令有：c-if、c-else、c-else-if、c-for、c-for-index、c-for-item、c-model、c-text、c-show、c-bind、c-catch</li> <li>模板语言为类 vue 时支持的指令有：v-if、v-else、v-else-if、v-for、v-on、v-bind、v-html、v-show、v-model、v-pre、v-once、slot-scope、is、@、:</li></ul> <blockquote><p>类 vue 语法支持上述列表中的指令，其他 vue.js 的指令如 v-cloak 是不支持的。</p></blockquote> <p><strong>举例</strong></p> <p>若模板语言为 &quot;cml&quot; 即 template 标签 lang 属性为 &quot;cml&quot;，native 环境为微信小程序。还是以 c-title 组件为例，那么此时对应的是 c-title.wx.cml 模板。
+c-title.wx.cml:</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>cml<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">c-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{showMessage}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{messageText}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picker-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picker-view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>那么模板里可以使用 CML 支持的指令:</p> <p>c-if、c-else、c-else-if、c-for、c-for-index、c-for-item、c-model、c-text、c-show、c-bind、c-catch</p> <p><strong>引用平台原生组件</strong></p> <p>Chameleon 提供两种方式引入平台原生  组件和平台第三方原生组件：</p> <ul><li>通过给平台  原生内置组件添加 'origin-' 前缀引用原生组件</li> <li>通过 usingComponents 引入平台原生第三方组件</li></ul> <blockquote><p> 引用的原生组件上只能够使用平台支持的原生指令，不能使用 CML 内置指令。 改限制只限于组件本身，对其子组件没有影响。</p></blockquote> <p><strong>举例</strong></p> <p>若模板语言为 &quot;cml&quot; 即 template 标签 lang 属性为 &quot;cml&quot;，native 环境为微信小程序。还是以 c-title 组件为例，那么此时对应的是 c-title.wx.cml 模板。
+c-title.wx.cml:</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>cml<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">&gt;</span></span>{{messageText}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>origin-picker-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>origin-picker-view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>那么模板里可以使用 CML 支持的指令:</p> <p>c-if、c-else、c-else-if、c-for、c-for-index、c-for-item、c-model、c-text、c-show、c-bind、c-catch</p> <p>origin-picker-view 组件可以使用微信小程序原生支持的指令:</p> <p>wx:if、wx:elif、wx:else、wx:for、wx:for-item、wx:for-index、wx:key、bindtap、catchtap</p> <h4 id="脚本规范校验"><a href="#脚本规范校验" class="header-anchor">#</a> 脚本规范校验</h4> <ul><li>编写一端代码逻辑时，如果使用其他端的全局变量，会校验失败。</li> <li>使用未定义的 event 名称时，会报错</li> <li>使用未定义的 prop 名称时，会报错</li></ul> <p>组件逻辑层响应页面操作的代码，需要导出以下规范的对象。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+  <span class="token comment">// 数据</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    dataKey1<span class="token operator">:</span> dataValue1<span class="token punctuation">,</span>
+    dataKey2<span class="token operator">:</span> dataValue2
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 属性</span>
+  props<span class="token operator">:</span> <span class="token punctuation">{</span>
+    propKey1<span class="token operator">:</span> propValue1<span class="token punctuation">,</span>
+    propKey2<span class="token operator">:</span> propValue2
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 计算属性</span>
+  computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">computedKey1</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">computedKey2</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 监听属性</span>
+  watch<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">watchKey1</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">watchKey2</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 实例初始化之后，数据和方法挂在到实例之前</span>
+  <span class="token function-variable function">beforeCreate</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 数据及方法挂载完成</span>
+  <span class="token function-variable function">created</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 开始挂载已经编译完成的html,到对应的dom节点时</span>
+  <span class="token function-variable function">beforeMount</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 模板或者html编译完成,且渲染到dom中完成</span>
+  <span class="token function-variable function">mounted</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 实例销毁之前</span>
+  <span class="token function-variable function">beforeDestroy</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 实例销毁后</span>
+  <span class="token function-variable function">destroyed</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h5 id="生命周期"><a href="#生命周期" class="header-anchor">#</a> 生命周期</h5> <table><thead><tr><th style="text-align:center;">钩子</th> <th style="text-align:center;">执行时机</th> <th style="text-align:center;">详细</th></tr></thead> <tbody><tr><td style="text-align:center;">beforeCreate</td> <td style="text-align:center;">实例初始化之后，数据和方法挂在到实例之前</td> <td style="text-align:center;">在该钩子函数中会传入当前页面 query 参数</td></tr> <tr><td style="text-align:center;">created</td> <td style="text-align:center;">数据及方法挂载完成</td> <td style="text-align:center;"></td></tr> <tr><td style="text-align:center;">beforeMount</td> <td style="text-align:center;">开始挂载已经编译完成的 html,到对应的 dom 节点时</td> <td style="text-align:center;"></td></tr> <tr><td style="text-align:center;">mounted</td> <td style="text-align:center;">模板或者 html 编译完成,且渲染到 dom 中完成</td> <td style="text-align:center;"></td></tr> <tr><td style="text-align:center;">beforeDestroy</td> <td style="text-align:center;">实例销毁之前</td> <td style="text-align:center;"></td></tr> <tr><td style="text-align:center;">destroyed</td> <td style="text-align:center;">实例销毁后</td> <td style="text-align:center;"></td></tr></tbody></table> <h5 id="全局变量校验-2"><a href="#全局变量校验-2" class="header-anchor">#</a> 全局变量校验</h5> <p>编写一端代码逻辑时，如果使用其他端的全局变量，会校验失败。</p> <p>按照端类型区分可用的全局变量：</p> <p><strong>weex</strong></p> <p><code>weex</code> , <code>global</code></p> <p><strong>wx</strong></p> <p><code>wx</code>, <code>global</code></p> <p><strong>alipay</strong></p> <p><code>my</code>, <code>global</code></p> <p><strong>baidu</strong></p> <p><code>swan</code>, <code>global</code></p> <p><strong>web</strong></p> <p><code>postMessage</code>, <code>blur</code>, <code>focus</code>, <code>close</code>, <code>frames</code>, <code>self</code>, <code>window</code>, <code>parent</code>, <code>opener</code>, <code>top</code>, <code>length</code>, <code>closed</code>, <code>location</code>, <code>document</code>, <code>origin</code>, <code>name</code>, <code>history</code>, <code>locationbar</code>, <code>menubar</code>, <code>personalbar</code>, <code>scrollbars</code>, <code>statusbar</code>, <code>toolbar</code>, <code>status</code>, <code>frameElement</code>, <code>navigator</code>, <code>customElements</code>, <code>external</code>, <code>screen</code>, <code>innerWidth</code>, <code>innerHeight</code>, <code>scrollX</code>, <code>pageXOffset</code>, <code>scrollY</code>, <code>pageYOffset</code>, <code>screenX</code>, <code>screenY</code>, <code>outerWidth</code>, <code>outerHeight</code>, <code>devicePixelRatio</code>, <code>clientInformation</code>, <code>screenLeft</code>, <code>screenTop</code>, <code>defaultStatus</code>, <code>defaultstatus</code>, <code>styleMedia</code>, <code>onanimationend</code>, <code>onanimationiteration</code>, <code>onanimationstart</code>, <code>onsearch</code>, <code>ontransitionend</code>, <code>onwebkitanimationend</code>, <code>onwebkitanimationiteration</code>, <code>onwebkitanimationstart</code>, <code>onwebkittransitionend</code>, <code>isSecureContext</code>, <code>onabort</code>, <code>onblur</code>, <code>oncancel</code>, <code>oncanplay</code>, <code>oncanplaythrough</code>, <code>onchange</code>, <code>onclick</code>, <code>onclose</code>, <code>oncontextmenu</code>, <code>oncuechange</code>, <code>ondblclick</code>, <code>ondrag</code>, <code>ondragend</code>, <code>ondragenter</code>, <code>ondragleave</code>, <code>ondragover</code>, <code>ondragstart</code>, <code>ondrop</code>, <code>ondurationchange</code>, <code>onemptied</code>, <code>onended</code>, <code>onerror</code>, <code>onfocus</code>, <code>oninput</code>, <code>oninvalid</code>, <code>onkeydown</code>, <code>onkeypress</code>, <code>onkeyup</code>, <code>onload</code>, <code>onloadeddata</code>, <code>onloadedmetadata</code>, <code>onloadstart</code>, <code>onmousedown</code>, <code>onmouseenter</code>, <code>onmouseleave</code>, <code>onmousemove</code>, <code>onmouseout</code>, <code>onmouseover</code>, <code>onmouseup</code>, <code>onmousewheel</code>, <code>onpause</code>, <code>onplay</code>, <code>onplaying</code>, <code>onprogress</code>, <code>onratechange</code>, <code>onreset</code>, <code>onresize</code>, <code>onscroll</code>, <code>onseeked</code>, <code>onseeking</code>, <code>onselect</code>, <code>onstalled</code>, <code>onsubmit</code>, <code>onsuspend</code>, <code>ontimeupdate</code>, <code>ontoggle</code>, <code>onvolumechange</code>, <code>onwaiting</code>, <code>onwheel</code>, <code>onauxclick</code>, <code>ongotpointercapture</code>, <code>onlostpointercapture</code>, <code>onpointerdown</code>, <code>onpointermove</code>, <code>onpointerup</code>, <code>onpointercancel</code>, <code>onpointerover</code>, <code>onpointerout</code>, <code>onpointerenter</code>, <code>onpointerleave</code>, <code>onafterprint</code>, <code>onbeforeprint</code>, <code>onbeforeunload</code>, <code>onhashchange</code>, <code>onlanguagechange</code>, <code>onmessage</code>, <code>onmessageerror</code>, <code>onoffline</code>, <code>ononline</code>, <code>onpagehide</code>, <code>onpageshow</code>, <code>onpopstate</code>, <code>onrejectionhandled</code>, <code>onstorage</code>, <code>onunhandledrejection</code>, <code>onunload</code>, <code>performance</code>, <code>stop</code>, <code>open</code>, <code>alert</code>, <code>confirm</code>, <code>prompt</code>, <code>print</code>, <code>requestAnimationFrame</code>, <code>cancelAnimationFrame</code>, <code>requestIdleCallback</code>, <code>cancelIdleCallback</code>, <code>captureEvents</code>, <code>releaseEvents</code>, <code>getComputedStyle</code>, <code>matchMedia</code>, <code>moveTo</code>, <code>moveBy</code>, <code>resizeTo</code>, <code>resizeBy</code>, <code>getSelection</code>, <code>find</code>, <code>webkitRequestAnimationFrame</code>, <code>webkitCancelAnimationFrame</code>, <code>fetch</code>, <code>btoa</code>, <code>atob</code>, <code>createImageBitmap</code>, <code>scroll</code>, <code>scrollTo</code>, <code>scrollBy</code>, <code>onappinstalled</code>, <code>onbeforeinstallprompt</code>, <code>crypto</code>, <code>ondevicemotion</code>, <code>ondeviceorientation</code>, <code>ondeviceorientationabsolute</code>, <code>indexedDB</code>, <code>webkitStorageInfo</code>, <code>sessionStorage</code>, <code>localStorage</code>, <code>chrome</code>, <code>visualViewport</code>, <code>speechSynthesis</code>, <code>webkitRequestFileSystem</code>, <code>webkitResolveLocalFileSystemURL</code>, <code>openDatabase</code>, <code>applicationCache</code>, <code>caches</code>, <code>whichAnimationEvent</code>, <code>animationendEvent</code>, <code>infinity</code>, <code>SETTING</code>, <code>AppView</code>, <code>ExtensionOptions</code>, <code>ExtensionView</code>, <code>WebView</code>, <code>iconPath</code>, <code>_app</code>, <code>_ZOOM_</code>, <code>Feed</code>, <code>md5</code>, <code>$</code>, <code>jQuery</code>, <code>Search</code>, <code>windmill</code>, <code>Lethargy</code>, <code>alertTimeOut</code>, <code>supportApps</code>, <code>lethargyX</code>, <code>lethargyY</code>, <code>iView</code>, <code>onModuleResLoaded</code>, <code>iEditDelete</code>, <code>infinityDrag</code>, <code>i</code>, <code>array</code>, <code>TEMPORARY</code>, <code>PERSISTENT</code>, <code>addEventListener</code>, <code>removeEventListener</code>, <code>dispatchEvent</code></p> <h4 id="样式规范校验"><a href="#样式规范校验" class="header-anchor">#</a> 样式规范校验</h4> <ul><li>满足 css 规则</li> <li>不支持级联</li></ul> <h5 id="cmss-规则"><a href="#cmss-规则" class="header-anchor">#</a> CMSS 规则</h5> <p>CMSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。</p> <p>selector {
+declaration1;
+declaration2;
+...
+declarationN
+}
+每条声明由一个属性和一个值组成。</p> <h5 id="声明"><a href="#声明" class="header-anchor">#</a> 声明</h5> <p>属性（property）是你希望设置的样式属性（style attribute）。每个属性有一个值。属性和值被冒号分开，一条声明以分号结尾。</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">selector</span> <span class="token punctuation">{</span>
+  <span class="token property">property1</span><span class="token punctuation">:</span> value1<span class="token punctuation">;</span>
+  <span class="token property">property2</span><span class="token punctuation">:</span> value2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>selector 应为一条独立的 id 名称或者 class 名称，不支持级联</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">// 正确
+.selector</span> <span class="token punctuation">{</span>
+  <span class="token property">property1</span><span class="token punctuation">:</span> value1<span class="token punctuation">;</span>
+  <span class="token property">property2</span><span class="token punctuation">:</span> value2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">#selector</span> <span class="token punctuation">{</span>
+  <span class="token property">property1</span><span class="token punctuation">:</span> value1<span class="token punctuation">;</span>
+  <span class="token property">property2</span><span class="token punctuation">:</span> value2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">// 错误
+#selector1 .selector</span> <span class="token punctuation">{</span>
+  <span class="token property">property1</span><span class="token punctuation">:</span> value1<span class="token punctuation">;</span>
+  <span class="token property">property2</span><span class="token punctuation">:</span> value2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h5 id="多端之间的差异对比"><a href="#多端之间的差异对比" class="header-anchor">#</a> 多端之间的差异对比</h5> <table><tr><th width="200px">CSS属性</th> <th>H5</th> <th width="100px">小程序</th> <th>weex</th></tr> <tr><td>布局</td> <td>all</td> <td>all</td> <td>flexbox</td></tr> <tr><td>盒模型</td> <td>all</td> <td>all</td> <td>只支持display:border-box</td></tr> <tr><td>float浮动</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>display:inline-block|none</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>ID选择器</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>类选择器</td> <td>✅</td> <td>✅</td> <td>✅</td></tr> <tr><td>属性选择器</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>级联选择器、派生选择器(后代、子元素、相邻兄弟)</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>选择器分组</td> <td>✅</td> <td>✅</td> <td>✅</td></tr> <tr><td>伪类(:active|:focus)</td> <td>✅</td> <td>✅</td> <td>✅</td></tr> <tr><td>伪类(:hover|:link|:visited|:first-child|:lang)</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>伪元素(:first-letter|:first-line|:before|:after)</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>百分比定值</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>line-height:1</td> <td>✅</td> <td>✅</td> <td>❌</td></tr> <tr><td>尺寸</td> <td>px|rem|em|vw|vh</td> <td>px|rpx</td> <td>px</td></tr> <tr><td>!important</td> <td>✅</td> <td>✅</td> <td>❌</td></tr></table> <p>**注意:**框架会根据上表所述的多端之间的差异做校验。</p> <h4 id="配置规范校验"><a href="#配置规范校验" class="header-anchor">#</a> 配置规范校验</h4> <p>CML 文件配置规范的校验，包括语法格式，组件的引用等。</p> <ul><li>json 格式是否合法</li> <li>usingComponents 只放置在 base 字段下</li></ul> <h5 id="说明"><a href="#说明" class="header-anchor">#</a> 说明</h5> <p>wx、alipay、baidu、web、weex 分别对应各端构建时所应用的配置信息，base 的配置会应用到每一端的配置，内部做的 result = merge(base,target)。</p> <p>wx 字段配置的内容最终会生成到微信小程序所需要的 json 文件。</p> <p>wx.component 字段,如果在微信中该 cml 文件是组件必须声明该字段。
+usingComponents 字段是目前最重要的配置，三端都会使用，微信小程序规定页面的 json 文件中配置使用到的组件。web 和 Weex 端的构建时也是根据该字段去找到相应的组件进行自动化的注册。所以用到组件必须进行配置
+usingComponents 中组件的引用地址支持引用 src 和 node_modules 下的组件，src 下的，可以写相对路径，也可以写相对于 src 的绝对路径，例如/components/**, node_modules 下的组件，不需要写 node_modules，直接从 npm 的包名称开始写例如 cml-test-ui/navi/navi。 路径写到.cml 文件所在层级，不写后缀。
+例子：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;usingComponents&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;c-scroller&quot;</span><span class="token operator">:</span> <span class="token string">&quot;chameleon-ui-builtin/components/scroller/scroller&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;c-checkbox&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/components/c-checkbox/c-checkbox&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;wx&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;navigationBarTitleText&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dark&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#E2E2E2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;alipay&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;defaultTitle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;pullRefresh&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;allowsBounceVertical&quot;</span><span class="token operator">:</span> <span class="token string">&quot;YES&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;titleBarColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;baidu&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;navigationBarBackgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;navigationBarTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;white&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;navigationBarTitleText&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundColor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;backgroundTextStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dark&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;enablePullDownRefresh&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;onReachBottomDistance&quot;</span><span class="token operator">:</span> <span class="token number">50</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+##### <span class="token constant">CML</span> <span class="token constant">JSON</span> 规范
+
+包括以下三条：
+<span class="token number">1.</span> 满足标准的 <span class="token constant">JSON</span> 格式规范，满足 <span class="token constant">JSON</span><span class="token punctuation">.</span>parse 的解析
+  <span class="token operator">-</span> 数据在名称<span class="token operator">/</span>值对中
+  <span class="token operator">-</span> 数据由逗号分隔
+  <span class="token operator">-</span> 花括号保存对象
+  <span class="token operator">-</span> 方括号保存数组
+
+<span class="token number">2.</span> <span class="token constant">CML</span> json为对象，必须包括base字段，根据适配的平台可配置wx<span class="token operator">|</span>alipay<span class="token operator">|</span>baidu<span class="token operator">|</span>web<span class="token operator">|</span>weex字段，作为单一端上的特殊配置
+
+<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>`javascript
+<span class="token comment">// 适配微信小程序和weex</span>
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;base&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;wx&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;alipay&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;baidu&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;weex&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ol start="3"><li>usingComponents 使用规范:</li></ol> <p>多端实现完全一致组件:</p> <p>usingComponents 字段必须放置在 base 下，不应出现 wx|alipay|baidu|web|weex 字段中</p> <p>多端实现不一致组件:</p> <p>usingComponents 字段可以放置在 base 下，也可以在出现当前端对应的 wx|alipay|baidu|web|weex 字段中</p> <p>注：多端实现完全一致组件 和 多端实现不一致组件 的说明可参见这</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/poly.html" class="prev">
+        多态协议
+      </a></span> <span class="next"><a href="/docs/io.html">
+        导入与导出
+      </a>
+      →
+    </span></p></div> <footer class="footer" data-v-aa5c954a><div class="content" data-v-aa5c954a><div class="left" data-v-aa5c954a><a href="/" class="brand" data-v-aa5c954a><img src="data:image/png;base64,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" alt="logo" data-v-aa5c954a> <span data-v-aa5c954a>Chameleon</span></a> <div class="info" data-v-aa5c954a>Copyright © 2020 DiDi Chuxing Inc.</div></div> <div class="right" data-v-aa5c954a><div class="col" data-v-aa5c954a><h4 data-v-aa5c954a>资源</h4> <a href="/components/expand.html" data-v-aa5c954a>Chameleon UI</a><a href="https://github.com/beatles-chameleon/cml-demo" target="_blank" rel="noopener" data-v-aa5c954a>
+              Chameleon Demo
+            </a><a href="https://github.com/chameleon-team/awesome-cml" target="_blank" rel="noopener" data-v-aa5c954a>
+              Awesome Chameleon
+            </a><a href="https://github.com/didi/chameleon/releases" target="_blank" rel="noopener" data-v-aa5c954a>
+              更新记录
+            </a></div><div class="col" data-v-aa5c954a><h4 data-v-aa5c954a>社区</h4> <a href="https://github.com/didi/chameleon/issues" target="_blank" rel="noopener" data-v-aa5c954a>
+              GitHub
+            </a><a data-v-aa5c954a><span data-v-aa5c954a>微信交流群</span> <img src="/assets/img/qr_weixin.59cd000a.png" alt="image" data-v-aa5c954a></a><a data-v-aa5c954a><span data-v-aa5c954a>QQ 交流群</span> <img src="/assets/img/qr_qq.115678d7.jpg" alt="image" data-v-aa5c954a></a><a data-v-aa5c954a><span data-v-aa5c954a>顺风公鹿</span> <img src="/assets/img/qr_deer.e2ddb653.png" alt="image" data-v-aa5c954a></a></div><div class="col" data-v-aa5c954a><h4 data-v-aa5c954a>关于</h4> <a href="https://github.com/didi/chameleon/wiki/Chameleon%E5%9B%A2%E9%98%9F" target="_blank" rel="noopener" data-v-aa5c954a>
+              Chameleon 团队
+            </a><a href="https://github.com/didi/chameleon/wiki/%E5%8A%A0%E5%85%A5%E6%88%91%E4%BB%AC" target="_blank" rel="noopener" data-v-aa5c954a>
+              加入我们
+            </a><a href="mailto:CML@didichuxing.com" target="_blank" rel="noopener" data-v-aa5c954a>
+              联系我们
+            </a><a href="https://github.com/didi/chameleon/wiki/Contributors" target="_blank" rel="noopener" data-v-aa5c954a>
+              贡献者
+            </a></div></div></div></footer></main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.99fcbcce.js" defer></script><script src="/assets/js/59.508d9d70.js" defer></script><script src="/assets/js/1.6e133947.js" defer></script><script src="/assets/js/52.00305991.js" defer></script><script src="/assets/js/2.7c7fd3bd.js" defer></script>
+  </body>
+</html>
