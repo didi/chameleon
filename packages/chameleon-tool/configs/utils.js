@@ -102,7 +102,7 @@ exports.cssLoaders = function (options) {
       })
       loaders.push(getPostCssLoader('web'))
     }
-    if (~['wx', 'alipay', 'baidu', 'qq'].indexOf(options.type)) {
+    if (~['wx', 'alipay', 'baidu', 'qq', 'tt'].indexOf(options.type)) {
       loaders = loaders.concat(getMiniappLoader(options.type))
     }
 
@@ -206,7 +206,7 @@ exports.updateEntry = function (updateEntryConfig) {
   try {
     let { entry, cmlType, root, addEntry } = updateEntryConfig;
     let { components, compileTagMap } = cml.utils.getBuildinComponents(cmlType, root);
-    let options = { buildInComponents: compileTagMap, usedBuildInTagMap: {},cmlType};
+    let options = { buildInComponents: compileTagMap, usedBuildInTagMap: {}, cmlType};
     let source = '';
     Object.keys(entry).forEach(key => {
       if (cml.utils.isFile(entry[key])) {
@@ -239,13 +239,19 @@ exports.getMiniAppEntry = function (cmlType) {
   let options = cml.config.get()[cmlType][cml.media];
   let root = cml.projectRoot;
   let entry = {};
-  entry.common = [`chameleon-runtime/index.js`, `chameleon-store/index.js`];
-  //将 page.css  index.css 作为入口文件，注意这里会在 compalation.assets 中产生一个 js 文件 一个css文件
-  let pageCssPath = path.join(cml.projectRoot, 'node_modules', `chameleon-runtime/src/platform/${cmlType}/style/page.css`)
-  // 兼容老的chameleon-runtime 版本没有 page.css 这个文件；
-  let hasPageCss = cmlUtils.isFile(pageCssPath);
-  entry['static/css/index'] = `chameleon-runtime/src/platform/${cmlType}/style/index.css`;
-  hasPageCss && (entry['static/css/page'] = `chameleon-runtime/src/platform/${cmlType}/style/page.css`);
+  entry.common = ['chameleon-runtime/index.js', 'chameleon-store/index.js'];
+  if (cml.config.get().baseStyle[cmlType] === true) {
+    // 将 page.css  index.css 作为入口文件，注意这里会在 compalation.assets 中产生一个 js 文件 一个css文件
+    let pageCssPath = path.join(cml.projectRoot, 'node_modules', `chameleon-runtime/src/platform/${cmlType}/style/page.css`)
+    // 兼容老的chameleon-runtime 版本没有 page.css 这个文件；
+    let hasPageCss = cmlUtils.isFile(pageCssPath);
+    entry['static/css/index'] = `chameleon-runtime/src/platform/${cmlType}/style/index.css`;
+    hasPageCss && (entry['static/css/page'] = `chameleon-runtime/src/platform/${cmlType}/style/page.css`);
+  }
+  let globalStyleConfig = cml.config.get().globalStyleConfig;
+  if (globalStyleConfig && globalStyleConfig.globalCssPath && cmlUtils.isFile(globalStyleConfig.globalCssPath)) {
+    entry['static/css/global'] = globalStyleConfig.globalCssPath
+  }
   let projectPath = path.resolve(root, 'src');
 
   // 记录已经添加的入口，防止重复循环添加
@@ -344,6 +350,11 @@ exports.getWebEntry = function (options) {
   if (cml.config.get().baseStyle.web === true) {
     entry.vender.push('chameleon-runtime/src/platform/web/style/index.css')
   }
+  // 注入用户全局样式
+  let globalStyleConfig = cml.config.get().globalStyleConfig;
+  if (globalStyleConfig && globalStyleConfig.globalCssPath && cmlUtils.isFile(globalStyleConfig.globalCssPath)) {
+    entry.vender.push(globalStyleConfig.globalCssPath)
+  }
   if (cml.config.get().cmss.rem === true) {
     entry.vender.unshift(path.resolve(cml.root, 'configs/default/rem.js'));
   }
@@ -377,9 +388,9 @@ exports.getWebEntry = function (options) {
     }
   } else {
     if (cml.config.get().templateType === 'smarty') {
-      template = path.resolve(__dirname, `./default/smarty_entry.html`);
+      template = path.resolve(__dirname, './default/smarty_entry.html');
     } else {
-      template = path.resolve(__dirname, `./default/html_entry.html`);
+      template = path.resolve(__dirname, './default/html_entry.html');
     }
   }
   var htmlConf = {
@@ -509,7 +520,7 @@ exports.getDevServerPath = function () {
 }
 
 let babelNpm = [
-  "chameleon-ui-builtin",
+  'chameleon-ui-builtin',
   'cml-ui',
   'chameleon-runtime',
   'chameleon-store',

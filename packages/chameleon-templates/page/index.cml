@@ -56,11 +56,6 @@ export default new Replace();
     "usingComponents": {
     }
   },
-  "qq": {
-    "navigationBarTitleText": "index",
-    "backgroundTextStyle": "dark",
-    "backgroundColor": "#E2E2E2"
-  },
   "wx": {
     "navigationBarTitleText": "index",
     "backgroundTextStyle": "dark",
@@ -80,6 +75,16 @@ export default new Replace();
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false,
     "onReachBottomDistance": 50
+  },
+  "qq": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2"
+  },
+  "tt": {
+    "navigationBarTitleText": "index",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#E2E2E2"
   }
 }
 </script>

@@ -4,6 +4,7 @@ const cmlUtils = require('chameleon-tool-utils');
 const fse = require('fs-extra');
 
 _.handleApptabbar = function(newJsonObj, filePath, type) {
+  filePath = path.dirname(filePath); // 得到 app.cml 文件所在目录
   let tabbarIconPaths = _.getTabbarIconPaths(newJsonObj.tabBar, type);
   if (tabbarIconPaths.length) {
     tabbarIconPaths.forEach((item) => {
@@ -26,7 +27,9 @@ _.getRelativeIconPath = function(p) {
 }
 _.getTabbarIconPaths = function(tabbar, type) {
   let iconPaths = [];
-  if (tabbar && (type === 'baidu' || type === 'wx')) {
+  let miniAppType = ['wx', 'baidu', 'qq', 'tt']
+
+  if (tabbar && miniAppType.includes(type)) {
     (tabbar.list || []).forEach((item) => {
       if (item.iconPath) {
         let iconInfo = {};
@@ -67,4 +70,17 @@ _.getTabbarIconPaths = function(tabbar, type) {
     })
   }
   return iconPaths;
+}
+_.handleWorkers = function(newJsonObj, type, loaderContext) {
+  const workers = newJsonObj.workers;
+  if (workers) {
+    const destDir = path.resolve(cml.projectRoot, `dist/${type}`, workers);
+    const sourceDir = path.resolve(cml.projectRoot, 'src/', workers);
+
+    if (cmlUtils.isDir(sourceDir)) {
+      fse.copySync(sourceDir, destDir);
+      loaderContext.addContextDependency(sourceDir)
+
+    }
+  }
 }

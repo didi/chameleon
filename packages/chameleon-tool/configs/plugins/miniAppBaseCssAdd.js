@@ -5,13 +5,16 @@ class miniappBaseCssAdd {
     this.cmlType = options.cmlType;
     this.isInjectBaseStyle = options.isInjectBaseStyle;
   }
+
   apply(compiler) {
+    /* eslint-disable-next-line */
     let self = this;
     let cssExt = {
       'wx': '.wxss',
       'alipay': '.acss',
       'baidu': '.css',
-      'qq': '.qss'
+      'qq': '.qss',
+      'tt': '.ttss'
     }
     if (compiler.hooks) {
       compiler.hooks.shouldEmit.tap('miniappBaseCssAdd', miniappBaseCssAdd);
@@ -20,18 +23,49 @@ class miniappBaseCssAdd {
     }
 
     function miniappBaseCssAdd(compilation, callback) {
+      let globalStyleConfig = cml.config.get().globalStyleConfig;
+      let hasGlobalCss = globalStyleConfig && globalStyleConfig.globalCssPath && cmlUtils.isFile(globalStyleConfig.globalCssPath)
+      if (hasGlobalCss) {
+        Object.keys(compilation.assets).forEach((assetPath) => {
+          let ext = path.extname(assetPath);
+          let platformCss = cssExt[self.cmlType];
+          let pageCss = cmlUtils.handleWinPath(`static/css/page${platformCss}`);
+          let indexCss = cmlUtils.handleWinPath(`static/css/index${platformCss}`);
+          let globalCss = cmlUtils.handleWinPath(`static/css/global${platformCss}`);
+          let globalCssEntryPath = cmlUtils.handleWinPath('static/js/static/css/global.js');
+          // 删除因为新增 css 入口导致的  js 文件；
+          delete compilation.assets[globalCssEntryPath];
+          if ((ext === platformCss) && ![pageCss, indexCss, globalCss].includes(assetPath)) {
+            // 是对应的css样式，且不能是 static/css/index.wxss static/css/page.wxss static/css/global.wxss 公用样式中不能再导入公用基础样式；
+            let primaryCss = compilation.assets[assetPath].source();
+            let primaryCssSize = compilation.assets[assetPath].size();
+            compilation.assets[assetPath] = {
+              source() {
+                return `@import '/static/css/global${platformCss}'; \n ${primaryCss}`
+              },
+              size() {
+                return primaryCssSize
+              }
+            }
+          }
+        })
+      }
       if (self.isInjectBaseStyle) { // 只有配置导入样式的时候，才进行样式的导入
         Object.keys(compilation.assets).forEach((assetPath) => {
           let ext = path.extname(assetPath);
           let platformCss = cssExt[self.cmlType];
           let pageCss = cmlUtils.handleWinPath(`static/css/page${platformCss}`);
-          let pageCssEntryPath = cmlUtils.handleWinPath(`static/js/static/css/page.js`);
+          let pageCssEntryPath = cmlUtils.handleWinPath('static/js/static/css/page.js');
           let indexCss = cmlUtils.handleWinPath(`static/css/index${platformCss}`);
-          let indexCssEntryPath = cmlUtils.handleWinPath(`static/js/static/css/index.js`);
-          //删除因为新增 css 入口导致的  js 文件；
+          let indexCssEntryPath = cmlUtils.handleWinPath('static/js/static/css/index.js');
+          let globalCss = ''
+          if (hasGlobalCss) {
+            globalCss = cmlUtils.handleWinPath(`static/css/global${platformCss}`);
+          }
+          // 删除因为新增 css 入口导致的  js 文件；
           delete compilation.assets[pageCssEntryPath];
           delete compilation.assets[indexCssEntryPath];
-          if ((ext === platformCss) && ![pageCss, indexCss].includes(assetPath)) {
+          if ((ext === platformCss) && ![pageCss, indexCss, globalCss].includes(assetPath)) {
             // 是对应的css样式，且不能是 static/css/index.wxss static/css/page.wxss 公用样式中不能再导入公用基础样式；
             let primaryCss = compilation.assets[assetPath].source();
             let primaryCssSize = compilation.assets[assetPath].size();

@@ -16,11 +16,6 @@ npm i -g chameleon-tool
 ```
 安装成功后，执行 `cml -v` 即可查看当前版本， `cml -h`查看命令行帮助文档。
 
-> **[success] 尝鲜版 **
->
-> 尝鲜版提供了百度小程序和支付宝小程序的支持    
-> 如果想提前使用可移步[这里查看使用](https://cmljs.org/doc/alpha_version.html)
-
 
 ### 1.2 创建项目与启动
 

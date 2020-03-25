@@ -35,14 +35,15 @@
     #preview {
       width: 750px;
       height: 1250px;
-      transform: scale(0.3);
+      transform: scale(0.29);
       transform-origin: top left;
     }
 
     .phone {
       align-self: flex-end;
       background-color: #FFF;
-      width: 320px;
+      /* width: 320px; */
+      width: 260px;
       height: 610px;
       position: relative;
     }
@@ -54,8 +55,7 @@
       width: 265px;
       min-width: 265px;
       height: 520px;
-      border: 2px solid #ababaf;
-      border-radius: 30px;
+      background: url('./preview-assets/phone.png') center / cover no-repeat;
     }
 
     .mock-phone .inner {
@@ -64,9 +64,8 @@
       z-index: 26;
       left: 50%;
       transform: translate(-50%);
-      width: 225px;
+      width: 218px;
       height: 375px;
-      border: 1px solid #171717;
       overflow: hidden;
     }
 
@@ -151,7 +150,7 @@
     .header .header-right {
       display: flex;
       align-items: center;
-      margin-right: 32px;
+      margin-right: 80px;
     }
 
     .header .toggle-route {
@@ -165,11 +164,11 @@
       padding-left: 5px;
       padding-right: 5px;
       display: inline-block;
-      width: 210px;
+      width: 230px;
       height: 32px;
       line-height: 32px;
       border-radius: 2px;
-      color: #FFF;
+      /* color: #FFF; */
       font-size: 12px;
       font-weight: 300;
       border: 1px solid rgba(255, 255, 255, 0.8);
@@ -194,7 +193,7 @@
     }
 
     .routes-container-hide {
-      display: none;
+      /* display: none;
       width: 350px;
       background: #FFF;
       overflow: scroll;
@@ -202,7 +201,7 @@
       position: absolute;
       right: 30px;
       top: 76px;
-      z-index: 999;
+      z-index: 999; */
     }
 
     .content {
@@ -222,7 +221,7 @@
     }
     .main .qrcode-box {
       /* width: 400px; */
-      width: 990px;
+      width: 690px;
       display: flex;
       flex-direction: row;
       align-items: stretch;
@@ -233,8 +232,8 @@
     }
 
     .main .qrcode-item {
-      width: 320px;
-      height: 300px;
+      width: 220px;
+      height: 200px;
       background-color: #FFF;
       margin-left: 10px;
       position: relative;
@@ -248,8 +247,9 @@
       transform: translate(-50%, -50%)
     }
     .qrcode-title img {
-      width:36px;
-      height:36px
+      width:30px;
+      /* height:36px */
+      border-radius:50%;
     }
 
     .qrcode-item .qrcode-title {
@@ -272,8 +272,8 @@
 
     .qrcode>img {
       display: block;
-      width: 160px;
-      height: 160px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto;
     }
 
@@ -369,19 +369,19 @@
     }
 
     #routeList li {
-      padding-left: 5px;
       position: relative;
     }
 
     #routeList li span {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 30px;
+      padding-top:7px;
+      padding-bottom: 3px;
+      padding-left: 25px;
+      font-size:14px;
     }
 
     #routeList li img {
       position: absolute;
-      left: 15px;
+      left: 5px;
       top: 50%;
       transform: translate(0, -50%)
     }
@@ -449,7 +449,14 @@
       background-color: #19263E;
       /* border-radius: 5px; */
     }
-
+    .right-route{
+      margin-left:10px;
+      width:330px;
+      background: #FFF;
+      height:600px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
     /* .route-input::-webkit-scrollbar-track {
   width:5px;
     background-color: #19263E;
@@ -466,12 +473,12 @@
     </div>
 
     <div class="header-right">
-      <span class="toggle-route">切换路由地址</span>
-      <span class="route-input center" id="routes-select"></span>
+      <span class="toggle-route">搜索路由地址</span>
+      <input class="route-input center" id="routes-select"
+      ></input>
 
     </div>
   </header>
-  <div class="routes-container-hide" id="routes-container">
   </div>
   <div class="content center" id="wrap-content">
     <main class="main">
@@ -481,8 +488,8 @@
           <span style="vertical-align: 10px;"> H5页面 效果预览</span>
         </div>
         <div class="mock-phone">
-          <div class="camera"></div>
-          <div class="earpiece"></div>
+          <!-- <div class="camera"></div> -->
+          <!-- <div class="earpiece"></div> -->
           <div class="inner">
             <div class="web-dev" id="web-dev">
               <a class="web-page-link" href="" target="_blank" title="Open on new tab">
@@ -508,7 +515,7 @@
               </div>
             </div>
           </div>
-          <div class="home-btn"></div>
+          <!-- <div class="home-btn"></div> -->
         </div>
       </div>
       <div class="right">
@@ -668,6 +675,7 @@
             </div>
           </div>
       </div>
+      <div class="right-route" id="routes-container"></div>
     </main>
   </div>
   <script src="./preview-assets/qrcode.js"></script>
@@ -772,19 +780,22 @@
       }
       //设置搜索框事件
       function setSelectEvent() {
-        selectInput.addEventListener('click', function (e) {
-          if (routesContainer.className === 'routes-container') {
-            routesContainer.className = 'routes-container-hide'
-          } else {
-            routesContainer.className = 'routes-container'
+        selectInput.addEventListener('keyup', function (e) {
+          if(e.keyCode === 13){ //按下enter键进行搜索且存在搜索值
+            console.log(e,this.value);
+            let searchValue = this.value
+            var selectedRoutes = routerConfig.routes.filter(function(item){
+              return item.url && ~item.url.indexOf(searchValue)
+            });
+            setRoutesList(selectedRoutes)
           }
         })
       };
       //设置点击外部区域隐藏路由列表
       function setWrapContentEvent() {
-        wrapContent.addEventListener('click', function (e) {
-          routesContainer.className = 'routes-container-hide';
-        })
+        // wrapContent.addEventListener('click', function (e) {
+        //   routesContainer.className = 'routes-container-hide';
+        // })
       };
       function setRouteSelected(index,routeListDom) {
         var lis = routeListDom.children;
@@ -797,11 +808,10 @@
         }
       }
 
-      function setRoutesList() {
+      function setRoutesList(routes) {
         var bundleurl = location.origin + '/' + jsbundle;
-        routes = routerConfig.routes;
         routesContainer.innerHTML = '';//先将该元素下面的所有子元素删除
-        if (routes) {
+        if (routes && routes.length > 0) {
           var fragment = document.createDocumentFragment();
           routeListDom = document.createElement('ul');
 
@@ -851,7 +861,7 @@
             routerConfig = JSON.parse(e.data);
             initParams(routerConfig);
             activeBuildType(routerConfig);
-            setRoutesList()
+            setRoutesList(routerConfig.routes)
           }
         };
         ws.onclose = function () {

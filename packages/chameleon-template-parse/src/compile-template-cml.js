@@ -1,15 +1,14 @@
 
 const babylon = require('babylon');
-const traverse = require('@babel/traverse')["default"];
-const generate = require('@babel/generator')["default"];
+const traverse = require('@babel/traverse')['default'];
+const generate = require('@babel/generator')['default'];
 // traverse path的时候解析path
 const parseTemplate = require('./parser/index.js');
 // 对于模板的预处理 - 后置处理 - 等正则的一些替换；
 const processTemplate = require('./common/process-template.js')
 // 目前事件的处理有两处：第一，c-bind,第二c-model,两者互相不影响；借鉴于此，需要新增处理事件支持传参的形式，而此时就需要处理c-bind;
-const cliUtils = require('chameleon-tool-utils');
 exports.compileTemplateForCml = function (source, type, options) {
-  
+
   // source
   // 预处理html模板中的注释，jsx不支持，这个需要优先处理，防止解析 < > 的时候出现问题；
   source = processTemplate.preDisappearAnnotation(source);
@@ -45,8 +44,11 @@ exports.compileTemplateForCml = function (source, type, options) {
   if (type === 'baidu') {
     source = compileBaiduTemplate(source, type, options).code;
   }
+  if (type === 'tt') {
+    source = compileTtTemplate(source, type, options).code;
+  }
   // 后置处理，解析origin-tag ==> tag
-  source = processTemplate.postParseOriginTag(source,type)
+  source = processTemplate.postParseOriginTag(source, type)
   // 后置处理：解析_cml{str}lmc_ ==> {{str}}
   source = processTemplate.postParseMustache(source)
   // 后置处理：用于处理 \u ，便于解析unicode 中文
@@ -228,6 +230,42 @@ function compileAliPayTemplate(source, type, options) {
   return generate(ast);
 }
 function compileBaiduTemplate(source, type, options) {
+  const ast = babylon.parse(source, {
+    plugins: ['jsx']
+  })
+  traverse(ast, {
+    enter(path) {
+      parseTemplate.parseClassStatement(path, type, options);
+
+      // 微信端支持安震 slider
+      parseTemplate.parseTagForSlider(path, type, options);
+      // 微信端支持ref
+      parseTemplate.parseRefStatement(path, type, options)
+
+      parseTemplate.parseBuildTag(path, type, options) // 解析内置标签；
+      // 微信端需要特殊处理支持 component
+
+      parseTemplate.parseTag(path, type, options);// 替换标签；
+
+      parseTemplate.parseAnimationStatement(path, type, options);
+
+      parseTemplate.afterParseTag(path, type, options);
+      parseTemplate.parseConditionalStatement(path, type, options);// 替换c-if c-else
+      parseTemplate.parseEventListener(path, type, options);
+
+      // 解析c-model ==> value="{{modelValue}}" bindinput="_cmlModelEventProxy($event) data-modelkey="modelKey"
+      parseTemplate.parseDirectiveStatement(path, type, options);
+
+      parseTemplate.parseIterationStatement(path, type, options);
+      //
+      parseTemplate.parseStyleStatement(path, type, options);
+      // <component is="{{currentComp}}"></component>
+      parseTemplate.parseVue2WxStatement(path, type, options);
+    }
+  })
+  return generate(ast);
+}
+function compileTtTemplate(source, type, options) {
   const ast = babylon.parse(source, {
     plugins: ['jsx']
   })

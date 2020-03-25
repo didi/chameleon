@@ -2,8 +2,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var webpack = require('webpack');
 var getMiniAppCommonConfig = require('./getMiniAppCommonConfig.js');
 var merge = require('webpack-merge')
-var getMiniAppExportConfig = require("./component_export/getMiniAppExportConfig");
-
+var getMiniAppExportConfig = require('./component_export/getMiniAppExportConfig');
 module.exports = function (options) {
   let {type, media} = options;
   var commonConfig = getMiniAppCommonConfig(options);
@@ -24,6 +23,9 @@ module.exports = function (options) {
     },
     qq: {
       cssReg: /(\.qss|\.css)$/
+    },
+    tt: {
+      cssReg: /(\.ttss|\.css)/
     }
   }
   const targetObj = miniMap[type];

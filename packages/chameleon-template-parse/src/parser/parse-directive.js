@@ -1,6 +1,6 @@
 const t = require('@babel/types')
 const weexMixins = require('chameleon-mixins/weex-mixins.js')
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const utils = require('../common/utils');
 const eventProxy = require('chameleon-mixins/web-mixins.js');
 const wxEventProxy = require('chameleon-mixins/wx-mixins.js');
@@ -14,8 +14,8 @@ parseDirective.tap('web-weex-cml', (args) => {
     // web端因为是自定义组件触发的 input事件的参数不对，所以不能直接用vue的v-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
       let modelKey = utils.getModelKey(node.value.value);
-      path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
-      path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-on:input`), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
+      path.insertAfter(t.jsxAttribute(t.jsxIdentifier('v-bind:value'), t.stringLiteral(modelKey)))
+      path.insertAfter(t.jsxAttribute(t.jsxIdentifier('v-on:input'), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
 
       path.remove();// 删除c-model属性节点；
     }
@@ -41,15 +41,15 @@ parseDirective.tap('web-weex-cml', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`The style attribute can't be used in the element that has  attributes with c-show `);
+        throw new Error('The style attribute can\'t be used in the element that has  attributes with c-show ');
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
       let styleNodeValue = `display:{{${elementShow}?'':'none'}};{{${elementShow}?'':'height:0px;width:0px;overflow:hidden'}}`
       if (type === 'weex') {
-        attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+        attributes.push(t.jsxAttribute(t.jsxIdentifier('style'), t.stringLiteral(styleNodeValue)))
       } else if (type === 'web') {
-        attributes.push(t.jsxAttribute(t.jsxIdentifier(`v-show`), t.stringLiteral(elementShow)))
+        attributes.push(t.jsxAttribute(t.jsxIdentifier('v-show'), t.stringLiteral(elementShow)))
       }
 
     }
@@ -58,18 +58,18 @@ parseDirective.tap('web-weex-cml', (args) => {
 parseDirective.tap('wx-baidu-qq-cml', (args) => {
   let { path, node, type, options: {lang} } = args;
   // type === 'wx' || type === 'baidu' || type === 'alipay'
-  if (lang === 'cml' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
+  if (lang === 'cml' && (['wx', 'baidu', 'alipay', 'qq', 'tt'].includes(type))) {
     // c-model
     if (t.isJSXAttribute(node) && node.name.name === 'c-model') {
       let modelKey = utils.getModelKey(node.value.value);
-      path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(node.value.value)))
+      path.insertAfter(t.jsxAttribute(t.jsxIdentifier('value'), t.stringLiteral(node.value.value)))
       if (type === 'alipay') {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`onInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-eventinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier('onInput'), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier('data-eventinput'), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       } else {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier('bindinput'), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       }
-      path.replaceWith(t.jsxAttribute(t.jsxIdentifier(`data-modelkey`), t.stringLiteral(`${modelKey}`)))
+      path.replaceWith(t.jsxAttribute(t.jsxIdentifier('data-modelkey'), t.stringLiteral(`${modelKey}`)))
     }
     // c-text
     if (t.isJSXAttribute(node) && node.name.name === 'c-text') {
@@ -93,12 +93,12 @@ parseDirective.tap('wx-baidu-qq-cml', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`The style attribute can't be used in the element that has  attributes with c-show `);
+        throw new Error('The style attribute can\'t be used in the element that has  attributes with c-show ');
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
       let styleNodeValue = `display:{{${elementShow}?'':'none'}};{{${elementShow}?'':'height:0px;width:0px;overflow:hidden'}}`
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+      attributes.push(t.jsxAttribute(t.jsxIdentifier('style'), t.stringLiteral(styleNodeValue)))
     }
   }
 })
@@ -111,8 +111,8 @@ parseDirective.tap('web-weex-vue', (args) => {
     // v-model
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
       let modelKey = utils.getModelKey(node.value.value);
-      path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-bind:value`), t.stringLiteral(modelKey)))
-      path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`v-on:input`), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
+      path.insertAfter(t.jsxAttribute(t.jsxIdentifier('v-bind:value'), t.stringLiteral(modelKey)))
+      path.insertAfter(t.jsxAttribute(t.jsxIdentifier('v-on:input'), t.stringLiteral(`${eventProxy.modelEventProxyName}($event,'${modelKey}')`)));
 
       path.remove();// 删除c-model属性节点；
     }
@@ -138,7 +138,7 @@ parseDirective.tap('web-weex-vue', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`The style attribute can't be used in the element that has  attributes with v-show `);
+        throw new Error('The style attribute can\'t be used in the element that has  attributes with v-show ');
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
@@ -147,9 +147,9 @@ parseDirective.tap('web-weex-vue', (args) => {
         styleNodeValue = `${weexMixins.styleProxyName}(${utils.getReactiveValue(styleNodeValue)})`
       }
       if (type === 'weex') {
-        attributes.push(t.jsxAttribute(t.jsxIdentifier(`:style`), t.stringLiteral(styleNodeValue)))
+        attributes.push(t.jsxAttribute(t.jsxIdentifier(':style'), t.stringLiteral(styleNodeValue)))
       } else if (type === 'web') {
-        attributes.push(t.jsxAttribute(t.jsxIdentifier(`v-show`), t.stringLiteral(elementShow)))
+        attributes.push(t.jsxAttribute(t.jsxIdentifier('v-show'), t.stringLiteral(elementShow)))
       }
 
     }
@@ -158,17 +158,17 @@ parseDirective.tap('web-weex-vue', (args) => {
 
 parseDirective.tap('wx-vue', (args) => {
   let { path, node, type, options: {lang} } = args;
-  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
+  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq', 'tt'].includes(type))) {
     if (t.isJSXAttribute(node) && node.name.name === 'v-model') {
       let modelKey = utils.getModelKey(node.value.value);
-      path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`value`), t.stringLiteral(`{{${node.value.value}}}`)))
+      path.insertAfter(t.jsxAttribute(t.jsxIdentifier('value'), t.stringLiteral(`{{${node.value.value}}}`)))
       if (type === 'alipay') {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`onInput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`data-eventinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier('onInput'), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier('data-eventinput'), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)));
       } else {
-        path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`bindinput`), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
+        path.insertAfter(t.jsxAttribute(t.jsxIdentifier('bindinput'), t.stringLiteral(`${wxEventProxy.modelEventProxyName}`)))
       }
-      path.replaceWith(t.jsxAttribute(t.jsxIdentifier(`data-modelkey`), t.stringLiteral(`${modelKey}`)))
+      path.replaceWith(t.jsxAttribute(t.jsxIdentifier('data-modelkey'), t.stringLiteral(`${modelKey}`)))
     }
     // v-text c-text
     if (t.isJSXAttribute(node) && node.name.name === 'v-text') {
@@ -191,13 +191,13 @@ parseDirective.tap('wx-vue', (args) => {
         return ;
       }
       if (styleNode) {
-        throw new Error(`The style attribute can't be used in the element that has  attributes with v-show `);
+        throw new Error('The style attribute can\'t be used in the element that has  attributes with v-show ');
       }
       let elementShow = utils.trimCurly(showDirectiveNode.value.value);
 
       let styleNodeValue = `display:{{${elementShow}?'':'none'}};{{${elementShow}?'':'height:0px;width:0px;overflow:hidden'}}`;
 
-      attributes.push(t.jsxAttribute(t.jsxIdentifier(`style`), t.stringLiteral(styleNodeValue)))
+      attributes.push(t.jsxAttribute(t.jsxIdentifier('style'), t.stringLiteral(styleNodeValue)))
     }
   }
 })

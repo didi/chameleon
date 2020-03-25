@@ -20,6 +20,7 @@ exports.getBuildPromise = async function (media, type) {
 
   let options = exports.getOptions(media, type);
   let webpackConfig = await getConfig(options);
+
   //  非web和weex 并且非增量
   if (!~['web', 'weex'].indexOf(type) && options.increase !== true) {
     // 异步删除output目录
@@ -40,6 +41,21 @@ exports.getBuildPromise = async function (media, type) {
     }
 
   }
+  // 工程配置输出
+  let projectConfig = options && options.projectConfig;
+  let destDir = path.resolve(cml.projectRoot, `dist/${type}`);
+  // 支付宝小程序没有工程配置
+  if (['wx', 'qq', 'tt'].includes(type) && projectConfig) {
+    fse.outputJsonSync(path.join(destDir, 'project.config.json'), projectConfig, {spaces: 4})
+  }
+  if (type === 'baidu' && projectConfig) {
+    fse.outputJsonSync(path.join(destDir, 'project.swan.json'), projectConfig, {spaces: 4})
+  }
+  // sitemap配置输出
+  let siteMap = options && options.siteMap;
+  if (type === 'wx' && siteMap) {
+    fse.outputJsonSync(path.join(destDir, 'sitemap.json'), siteMap, {spaces: 4})
+  }
   return new Promise(function(resolve, reject) {
     // watch模式
     if (media === 'dev') {
@@ -47,12 +63,15 @@ exports.getBuildPromise = async function (media, type) {
       if (type === 'weex') {
         startWeexLiveLoad(options);
       }
-      compiler.watch({
-        // watchOptions 示例
+      let optimizeCML = cml.config.get().optimize;
+      let watchOptions = {
         aggregateTimeout: 300,
-        poll: undefined,
-        ignored: /node_modules/
-      }, (err, stats) => {
+        poll: undefined
+      }
+      if (optimizeCML && !optimizeCML.watchNodeModules) {
+        watchOptions.ignored = /node_modules/;
+      }
+      compiler.watch(watchOptions, (err, stats) => {
 
         if (type === 'weex') {
           if (!(stats && stats.compilation && stats.compilation.errors && stats.compilation.errors.length > 0)) {
@@ -230,7 +249,13 @@ exports.createConfigJson = function() {
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
-  let {wxAppId = '', baiduAppId = '', alipayAppId = '' } = config.buildInfo;
+  let {wxAppId = '', baiduAppId = '', alipayAppId = '', qqAppId = '', ttAppId = ''} = config.buildInfo;
+  let extPlatform = config.extPlatform ;
+  let extCommand = (typeof extPlatform === 'object') ? Object.keys(extPlatform)[0] : undefined;
+  let extAppId = ''
+  if (extCommand) { // extCommand 可能值为 tt  quickApp
+    extAppId = config.buildInfo && config.buildInfo[`${extCommand}AppId`]
+  }
   let {routerConfig, hasError} = cml.utils.getRouterConfig();
   if (hasError) {
     throw new Error('router.config.json格式不正确')
@@ -263,6 +288,14 @@ exports.createConfigJson = function() {
           appId: alipayAppId,
           path: item.path
         },
+        qq: {
+          appId: qqAppId,
+          path: item.path
+        },
+        tt: {
+          appId: ttAppId,
+          path: item.path
+        },
         web: {
           url: webUrl
         },
@@ -276,6 +309,12 @@ exports.createConfigJson = function() {
       }
       if (item.extra) {
         route.extra = item.extra;
+      }
+      if (extCommand) {
+        route[extCommand] = {
+          appId: extAppId,
+          path: item.path
+        }
       }
       result.push(route);
     })
@@ -311,6 +350,14 @@ exports.createConfigJson = function() {
               appId: alipayAppId,
               path: routePath
             },
+            qq: {
+              appId: qqAppId,
+              path: routePath
+            },
+            tt: {
+              appId: ttAppId,
+              path: item.path
+            },
             web: {
               url: webUrl
             },
@@ -319,6 +366,15 @@ exports.createConfigJson = function() {
               query: {
                 path: routePath
               }
+            }
+          }
+          if (item.extra) {
+            route.extra = item.extra;
+          }
+          if (extCommand) {
+            route[extCommand] = {
+              appId: extAppId,
+              path: item.path
             }
           }
           result.push(route);

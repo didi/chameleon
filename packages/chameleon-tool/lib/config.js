@@ -69,7 +69,8 @@ var chameleonConfig = {
     weex: true,
     alipay: true,
     baidu: true,
-    qq: true
+    qq: true,
+    tt: true
   },
   proxy: {
     enable: false,
@@ -106,6 +107,7 @@ var chameleonConfig = {
   alipay: clone(miniappConfig),
   baidu: clone(miniappConfig),
   qq: clone(miniappConfig),
+  tt: clone(miniappConfig),
   web: {
     dev: {
       isWrapComponent: true, // 默认对组件进行一层包裹
@@ -171,6 +173,9 @@ var chameleonConfig = {
         'process.env.NODE_ENV': JSON.stringify('production')
       }
     }
+  },
+  optimize: {
+    watchNodeModules: false// 默认不对node_modules中的文件进行watch,提升编译性能
   }
 }
 
