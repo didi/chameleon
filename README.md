@@ -143,6 +143,7 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 
 ## 贡献者们
 快应用官方研发团队、luyixin、z-mirror、夏夜焰火（百度）
+[kingsleydon](https://github.com/kingsleydon)
 
 ## 微信 & QQ 交流群
 
@@ -152,9 +153,6 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 <br />
 
 **QQ**<br />
-<img width="150px" src="https://CML.JS.org/doc/assets/qr-qq.jpeg" />
-
-**QQ二群**<br />
 <img width="150px" src="https://cmljs.org/doc/assets/qq2-qrcode.JPG" />
 
 
@@ -163,3 +161,12 @@ Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Web
 Apache-2.0 license
 
 Chameleon 基于 Apache-2.0 协议进行分发和使用，更多信息参见[协议文件](./LICENSE)。
+
+## 友情链接
+
+[DoraemonKit](https://github.com/didi/DoraemonKit) /'dɔ:ra:'emɔn/，简称DoKit， 一款功能齐全的客户端（ iOS 、Android、微信小程序 ）研发助手，你值得拥有。
+
+[Mand Mobile](https://github.com/didi/mand-mobile) 一款优秀的面向金融场景的 移动端UI组件库。
+
+
+[Cube-UI](https://github.com/didi/cube-ui)  基于 Vue.js 实现的精致移动端组件库。
