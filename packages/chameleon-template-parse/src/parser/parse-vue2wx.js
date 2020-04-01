@@ -1,6 +1,6 @@
 const t = require('@babel/types')
 
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const {
   interationMap, conditionMapVue2Wx
 } = require('../common/cml-map.js');
@@ -11,7 +11,7 @@ let parseVue2Wx = new SyncHook(['args'])
 
 parseVue2Wx.tap('vue2wx-condition,vue2alipay-condition', (args) => {
   let { node, type, options: {lang}} = args;
-  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
+  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq', 'tt'].includes(type))) {
     if (t.isJSXAttribute(node) && (node.name.name === 'v-if' ||
     node.name.name === 'v-else-if' ||
     node.name.name === 'v-else'
@@ -32,7 +32,7 @@ parseVue2Wx.tap('vue2wx-condition,vue2alipay-condition', (args) => {
 })
 parseVue2Wx.tap('vue2wx-v-bind,vue2alipay-v-bind', (args) => {
   let { node, type, options: {lang}} = args;
-  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
+  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq', 'tt'].includes(type))) {
     // 注意这个node节点仍然是 JSXAttribute节点；
     let bindAttrName = node.name;
     if (t.isJSXNamespacedName(bindAttrName) && bindAttrName.namespace.name === 'v-bind' && bindAttrName.name.name !== 'key' && bindAttrName.name.name !== 'class') {
@@ -47,7 +47,7 @@ parseVue2Wx.tap('vue2wx-v-bind,vue2alipay-v-bind', (args) => {
 });
 parseVue2Wx.tap('vue2wx-v-for', (args) => {
   let { path, node, type, options: {lang}} = args;
-  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq'].includes(type))) {
+  if (lang === 'vue' && (['wx', 'baidu', 'alipay', 'qq', 'tt'].includes(type))) {
     if (t.isJSXAttribute(node) && node.name.name === 'v-for') {
       let siblingPaths = utils.getSiblingPaths(path);
       let value = node.value && node.value.value;
@@ -88,11 +88,11 @@ parseVue2Wx.tap('component-is', (args) => {
     wx: 'wx:if',
     alipay: 'a:if',
     baidu: 's-if',
-    qq: 'qq:if'
-
+    qq: 'qq:if',
+    tt: 'tt:if'
   }
   let usingComponents = (options.usingComponents || []).map(item => item.tagName)
-  if ((['wx', 'baidu', 'alipay', 'qq'].includes(type)) && t.isJSXElement(node)) {
+  if ((['wx', 'baidu', 'alipay', 'qq', 'tt'].includes(type)) && t.isJSXElement(node)) {
     let currentTag = node.openingElement.name.name;
     let jsxElementChildren = node.children || [];
     if (currentTag === 'component') {
@@ -121,7 +121,8 @@ parseVue2Wx.tap('component-is', (args) => {
       if (currentComp && usingComponents) {
         let elementAttributes = path.node.openingElement.attributes || [];
         usingComponents.forEach((comp) => {
-          elementAttributes = JSON.parse(JSON.stringify(elementAttributes))
+          elementAttributes = JSON.parse(JSON.stringify(elementAttributes));
+          // eslint-disable-next-line
           let openTag = t.jsxOpeningElement(t.jsxIdentifier(comp), [t.jsxAttribute(t.jsxIdentifier(`${conditionMap[type]}`), t.stringLiteral(`{{${currentComp} === '${comp}'}}`))].concat(elementAttributes));
           let closeTag = t.jsxClosingElement(t.jsxIdentifier(comp))
           let insertNode = t.jsxElement(openTag, closeTag, jsxElementChildren, false);

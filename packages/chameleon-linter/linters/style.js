@@ -1,9 +1,10 @@
 const stylelint = require('stylelint');
-const stylus = require('stylus/lib/stylus')
+const stylus = require('stylus/lib/stylus');
 const config = require('../config');
 const parserConfig = require('../config/parser-config');
 const postcss = require('postcss');
 const converter = require('stylus-converter');
+const path = require('path');
 
 module.exports = async (part) => {
   return new Promise(function (resolve, reject) {
@@ -16,37 +17,23 @@ module.exports = async (part) => {
     }
     let lang = part.params.lang || 'less';
     if (lang == 'stylus') {
-      stylus.render(part.content, parserConfig.style, function (err) {
+      stylus.render(part.content, {...{
+        paths: [path.dirname(path.resolve(config.getCurrentWorkspace(), part.file))]
+      }, ...parserConfig.style}, function (err) {
         if (err) {
-          let msgs = err.message.split('\n').filter(msg => {
-            if (/^\s*$/.test(msg)) {
-              return false;
-            }
-            else if (/^\-*\^/.test(msg)) {
-              return false;
-            }
-            return true;
-          });
+          let isImportStyl = err.filename && (path.extname(err.filename) === '.styl');
           let message = {
-            line: 0,
-            column: 0,
-            msg: ''
+            line: isImportStyl ? 0 : err.lineno,
+            column: isImportStyl ? 0 : err.column,
+            msg: err.message
           };
-          msgs.shift().replace(/stylus:\s*(\d+):\s*(\d+)/g, (match, line, column) => {
-            message.line = +line;
-            message.column = +column;
-          });
-          let flag = false;
-          msgs.forEach(msg => {
-            if (/^\s*\d+\|/.test(msg)) {
-              flag = true;
-              return ;
-            }
-            if (flag == true) {
-              message.msg = msg;
-              flag = false;
-            }
-          });
+          // guess line coloumn from err message
+          if (err.lineno === undefined) {
+            err.message.replace(/stylus:\s*(\d+):\s*(\d+)/g, (match, line, column) => {
+              message.line = +line;
+              message.column = +column;
+            });
+          }
           messages.push(message);
         }
         let ast;
@@ -55,7 +42,7 @@ module.exports = async (part) => {
           sassCode = sassCode.replace(/\n\s*\}/g, '}');
           ast = postcss.parse(sassCode);
         }
-        catch (e) {
+        catch (e) {     
           ast = null;
         }
 

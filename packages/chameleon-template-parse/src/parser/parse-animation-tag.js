@@ -1,5 +1,5 @@
 // import * as t from "@babel/types";
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const utils = require('../common/utils');
 
 
@@ -11,7 +11,8 @@ parseAnimationTag.tap('wx', (args) => {
     node.name.name = 'v-animation';
     node.value && (node.value.value = utils.trimCurly(node.value.value));
   }
-  if (type === 'wx' || type === 'baidu' || type === 'alipay' || type === 'qq') {
+  let miniAppType = ['wx', 'baidu', 'alipay', 'qq', 'tt']
+  if (miniAppType.includes(type)) {
     node.name.name = 'animation';
     if (type === 'alipay') {
       node.value && (node.value.value = `{{(${utils.trimCurly(node.value.value)}).actions}}`)

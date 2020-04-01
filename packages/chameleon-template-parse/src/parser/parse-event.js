@@ -1,6 +1,6 @@
 const t = require('@babel/types')
 
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const {
   eventMap
 } = require('../common/cml-map.js');
@@ -78,9 +78,10 @@ parseEvent.tap('web-weex', (args) => {
 
   }
 })
-parseEvent.tap('wx-baidu-qq', (args) => {
+parseEvent.tap('wx-baidu-qq-tt', (args) => {
   let { path, node, type, options} = args;
-  if (type === 'wx' || type === 'baidu' || type === 'qq') {
+  let miniAppType = ['wx', 'baidu', 'qq', 'tt'];
+  if (miniAppType.includes(type)) {
     let container = path.container;
     let value = container.value;
     let parentPath = path.parentPath;

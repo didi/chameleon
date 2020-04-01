@@ -1,6 +1,6 @@
 const t = require('@babel/types')
 
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const {
   interationMap
 } = require('../common/cml-map.js');
@@ -31,7 +31,7 @@ parseInteration.tap('web-weex', (args) => {
         if (forKey && forKey === '*this') {
           forKey = forIdx;
         } else {
-          forKey = forItem + "." + forKey;
+          forKey = forItem + '.' + forKey;
         }
       }
     }
@@ -45,16 +45,17 @@ parseInteration.tap('web-weex', (args) => {
       ) {
         // 如果相邻元素有c-key才会插入一个 :key的JSXAttributer;
         if (siblingPath.node.name.name === 'c-key') {
-          path.insertAfter(t.jsxAttribute(t.jsxIdentifier(`:key`), t.stringLiteral(forKey)));
+          path.insertAfter(t.jsxAttribute(t.jsxIdentifier(':key'), t.stringLiteral(forKey)));
         }
         siblingPath.remove();
       }
     })
   }
 })
-parseInteration.tap('wx-alipay-qq', (args) => {
+parseInteration.tap('wx-alipay-qq-tt', (args) => {
   let { path, node, type, options: {lang} } = args;
-  if (lang === 'cml' && (type === 'wx' || type === 'alipay' || type === 'qq')) {
+  let miniAppType = ['wx', 'alipay', 'qq', 'tt'];
+  if (lang === 'cml' && miniAppType.includes(type)) {
     let name = node.name.name;
     node.name.name = interationMap[name][type];
     let siblingPaths = utils.getSiblingPaths(path);

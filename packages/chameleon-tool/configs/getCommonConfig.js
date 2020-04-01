@@ -33,6 +33,7 @@ module.exports = function (options) {
   let defaultPublichPathMap = {
     'wx': `http://${config.ip}:${webServerPort}/wx/`,
     'qq': `http://${config.ip}:${webServerPort}/qq/`,
+    'tt': `http://${config.ip}:${webServerPort}/tt/`,
     'alipay': `http://${config.ip}:${webServerPort}/alipay/`,
     'baidu': `http://${config.ip}:${webServerPort}/baidu/`, // baidu小程序的publicPath不能设置能/  所以在启动dev服务的时候 也将dist作为静态资源
     'web': `http://${config.ip}:${webServerPort}/`,

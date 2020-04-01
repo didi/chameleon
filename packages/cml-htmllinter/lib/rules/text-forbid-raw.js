@@ -1,4 +1,5 @@
 var Issue = require('../issue');
+var knife = require('../knife');
 
 module.exports = {
     name: 'text-forbid-raw',
@@ -16,6 +17,9 @@ function getPosOffset(str) {
 
 module.exports.lint = function (element, opts) {
     let parentEle = element.parent;    
+    if (knife.isOriginTag(parentEle.name)) {
+        return [];
+    }
     if(!parentEle || parentEle.type != 'tag' || parentEle.name != 'text') {
         let posOffset = getPosOffset(element.data);
         return new Issue('E071', [element.lineCol[0] + posOffset[0], posOffset[0] > 0 ? (posOffset[1] + 1) : (element.lineCol[1] + posOffset[1])]);

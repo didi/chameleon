@@ -1,3 +1,4 @@
+/* eslint-disable */
 const fs = require('fs');
 const path = require('path');
 const pth = path;
@@ -276,8 +277,8 @@ _.getJsonFileContent = function (filePath, confType) {
     } else {
       _.log.error(`There is no file:${filePath}`)
     }
-  } else if (~['.wxml', '.axml', '.swan', '.qml'].indexOf(path.extname(filePath))) {
-    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan|\.qml)/, '.json');
+  } else if (~['.wxml', '.axml', '.swan', '.qml','.ttml'].indexOf(path.extname(filePath))) {
+    let jsonFilePath = filePath.replace(/(\.wxml|\.axml|\.swan|\.qml|\.ttml)/, '.json');
     if (_.isFile(filePath)) {
       let content = fs.readFileSync(jsonFilePath, {
         encoding: 'utf-8'
@@ -520,7 +521,7 @@ _.getNpmComponents = function (cmlType, context) {
 
     })
   } else {
-    throw new Error(`The field : cmlComponents in chameleon.config.js should be arraytype `)
+    throw new Error('The field : cmlComponents in chameleon.config.js should be arraytype ')
   }
 
   return cml.npmComponents[cmlType] = npmComponents;
@@ -842,7 +843,8 @@ _.findComponent = function (filePath, cmlType) {
     wx: '.wxml',
     baidu: '.swan',
     alipay: '.axml',
-    qq: '.qml'
+    qq: '.qml',
+    tt: '.ttml'
   }
 
   let ext = fileExtMap[cmlType];
@@ -894,7 +896,7 @@ _.findPolymorphicComponent = function(interfacePath, content, cmlType) {
     // interface文件中script src 指定
     if (targetScript && targetScript.attrs && targetScript.attrs.src) {
       let cmlFilePath = _.resolveSync(interfacePath, targetScript.attrs.src);
-      let reg = new RegExp(`\\.cml$`); // 只要是.cml文件就可以 不限制多态文件名称
+      let reg = new RegExp('\\.cml$'); // 只要是.cml文件就可以 不限制多态文件名称
       // let reg = new RegExp(`\\.${cmlType}\\.cml$`);
       // 获取npm包中的组件时 只能够根据interface文件去查找 无法区分是多态组件还是接口 如果找到了组件就返回 找不到就返回空
       if (reg.test(cmlFilePath)) {
@@ -1058,7 +1060,7 @@ _.plugin = function (pluginKey, handle) {
 }
 
 function getPluginKey(type, key) {
-  return `__${type === "1" ? "plugineventout" : "plugineventin"}__${key}__`;
+  return `__${type === '1' ? 'plugineventout' : 'plugineventin'}__${key}__`;
 }
 
 
@@ -1107,7 +1109,7 @@ _.getExportEntry = function (cmlType, context, entry = []) {
     _.log.warn('please assign the entry of what you want to export')
   }
   if (exportFiles.length == 0) {
-    throw new Error(`can't find the entry file that you want to export`)
+    throw new Error('can\'t find the entry file that you want to export')
   }
   return exportFiles;
 }
@@ -1261,7 +1263,7 @@ _.splitFileName = function(filePath) {
 }
 
 _.isInline = function(filePath) {
-  if (~filePath.indexOf("__inline")) {
+  if (~filePath.indexOf('__inline')) {
     return true;
   }
   return false;

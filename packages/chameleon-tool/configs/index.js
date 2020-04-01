@@ -26,9 +26,10 @@ module.exports = async function (options) {
   } else {
     switch (type) {
       case 'wx':
-      case "qq":
+      case 'qq':
       case 'alipay':
       case 'baidu':
+      case 'tt':
         if (media == 'dev') {
           webpackConfig = getMiniAppDevConfig(options);
         } else {
