@@ -72,7 +72,7 @@
     "inquirer": "6.0.0",
     "interface-loader": "^1.0.5",
     "ip": "1.1.5",
-    "less": "3.0.4",
+    "less": "^3.11.1",
     "less-loader": "4.1.0",
     "minimist": "1.2.0",
     "mvvm-cml-loader": "1.0.5",
