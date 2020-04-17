@@ -5,7 +5,7 @@ module.exports = function(content) {
   let currentType = 'web';
   let configNodes = Object.keys(config.nodeConfiguration);
   const union = Object.keys(this.options.node).filter((v) => configNodes.includes(v));
-  if(union.length === configNodes.length){
+  if (union.length === configNodes.length) {
     currentType = 'weex'
   }
   const context = (
@@ -23,7 +23,7 @@ module.exports = function(content) {
     let routerList = '';
     routerConfig.routes.forEach(item => {
       let usedPlatforms = item.usedPlatforms;
-      if(!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))){
+      if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
         routerList += `
         {
           path: "${item.url}",
@@ -43,7 +43,7 @@ module.exports = function(content) {
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
           let usedPlatforms = item.usedPlatforms;
-          if(!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))){
+          if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
             routerList += `
             {
               path: "${item.url}",
@@ -63,7 +63,7 @@ module.exports = function(content) {
       routes: [${routerList}]
     }    
     `;
-    content = content.replace(`'$ROUTER_OPTIONS'`, routerTemplate)
+    content = content.replace('\'$ROUTER_OPTIONS\'', routerTemplate)
   }
   return content;
 }
