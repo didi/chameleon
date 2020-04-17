@@ -1,6 +1,13 @@
 const path = require('path');
 const cmlUtils = require('chameleon-tool-utils');
+const config = require('./config')
 module.exports = function(content) {
+  let currentType = 'web';
+  let configNodes = Object.keys(config.nodeConfiguration);
+  const union = Object.keys(this.options.node).filter((v) => configNodes.includes(v));
+  if (union.length === configNodes.length) {
+    currentType = 'weex'
+  }
   const context = (
     this.rootContext ||
     (this.options && this.options.context) ||
@@ -15,13 +22,16 @@ module.exports = function(content) {
     let mode = routerConfig.mode;
     let routerList = '';
     routerConfig.routes.forEach(item => {
-      routerList += `
-      {
-        path: "${item.url}",
-        name: "${item.name}",
-        component: require("$PROJECT/src${item.path}.cml").default
-      },
-      `
+      let usedPlatforms = item.usedPlatforms;
+      if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
+        routerList += `
+        {
+          path: "${item.url}",
+          name: "${item.name}",
+          component: require("$PROJECT/src${item.path}.cml").default
+        },
+        `
+      }
     })
 
     // subProject 中的页面
@@ -32,13 +42,16 @@ module.exports = function(content) {
         let npmRouterConfig = cml.utils.readsubProjectRouterConfig(cml.projectRoot, npmName);
         npmRouterConfig.routes && npmRouterConfig.routes.forEach(item => {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
-          routerList += `
+          let usedPlatforms = item.usedPlatforms;
+          if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
+            routerList += `
             {
               path: "${item.url}",
               name: "${item.name}",
               component: require("${cmlFilePath}").default
             },
             `
+          }
         })
       })
     }
@@ -50,7 +63,7 @@ module.exports = function(content) {
       routes: [${routerList}]
     }    
     `;
-    content = content.replace(`'$ROUTER_OPTIONS'`, routerTemplate)
+    content = content.replace('\'$ROUTER_OPTIONS\'', routerTemplate)
   }
   return content;
 }

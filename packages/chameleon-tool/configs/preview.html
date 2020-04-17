@@ -817,9 +817,15 @@
 
           routeListDom.setAttribute('id','routeList')
           for (var i = 0; i < routes.length; i++) {
+            let usedPlatforms = routes[i].usedPlatforms;
+            let usedPlatformsString = ''
+            if(usedPlatforms){
+              usedPlatformsString = '-' + usedPlatforms.toString();
+            }
+            console.log('usedPlatformsString',usedPlatformsString)
             var li = document.createElement('li');
             li.setAttribute('index', i);
-            li.innerHTML = '<img style="display:none;padding-right:5px;"  src="./preview-assets/cml-right.png" alt=""><span  index=' + i + ' title=' + routes[i].path + ' >' + routes[i].url+ '</span>';
+            li.innerHTML = '<img style="display:none;padding-right:5px;"  src="./preview-assets/cml-right.png" alt=""><span  index=' + i + ' title=' + routes[i].path + usedPlatformsString + ' >' + routes[i].url+ '</span>';
             routeListDom.appendChild(li);
           }
           fragment.appendChild(routeListDom)

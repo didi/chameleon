@@ -323,7 +323,10 @@ _.getJsonFileContent = function (filePath, confType) {
               if (itemPath[0] === '/') {
                 itemPath = itemPath.slice(1);
               }
-              targetObject.pages.push(itemPath);
+              let usedPlatforms = item.usedPlatforms;
+              if(!usedPlatforms || (usedPlatforms && usedPlatforms.includes(confType))){
+                targetObject.pages.push(itemPath);
+              }
             }
           })
         }
