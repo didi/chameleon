@@ -34,6 +34,7 @@ module.exports = function (options) {
   }]
   let commonConfig =
   {
+    name: 'weex',
     context: path.resolve(root),
     entry,
     output: {
