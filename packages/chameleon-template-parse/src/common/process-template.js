@@ -52,7 +52,7 @@ exports.preParseAliComponent = function(source, type, options) {
         // 先 push view标签，然后再push组件标签
         let isComponent = usingComponents.find((comp) => comp.tagName === item.tagName) || Object.keys(buildInComponents).includes(item.tagName);
         let inheritNodes = (item.attrs || []).filter((attr) => {
-          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ':class', 'c-show', 'v-show','id'];
+          let inheritAttrsFromComp = ['c-if', 'c-else', 'c-else-if', 'v-if', 'v-else', 'v-else-if', 'class', 'style', 'v-bind:style', 'v-bind:class', ':style', ':class', 'c-show', 'v-show', 'id'];
           // eslint-disable-next-line
           let inheritEvent = ['c-bind:click', 'c-bind:tap', 'c-bind:touchstart', 'c-bind:touchmove', 'c-bind:touchend', 'c-bind:touchcancel', 'c-catch:click', 'c-catch:tap', 'c-catch:touchstart', 'c-catch:touchmove', 'c-catch:touchend', 'c-catch:touchcancel'];
           let isInherit = inheritAttrsFromComp.includes(attr[1]) || inheritEvent.includes(attr[1]) || /^data-/.test(attr[1])
