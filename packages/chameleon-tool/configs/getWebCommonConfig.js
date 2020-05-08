@@ -56,6 +56,7 @@ module.exports = function (options) {
   ]
   var commonConfig =
   {
+    name: 'web',
     context: path.resolve(root),
     entry,
     output: {

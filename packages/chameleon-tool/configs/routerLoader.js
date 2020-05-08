@@ -1,13 +1,7 @@
 const path = require('path');
 const cmlUtils = require('chameleon-tool-utils');
-const config = require('./config')
 module.exports = function(content) {
-  let currentType = 'web';
-  let configNodes = Object.keys(config.nodeConfiguration);
-  const union = Object.keys(this.options.node).filter((v) => configNodes.includes(v));
-  if (union.length === configNodes.length) {
-    currentType = 'weex'
-  }
+  let currentType = this.options.name || 'web';
   const context = (
     this.rootContext ||
     (this.options && this.options.context) ||
