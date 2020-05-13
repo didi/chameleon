@@ -1,7 +1,14 @@
+## [1.0.6-alpha.3]
+
+* 初始化项目paltform默认值['web','weex','wx']三端
+* 支持weex多bundle构建
+
+
 ## [1.0.6-alpha.2]
 
 * 支付宝小程序编译组件包裹层id上移
 * web、weex端router.config.json的编译方式增加name字段进行区分
+
 ## [1.0.6-alpha.1]
 
 * 升级less编译器
