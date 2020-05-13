@@ -461,6 +461,7 @@ exports.getWeexEntry = function (options) {
   var entry = {};
   var entryFile = [];
   let entryConfig = cml.config.get().entry;
+  let entryJS = path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js');
   if (entryConfig && entryConfig.weex) {
     if (cml.utils.isFile(entryConfig.weex)) {
       entryFile.push(entryConfig.weex)
@@ -468,7 +469,7 @@ exports.getWeexEntry = function (options) {
       throw new Error('no such file: ' + entryConfig.weex);
     }
   } else {
-    entryFile.push(path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'));
+    entryFile.push(entryJS);
   }
   if (options.media === 'dev') {
     exports.copyWeexLiveLoadFile(options.root, 'weex', options.media);
@@ -478,7 +479,17 @@ exports.getWeexEntry = function (options) {
     entryFile.unshift(path.join(__dirname, 'default/miniappPolyfill.js'));
   }
   var entryName = exports.getEntryName();
-  entry[entryName] = entryFile;
+  const {routerConfig} = cmlUtils.getRouterConfig();
+  let mpa = routerConfig.mpa;
+  if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) { // 配置了weex多页面
+    let weexMpa = mpa.weexMpa;
+    for (let i = 0; i < weexMpa.length ; i++) {
+      let newEntry = entryFile.map((item) => (item === entryJS) ? `${item}?query=${i}` : item)
+      entry[`${entryName}${i}`] = newEntry
+    }
+  } else { // 兼容原来的没有配置的情况
+    entry[`${entryName}`] = entryFile
+  }
   return entry;
 }
 

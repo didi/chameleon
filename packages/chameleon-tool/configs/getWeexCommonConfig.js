@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const config = require('./config')
+const cmlUtils = require('chameleon-tool-utils');
 const getCommonConfig = require('./getCommonConfig');
 module.exports = function (options) {
   let {
@@ -73,13 +74,21 @@ module.exports = function (options) {
 
     ],
     node: config.nodeConfiguration
-
   }
 
   if (media === 'export') {
     commonConfig.output.libraryTarget = 'umd';
   }
-
+  const {routerConfig} = cmlUtils.getRouterConfig();
+  let mpa = routerConfig.mpa;
+  if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) { // 配置了weex多页面
+    commonConfig.module.rules.push(
+      {
+        test: path.resolve(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'),
+        loader: path.join(__dirname, 'entryLoader.js')
+      }
+    )
+  }
   return merge(getCommonConfig(options), commonConfig);
 
 
