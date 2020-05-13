@@ -19,16 +19,15 @@ module.exports = function (options) {
     plugins: [
       new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
       new AssetsPlugin({
-        filename: '/dist/config.json',
-        processOutput: function (assets) {
-          let config = cml.config.get();
+        filename: '/dist/config.json'
+        // processOutput: function (assets) {
+        //   let config = cml.config.get();
+        //   let weexjs = assets[config.projectName].js;
+        //   return JSON.stringify({
+        //     weexjs
+        //   }, '', 4);
 
-          let weexjs = assets[config.projectName].js;
-          return JSON.stringify({
-            weexjs
-          }, '', 4);        
-
-        }
+        // }
       })
     ]
   }
