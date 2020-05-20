@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const {getBabelPath, getExcludeBabelPath, getGlobalCheckWhiteList, getFreePort} = require('./utils');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
@@ -12,6 +13,7 @@ const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+
 module.exports = function (options) {
   let {
     type,
@@ -150,6 +152,7 @@ module.exports = function (options) {
 
     },
     plugins: [
+      new ProgressBarPlugin(),
       new webpack.DefinePlugin({
         'process.env.platform': JSON.stringify(type)
       }),

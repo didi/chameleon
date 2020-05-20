@@ -14,7 +14,7 @@ module.exports.run = function () {
     let extCommand = require('../commanders/ext/index.js').name;
     commander.usage('[command] [options]')
     commander.version(`${cmlpackage.name}@${cmlpackage.version}`)
-    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay', 'qq', 'tt'];
+    let cmdList = ['init', 'dev', 'build', 'server', 'web', 'weex', 'wx', 'baidu', 'alipay', 'qq', 'tt','info'];
     if (typeof extCommand === 'string') {
       cmdList.push('ext');
     }
