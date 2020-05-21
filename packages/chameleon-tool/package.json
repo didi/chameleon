@@ -60,6 +60,7 @@
     "copy-webpack-plugin": "4.5.2",
     "css-hot-loader": "1.3.9",
     "css-loader": "0.28.11",
+    "duplicate-package-checker-webpack-plugin": "^2.1.0",
     "envinfo": "^7.5.1",
     "eventsource-polyfill": "0.9.6",
     "express": "4.16.3",

@@ -484,8 +484,12 @@ exports.getWeexEntry = function (options) {
   if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) { // 配置了weex多页面
     let weexMpa = mpa.weexMpa;
     for (let i = 0; i < weexMpa.length ; i++) {
-      let newEntry = entryFile.map((item) => (item === entryJS) ? `${item}?query=${i}` : item)
-      entry[`${entryName}${i}`] = newEntry
+      let newEntry = entryFile.map((item) => (item === entryJS) ? `${item}?query=${i}` : item);
+      if (typeof weexMpa[i].name === 'string') {
+        entry[`${weexMpa[i].name}`] = newEntry;
+      } else {
+        entry[`${entryName}${i}`] = newEntry;
+      }
     }
   } else { // 兼容原来的没有配置的情况
     entry[`${entryName}`] = entryFile

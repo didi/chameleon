@@ -13,6 +13,7 @@ const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
 module.exports = function (options) {
   let {
@@ -190,6 +191,7 @@ module.exports = function (options) {
 
 
   if (options.media === 'dev') {
+
     // dev模式添加domainKey参数
     Object.keys(domain).forEach(key => {
       if (domain[key].toLowerCase() === 'localhost') {
@@ -201,7 +203,12 @@ module.exports = function (options) {
       new ExtraWatchWebpackPlugin({
         dirs: [path.join(cml.projectRoot, 'mock/api')]
       })
-    )
+    );
+    commonConfig.plugins.push(
+      new DuplicatePackageCheckerPlugin({
+        verbose: true,
+      }),
+    );
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
