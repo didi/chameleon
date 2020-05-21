@@ -206,8 +206,8 @@ module.exports = function (options) {
     );
     commonConfig.plugins.push(
       new DuplicatePackageCheckerPlugin({
-        verbose: true,
-      }),
+        verbose: true
+      })
     );
   }
   // 兼容旧版api
