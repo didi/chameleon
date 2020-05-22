@@ -13,7 +13,7 @@ const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
-const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+// const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
 module.exports = function (options) {
   let {
@@ -204,11 +204,11 @@ module.exports = function (options) {
         dirs: [path.join(cml.projectRoot, 'mock/api')]
       })
     );
-    commonConfig.plugins.push(
-      new DuplicatePackageCheckerPlugin({
-        verbose: true
-      })
-    );
+    // commonConfig.plugins.push(
+    //   new DuplicatePackageCheckerPlugin({
+    //     verbose: true
+    //   })
+    // );
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
