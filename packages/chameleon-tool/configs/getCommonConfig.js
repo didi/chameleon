@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const {getBabelPath, getExcludeBabelPath, getGlobalCheckWhiteList, getFreePort} = require('./utils');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
@@ -12,6 +13,8 @@ const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+// const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+
 module.exports = function (options) {
   let {
     type,
@@ -150,6 +153,7 @@ module.exports = function (options) {
 
     },
     plugins: [
+      new ProgressBarPlugin(),
       new webpack.DefinePlugin({
         'process.env.platform': JSON.stringify(type)
       }),
@@ -187,6 +191,7 @@ module.exports = function (options) {
 
 
   if (options.media === 'dev') {
+
     // dev模式添加domainKey参数
     Object.keys(domain).forEach(key => {
       if (domain[key].toLowerCase() === 'localhost') {
@@ -198,7 +203,12 @@ module.exports = function (options) {
       new ExtraWatchWebpackPlugin({
         dirs: [path.join(cml.projectRoot, 'mock/api')]
       })
-    )
+    );
+    // commonConfig.plugins.push(
+    //   new DuplicatePackageCheckerPlugin({
+    //     verbose: true
+    //   })
+    // );
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({

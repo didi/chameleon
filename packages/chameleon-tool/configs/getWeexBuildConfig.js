@@ -20,14 +20,6 @@ module.exports = function (options) {
       new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false}),
       new AssetsPlugin({
         filename: '/dist/config.json'
-        // processOutput: function (assets) {
-        //   let config = cml.config.get();
-        //   let weexjs = assets[config.projectName].js;
-        //   return JSON.stringify({
-        //     weexjs
-        //   }, '', 4);
-
-        // }
       })
     ]
   }

@@ -21,20 +21,24 @@ cml.config.merge({
   web: {
     dev: {
       analysis: false,
-      console: false
+      console: false,
+      isWrapComponent: false // 取消默认对组件的包裹
     },
     build: {
       analysis: false,
       publicPath: `${publicPath}/web/`,
-      apiPrefix
+      apiPrefix,
+      isWrapComponent: false // 取消默认对组件的包裹
     }
   },
   weex: {
     dev: {
+      isWrapComponent: false // 取消默认对组件的包裹
     },
     build: {
       publicPath: `${publicPath}/weex/`,
-      apiPrefix
+      apiPrefix,
+      isWrapComponent: false // 取消默认对组件的包裹
     },
     custom: {
       publicPath: `${publicPath}/wx/`,
