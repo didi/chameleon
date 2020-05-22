@@ -6,7 +6,8 @@
 
 ## 文档
 
-主站: [CML.JS.org](https://cml.js.org)
+[CML.DIDI.CN](http://cml.didi.cn/)
+[CML.JS.org](https://cml.js.org)
 
 - [安装](https://CML.JS.org/doc/quick_start/quick_start.html)
 - [快速上手](https://CML.JS.org/doc/quick_start/quick_start.html)
