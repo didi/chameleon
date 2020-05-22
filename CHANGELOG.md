@@ -1,5 +1,11 @@
 ## [1.0.6-alpha.3]
 
+* 更新初始化项目依赖版本
+* 支持weex多bundle构建自定义name
+
+
+## [1.0.6-alpha.3]
+
 * 初始化项目paltform默认值['web','weex','wx']三端
 * 支持weex多bundle构建
 
