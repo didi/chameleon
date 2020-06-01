@@ -13,7 +13,7 @@ const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
-// const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
 module.exports = function (options) {
   let {
@@ -46,7 +46,7 @@ module.exports = function (options) {
   if (!publicPath) {
     publicPath = `http://${config.ip}:${webServerPort}/${type}/`
   }
-
+  let chameleonConfig = cml.config.get();
   let commonConfig = {
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
     output: {
@@ -144,7 +144,7 @@ module.exports = function (options) {
           options: {
             cmlType: type,
             media,
-            check: cml.config.get().check
+            check: chameleonConfig.check
           }
         }
         ]
@@ -158,11 +158,12 @@ module.exports = function (options) {
         'process.env.platform': JSON.stringify(type)
       }),
       new ChameleonErrorsWebpackPlugin({
-        cmlType: type
+        cmlType: type,
+        showWarning:chameleonConfig.optimize && chameleonConfig.optimize.showWarning 
       })
     ]
   }
-  if (cml.config.get().enableGlobalCheck === true) {
+  if (chameleonConfig.enableGlobalCheck === true) {
     commonConfig.plugins.push(
       new WebpackCheckPlugin({
         cmlType: type,
@@ -204,11 +205,11 @@ module.exports = function (options) {
         dirs: [path.join(cml.projectRoot, 'mock/api')]
       })
     );
-    // commonConfig.plugins.push(
-    //   new DuplicatePackageCheckerPlugin({
-    //     verbose: true
-    //   })
-    // );
+    commonConfig.plugins.push(
+      new DuplicatePackageCheckerPlugin({
+        verbose: true
+      })
+    );
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
@@ -245,7 +246,7 @@ module.exports = function (options) {
   }
 
 
-  let subProject = cml.config.get().subProject;
+  let subProject = chameleonConfig.subProject;
   if (subProject && subProject.length > 0) {
     subProject.forEach(item => {
       let npmName = cmlUtils.isString(item) ? item : item.npmName;
