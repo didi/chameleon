@@ -159,7 +159,7 @@ module.exports = function (options) {
       }),
       new ChameleonErrorsWebpackPlugin({
         cmlType: type,
-        showWarning:chameleonConfig.optimize && chameleonConfig.optimize.showWarning 
+        showWarning: chameleonConfig.optimize && chameleonConfig.optimize.showWarning
       })
     ]
   }
