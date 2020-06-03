@@ -231,7 +231,11 @@ module.exports = function (options) {
         assetNameRegExp: /\.css$/,
         cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
       }),
-      new UglifyJsPlugin({})
+      new UglifyJsPlugin({
+        compress: {
+          drop_console: true
+        }
+      })
     ])
   }
 
