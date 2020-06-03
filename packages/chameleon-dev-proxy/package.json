@@ -1,6 +1,6 @@
 {
   "name": "chameleon-dev-proxy",
-  "version": "1.0.6-alpha.5",
+  "version": "1.0.6-alpha.6",
   "description": "cml开发环境代理服务模块",
   "main": "index.js",
   "author": "Chameleon-Team",
