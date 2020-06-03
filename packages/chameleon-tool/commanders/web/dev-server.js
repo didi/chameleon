@@ -32,20 +32,20 @@ module.exports = function({webpackConfig, options, compiler}) {
   var port = utils.getFreePort().webServerPort;
   var autoOpenBrowser = true;
   var app = express();
-  
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.text({ type: 'text/html' }))
   app.use(responseTime());
   dynamicApiMiddleware(app, options);
-  //web端增加跨域自定义配置
-  
+  // web端增加跨域自定义配置
+
   let devProxy = options && options.devProxy || [];
-  if(webpackConfig.name === 'web' && Array.isArray(devProxy)){
+  if (webpackConfig.name === 'web' && Array.isArray(devProxy)) {
     devProxy.forEach((proxyConfig) => {
-      app.use(proxyConfig.path,createProxyMiddleware(proxyConfig.options))
+      app.use(proxyConfig.path, createProxyMiddleware(proxyConfig.options))
     })
-  };
+  }
   if (compiler) {
 
     if (options.hot === true) {
