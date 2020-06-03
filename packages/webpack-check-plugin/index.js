@@ -1,6 +1,6 @@
 const check = require('./lib/check.js');
 const chalk = require('chalk');
-
+const IS_WIN = process.platform.indexOf('win') === 0
 class WebpackCheckPlugin {
   constructor(options) {
     this.options = Object.assign({
@@ -24,8 +24,13 @@ class WebpackCheckPlugin {
 
       var type = options.cmlType;
       compilation.modules.forEach(module => {
-        // 项目内的文件做校验
-        if (module.resource && module.resource.indexOf(cml.projectRoot) === 0) {
+        // 项目内的文件做校验 并且 对于路径包括chameleon-tool的不进行校验，因为cli可能会被安装在项目内部
+        let cliName = 'chameleon-tool';// 内网的会被替换成 @didi/chameleon-cli 注意windows下的兼容
+        if (IS_WIN) {
+          cliName = cliName.replace(/\//g, '\\')
+        }
+        let inChameleonTool = module.resource && module.resource.includes(cliName)
+        if (module.resource && module.resource.indexOf(cml.projectRoot) === 0 && !inChameleonTool) {
           // 白名单内的文件不做校验
 
           let whiteListFileLength = options.whiteListFile.length;
