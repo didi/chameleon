@@ -60,7 +60,8 @@ module.exports = function (options) {
     context: path.resolve(root),
     entry,
     output: {
-      filename: getJsPath()
+      filename: getJsPath(),
+      chunkFilename: getJsPath()
     },
     resolve: {
       alias: {
