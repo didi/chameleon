@@ -1,6 +1,6 @@
 {
   "name": "mvvm-babel-generator",
-  "version": "1.0.6-alpha.6",
+  "version": "1.0.6",
   "description": "Turns an AST into code.",
   "author": "Chameleon-Team",
   "license": "Apache",

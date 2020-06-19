@@ -1,3 +1,9 @@
+## [1.0.6]
+
+  * web端动态加载支持自定义chunk名称
+  * 修复小程序端原生tabbar图标配置在windows上的Bug
+
+  
 ## [1.0.6-alpha.6]
 
   * web端 dev模式下如何支持跨域
