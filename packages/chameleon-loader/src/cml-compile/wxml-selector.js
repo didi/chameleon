@@ -4,7 +4,6 @@ const loaderUtils = require('loader-utils');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const path = require('path');
-const handlePlatformCss = require('./handle-platform-css.js');
 
 module.exports = function(content) {
   const self = this;// eslint-disable-line
@@ -39,9 +38,7 @@ module.exports = function(content) {
     module.exports = function(){\n
     }`
   }
-  if (output) {
-    output = handlePlatformCss(output, {filePath: this.resourcePath, ext: styles})
-  }
+
   return output;
 
 }

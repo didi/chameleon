@@ -323,10 +323,7 @@ _.getJsonFileContent = function (filePath, confType) {
               if (itemPath[0] === '/') {
                 itemPath = itemPath.slice(1);
               }
-              let usedPlatforms = item.usedPlatforms;
-              if(!usedPlatforms || (usedPlatforms && usedPlatforms.includes(confType))){
-                targetObject.pages.push(itemPath);
-              }
+              targetObject.pages.push(itemPath);
             }
           })
         }
@@ -1181,10 +1178,6 @@ _.getCmlFileType = function(cmlFilePath, context, cmlType) {
       });
       let subProjectIndex = -1;
       for (let i = 0; i < npmNames.length; i++) {
-        //比如 配置 npmName: '@didi/cml-login',在windows中药改成对应的分隔符
-        if (_.isWin()) { // 修复windows平台下将npm页面全部解析成component的问题
-          npmNames[i] = npmNames[i].replace(/\//g,'\\')
-        }
         if (~cmlFilePath.indexOf(npmNames[i])) {
           subProjectIndex = i;
           break;

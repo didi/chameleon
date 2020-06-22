@@ -38,11 +38,7 @@ exports.initRouter = function initRouter() {
 exports.getRouteConfig = function getRouteConfig() {
   let {routerConfig, hasError} = cml.utils.getRouterConfig();
   if (!hasError) {
-    routerConfig.routes = routerConfig.routes.filter((item) => {
-      let usedPlatforms = item.usedPlatforms;
-      return (!usedPlatforms || (usedPlatforms && usedPlatforms.includes('web')) || (usedPlatforms && usedPlatforms.includes('weex')))
-    })
-    routerConfig = Object.assign(routerConfig, staticParams);// {weexBundles,subpath}
+    routerConfig = Object.assign(routerConfig, staticParams);// {jsbundle,subpath}
     return JSON.stringify(routerConfig);
   }
 }
