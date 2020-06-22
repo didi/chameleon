@@ -10,6 +10,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const cmlUtils = require('chameleon-tool-utils');
+const {getEntryName} = require('../configs/utils.js');
 
 /**
  * 非web端构建
@@ -227,16 +228,10 @@ function startCmlLinter(media) {
     });
   }
 }
-
-exports.createConfigJson = function() {
-  let configJsonPath = path.join(cml.projectRoot, 'dist/config.json');
-  let configObj = {};
-  if (cml.utils.isFile(configJsonPath)) {
-    configObj = JSON.parse(fs.readFileSync(configJsonPath, {encoding: 'utf-8'}))
+exports.getMD5 = function(weexjs) {
+  if (!weexjs) {
+    return '';
   }
-  // 获取weex jsbundle地址
-  let weexjs = configObj.weexjs || '';
-  let md5str = '';
   const weexjsName = weexjs.split('/').pop();
   const weexjsPath = path.resolve(cml.projectRoot, 'dist/weex/', weexjsName);
 
@@ -244,8 +239,17 @@ exports.createConfigJson = function() {
     const md5sum = crypto.createHash('md5');
     const buffer = fs.readFileSync(weexjsPath);
     md5sum.update(buffer);
-    md5str = md5sum.digest('hex').toUpperCase();
+    let md5str = md5sum.digest('hex').toUpperCase();
+    return md5str
   }
+}
+exports.createConfigJson = function() {
+  let configJsonPath = path.join(cml.projectRoot, 'dist/config.json');
+  let configObj = {};
+  if (cml.utils.isFile(configJsonPath)) {
+    configObj = JSON.parse(fs.readFileSync(configJsonPath, {encoding: 'utf-8'}))
+  }
+  // 获取weex jsbundle地址
 
   let config = cml.config.get();
   config.buildInfo = config.buildInfo || {};
@@ -257,6 +261,12 @@ exports.createConfigJson = function() {
     extAppId = config.buildInfo && config.buildInfo[`${extCommand}AppId`]
   }
   let {routerConfig, hasError} = cml.utils.getRouterConfig();
+  let entryName = getEntryName();
+  let weexjs = (configObj.entryName && configObj.entryName.js) || '';
+  let md5str = exports.getMD5(weexjs);
+  let mpa = routerConfig.mpa;
+
+
   if (hasError) {
     throw new Error('router.config.json格式不正确')
   }
@@ -267,8 +277,17 @@ exports.createConfigJson = function() {
       throw new Error('router.config.json 中未设置web端需要的domain字段');
     }
     let {domain, mode} = routerConfig;
-
     routerConfig.routes.forEach(item => {
+      // 如果配置了weex多页面，那么每个路由都要重新计算对应的weexjs
+      if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) { // 配置了weex多页面
+        let weexMpa = mpa.weexMpa;
+        for (let i = 0; i < weexMpa.length ; i++) {
+          if (Array.isArray(weexMpa[i].paths) && weexMpa[i].paths.includes(item.path)) {
+            weexjs = configObj[`${entryName}${i}`] && configObj[`${entryName}${i}`].js;
+            md5str = exports.getMD5(weexjs);
+          }
+        }
+      }
       let webUrl = domain;
       if (mode === 'history') {
         webUrl += item.url;

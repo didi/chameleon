@@ -28,7 +28,7 @@ function checkToken(path, token) {
     //   const api = {
     //     name: weex,
     //     };
-    let isObjectKey = path.parent.type === "ObjectProperty" && path.parentKey === 'key'
+    let isObjectKey = path.parent.type === 'ObjectProperty' && path.parentKey === 'key'
     // 对象成员
     /**
      * var a = {
@@ -36,7 +36,7 @@ function checkToken(path, token) {
      * }
      * console.log(weex.a);
      */
-    let isObjectMember = path.parent.type === "MemberExpression" && path.parentKey === "property"
+    let isObjectMember = path.parent.type === 'MemberExpression' && path.parentKey === 'property'
 
     return !(isObjectKey || isObjectMember)
   } else {
@@ -54,7 +54,7 @@ const check = function (code, options) {
   // TOKENS_MAP.ALL = TOKENS_ALL;
   type = type.toUpperCase();
   const ast = parser.parse(code, {
-    plugins: ['flow'],
+    plugins: ['flow', 'dynamicImport'],
     sourceType: 'module'
   });
   let tokenList = [];
@@ -65,7 +65,7 @@ const check = function (code, options) {
   } else {
     Object.keys(TOKENS_MAP).forEach(key => {
       // 把自身的和All的去掉，其他端的token放进去
-      if (key !== type && key !== "ALL") {
+      if (key !== type && key !== 'ALL') {
         tokenList = tokenList.concat(TOKENS_MAP[key]);
       }
     })
@@ -81,7 +81,7 @@ const check = function (code, options) {
   tokenList = uniq(tokenList);
 
   const tokens = [];
-  traverse["default"](ast, {
+  traverse['default'](ast, {
     enter: (path) => {
       // path是一个上下文
       // 需要校验的变量值

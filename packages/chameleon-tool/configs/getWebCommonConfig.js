@@ -56,10 +56,12 @@ module.exports = function (options) {
   ]
   var commonConfig =
   {
+    name: 'web',
     context: path.resolve(root),
     entry,
     output: {
-      filename: getJsPath()
+      filename: getJsPath(),
+      chunkFilename: getJsPath()
     },
     resolve: {
       alias: {

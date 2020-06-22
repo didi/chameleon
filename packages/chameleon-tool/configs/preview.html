@@ -684,6 +684,7 @@
     (function () {
       var subpath = '';
       var jsbundle = '';
+      var weexBundles = [];//[{bundle,paths},{bundle,paths}]
       var routerConfig  = {
         mode: 'history',
         routes:[]
@@ -696,7 +697,8 @@
       //初始化全局参数值
       function initParams(params){
         subpath = params.subpath;
-        jsbundle = params.jsbundle;
+        weexBundles = params.weexBundles || [];
+        jsbundle = params.weexBundles && weexBundles[0].bundle;
       }
       function activeBuildType(params){
         var buildType = params.buildType;
@@ -807,7 +809,16 @@
           }
         }
       }
-
+      //所点击路由在对应的weexjsbundle里面
+      function updateWeexBundle(routePath){
+        var bundle = location.origin + '/' + jsbundle;
+        for(var i = 0; i < weexBundles.length; i++){
+          if(weexBundles[i].paths.indexOf(routePath) != -1){
+            bundle =location.origin + '/' + weexBundles[i].bundle;
+          }
+        }
+        return bundle;
+      }
       function setRoutesList(routes) {
         var bundleurl = location.origin + '/' + jsbundle;
         routesContainer.innerHTML = '';//先将该元素下面的所有子元素删除
@@ -817,9 +828,15 @@
 
           routeListDom.setAttribute('id','routeList')
           for (var i = 0; i < routes.length; i++) {
+            let usedPlatforms = routes[i].usedPlatforms;
+            let usedPlatformsString = ''
+            if(usedPlatforms){
+              usedPlatformsString = '-' + usedPlatforms.toString();
+            }
+            console.log('usedPlatformsString',usedPlatformsString)
             var li = document.createElement('li');
             li.setAttribute('index', i);
-            li.innerHTML = '<img style="display:none;padding-right:5px;"  src="./preview-assets/cml-right.png" alt=""><span  index=' + i + ' title=' + routes[i].path + ' >' + routes[i].url+ '</span>';
+            li.innerHTML = '<img style="display:none;padding-right:5px;"  src="./preview-assets/cml-right.png" alt=""><span  index=' + i + ' title=' + routes[i].path + usedPlatformsString + ' >' + routes[i].url+ '</span>';
             routeListDom.appendChild(li);
           }
           fragment.appendChild(routeListDom)
@@ -836,6 +853,7 @@
               } else if (routerConfig.mode === 'hash') {
                 subpath = '#' + routes[index].url;
               }
+              bundleurl = updateWeexBundle(routes[index].path)
               setRouteSelected(index,routeListDom);
               setPageUrl(subpath);
               createQRCode(bundleurl, routes[index].path);
