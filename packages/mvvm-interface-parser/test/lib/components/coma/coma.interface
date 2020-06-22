@@ -19,11 +19,11 @@ interface Com1Interface {
   onshow(eventDetail: EventDetail): void;
 }
 </script>
-<script cml-type="web" src="./com1.cml">
+<script cml-type="web" src="./coma.cml">
 </script>
-<script cml-type="weex" src="./com1.weex.cml">
+<script cml-type="weex" src="./coma.weex.cml">
 </script>
-<script cml-type="wx" src="./com1.wx.cml">
+<script cml-type="wx" src="./coma.wx.cml">
 </script>
-<script cml-type="alipay" src="./com1.alipay.cml">
+<script cml-type="alipay" src="./coma.alipay.cml">
 </script>
