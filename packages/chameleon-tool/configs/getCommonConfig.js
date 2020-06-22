@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const {getBabelPath, getExcludeBabelPath, getGlobalCheckWhiteList, getFreePort} = require('./utils');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
@@ -12,6 +13,8 @@ const ChameleonErrorsWebpackPlugin = require('chameleon-errors-webpack-plugin');
 const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+
 module.exports = function (options) {
   let {
     type,
@@ -43,7 +46,7 @@ module.exports = function (options) {
   if (!publicPath) {
     publicPath = `http://${config.ip}:${webServerPort}/${type}/`
   }
-
+  let chameleonConfig = cml.config.get();
   let commonConfig = {
     stats: cml.logLevel === 'debug' ? 'verbose' : 'none',
     output: {
@@ -141,7 +144,7 @@ module.exports = function (options) {
           options: {
             cmlType: type,
             media,
-            check: cml.config.get().check
+            check: chameleonConfig.check
           }
         }
         ]
@@ -150,15 +153,17 @@ module.exports = function (options) {
 
     },
     plugins: [
+      new ProgressBarPlugin(),
       new webpack.DefinePlugin({
         'process.env.platform': JSON.stringify(type)
       }),
       new ChameleonErrorsWebpackPlugin({
-        cmlType: type
+        cmlType: type,
+        showWarning: chameleonConfig.optimize && chameleonConfig.optimize.showWarning
       })
     ]
   }
-  if (cml.config.get().enableGlobalCheck === true) {
+  if (chameleonConfig.enableGlobalCheck === true) {
     commonConfig.plugins.push(
       new WebpackCheckPlugin({
         cmlType: type,
@@ -187,6 +192,7 @@ module.exports = function (options) {
 
 
   if (options.media === 'dev') {
+
     // dev模式添加domainKey参数
     Object.keys(domain).forEach(key => {
       if (domain[key].toLowerCase() === 'localhost') {
@@ -198,7 +204,12 @@ module.exports = function (options) {
       new ExtraWatchWebpackPlugin({
         dirs: [path.join(cml.projectRoot, 'mock/api')]
       })
-    )
+    );
+    commonConfig.plugins.push(
+      new DuplicatePackageCheckerPlugin({
+        verbose: true
+      })
+    );
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({
@@ -220,7 +231,11 @@ module.exports = function (options) {
         assetNameRegExp: /\.css$/,
         cssProcessorOptions: { safe: true, discardComments: { removeAll: true }, autoprefixer: false }
       }),
-      new UglifyJsPlugin({})
+      new UglifyJsPlugin({
+        compress: {
+          drop_console: true
+        }
+      })
     ])
   }
 
@@ -235,7 +250,7 @@ module.exports = function (options) {
   }
 
 
-  let subProject = cml.config.get().subProject;
+  let subProject = chameleonConfig.subProject;
   if (subProject && subProject.length > 0) {
     subProject.forEach(item => {
       let npmName = cmlUtils.isString(item) ? item : item.npmName;

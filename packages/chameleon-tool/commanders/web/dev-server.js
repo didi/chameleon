@@ -8,6 +8,7 @@ var config = require('../../configs/config');
 var dynamicApiMiddleware = require('./dynamicApiMiddleware');
 var responseTime = require('./responseTime');
 const liveLoadMiddleware = require('webpack-liveload-middleware');
+const cmlUtils = require('chameleon-tool-utils');
 const fse = require('fs-extra');
 const tpl = require('chameleon-templates');
 const proxy = require('chameleon-dev-proxy');
@@ -17,6 +18,7 @@ const http = require('http');
 const bodyParser = require('body-parser')
 const argv = require('minimist')(process.argv);
 const nopreview = argv.nopreview || argv.n;
+const {createProxyMiddleware} = require('http-proxy-middleware');
 
 /**
  * webpackConfig webpack的配置对象
@@ -30,11 +32,20 @@ module.exports = function({webpackConfig, options, compiler}) {
   var port = utils.getFreePort().webServerPort;
   var autoOpenBrowser = true;
   var app = express();
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.text({ type: 'text/html' }))
   app.use(responseTime());
   dynamicApiMiddleware(app, options);
+  // web端增加跨域自定义配置
+
+  let devProxy = options && options.devProxy || [];
+  if (webpackConfig.name === 'web' && Array.isArray(devProxy)) {
+    devProxy.forEach((proxyConfig) => {
+      app.use(proxyConfig.path, createProxyMiddleware(proxyConfig.options))
+    })
+  }
   if (compiler) {
 
     if (options.hot === true) {
@@ -118,8 +129,36 @@ module.exports = function({webpackConfig, options, compiler}) {
     }
     uri += 'preview.html';
     var entry = utils.getEntryName();
-    var jsbundle = `weex/${entry}.js`;
-    let staticParams = { jsbundle, subpath, buildType: cml.activePlatform };
+    const {routerConfig} = cmlUtils.getRouterConfig();
+    let mpa = routerConfig.mpa;
+    let weexBundles = [];
+    if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) { // 配置了weex多页面
+      let weexMpa = mpa.weexMpa;
+      for (let i = 0; i < weexMpa.length ; i++) {
+        if (typeof weexMpa[i].name === 'string') {
+          weexBundles.push({
+            bundle: `weex/${weexMpa[i].name}.js`,
+            paths: weexMpa[i].paths
+          })
+        } else {
+          weexBundles.push({
+            bundle: `weex/${entry}${i}.js`,
+            paths: weexMpa[i].paths
+          })
+        }
+      }
+    } else { // 兼容原来的没有配置的情况
+      let allPaths = routerConfig.routes.reduce((result, current) => {
+        result.push(current.path);
+        return result;
+      }, [])
+      weexBundles.push({
+        bundle: `weex/${entry}.js`,
+        paths: allPaths
+      })
+    }
+    // var jsbundle = `weex/${entry}.js`;
+    let staticParams = { weexBundles, subpath, buildType: cml.activePlatform };
     createRoutesReact({server, staticParams});
 
     cml.log.notice('Listening at ' + uri);
