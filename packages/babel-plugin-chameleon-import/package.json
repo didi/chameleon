@@ -28,7 +28,7 @@
     "babel-core": "^7.0.0-0",
     "babel-preset-umi": "^1.0.0",
     "coveralls": "^2.11.6",
-    "eslint": "^2.7.0",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb": "^6.2.0",
     "material-ui": "^0.15.4",
     "pre-commit": "~1.1.2",
