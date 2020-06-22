@@ -1,6 +1,6 @@
 {
   "name": "chameleon-css-loader",
-  "version": "1.0.6",
+  "version": "1.0.5",
   "description": "chameleon样式处理",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chameleon-tool-utils": "1.0.6",
+    "chameleon-tool-utils": "1.0.5",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
     "gulp": "^3.9.1",

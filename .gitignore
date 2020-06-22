@@ -67,6 +67,7 @@ typings/
 
 # dotenv environment variables file
 .env
+package-lock.json
 coverage
 .nyc_output
 # ///////////////////////////

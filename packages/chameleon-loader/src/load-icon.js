@@ -38,8 +38,6 @@ _.getTabbarIconPaths = function(tabbar, type) {
         iconInfo.finalPath = item.iconPath;
 
         iconPaths.push(iconInfo);
-        // 生成的app.json中的路径要适配windows
-        item.iconPath = cmlUtils.handleWinPath(item.iconPath);
       }
       if (item.selectedIconPath) {
         let iconInfo = {};
@@ -48,8 +46,6 @@ _.getTabbarIconPaths = function(tabbar, type) {
         iconInfo.finalPath = item.selectedIconPath;
 
         iconPaths.push(iconInfo);
-        // 生成的app.json中的路径要适配windows
-        item.selectedIconPath = cmlUtils.handleWinPath(item.selectedIconPath);
       }
     })
   }
@@ -62,9 +58,6 @@ _.getTabbarIconPaths = function(tabbar, type) {
         iconInfo.finalPath = item.icon;
 
         iconPaths.push(iconInfo);
-
-        // 生成的app.json中的路径要适配windows
-        item.icon = cmlUtils.handleWinPath(item.icon);
       }
       if (item.activeIcon) {
         let iconInfo = {};
@@ -73,9 +66,6 @@ _.getTabbarIconPaths = function(tabbar, type) {
         iconInfo.finalPath = item.activeIcon;
 
         iconPaths.push(iconInfo);
-
-        // 生成的app.json中的路径要适配windows
-        item.activeIcon = cmlUtils.handleWinPath(item.activeIcon);
       }
     })
   }
