@@ -5,8 +5,9 @@
 [English Introduction](https://github.com/didi/chameleon/blob/gh-pages/doc/quick_start/readme-en.md) | 中文介绍
 
 ## 文档
+[新官网文档](http://cml.didi.cn/)
 
-主站: [CML.JS.org](https://cml.js.org)
+[CML.JS.org](https://cml.js.org)
 
 - [安装](https://CML.JS.org/doc/quick_start/quick_start.html)
 - [快速上手](https://CML.JS.org/doc/quick_start/quick_start.html)
