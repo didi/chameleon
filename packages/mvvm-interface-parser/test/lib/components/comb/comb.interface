@@ -1,3 +1,3 @@
-<include src="../com1/com1.interface"></include>
-<script cml-type="baidu" src="./com1.alipay.cml">
+<include src="../coma/coma.interface"></include>
+<script cml-type="baidu" src="./coma.alipay.cml">
 </script>
