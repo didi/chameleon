@@ -39,7 +39,7 @@ export default new Index();
 {
   "base": {
     "usingComponents": {
-      "demo-com": "/components/com1/com1"
+      "demo-com": "/components/coma/coma"
     }
   },
   "wx": {

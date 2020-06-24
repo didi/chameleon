@@ -1,0 +1,3 @@
+<include src="../coma/coma.interface"></include>
+<script cml-type="baidu" src="./coma.alipay.cml">
+</script>
