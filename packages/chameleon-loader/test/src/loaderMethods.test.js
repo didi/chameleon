@@ -8,7 +8,7 @@ describe('prepareParseUsingComponents', function() {
       scroller: '/npm/cml-ui/scroller/scroller'
     }
     let loaderContext = {
-      resourcePath: path.join(__dirname, './project/src/pages/page1.cml')
+      resourcePath: path.join(__dirname, './project/src/pages/pagea.cml')
     }
 
     let context = path.join(__dirname, './project');
@@ -34,7 +34,7 @@ describe('prepareParseUsingComponents', function() {
       scroller: './../npm/cml-ui/scroller/scroller'
     }
     let loaderContext = {
-      resourcePath: path.join(__dirname, './project/src/pages/page1.cml')
+      resourcePath: path.join(__dirname, './project/src/pages/pagea.cml')
     }
 
     let context = path.join(__dirname, './project');
@@ -46,7 +46,7 @@ describe('prepareParseUsingComponents', function() {
     });
 
     let expectPath = path.join(__dirname, './project/node_modules/cml-ui/scroller/scroller.cml')
-    result.forEach(item=>{
+    result.forEach(item => {
       if (item.tagName === 'scroller') {
         expect(item.filePath).to.be.equal(expectPath);
         expect(item.isNative).to.be.equal(false);

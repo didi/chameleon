@@ -101,34 +101,34 @@ module.exports = class DemoPlugin {
 
     })
 
-   /**
+    /**
     * 编译other类型节点
     * currentNode 当前节点
     */
-   compiler.hook('config-json', function(jsonObj) {
+    compiler.hook('config-json', function(jsonObj) {
       jsonObj.name = 'chameleon';
-   })
+    })
 
     /**
        * 编译结束进入打包阶段
        */
     compiler.hook('pack', function(projectGraph) {
-      compiler.writeFile('static/test1.js', 'dd')
-      compiler.writeFile('static/css1.css', '.class1 {color: red;}')
+      compiler.writeFile('static/test.js', 'dd')
+      compiler.writeFile('static/css.css', '.class1 {color: red;}')
     })
 
     cml.projectRoot = path.join(__dirname, 'demo-project');
     cml.config = {
       get() {
-         return {
-         subProject: ['cml-subproject'],
-            wx: {
-               dev: {
-               minimize: true,
-               hash: true
-               }
+        return {
+          subProject: ['cml-subproject'],
+          wx: {
+            dev: {
+              minimize: true,
+              hash: true
             }
-         }
+          }
+        }
       }
     }
     let result = compiler.getRouterConfig();

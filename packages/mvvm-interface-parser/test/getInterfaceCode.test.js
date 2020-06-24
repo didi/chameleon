@@ -31,7 +31,7 @@ describe('mvvm-interface-parser/getInterfaceCode', function() {
     try {
       getInterfaceCode({interfacePath, content});
     } catch (e) {
-      expect(!!~e.message.indexOf(`not find <script cml-type='interface'></script>`)).to.be.equal(true)
+      expect(!!~e.message.indexOf('not find <script cml-type=\'interface\'></script>')).to.be.equal(true)
     }
   })
 
@@ -41,7 +41,7 @@ describe('mvvm-interface-parser/getInterfaceCode', function() {
     try {
       getInterfaceCode({interfacePath, content});
     } catch (e) {
-      expect(!!~e.message.indexOf(`multi <script cml-type='interface'></script>`)).to.be.equal(true)
+      expect(!!~e.message.indexOf('multi <script cml-type=\'interface\'></script>')).to.be.equal(true)
     }
   })
 
@@ -51,7 +51,7 @@ describe('mvvm-interface-parser/getInterfaceCode', function() {
     try {
       getInterfaceCode({interfacePath, content});
     } catch (e) {
-      expect(!!~e.message.indexOf(`not find file: `)).to.be.equal(true)
+      expect(!!~e.message.indexOf('not find file: ')).to.be.equal(true)
     }
   })
 
@@ -61,27 +61,27 @@ describe('mvvm-interface-parser/getInterfaceCode', function() {
     try {
       getInterfaceCode({interfacePath, content});
     } catch (e) {
-      expect(!!~e.message.indexOf(`multi <script cml-type='interface'></script> has define in `)).to.be.equal(true)
+      expect(!!~e.message.indexOf('multi <script cml-type=\'interface\'></script> has define in ')).to.be.equal(true)
     }
   })
 
   it('include src error', function() {
-    const interfacePath = path.join(__dirname, './lib/components/third/include1.interface');
+    const interfacePath = path.join(__dirname, './lib/components/third/includea.interface');
     const content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
     try {
       getInterfaceCode({interfacePath, content});
     } catch (e) {
-      expect(!!~e.message.indexOf(`not define include src attribute in`)).to.be.equal(true)
+      expect(!!~e.message.indexOf('not define include src attribute in')).to.be.equal(true)
     }
   })
 
   it('include src not file', function() {
-    const interfacePath = path.join(__dirname, './lib/components/third/include2.interface');
+    const interfacePath = path.join(__dirname, './lib/components/third/includeb.interface');
     const content = fs.readFileSync(interfacePath, {encoding: 'utf-8'});
     try {
       getInterfaceCode({interfacePath, content});
     } catch (e) {
-      expect(!!~e.message.indexOf(`not find file:`)).to.be.equal(true)
+      expect(!!~e.message.indexOf('not find file:')).to.be.equal(true)
     }
   })
 })

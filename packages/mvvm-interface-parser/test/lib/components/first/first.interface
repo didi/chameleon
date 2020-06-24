@@ -6,8 +6,8 @@ interface FirstInterface {
 </script>
 
 <script cml-type="web">
-import test1 from './test1.js';
-const requireModule = require('./test1.js');
+import test from './test.js';
+const requireModule = require('./test.js');
 import cml from 'chameleon-api';
 
 class Method implements FirstInterface {
