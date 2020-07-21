@@ -127,6 +127,10 @@ CML 采用与 Vue 一致的组件化方案、单文件组织方式、生命周�
 
 Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Webpack，吸收了业内多年来积累的最有用的工程化设计，提供了前端基础开发脚手架命令工具，帮助端开发者从开发、联调、测试、上线等全流程高效的完成业务开发。
 
+## 业务线收集
+
+[使用CML业务线收集](https://github.com/didi/chameleon/issues/131)
+
 ## 联系我们
 
 [ChameleonCore@didiglobal.com](mailto:ChameleonCore@didiglobal.com)
