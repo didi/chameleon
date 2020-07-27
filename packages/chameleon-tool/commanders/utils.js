@@ -262,7 +262,7 @@ exports.createConfigJson = function() {
   }
   let {routerConfig, hasError} = cml.utils.getRouterConfig();
   let entryName = getEntryName();
-  let weexjs = (configObj.entryName && configObj.entryName.js) || '';
+  let weexjs = (configObj[entryName] && configObj[entryName].js) || '';
   let md5str = exports.getMD5(weexjs);
   let mpa = routerConfig.mpa;
 
@@ -283,7 +283,12 @@ exports.createConfigJson = function() {
         let weexMpa = mpa.weexMpa;
         for (let i = 0; i < weexMpa.length ; i++) {
           if (Array.isArray(weexMpa[i].paths) && weexMpa[i].paths.includes(item.path)) {
-            weexjs = configObj[`${entryName}${i}`] && configObj[`${entryName}${i}`].js;
+            if (typeof weexMpa[i].name === 'string') {
+              weexjs = configObj[`${weexMpa[i].name}`] && configObj[`${weexMpa[i].name}`].js;
+            } else {
+              weexjs = configObj[`${entryName}${i}`] && configObj[`${entryName}${i}`].js;
+            }
+            // weexjs = configObj[`${entryName}${i}`] && configObj[`${entryName}${i}`].js;
             md5str = exports.getMD5(weexjs);
           }
         }
