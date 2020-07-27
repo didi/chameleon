@@ -170,7 +170,7 @@ module.exports = function (options) {
       })
     )
   }
-  if(chameleonConfig.optimize && chameleonConfig.optimize.processBar){
+  if (chameleonConfig.optimize && chameleonConfig.optimize.processBar) {
     commonConfig.plugins.push(new ProgressBarPlugin())
   }
   if (options.definePlugin) {
