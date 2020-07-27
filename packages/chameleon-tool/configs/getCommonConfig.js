@@ -233,7 +233,7 @@ module.exports = function (options) {
       }),
       new UglifyJsPlugin({
         compress: {
-          drop_console: true
+          drop_console: chameleonConfig.optimize && chameleonConfig.optimize.dropConsole
         }
       })
     ])
