@@ -23,12 +23,23 @@
       "regenerator": true,
       "moduleName": "babel-runtime"
     }],
-    ["babel-plugin-chameleon-import", {
-      "libraryName": "chameleon-api",
-      "libraryDirectory": "src/interfaces",
-      "libraryFileName": "index.js",
-      "defaulLibraryDirectory": "",
-      "defaulLibraryFileName": "index.js",
-    }]
+    ["babel-plugin-chameleon-import",
+      [
+        {
+          "libraryName": "chameleon-api-miniapp",
+          "libraryDirectory": "src/interfaces",
+          "libraryFileName": "index.js",
+          "defaulLibraryDirectory": "",
+          "defaulLibraryFileName": "index.js"
+        },
+        {
+          "libraryName": "chameleon-api",
+          "libraryDirectory": "src/interfaces",
+          "libraryFileName": "index.js",
+          "defaulLibraryDirectory": "",
+          "defaulLibraryFileName": "index.js"
+        }
+      ]
+    ]
   ]
 }
