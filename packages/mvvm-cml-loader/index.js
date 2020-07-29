@@ -74,7 +74,7 @@ module.exports = function(source) {
   let usingComponents = prepareParseUsingComponents({loaderContext: self, context, originObj: coms, cmlType});
 
   const isBuildInFile = cmlUtils.isBuildIn(self.resourcePath, cmlType, context);
-  
+
   let buildInComponents = {};
   // 内置组件库中的cml文件不进行内置组件的替换
   if (!isBuildInFile) {
@@ -90,14 +90,17 @@ module.exports = function(source) {
   const currentUsedBuildInTagMap = {};
 
   // currentUsedBuildInTagMap 中 key为  cml-builtin-button
-  Object.keys(usedBuildInTagMap).forEach(key =>{
+  Object.keys(usedBuildInTagMap).forEach(key => {
     let value = usedBuildInTagMap[key];
     currentUsedBuildInTagMap[value] = key;
   })
 
   // 先遍历usingComponents中的
   Object.keys(coms).forEach(key => {
-    let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, self.resourcePath, coms[key], cmlType);
+    let comPath = coms[key];
+    let splitInfo = comPath.split('?');
+    comPath = splitInfo[0];
+    let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, self.resourcePath, comPath, cmlType);
     if (filePath) {
       coms[key] = refUrl;
       usingComponentsAndFilePath[key] = filePath;
