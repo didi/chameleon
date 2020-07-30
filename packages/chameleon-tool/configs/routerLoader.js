@@ -36,9 +36,9 @@ module.exports = function(content) {
     routerConfig.routes.forEach(item => {
       let usedPlatforms = item.usedPlatforms;
       if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
-        let {dynamic,chunkName} = item;
-        if(dynamic == '1' && currentType === 'web'){
-          if(chunkName && typeof chunkName === 'string'){
+        let {dynamic, chunkName} = item;
+        if (dynamic == '1' && currentType === 'web') {
+          if (chunkName && typeof chunkName === 'string') {
             routerList += `
             {
               path: "${item.url}",
@@ -47,7 +47,7 @@ module.exports = function(content) {
               "$PROJECT/src${item.path}.cml")
             },
             `
-          }else{
+          } else {
             routerList += `
             {
               path: "${item.url}",
@@ -56,7 +56,7 @@ module.exports = function(content) {
             },
             `
           }
-        }else{
+        } else {
           routerList += `
           {
             path: "${item.url}",
@@ -78,9 +78,9 @@ module.exports = function(content) {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
           let usedPlatforms = item.usedPlatforms;
           if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
-            let {dynamic,chunkName} = item;
-            if(dynamic == 1 && currentType === 'web'){
-              if(chunkName && typeof chunkName === 'string'){
+            let {dynamic, chunkName} = item;
+            if (dynamic == 1 && currentType === 'web') {
+              if (chunkName && typeof chunkName === 'string') {
                 routerList += `
                   {
                     path: "${item.url}",
@@ -88,7 +88,7 @@ module.exports = function(content) {
                     component: () => import(/*  webpackChunkName: '${chunkName}' */ "${cmlFilePath}")
                   },
                 `
-              }else{
+              } else {
                 routerList += `
                   {
                     path: "${item.url}",
@@ -97,7 +97,7 @@ module.exports = function(content) {
                   },
                 `
               }
-            }else{
+            } else {
               routerList += `
               {
                 path: "${item.url}",
@@ -106,7 +106,7 @@ module.exports = function(content) {
               },
             `
             }
-            
+
           }
         })
       })
