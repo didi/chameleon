@@ -36,13 +36,35 @@ module.exports = function(content) {
     routerConfig.routes.forEach(item => {
       let usedPlatforms = item.usedPlatforms;
       if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
-        routerList += `
-        {
-          path: "${item.url}",
-          name: "${item.name}",
-          component: require("$PROJECT/src${item.path}.cml").default
-        },
-        `
+        let {dynamic,chunkName} = item;
+        if(dynamic == '1' && currentType === 'web'){
+          if(chunkName && typeof chunkName === 'string'){
+            routerList += `
+            {
+              path: "${item.url}",
+              name: "${item.name}",
+              component: () => import(/*  webpackChunkName: '${chunkName}' */
+              "$PROJECT/src${item.path}.cml")
+            },
+            `
+          }else{
+            routerList += `
+            {
+              path: "${item.url}",
+              name: "${item.name}",
+              component: () => import("$PROJECT/src${item.path}.cml")
+            },
+            `
+          }
+        }else{
+          routerList += `
+          {
+            path: "${item.url}",
+            name: "${item.name}",
+            component: require("$PROJECT/src${item.path}.cml").default
+          },
+          `
+        }
       }
     })
 
@@ -56,13 +78,35 @@ module.exports = function(content) {
           let cmlFilePath = path.join(cml.projectRoot, 'node_modules', npmName, 'src', item.path + '.cml');
           let usedPlatforms = item.usedPlatforms;
           if (!usedPlatforms || (usedPlatforms && usedPlatforms.includes(currentType))) {
-            routerList += `
-            {
-              path: "${item.url}",
-              name: "${item.name}",
-              component: require("${cmlFilePath}").default
-            },
+            let {dynamic,chunkName} = item;
+            if(dynamic == 1 && currentType === 'web'){
+              if(chunkName && typeof chunkName === 'string'){
+                routerList += `
+                  {
+                    path: "${item.url}",
+                    name: "${item.name}",
+                    component: () => import(/*  webpackChunkName: '${chunkName}' */ "${cmlFilePath}")
+                  },
+                `
+              }else{
+                routerList += `
+                  {
+                    path: "${item.url}",
+                    name: "${item.name}",
+                    component: () => import("${cmlFilePath}")
+                  },
+                `
+              }
+            }else{
+              routerList += `
+              {
+                path: "${item.url}",
+                name: "${item.name}",
+                component: require("${cmlFilePath}").default
+              },
             `
+            }
+            
           }
         })
       })
