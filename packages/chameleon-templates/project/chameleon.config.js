@@ -46,8 +46,10 @@ cml.config.merge({
     }
   },
   optimize: {
-    watchNodeModules: true, // 设置为true对于调试 node_modules 里面的内容很有帮助
-    showWarning: true// 设置为true可以在构建过程中看到警告信息，比如编译过程中引入了同一个npm包的不同版本会在终端输出信息
+    watchNodeModules: false, // 设置为true对于调试 node_modules 里面的内容很有帮助
+    showWarning: false,// 设置为true可以在构建过程中看到警告信息，比如编译过程中引入了同一个npm包的不同版本会在终端输出信息
+    dropConsole: true,//可以配置是否压缩模式下删除调试信息
+    processBar: true //可以配置是否需要构建进度条
   }
 })
 
