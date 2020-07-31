@@ -17,7 +17,7 @@ const crypto = require('crypto');
 
 const resolve = require('resolve');
 
-
+const querystring = require('querystring');
 var _ = module.exports = {}
 
 _.log = log;
@@ -1307,3 +1307,14 @@ _.isFunction = function(fun) {
 _.isString = function(str) {
   return typeof str === 'string'
 }
+
+_.getDynamicInfo = function(query){
+  if(!query){
+    return {
+      dynamic:0,
+    }
+  }else{
+    return querystring.parse(query)
+  }
+}
+

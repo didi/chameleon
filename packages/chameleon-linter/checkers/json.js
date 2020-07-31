@@ -122,6 +122,7 @@ module.exports = (result) => {
       if (json[item] && json[item].usingComponents) {
         for (let key in json[item].usingComponents) {
           let filePath = json[item].usingComponents[key];
+          filePath = filePath.split('?')[0];
           let currentWorkspace = config.getCurrentWorkspace();
           let componentInfo = cmlUtils.lintHandleComponentUrl(currentWorkspace, result.json.file, filePath);
 

@@ -479,10 +479,24 @@ module.exports = function (content) {
 
     Object.keys(coms).forEach(comKey => {
       let comPath = coms[comKey];
+      let splitInfo = comPath.split('?');
+      comPath = splitInfo[0];
+      let dynamicCompQuery = splitInfo[1]
       let { filePath } = cmlUtils.handleComponentUrl(context, self.resourcePath, comPath, cmlType);
       if(filePath) {
         componentDeps.push(filePath);
-        defineComponets += `import ${toUpperCase(comKey)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}" \n`
+        let dynamicCompInfo = cmlUtils.getDynamicInfo(dynamicCompQuery);
+        if(cmlType === 'web' && dynamicCompInfo && dynamicCompInfo.dynamic == 1){ //动态加载组件只在web端生效
+          let chunkName = dynamicCompInfo && dynamicCompInfo.chunkName
+          if( chunkName && typeof chunkName === 'string'){
+            //支持自定义组件定义chunkName
+            defineComponets += `const ${toUpperCase(comKey)} = () => import(/*  webpackChunkName: '${chunkName}' */ "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}") \n`
+          }else{
+            defineComponets += `const ${toUpperCase(comKey)} = () => import("${cmlUtils.handleRelativePath(self.resourcePath, filePath)}") \n`
+          }
+        }else{
+          defineComponets += `import ${toUpperCase(comKey)} from "${cmlUtils.handleRelativePath(self.resourcePath, filePath)}" \n`
+        }
       } else {
         cmlUtils.log.error(`can't find component:${comPath} in ${self.resourcePath} `);
       }
