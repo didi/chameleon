@@ -694,6 +694,9 @@
       var selectInput = document.getElementById('routes-select');
       var routesContainer = document.getElementById('routes-container');
       var wrapContent = document.getElementById('wrap-content');
+      function isType(o, type) {
+        return Object.prototype.toString.call(o).slice(8,-1) === type
+      }
       //初始化全局参数值
       function initParams(params){
         subpath = params.subpath;
@@ -765,6 +768,9 @@
 
       //设置页面的url
       function setPageUrl(subpath) {
+        if(!subpath){
+          return
+        }
         //创建h5链接
         if (subpath[0] === '/') {
           subpath = subpath.slice(1);
@@ -851,7 +857,22 @@
               if (routerConfig.mode === 'history') {
                 subpath = routes[index].url;
               } else if (routerConfig.mode === 'hash') {
-                subpath = '#' + routes[index].url;
+                var mpa = routerConfig.mpa;
+                if(mpa && mpa.webMpa && isType(mpa.webMpa,'Array') ){
+                  var webMpa = mpa.webMpa;
+                  for (var j = 0; j < webMpa.length ; j++){
+                    if(isType(webMpa[j].paths,"Array") && webMpa[j].paths.indexOf(routes[index].path) != -1){
+                      if (typeof webMpa[j].name === 'string') {
+                        subpath = webMpa[j].name +'.html'+ '#' + routes[index].url;
+                      } else {
+                        subpath = routerConfig.entry+j +'.html'+ '#' + routes[index].url;
+                      }
+                    }
+                  }
+                  
+                }else{
+                  subpath = '#' + routes[index].url;
+                }
               }
               bundleurl = updateWeexBundle(routes[index].path)
               setRouteSelected(index,routeListDom);
