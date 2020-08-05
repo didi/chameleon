@@ -5,7 +5,7 @@ var path = require('path');
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 const getCommonConfig = require('./getCommonConfig');
-
+const cmlUtils = require('chameleon-tool-utils');
 module.exports = function (options) {
   let {
     media,
@@ -116,15 +116,23 @@ module.exports = function (options) {
   if (cml.media !== 'export') {
     commonConfig.plugins = commonConfig.plugins.concat([
       new webpack.optimize.CommonsChunkPlugin({
-        name: ['common', 'vender', 'manifest'],
+        name: ['vender', 'manifest'],
         filename: getJsPath(),
         minChunks: 2
       }),
       ...htmlPlugins
     ])
   }
-
-
+  const {routerConfig} = cmlUtils.getRouterConfig();
+  let mpa = routerConfig.mpa;
+  if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) { // 配置了weex多页面
+    commonConfig.module.rules.push(
+      {
+        test: path.resolve(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js'),
+        loader: path.join(__dirname, 'entryLoader.js')
+      }
+    )
+  }
   return merge(getCommonConfig(options), commonConfig);
 
 }

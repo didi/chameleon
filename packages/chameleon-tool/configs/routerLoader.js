@@ -2,13 +2,13 @@ const path = require('path');
 const cmlUtils = require('chameleon-tool-utils');
 const loaderUtils = require('loader-utils');
 
-const filterWeexRouter = function(routerConfig, params) {
+const filterRouter = function(routerConfig, params, type) {
   let mpa = routerConfig.mpa;
   let query = params.query;
-  if (mpa && mpa.weexMpa && Array.isArray(mpa.weexMpa)) {
+  if (mpa && mpa[`${type}Mpa`] && Array.isArray(mpa[`${type}Mpa`])) {
     // 处理 routerConfig.routes
-    let currentWeexRoute = (mpa.weexMpa[query] && mpa.weexMpa[query].paths) || [];
-    routerConfig.routes = routerConfig.routes.filter((route) => currentWeexRoute.includes(route.path))
+    let currentRoute = (mpa[`${type}Mpa`][query] && mpa[`${type}Mpa`][query].paths) || [];
+    routerConfig.routes = routerConfig.routes.filter((route) => currentRoute.includes(route.path))
   }
 
 }
@@ -29,9 +29,9 @@ module.exports = function(content) {
   } else {
     let mode = routerConfig.mode;
     let routerList = '';
-    if (currentType === 'weex' && this.resourceQuery) {
+    if (['web', 'weex'].includes(currentType) && this.resourceQuery) {
       let params = loaderUtils.parseQuery(this.resourceQuery);
-      filterWeexRouter(routerConfig, params)
+      filterRouter(routerConfig, params, currentType)
     }
     routerConfig.routes.forEach(item => {
       let usedPlatforms = item.usedPlatforms;
