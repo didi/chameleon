@@ -20,7 +20,8 @@ module.exports = function (options) {
   } = options;
 
   function getstaticPath(filetype) {
-    let staticPath = `static/${filetype}/[name]_[hash:7].[ext]`;
+      let staticPath = options.hash ? `static/${filetype}/[name]_[hash:7].[ext]` : `static/${filetype}/[name].[ext]`
+
     if (options.staticPath) {
       staticPath = options.staticPath + staticPath;
     }
