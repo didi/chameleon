@@ -51,7 +51,7 @@ master为稳定版本，除了紧急 bug 修复，每份代码提交都有很严
 
 软件架构设计里面最基础的概念“拆分”和“合并”，拆分的意义是“分而治之”，将复杂问题拆分成单一问题解决，比如后端业务系统的”微服务化“设计；“合并”的意义是将同样的业务需求抽象收敛到一块，达成高效率高质量的目的，例如后端业务系统中的“中台服务”设计。
 
-而 Chameleon 属于后者，通过定义统一的语言框架+<a href="https://CML.JS.org/doc/framework/polymorphism/intro.html">统一多态协议</a>，从多端（对应多个独立服务）业务中抽离出自成体系、连续性强、可维护强的“前端中台服务”。
+而 Chameleon 属于后者，通过定义统一的语言框架+[统一多态协议](http://cml.didi.cn/docs/poly.html)，从多端（对应多个独立服务）业务中抽离出自成体系、连续性强、可维护强的“前端中台服务”。
 
 <img src="https://cml.js.org/doc/assets/chameleon-idea.png" width="400px"/>
 
@@ -59,7 +59,8 @@ master为稳定版本，除了紧急 bug 修复，每份代码提交都有很严
 
 虽然不同各端环境千变万化，但万变不离其宗的是 MVVM 架构思想，**Chameleon 目标是让 MVVM 跨端环境大统一**。
 
-<img src="https://CML.JS.org/doc/assets/mvvm4.png" width="400px"/>
+![跨端目标](https://cml.js.org/doc/assets/mvvm4.png)
+
 
 ## 开发语言
 代码示例
