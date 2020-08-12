@@ -66,9 +66,38 @@ module.exports = function({webpackConfig, options, compiler}) {
     if (cml.config.get().templateType === 'html') {
       // handle fallback for HTML5 history API
       /* eslint-disable-next-line */
-      app.use(require('connect-history-api-fallback')({
-        index: `${utils.getEntryName()}.html`
-      }))
+      const {routerConfig} = cmlUtils.getRouterConfig();
+      let mpa = routerConfig.mpa;
+      if (mpa && mpa.webMpa && Array.isArray(mpa.webMpa) && routerConfig.mode === 'history') {
+        // hash模式在 preview页面进行了兼容，history在这里进行兼容
+        let webMpa = mpa.webMpa;
+        let rewrites = [];
+        routerConfig.routes.forEach((item) => {
+          for (var j = 0; j < webMpa.length ; j++) {
+            if (Array.isArray(webMpa[j].paths) && webMpa[j].paths.includes(item.path)) {
+              if (typeof webMpa[j].name === 'string') {
+                rewrites.push({
+                  from: `${item.url}`,
+                  to: `${webMpa[j].name}.html`
+                })
+              } else {
+                rewrites.push({
+                  from: `${item.url}`,
+                  to: `${utils.getEntryName()}${j}.html`
+                })
+              }
+            }
+          }
+        })
+        app.use(require('connect-history-api-fallback')({
+          rewrites
+        }))
+      } else { // hash和history模式下都是ok的
+        app.use(require('connect-history-api-fallback')({
+          index: `${utils.getEntryName()}.html`
+        }))
+      }
+
     }
   }
 
@@ -158,7 +187,7 @@ module.exports = function({webpackConfig, options, compiler}) {
       })
     }
     // var jsbundle = `weex/${entry}.js`;
-    let staticParams = { weexBundles, subpath, buildType: cml.activePlatform };
+    let staticParams = { entry, weexBundles, subpath, buildType: cml.activePlatform };
     createRoutesReact({server, staticParams});
 
     cml.log.notice('Listening at ' + uri);

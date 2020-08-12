@@ -8,7 +8,10 @@ module.exports = function(loaderContext, jsonObject, cmlType, componentDeps) {
   if (jsonObject.usingComponents) {
     let components = jsonObject.usingComponents;
     Object.keys(components).forEach(key => {
-      let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, loaderContext.resourcePath, components[key], cmlType);
+      let comPath = components[key];
+      let splitInfo = comPath.split('?');
+      comPath = splitInfo[0];
+      let {filePath, refUrl} = cmlUtils.handleComponentUrl(context, loaderContext.resourcePath, comPath, cmlType);
       if (filePath) {
         componentDeps.push(filePath);
         components[key] = refUrl;

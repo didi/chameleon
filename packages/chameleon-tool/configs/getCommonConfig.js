@@ -153,7 +153,6 @@ module.exports = function (options) {
 
     },
     plugins: [
-      new ProgressBarPlugin(),
       new webpack.DefinePlugin({
         'process.env.platform': JSON.stringify(type)
       }),
@@ -171,7 +170,9 @@ module.exports = function (options) {
       })
     )
   }
-
+  if (chameleonConfig.optimize && chameleonConfig.optimize.processBar) {
+    commonConfig.plugins.push(new ProgressBarPlugin())
+  }
   if (options.definePlugin) {
     commonConfig.plugins.push(new webpack.DefinePlugin(options.definePlugin))
   }
@@ -233,7 +234,7 @@ module.exports = function (options) {
       }),
       new UglifyJsPlugin({
         compress: {
-          drop_console: true
+          drop_console: chameleonConfig.optimize && chameleonConfig.optimize.dropConsole
         }
       })
     ])

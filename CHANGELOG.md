@@ -1,3 +1,12 @@
+## [1.0.8-alpha.0]
+  * 支持chameleon-api-miniapp按需加载
+  * 支持组件动态加载
+  * 支持路由懒加载
+  * 支持终端构建进度 processBar 可配置，默认关闭
+  * 修复config.json生成的weex端信息缺失
+  * 支持压缩模式下console信息可配置是否删除
+  * chameleon-linter修复useingComponents中引入动态组件校验
+  
 ## [1.0.6]
 
   * web端动态加载支持自定义chunk名称

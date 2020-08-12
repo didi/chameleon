@@ -187,7 +187,7 @@ describe('mvvmGraphPlugin.js', function() {
           dependencies: [],
           _publicPath: 'static.chameleon.com',
           request: 'request',
-          resource: '/pages/page1.cml',
+          resource: '/pages/pagea.cml',
           rawRequest: 'rawRequest',
           id: 'id'
         }
@@ -199,7 +199,7 @@ describe('mvvmGraphPlugin.js', function() {
           dependencies: [],
           _publicPath: 'static.chameleon.com',
           request: 'request',
-          resource: '/pages/page2.cml',
+          resource: '/pages/pageb.cml',
           rawRequest: 'rawRequest',
           id: 'id'
         }
@@ -243,7 +243,7 @@ describe('mvvmGraphPlugin.js', function() {
 
         let templateModule = {
           _source: {
-            _value: `<view></view>`
+            _value: '<view></view>'
           },
           _moduleType: 'template',
           dependencies: [],
@@ -255,7 +255,7 @@ describe('mvvmGraphPlugin.js', function() {
 
         let json1Module = {
           _source: {
-            _value: `{"a":"a"}`
+            _value: '{"a":"a"}'
           },
           _moduleType: 'json',
           dependencies: [],
@@ -266,7 +266,7 @@ describe('mvvmGraphPlugin.js', function() {
         }
         let json2Module = {
           _source: {
-            _value: `module.exports = {a:'a'}`
+            _value: 'module.exports = {a:\'a\'}'
           },
           _moduleType: 'json',
           dependencies: [],
@@ -278,7 +278,7 @@ describe('mvvmGraphPlugin.js', function() {
 
         let scriptModule = {
           _source: {
-            _value: `module.exports = {}`
+            _value: 'module.exports = {}'
           },
           _moduleType: 'script',
           dependencies: [],
@@ -308,7 +308,7 @@ describe('mvvmGraphPlugin.js', function() {
               module: scriptModule
             }],
             request: 'request',
-            resource: '/pages/page1.cml',
+            resource: '/pages/pagea.cml',
             rawRequest: 'rawRequest',
             id: 'id'
 

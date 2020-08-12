@@ -335,7 +335,28 @@ exports.getMiniAppEntry = function (cmlType) {
     }
   }
 }
-
+exports.getHtmlPluginConfig = function(options) {
+  let {filename, template, chunksort, entryName} = options;
+  var htmlConf = {
+    filename: filename,
+    template,
+    inject: 'body',
+    // hash: true,
+    chunks: ['manifest', 'vender', entryName],
+    chunksSortMode: function (a, b) {
+      var aIndex = chunksort.indexOf(a.names[0]);
+      var bIndex = chunksort.indexOf(b.names[0]);
+      aIndex = aIndex < 0 ? chunksort.length + 1 : aIndex;
+      bIndex = bIndex < 0 ? chunksort.length + 1 : bIndex;
+      return aIndex - bIndex;
+    }
+  }
+  if (options.console === true) {
+    htmlConf.console = true
+    htmlConf.consolejs = '/preview-assets/didiConsole-1.0.7.min.js'
+  }
+  return htmlConf
+}
 exports.getWebEntry = function (options) {
   if (cml.media === 'export') {
     return exports.getWebExportEntry();
@@ -373,8 +394,8 @@ exports.getWebEntry = function (options) {
     entryFile = path.join(cml.projectRoot, 'node_modules/chameleon-runtime/.temp/entry.js');
   }
   var entryName = exports.getEntryName();
-  entry[entryName] = entryFile;
-  var chunksort = ['manifest', 'vender', 'common'];
+  // entry[entryName] = entryFile;
+  var chunksort = ['manifest', 'vender'];
   let filename = `${entryName}.html`;
   if (cml.config.get().templateType === 'smarty') {
     filename = `template/${entryName}.tpl`;
@@ -393,25 +414,44 @@ exports.getWebEntry = function (options) {
       template = path.resolve(__dirname, './default/html_entry.html');
     }
   }
-  var htmlConf = {
-    filename: filename,
-    template,
-    inject: 'body',
-    // hash: true,
-    chunks: ['manifest', 'vender', 'common', entryName],
-    chunksSortMode: function (a, b) {
-      var aIndex = chunksort.indexOf(a.names[0]);
-      var bIndex = chunksort.indexOf(b.names[0]);
-      aIndex = aIndex < 0 ? chunksort.length + 1 : aIndex;
-      bIndex = bIndex < 0 ? chunksort.length + 1 : bIndex;
-      return aIndex - bIndex;
+
+  // ---->web端多页面构建
+  const {routerConfig} = cmlUtils.getRouterConfig();
+  let mpa = routerConfig.mpa;
+  if (mpa && mpa.webMpa && Array.isArray(mpa.webMpa)) { // 配置了web端多页面
+    let webMpa = mpa.webMpa;
+    for (let i = 0; i < webMpa.length ; i++) {
+      // 多入口增加
+      if (typeof webMpa[i].name === 'string') {
+        entry[`${webMpa[i].name}`] = `${entryFile}?query=${i}`;
+        let htmlConf = exports.getHtmlPluginConfig({
+          filename: cml.config.get().templateType === 'smarty' ? `template/${webMpa[i].name}.tpl` : `${webMpa[i].name}.html`,
+          template,
+          chunksort,
+          entryName: `${webMpa[i].name}`,
+          console: options.console
+        });
+        htmlPlugins.push(new HtmlWebpackPlugin(htmlConf));
+      } else {
+        entry[`${entryName}${i}`] = `${entryFile}?query=${i}`;
+        let htmlConf = exports.getHtmlPluginConfig({
+          filename: cml.config.get().templateType === 'smarty' ? `template/${entryName}${i}.tpl` : `${entryName}${i}.html`,
+          template,
+          chunksort,
+          entryName: `${entryName}${i}`,
+          console: options.console
+        });
+        htmlPlugins.push(new HtmlWebpackPlugin(htmlConf));
+      }
     }
+  } else { // 没有配置web端多页面，那么还是走原来的逻辑
+    entry[entryName] = entryFile;
+    let htmlConf = exports.getHtmlPluginConfig({
+      filename, template, chunksort, entryName, console: options.console
+    })
+    htmlPlugins.push(new HtmlWebpackPlugin(htmlConf));
   }
-  if (options.console === true) {
-    htmlConf.console = true
-    htmlConf.consolejs = '/preview-assets/didiConsole-1.0.7.min.js'
-  }
-  htmlPlugins.push(new HtmlWebpackPlugin(htmlConf))
+  // ---->
   if (options.media === 'dev') {
     let origin = path.join(__dirname, './preview.html');
     let target = path.join(cml.utils.getDevServerPath(), 'preview.html')

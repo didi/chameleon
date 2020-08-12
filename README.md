@@ -1,4 +1,6 @@
-# <img src="https://cml.js.org/doc/assets/100*100.png"/> Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon) [![license](https://img.shields.io/npm/l/chameleon-tool.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=popout-square)](https://www.npmjs.com/package/chameleon-tool) [![version](https://img.shields.io/npm/v/chameleon-tool.svg?style=flat)](https://www.npmjs.com/package/chameleon-tool)
+# ![](./logo/cml.png) 
+
+Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon) [![license](https://img.shields.io/npm/l/chameleon-tool.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=popout-square)](https://www.npmjs.com/package/chameleon-tool) [![version](https://img.shields.io/npm/v/chameleon-tool.svg?style=flat)](https://www.npmjs.com/package/chameleon-tool)
 
 **Chameleon**/kəˈmiːlɪən/，简写`CML`，中文名`卡梅龙`；中文意思`变色龙`，意味着就像变色龙一样能适应不同环境的跨端整体解决方案。
 
@@ -115,15 +117,15 @@ CML 采用与 Vue 一致的组件化方案、单文件组织方式、生命周�
 
 基于强大的[多态协议](https://CML.JS.org/doc/framework/polymorphism/intro.html)，充分隔离各端差异化实现，轻松维护一套代码实现跨多端
 
-## <a href="https://CML.JS.org/doc/framework/polymorphism/check.html">智能规范校验</a>
+## [规范校验](http://cml.didi.cn/docs/introduction.html#%E6%99%BA%E8%83%BD%E8%A7%84%E8%8C%83%E6%A0%A1%E9%AA%8C)
 
 代码规范校验，当出现不符合规范要求的代码时，编辑器会展示智能提示，不用挨个调试各端代码，同时命令行启动窗口也会提示代码的错误位置。
 
-## <a href="https://CML.JS.org/doc/framework/progressive.html">渐进式跨端</a>
+## 渐进式跨端
 
 既想一套代码运行多端，又不用大刀阔斧的重构项目？不仅可以用 cml 开发页面，也可以将多端重用组件用 cml 开发，直接在原有项目里面调用。
 
-## <a href="https://cml.js.org/doc/framework/engineering.html">先进前端开发体验</a>
+## 先进前端开发体验
 
 Chameleon 不仅仅是跨端解决方案。基于优秀的前端打包工具 Webpack，吸收了业内多年来积累的最有用的工程化设计，提供了前端基础开发脚手架命令工具，帮助端开发者从开发、联调、测试、上线等全流程高效的完成业务开发。
 

@@ -1,6 +1,6 @@
 {
   "name": "chameleon-template-parse",
-  "version": "1.0.6",
+  "version": "1.0.8-alpah.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -24,9 +24,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chameleon-css-loader": "1.0.6",
-    "chameleon-mixins": "1.0.6",
-    "chameleon-tool-utils": "1.0.6",
+    "chameleon-css-loader": "1.0.8-alpah.0",
+    "chameleon-mixins": "1.0.8-alpah.0",
+    "chameleon-tool-utils": "1.0.8-alpah.0",
     "clean-webpack-plugin": "^0.1.19",
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
