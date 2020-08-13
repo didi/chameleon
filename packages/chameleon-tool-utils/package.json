@@ -36,5 +36,5 @@
     "test": "mocha --recursive --reporter spec",
     "break-test": "./node_modules/.bin/mocha  --inspect-brk --recursive --reporter spec"
   },
-  "version": "1.0.8-alpah.0"
+  "version": "1.0.8-alpah.1"
 }
