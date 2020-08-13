@@ -1,3 +1,12 @@
+## [1.0.8-alpha.1]
+
+* 路由配置文件处理
+* HtmlWebpackPlugin配置适配
+* express本地服务配置
+* 预览页面跳转以及二维码适配
+* hash页面适配多路由: 需要修改preview页面跳转
+* history页面适配多路由：需要修改本地express服务
+
 ## [1.0.8-alpha.0]
   * 支持chameleon-api-miniapp按需加载
   * 支持组件动态加载
