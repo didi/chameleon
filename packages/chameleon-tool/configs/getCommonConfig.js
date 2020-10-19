@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const {getBabelPath, getExcludeBabelPath, getGlobalCheckWhiteList, getFreePort} = require('./utils');
+const {getBabelPath, getExcludeBabelPath, getGlobalCheckWhiteList, getFreePort, addCahceLoader} = require('./utils');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const ChameleonWebpackPlugin = require('chameleon-webpack-plugin')
@@ -161,6 +161,9 @@ module.exports = function (options) {
         showWarning: chameleonConfig.optimize && chameleonConfig.optimize.showWarning
       })
     ]
+  }
+  if (options.cache) {
+    addCahceLoader(commonConfig, type);
   }
   if (chameleonConfig.enableGlobalCheck === true) {
     commonConfig.plugins.push(

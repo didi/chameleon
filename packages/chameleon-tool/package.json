@@ -37,6 +37,7 @@
     "babel-preset-flow": "6.23.0",
     "babel-preset-stage-0": "6.24.1",
     "body-parser": "^1.18.3",
+    "cache-loader": "^4.1.0",
     "chalk": "^2.4.2",
     "chameleon-css-loader": "^1.0.8-alpah.1",
     "chameleon-dev-proxy": "^1.0.8-alpah.1",

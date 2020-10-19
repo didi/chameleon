@@ -89,9 +89,10 @@ module.exports = function (options) {
       }
     )
   }
+  if (options.cache) {
+    utils.addCahceLoader(commonConfig, 'weex');
+  }
   return merge(getCommonConfig(options), commonConfig);
-
-
 }
 
 

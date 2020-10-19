@@ -148,6 +148,9 @@ module.exports = function (options) {
     // 组件导出，修改jsonpFunction
     commonConfig.output.jsonpFunction = getJsonpFunction(root);
   }
+  if (options.cache) {
+    utils.addCahceLoader(commonConfig, type);
+  }
 
 
   return merge(getCommonConfig(options), commonConfig);

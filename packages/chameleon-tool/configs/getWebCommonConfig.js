@@ -133,6 +133,9 @@ module.exports = function (options) {
       }
     )
   }
+  if (options.cache) {
+    utils.addCahceLoader(commonConfig, 'web');
+  }
   return merge(getCommonConfig(options), commonConfig);
 
 }
