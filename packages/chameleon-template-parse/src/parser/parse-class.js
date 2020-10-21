@@ -79,7 +79,7 @@ parseClass.tap('weex-cml', (args) => {
 
 })
 parseClass.tap('wx-alipay-baidu-cml', (args) => {
-  let { node, type, options: {lang, filePath, usingComponents, isInjectBaseStyle} } = args;
+  let { node, type, options: { media, lang, filePath, usingComponents, isInjectBaseStyle } } = args;
   // type === 'wx' || type === 'alipay' || type === 'baidu'
   if (lang === 'cml' && (['wx', 'qq', 'baidu', 'alipay', 'tt'].includes(type))) {
     let tagName = node.openingElement.name.name;
@@ -106,14 +106,20 @@ parseClass.tap('wx-alipay-baidu-cml', (args) => {
         extraClass = `${extraClass} cml-${randomClassName}` // 不插入全局样式的时候也要插入样式隔离
       }
     }
+    let chameleonConfig = cml.config.get()[type][media];
+    const hasMiniAppCustomDataClass = chameleonConfig.hasMiniAppCustomDataClass;
 
     if (classNodes.length === 0) {
       extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('class'), t.stringLiteral(extraClass)))
+      // 添加 data-class 方便在小程序中的时间回调 event 中拿到class值
+      hasMiniAppCustomDataClass && extraClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('data-class'), t.stringLiteral(extraClass.trim())))
     } else if (classNodes.length === 1) {
-      classNodes.forEach((itemNode) => {
-        const dealedClassNodeValue = `${itemNode.value.value} ${extraClass}`
-        itemNode.value.value = dealedClassNodeValue;
-      })
+      const classNode = classNodes[0];
+      const dealedClassNodeValue = `${classNode.value.value} ${extraClass}`
+
+      classNode.value.value = dealedClassNodeValue;
+      // 添加 data-class 方便在小程序中的时间回调 event 中拿到class值
+      hasMiniAppCustomDataClass && attributes.push(t.jsxAttribute(t.jsxIdentifier('data-class'), t.stringLiteral(dealedClassNodeValue)))
     } else {
       throw new Error('Only allow one class node in element\'s attribute with cml syntax');
     }
