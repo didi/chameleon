@@ -22,7 +22,7 @@ function clone (value) {
 }
 var miniappConfig = {
   dev: {
-    hash: true,
+    cache: true,
     hasMiniAppCustomDataClass: false,
     moduleIdType: 'name',
     definePlugin: {
@@ -32,6 +32,7 @@ var miniappConfig = {
   },
   build: {
     hash: true,
+    cache: true,
     hasMiniAppCustomDataClass: false,
     minimize: true,
     definePlugin: {
@@ -40,6 +41,7 @@ var miniappConfig = {
   },
   export: {
     hash: true,
+    cache: true,
     hasMiniAppCustomDataClass: false,
     minimize: true,
     definePlugin: {
@@ -114,7 +116,7 @@ var chameleonConfig = {
   tt: clone(miniappConfig),
   web: {
     dev: {
-      hash: true,
+      cache: true,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
@@ -129,6 +131,7 @@ var chameleonConfig = {
     },
     build: {
       hash: true,
+      cache: true,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
@@ -140,6 +143,7 @@ var chameleonConfig = {
     },
     export: {
       hash: true,
+      cache: true,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
@@ -154,7 +158,7 @@ var chameleonConfig = {
   },
   weex: {
     dev: {
-      hash: true,
+      cache: true,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       moduleIdType: 'name',
@@ -164,6 +168,7 @@ var chameleonConfig = {
     },
     build: {
       hash: true,
+      cache: true,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
@@ -174,6 +179,7 @@ var chameleonConfig = {
     },
     export: {
       hash: true,
+      cache: true,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,

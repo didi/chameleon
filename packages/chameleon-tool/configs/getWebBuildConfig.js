@@ -19,7 +19,6 @@ module.exports = function (options) {
       new CleanWebpackPlugin(['./*'], {root: outputPath, verbose: false})
     ]
   }
-  const obj = getWebCommonConfig(options);
 
   return merge(getWebCommonConfig(options), buildConfig)
 }
