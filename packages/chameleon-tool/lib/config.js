@@ -22,7 +22,7 @@ function clone (value) {
 }
 var miniappConfig = {
   dev: {
-    cache: true,
+    cache: false,
     hasMiniAppCustomDataClass: false,
     moduleIdType: 'name',
     definePlugin: {
@@ -32,7 +32,7 @@ var miniappConfig = {
   },
   build: {
     hash: true,
-    cache: true,
+    cache: false,
     hasMiniAppCustomDataClass: false,
     minimize: true,
     definePlugin: {
@@ -41,7 +41,7 @@ var miniappConfig = {
   },
   export: {
     hash: true,
-    cache: true,
+    cache: false,
     hasMiniAppCustomDataClass: false,
     minimize: true,
     definePlugin: {
@@ -116,7 +116,7 @@ var chameleonConfig = {
   tt: clone(miniappConfig),
   web: {
     dev: {
-      cache: true,
+      cache: false,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
@@ -131,7 +131,7 @@ var chameleonConfig = {
     },
     build: {
       hash: true,
-      cache: true,
+      cache: false,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
@@ -143,7 +143,7 @@ var chameleonConfig = {
     },
     export: {
       hash: true,
-      cache: true,
+      cache: false,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
@@ -158,7 +158,7 @@ var chameleonConfig = {
   },
   weex: {
     dev: {
-      cache: true,
+      cache: false,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       moduleIdType: 'name',
@@ -168,7 +168,7 @@ var chameleonConfig = {
     },
     build: {
       hash: true,
-      cache: true,
+      cache: false,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
@@ -179,7 +179,7 @@ var chameleonConfig = {
     },
     export: {
       hash: true,
-      cache: true,
+      cache: false,
       hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
