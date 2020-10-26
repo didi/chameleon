@@ -202,6 +202,7 @@ module.exports = function (content) {
     let {source, usedBuildInTagMap = {}} = compileTemplate(templateContent, cmlType, {
       buildInComponents,
       cmss,
+      media,
       ...options
     });
     // currentUsedBuildInTagMap 中 key为  cml-builtin-button

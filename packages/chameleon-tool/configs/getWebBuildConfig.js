@@ -20,6 +20,5 @@ module.exports = function (options) {
     ]
   }
 
-
   return merge(getWebCommonConfig(options), buildConfig)
 }

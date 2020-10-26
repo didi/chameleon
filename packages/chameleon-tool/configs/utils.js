@@ -698,3 +698,23 @@ exports.getFreePort = function () {
   }
 }
 
+exports.addCahceLoader = (config, type) => {
+  const cacheUseLoader = {
+    loader: 'cache-loader',
+    options: {
+      cacheDirectory: path.resolve(process.cwd(), `node_modules/.cache/cache-loader/cache_${type}`)
+    }
+  }
+  const testee = ['.interface', '.cml', '.vue', '.js'];
+
+  config.module.rules.forEach(rule => {
+    testee.some(ext => {
+      const isRegExp = Object.prototype.toString.call(rule.test) === '[object RegExp]';
+
+      if (isRegExp && rule.test.test(ext)) {
+        return rule.use && rule.use.unshift(cacheUseLoader);
+      }
+    })
+  })
+}
+

@@ -22,6 +22,8 @@ function clone (value) {
 }
 var miniappConfig = {
   dev: {
+    cache: false,
+    hasMiniAppCustomDataClass: false,
     moduleIdType: 'name',
     definePlugin: {
       'process.env.NODE_ENV': JSON.stringify('development')
@@ -30,6 +32,8 @@ var miniappConfig = {
   },
   build: {
     hash: true,
+    cache: false,
+    hasMiniAppCustomDataClass: false,
     minimize: true,
     definePlugin: {
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -37,6 +41,8 @@ var miniappConfig = {
   },
   export: {
     hash: true,
+    cache: false,
+    hasMiniAppCustomDataClass: false,
     minimize: true,
     definePlugin: {
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -110,6 +116,8 @@ var chameleonConfig = {
   tt: clone(miniappConfig),
   web: {
     dev: {
+      cache: false,
+      hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
       moduleIdType: 'name',
@@ -122,9 +130,11 @@ var chameleonConfig = {
       }
     },
     build: {
+      hash: true,
+      cache: false,
+      hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       babelPolyfill: false, // 是否添加babel polyfill 只web端有此属性
-      hash: true,
       minimize: true,
       moduleIdType: 'chameleon',
       definePlugin: {
@@ -132,8 +142,10 @@ var chameleonConfig = {
       }
     },
     export: {
-      isWrapComponent: true, // 默认对组件进行一层包裹
       hash: true,
+      cache: false,
+      hasMiniAppCustomDataClass: false,
+      isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
       moduleIdType: 'chameleon',
       entry: [
@@ -146,6 +158,8 @@ var chameleonConfig = {
   },
   weex: {
     dev: {
+      cache: false,
+      hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       moduleIdType: 'name',
       definePlugin: {
@@ -153,17 +167,21 @@ var chameleonConfig = {
       }
     },
     build: {
+      hash: true,
+      cache: false,
+      hasMiniAppCustomDataClass: false,
       isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
-      hash: true,
       moduleIdType: 'chameleon',
       definePlugin: {
         'process.env.NODE_ENV': JSON.stringify('production')
       }
     },
     export: {
-      isWrapComponent: true, // 默认对组件进行一层包裹
       hash: true,
+      cache: false,
+      hasMiniAppCustomDataClass: false,
+      isWrapComponent: true, // 默认对组件进行一层包裹
       minimize: true,
       moduleIdType: 'chameleon',
       entry: [
