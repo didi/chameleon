@@ -196,7 +196,8 @@ var chameleonConfig = {
     watchNodeModules: false, // 默认不对node_modules中的文件进行watch,提升编译性能
     showWarning: false, // 为了兼容原来的配置，默认不开启构建过程中的警告信息，开启之后配合，DuplicatePackageCheckerPlugin 可以在构建过程中检查是否有重复npm包引入
     dropConsole: true,
-    processBar: true
+    processBar: true,
+    circularDependency: true// 默认引入自动检测循环引用的插件
   }
 }
 

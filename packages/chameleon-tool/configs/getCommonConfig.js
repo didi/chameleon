@@ -14,6 +14,7 @@ const fs = require('fs');
 const cmlUtils = require('chameleon-tool-utils');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = function (options) {
   let {
@@ -176,6 +177,9 @@ module.exports = function (options) {
   if (chameleonConfig.optimize && chameleonConfig.optimize.processBar) {
     commonConfig.plugins.push(new ProgressBarPlugin())
   }
+  if (chameleonConfig.optimize && chameleonConfig.optimize.circularDependency) {
+    commonConfig.plugins.push(new ProgressBarPlugin())
+  }
   if (options.definePlugin) {
     commonConfig.plugins.push(new webpack.DefinePlugin(options.definePlugin))
   }
@@ -214,6 +218,32 @@ module.exports = function (options) {
         verbose: true
       })
     );
+
+    commonConfig.plugins.push(
+      new DuplicatePackageCheckerPlugin({
+        verbose: true
+      })
+    );
+    if (chameleonConfig.optimize && chameleonConfig.optimize.circularDependency) {
+      commonConfig.plugins.push(
+        new CircularDependencyPlugin({
+          // exclude detection of files based on a RegExp
+          exclude: /node_modules/,
+          // include specific files based on a RegExp
+          include: /src/,
+          // add errors to webpack instead of warnings
+          failOnError: true,
+          // allow import cycles that include an asyncronous import,
+          // e.g. via import(/* webpackMode: "weak" */ './file.js')
+          allowAsyncCycles: false,
+          // set the current working directory for displaying module paths
+          cwd: process.cwd()
+        })
+      );
+
+
+    }
+
   }
   // 兼容旧版api
   commonConfig.plugins.push(new webpack.DefinePlugin({

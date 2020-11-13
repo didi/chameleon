@@ -53,6 +53,7 @@
     "chameleon-vue-precompiler": "^1.0.8-alpah.1",
     "chameleon-webpack-plugin": "^1.0.8-alpah.1",
     "chameleon-weex-vue-loader": "^1.0.8-alpah.1",
+    "circular-dependency-plugin": "^4.4.0",
     "clean-webpack-plugin": "0.1.19",
     "cml-extract-css-webpack-plugin": "^1.0.8-alpah.1",
     "cml-vue-loader": "^1.0.8-alpah.1",
