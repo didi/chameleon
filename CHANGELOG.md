@@ -1,3 +1,27 @@
+## [1.0.8]
+
+* 支持data-class 配置
+chameleon.config.js 文件中配置
+
+```javascript
+wx:{ //alipay/baidu/...
+
+  dev:{
+    hasMiniAppCustomDataClass:true
+  }
+  build:{
+    hasMiniAppCustomDataClass:true
+  }
+
+}
+```
+* 内置支持循环依赖检测
+```javascript
+optimize: {
+  circularDependency: true// 默认引入自动检测循环引用的插件
+}
+
+```
 ## [1.0.8-alpha.1]
 
 * 路由配置文件处理
