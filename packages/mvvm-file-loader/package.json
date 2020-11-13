@@ -1,6 +1,6 @@
 {
   "name": "mvvm-file-loader",
-  "version": "1.0.8-alpah.1",
+  "version": "1.0.8",
   "description": "mvvm file loader",
   "main": "dist/cjs.js",
   "scripts": {

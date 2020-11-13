@@ -1,6 +1,6 @@
 {
   "name": "mvvm-miniapp-loader",
-  "version": "1.0.8-alpah.1",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
