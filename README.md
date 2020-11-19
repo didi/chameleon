@@ -1,8 +1,8 @@
 Chameleon社区活动，欢迎大家体验关注啦！！！
 
-# ![](./logo/active.png)
+<img src="https://static.didialift.com/pinche/gift/resource/f7d4nf1n2ng-1605770421044-active.png" width="400px"/>
 
-# ![](./logo/cml.png) 
+# ![](https://static.didialift.com/pinche/gift/resource/557c7k0msl8-1605770655708-cml.png) 
 
 Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon) [![license](https://img.shields.io/npm/l/chameleon-tool.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=popout-square)](https://www.npmjs.com/package/chameleon-tool) [![version](https://img.shields.io/npm/v/chameleon-tool.svg?style=flat)](https://www.npmjs.com/package/chameleon-tool)
 
