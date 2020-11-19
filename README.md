@@ -1,6 +1,6 @@
 Chameleon社区活动，欢迎大家体验关注啦！！！
 
-# ![](./logo/active.jpg)
+# ![](./logo/active.png)
 
 # ![](./logo/cml.png) 
 
