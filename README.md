@@ -1,5 +1,7 @@
 Chameleon社区活动，欢迎大家体验关注啦！！！
 
+如果长图加载不出来，大家可以点击这里直接查看活动介绍：https://z.didi.cn/4qybi
+
 <img src="https://static.didialift.com/pinche/gift/resource/mlnioq7qtp8-1605771224687-%E7%94%BB%E6%9D%BF2.jpg" width="400px"/>
 
 # ![](https://static.didialift.com/pinche/gift/resource/557c7k0msl8-1605770655708-cml.png) 
