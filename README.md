@@ -1,6 +1,6 @@
 Chameleon社区活动，欢迎大家体验关注啦！！！
 
-<img src="https://static.didialift.com/pinche/gift/resource/bq30ievgcq8-1605770923529-%E7%94%BB%E6%9D%BF2.jpg" width="400px"/>
+<img src="https://static.didialift.com/pinche/gift/resource/mlnioq7qtp8-1605771224687-%E7%94%BB%E6%9D%BF2.jpg" width="400px"/>
 
 # ![](https://static.didialift.com/pinche/gift/resource/557c7k0msl8-1605770655708-cml.png) 
 
