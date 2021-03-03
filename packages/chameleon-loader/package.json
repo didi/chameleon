@@ -60,7 +60,7 @@
     "node-libs-browser": "^2.0.0",
     "normalize-newline": "^3.0.0",
     "null-loader": "^0.1.1",
-    "pug": "^2.0.0-rc.2",
+    "pug": "^3.0.1",
     "raw-loader": "^0.5.1",
     "skeleton-loader": "1.1.3",
     "stylus": "^0.54.5",
