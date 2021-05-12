@@ -35,7 +35,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.map": "^4.6.0",
     "lodash.uniq": "^4.5.0",
-    "postcss": "^7.0.5",
+    "postcss": "^8.2.10",
     "stylelint": "^9.7.0",
     "stylus": "^0.54.5",
     "stylus-converter": "^0.8.1",
