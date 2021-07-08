@@ -1,11 +1,5 @@
 Chameleon社区活动，欢迎大家体验关注啦！！！
 
-如果长图加载不出来，大家可以点击这里直接查看活动介绍：[https://z.didi.cn/4qybi](https://z.didi.cn/4qybi)
-
-<img src="https://static.didialift.com/pinche/gift/resource/mlnioq7qtp8-1605771224687-%E7%94%BB%E6%9D%BF2.jpg" width="400px"/>
-
-# ![](https://static.didialift.com/pinche/gift/resource/557c7k0msl8-1605770655708-cml.png) 
-
 Chameleon [![Build Status](https://www.travis-ci.org/didi/chameleon.svg?branch=master)](https://www.travis-ci.org/didi/chameleon) [![license](https://img.shields.io/npm/l/chameleon-tool.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=popout-square)](https://www.npmjs.com/package/chameleon-tool) [![version](https://img.shields.io/npm/v/chameleon-tool.svg?style=flat)](https://www.npmjs.com/package/chameleon-tool)
 
 **Chameleon**/kəˈmiːlɪən/，简写`CML`，中文名`卡梅龙`；中文意思`变色龙`，意味着就像变色龙一样能适应不同环境的跨端整体解决方案。
