@@ -79,7 +79,7 @@
     "ip": "1.1.5",
     "less": "^3.11.1",
     "less-loader": "4.1.0",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "mvvm-cml-loader": "1.0.8",
     "mvvm-file-loader": "1.0.8",
     "mvvm-miniapp-loader": "1.0.8",
