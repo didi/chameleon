@@ -9,7 +9,7 @@
   "author": "Chameleon-Team",
   "license": "Apache",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-uglify-es": "^1.0.4",
     "webpack": "^3.12.0"
   },
