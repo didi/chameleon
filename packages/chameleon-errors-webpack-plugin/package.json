@@ -14,7 +14,7 @@
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.3.0",
+    "babel-loader": "^9.1.0",
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "eslint": "^3.16.1",
@@ -22,7 +22,7 @@
     "expect": "^1.20.2",
     "jest": "^18.1.0",
     "memory-fs": "^0.4.1",
-    "webpack": "^2.2.1"
+    "webpack": "^5.74.0"
   },
   "files": [
     "src",
