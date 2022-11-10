@@ -119,7 +119,7 @@
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
+    "mocha": "^10.1.0",
     "nyc": "^13.1.0"
   },
   "mail": "ChameleonCore@didiglobal.com"
