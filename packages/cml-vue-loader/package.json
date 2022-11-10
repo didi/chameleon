@@ -40,7 +40,7 @@
     "marked": "^0.3.12",
     "memory-fs": "^0.4.1",
     "mkdirp": "^0.5.1",
-    "mocha": "^4.0.1",
+    "mocha": "^10.1.0",
     "node-libs-browser": "^2.0.0",
     "normalize-newline": "^3.0.0",
     "null-loader": "^0.1.1",

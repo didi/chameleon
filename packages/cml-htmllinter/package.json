@@ -30,7 +30,7 @@
     "gulp-mocha": "^3.0.1",
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
-    "mocha": "^4.0.1",
+    "mocha": "^10.1.0",
     "plato": "^1.7.0"
   },
   "dependencies": {

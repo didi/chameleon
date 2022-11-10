@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
+    "mocha": "^10.1.0",
     "nyc": "^13.1.0"
   },
   "gitHead": "5ddcde4330774710f7646559446e008f7785ce00"
