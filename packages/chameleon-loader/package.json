@@ -48,7 +48,7 @@
     "eslint-plugin-vue-libs": "^1.2.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.5",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-uglify-es": "^1.0.4",
     "istanbul": "^0.4.5",
     "js-yaml": "^3.9.1",
