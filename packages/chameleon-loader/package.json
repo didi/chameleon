@@ -25,7 +25,7 @@
     "fs-extra": "^7.0.1",
     "hash-sum": "1.0.2",
     "he": "1.1.0",
-    "loader-utils": "1.1.0",
+    "loader-utils": "1.4.1",
     "lru-cache": "4.1.1",
     "mvvm-interface-parser": "1.0.8",
     "resolve": "1.4.0",
