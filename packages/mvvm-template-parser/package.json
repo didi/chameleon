@@ -22,7 +22,7 @@
     "coveralls": "^2.11.9",
     "eslint": "^5.9.0",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   },
   "gitHead": "e697386b2323bf287b18774ff482b2c7970f40d8"
 }
