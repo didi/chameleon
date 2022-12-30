@@ -23,7 +23,7 @@
     "gulp": "^3.9.1",
     "gulp-uglify-es": "^1.0.4",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   },
   "author": "Chameleon-Team",
   "license": "Apache",

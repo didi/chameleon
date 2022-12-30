@@ -40,7 +40,7 @@
     "jsdom": "^9.2.1",
     "memory-fs": "^0.3.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^2.2.5",
+    "mocha": "^10.2.0",
     "node-libs-browser": "^1.0.0",
     "postcss": "^5.0.21",
     "pug": "^2.0.0-beta6",
