@@ -11,7 +11,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-uglify-es": "^1.0.4",
-    "webpack": "^3.12.0"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "chameleon-tool-utils": "1.0.8"
